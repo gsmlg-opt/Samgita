@@ -216786,24 +216786,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-default-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadStartParams.json#/properties/historyMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_start_defaults: Five independent starts send none/friendly/pragmatic values with legacy history and null/null or omitted defaults. Exact captured request envelopes match native response IDs. Summary-only applied settings independently observe personality; real provider input matches prescribed stripped/literal instructions and actual global AGENTS marker. Each start response contains the exact global source path. Distinct hash-checked cold process reads stored history modes; only legacy controls reconstruct completed turns. Fixed inputs and whole provider journal remain unchanged. Only these four physical owners gain scoped evidence; no style-template rendering, paginated selective lifecycle, aliases, external provider/OS/transport or full completeness claim. Current security/permission-related checks and hosted/broad matrices remain unrun."
+      ],
       "pointer": "/properties/historyMode/anyOf/1",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_default_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -217067,46 +217075,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-default-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/personality/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_start_defaults: Five independent starts send none/friendly/pragmatic values with legacy history and null/null or omitted defaults. Exact captured request envelopes match native response IDs. Summary-only applied settings independently observe personality; real provider input matches prescribed stripped/literal instructions and actual global AGENTS marker. Each start response contains the exact global source path. Distinct hash-checked cold process reads stored history modes; only legacy controls reconstruct completed turns. Fixed inputs and whole provider journal remain unchanged. Only these four physical owners gain scoped evidence; no style-template rendering, paginated selective lifecycle, aliases, external provider/OS/transport or full completeness claim. Current security/permission-related checks and hosted/broad matrices remain unrun."
+      ],
       "pointer": "/properties/personality/anyOf/0",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "3d5163f5698fd3d68442457516b0d32472daf7937c975ee3d2626ffd118c163f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_default_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-default-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/personality/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_start_defaults: Five independent starts send none/friendly/pragmatic values with legacy history and null/null or omitted defaults. Exact captured request envelopes match native response IDs. Summary-only applied settings independently observe personality; real provider input matches prescribed stripped/literal instructions and actual global AGENTS marker. Each start response contains the exact global source path. Distinct hash-checked cold process reads stored history modes; only legacy controls reconstruct completed turns. Fixed inputs and whole provider journal remain unchanged. Only these four physical owners gain scoped evidence; no style-template rendering, paginated selective lifecycle, aliases, external provider/OS/transport or full completeness claim. Current security/permission-related checks and hosted/broad matrices remain unrun."
+      ],
       "pointer": "/properties/personality/anyOf/1",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_default_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -217763,27 +217787,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-default-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/instructionSources",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_start_defaults: Five independent starts send none/friendly/pragmatic values with legacy history and null/null or omitted defaults. Exact captured request envelopes match native response IDs. Summary-only applied settings independently observe personality; real provider input matches prescribed stripped/literal instructions and actual global AGENTS marker. Each start response contains the exact global source path. Distinct hash-checked cold process reads stored history modes; only legacy controls reconstruct completed turns. Fixed inputs and whole provider journal remain unchanged. Only these four physical owners gain scoped evidence; no style-template rendering, paginated selective lifecycle, aliases, external provider/OS/transport or full completeness claim. Current security/permission-related checks and hosted/broad matrices remain unrun."
+      ],
       "nullable": false,
       "pointer": "/properties/instructionSources",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "0c77a6c156dac04a538afc868200f0e245d8355a4e1bdf94aa5abdfcd8fab20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_default_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "instructionSources"
     },
     {

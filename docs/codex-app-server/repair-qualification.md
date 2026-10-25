@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [start-default continuation](thread-start-default-values-qualification.md)
+passes twenty-one functional files **35/0 twice**, compile/format, strict Credo,
+outside-umbrella consumer **1/0**, Python syntax and the 246-file guard. Four
+physical owners bring contracts to **4,675 implemented / 1,887 missing /
+59 blocked**, with unchanged requirements and zero verified. Exact final logs
+are in `/tmp/samgita-v231-functional-checks/functional/`. The preceding v229
+block passed both native repeats, then stopped at a new cleanup helper's explicit
+try lint; **6/8 commands** ran. Its syntax-only correction preserves the body,
+after clause, deadlines and all gates. The v226 **34/0 twice** checkpoint and
+original failure remain records, not final-source substitutes. No prohibited
+test, broader/hosted completion, A11 closure or release is claimed.
+
 The [external connector continuation](external-connector-values-qualification.md)
 passes eighteen reviewed functional files **32/0 twice**, compile/format,
 strict Credo and the 241-file guard. Eleven precise response owners bring

@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [start-default unit](thread-start-default-values-qualification.md) passes
+twenty-one reviewed functional files **35/0 twice**, compile/format, strict
+Credo, outside-umbrella consumer **1/0**, Python syntax and the 246-file guard.
+Four precise owners bring contracts to **4,675 implemented / 1,887 missing /
+59 blocked**; requirements stay **462 implemented / 12 missing / 11 blocked**,
+zero verified in both. Five starts have independent applied settings, provider
+instruction/source and cold metadata oracles. Continue the real same-child
+close/resume/followup and command-control mappings with their original scoped
+limits. Yolo is fixed owned-fixture setup, with prohibited/broad/hosted tests
+unrun and every full compatibility/A11/external/release gate still incomplete.
+
 The [external connector unit](external-connector-values-qualification.md) passes
 eighteen reviewed functional files **32/0 twice**, compile/format, strict Credo
 and the 241-file guard. Eleven precise response owners bring contracts to

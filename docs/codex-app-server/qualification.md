@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [start-default continuation](thread-start-default-values-qualification.md)
+passes the final twenty-one-file functional block **35/0 twice**, compile/format,
+strict Credo, outside-umbrella consumer **1/0**, Python syntax and the 246-file
+guard. Four exact request/response owners bring contracts to **4,675 implemented /
+1,887 missing / 59 blocked**; requirements stay **462 implemented / 12 missing /
+11 blocked**, zero verified in both. Five native value/null/default starts,
+actual instruction sources/provider input and cold metadata are scoped evidence.
+Yolo is fixed owned-fixture setup; prohibited and broader/hosted gates remain
+unrun/incomplete. Full compatibility, A11 and release remain incomplete.
+
 The [external connector continuation](external-connector-values-qualification.md)
 passes eighteen reviewed functional files **32/0 twice**, compile/format,
 strict Credo and the 241-file guard. Eleven direct response owners bring contracts

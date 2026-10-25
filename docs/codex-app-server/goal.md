@@ -41,3 +41,10 @@ The final audit reports the exact source/schema/executable hashes, manifest
 totals, real-binary and external evidence, final-source local/hosted checks,
 commits, remote convergence and actual publication status. A partial phase or
 interruption does not complete this goal.
+
+Current user steering selects yolo defaults for explicitly owned qualification
+processes and prohibits security and permission-related tests. New functional
+fixtures use those fixed launch settings without policy assertions. Retained
+security/permission tests, audits and workflows containing them are not run or
+weakened; their required gates remain incomplete. This does not change deployed
+configuration, platform access controls or the full completion contract.
