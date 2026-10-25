@@ -18,10 +18,11 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
     "-c",
     "features.shell_snapshot=false"
   ]
+  @yolo_args ["-c", ~s(approval_policy="never"), "-c", ~s(sandbox_mode="danger-full-access")]
   @desktop_args ["-c", "desktop.appearanceTheme=\"dark\"", "-c", "desktop.preventSleep=true"]
   # Independent source-derived oracle: version_for_toml sorts every JSON object
   # and hashes compact bytes. Include every CLI override owned by this fixture.
-  @session_json ~s({"desktop":{"appearanceTheme":"dark","preventSleep":true},"features":{"apps":false,"plugins":false,"recommended_plugins":false,"shell_snapshot":false}})
+  @session_json ~s({"approval_policy":"never","desktop":{"appearanceTheme":"dark","preventSleep":true},"features":{"apps":false,"plugins":false,"recommended_plugins":false,"shell_snapshot":false},"sandbox_mode":"danger-full-access"})
 
   setup tags do
     ctx = TurnFixture.setup(tags)
@@ -131,7 +132,7 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
   end
 
   defp start(ctx, desktop_override \\ true) do
-    args = @feature_args ++ if(desktop_override, do: @desktop_args, else: [])
+    args = @feature_args ++ @yolo_args ++ if(desktop_override, do: @desktop_args, else: [])
 
     {:ok, pid} =
       Session.start_link(

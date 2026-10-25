@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [configuration object/null continuation](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
+passes twenty-seven reviewed files **47/0 twice**, strict/static checks, outside
+consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in
+`/tmp/samgita-v278-functional-checks/`. Two exact branches bring contracts to
+**4,731 implemented / 1,831 missing / 59 blocked**, unchanged requirements and
+zero verified. Existing desktop precedence, metadata, persistence, deletion,
+batch and restart assertions remain. Fixed yolo setup updates only its literal
+CLI fingerprint. No check fails; prohibited/broader/hosted, A11 and full-goal
+gates remain incomplete.
+
 The [read-state success source proof](read-state-update-success-limitation.md)
 records exact upstream reasons why response owners 5850–5853 cannot be emitted
 successfully. Seven complete sources and exact nodes/exports match the pin;

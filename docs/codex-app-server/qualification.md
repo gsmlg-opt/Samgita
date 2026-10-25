@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [configuration object/null unit](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
+passes twenty-seven reviewed files **47/0 twice**, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 252-source guard.
+Two exact branches bring contracts to **4,731 implemented / 1,831 missing /
+59 blocked**, unchanged requirements and zero verified. All original desktop
+metadata/disk/restart effects remain under fixed yolo setup and its independent
+fingerprint. Origin metadata is a separate owner. Prohibited/broader/hosted,
+full-goal, A11, source-unreachable/external and release gates remain incomplete.
+
 The [pinned read-state success limitation](read-state-update-success-limitation.md)
 adds complete upstream evidence for four still-missing response owners. Its
 sole successful producer returns null/threadStart, never turn, even if the

@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [configuration metadata branches](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
+pass the final twenty-seven-file **47/0 twice** matrix, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 252-source guard.
+Two exact object/null owners bring contracts to **4,731 implemented / 1,831
+missing / 59 blocked**, unchanged requirements and zero verified. Desktop
+precedence, file persistence, independent CLI-layer version, deletion/batch
+order and restart retain their original oracles under fixed yolo setup. Next
+inspect actual ConfigReadResponse origins for the distinct physical metadata
+version owner 3580; layers/write metadata cannot qualify it. Prohibited/broad/
+hosted, full-goal, A11, source-unreachable, external and release gates remain.
+
+## Earlier checkpoints
+
 The [read-state success source proof](read-state-update-success-limitation.md)
 establishes that exact owners 5850–5853 have no successful native producer in
 the immutable pin. They stay missing; only evidence/limitations change. Seven
@@ -39,8 +52,6 @@ output/effects; cold history preserves both commands without loading/execution
 or model work. The initial strict-Credo helper failure is repaired without
 assertion/bound changes. Continue reachable ordinary producer coverage. Prohibited/broad/
 hosted, full-goal, A11, source-unreachable, external and release gates remain.
-
-## Earlier checkpoints
 
 The [native project creation/change unit](project-create-change-qualification.md)
 passes the final twenty-five-file **43/0 twice** matrix, compile/format, strict
