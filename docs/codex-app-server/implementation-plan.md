@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The integrated [callback/bridge repair](session-confidentiality-qualification.md)
+passes driver59/0 and bridge17/0 twice; the
+[same-Session generation profile](native-authority-qualification.md#a-ticket-cannot-authorize-a-new-connection-generation)
+passes6/0 twice, preserving both separate databases. Final
+[MCP reauthentication/form/registration](mcp-lifecycle-status-qualification.md#integrated-nineteen-case-qualification)
+checks pass20/0 twice with the earlier origin case;
+[Apps cold-history/remote-response](mcp-app-context-history-qualification.md)
+checks pass3/0 twice after root integration. Compile/format, strict Credo, tooling
+and scoped source guards pass. Fifteen exact physical owners bring contracts to
+**4,486 implemented / 2,076 missing / 59 blocked**, zero verified; requirements
+remain462/12/11, zero verified. The source-backed M16 history and zombie ownership
+failures remain recorded. Next: freeze this combined executable/manifest source,
+run every final local matrix command and exact-pushed hosted check, then continue
+remaining reachable behavior. A11/unreachable emitters/external/backend/OS gates
+remain incomplete; no release.
+
 The [terminal v80 local matrix](repair-qualification.md#terminal-frozen-v80-local-matrix)
 finishes all **19 platform + 23 package commands** at `992e64e`, with matching
 1,507-file guards. Driver **747/0 twice**, all52 profiles **304/0 twice**,
@@ -28,10 +44,9 @@ authority **5/0 twice**, recovery/restart, outside consumers, three WebSocket
 seeds and strict/audit/assembly checks pass. Both retained GitHub first-page
 aggregate assertions and completeness fail. [Hosted v80](repair-qualification.md#hosted-v80-checkpoint-at-992e64e)
 passes foundation and both actual-native execution jobs; complete evidence fails.
-Next: integrate independently qualified generation/MCP candidates and the
-reproduced transport-callback confidentiality/replacement-open repairs, then
-rerun the final-source complete local and exact-pushed hosted matrices. Preserve
-every incomplete A11/upstream-unreachable/real external/OS gate; no release.
+The later integration above supersedes this checkpoint's candidate-only status;
+the complete new final-source matrix remains separate. Preserve every incomplete
+A11/upstream-unreachable/real external/OS gate; no release.
 
 The [native startup/authentication block](mcp-lifecycle-status-qualification.md)
 passes all fourteen cases **14/0 twice** after integration. The

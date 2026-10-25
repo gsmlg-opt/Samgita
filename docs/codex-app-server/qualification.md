@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+Current integrated scoped checks pass **59/0 driver callback +17/0 bridge +6/0
+native authority twice**, followed by **20/0 MCP/origin twice** and **3/0 expanded
+Apps history/resume twice**. Each owning source guard, compile/format, strict
+Credo and tooling check passes. The
+[repair continuation](repair-qualification.md#integrated-callback-generation-and-mcpapps-continuation)
+retains exact commands, failures, source hashes and qualification limits.
+Contracts are **4,486 implemented / 2,076 missing / 59 blocked**, requirements
+**462 implemented / 12 missing / 11 blocked**, zero verified. The complete new
+frozen-source local and exact-pushed hosted matrices are next; these focused
+results do not replace them or close A11/full compatibility.
+
 The [terminal v80 local matrix](repair-qualification.md#terminal-frozen-v80-local-matrix)
 executes all42 commands at exact `992e64e`: driver **747/0 twice**, all52 profiles
 **304/0 twice**, authority **5/0 twice**, populated recovery/restart, outside
@@ -8,8 +19,8 @@ Both retained GitHub first-page aggregate assertions and the complete evidence
 gate fail. [Hosted v80](repair-qualification.md#hosted-v80-checkpoint-at-992e64e)
 passes foundation and both real-native execution jobs on the same pushed commit;
 completeness fails. No full-compatibility, A11, release or production-readiness
-claim follows. Candidate native-generation, MCP and callback repairs remain
-separate until integrated and qualified against their final source.
+claim follows. Later native-generation, MCP, callback and Apps-history source
+has the separate integrated checks above and still requires its new full matrix.
 
 The [native startup/authentication continuation](mcp-lifecycle-status-qualification.md)
 passes all fourteen actual-binary cases **14/0 twice** after current-checkout

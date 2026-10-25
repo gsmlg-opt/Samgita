@@ -6,6 +6,56 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Integrated callback, generation and MCP/Apps continuation
+
+The final callback repair contains arbitrary external transport exceptions before
+raw OTP Logger, preserves authorized returned Errors and truthful uncertainty,
+and terminates a replacement-open owner when no partial allocation handle was
+returned. The platform bridge handles failed metadata status without a KeyError
+or native retry. This does not sanitize raw Bandit/Phoenix/LiveView ingress; A11
+remains blocked. See [callback qualification](session-confidentiality-qualification.md)
+for the original red canaries, independently reviewed allocation leak, exact
+repair and public status/reconnect contract.
+
+| Integrated owning checks | Actual result and evidence |
+| --- | --- |
+| Callback/Session59, platform bridge17, dedicated native authority6 | All pass at both501432/987654 on final integrated callback/bridge sources. Compile/format, strict Credo449 files and six-file guard pass in `/tmp/samgita-v103-integrated-checks/`. Both retained databases remain distinct and unchanged except normal authorized fixture records. |
+| MCP nineteen-case file plus existing Apps origin | **20/0 twice**, root/driver compile/format, strict Credo, 38 tooling tests, consistency and five-file guard pass in `/tmp/samgita-v106-integrated-mcp-checks/`. |
+| Expanded native Apps origin/history/remote resume | **3/0 twice**, compile/format, strict Credo and three-file guard pass in `/tmp/samgita-v111-integrated-origin-checks/`. Candidate3/0 twice in v109 precedes these root runs. |
+
+The sixth native authority case uses a genuine current generation2 replay handle
+on the same Session with its committed generation1 ticket and original2000ms
+deadline. Both replies reject exact stale_session while still live, with no send
+or durable change. Original pending work and every prior retained row survive;
+borrowed listener and explicitly owned listener/provider cleanup are distinct.
+
+M15 qualifies revoked access and explicit second PKCE login. M16 qualifies
+boolean-only legacy form opt-in with no turn/model work. M17/M18/M19 qualify
+explicit DCR, auto/CIMD selection/fallback and precise preflight errors against
+owned dependencies. Full19 native runs preserve two source-corrected histories:
+paginated metadata without a materialized row returns exact -32601/list_turns,
+and a zombie peer requires closing its actual owning subreaper before the
+unchanged disappearance check. Their diagnostics, failed runs and both bounded
+recovery rounds are in `/tmp/samgita-v105-m16-recovery/`; production cleanup and
+observation bounds are unchanged. Details and source links are in
+[MCP qualification](mcp-lifecycle-status-qualification.md#integrated-nineteen-case-qualification).
+
+The new [Apps context qualification](mcp-app-context-history-qualification.md)
+adds actual fresh-process first selective history reads and exact Android/iOS
+resume response redaction, preserving original stored context/data with no new
+model/tool execution. Ten physical live/history owners join the five MCP owners:
+**4,486 implemented / 2,076 missing / 59 blocked**, zero verified; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. No sibling
+schema inherits promotion. Synthetic dependency acceptance is not real IAM,
+external-provider or OS success. Upstream-unreachable approval emitters retain
+their immutable evidence and blocked states.
+
+Logical code commits are `f85cc60` (callback/bridge), `deff66c` (generation),
+`46eb418` (MCP19) and `34b4635` (Apps history/resume). Complete new fixed-source
+local and exact-pushed hosted checks are required next. The prior v80 outcomes
+below remain historical and cannot certify these later sources. The complete
+goal remains active; no tag, publication, production migration or deployment.
+
 ## Hosted v80 checkpoint at 992e64e
 
 Exact pushed `992e64e7c583c26b400ad71965c4aad5ecdbc247` has terminal results:
