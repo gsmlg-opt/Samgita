@@ -6,6 +6,71 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal frozen v24 local matrix
+
+The complete combined runner terminates at exact source
+`2ed69924c8e82adcbfb41740f28789832c86bf02` before further integration. Both
+manifest-inclusive 1,495-file source guards match. All 23 package commands pass;
+all 19 platform commands execute. The combined command exits 1, preserving both
+aggregate failures and mandatory completeness exit 1.
+
+| Check | Actual result |
+| --- | --- |
+| Default driver, seeds501432/987654 | **715/0 twice** |
+| All49 isolated native profiles, same seeds | **283/0 twice**, zero excluded |
+| Outside-umbrella actual-native consumer | **1/0** |
+| Neutral outside consumers | Core32/0, standalone1/0, WebSocket consumer1/0 |
+| Neutral WebSocket seeds455834/501432/987654 | **42/0 at each seed** |
+| Native wire | **42/0**; warning-free compile, format and audit pass |
+| Populated root, both seeds | Core230/0/one excluded; web131/one failure/eight excluded |
+| Platform/API/native | **59 core +11 web/0** |
+| Dedicated authority, both seeds | **3/0 twice** |
+| Original recovery/restart, both seeds | **4 core +1 web/0 twice** |
+| Remaining platform checks | Compile, format, strict Credo, Dialyzer, audit, legacy checks, frozen web dependencies, assets and local production assembly pass |
+
+Both aggregate failures retain the first-page membership assertion in
+`github_controller_test.exs:56`: the retained database contains older records,
+and its first page does not contain the newly registered connection. No test,
+pagination, data, activation guard or retry policy is changed. The separate
+recovery/authority databases retain prior history and intentional unresolved
+work. These results do not justify a reset, discarded task or automatic replay.
+
+Commands, exits, times, logs and source hashes remain in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v24-20261025/` and their
+same-named Python runners. The terminal report is
+`/tmp/samgita-repair-final-v24-terminal-20261025.json`, SHA256
+`2b8e9b912d515af0116d5708b180b0308f854be46bed2b528f4b02ff6452aeb4`.
+Its manifest has 3,591 implemented/3,030 missing contracts. The subsequent
+[50-owner index](native-envelope-owners-qualification.md#app-account-and-plugin-requests-at-2ed6992)
+changes that to 3,641 implemented/2,980 missing; requirements remain 462 implemented/
+12 missing/11 blocked, with zero verified. This does not alter historical v21
+evidence or counts. No release, publication, migration or deployment occurs.
+
+## Terminal hosted checkpoint at 2ed6992
+
+Both workflows finish on exact pushed source
+`2ed69924c8e82adcbfb41740f28789832c86bf02`.
+[Foundation40149859308](https://github.com/gsmlg-opt/Samgita/actions/runs/40149859308)
+passes. [Conformance40149942489](https://github.com/gsmlg-opt/Samgita/actions/runs/40149942489)
+passes both native execution jobs and fails its mandatory complete-evidence job;
+the overall workflow remains **failed**.
+
+The selected driver partitions pass **361 + 354 = 715/0**. All 49 required isolated
+profiles pass **283/0, zero excluded**. The wire package passes42/0, the outside
+actual-native consumer1/0, platform59 core+11 web/0 and authority3/0 at both fixed
+seeds. Hosted foundation's two fresh-database aggregate runs pass; they do not
+resolve the retained local database's first-page assertion.
+
+The exact terminal API report is
+`/tmp/samgita-v24-hosted-terminal-20261025.json`, SHA256
+`e18948a89535377f46ca0e16cbcbc4114dee2dce3c8b19af56e7ace0bfd33111`.
+Full downloaded logs, extracted counts and hashes are in
+`/tmp/samgita-v24-hosted-logs-20261025/report.json`, SHA256
+`73f095e9dc1408d346faa63cbeed1bd044fed2d92dfb9cdadb1a859137c3fe37`.
+A11, source-unreachable production emissions, external/OS success and full
+compatibility remain incomplete. Subsequent executable changes require fresh
+final-source qualification; these results do not qualify them in advance.
+
 ## Terminal-error and managed-metadata continuation
 
 The [complete ten-file owning block](managed-errors-qualification.md) passes

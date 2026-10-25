@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,591 implemented / 3,030 missing
+11 blocked requirements** and **0 verified / 3,641 implemented / 2,980 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,591 directly exercised
+MCP entries have scoped implementation evidence. These 3,641 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,18 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [50 retained request owners](native-envelope-owners-qualification.md#app-account-and-plugin-requests-at-2ed6992)
+bind selected app/account/plugin envelopes to the complete frozen v24 native
+source. [Local v24](repair-qualification.md#terminal-frozen-v24-local-matrix)
+passes all 23 package commands, including 715/0 driver and 283/0 isolated profiles
+twice, three WebSocket seeds, independent consumers and audits. Both populated
+aggregate repeats retain the GitHub-page failure; authority/recovery/restart,
+strict checks and local assembly pass. The
+[same-source hosted checkpoint](repair-qualification.md#terminal-hosted-checkpoint-at-2ed6992)
+passes foundation and both native execution jobs while mandatory completeness
+fails. Counts become 3,641 implemented/2,980 missing contracts; requirements and
+all broader incomplete gates remain unchanged, with zero verified.
 
 The [history/budget/account-plan block](history-budget-plans-qualification.md)
 adds four actual-native cases; the complete owning block passes32/0 at both

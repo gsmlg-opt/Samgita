@@ -49361,24 +49361,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/145",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Exact independent two-quota windows/credit rows, native projection and one rates/credit HTTP read each; actual read backend rather than a scripted app-server peer.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/145",
       "schema": "ClientRequest.json",
       "schema_sha256": "a74dc60dc1dc2357c2111eefaa7bcda9c26c81df548887ba4b5fa6df3c4e1297",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49410,97 +49420,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Exact independent two-quota windows/credit rows, native projection and one rates/credit HTTP read each; actual read backend rather than a scripted app-server peer.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/145/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "6907b18b63a180d1201662a3f6a4ab2842c400e6aa8d318983b0f5252e8f760c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Exact independent two-quota windows/credit rows, native projection and one rates/credit HTTP read each; actual read backend rather than a scripted app-server peer.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/145/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "830486661b0650166e04331b9d3a11cdb13ffc4ec516ad9a3e23bbe03d796cd4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Exact independent two-quota windows/credit rows, native projection and one rates/credit HTTP read each; actual read backend rather than a scripted app-server peer.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": true,
       "pointer": "/oneOf/145/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "d6e41b8c8acc333c0991ee16a44dd96c6ae04b3e0c40ba456f46a66e1473a364",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/params/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Exact independent two-quota windows/credit rows, native projection and one rates/credit HTTP read each; actual read backend rather than a scripted app-server peer.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/145/properties/params/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "05a94779091ff411e5b03eb93539f9d17ffea94487653532a2c13ea89f85a28a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -49649,24 +49699,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/147",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known123/45/67/8/9 summary and dated10-token bucket, then explicit thread ID canonicalization with independently prescribed token/credit grouping; mutable backend failures and request counts remain asserted.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/147",
       "schema": "ClientRequest.json",
       "schema_sha256": "538d87a1d9418fc71f0490fbe00f205068fd36e0f271174ae0432a159cbb137f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49698,97 +49758,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known123/45/67/8/9 summary and dated10-token bucket, then explicit thread ID canonicalization with independently prescribed token/credit grouping; mutable backend failures and request counts remain asserted.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/147/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "45f1e5d91d49df27d5e03143467c5d372eb16511d1fc556a3653cbf80a2b33b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known123/45/67/8/9 summary and dated10-token bucket, then explicit thread ID canonicalization with independently prescribed token/credit grouping; mutable backend failures and request counts remain asserted.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/147/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e82617278fb116c926ee6f097c4dbef70c1af100dd64f5633b7e2962bc9eaa1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known123/45/67/8/9 summary and dated10-token bucket, then explicit thread ID canonicalization with independently prescribed token/credit grouping; mutable backend failures and request counts remain asserted.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": true,
       "pointer": "/oneOf/147/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6170d2c6a2ce59c0f0c9f6120e79b3ba36924b19edaba63ab4fe25ffbc1aa4a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/params/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known123/45/67/8/9 summary and dated10-token bucket, then explicit thread ID canonicalization with independently prescribed token/credit grouping; mutable backend failures and request counts remain asserted.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/147/properties/params/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "27d4d860d2c08fc99eb29b6c45ea45f1b13831a0f133e9a4eced8bc02fd54843",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -49815,24 +49915,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/148",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known headline/announcement/future IDs and exact untrusted text/timestamp/null mapping, followed by current empty messages and two no-store HTTP reads. Session encode_request includes the explicit null params.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/148",
       "schema": "ClientRequest.json",
       "schema_sha256": "0ec3542cd773c7bc15edab0a5c2028252491ef737cccf7438ad8e7b7132e132d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49864,75 +49974,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/148/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known headline/announcement/future IDs and exact untrusted text/timestamp/null mapping, followed by current empty messages and two no-store HTTP reads. Session encode_request includes the explicit null params.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/148/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fd7cc78ec63a0af9429da83474cb69e6f6e3f3d986d53e7df3d93429ff444c6c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/148/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known headline/announcement/future IDs and exact untrusted text/timestamp/null mapping, followed by current empty messages and two no-store HTTP reads. Session encode_request includes the explicit null params.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/148/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9dd53c0cc89486f7beb5d5a7d97e98e73654ef82881e6eab3522c795a8c08abe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/148/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Known headline/announcement/future IDs and exact untrusted text/timestamp/null mapping, followed by current empty messages and two no-store HTTP reads. Session encode_request includes the explicit null params.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": true,
       "pointer": "/oneOf/148/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -62060,24 +62200,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/72",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "After native restart plugin/list must contain marketplace name fixture-added, fixed independently by the written source fixture/caller. This establishes concrete local list behavior and params acceptance, not every list content/kind.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/72",
       "schema": "ClientRequest.json",
       "schema_sha256": "7003c4352d2c890daf7e57325d2b2ba16cf4f49aa98b73bca44f4fcb840a0481",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62109,97 +62259,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/72/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "After native restart plugin/list must contain marketplace name fixture-added, fixed independently by the written source fixture/caller. This establishes concrete local list behavior and params acceptance, not every list content/kind.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/72/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "61b1f64cc3e2b4ef4442794f2f862e27fbd92c9304e0135f29f478b54c259e32",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/72/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "After native restart plugin/list must contain marketplace name fixture-added, fixed independently by the written source fixture/caller. This establishes concrete local list behavior and params acceptance, not every list content/kind.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/72/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8811b516d237d5647289a8908623c3d6cdfffff7e50ddf6a8b8628eacfd9b7b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/72/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "After native restart plugin/list must contain marketplace name fixture-added, fixed independently by the written source fixture/caller. This establishes concrete local list behavior and params acceptance, not every list content/kind.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/72/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "07b668640b90fd31d783b4181452c269464e0ab9f705c4ea31d95e9b5a4f2405",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/73",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native search must return exactly one known fixture-orbit@fixture-lifecycle hit with installed:true/enabled:false and exact marketplace identity/path, then prescribed nonempty/empty scope and cursor results. Independent normalization/keyword/scoping expectations distinguish actual native behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/73",
       "schema": "ClientRequest.json",
       "schema_sha256": "b499d7e37429c6b31868da4405a8e83c6ab0cc4fcd28aeb8cf3bb6d069d4593f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62231,97 +62421,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/73/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native search must return exactly one known fixture-orbit@fixture-lifecycle hit with installed:true/enabled:false and exact marketplace identity/path, then prescribed nonempty/empty scope and cursor results. Independent normalization/keyword/scoping expectations distinguish actual native behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/73/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "00c33f1bc8cde50773c4bfa1bcde3e3603afb17b8e019f04f4abe746ce821435",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/73/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native search must return exactly one known fixture-orbit@fixture-lifecycle hit with installed:true/enabled:false and exact marketplace identity/path, then prescribed nonempty/empty scope and cursor results. Independent normalization/keyword/scoping expectations distinguish actual native behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/73/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "75cb3edaff6a5202cb8e6867abe065fd61d60eb445af3ec67dce74adf2645f97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/73/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native search must return exactly one known fixture-orbit@fixture-lifecycle hit with installed:true/enabled:false and exact marketplace identity/path, then prescribed nonempty/empty scope and cursor results. Independent normalization/keyword/scoping expectations distinguish actual native behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/73/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "eee5c7d96a35d6e18526a30036d8d6ad50f6212c40ec37ff12f09c986bd25013",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/74",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Complete independently prescribed marketplace/plugin metadata map equals native response; pre-install empty response and exact post-install/cold equality establish the actual installed catalog.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/74",
       "schema": "ClientRequest.json",
       "schema_sha256": "6367a553e8ae6ee9d0fc0478325ea4c314f16787e0c715246ec54529a9b37e3e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62353,75 +62583,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/74/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Complete independently prescribed marketplace/plugin metadata map equals native response; pre-install empty response and exact post-install/cold equality establish the actual installed catalog.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/74/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5bbb6e0b3e86c43467c2750af24781b636acf72578eafe710f4be23e52547eb5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/74/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Complete independently prescribed marketplace/plugin metadata map equals native response; pre-install empty response and exact post-install/cold equality establish the actual installed catalog.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/74/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "41f49a98a9420db573653c369cd6924ae610e17ceb373715d8222cc8c7598f38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/74/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Complete independently prescribed marketplace/plugin metadata map equals native response; pre-install empty response and exact post-install/cold equality establish the actual installed catalog.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/74/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "23fa4dff004b8a9d6bd2e24eb3a8e79b7a345b852b2148ea200692e19c0c43f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -62548,24 +62808,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/76",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Controlled rich manifest/assets define expected_interface and complete expected_summary before native read. plugin/read summary equals independent expected_summary warm and cold; source/assets remain exact. No complete PluginDetail response or every params variant is inferred.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/76",
       "schema": "ClientRequest.json",
       "schema_sha256": "12de2354366b4f89aaaa6e7b203cd08e09f896776701d627b2ea4b2355972fe6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62597,75 +62867,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/76/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Controlled rich manifest/assets define expected_interface and complete expected_summary before native read. plugin/read summary equals independent expected_summary warm and cold; source/assets remain exact. No complete PluginDetail response or every params variant is inferred.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/76/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "696a8270b919459dc1ffa0931309bd6e8ff3eb29ca996f817ff6e968aa0f3dce",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/76/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Controlled rich manifest/assets define expected_interface and complete expected_summary before native read. plugin/read summary equals independent expected_summary warm and cold; source/assets remain exact. No complete PluginDetail response or every params variant is inferred.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/76/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e27e71a39ff28b8096a91a32032633521b705ab4008cb0bf0f7e04792b88187d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/76/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Controlled rich manifest/assets define expected_interface and complete expected_summary before native read. plugin/read summary equals independent expected_summary warm and cold; source/assets remain exact. No complete PluginDetail response or every params variant is inferred.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/76/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "268fc7cf7b65fa51ab0faae67e7745f22295e09dfdb2537535091f1e270037e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -63554,24 +63854,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/83",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Independently prescribed beta/alpha ordering, missing/forbidden IDs, exact backend batch IDs/tools flag and fresh extra lookup; cache count changes distinguish actual behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/83",
       "schema": "ClientRequest.json",
       "schema_sha256": "6c8a30919d5baa630cf43d7563282e2e84f226bdf8443991d9ae7592ea7a8ed1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63603,97 +63913,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/83/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Independently prescribed beta/alpha ordering, missing/forbidden IDs, exact backend batch IDs/tools flag and fresh extra lookup; cache count changes distinguish actual behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/83/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1639bb2da4d119472ec347e643f1810ef3f161801918ad7acab964e4101cc622",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/83/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Independently prescribed beta/alpha ordering, missing/forbidden IDs, exact backend batch IDs/tools flag and fresh extra lookup; cache count changes distinguish actual behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/83/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "cd9e405442260f0bb9ee3084a2b957913aced7b51be336e1bf0f4773d709b875",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/83/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Independently prescribed beta/alpha ordering, missing/forbidden IDs, exact backend batch IDs/tools flag and fresh extra lookup; cache count changes distinguish actual behavior from forwarding.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/83/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d1fdb3ba7a2e17f3c46991fdf53d64d3528255af75420b8f9b2ef6e767beaaa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/84",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Prescribed beta/alpha/gamma and beta accessibility; exact native catalog plus actual final notification, two upstream directory page tokens, one tools discovery and independent paginated identities.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/84",
       "schema": "ClientRequest.json",
       "schema_sha256": "253af2cbc9e0ec630abf22e6f5b3ebd4c9f5017de1ddc39d715178993d7db754",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63725,97 +64075,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/84/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Prescribed beta/alpha/gamma and beta accessibility; exact native catalog plus actual final notification, two upstream directory page tokens, one tools discovery and independent paginated identities.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/84/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f83c701e3efb61693acd60d8dd0fa61fa041a47e55f59583d80c6ab5236707ce",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/84/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Prescribed beta/alpha/gamma and beta accessibility; exact native catalog plus actual final notification, two upstream directory page tokens, one tools discovery and independent paginated identities.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/84/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "946c9b53a8386764c5b9b49a1579eb18702487fecbebc3def2e540ea9491130c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/84/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Prescribed beta/alpha/gamma and beta accessibility; exact native catalog plus actual final notification, two upstream directory page tokens, one tools discovery and independent paginated identities.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/84/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "85f35300ec3a8be3ca08cd9a7e9badf0084e0dd7f7bb9549f23311c6e10467a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/85",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Empty before refresh, exact installed presence/enabled/callability after one discovery, disk snapshot across owned cold restart, explicit mutable beta/empty refresh and zero directory access.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/85",
       "schema": "ClientRequest.json",
       "schema_sha256": "d923c075da5027b9e2571391c438587a5bc4cc4f16d30965bb2ab1ea9b3a4fee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63847,75 +64237,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/85/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Empty before refresh, exact installed presence/enabled/callability after one discovery, disk snapshot across owned cold restart, explicit mutable beta/empty refresh and zero directory access.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/85/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8740be8de038d57273762c54fdceedbedfcb8da17d854c3641cd454a2542a8c0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/85/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Empty before refresh, exact installed presence/enabled/callability after one discovery, disk snapshot across owned cold restart, explicit mutable beta/empty refresh and zero directory access.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/85/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6c2b03ecbf5a24e9e7cee52a8eaa6636174252699ca710a54132b8e35691925c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/85/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected operation envelope/method literal/params owner only; no request-ID type, referenced payload fields, default/optional/null sibling, alias or complete family qualification.",
+        "Empty before refresh, exact installed presence/enabled/callability after one discovery, disk snapshot across owned cold restart, explicit mutable beta/empty refresh and zero directory access.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/85/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4ef63db1825f441fe6ae16ad7db143cff787f24ba80ed5cf2d61629229e64251",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -65640,24 +66060,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/96",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native install returns appsNeedingAuth:[]; fixed id fixture-orbit@fixture-lifecycle then appears installed:true/enabled:true in native installed catalog and survives native restart. This proves an installation effect beyond the ACK, with no model turn/remote installation.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/96",
       "schema": "ClientRequest.json",
       "schema_sha256": "57d86940b747dde4f1144e0180b378274ad669c733f185dc80405dc97ebecbd2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -65689,97 +66119,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/96/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native install returns appsNeedingAuth:[]; fixed id fixture-orbit@fixture-lifecycle then appears installed:true/enabled:true in native installed catalog and survives native restart. This proves an installation effect beyond the ACK, with no model turn/remote installation.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/96/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ed416dbbfb76029d7eddb161bb9f804608e8f9c31410c2ecce44053b54c6af48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/96/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native install returns appsNeedingAuth:[]; fixed id fixture-orbit@fixture-lifecycle then appears installed:true/enabled:true in native installed catalog and survives native restart. This proves an installation effect beyond the ACK, with no model turn/remote installation.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/96/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "3394709facc164e589ed1e7996bf3ed74bc59e5583d945075fdca70ece49ce3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/96/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native install returns appsNeedingAuth:[]; fixed id fixture-orbit@fixture-lifecycle then appears installed:true/enabled:true in native installed catalog and survives native restart. This proves an installation effect beyond the ACK, with no model turn/remote installation.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/96/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c5760746fccf0364088194c74ec7f3db8f9663a94618c982a77d8981169f9069",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/97",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native uninstall returns {}; installed catalog/runtime skills become empty, native read reports installed:false, owned source skill remains, and empty installed/runtime skill state survives restart. These explicit expectations qualify actual removal beyond its response.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/97",
       "schema": "ClientRequest.json",
       "schema_sha256": "ef53acb7080aeb7da6040b5c01e94a9e67ce0f7ec42260634e165c2c9940cd59",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -65811,75 +66281,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/97/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native uninstall returns {}; installed catalog/runtime skills become empty, native read reports installed:false, owned source skill remains, and empty installed/runtime skill state survives restart. These explicit expectations qualify actual removal beyond its response.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/97/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ea221a59dcf624a2538ffaca8c6a7c1f89762aaa16633b8a6ac9d863b211ef29",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/97/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native uninstall returns {}; installed catalog/runtime skills become empty, native read reports installed:false, owned source skill remains, and empty installed/runtime skill state survives restart. These explicit expectations qualify actual removal beyond its response.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "pointer": "/oneOf/97/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "64bd50c32f2f958c0bb61ce260c94e477f1e7a1597579725f81431a0e62a26d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/97/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Physical request envelope/method/method enum/params property for the exercised successful local operation only; no ID types, referenced payload leaves, aliases, optional/default/null variants, response owner or whole-family qualification.",
+        "Native uninstall returns {}; installed catalog/runtime skills become empty, native read reports installed:false, owned source skill remains, and empty installed/runtime skill state survives restart. These explicit expectations qualify actual removal beyond its response.",
+        "Bound to the complete frozen v24 package source and passing native profiles; no real external account/backend or A11 acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/97/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "43f404744650cd589a225cc15bb5554c6b144e1ef0d69c46b58db5afc5b0a877",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [50 retained app/account/plugin owners](native-envelope-owners-qualification.md#app-account-and-plugin-requests-at-2ed6992)
+bind unchanged native assertions to terminal frozen v24. Contracts are 3,641
+implemented/2,980 missing, zero verified; requirements remain 462 implemented/
+12 missing/11 blocked. All 23 package commands pass, with 715/0 driver and 283/0
+profiles twice. Both 1,495-file guards match; both populated aggregate runs retain
+the GitHub-page failure. Exact-source hosted foundation and both native jobs
+pass; completeness fails. Continue the reviewed reachable history/voice/error
+cases and full final-source qualification. A11, unreachable emitters, external/OS
+success and retained aggregate failures stay incomplete.
+
 The [history/budget/account-plan block](history-budget-plans-qualification.md)
 adds four native cases; all32 owning cases pass at both fixed seeds, with strict
 checks and matching1495-file/binary guards. Fifty-two precise owners bring

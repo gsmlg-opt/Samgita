@@ -1,5 +1,48 @@
 # Selected native envelope owners
 
+## App, account and plugin requests at 2ed6992
+
+Fifty additional physical request owners bind existing native assertions to the
+complete frozen v24 source at `2ed69924c8e82adcbfb41740f28789832c86bf02`.
+Both default-driver runs pass **715/0**, and both runs of all 49 profiles pass
+**283/0**, seeds 501432/987654, with matching 1,495-file source guards and the
+immutable executable hash. This unit changes only the evidence index and docs.
+
+| Operations | Independent native oracle |
+| --- | --- |
+| `app/read`, `app/list`, `app/installed` | Exact ordered/scoped backend requests, partial misses and cache boundaries; explicit installed/enabled/callable snapshots survive native restart |
+| `account/rateLimits/read`, `account/usage/read`, `account/workspaceMessages/read` | Prescribed synthetic backend values, request counts and native projections; no external account authorization claim |
+| `plugin/list`, `plugin/search`, `plugin/installed` | Owned local catalog/search scope and independently prescribed installation state |
+| `plugin/read`, `plugin/install`, `plugin/uninstall` | Actual private installation/removal effects and native restart observations |
+
+The 26 app/account owners and 24 plugin owners cover selected physical
+`ClientRequest.json` envelopes, method properties/literals and params wrappers;
+two positive params-reference branches are included among the 26. No referenced
+payload field, request-ID type, alias, null/default branch or entire method family
+gains evidence merely from its enclosing request. Assertions and effects remain
+specific to each nominated source test and transport.
+
+Every original manifest row, JSON pointer, canonical node hash, source preimage
+and assertion excerpt was checked before indexing. The complete resulting JSON
+matches the expected manifest, with exactly 50 changed contract rows and no other
+section changes. Audit inputs are
+`/tmp/samgita-retained-app-account-owner-audit-20261025.json`, SHA256
+`cb289953f5b745db69fdf73ff229e16b58f5cf18ef2fe48df5089cb3d744116c`, and
+`/tmp/samgita-plugin-request-owner-audit-20261025.json`, SHA256
+`dd644154c36d7cc550106559da4e94871650803b8daf2d4ab83e9ff7531d50c8`.
+The bound terminal report is
+`/tmp/samgita-v24-retained-owners-terminal-20261025.json`, SHA256
+`590dd571ce7d2c08152fb6ef8060d7251155aa9d84a18cfaf0b40e2f8a8a5202`.
+
+Contracts become 3,641 implemented/2,980 missing, zero verified. Requirements stay
+462 implemented/12 missing/11 blocked, zero verified. The retained aggregate
+GitHub-page failure, mandatory completeness failure, A11, upstream-unreachable
+emitters and real external/OS success profiles remain incomplete. Synthetic
+dependencies exercise the stock native executable; they do not prove external
+service integration, publication or production readiness.
+
+## Earlier filesystem and notification owners
+
 This is an evidence-indexing change for unchanged actual-native assertions.
 It adds no transport or runtime behavior. The exact frozen `5cd40c9` driver
 suite passed **621/0** at seeds `501432` and `987654`; commands and source guards
