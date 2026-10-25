@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,781 implemented / 2,840 missing
+11 blocked requirements** and **0 verified / 3,791 implemented / 2,830 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,781 directly exercised
+MCP entries have scoped implementation evidence. These 3,791 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [live status/search block](thread-status-projection-qualification.md) adds
+two native cases; all seven owning files pass 49/0 at both fixed seeds, strict
+checks and matching 1,495-file/binary guards. Ten exact physical owners gain
+implemented evidence. Queries preserve the pending tool handle and provider
+count; explicit recovery alone clears the live error latch. Cold notLoaded
+history is separate from runtime error persistence. Continue remaining reachable
+behavior and complete final-source local/hosted qualification; every broader
+incomplete gate remains open.
 
 The [native history/voice/badRequest block](native-history-voices-qualification.md)
 adds nine cases; the full nine-file block passes 89/0 at both fixed seeds, with

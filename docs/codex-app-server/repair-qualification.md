@@ -6,6 +6,18 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Native live status and search continuation
+
+The [seven-file owning block](thread-status-projection-qualification.md) passes
+49/0 at both seeds, with compile/format/strict Credo and matching 1,495-file/binary
+guards. Two new stock-native cases check exact error-latch/recovery ordering,
+pending-tool read/search without inference, explicit handle reply and cold
+notLoaded history. No production code, fixture, deadline, cleanup, permission or
+activation guard changes. Ten exact original physical rows/nodes become
+implemented: 3,791 implemented/2,830 missing contracts, zero verified;
+requirements remain 462 implemented/12 missing/11 blocked. Final full matrices
+and all broader incomplete gates remain required.
+
 ## Native history, voices and badRequest continuation
 
 The [nine-file owning block](native-history-voices-qualification.md) passes

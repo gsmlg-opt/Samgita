@@ -570,6 +570,179 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
     end
   end
 
+  @tag scenario: "overload-terminal"
+  test "terminal overload latches native systemError in notifications and search until explicit recovery",
+       ctx do
+    rg = System.find_executable("rg")
+    assert is_binary(rg) and File.regular?(rg), "BLOCKED_ENV: ripgrep required"
+    File.ln_s!(rg, Path.join(ctx.root, "bin/rg"))
+    config = Path.join(ctx.root, "codex/config.toml")
+    config_bytes = File.read!(config)
+    {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
+
+    on_exit(fn ->
+      if Process.alive?(pid) do
+        try do
+          assert :ok = Session.close(pid)
+        catch
+          :exit, {:noproc, _} -> :ok
+        end
+      end
+    end)
+
+    # thread/search requires the native experimental handshake capability.
+    assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+             Session.initialize(
+               pid,
+               %{"name" => "owned_native_status_projection", "version" => "0.1.0"},
+               %{"experimentalApi" => true}
+             )
+
+    thread =
+      call(pid, "thread/start", %{
+        "cwd" => ctx.workspace,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "sandbox" => "read-only",
+        "approvalPolicy" => "on-request"
+      })["thread"]["id"]
+
+    drain(pid)
+    assert read_json(ctx, "requests.json") == []
+    marker = "synthetic:provider-error:overload-terminal"
+    turn = turn(pid, thread, marker)
+    events = collect(pid, thread, turn)
+
+    terminal = %{
+      "message" => @overload_message,
+      "codexErrorInfo" => "serverOverloaded",
+      "additionalDetails" => nil,
+      "misalignment" => nil
+    }
+
+    assert notices(events, "thread/status/changed") == [
+             %{"threadId" => thread, "status" => %{"type" => "active", "activeFlags" => []}},
+             %{"threadId" => thread, "status" => %{"type" => "systemError"}}
+           ]
+
+    lifecycle = ["thread/status/changed", "turn/started", "error", "turn/completed"]
+
+    assert Enum.map(Enum.filter(events, &(&1.wire["method"] in lifecycle)), fn event ->
+             assert event.kind == :notification
+             event.wire["method"]
+           end) == [
+             "thread/status/changed",
+             "turn/started",
+             "thread/status/changed",
+             "error",
+             "turn/completed"
+           ]
+
+    assert notices(events, "error") == [
+             %{"threadId" => thread, "turnId" => turn, "willRetry" => false, "error" => terminal}
+           ]
+
+    failed_completion = completed(events, thread, turn)
+    assert failed_completion["turn"]["status"] == "failed"
+    assert failed_completion["turn"]["error"] == terminal
+    assert [initial_request] = read_json(ctx, "requests.json")
+    assert provider_status_markers(initial_request) == [marker]
+
+    # Assert saved native history and bytes before content search.
+    saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+    assert saved["status"] == %{"type" => "systemError"}
+
+    assert [%{"id" => ^turn, "status" => "failed", "error" => ^terminal} = failed] =
+             saved["turns"]
+
+    path = Map.fetch!(saved, "path")
+    assert String.starts_with?(Path.expand(path), Path.expand(ctx.root) <> "/")
+    assert File.lstat!(path).type == :regular
+    assert File.read!(path) =~ marker
+
+    assert_search = fn snapshot, status ->
+      response = call(pid, "thread/search", %{"searchTerm" => marker, "limit" => 100})
+      assert Map.fetch!(response, "nextCursor") == nil
+      assert [row] = Map.fetch!(response, "data")
+      assert Map.fetch!(row, "snippet") == marker
+      projection = Map.fetch!(row, "thread")
+
+      for field <- ["id", "path", "sessionId", "cwd", "modelProvider", "ephemeral"] do
+        assert Map.fetch!(projection, field) == Map.fetch!(snapshot, field)
+      end
+
+      assert projection["id"] == thread
+      assert projection["sessionId"] == thread
+      assert Map.fetch!(projection, "status") == status
+      assert Map.fetch!(projection, "turns") == []
+    end
+
+    for _ <- 1..2 do
+      observed =
+        call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+      assert observed["status"] == %{"type" => "systemError"}
+      assert observed["turns"] == [failed]
+      assert_search.(observed, %{"type" => "systemError"})
+      assert read_json(ctx, "requests.json") == [initial_request]
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+    end
+
+    passive_events = drain(pid)
+    refute Enum.any?(passive_events, &(&1.wire["method"] in lifecycle))
+    next_marker = marker <> ":explicit-next-turn"
+    next_turn = turn(pid, thread, next_marker)
+    refute next_turn == turn
+    next_events = collect(pid, thread, next_turn)
+
+    assert notices(next_events, "thread/status/changed") == [
+             %{"threadId" => thread, "status" => %{"type" => "active", "activeFlags" => []}},
+             %{"threadId" => thread, "status" => %{"type" => "idle"}}
+           ]
+
+    assert Enum.map(Enum.filter(next_events, &(&1.wire["method"] in lifecycle)), fn event ->
+             assert event.kind == :notification
+             event.wire["method"]
+           end) == [
+             "thread/status/changed",
+             "turn/started",
+             "thread/status/changed",
+             "turn/completed"
+           ]
+
+    assert notices(next_events, "error") == []
+    assert completed(next_events, thread, next_turn)["turn"]["status"] == "completed"
+    assert_answer(next_events, thread, next_turn)
+    assert [^initial_request, recovery_request] = read_json(ctx, "requests.json")
+    assert provider_status_markers(recovery_request) == [marker, next_marker]
+
+    recovered =
+      call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+    assert recovered["status"] == %{"type" => "idle"}
+
+    assert [^failed, %{"id" => ^next_turn, "status" => "completed", "error" => nil}] =
+             recovered["turns"]
+
+    assert_search.(recovered, %{"type" => "idle"})
+    assert read_json(ctx, "requests.json") == [initial_request, recovery_request]
+    refute Enum.any?(drain(pid), &(&1.wire["method"] in lifecycle))
+    assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    refute File.exists?(Path.join(ctx.root, "unexpected-inference.json"))
+    assert File.read!(config) == config_bytes
+  end
+
+  defp provider_status_markers(request) do
+    for item <- request["input"],
+        item["role"] == "user",
+        part <- item["content"],
+        is_binary(part["text"]),
+        String.starts_with?(part["text"], "synthetic:provider-error:"),
+        do: part["text"]
+  end
+
   defp assert_answer(events, thread, turn) do
     assert Enum.count(notices(events, "item/completed"), fn p ->
              p["threadId"] == thread and p["turnId"] == turn and

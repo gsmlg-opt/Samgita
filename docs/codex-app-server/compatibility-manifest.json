@@ -101216,72 +101216,102 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadStatus/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "cc3b8dca00e4ae09ea5b39e3f43c7c9c036c7286a932fd0fc7e21e7ec548c9ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadStatus/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/2/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f0f53f5b9de434d8588a0744e8411f75166f6d83a1f5d62139a43fe9ead40593",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadStatus/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/2/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d2c779387ec53182bf43e465703a31c527b4ed15c08b4de251b4541fd63feb83",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -203808,168 +203838,238 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/2",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "cc3b8dca00e4ae09ea5b39e3f43c7c9c036c7286a932fd0fc7e21e7ec548c9ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "f0f53f5b9de434d8588a0744e8411f75166f6d83a1f5d62139a43fe9ead40593",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native terminal overload emits active-to-systemError before failed completion; read/search retain exact latch and failed history without extra inference. One explicit next turn alone clears it to idle and preserves both turns.",
+        "Only the selected physical systemError notification/search projection owners; runtime latch is not a cold-restart persistence contract. No whole error/status union or backend success claim.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "d2c779387ec53182bf43e465703a31c527b4ed15c08b4de251b4541fd63feb83",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native search/read project the pending dynamic-tool turn active with empty activeFlags while preserving one generation-bound handle and one provider request. Only an explicit reply continues; completed items/history agree, and owned cold read/search are notLoaded without inference.",
+        "Only the selected physical active search projection owners. Empty activeFlags qualifies no ThreadActiveFlag leaf; synthetic dynamic-tool result is not external tool execution or service acceptance.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/3",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "75be525d38e65e9172abfb4658570ba06fa5b82559d625d4d3e72fc13c005ad9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/3/properties/activeFlags",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native search/read project the pending dynamic-tool turn active with empty activeFlags while preserving one generation-bound handle and one provider request. Only an explicit reply continues; completed items/history agree, and owned cold read/search are notLoaded without inference.",
+        "Only the selected physical active search projection owners. Empty activeFlags qualifies no ThreadActiveFlag leaf; synthetic dynamic-tool result is not external tool execution or service acceptance.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/3/properties/activeFlags",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "aae5b8c1519c1b488f27f2d7e59eda91fe762f138e2d4eb26af262c5fd779a18",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activeFlags"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native search/read project the pending dynamic-tool turn active with empty activeFlags while preserving one generation-bound handle and one provider request. Only an explicit reply continues; completed items/history agree, and owned cold read/search are notLoaded without inference.",
+        "Only the selected physical active search projection owners. Empty activeFlags qualifies no ThreadActiveFlag leaf; synthetic dynamic-tool result is not external tool execution or service acceptance.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "5a0817962a43192fc3724be2d60c0b731bb862442ef74aae80af885dd033e535",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-status-projection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native search/read project the pending dynamic-tool turn active with empty activeFlags while preserving one generation-bound handle and one provider request. Only an explicit reply continues; completed items/history agree, and owned cold read/search are notLoaded without inference.",
+        "Only the selected physical active search projection owners. Empty activeFlags qualifies no ThreadActiveFlag leaf; synthetic dynamic-tool result is not external tool execution or service acceptance.",
+        "Bound to passing v26 owning-source/binary guards at both seeds; no alias/equal-hash sibling, whole-family, A11, external/OS or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/3/properties/type/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "25ef0c801499f0259f32eb95b0f5be517b467b89dfc6eaf2dae4ed3af924b7e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

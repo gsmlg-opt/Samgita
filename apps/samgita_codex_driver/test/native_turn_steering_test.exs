@@ -83,6 +83,167 @@ defmodule SamgitaCodexDriver.NativeTurnSteeringTest do
     end
   end
 
+  test "native search projects the pending dynamic-tool turn as active and cold history as notLoaded",
+       context do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
+             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+
+    {context, pid, thread, turn, tool, events} = active_turn(context)
+    rg = System.find_executable("rg")
+    assert is_binary(rg) and File.regular?(rg), "BLOCKED_ENV: ripgrep required"
+    File.ln_s!(rg, Path.join(context.fixture.bin, "rg"))
+    config = Path.join(context.fixture.codex_home, "config.toml")
+    config_bytes = File.read!(config)
+    marker = "Initial synthetic input"
+    active = %{"type" => "active", "activeFlags" => []}
+
+    assert [active_change] =
+             Enum.filter(events, fn event ->
+               event.wire["method"] == "thread/status/changed" and
+                 event.wire["params"] == %{"threadId" => thread, "status" => active}
+             end)
+
+    assert active_change.kind == :notification
+    # Ignore setup notifications preceding the actual active transition.
+    events = Enum.drop_while(events, &(&1 != active_change))
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+    refute notification(events, "turn/completed")
+    assert [initial_request] = ModelFixture.requests(context.fixture)
+    assert provider_text?(initial_request, marker)
+    refute Enum.any?(initial_request["input"], &(&1["type"] == "function_call_output"))
+
+    # Assert actual saved history and rollout bytes before rg searches them.
+    saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+    assert saved["status"] == active
+    assert [%{"id" => ^turn, "status" => "inProgress", "error" => nil}] = saved["turns"]
+    path = Map.fetch!(saved, "path")
+    assert String.starts_with?(Path.expand(path), Path.expand(context.root) <> "/")
+    assert File.lstat!(path).type == :regular
+    assert File.read!(path) =~ marker
+
+    assert_search = fn current_pid, status ->
+      response = call(current_pid, "thread/search", %{"searchTerm" => marker, "limit" => 100})
+      assert Map.fetch!(response, "nextCursor") == nil
+      assert [row] = Map.fetch!(response, "data")
+      assert Map.fetch!(row, "snippet") == marker
+      projection = Map.fetch!(row, "thread")
+
+      for field <- ["id", "path", "sessionId", "cwd", "modelProvider", "ephemeral"] do
+        assert Map.fetch!(projection, field) == Map.fetch!(saved, field)
+      end
+
+      assert projection["id"] == thread
+      assert projection["sessionId"] == thread
+      assert Map.fetch!(projection, "status") == status
+      assert Map.fetch!(projection, "turns") == []
+    end
+
+    for _ <- 1..2 do
+      assert_search.(pid, active)
+
+      observed =
+        call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+      assert observed["status"] == active
+      assert [%{"id" => ^turn, "status" => "inProgress", "error" => nil}] = observed["turns"]
+      assert ModelFixture.requests(context.fixture) == [initial_request]
+      assert %{phase: :ready, interactions: 1, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+    end
+
+    assert {:ok, passive_events} = Session.drain(pid)
+    refute Enum.any?(passive_events, &(&1.kind == :server_request))
+    lifecycle = ["thread/status/changed", "turn/started", "turn/completed", "error"]
+    refute Enum.any?(passive_events, &(&1.wire["method"] in lifecycle))
+
+    # The original generation-bound handle is answered exactly once, explicitly.
+    events = finish_active(pid, thread, turn, tool, events ++ passive_events)
+    assert_single_turn(events, thread, turn)
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+    refute notification(events, "error")
+
+    assert Enum.map(Enum.filter(events, &(&1.wire["method"] in lifecycle)), fn event ->
+             assert event.kind == :notification
+             event.wire["method"]
+           end) == [
+             "thread/status/changed",
+             "turn/started",
+             "thread/status/changed",
+             "turn/completed"
+           ]
+
+    assert Enum.map(
+             Enum.filter(events, &(&1.wire["method"] == "thread/status/changed")),
+             & &1.wire["params"]
+           ) == [
+             %{"threadId" => thread, "status" => active},
+             %{"threadId" => thread, "status" => %{"type" => "idle"}}
+           ]
+
+    assert [^initial_request, continuation] = ModelFixture.requests(context.fixture)
+    assert [call_item] = Enum.filter(continuation["input"], &(&1["type"] == "function_call"))
+    assert call_item["call_id"] == "fixture-call-1"
+    assert call_item["name"] == "fixture_lookup"
+    assert JSON.decode!(call_item["arguments"]) == %{"key" => "synthetic"}
+
+    assert [%{"call_id" => "fixture-call-1", "output" => "Synthetic lookup completed"}] =
+             Enum.filter(continuation["input"], &(&1["type"] == "function_call_output"))
+
+    completed =
+      call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+    assert completed["status"] == %{"type" => "idle"}
+
+    assert [%{"id" => ^turn, "status" => "completed", "error" => nil} = completed_turn] =
+             completed["turns"]
+
+    items = Map.fetch!(completed_turn, "items")
+    assert Enum.map(items, & &1["type"]) == ["userMessage", "dynamicToolCall", "agentMessage"]
+    assert Enum.at(items, 0)["content"] == [text(marker) |> Map.put("text_elements", [])]
+
+    dynamic = Enum.at(items, 1)
+    assert dynamic["id"] == "fixture-call-1"
+    assert dynamic["tool"] == "fixture_lookup"
+    assert dynamic["arguments"] == %{"key" => "synthetic"}
+    assert dynamic["status"] == "completed"
+
+    assert dynamic["contentItems"] == [
+             %{"type" => "inputText", "text" => "Synthetic lookup completed"}
+           ]
+
+    assert dynamic["success"] == true
+    assert Enum.at(items, 2)["text"] == "Deterministic local fixture answer"
+
+    for item <- items do
+      assert %{"threadId" => ^thread, "turnId" => ^turn, "item" => ^item} =
+               notification(events, "item/completed", &(&1["item"]["id"] == item["id"]))
+    end
+
+    assert_search.(pid, %{"type" => "idle"})
+    assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert :ok = Session.close(pid)
+
+    cold = start(context)
+    assert call(cold, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert_search.(cold, %{"type" => "notLoaded"})
+
+    restored =
+      call(cold, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+    assert restored["status"] == %{"type" => "notLoaded"}
+    assert restored["turns"] == [completed_turn]
+    assert_search.(cold, %{"type" => "notLoaded"})
+    assert call(cold, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert ModelFixture.requests(context.fixture) == [initial_request, continuation]
+    assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(cold)
+    assert Session.uncertain_operations(cold) == []
+    assert {:ok, cold_events} = Session.drain(cold)
+    refute Enum.any?(cold_events, &(&1.kind == :server_request or &1.wire["method"] in lifecycle))
+    assert File.read!(config) == config_bytes
+    assert :ok = Session.close(cold)
+  end
+
   test "text steering keeps the active turn and merges accepted context and metadata into its next request",
        context do
     {context, pid, thread, turn, tool, events} = active_turn(context)
