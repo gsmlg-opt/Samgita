@@ -21,6 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine supplied-history and timestamp unit](supplied-history-inputs-qualification.md)
+passes the final **41-file, 76/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
+guard. Eighteen exact owners become implemented: **4,874 implemented / 1,688
+missing / 59 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Genuine raw media/messages and
+original metadata survive cold unstable import into a new identity, with zero
+inference on import and one actual followup. Independent raw timeline seconds
+and host-bounded notification milliseconds preserve original assertions.
+The assistant timestamp-oracle and source-artifact path corrections remain
+recorded. Inventory and final binding pass; strict completeness exits **1**.
+
+Continue genuine raw function_call/function_call_output metadata input owners
+481/482/504/505 through an ordinary dynamic-tool producer. Capture complete
+unchanged native payloads, independently prescribe arguments/result, and record
+one owned handler effect. Cold import and followup must preserve history without
+another handler call/effect or inference during import. The normal existing
+dynamic-tool provider scenario can supply the third inference. Keep host-only
+executed-tool metadata and explicit-null branches unqualified; shellCommand is
+a user Message producer, not a raw function-call source. Retain fixed yolo and
+every verification restriction. All prohibited/broad/hosted, full-goal, A11,
+legacy/unreachable, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [native item identity and shell provenance](native-item-identity-qualification.md)
 pass the final **40-file, 75/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **278-source**
@@ -42,8 +67,6 @@ authentic task_started/task_complete timestamps before promotion. Retain fixed
 yolo and every verification restriction. All prohibited/broad/hosted,
 full-goal, A11, legacy/unreachable, unavailable external/OS and release gates
 remain incomplete.
-
-## Earlier checkpoints
 
 The [native MCP result and local list modes](native-data-modes-qualification.md)
 pass the final **40-file, 75/0 twice** functional matrix, compile/format,

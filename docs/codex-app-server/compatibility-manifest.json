@@ -25071,168 +25071,238 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "ade2949afc9d31ed79e8f3eb96126ebb654cc775169dde496b9ec7a318048bc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b4f9c38b110c4c331a7b90c51db8610334c2411b9c305508a3c5ab7586e90f98",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/anyOf/0/properties/image_url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/1/anyOf/0/properties/image_url",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "image_url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "56a03a1e74e466ae2f1b31faff6ff8773bb1d168f8bde5f31b232b3230112063",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/anyOf/1/properties/file_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/1/anyOf/1/properties/file_id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "file_id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/properties/detail",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ContentItem/oneOf/1/properties/detail",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "1cdd43906f7617a60c8b218a834f678f2c23ed47ff17e3f44afc30b04199c70c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "detail"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/properties/detail/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1/properties/detail/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "20293f69535352b256a75dc79fe3e8ae0709b4ac5b6f2636902d82171cfcf2fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -25260,145 +25330,205 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8ed4efd01907b365acd7e8db16574289cfd2b086ab38a80c4857bc6a685c4144",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "2764b01653453eb0293e4a4060bded005432f7dcbfff3addce2700a117ed8c32",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "ecfa6f777732aa051f7affa67fbce477366c51096c05fb5ee0853ef5cedc6bf1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/2/properties/audio_url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/2/properties/audio_url",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "audio_url"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/2/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4b65af34629e5596eaf4f76a9d1c6d233f73b51d5a1b79988f920fdc503cc9fe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#genuine-media-input"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected raw ContentItem input only: genuine native-created text/image URL/image fileId/audio response_item payloads are captured unchanged from the owned original rollout and accepted through experimental thread/resume.history. Literal tiny PNG, file reference, WAV, auto/low image details and type tags remain exact in imported native storage and a real subsequent provider request; no fabricated history or remote media interpretation claim.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/2/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1dc59c07fc906f21e4ee85233ac268195f37dab13ec9c6065dc35dd7e915728a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -28585,27 +28715,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#message-metadata"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/InternalChatMessageMetadataPassthrough/properties/turn_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected non-null raw message metadata input only: genuine original user/assistant turn_id and exact content_item_kinds survive unchanged cold history import into a new thread. User create_time has an independent host bound; native assistant metadata explicitly omits it. Complete original native payloads are retained once, no inference occurs on import, and one real continuation uses supplied_history; non-OpenAI provider copies correctly strip internal metadata.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/InternalChatMessageMetadataPassthrough/properties/turn_id",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn_id"
     },
     {
@@ -33082,49 +33222,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#message-metadata"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected non-null raw message metadata input only: genuine original user/assistant turn_id and exact content_item_kinds survive unchanged cold history import into a new thread. User create_time has an independent host bound; native assistant metadata explicitly omits it. Complete original native payloads are retained once, no inference occurs on import, and one real continuation uses supplied_history; non-OpenAI provider copies correctly strip internal metadata.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#message-metadata"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected non-null raw message metadata input only: genuine original user/assistant turn_id and exact content_item_kinds survive unchanged cold history import into a new thread. User create_time has an independent host bound; native assistant metadata explicitly omits it. Complete original native payloads are retained once, no inference occurs on import, and one real continuation uses supplied_history; non-OpenAI provider copies correctly strip internal metadata.",
+        "The only raw import route is upstream UNSTABLE FOR CODEX CLOUD thread/resume.history, experimental enabled; it creates a new thread identity. Input acceptance and persisted semantics only, no stable API/full server-output, remote file upload/resolution or media-perception claim. Explicit-null detail/metadata/phase owners114/376/379 remain missing; other raw variants are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -116699,27 +116859,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#notification-emission-time"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/properties/emittedAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical notification emittedAtMs field only for real command/exec stdout/stderr: unchanged reviewed test requires exact envelope keys, integer Unix milliseconds within host request-to-correlated-reply bounds, literal native stream bytes, generation/order and cleanup. Pinned producer timestamps ordinary notifications before fanout and awaits both output workers before replying; no new profile, sleep or peer timestamp is substituted.",
+        "Only the named native command-output timestamp producer is evidenced. Older-server omission, every notification family, fanout timing equivalence and other response exports are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/properties/emittedAtMs",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "180584a60ba9408fcbc37a3edcf90a1cca0687ab1ef8f32b660a588a10671ab2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "emittedAtMs"
     },
     {
@@ -221836,12 +222006,18 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#terminal-timeline-time"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/started_at",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct integer terminal timeline startedAt value only: an independently captured genuine task_complete.started_at must equal task_started.started_at, be positive integer Unix seconds, and match native full/paged/first-cold/continued timeline outputs. Completed, failed and recovered turns retain all prior raw ordinals, exact errors/content, UUID identity, cursors, original bytes, inference budgets and cleanup. Existing pinned output-semantics maps schema started_at to actual wire startedAt.",
+        "Only non-null integer Unix seconds on the named ordinary timeline producers are evidenced. Nullable/absent alternatives, realtime branches and other response exports are not inferred.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete. Prohibited security/permission checks and broad/hosted workflows remain unrun; implemented only."
+      ],
       "native_wire_name": "startedAt",
       "nullable": true,
       "output_semantics": "source/output-semantics.json",
@@ -221849,16 +222025,20 @@
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "started_at"
     },
     {

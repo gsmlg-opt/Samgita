@@ -143,7 +143,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     path = Map.fetch!(saved, "path")
     assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
     rollout = snapshot(path)
-    expected = raw_positions(rollout.bytes, thread, rows)
+    {expected, started_at} = raw_positions(rollout.bytes, thread, rows)
     assert length(expected) == 8
     journal = snapshot(ctx.fixture.requests)
     retained = Map.merge(ctx.inputs, %{path => rollout, ctx.fixture.requests => journal})
@@ -152,12 +152,12 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     full = call(ctx, first, "thread/timeline/list", query)
     assert Map.fetch!(full, "nextCursor") === nil
     assert Map.fetch!(full, "activeRealtimeSessionAtPageStart") === nil
-    assert_timeline(Map.fetch!(full, "data"), expected, rows)
+    assert_timeline(Map.fetch!(full, "data"), expected, rows, started_at)
 
     pages = page_one(ctx, first, thread, nil, Enum.reverse(expected), MapSet.new(), [])
     assert length(pages) == 8
     paged = pages |> Enum.reverse() |> Enum.flat_map(&Map.fetch!(&1.response, "data"))
-    assert_timeline(paged, expected, rows)
+    assert_timeline(paged, expected, rows, started_at)
     remaining = Enum.drop(pages, 4)
     assert length(remaining) == 4
     assert is_binary(hd(remaining).params["cursor"])
@@ -173,7 +173,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
 
     cold_full = call(ctx, cold, "thread/timeline/list", query)
-    assert_timeline(Map.fetch!(cold_full, "data"), expected, rows)
+    assert_timeline(Map.fetch!(cold_full, "data"), expected, rows, started_at)
     assert cold_full === full
 
     # Reuse each genuine opaque midstream continuation unchanged. No thread is
@@ -444,7 +444,8 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
         assert Map.fetch!(payload, "error") === @raw_error
       end
 
-      {ordinal(finished), row.id, Map.get(row, :status, "completed"), Map.get(row, :error)}
+      {ordinal(finished), row.id, Map.get(row, :status, "completed"), Map.get(row, :error),
+       raw_started_at(records, row.id)}
     end)
   end
 
@@ -455,11 +456,12 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     terminal = Enum.filter(entries, &(&1["type"] == "turnCompleted"))
     assert length(terminal) == length(expected)
 
-    for {entry, {position, turn, status, error}} <- Enum.zip(terminal, expected) do
+    for {entry, {position, turn, status, error, started_at}} <- Enum.zip(terminal, expected) do
       assert Map.fetch!(entry, "position") === position
       assert Map.fetch!(entry, "turnId") == turn
       assert Map.fetch!(entry, "status") == status
       assert Map.fetch!(entry, "error") === error
+      assert Map.fetch!(entry, "startedAt") === started_at
     end
   end
 
@@ -495,7 +497,16 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     positions = Enum.map(expected, &elem(&1, 0))
     assert positions == Enum.sort(positions)
     assert MapSet.size(MapSet.new(positions)) == 8
-    expected
+    {expected, Map.new(rows, &{&1.id, raw_started_at(records, &1.id)})}
+  end
+
+  defp raw_started_at(records, turn) do
+    started = raw_record(records, "task_started", turn)
+    finished = raw_record(records, "task_complete", turn)
+    timestamp = Map.fetch!(finished["payload"], "started_at")
+    assert is_integer(timestamp) and timestamp > 0
+    assert Map.fetch!(started["payload"], "started_at") === timestamp
+    timestamp
   end
 
   defp raw_record(records, type, turn, item \\ nil) do
@@ -516,7 +527,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     position
   end
 
-  defp assert_timeline(entries, expected, rows) do
+  defp assert_timeline(entries, expected, rows, started_at) do
     assert Enum.map(entries, &entry_tuple/1) === expected
 
     for {row, [started, user, assistant, finished]} <-
@@ -524,6 +535,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
       assert started["type"] == "turnStarted"
       assert finished["type"] == "turnCompleted"
       assert finished["status"] == "completed"
+      assert Map.fetch!(finished, "startedAt") === Map.fetch!(started_at, row.id)
       assert_user(Map.fetch!(user, "item"), row.marker)
       assert %{"type" => "agentMessage", "text" => @answer} = Map.fetch!(assistant, "item")
     end

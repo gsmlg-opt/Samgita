@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [genuine supplied-history and timestamp unit](supplied-history-inputs-qualification.md)
+passes the final **41-file, 76/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
+guard. Eighteen exact physical owners bring contracts to **4,874 implemented /
+1,688 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Real native media/messages are
+captured and reimported unchanged, with original metadata, new thread identity,
+no inference on import and one real continuation. Exact timeline start seconds
+and host-bounded notification milliseconds retain independent native oracles.
+The corrected assistant-metadata expectation and artifact-path failure remain
+recorded. Seventeen archive-matching files, twenty-one nodes, inventory and
+final binding pass; strict completeness exits **1**. The raw import route is
+explicitly unstable. Prohibited/broad/hosted, full-goal, A11, unresolved legacy,
+unavailable external/OS and release gates remain incomplete. No publication/deployment.
+
 The [native item identity and shell-provenance unit](native-item-identity-qualification.md)
 passes the final **40-file, 75/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **278-source**
