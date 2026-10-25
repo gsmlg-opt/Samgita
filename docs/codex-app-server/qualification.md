@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [native project creation/change unit](project-create-change-qualification.md)
+passes twenty-five reviewed files **43/0 twice**, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 251-source guard.
+Twelve exact owners bring contracts to **4,727 implemented / 1,835 missing /
+59 blocked**, with unchanged requirements and zero verified. Independent native
+SQL and literal inputs qualify initial creation fields/ordered roots/timestamps;
+genuine committed create/move/delete notices and cold restart preserve survivor
+records and historical key mappings. No aliases or full-method qualification
+is inferred. All prohibited/broader/hosted, full-goal, A11, legacy/external and
+release gates remain incomplete.
+
 The [cold-search continuation](cold-search-persistence-qualification.md) passes
 the final twenty-five-file **41/0 twice** block, compile/format, strict Credo,
 outside consumer **1/0**, three Python AST checks and the 251-source guard.

@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native project creation/change continuation](project-create-change-qualification.md)
+passes the final twenty-five-file **43/0 twice** matrix, strict/static checks,
+outside consumer **1/0**, three Python AST checks and 251-source guard; artifacts
+are in `/tmp/samgita-v272-functional-checks/`. Twelve exact owners bring
+contracts to **4,727 implemented / 1,835 missing / 59 blocked**, unchanged
+requirements and zero verified. Creation fields have independent literal/SQL/
+host-clock oracles; actual committed change notifications and cold-restart
+deletion preserve exact survivors and all historical key mappings. The initial
+format-only failure remains recorded; no native test fails. No runtime/shared
+helper changes or nearby alias promotions. Prohibited/broader/hosted, A11 and
+the full goal remain incomplete.
+
 The [cold-search continuation](cold-search-persistence-qualification.md) passes
 the final twenty-five-file **41/0 twice** matrix, strict/static checks, outside
 consumer **1/0**, three Python AST checks and 251-source guard; artifacts are in

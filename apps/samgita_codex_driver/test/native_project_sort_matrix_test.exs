@@ -15,6 +15,7 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @project_names ["Owned empty first", "Owned older", "Owned empty second", "Owned newer"]
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -33,7 +34,7 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] == "project/list" do
+      if wire["method"] in ["project/create", "project/delete", "project/list"] do
         capture(state, encoded, wire)
       else
         Stdio.send(state, encoded)
@@ -73,12 +74,14 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
   test "position defaults nulls and both directions retain exact pages across cold restart",
        ctx do
     pid = start(ctx)
-    [first, second, third, last] = create_projects(pid)
+    [first, second, third, last] = create_projects(ctx, pid)
 
     assert call(pid, "project/move", %{
              "projectId" => last["id"],
              "beforeProjectId" => first["id"]
            }) == %{}
+
+    assert_project_changes(pid, [%{"projectId" => last["id"], "changeType" => "updated"}])
 
     expected = Enum.map([last, first, second, third], & &1["id"])
     ledger = read_projects(pid, expected)
@@ -91,9 +94,105 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
     assert :ok = Session.close(cold)
   end
 
+  test "deletion emits its committed change and retains survivor records and historical keys",
+       ctx do
+    pid = start(ctx)
+    [first, target, third, last] = projects = create_projects(ctx, pid)
+    target_id = Map.fetch!(target, "id")
+    ids = Enum.map([first, third, last], &Map.fetch!(&1, "id"))
+    ledger = read_projects(pid, ids)
+    stored = stored_projects(ctx)
+    assert map_size(Map.fetch!(stored, "projects")) == 4
+    assert Map.fetch!(stored, "thread_count") == 0
+
+    assert Map.fetch!(stored, "keys") ===
+             Map.new(Enum.zip(@project_names, projects), fn {name, project} ->
+               {name, Map.fetch!(project, "id")}
+             end)
+
+    expected = Map.update!(stored, "projects", &Map.delete(&1, target_id))
+    params = %{"projectId" => target_id}
+    before = length(Agent.get(ctx.capture, & &1))
+    assert call(pid, "project/delete", params) === %{}
+    sent = Agent.get(ctx.capture, & &1)
+    assert length(sent) == before + 1
+    assert %{"method" => "project/delete", "params" => ^params} = List.last(sent)
+    assert_project_changes(pid, [%{"projectId" => target_id, "changeType" => "deleted"}])
+    assert_deleted(ctx, pid, target_id, ids, ledger, expected)
+
+    cold = restart(ctx, pid, 0)
+    assert_deleted(ctx, cold, target_id, ids, ledger, expected)
+    assert :ok = Session.close(cold)
+  end
+
+  test "created project roots and second timestamps match committed native storage", ctx do
+    pid = start(ctx)
+
+    paths =
+      Enum.map(["declared-project-beta", "declared-project-alpha"], &Path.join(ctx.root, &1))
+
+    Enum.each(paths, &File.mkdir!/1)
+    roots = Enum.map(paths, &%{"path" => &1})
+    name = "Owned declared root project"
+    key = "owned-declared-root-project"
+
+    params = %{
+      "name" => name,
+      "idempotencyKey" => key,
+      "metadata" => %{"label" => "Owned declared roots"},
+      "roots" => roots
+    }
+
+    before_ms = System.system_time(:millisecond)
+    project = call(pid, "project/create", params)["project"]
+    after_ms = System.system_time(:millisecond)
+    assert [%{"method" => "project/create", "params" => ^params}] = Agent.get(ctx.capture, & &1)
+    stored = stored_creation(ctx, key, name)
+    assert Map.fetch!(project, "id") === Map.fetch!(stored, "id")
+    assert Map.fetch!(project, "name") === name
+    assert Map.fetch!(project, "metadata") === %{"label" => "Owned declared roots"}
+    assert Map.fetch!(project, "position") === 0
+    assert Map.fetch!(project, "recencyAt") === nil
+    assert Map.fetch!(project, "roots") === roots
+
+    assert Map.fetch!(stored, "roots") ===
+             Enum.with_index(paths, fn path, index -> [index, path] end)
+
+    created_ms = Map.fetch!(stored, "created_at_ms")
+    updated_ms = Map.fetch!(stored, "updated_at_ms")
+    assert before_ms <= created_ms and created_ms <= after_ms
+    assert updated_ms === created_ms
+    assert Map.fetch!(project, "createdAt") === div(created_ms, 1000)
+    assert Map.fetch!(project, "updatedAt") === div(updated_ms, 1000)
+    id = Map.fetch!(stored, "id")
+    assert_project_changes(pid, [%{"projectId" => id, "changeType" => "created"}])
+    assert_functional_state(ctx, pid, 0)
+
+    cold = restart(ctx, pid, 0)
+    assert call(cold, "project/read", %{"projectId" => id}) === %{"project" => project}
+    assert stored_creation(ctx, key, name) === stored
+    assert File.ls!(ctx.fixture.workspace) == []
+    Enum.each(paths, fn path -> assert File.ls!(path) == [] end)
+    assert_functional_state(ctx, cold, 0)
+    assert :ok = Session.close(cold)
+  end
+
+  defp assert_deleted(ctx, pid, target, ids, ledger, expected) do
+    assert_pages(ctx, pid, %{}, ids, ledger, "position", "asc")
+    assert read_projects(pid, ids) === ledger
+
+    assert upstream_error(pid, "project/read", %{"projectId" => target}, []) === %{
+             "code" => -32_602,
+             "message" => "project not found: #{target}"
+           }
+
+    assert stored_projects(ctx) === expected
+    assert_functional_state(ctx, pid, 0)
+  end
+
   test "recency defaults descend while explicit directions retain empty projects last", ctx do
     pid = start(ctx)
-    [empty_first, older, empty_second, newer] = create_projects(pid)
+    [empty_first, older, empty_second, newer] = create_projects(ctx, pid)
     first_turn = complete(ctx, pid, older["id"], "owned-project-older")
     first_times = recencies(ctx)
     older_time = Map.fetch!(first_times, older["id"])
@@ -258,15 +357,165 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
     assert List.last(sent)["params"] === params
   end
 
-  defp create_projects(pid) do
-    for name <- ["Owned empty first", "Owned older", "Owned empty second", "Owned newer"] do
-      call(pid, "project/create", %{
-        "name" => name,
-        "roots" => [],
-        "metadata" => %{"label" => name},
-        "idempotencyKey" => name
-      })["project"]
+  defp create_projects(ctx, pid) do
+    names = @project_names
+
+    projects =
+      for {name, position} <- Enum.with_index(names) do
+        params = %{
+          "name" => name,
+          "roots" => [],
+          "metadata" => %{"label" => name},
+          "idempotencyKey" => name
+        }
+
+        before = length(Agent.get(ctx.capture, & &1))
+        project = call(pid, "project/create", params)["project"]
+        sent = Agent.get(ctx.capture, & &1)
+        assert length(sent) == before + 1
+        assert %{"method" => "project/create", "params" => ^params} = List.last(sent)
+        assert Map.fetch!(project, "name") === name
+        assert Map.fetch!(project, "metadata") === %{"label" => name}
+        assert Map.fetch!(project, "position") === position
+        assert Map.fetch!(project, "recencyAt") === nil
+        {name, project}
+      end
+
+    ids = created_project_ids(ctx, names)
+    assert length(Enum.uniq(Map.values(ids))) == 4
+
+    for {name, project} <- projects do
+      assert Map.fetch!(project, "id") === Map.fetch!(ids, name)
     end
+
+    assert_project_changes(
+      pid,
+      Enum.map(Map.values(ids), &%{"projectId" => &1, "changeType" => "created"})
+    )
+
+    Enum.map(projects, &elem(&1, 1))
+  end
+
+  defp assert_project_changes(pid, expected) do
+    events = collect_project_changes(pid, length(expected), [], deadline(5_000))
+
+    for event <- events, event.wire["method"] == "project/changed" do
+      refute Map.has_key?(event.wire, "id")
+    end
+
+    actual =
+      for event <- events,
+          event.wire["method"] == "project/changed",
+          do: Map.fetch!(event.wire, "params")
+
+    assert Enum.sort(actual) === Enum.sort(expected)
+  end
+
+  defp collect_project_changes(pid, count, events, until) do
+    assert {:ok, incoming} = Session.drain(pid)
+    events = events ++ incoming
+    assert length(events) <= 256, "project notification count exceeded its bound"
+
+    assert Enum.reduce(events, 0, &(byte_size(JSON.encode!(&1.wire)) + &2)) <= 1_048_576,
+           "project notification bytes exceeded their bound"
+
+    if Enum.count(events, &(&1.wire["method"] == "project/changed")) >= count do
+      events
+    else
+      assert Session.status(pid).phase == :ready
+      assert System.monotonic_time(:millisecond) < until, "native project change deadline"
+
+      receive do
+        {:codex_driver, ^pid, :events_available} -> :ok
+        {:codex_driver, ^pid, {:gap, _}} -> flunk("Unexpected event gap during project change")
+      after
+        10 -> :ok
+      end
+
+      collect_project_changes(pid, count, events, until)
+    end
+  end
+
+  defp created_project_ids(ctx, names) do
+    path = Path.join(ctx.fixture.codex_home, "state_5.sqlite")
+
+    script = """
+    import json, pathlib, sqlite3, sys
+    database = pathlib.Path(sys.argv[1]).resolve().as_uri() + '?mode=ro'
+    ids = {}
+    with sqlite3.connect(database, uri=True, timeout=1) as connection:
+        connection.execute('PRAGMA query_only = ON')
+        for name in json.loads(sys.argv[2]):
+            rows = connection.execute('''
+                SELECT p.id FROM project_idempotency_keys AS k
+                JOIN projects AS p ON p.id = k.project_id
+                WHERE k.key = ? AND p.name = ?
+            ''', (name, name)).fetchall()
+            assert len(rows) == 1, 'expected one committed project per requested key/name'
+            ids[name] = rows[0][0]
+    print(json.dumps(ids))
+    """
+
+    {output, status} =
+      System.cmd("python3", ["-B", "-c", script, path, JSON.encode!(names)],
+        stderr_to_stdout: true
+      )
+
+    assert status == 0, "owned project creation observation failed: #{output}"
+    JSON.decode!(String.trim(output))
+  end
+
+  defp stored_projects(ctx) do
+    path = Path.join(ctx.fixture.codex_home, "state_5.sqlite")
+
+    script = """
+    import json, pathlib, sqlite3, sys
+    database = pathlib.Path(sys.argv[1]).resolve().as_uri() + '?mode=ro'
+    with sqlite3.connect(database, uri=True, timeout=1) as connection:
+        connection.execute('PRAGMA query_only = ON')
+        connection.row_factory = sqlite3.Row
+        projects = {row['id']: dict(row) for row in connection.execute(
+            'SELECT * FROM projects ORDER BY id LIMIT 5')}
+        keys = dict(connection.execute(
+            'SELECT key, project_id FROM project_idempotency_keys ORDER BY key LIMIT 5'))
+        thread_count = connection.execute('SELECT COUNT(*) FROM threads').fetchone()[0]
+    print(json.dumps({'projects': projects, 'keys': keys, 'thread_count': thread_count}))
+    """
+
+    {output, status} = System.cmd("python3", ["-B", "-c", script, path], stderr_to_stdout: true)
+    assert status == 0, "owned project storage observation failed: #{output}"
+    JSON.decode!(String.trim(output))
+  end
+
+  defp stored_creation(ctx, key, name) do
+    path = Path.join(ctx.fixture.codex_home, "state_5.sqlite")
+
+    script = """
+    import json, pathlib, sqlite3, sys
+    database = pathlib.Path(sys.argv[1]).resolve().as_uri() + '?mode=ro'
+    with sqlite3.connect(database, uri=True, timeout=1) as connection:
+        connection.execute('PRAGMA query_only = ON')
+        rows = connection.execute('''
+            SELECT p.id, p.created_at_ms, p.updated_at_ms
+            FROM project_idempotency_keys AS k JOIN projects AS p ON p.id = k.project_id
+            WHERE k.key = ? AND p.name = ?
+        ''', (sys.argv[2], sys.argv[3])).fetchall()
+        assert len(rows) == 1, 'expected one committed project for requested key/name'
+        roots = connection.execute('''
+            SELECT r.position, r.path FROM project_idempotency_keys AS k
+            JOIN projects AS p ON p.id = k.project_id
+            JOIN project_roots AS r ON r.project_id = p.id
+            WHERE k.key = ? AND p.name = ? ORDER BY r.position
+        ''', (sys.argv[2], sys.argv[3])).fetchall()
+    print(json.dumps({'id': rows[0][0], 'created_at_ms': rows[0][1],
+                     'updated_at_ms': rows[0][2], 'roots': roots}))
+    """
+
+    {output, status} =
+      System.cmd("python3", ["-B", "-c", script, path, key, name], stderr_to_stdout: true)
+
+    assert status == 0, "owned project root/timestamp observation failed: #{output}"
+    JSON.decode!(String.trim(output))
   end
 
   defp read_projects(pid, ids) do
@@ -278,7 +527,14 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
   end
 
   defp complete(ctx, pid, project, marker) do
-    thread = TurnFixture.thread(ctx, pid, %{"projectId" => project, "historyMode" => "legacy"})
+    thread =
+      TurnFixture.thread(ctx, pid, %{
+        "projectId" => project,
+        "historyMode" => "legacy",
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
     turn = TurnFixture.start_turn(pid, thread, [%{"type" => "text", "text" => marker}])
     collect_turn(pid, thread, turn, [], System.monotonic_time(:millisecond) + 20_000)
     saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
@@ -389,7 +645,16 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
            [
              capture: ctx.capture,
              executable: ctx.binary,
-             args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
+             args:
+               NativeLaunchFixture.ordinary_args([
+                 "-c",
+                 ~s(approval_policy="never"),
+                 "-c",
+                 ~s(sandbox_mode="danger-full-access"),
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: fixture.workspace,
              inherit_env: [],
              env: %{
@@ -416,4 +681,6 @@ defmodule SamgitaCodexDriver.NativeProjectSortMatrixTest do
 
     pid
   end
+
+  defp deadline(milliseconds), do: System.monotonic_time(:millisecond) + milliseconds
 end

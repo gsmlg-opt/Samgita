@@ -92750,68 +92750,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ProjectChangeType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_changed_enum: Genuine no-request-ID project/changed notices carry exact generated projectId and created/updated/deleted variant after independently checked committed create/move/delete effects. Empty-project deletion preserves all survivor records/positions and historical key-to-ID mappings across confirmed native restart. This binds only these three enum alternatives, not every producer or member-detach behavior."
+      ],
       "pointer": "/definitions/ProjectChangeType/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0ae4a12a0955ea36299f4e09c53f58a2d0128dc6bea4692b25b05b83a81a7751",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ProjectChangeType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_changed_enum: Genuine no-request-ID project/changed notices carry exact generated projectId and created/updated/deleted variant after independently checked committed create/move/delete effects. Empty-project deletion preserves all survivor records/positions and historical key-to-ID mappings across confirmed native restart. This binds only these three enum alternatives, not every producer or member-detach behavior."
+      ],
       "pointer": "/definitions/ProjectChangeType/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "adcc6bce018ed7cb38fd2434749cbd5c105072467b2975cd8045bed71d22a9fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ProjectChangeType/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_changed_enum: Genuine no-request-ID project/changed notices carry exact generated projectId and created/updated/deleted variant after independently checked committed create/move/delete effects. Empty-project deletion preserves all survivor records/positions and historical key-to-ID mappings across confirmed native restart. This binds only these three enum alternatives, not every producer or member-detach behavior."
+      ],
       "pointer": "/definitions/ProjectChangeType/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "b06274bc9dd4cfd28ff0f6bbc75c4c102bffe0614f53c0ef0e1c50d293db5219",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -172247,27 +172271,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateParams.json#/definitions/ProjectRoot/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_ordered_roots: Two owned absolute directories are declared beta-before-alpha. Captured request, literal returned root array and read-only SQL position/path rows agree; complete public/storage values survive confirmed native restart without provider work or workspace changes. Only ordinary declared paths; no normalization, Git discovery, permissions or other transport/OS claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProjectRoot/properties/path",
       "required": true,
       "schema": "v2/ProjectCreateParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
@@ -172409,209 +172441,273 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/createdAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_second_timestamps: Read-only native SQLite selected by requested key/name supplies equal initial created_at_ms/updated_at_ms within independent host creation brackets. Each API value equals its millisecond column divided by 1000 and survives confirmed native restart. No later mutation timestamp, clock adjustment, other backend/OS or power-loss guarantee."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/createdAt",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_initial_scalars: Four literal name/nonempty metadata creations return positions 0..3 and explicitly present null recency. Distinct IDs independently match read-only native SQLite selected by requested key/name, never response ID. Only ordinary initial values; arbitrary metadata, nonnull recency, other methods/backends and full Project lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/id",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/metadata",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_initial_scalars: Four literal name/nonempty metadata creations return positions 0..3 and explicitly present null recency. Distinct IDs independently match read-only native SQLite selected by requested key/name, never response ID. Only ordinary initial values; arbitrary metadata, nonnull recency, other methods/backends and full Project lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/metadata",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "a2cd794f78887a513991497a502061144e44c3660d6bda1a5126880359681af5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "metadata"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_initial_scalars: Four literal name/nonempty metadata creations return positions 0..3 and explicitly present null recency. Distinct IDs independently match read-only native SQLite selected by requested key/name, never response ID. Only ordinary initial values; arbitrary metadata, nonnull recency, other methods/backends and full Project lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/name",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/position",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_initial_scalars: Four literal name/nonempty metadata creations return positions 0..3 and explicitly present null recency. Distinct IDs independently match read-only native SQLite selected by requested key/name, never response ID. Only ordinary initial values; arbitrary metadata, nonnull recency, other methods/backends and full Project lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/position",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "position"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/recencyAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_initial_scalars: Four literal name/nonempty metadata creations return positions 0..3 and explicitly present null recency. Distinct IDs independently match read-only native SQLite selected by requested key/name, never response ID. Only ordinary initial values; arbitrary metadata, nonnull recency, other methods/backends and full Project lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Project/properties/recencyAt",
       "required": false,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "93d35b72e43a5ae982dd9e5c49c8338ba29ae236a2bcff7a27883f9bae669248",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "recencyAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/roots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_ordered_roots: Two owned absolute directories are declared beta-before-alpha. Captured request, literal returned root array and read-only SQL position/path rows agree; complete public/storage values survive confirmed native restart without provider work or workspace changes. Only ordinary declared paths; no normalization, Git discovery, permissions or other transport/OS claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/roots",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "9db9005e85fcacd1932b764ee4a3791163e964cf6b92cdfd21d64cdd8fc1d75a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "roots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-create-change-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/definitions/Project/properties/updatedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_project_create_second_timestamps: Read-only native SQLite selected by requested key/name supplies equal initial created_at_ms/updated_at_ms within independent host creation brackets. Each API value equals its millisecond column divided by 1000 and survives confirmed native restart. No later mutation timestamp, clock adjustment, other backend/OS or power-loss guarantee."
+      ],
       "nullable": false,
       "pointer": "/definitions/Project/properties/updatedAt",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "updatedAt"
     },
     {
