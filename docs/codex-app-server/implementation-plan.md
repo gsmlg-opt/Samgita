@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native tool notification unit](tool-item-events-qualification.md) passes
+the final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, thirteen fixture ASTs and the **273-source** unchanged-byte
+guard. Sixteen exact canonical owners bring contracts to **4,838 implemented /
+1,724 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Dynamic duration has an independent
+monotonic host bound; all prior literal maps, cases, history and cleanup remain.
+Actual child execution qualifies the selected collab branch/maps/model/effort
+with timing-dependent snapshots explicitly excluded. Inventory consistency
+passes; strict completeness remains exit **1**.
+
+Continue native Plan streaming via ordinary added/delta/done Responses events
+with split tags, two independently prescribed draft deltas and a distinct final
+plan. The pinned v2 PlanDelta contract explicitly forbids assuming concatenation
+matches final text. Qualify branches2590/2919 only after genuine lifecycle and
+final-only history/first-cold evidence; fields4504–4507 already implemented may
+gain supplemental evidence without recounting. Keep all previous done-only
+assertions, bounds and fixed yolo policy. Selective null-action owner5483,
+deprecated/unreachable paths and all prohibited/broad/hosted, full-goal, A11,
+unavailable external/OS and release gates remain unqualified/incomplete.
+
+## Earlier checkpoints
+
 The [native proposed-plan unit](plan-item-events-qualification.md) passes the
 final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, thirteen fixture ASTs and the **273-source** unchanged-byte
@@ -41,8 +64,6 @@ snapshots outside that evidence. No new native peer, artificial delay, security
 or approval profile is needed. Branch2590, selective null-action owner5483,
 deprecated/unreachable paths and all prohibited/broad/hosted, full-goal, A11,
 unavailable external/OS and release gates remain unqualified/incomplete.
-
-## Earlier checkpoints
 
 The [sleep, compaction and command-output unit](native-runtime-values-qualification.md)
 passes the final **37-file, 63/0 twice** matrix, compile/format, strict Credo,

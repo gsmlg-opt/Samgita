@@ -97241,50 +97241,68 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10",
       "schema": "ServerNotification.json",
       "schema_sha256": "c9617d674b057da80e7ed7e9e62e43f9c5f97873639e02c5612827eb7a162ccc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/agentsStates",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/agentsStates",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "9421f488feeef44c316c6164da6cc743597c426a0542f16d8a53fa78f62d5ebd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentsStates"
     },
     {
@@ -97324,27 +97342,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/model",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "6beb75457e10a746f96855d6d6730a7928e3643c2514fea40dacf6dd867a1348",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
@@ -97384,71 +97411,98 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/reasoningEffort",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3d7b92979e4a542376eb47fc7ec68460740aee0851a1c70302ac20c91d981b36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#collaboration"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical CollabAgentToolCall owner only: existing genuine child spawn/wait/close/resume/send lifecycle independently prescribes complete terminal wait/close/notFound item maps and states, explicit null model/effort, and stable spawn model mock-model/effort low. Child identity comes from the actual provider function result; current selective history preserves exact terminal items/timestamps with thirteen bounded local Responses requests.",
+        "Timing-dependent spawn/resume/send state snapshots, other effort/state values, cold process replacement, aliases, other exports/OS/transports and full compatibility are not qualified. No new fixture or external service is used; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -102313,257 +102367,347 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/arguments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/arguments",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "arguments"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/contentItems",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/contentItems",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "bafb22932d81f5eb9cd5f760cbb92a75adfb9330ad6eab2e5c87b41de1e5a018",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "contentItems"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/durationMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/durationMs",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "6fb14a04f45623c14cfaf73be297d8be1d8074ff15ab1453c8e09729f5a2f0b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "durationMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/namespace",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/namespace",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "namespace"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "fcce4e05657bc806b278ecff1f9c2190ad8beef72dc3fbbc595212a3c756a657",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/success",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/success",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "success"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/tool",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/tool",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tool"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "a778804b3946a4a436c057858dc1c1aa9e021aed6cdd60dcfa4675a302bee891",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/tool-item-events-qualification.md#dynamic"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual canonical DynamicToolCall notification fields only: genuine Responses tool calls and explicit client replies produce exact literal start/final maps, nested arguments, namespace present/null, text content, completed success and null initial result fields. Native nonnegative duration is independently bounded by the enclosing host monotonic turn interval; warm and first-cold selective history retain its exact value.",
+        "Retains all four existing declaration cases, original request/event bounds and cleanup. No artificial delay or timeout increase. Branch2648, failed/media alternatives, aliases, other exports/OS/transports and full compatibility are not qualified; broader/hosted/security/permission gates stay unrun and state remains implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "76ead18cd03b5a98fda399aa267ef35904fbb1c4439a5d64138196b6d3a4a1a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

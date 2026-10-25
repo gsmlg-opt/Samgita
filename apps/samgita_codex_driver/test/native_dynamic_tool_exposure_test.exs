@@ -163,6 +163,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     thread = started["thread"]["id"]
     assert ModelFixture.requests(ctx.fixture) == []
     input = "Owned canonical declaration #{ctx.scenario} λ"
+    host_started_at = System.monotonic_time(:millisecond)
 
     turn =
       call(pid, "turn/start", %{
@@ -192,6 +193,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
              )
 
     events = await_turn(pid, turn, events, System.monotonic_time(:millisecond) + 20_000)
+    host_finished_at = System.monotonic_time(:millisecond)
 
     assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
              notification(events, "turn/completed", &(&1["turn"]["id"] == turn))
@@ -201,6 +203,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     completed = item_event(events, "item/completed", "dynamicToolCall")
     duration = completed["item"]["durationMs"]
     assert is_integer(duration) and duration >= 0
+    assert duration <= host_finished_at - host_started_at
 
     expected_item = %{
       "type" => "dynamicToolCall",

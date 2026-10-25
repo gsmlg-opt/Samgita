@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [native tool notification unit](tool-item-events-qualification.md) passes
+the final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, thirteen provider ASTs and the **273-source** unchanged-byte
+guard. Sixteen direct canonical owners bring contracts to **4,838 implemented /
+1,724 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Three added test lines independently
+bound dynamic duration while preserving original maps, cold history and all
+four cases. Existing actual child execution proves the six selected collab
+owners, excluding timing-dependent snapshots. Inventory consistency passes;
+strict completeness exits **1**. Prohibited/broad/hosted, full-goal, A11,
+unresolved legacy, unavailable external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [native proposed-plan unit](plan-item-events-qualification.md) passes the
 final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, thirteen provider ASTs and the **273-source** unchanged-byte
