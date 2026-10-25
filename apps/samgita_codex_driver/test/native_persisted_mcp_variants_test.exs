@@ -152,7 +152,14 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
   defp run_variant(ctx, status, result, is_error, presentation \\ %{}) do
     pid = start(ctx)
     native_pid = assert_native(pid)
-    id = thread(ctx, pid, %{"historyMode" => "paginated"})
+
+    id =
+      thread(ctx, pid, %{
+        "historyMode" => "paginated",
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
     assert ModelFixture.requests(ctx.fixture) == []
     assert File.ls!(ctx.fixture.workspace) == []
     before_ms = System.system_time(:millisecond)
@@ -489,6 +496,10 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
              executable: Path.expand(ctx.binary),
              args:
                SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "-c",
+                 ~s(approval_policy="never"),
+                 "-c",
+                 ~s(sandbox_mode="danger-full-access"),
                  "app-server",
                  "--listen",
                  "stdio://"

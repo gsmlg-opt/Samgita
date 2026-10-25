@@ -102225,24 +102225,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-data-modes-qualification.md#mcp-result"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/8/properties/result/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual non-null canonical MCP result only: local stdio MCP success/tool-error/UI cases preserve independently prescribed content, structuredContent and opaque metadata through exact native start/completion maps and warm/first-cold selective history. Fixed-yolo launch/thread setup retains all nine existing functional cases, two genuine provider requests, one MCP tools/call effect and owned native/peer cleanup; protocol-error resultNone is separate.",
+        "Owner2626 appContext remains unqualified: pinned native metadata requires the host-owned Apps server and backend-capable account; ordinary local MCP cannot substitute. No account/auth profile or external service is used. Other exports/transports/OS and full compatibility are not inferred; broader/hosted/security/permission gates remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/result/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d17de4182dd44ddccb353d7bb24655f462f08a477db1a2f8979526c2b68089c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -198083,27 +198092,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-data-modes-qualification.md#list-modes"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/originators",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual local originators field only: omitted/null/empty lists preserve an independently prescribed native thread identity/name/preview/cwd/provider/source; one/multiple nonempty strings return exact unsupported-local-filter error. Ten exact encoded/correlated list requests, one inference, cold unloaded state, unchanged genuine rollout/config/provider bytes and owned cleanup are asserted; no relation/project/section filters are used.",
+        "Hosted positive originator filtering and malformed-input alternatives remain unqualified. Only the fixed-yolo Linux stdio functional list profile is evidenced; no security/permission/account/auth/audit tests run. Other exports/OS/transports and full compatibility remain incomplete; implemented only."
+      ],
       "nullable": true,
       "pointer": "/properties/originators",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "0e129ff6772ba41889846c5a1c87ff483b2548747e20d6a753c51d2e12d9001d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_modes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "originators"
     },
     {
@@ -198471,27 +198489,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-data-modes-qualification.md#list-modes"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/useStateDbOnly",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual useStateDbOnly field only: nine bounded Linux inotify windows with explicit ready/arm/drain/stop barriers independently prove omitted/false queries open/read/close the authentic native rollout while true queries cause no access. Cold DB readiness follows source-backed completed startup backfill; detached migration/compression readers are explicitly disabled. Literal list results, exact query capture/correlation, one inference, unchanged bytes and both native/observer shutdown remain asserted.",
+        "The observer never reads or edits rollout contents; overflow, writes, lost watches and out-of-window access fail. No sleeps, fabricated history/database edits or same-result-only proxy. Background-reader-enabled profiles, malformed values, other exports/OS/transports and full compatibility remain unqualified; broader/hosted/security/permission gates unrun, implemented only."
+      ],
       "nullable": false,
       "pointer": "/properties/useStateDbOnly",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "0fe6265ce33c7ab580f3d74038bd3ea6c0340368b7e3cd9cd8dfabc9e61bad14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_modes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "useStateDbOnly"
     },
     {

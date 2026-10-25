@@ -21,6 +21,32 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native MCP result and local list modes](native-data-modes-qualification.md)
+pass the final **40-file, 75/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, seventeen fixture AST checks and the
+**278-source** guard. Owners2641,5689,5701 become implemented: **4,853
+implemented / 1,709 missing / 59 blocked** contracts, unchanged **462
+implemented / 12 missing / 11 blocked** requirements and zero verified.
+Nine existing MCP cases retain complete native maps/history. Ten exact list
+requests and nine passive observation windows prove local flag effects with
+original native bytes, bounded barriers and one inference. Both setup/static
+failures and their corrections remain visible. Owner2626 stays missing;
+ordinary local MCP cannot substitute for its external Apps prerequisite.
+Inventory consistency and final binding pass; strict completeness exits **1**.
+
+Continue canonical UserMessage ID owner2486 by strengthening the existing
+ordinary timeline test with the pinned UUIDv7 producer and an independent host
+timestamp bound. Preserve all started/completed identity, raw canonical
+records, warm/first-cold history, cursors, bytes and inference bounds. Review
+command source owner2614 against direct existing userShell assertions; do not
+infer owner2606 cwd without a literal oracle. Raw response-item import needs
+separate investigation of the explicitly unstable thread/resume.history route;
+source forwarding is insufficient. Retain fixed yolo and every verification
+restriction. All prohibited/broad/hosted, full-goal, A11, legacy/unreachable,
+unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [ordinary request-envelope mapping](request-envelope-qualification.md)
 adds ten exact physical owners: **4,850 implemented / 1,712 missing /
 59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
@@ -42,8 +68,6 @@ default query effects; do not modify/fabricate native history or count source
 inspection as behavior. Retain fixed yolo and every verification restriction.
 All prohibited/broad/hosted, full-goal, A11, legacy/unreachable, unavailable
 external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [Plan streaming continuation](plan-item-events-qualification.md#streaming-continuation)
 passes the final **38-file, 65/0 twice** matrix, compile/format, strict Credo,

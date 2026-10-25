@@ -1,5 +1,21 @@
 # Codex compatibility qualification
 
+The [native MCP result and local list-mode unit](native-data-modes-qualification.md)
+passes the final **40-file, 75/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, seventeen fixture AST checks and the
+**278-source** guard. Three exact physical owners bring contracts to **4,853
+implemented / 1,709 missing / 59 blocked**, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Actual MCP result
+maps retain all nine cases and first-cold history. Passive bounded observation
+distinguishes real rollout reads from DB-only listing; omitted/null/empty
+originators and explicit local rejection retain exact literal oracles.
+Observer setup and Credo failures/corrections remain recorded; no assertion or
+deadline is weakened. Owner2626 appContext remains missing with its exact
+external Apps prerequisite documented. Inventory and final binding pass;
+strict completeness exits **1**. Prohibited/broad/hosted, full-goal, A11,
+unresolved legacy, unavailable external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [ordinary request-envelope mapping](request-envelope-qualification.md)
 adds exactly ten physical owners: **4,850 implemented / 1,712 missing /
 59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
