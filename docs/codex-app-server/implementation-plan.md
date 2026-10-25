@@ -21,12 +21,25 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [retained queue audit](retained-queue-owners-qualification.md) adds seven
+field-specific implementation bindings, bringing contracts to **4,695
+implemented / 1,867 missing / 59 blocked**, with unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Historical native
+**115/0 twice** binds current owning test/provider bytes, not the changed current
+Session/TurnFixture graph; explicit-null start remains unverified. The new
+twenty-one-file block passes **35/0 twice**, outside consumer **1/0**, strict/
+static checks and the 246-file guard without running that mixed queue suite.
+Next implement four source-backed fork/resume effort response owners with
+independent snapshots/inference and explicit-model cold resume; keep the
+separate omitted-model default branch unqualified. All prohibited/broad/hosted,
+full-goal, A11, external and release gates remain incomplete.
+
 The [command-control unit](command-control-values-qualification.md) passes
 the corrected final **35/0 twice** functional block, strict/static checks,
 outside consumer **1/0** and the 246-file guard. Six precise owners bring
 contracts to **4,688 implemented / 1,874 missing / 59 blocked**, with unchanged
 requirements and zero verified. Exact child/kernel effects independently prove
-null terminal size, resize/write selection and native termination137. The v229
+null terminal size, resize/write selection and native termination 137. The v229
 implicit-try lint correction changes no cleanup semantics or gate. Index only
 the retained queue fields with their historical/current graph distinction, then
 continue source-backed ordinary fork/resume effort/default behavior. Keep every

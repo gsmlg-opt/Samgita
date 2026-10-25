@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [retained queue audit](retained-queue-owners-qualification.md) indexes seven
+precise fields using historical native **115/0 twice** and byte-identical owning
+test/provider sources. Changed current Session/TurnFixture and absent explicit
+null evidence remain incomplete. Contracts become **4,695 implemented /
+1,867 missing / 59 blocked**, with unchanged requirements and zero verified.
+The final new functional block passes **35/0 twice**, outside consumer **1/0**,
+strict/static checks and the 246-file guard; the mixed queue suite is not rerun.
+No prohibited check, current-graph queue pass, broad/hosted completion, A11
+closure or release is claimed. The next ordinary fork/resume effort unit remains
+pending actual implementation/qualification.
+
 The [command-control continuation](command-control-values-qualification.md)
 adds six direct request owners with actual PTY/input/termination effects.
 The corrected final **35/0 twice** block, strict/static checks, outside consumer
