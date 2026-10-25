@@ -1,5 +1,11 @@
 # Codex compatibility qualification
 
+The [MCP resource continuation](mcp-direct-qualification.md#optional-resource-fields-and-distinct-content-uris)
+passes all five owning cases 5/0 twice with both negotiated versions, exact
+typed normalization and distinct content URIs. Seven precise owners bring
+contracts to 4,419 implemented/2,143 missing/59 blocked, zero verified.
+Populated app origin and all broader final-source gates remain incomplete.
+
 The [v2 followup/interruption continuation](native-control-activity-qualification.md#interacted-and-interrupted-continuation)
 passes both complete activity files 2/0 twice with unchanged native model journal,
 independent interrupted child history and first cold selective reads. Two precise

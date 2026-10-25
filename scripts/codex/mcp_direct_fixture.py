@@ -47,6 +47,16 @@ def handle(message, protocol):
         uri = params.get("uri")
         if uri == "fixture://error":
             return operation_error(-32042, "synthetic resource failure", protocol)
+        if uri == "fixture://optional-contents":
+            blob = base64.b64encode(bytes([0, 1, 127, 128, 255])).decode("ascii")
+            return {"contents": [
+                {"uri": "fixture://optional/text-omitted", "text": "Owned omitted text\nλ"},
+                {"uri": "fixture://optional/text-null", "text": "Owned null text\nλ",
+                 "mimeType": None, "_meta": None},
+                {"uri": "fixture://optional/blob-omitted", "blob": blob},
+                {"uri": "fixture://optional/blob-null", "blob": blob,
+                 "mimeType": None, "_meta": None},
+            ]}
         if uri != "fixture://contents":
             return error(-32044, "synthetic resource absent", {"uri": uri})
         return {"contents": [

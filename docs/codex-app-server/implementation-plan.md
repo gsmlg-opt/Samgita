@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [MCP resource continuation](mcp-direct-qualification.md#optional-resource-fields-and-distinct-content-uris)
+passes the complete five-case file **5/0 twice**, both negotiated MCP versions,
+strict checks, 38 tooling regressions and integrated 1,501-file/binary guards.
+Exact absent/null normalization, distinct URIs and binary bytes add seven
+physical owners: **4,419 implemented / 2,143 missing / 59 blocked**, zero
+verified; requirements remain 462/12/11. The isolated post-run guard's parent
+integration drift remains recorded. Continue actual app-origin provenance and
+remaining behavior, then complete final-source local/pushed hosted checks.
+
 The [v2 interaction continuation](native-control-activity-qualification.md#interacted-and-interrupted-continuation)
 qualifies actual followup consumption and interruption of a held running child,
 independent interrupted history, and exact warm/first cold activity selections.

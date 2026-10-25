@@ -158,6 +158,67 @@ defmodule SamgitaCodexDriver.McpDirectTest do
     assert Enum.uniq(negotiated_protocols(context)) == Enum.map(@protocols, &elem(&1, 1))
   end
 
+  test "resource reads omit absent and null optional fields while preserving distinct content URIs",
+       context do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
+             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+
+    for {{modern, _protocol}, index} <- Enum.with_index(@protocols) do
+      {pid, thread} = configured(context, modern)
+      base = %{"server" => "fixture", "uri" => "fixture://optional-contents"}
+
+      for extra <- [%{}, %{"threadId" => thread}] do
+        result = call(pid, "mcpServer/resource/read", Map.merge(base, extra))
+
+        # Each URI belongs to its returned content, independently of the request.
+        # Native ResourceContent skips None instead of serializing optional nulls.
+        assert result === %{
+                 "contents" => [
+                   %{
+                     "uri" => "fixture://optional/text-omitted",
+                     "text" => "Owned omitted text\nλ"
+                   },
+                   %{
+                     "uri" => "fixture://optional/text-null",
+                     "text" => "Owned null text\nλ"
+                   },
+                   %{"uri" => "fixture://optional/blob-omitted", "blob" => "AAF/gP8="},
+                   %{"uri" => "fixture://optional/blob-null", "blob" => "AAF/gP8="}
+                 ],
+                 "originCallId" => nil
+               }
+
+        for item <- result["contents"] do
+          refute Map.has_key?(item, "mimeType")
+          refute Map.has_key?(item, "_meta")
+          refute item["uri"] == base["uri"]
+        end
+
+        for item <- Enum.filter(result["contents"], &Map.has_key?(&1, "blob")) do
+          assert Base.decode64!(item["blob"]) === <<0, 1, 127, 128, 255>>
+        end
+      end
+
+      reads = requests(context, "resources/read") |> Enum.drop(index * 2)
+      assert length(reads) == 2
+
+      assert Enum.all?(
+               reads,
+               &(get_in(&1, ["params", "uri"]) == "fixture://optional-contents")
+             )
+
+      assert_no_turn(context, pid)
+
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} =
+               Session.status(pid)
+
+      assert :ok = Session.close(pid)
+    end
+
+    assert length(requests(context, "resources/read")) == 4
+    assert Enum.uniq(negotiated_protocols(context)) == Enum.map(@protocols, &elem(&1, 1))
+  end
+
   test "resource protocol failures and scoping guards preserve native error boundaries",
        context do
     for {modern, protocol} <- @protocols do
