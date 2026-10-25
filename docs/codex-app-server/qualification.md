@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [command-control continuation](command-control-values-qualification.md)
+passes the corrected final **35/0 twice** functional block, strict/static
+checks, outside consumer **1/0** and the 246-file guard. Six direct request
+owners bring contracts to **4,688 implemented / 1,874 missing / 59 blocked**;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified
+in both. Independent child/kernel markers prove24/80→45/132 terminal dimensions,
+exact stdin/stdout and selected termination137/PID disappearance. The preceding
+v229 static failure remains recorded; cleanup semantics and gates are retained.
+Prohibited/broader/hosted and full-compatibility/A11 gates remain incomplete.
+
 The [same-child lifecycle unit](collaboration-lifecycle-values-qualification.md)
 passes the final **35/0 twice** functional block, strict/static checks,
 outside-umbrella consumer **1/0** and the 246-file guard. Seven exact owners bring

@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [command-control unit](command-control-values-qualification.md) passes
+the corrected final **35/0 twice** functional block, strict/static checks,
+outside consumer **1/0** and the 246-file guard. Six precise owners bring
+contracts to **4,688 implemented / 1,874 missing / 59 blocked**, with unchanged
+requirements and zero verified. Exact child/kernel effects independently prove
+null terminal size, resize/write selection and native termination137. The v229
+implicit-try lint correction changes no cleanup semantics or gate. Index only
+the retained queue fields with their historical/current graph distinction, then
+continue source-backed ordinary fork/resume effort/default behavior. Keep every
+prohibited/broad/hosted/full-goal/A11/external/release gate incomplete.
+
 The [same-child lifecycle unit](collaboration-lifecycle-values-qualification.md)
 passes the final **35/0 twice** block, strict/static checks, outside consumer
 **1/0** and the 246-file guard. Seven precise owners bring contracts to

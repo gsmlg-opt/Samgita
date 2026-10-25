@@ -123391,24 +123391,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CommandExecParams.json#/properties/size/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "pointer": "/properties/size/anyOf/1",
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -123553,75 +123561,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecResizeParams.json#/properties/processId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/CommandExecResizeParams.json",
       "schema_sha256": "bceaf22e4dafb8d39a5380f5ae2cec2242b3ff72fa0bd16f1b8d3d796530f756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecResizeParams.json#/properties/size",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "nullable": false,
       "pointer": "/properties/size",
       "required": true,
       "schema": "v2/CommandExecResizeParams.json",
       "schema_sha256": "581e0f11f22ef1fb0051c240f35cb0a9a0fb7bc0c17a9fac2dcba4bc0980e133",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "size"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CommandExecResizeParams.json#/properties/size/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "pointer": "/properties/size/allOf/0",
       "schema": "v2/CommandExecResizeParams.json",
       "schema_sha256": "7a543cd0178d378f3a66274a466dbfb241b1ccc22c3ce3a43e57772403a9700f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -123729,27 +123761,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecTerminateParams.json#/properties/processId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/CommandExecTerminateParams.json",
       "schema_sha256": "bceaf22e4dafb8d39a5380f5ae2cec2242b3ff72fa0bd16f1b8d3d796530f756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processId"
     },
     {
@@ -123823,27 +123863,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-control-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecWriteParams.json#/properties/processId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_command_controls: Five exact captured native requests match genuine response IDs. Explicit tty size:null selects child-observed kernel24x80; resize ACK precedes fixed stdin and the same child independently records45x132 plus exact UTF8 input, also checked through real decoded stdout. A separate ready blocked pipe child terminates via its selected processId; source-derived Linux exit137, original deferred response and exact PID disappearance establish completion beyond the control ACK. Input/script/journal retention, bounded buffers/deadlines, captured-connection cleanup and identity-pinned fallback remain. Only these six physical request owners gain scoped evidence; no Process aliases, command output thread/turn fields, other transports/OS/backends or full compatibility claim. Prohibited checks and broad/hosted gates remain unrun."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/CommandExecWriteParams.json",
       "schema_sha256": "bceaf22e4dafb8d39a5380f5ae2cec2242b3ff72fa0bd16f1b8d3d796530f756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processId"
     },
     {
