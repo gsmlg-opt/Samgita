@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [explicit target/null continuation](mcp-direct-qualification.md#explicit-target-and-null-apps-resources)
+qualifies model-free generic resource routing, explicit-null wire presence,
+independent target/legacy scopes, policy denials and recovery. All four complete
+files pass 14/0 twice with strict checks, tooling and 1,505-file guards after the
+preserved source-backed empty-history repair. Three physical owners bring
+contracts to 4,445 implemented/2,117 missing/59 blocked, zero verified;
+requirements remain 462/12/11. Complete final-source local/pushed hosted matrices
+and every broader incomplete gate remain required.
+
 The [successful Apps-origin continuation](mcp-direct-qualification.md#successful-apps-resource-origins)
 qualifies two actual successful native tool origins, original app/account scope
 despite conflicting hints, exact negative guards and owned-process cleanup.

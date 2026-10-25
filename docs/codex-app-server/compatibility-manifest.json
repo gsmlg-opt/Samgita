@@ -28819,53 +28819,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/McpResourceReadTarget/properties/connectorId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact physical ClientRequest target connectorId reaches native generic resource reads as a flat connector_id; known and unknown strings are independently accepted or denied by the synthetic peer, while native rejects blank connector values.",
+        "Actual immutable Codex handles ten independent threadless/threaded target variants, ten backend denials, ten native pre-peer guards and two explicit recovery reads. Input-shape booleans distinguish omitted/null fields without exposing payloads. One acknowledged archive materializes its owned empty thread; native read proves zero turns and notLoaded without inference or fabricated history.",
+        "Only these concrete values and branches have scoped implemented evidence. The backend owns its resource/account policy; no Agent permission or native authentication guarantee follows from metadata. Other value domains/transports, real external/backend/OS success, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpResourceReadTarget/properties/connectorId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "connectorId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/McpResourceReadTarget/properties/linkId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact physical ClientRequest target linkId preserves string and explicit null in flat metadata. A linked account and policy-permitted public no-auth resource have independent literal results; mismatched/private scope is denied rather than inventing an account.",
+        "Actual immutable Codex handles ten independent threadless/threaded target variants, ten backend denials, ten native pre-peer guards and two explicit recovery reads. Input-shape booleans distinguish omitted/null fields without exposing payloads. One acknowledged archive materializes its owned empty thread; native read proves zero turns and notLoaded without inference or fabricated history.",
+        "Only these concrete values and branches have scoped implemented evidence. The backend owns its resource/account policy; no Agent permission or native authentication guarantee follows from metadata. Other value domains/transports, real external/backend/OS success, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpResourceReadTarget/properties/linkId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f32f3004a0b8f75a3cf7f6022e45d8b5d553a4869afe649da26203ba62ad2778",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "linkId"
     },
     {
@@ -152131,7 +152151,7 @@
       "limitations": [
         "connectorId string forwards to the local peer; with successful Apps origin the conflicting connector hint cannot replace original app provenance.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/connectorId",
@@ -152147,7 +152167,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152168,7 +152189,7 @@
       "limitations": [
         "originCallId string is accepted but ignored for a non-Apps server; the Apps native path resolves an actually successful current-thread tool origin and rejects absent, future, wrong-thread and wrong-resource origins.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/originCallId",
@@ -152184,7 +152205,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152205,7 +152227,7 @@
       "limitations": [
         "server strings select the local fixture or codex_apps native route; unknown servers preserve native errors.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/server",
@@ -152221,7 +152243,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152240,9 +152263,9 @@
       "id": "schema:v2/McpResourceReadParams.json#/properties/target",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "A valid target object with string connectorId/linkId is accepted only as an ignored conflicting hint when a successful Apps origin is supplied. This does not qualify target-driven app/account selection or target:null.",
+        "Target omission, explicit null and concrete string/null-link objects now have direct generic Apps read evidence with and without a thread; original successful-origin reads separately preserve origin precedence over conflicting hints.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/target",
@@ -152258,7 +152281,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152275,9 +152299,9 @@
       "id": "schema:v2/McpResourceReadParams.json#/properties/target/anyOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "This target object/ref arm has a concrete accepted value under origin precedence, not target-driven selection; the separate null arm remains missing.",
+        "This target object/ref arm directly forwards flat connector_id/link_id for linked and policy-permitted public no-auth resources. A simultaneous legacy connector filter remains independently nested; the peer rejects conflicting scopes. No native precedence between those two independent channels is invented.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "pointer": "/properties/target/anyOf/0",
       "schema": "v2/McpResourceReadParams.json",
@@ -152291,7 +152315,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152301,24 +152326,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/McpResourceReadParams.json#/properties/target/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit target:null is observed as a present null field on the driver-to-native request, separately from omission, with and without a native thread; both produce the expected generic resource and no flat target scope.",
+        "Actual immutable Codex handles ten independent threadless/threaded target variants, ten backend denials, ten native pre-peer guards and two explicit recovery reads. Input-shape booleans distinguish omitted/null fields without exposing payloads. One acknowledged archive materializes its owned empty thread; native read proves zero turns and notLoaded without inference or fabricated history.",
+        "Only these concrete values and branches have scoped implemented evidence. The backend owns its resource/account policy; no Agent permission or native authentication guarantee follows from metadata. Other value domains/transports, real external/backend/OS success, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/properties/target/anyOf/1",
       "schema": "v2/McpResourceReadParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -152334,7 +152369,7 @@
       "limitations": [
         "threadId omitted, explicit null and a real loaded-thread string are checked on local reads; Apps origin requires the actual current thread and rejects another native thread.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/threadId",
@@ -152350,7 +152385,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152371,7 +152407,7 @@
       "limitations": [
         "URI strings select exact local text/blob contents and the Apps resource bound to a successful origin; a mismatched Apps URI is rejected before the peer sees it.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/uri",
@@ -152387,7 +152423,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -152749,7 +152786,7 @@
       "limitations": [
         "Resource response originCallId is emitted explicitly null for local reads and as each exact successful native model tool-call string for Apps reads; separate generated thread IDs and backend scope journals bind it independently.",
         "Actual immutable Codex uses private synthetic model/Apps MCP dependencies: two successful tool origins, two resource reads, three exact model requests, unspoofable original app/account selection, complete native item fields, explicit negative guards, no model retry or task/execution acceptance, bounded private namespace and reaped owned processes.",
-        "Scoped implemented evidence only: both complete thirteen-case owning blocks pass after the recorded fixture/oracle/static corrections. Target-driven routing, explicit target:null, other transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
+        "Scoped implemented evidence only from complete fourteen-case native blocks. Generic target routing/null and independent legacy filter behavior are asserted separately from successful-origin routing; other value domains/transports, real external/backend/OS success, analytics behavior, A11 and complete final-source/hosted acceptance remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/originCallId",
@@ -152765,7 +152802,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/mcp_direct_test.exs",
-          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs",
+          "apps/samgita_codex_driver/test/native_mcp_resource_target_profile.exs"
         ]
       },
       "transport_coverage": [

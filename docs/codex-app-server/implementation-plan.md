@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit target/null continuation](mcp-direct-qualification.md#explicit-target-and-null-apps-resources)
+passes all four complete owning files **14/0 twice** after separately preserving
+the unmaterialized-history failure and using the supported native empty-thread
+archive. Input-shape observations distinguish explicit null from omission;
+strict checks, 38 tooling regressions and 1,505-file/executable guards pass.
+Three new physical owners bring contracts to **4,445 implemented / 2,117 missing
+/ 59 blocked**, zero verified; requirements remain 462/12/11. Freeze the combined
+source for complete local matrices and exact-pushed hosted qualification, then
+continue remaining behavior. A11, source-unreachable and real external/backend/OS
+success remain incomplete. No release or deployment.
+
 The [successful Apps-origin continuation](mcp-direct-qualification.md#successful-apps-resource-origins)
 passes the complete three-file native block **13/0 twice**, strict checks,
 38 tooling regressions and matching 1,503-file/executable guards. Preserved

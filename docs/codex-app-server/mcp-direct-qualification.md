@@ -146,8 +146,8 @@ exact native errors without another model request, tool effect or backend read.
 Complete started/completed items, structured results, explicit metadata nulls,
 namespace isolation, idle state and owned-process reaping are also asserted.
 The [pinned processor](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/mcp_processor.rs#L548)
-defines the origin/target paths; the distinct model-free target path still needs
-its own success evidence. A conflicting target being ignored does not qualify
+defines the origin/target paths; the distinct model-free target path is qualified
+separately below. A conflicting target being ignored does not itself qualify
 target-driven selection or explicit `target: null`.
 
 ### Preserved failures and repairs
@@ -200,9 +200,81 @@ SHA256 `50e68d0744c957806e6c333e1046226d8f0c8cac4a7283e64ec2c36544c844ac`.
 Integrated binding: `/tmp/samgita-native-mcp-origin-v43-terminal-20261025.json`,
 SHA256 `1f4c3aa1603a8e22b18e636716cb8ee013e9c0a63a831d5d69b8fecbdae4627c`.
 
-Only eight physical owners become implemented: rows 4348–4352, 4354–4355 and
-4367. Explicit target-null row 4353 remains missing. Contracts become **4,442
+At this origin-only checkpoint, eight physical owners become implemented:
+rows 4348–4352, 4354–4355 and 4367. Explicit target-null row 4353 remains missing.
+Contracts become **4,442
 implemented / 2,120 missing / 59 blocked**; requirements remain **462 implemented
 / 12 missing / 11 blocked**, with **zero verified**. Full final-source matrices,
 real external/backend/OS success, source-unreachable emitters and A11 remain
 incomplete. No tag, publication, production migration or deployment.
+
+## Explicit target and null Apps resources
+
+The separate `native_mcp_resource_target_profile.exs` qualifies the generic
+model-free path with the actual immutable executable. Ten positive cases cover
+threadless and current-thread reads crossed with target omission, explicit
+target null, linked target objects, public no-auth target objects with null
+`linkId`, and legacy connector-only filtering. Boolean-only driver-to-native
+input observations prove that explicit target null remains present on the
+actual wire, separately from omission. A fixed peer policy supplies literal
+resource contents and independently checks flat target metadata and nested
+legacy connector filters. Both channels remain independent; the native processor
+does not invent precedence or an account for a legacy filter.
+
+Ten invalid-target/thread guards reject before a peer read. Ten peer policy
+denials retain exact code/message/data for wrong/unknown accounts, private
+no-auth resources and conflicting filters. Two subsequent explicit linked reads
+succeed without reusing a rejected scope. Those are synthetic backend policy
+decisions, not native permission grants or Samgita project authorization.
+Every run records **22 resource reads: 12 accepted and 10 denied**, with no
+model, tool, command or turn execution. Route/body/journal bounds, absent MCP
+credentials, private namespace and reaped native processes remain asserted.
+
+The first disposable run passes these resource cases but fails its final
+`thread/read(includeTurns: true)` on an unmaterialized loaded thread with native
+`-32601`, `list_turns is not supported yet`. This failed profile and unrun second
+seed stay preserved. Switching to legacy would not fix the prerequisite:
+[the pinned negative test](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/tests/suite/v2/thread_read.rs#L1609)
+also rejects an unmaterialized legacy thread. The supported
+[empty-thread archive test](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/tests/suite/v2/thread_archive.rs#L293)
+materializes empty history without a user turn. The repair performs one
+acknowledged native archive of only its owned empty thread, then retains the
+native `turns: []` assertion and adds exact `notLoaded` status. No database,
+synthetic historical payload, timeout or existing resource assertion changes.
+
+The repaired disposable profile passes **1/0 twice**, both fixed seeds,
+with **71,571 protected files unchanged**, no additions or remaining processes.
+Original-checkout integration passes all four complete owning files
+(`mcp_direct`, origin profile, target profile, `native_apps`): **14/0 at each
+seed 501432/987654**, zero exclusions. After the additional input-shape proof,
+the whole block passes again, including warning-free compile, format, strict
+Credo, **38 tooling regressions**, inventory and matching **1,505-file/executable
+guards**. The target profile has its own required hosted conformance step.
+
+```sh
+PATH="$PWD/.devenv/profile/bin:$PATH" ERL_FLAGS='+S 4:4' \
+  python3 -B /tmp/samgita-native-mcp-target-v45-r2-20261025.py
+python3 -B /tmp/samgita-bind-native-mcp-target-v45-20261025.py
+python3 -B scripts/codex/inventory.py --check
+```
+
+Source semantics: `/tmp/samgita-v45-mcp-target-source-audit.json`, SHA256
+`035b23e01a53923e741f97e8bcc80a6d3b919459de87b8f0ba49c6b81cf5e0a3`.
+Direct `ClientRequest` trace: `/tmp/samgita-v46-mcp-target-live-request-owners.json`,
+SHA256 `b12e1267339193988e0bc10eb14a30e310656a67fd928fa64900010365f37da1`.
+It resolves the method-selected native export at `/oneOf/78` and the Samgita
+source supplement at `/oneOf/133` to identical target definitions; it does not
+claim whole-document/index equality or sibling-schema inheritance.
+Disposable result: `/tmp/samgita-v45-mcp-target-candidate/handoff-result-repair-1.json`,
+SHA256 `4d6c45f98110cc9aaff156acf7069683517b2f64082b637575360f76fec548b1`.
+Integrated binding: `/tmp/samgita-native-mcp-target-v45-terminal-20261025.json`,
+SHA256 `ae2cab0f70371fc51acce127559d51952cc3e11eaa865bcd837ce1c7c6ae90a6`.
+
+Exactly three physical owners become implemented: `ClientRequest` target fields
+237/238 and explicit target-null row 4353. Eight already implemented resource
+owners gain the separately qualified target evidence. Contracts are **4,445
+implemented / 2,117 missing / 59 blocked**; requirements remain **462 implemented
+/ 12 missing / 11 blocked**, with **zero verified**. Other values/transports,
+real external/backend/OS success, analytics, A11, unreachable emitters and complete
+final-source local/pushed hosted acceptance remain incomplete. No publication,
+production migration or deployment.
