@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [native proposed-plan unit](plan-item-events-qualification.md) passes the
+final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, thirteen provider ASTs and the **273-source** unchanged-byte
+guard. Four direct canonical notification fields bring contracts to **4,822
+implemented / 1,740 missing / 59 blocked**, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Genuine plan-mode
+extraction retains literal IDs/text, ordered maps, first-cold history and
+original bytes with one inference. No repair round or runtime/helper change
+occurs. Inventory consistency passes; strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [sleep, compaction and command-output unit](native-runtime-values-qualification.md)
 passes the final **37-file, 63/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, twelve provider ASTs and the **271-source** unchanged-byte

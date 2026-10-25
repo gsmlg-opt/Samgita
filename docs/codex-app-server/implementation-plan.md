@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native proposed-plan unit](plan-item-events-qualification.md) passes the
+final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, thirteen fixture ASTs and the **273-source** unchanged-byte
+guard. Four exact physical fields bring contracts to **4,822 implemented /
+1,740 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Actual Plan extraction preserves
+empty starts, literal final text/trailing newline, native identity, timestamps
+and first-cold history with original bytes and one inference. Inventory
+consistency passes; strict completeness remains exit **1**.
+
+Continue canonical DynamicToolCall fields2649–2658 using the existing genuine
+dynamic-tool executor journey. Strengthen duration with an independent host
+monotonic turn interval before qualifying its non-null value; preserve exact
+start/final/history maps and literal arguments/content. Review ordinary
+CollabAgentToolCall owners2494/2495/2497/2499–2501 against existing prescribed
+wait/close/notFound maps and spawn model/effort, keeping timing-dependent state
+snapshots outside that evidence. No new native peer, artificial delay, security
+or approval profile is needed. Branch2590, selective null-action owner5483,
+deprecated/unreachable paths and all prohibited/broad/hosted, full-goal, A11,
+unavailable external/OS and release gates remain unqualified/incomplete.
+
+## Earlier checkpoints
+
 The [sleep, compaction and command-output unit](native-runtime-values-qualification.md)
 passes the final **37-file, 63/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, twelve fixture ASTs and the **271-source** unchanged-byte
@@ -40,8 +63,6 @@ history, not an old isolation profile. Keep branch2590, aliases and unexercised
 deltas outside this four-field unit; selective null-action owner5483 and all
 deprecated/unreachable paths remain unqualified. All prohibited/broad/hosted,
 full-goal, A11, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [native reasoning-item unit](reasoning-item-events-qualification.md) passes
 the final **34-file, 60/0 twice** matrix, compile/format, strict Credo, outside
