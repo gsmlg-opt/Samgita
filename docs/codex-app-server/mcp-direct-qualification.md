@@ -1,5 +1,11 @@
 # Direct MCP tools and resources
 
+The direct owning file now contains six actual-binary cases. The latest
+[mixed-resource normalization and error recovery](#mixed-resource-normalization-and-explicit-error-recovery)
+runs with the three related Apps/resource profiles as **15/0 at both seeds**.
+Selected present-value properties gain implemented evidence; no full domain,
+external-service or complete compatibility acceptance follows.
+
 Five actual-Codex cases in
 `apps/samgita_codex_driver/test/mcp_direct_test.exs` cover direct tool calls and
 resource reads under both MCP `2025-06-18` and `2026-07-28`. The executable/source
@@ -278,3 +284,59 @@ implemented / 2,117 missing / 59 blocked**; requirements remain **462 implemente
 real external/backend/OS success, analytics, A11, unreachable emitters and complete
 final-source local/pushed hosted acceptance remain incomplete. No publication,
 production migration or deployment.
+
+## Mixed-resource normalization and explicit error recovery
+
+An additive sixth case sends an independently specified mixed resource bundle
+through stock `rust-v0.163.0`, both MCP versions and loaded/threadless bindings.
+The expected native result is literal, separate from the peer input. Text wins
+when both text/blob are supplied; a null text field falls back to blob. Repeated
+URIs retain their order. Empty text, blob, MIME and metadata objects survive;
+opaque blob text is not silently decoded or normalized. Nested null, false, zero
+and Unicode metadata remain exact. Native serialization omits null optional
+fields and SDK/native DTO conversion removes the deliberately unknown item and
+resource-envelope fields.
+
+Each binding then makes an explicit correlated read that returns the exact typed
+protocol error, followed by an identical successful bundle read and an explicit
+empty result. The peer journal requires exactly sixteen reads: eight bundles,
+four errors and four empty results. Loaded reads reuse the established manager;
+threadless calls truthfully establish independent managers. Same native instance
+and generation, ready state, empty pending/interaction/uncertainty lists, zero
+tool/model calls, empty workspace and no turn/item events are checked throughout.
+No automatic retry, reconnect or execution is inferred from recovery.
+
+The first temporary launch used an incomplete `MIX_BUILD_PATH` and failed before
+tests. The first actual new case read the peer journal before asynchronous MCP
+startup created it. Exclusive creation of this test-owned empty journal before
+startup fixes that synchronization; no sleep, deadline or assertion is relaxed.
+Both failed attempts remain in the v51 candidate evidence. A parent formatter
+invoked without `MIX_ENV=test` separately failed in unrelated dev dependency
+compilation before formatting; its origin remains unestablished. The preserved
+JSON summary is not a raw log. Correct test-environment formatting reaches and
+passes the intended checks; no dev dependency/cache repair is claimed.
+
+Integrated commands run in verified Devenv with `MIX_ENV=test`, pinned binary and
+only allowlisted scratch databases. The complete direct/origin/target/Apps block
+passes **15/0 twice** at seeds `501432` and `987654`. Root/driver compile and
+format, strict Credo (447 source files), namespace/sandbox checks, 38 tooling
+regressions and the 1,505-file/executable guards pass. The same serialized check
+also passes the separate authority profile **4/0 twice**.
+
+Exact commands/logs: `/tmp/samgita-native-continuation-v52-20261025/`.
+Terminal report `/tmp/samgita-native-continuation-v52-terminal-20261025.json`,
+SHA256 `f1aeed3fdffbb777dc139faa41c5ecb835a44137cf01e52f28ac5a92a3d92c1e`.
+The guard matches before the explicitly reviewed manifest binding; no later
+source obtains full qualification from this earlier scoped run.
+
+Exactly four physical `McpResourceReadResponse` properties, rows 4357/4358/4362/
+4364, gain implemented evidence for selected present metadata/MIME values. The
+original concrete success assertions are retained. Pinned SDK `rmcp 3.5.1`,
+commit `4048ac40e958fb1a7d614617a2ae8d26666ee2fa`, requires `MetaObject(JsonObject)`
+(`model/meta.rs:240-244`); native optional serialization omits null
+(`protocol/src/mcp.rs:296-326`). This does not qualify arbitrary scalar metadata
+or emitted-null MIME/meta outputs. No sibling aliases inherit coverage.
+Contracts become **4,449 implemented / 2,113 missing / 59 blocked**, requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Remaining
+catalog/default/lifecycle behavior and final local/pushed hosted matrices continue;
+A11, unreachable emitters and real external/backend/OS success stay incomplete.

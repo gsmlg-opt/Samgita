@@ -148493,24 +148493,38 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpAuthStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/authStatus.",
+        "This exact enum string only. Unknown/notLoggedIn require independent lifecycle evidence; no implication for BearerToken/OAuth or other physical response aliases.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "pointer": "/definitions/McpAuthStatus/enum/1",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "4a1f9f3b3652c8c1bd229a521a021beb60d61f1771247c07ded473e536327925",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148820,27 +148834,42 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/icons",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/serverInfo/icons.",
+        "Non-null one-element structured icon array only; nullable null branch not qualified by v54.",
+        "Schema array items:true is broader than SDK Icon. Arbitrary scalars/objects and unknown icon members are not preserved positive paths; supplied unrecognizedIcon is deliberately absent after SDK conversion.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerInfo/properties/icons",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "f81ebf957fffe620c91d47d0490ae11852456fe9207899c65c8dacd7839494db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "icons"
     },
     {
@@ -149507,53 +149536,83 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resources/0/_meta.",
+        "Top-level object metadata with nested integer/bool/null/string values only; schema:true arbitrary root JSON is not fully qualified.",
+        "SDK MetaObject requires JsonObject: scalar/array root metadata is not a positive native backend path. Resource connector_id remains ordinary data, not permissions.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/Resource/properties/_meta",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/annotations",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resources/0/annotations.",
+        "Typed audience/priority/lastModified object only, exact f32-safe0.5; not arbitrary schema:true JSON.",
+        "Unknown annotation member supplied in peer is dropped by SDK. Malformed types/errors/recovery and all possible valid typed values not qualified.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/Resource/properties/annotations",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "annotations"
     },
     {
@@ -149594,27 +149653,42 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/icons",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resources/0/icons.",
+        "Non-null structured icon array only; nullable null branch not qualified and absent optional values are omitted by native serializer.",
+        "SDK Icon structure limits positive input; arbitrary schema array items and unknown icon members are not preserved.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/Resource/properties/icons",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "f81ebf957fffe620c91d47d0490ae11852456fe9207899c65c8dacd7839494db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "icons"
     },
     {
@@ -149690,53 +149764,84 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/size",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resources/0/size.",
+        "One positive integer above32-bit range preserved exactly; this does not qualify every int64 value or nullable null.",
+        "Second input18446744073709551615 is accepted by SDK u64 but native lossy i64 conversion omits size and preserves resource identity. Absence is not a null-value assertion.",
+        "Negative numbers allowed by native schema/converter are rejected at typed SDK u64 inbound path; converter unit is not real backend-native evidence.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/Resource/properties/size",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "size"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resources/0/title, /data/0/resources/1/title.",
+        "Two non-null literal title strings; nullable null branch not qualified. Native Option::None omits field.",
+        "Overflow-size omission must not remove or move the second resource title/URI/name.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/Resource/properties/title",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
@@ -149777,53 +149882,82 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/annotations",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resourceTemplates/0/annotations.",
+        "Typed annotation object only, not arbitrary schema:true JSON.",
+        "SDK template icons/_meta inputs have no native DTO fields and are intentionally omitted. Their absence cannot qualify any positive field or alias.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResourceTemplate/properties/annotations",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "annotations"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resourceTemplates/0/description.",
+        "One non-null description literal only. Nullable null is not emitted by this Option::None serializer and remains unqualified as a positive null path.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResourceTemplate/properties/description",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
@@ -149899,27 +150033,41 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/resourceTemplates/0/title.",
+        "One non-null Unicode title literal only; null branch and all string values not qualified.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResourceTemplate/properties/title",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
@@ -149960,27 +150108,42 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/tools/inspect.catalog/_meta.",
+        "Top-level object only with literal nested mixed values. SDK MetaObject rejects root nonobjects even though schema:true is broad.",
+        "For this ordinary stdio server, five top-level reserved connector keys must be stripped. Their positive preservation would be the wrong oracle. Nested connector_id and connectorFutureField remain literal ordinary data.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/Tool/properties/_meta",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
@@ -150056,27 +150219,41 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/icons",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/tools/inspect.catalog/icons.",
+        "Non-null structured icon array only; not arbitrary JSON-array items or nullable null. Unknown icon members are removed by typed SDK.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/Tool/properties/icons",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "f81ebf957fffe620c91d47d0490ae11852456fe9207899c65c8dacd7839494db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "icons"
     },
     {
@@ -150152,53 +150329,82 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/outputSchema",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/tools/inspect.catalog/outputSchema.",
+        "One top-level object schema preserved with its nested literal values only. Root scalar/array outputSchema is outside SDK Arc<JsonObject> positive native path.",
+        "No claim of complete JSON Schema semantics or full schema:true JSON domain; no alias/input normalization coverage.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/Tool/properties/outputSchema",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outputSchema"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-catalog-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact actual-binary whole-row literal assertions cover this physical owner at /data/0/tools/inspect.catalog/title.",
+        "One non-null Unicode tool title literal only. Null branch is not qualified; native Option::None skips field.",
+        "Both MCP versions preserve rich two-page catalogs and per-method cursors; short status causes no resource/template I/O. A fixed second-resource-page error drops that server collection without partial results; a new explicit read recovers on the same native generation with no tools/model execution or reconnect.",
+        "Only this physical ListMcpServerStatusResponse definition/pointer; no same-named definition in another response file or alias is implied.",
+        "Finite literal value and SDK-reachable shape qualified; not full schema-value-domain verification.",
+        "Both negotiated MCP versions were exercised through actual loaded native threads at both seeds; neutral platform and external providers were not involved.",
+        "Scoped implemented evidence only; no emitted-null/full arbitrary JSON domain, alias inheritance, unrelated lifecycle, real external/backend/OS, A11 or full final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/Tool/properties/title",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
@@ -152466,53 +152672,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpResourceReadResponse.json#/definitions/ResourceContent/anyOf/0/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "This exact physical response property has independent actual-binary whole-result assertions. Text metadata retains both a selected nested object and an empty object.",
+        "Both negotiated MCP versions and loaded/threadless managers preserve mixed content order, repeated URIs, empty/opaque strings and exact typed protocol errors, followed by explicit successful and empty reads without implicit retry. Original eight concrete success reads remain required.",
+        "Only selected present values have scoped implemented evidence. SDK MetaObject requires an object; optional null input is omitted by native serialization. Emitted-null/full JSON domains, aliases, other transports and real external/backend/OS success remain unqualified. No full compatibility, A11 or final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResourceContent/anyOf/0/properties/_meta",
       "required": false,
       "schema": "v2/McpResourceReadResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpResourceReadResponse.json#/definitions/ResourceContent/anyOf/0/properties/mimeType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "This exact physical response property has independent actual-binary whole-result assertions. Text MIME retains both a selected ordinary string and an empty string.",
+        "Both negotiated MCP versions and loaded/threadless managers preserve mixed content order, repeated URIs, empty/opaque strings and exact typed protocol errors, followed by explicit successful and empty reads without implicit retry. Original eight concrete success reads remain required.",
+        "Only selected present values have scoped implemented evidence. SDK MetaObject requires an object; optional null input is omitted by native serialization. Emitted-null/full JSON domains, aliases, other transports and real external/backend/OS success remain unqualified. No full compatibility, A11 or final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResourceContent/anyOf/0/properties/mimeType",
       "required": false,
       "schema": "v2/McpResourceReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mimeType"
     },
     {
@@ -152619,27 +152845,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpResourceReadResponse.json#/definitions/ResourceContent/anyOf/1/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "This exact physical response property has independent actual-binary whole-result assertions. Blob metadata retains a selected nested object with null/false/zero/Unicode values.",
+        "Both negotiated MCP versions and loaded/threadless managers preserve mixed content order, repeated URIs, empty/opaque strings and exact typed protocol errors, followed by explicit successful and empty reads without implicit retry. Original eight concrete success reads remain required.",
+        "Only selected present values have scoped implemented evidence. SDK MetaObject requires an object; optional null input is omitted by native serialization. Emitted-null/full JSON domains, aliases, other transports and real external/backend/OS success remain unqualified. No full compatibility, A11 or final-source publication acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResourceContent/anyOf/1/properties/_meta",
       "required": false,
       "schema": "v2/McpResourceReadResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
@@ -152680,27 +152916,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpResourceReadResponse.json#/definitions/ResourceContent/anyOf/1/properties/mimeType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "This exact physical response property has independent actual-binary whole-result assertions. Blob MIME retains the selected application/octet-stream value.",
+        "Both negotiated MCP versions and loaded/threadless managers preserve mixed content order, repeated URIs, empty/opaque strings and exact typed protocol errors, followed by explicit successful and empty reads without implicit retry. Original eight concrete success reads remain required.",
+        "Only selected present values have scoped implemented evidence. SDK MetaObject requires an object; optional null input is omitted by native serialization. Emitted-null/full JSON domains, aliases, other transports and real external/backend/OS success remain unqualified. No full compatibility, A11 or final-source publication acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResourceContent/anyOf/1/properties/mimeType",
       "required": false,
       "schema": "v2/McpResourceReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mimeType"
     },
     {

@@ -47,6 +47,28 @@ def handle(message, protocol):
         uri = params.get("uri")
         if uri == "fixture://error":
             return operation_error(-32042, "synthetic resource failure", protocol)
+        if uri == "fixture://normalization-bundle":
+            # Fixed input intentionally differs from the native projection oracle.
+            return {"contents": [
+                {"uri": "fixture://bundle/repeated", "text": "Owned text wins\nλ",
+                 "blob": "RElTQ0FSRA==", "mimeType": "", "_meta": {},
+                 "unexpected": "discard-me"},
+                {"uri": "fixture://bundle/repeated", "text": None, "blob": "not_base64!",
+                 "mimeType": None,
+                 "_meta": {"fixture": {"values": [0, False, None, "λ"], "empty": {}}},
+                 "unexpected": "discard-me-too"},
+                {"uri": "fixture://bundle/empty-text", "text": "", "mimeType": "text/plain"},
+                {"uri": "fixture://bundle/empty-blob", "blob": "",
+                 "mimeType": "application/octet-stream"},
+            ], "_meta": {"fixture": "resource-envelope-only"},
+                "ttlMs": 0, "cacheScope": "private"}
+        if uri == "fixture://bundle-denied":
+            return error(-32042, "owned bundle denied", {
+                "fixture": "normalization-bundle", "partial": False,
+                "nested": {"values": [0, False, None, "λ"]},
+            })
+        if uri == "fixture://empty-bundle":
+            return {"contents": []}
         if uri == "fixture://optional-contents":
             blob = base64.b64encode(bytes([0, 1, 127, 128, 255])).decode("ascii")
             return {"contents": [

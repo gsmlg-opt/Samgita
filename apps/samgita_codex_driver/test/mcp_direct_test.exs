@@ -263,6 +263,161 @@ defmodule SamgitaCodexDriver.McpDirectTest do
     assert Enum.uniq(negotiated_protocols(context)) == Enum.map(@protocols, &elem(&1, 1))
   end
 
+  test "mixed resource normalization preserves order and recovers from an independent protocol error",
+       context do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
+             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+
+    File.write!(Path.join(context.root, "mcp-direct.jsonl"), "", [:exclusive])
+
+    expected = %{
+      "contents" => [
+        %{
+          "uri" => "fixture://bundle/repeated",
+          "text" => "Owned text wins\nλ",
+          "mimeType" => "",
+          "_meta" => %{}
+        },
+        %{
+          "uri" => "fixture://bundle/repeated",
+          "blob" => "not_base64!",
+          "_meta" => %{"fixture" => %{"values" => [0, false, nil, "λ"], "empty" => %{}}}
+        },
+        %{
+          "uri" => "fixture://bundle/empty-text",
+          "text" => "",
+          "mimeType" => "text/plain"
+        },
+        %{
+          "uri" => "fixture://bundle/empty-blob",
+          "blob" => "",
+          "mimeType" => "application/octet-stream"
+        }
+      ],
+      "originCallId" => nil
+    }
+
+    denied = %{
+      "code" => -32_042,
+      "message" => "owned bundle denied",
+      "data" => %{
+        "fixture" => "normalization-bundle",
+        "partial" => false,
+        "nested" => %{"values" => [0, false, nil, "λ"]}
+      }
+    }
+
+    uris = fn -> Enum.map(requests(context, "resources/read"), &get_in(&1, ["params", "uri"])) end
+
+    for {{modern, protocol}, index} <- Enum.with_index(@protocols) do
+      {pid, thread} = configured(context, modern)
+      assert is_binary(thread) and byte_size(thread) > 0
+      %{instance_id: instance, generation: generation} = Session.status(pid)
+
+      # Establish the loaded runtime first. Threadless reads own a new MCP manager.
+      for {binding, binding_index} <- Enum.with_index([%{"threadId" => thread}, %{}]) do
+        previous = uris.()
+        assert length(previous) == index * 8 + binding_index * 4
+
+        params =
+          Map.merge(%{"server" => "fixture", "uri" => "fixture://normalization-bundle"}, binding)
+
+        # The literal oracle differs from the peer's dual-field and envelope input.
+        assert call(pid, "mcpServer/resource/read", params) === expected
+        assert uris.() === previous ++ ["fixture://normalization-bundle"]
+        assert_normalization_ready(context, pid, instance, generation)
+        negotiations = negotiated_protocols(context)
+
+        error_id = "owned-bundle-error-#{index}-#{binding_index}"
+
+        assert {:error,
+                %SamgitaProtocolCodex.Error{
+                  code: :upstream_error,
+                  wire: %{"id" => ^error_id, "error" => ^denied} = error_wire
+                }} =
+                 Session.request(
+                   pid,
+                   "mcpServer/resource/read",
+                   %{params | "uri" => "fixture://bundle-denied"},
+                   id: error_id
+                 )
+
+        refute Map.has_key?(error_wire, "result")
+
+        assert uris.() ===
+                 previous ++ ["fixture://normalization-bundle", "fixture://bundle-denied"]
+
+        assert_normalization_ready(context, pid, instance, generation)
+
+        assert negotiated_protocols(context) ===
+                 if(binding_index == 0, do: negotiations, else: negotiations ++ [protocol])
+
+        assert call(pid, "mcpServer/resource/read", params) === expected
+
+        assert uris.() ===
+                 previous ++
+                   [
+                     "fixture://normalization-bundle",
+                     "fixture://bundle-denied",
+                     "fixture://normalization-bundle"
+                   ]
+
+        assert_normalization_ready(context, pid, instance, generation)
+
+        assert call(pid, "mcpServer/resource/read", %{params | "uri" => "fixture://empty-bundle"}) ===
+                 %{"contents" => [], "originCallId" => nil}
+
+        assert uris.() ===
+                 previous ++
+                   [
+                     "fixture://normalization-bundle",
+                     "fixture://bundle-denied",
+                     "fixture://normalization-bundle",
+                     "fixture://empty-bundle"
+                   ]
+
+        assert_normalization_ready(context, pid, instance, generation)
+
+        assert negotiated_protocols(context) ===
+                 if(binding_index == 0,
+                   do: negotiations,
+                   else: negotiations ++ List.duplicate(protocol, 3)
+                 )
+      end
+
+      assert requests(context, "tools/call") == []
+      assert_no_turn(context, pid)
+      assert :ok = Session.close(pid)
+    end
+
+    assert length(requests(context, "resources/read")) == 16
+    assert Enum.uniq(negotiated_protocols(context)) == Enum.map(@protocols, &elem(&1, 1))
+  end
+
+  defp assert_normalization_ready(context, pid, instance, generation) do
+    assert ModelFixture.requests(context.fixture) == []
+    assert File.ls!(context.fixture.workspace) == []
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+
+    refute Enum.any?(events, fn event ->
+             String.starts_with?(event.wire["method"] || "", ["turn/", "item/"])
+           end)
+
+    assert %{
+             phase: :ready,
+             instance_id: ^instance,
+             generation: ^generation,
+             pending: 0,
+             interactions: 0,
+             uncertain: 0,
+             gap: nil
+           } = Session.status(pid)
+
+    assert Session.interaction_outcomes(pid) == []
+    assert Session.uncertain_operations(pid) == []
+  end
+
   defp configured(context, modern) do
     config = Path.join(context.fixture.codex_home, "config.toml")
     python = System.find_executable("python3") || flunk("BLOCKED_ENV: Python 3 required")
