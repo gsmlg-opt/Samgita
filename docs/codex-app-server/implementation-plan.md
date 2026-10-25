@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [turn-list null/archive unit](turn-list-null-values-qualification.md) passes
+fourteen reviewed functional files **27/0 twice**, compile/format, strict Credo
+and the 237-file guard. Three direct request owners bring contracts to **4,633
+implemented / 1,929 missing / 59 blocked**; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Native view labels, independent
+turn/item records and exact archive/list observations qualify only the documented
+defaults and retained history. General summary truncation and crash/restart
+ordering remain unqualified. Next implement the source-backed four-owner search
+GitInfo projection with public metadata updates and independent control/history
+oracles. Keep every prohibited/unrun gate and full goal/A11/hosted/release incomplete.
+
 The [item-anchor paging unit](item-anchor-values-qualification.md) passes thirteen
 reviewed functional files **26/0 twice**, compile/format, strict Credo and the
 236-file guard. Twelve exact request owners bring contracts to **4,630

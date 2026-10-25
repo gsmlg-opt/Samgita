@@ -178182,27 +178182,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-list-null-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadArchiveParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns establish independent completed items and histories. Twelve exact thread/turns/list requests qualify omitted/explicit-null Summary/Desc defaults, actual itemsView labels, distinct notLoaded/ascending controls and three-page opaque continuation. One exact archive request and native archived notice move only the owned stable ID between active/archived lists while preserving complete history/items at its existing moved archive path and the unchanged three-call provider journal. Only these three physical owners gain scoped evidence. Two-item full/summary contents coincide; general truncation, restart/crash ordering, aliases and other transport/backend/platform profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadArchiveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_list_null_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -220320,24 +220328,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-list-null-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadTurnsListParams.json#/properties/itemsView/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns establish independent completed items and histories. Twelve exact thread/turns/list requests qualify omitted/explicit-null Summary/Desc defaults, actual itemsView labels, distinct notLoaded/ascending controls and three-page opaque continuation. One exact archive request and native archived notice move only the owned stable ID between active/archived lists while preserving complete history/items at its existing moved archive path and the unchanged three-call provider journal. Only these three physical owners gain scoped evidence. Two-item full/summary contents coincide; general truncation, restart/crash ordering, aliases and other transport/backend/platform profiles remain unqualified."
+      ],
       "pointer": "/properties/itemsView/anyOf/1",
       "schema": "v2/ThreadTurnsListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_list_null_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -220437,24 +220453,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-list-null-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadTurnsListParams.json#/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns establish independent completed items and histories. Twelve exact thread/turns/list requests qualify omitted/explicit-null Summary/Desc defaults, actual itemsView labels, distinct notLoaded/ascending controls and three-page opaque continuation. One exact archive request and native archived notice move only the owned stable ID between active/archived lists while preserving complete history/items at its existing moved archive path and the unchanged three-call provider journal. Only these three physical owners gain scoped evidence. Two-item full/summary contents coincide; general truncation, restart/crash ordering, aliases and other transport/backend/platform profiles remain unqualified."
+      ],
       "pointer": "/properties/sortDirection/anyOf/1",
       "schema": "v2/ThreadTurnsListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_list_null_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

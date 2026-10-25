@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [turn-list null/archive continuation](turn-list-null-values-qualification.md)
+passes fourteen reviewed functional files **27/0 twice**, compile/format, strict
+Credo and the 237-file guard. Three exact request owners bring contracts to
+**4,633 implemented / 1,929 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Actual view
+labels/records, opaque cursor progress and retained archive history qualify the
+bounded native scenario only. No prohibited check, broad/hosted completion,
+A11 closure or release is claimed.
+
 The [item-anchor paging continuation](item-anchor-values-qualification.md) passes
 thirteen reviewed functional files **26/0 twice**, compile/format, strict Credo
 and the 236-file guard. Twelve precise request owners bring contracts to **4,630

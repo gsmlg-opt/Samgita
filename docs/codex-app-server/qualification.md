@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [turn-list null/archive continuation](turn-list-null-values-qualification.md)
+passes fourteen reviewed functional files **27/0 twice**, compile/format, strict
+Credo and the 237-file guard. Three direct request owners bring contracts to
+**4,633 implemented / 1,929 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Exact null
+envelopes, native view labels, independent history and archive membership/path
+observations are scoped evidence. General truncation/restart, prohibited checks
+and broader/hosted/full-compatibility gates remain incomplete.
+
 The [item-anchor paging continuation](item-anchor-values-qualification.md) passes
 thirteen reviewed functional files **26/0 twice**, compile/format, strict Credo
 and the 236-file guard. Twelve direct request owners bring contracts to **4,630
