@@ -93615,90 +93615,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentActivityKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact started literal asserted on both item/started and item/completed, in ordered sequence and strict full params equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "23ebb6e6bcc93ad306333902bfbbd7c5f6e38401f2175ce3ed91d28a8d87b78e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentActivityKind/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact interacted literal asserted on both item/started and item/completed, in ordered sequence and strict full params equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "febc5f44d591ae20199c52e2bbfc5f8cc84aceb02880c23255c6403c207c7119",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentActivityKind/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact interrupted literal asserted on both item/started and item/completed, in ordered sequence and strict full params equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "f855378058a19fb7ebeb43188cc3fb801b899123d893631a2f807044e2c7e437",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentActivityKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact completed literal asserted on both item/started and item/completed, in ordered sequence and strict full params equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -96749,272 +96789,382 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict full item equality on all four kinds in both live methods proves selected subAgentActivity object.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11",
       "schema": "ServerNotification.json",
       "schema_sha256": "c5d67455382a63935730a6c76f8f6ab2312ac65c5d7b79d864d339b40d312f1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/agentPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed /root/activity_child is independent fixture configuration, also checked against native thread/list metadata.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/agentPath",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentPath"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/agentThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Expected child id is resolved independently by native thread/list and thread/read; activity supplies no own expected identity.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/agentThreadId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentThreadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started/Interacted/Interrupted ids are independent fixture call-id literals; Completed id is subagent-completed- plus independent native child turn id.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/kind",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "All four exact kind strings required by ordered native live sequence and full params equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/kind",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "9d93ea563440a093786e2ba4f025d6ccee6be5e08a66e5592ca4148deaba5462",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "kind"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started model is explicit mock-model from owned configuration; remaining kinds require explicit model null.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/model",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "05b698f79b901c2c028c9030430b3a487bb35e3fd330a1e7fdcccc0d6e050e49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started reasoningEffort is explicit medium from owned configuration; remaining kinds require explicit null.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "6b68be40c6bd69b691c44955db3c554e6adad0d031ccf7cb85601fdbe3eeec3d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Non-null reference arm is directly exercised by medium, satisfying the independently inspected non-empty-string ReasoningEffort definition.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Null arm directly exercised by explicit reasoningEffort null in Completed, Interacted and Interrupted.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact type subAgentActivity required in all four items; native tagged serializer independently establishes spelling.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "ec27118c1f1aece7bc79046519a8e1c90e04cf283e7fa067bac5aa607ae2bc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/11/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Single subAgentActivity literal arm directly required in full live item equality.",
+        "Direct decoded native item/started and item/completed params are asserted against independently obtained child IDs and exact ordered Started/Completed/Interacted/Interrupted items. Full source and runtime-log audit retains original physical node identity; no selective-history or sibling-schema inheritance.",
+        "Only these synthetic local values and explicit null/string arms have scoped implemented evidence from unchanged native tests. ReasoningEffort is a nonempty string here; medium does not qualify its whole value domain. Optional omission, other transports, external/backend/OS profiles, A11 and complete final-source/hosted acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7bc1f179b966f3722eb0a474b1d9dd076bb197517f33c755672bbdf82e02e56d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_interaction_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

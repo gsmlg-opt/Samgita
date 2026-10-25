@@ -130,3 +130,42 @@ blocked**; requirements remain **462 implemented / 12 missing / 11 blocked**,
 with **zero verified**. Encryption, external providers, deployment profiles,
 full aggregate/hosted qualification, A11 and source-unreachable requirements
 retain their incomplete states. No release or deployment.
+
+## Direct live-notification owners
+
+The retained two-seed native activity evidence also supports **15 original
+physical owners in `ServerNotification.json`**, independently of the selective
+history schema: zero-based rows 2399–2402 and 2510–2520. Both `item/started`
+and `item/completed` resolve through their own notification payloads to the
+`subAgentActivity` item. The unchanged interaction test compares each complete
+live payload against exact ordered activity values and independently obtained
+child IDs. It asserts the model string and null arms, the populated `medium`
+reasoning string and explicit null arms, IDs, kind and item discriminator.
+`ReasoningEffort` is a nonempty string at this physical node; this evidence does
+not turn it into an enum or qualify every possible string.
+
+The source-only audit checks every original row, inventory-canonical node/hash,
+pinned source export, producer/projection/serializer excerpt and terminal native
+log. Both earlier source guards differ from this checkout only at the declared
+MCP direct test, MCP dependency fixture and manifest; all activity-owning inputs
+still match. The v40 complete nine-file block remains **27/0 twice**, and the v41
+complete two-file block remains **2/0 twice**, at seeds 501432/987654. This is
+retained evidence indexing, not a new execution of the latest complete source.
+
+```sh
+python3 -B /tmp/samgita-bind-native-activity-v43-20261025.py
+python3 -B scripts/codex/inventory.py --check
+python3 -B -m unittest discover -s scripts/codex -p 'test_*.py'
+git diff --check
+```
+
+Audit: `/tmp/samgita-v43-native-activity-live-owner-audit.json`, SHA256
+`662c153e52591b8937647cf45ae61c2055f222cb22549d61c9ac18449694cf31`.
+Binding report: `/tmp/samgita-native-activity-v43-terminal-20261025.json`, SHA256
+`c02ded98ac256a68ae25ef33f37ea5583cca939c31b0b1f7ab53b44389fcaab6`.
+Only the fifteen named owners become implemented. Requirements remain
+**462 implemented / 12 missing / 11 blocked**; contracts become **4,434
+implemented / 2,128 missing / 59 blocked**, with **zero verified**.
+Optional omission, other transports, whole value domains, external/backend/OS
+success and A11 retain their unqualified states. Complete final-source local
+and pushed hosted checks remain required. No publication or deployment.

@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [direct live activity-owner audit](native-control-activity-qualification.md#direct-live-notification-owners)
+binds fifteen physical `ServerNotification` nodes to unchanged exact native
+payload assertions and retained terminal two-seed logs. Contracts become
+4,434 implemented/2,128 missing/59 blocked, zero verified; requirements remain
+462/12/11. Source/test/node/log guards match with three explicitly retained
+owner-independent drifts. No new runtime or final-source acceptance is claimed;
+app-origin provenance, full matrices and all broader incomplete gates remain.
+
 The [MCP resource continuation](mcp-direct-qualification.md#optional-resource-fields-and-distinct-content-uris)
 passes all five owning cases 5/0 twice with both negotiated versions, exact
 typed normalization and distinct content URIs. Seven precise owners bring

@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [direct live activity-owner audit](native-control-activity-qualification.md#direct-live-notification-owners)
+binds fifteen exact `ServerNotification` owners to unchanged v40/v41 native
+assertions, separately from selective history. Canonical node, producer, test,
+log and owning-input guards match; three unrelated-to-owner source drifts remain
+explicit. Contracts are **4,434 implemented / 2,128 missing / 59 blocked**,
+zero verified; requirements remain 462/12/11. This adds no runtime result or
+whole-current-source qualification. Continue actual app-origin provenance,
+remaining behavior and complete final-source local/pushed hosted checks. A11,
+source-unreachable emitters and real external/backend/OS success remain incomplete.
+
 The [MCP resource continuation](mcp-direct-qualification.md#optional-resource-fields-and-distinct-content-uris)
 passes the complete five-case file **5/0 twice**, both negotiated MCP versions,
 strict checks, 38 tooling regressions and integrated 1,501-file/binary guards.
