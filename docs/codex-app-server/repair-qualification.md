@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [actual origin-version continuation](config-override-metadata-qualification.md#origin-version-continuation)
+passes twenty-seven reviewed files **47/0 twice**, strict/static checks, outside
+consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in
+`/tmp/samgita-v280-functional-checks/`. One exact field brings contracts to
+**4,732 implemented / 1,830 missing / 59 blocked**, unchanged requirements and
+zero verified. The native origins map has independently prescribed warm version
+and cold user-file name, preserving all prior desktop effects and call counts.
+No check fails; prohibited/broader/hosted, A11 and full-goal gates remain incomplete.
+
 The [configuration object/null continuation](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
 passes twenty-seven reviewed files **47/0 twice**, strict/static checks, outside
 consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in

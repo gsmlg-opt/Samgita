@@ -52,8 +52,14 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
     assert get_in(user_layer(ctx, pid), ["config", "desktop", "appearanceTheme"]) == "light"
     assert File.read!(ctx.config_path) =~ ~s(appearanceTheme = "light")
 
-    assert get_in(call(pid, "config/read", %{}), ["config", "desktop", "appearanceTheme"]) ==
-             "dark"
+    current = call(pid, "config/read", %{})
+    assert get_in(current, ["config", "desktop", "appearanceTheme"]) == "dark"
+    version = "sha256:" <> Base.encode16(:crypto.hash(:sha256, @session_json), case: :lower)
+
+    assert Map.fetch!(Map.fetch!(current, "origins"), "desktop.appearanceTheme") === %{
+             "name" => %{"type" => "sessionFlags"},
+             "version" => version
+           }
 
     persisted = File.read!(ctx.config_path)
     assert_idle(ctx, pid)
@@ -63,8 +69,14 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
     # value; the write response never claimed that the file edit was rejected.
     restarted = start(ctx, false)
 
-    assert get_in(call(restarted, "config/read", %{}), ["config", "desktop", "appearanceTheme"]) ==
-             "light"
+    cold = call(restarted, "config/read", %{})
+    assert get_in(cold, ["config", "desktop", "appearanceTheme"]) == "light"
+
+    assert get_in(cold, ["origins", "desktop.appearanceTheme", "name"]) === %{
+             "type" => "user",
+             "file" => ctx.config_path,
+             "profile" => nil
+           }
 
     assert File.read!(ctx.config_path) == persisted
     assert user_layer(ctx, restarted)["version"] == response["version"]

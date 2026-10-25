@@ -1,5 +1,59 @@
 # Native displaced configuration writes
 
+## Origin-version continuation
+
+Exact owner **3580**, ConfigReadResponse#/definitions/ConfigLayerMetadata/
+properties/version, gains independent evidence from the actual origins map.
+The existing displaced-theme case now checks the complete warm
+origins[desktop.appearanceTheme] entry against literal sessionFlags and the
+independently hashed owned CLI JSON. Its expected version is never taken from
+write metadata or read layers. Removing desktop flags at restart exposes
+persisted light and must change that origin's name to the exact owned user
+file/profile:null. Both original config/read RPCs are reused; every existing
+file/version/precedence/idle/cleanup assertion remains.
+
+The
+[read producer](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/config_manager_service.rs#L161)
+serializes origins through config_layer_metadata_to_api, preserving version.
+The
+[layer walk](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/config/src/state.rs#L555)
+records low-to-high layer metadata on each ordinary leaf; later ownership
+replaces earlier metadata. This is the concrete origins reference to the
+selected canonical property, distinct from layers and ConfigWriteResponse.
+All six inspected complete files match the immutable archive; the exact node,
+origins reference and response export match inventory/provenance. Independent
+source review finds no actionable issue.
+
+Base commit: `bfc4afd`. Focused v279 passes **3/0**, seed 501432, 2.580 command
+seconds. The unchanged twenty-seven-file explicit matrix now passes **47/0**
+at each seed 501432/987654, **82.660/83.990** command seconds. Scoped format,
+warning-free compile, strict Credo on 478 files, outside actual-binary consumer
+**1/0**, three Python AST checks and the **252-source** guard pass. All eight
+commands complete; no check fails in this unit.
+
+Final commands/environment/logs/hashes:
+`/tmp/samgita-v280-functional-checks/functional/`. Results/source SHA256:
+`7b5184388d1266c4aa22ed9302ad390b454d677b2d34cf0dacecc6321ea11e73` /
+`1c0af8c1a89ea4eae62b8620d0cfaa897860f06f3fbda753196daece8f1cf811`.
+Owning test SHA256:
+`a875e88bb3b3f34471f0ff394075fb4cd14dfb3148385b1d2d1e3a0b855ecc4e`.
+The adjacent source-evidence.json SHA256 is
+`818694e076a8650c64fdb3af33f38cbaf899060d9640a01a08ff3873760bd6b4`;
+manifest-binding.json records the one original/current owner and final binding.
+Inventory --check passes; contracts become **4,732 implemented / 1,830 missing /
+59 blocked**, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Strict completeness still exits **1**. No
+requirement record, schema identity or planned test changes.
+
+Only the selected session-flag origin version is qualified. Cold origin name
+is an additional effect oracle, not independent evidence of its version. Other
+keys/layers, metadata aliases and enclosing origin/response/method coverage
+receive no promotion. Yolo setup stays fixed; no security/permission case,
+runtime/shared-helper/configuration change or extra native call is introduced.
+All prohibited/broad/hosted, full-goal, A11, source-unreachable, external and
+release gates remain incomplete. No publication or deployment occurs. The
+following object/null checkpoint describes its earlier source.
+
 ## Current object/null branch qualification
 
 Exact owners **3874/3875**, ConfigWriteResponse.overriddenMetadata/anyOf/0

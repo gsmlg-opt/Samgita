@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [actual origin-version unit](config-override-metadata-qualification.md#origin-version-continuation)
+passes twenty-seven reviewed files **47/0 twice**, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 252-source guard.
+One exact field brings contracts to **4,732 implemented / 1,830 missing /
+59 blocked**, unchanged requirements and zero verified. Actual origins use
+independent CLI metadata warm and the exact user-file origin cold; the same
+read calls and original effects remain. No broader/alias promotion or failing
+check. Prohibited/broader/hosted, full-goal, A11, source-unreachable/external and
+release gates remain incomplete.
+
 The [configuration object/null unit](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
 passes twenty-seven reviewed files **47/0 twice**, compile/format, strict Credo,
 outside consumer **1/0**, three Python AST checks and the 252-source guard.

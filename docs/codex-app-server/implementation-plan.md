@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [actual origin-version continuation](config-override-metadata-qualification.md#origin-version-continuation)
+passes the final twenty-seven-file **47/0 twice** matrix, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and 252-source guard.
+One direct physical field brings contracts to **4,732 implemented / 1,830
+missing / 59 blocked**, unchanged requirements and zero verified. The complete
+actual warm origin entry uses the independent literal CLI fingerprint; cold
+origin names the exact owned user file. Existing calls/effects remain. Next
+qualify native token-usage modelContextWindow owner 2746 against independently
+prescribed catalog windows/percentage/null, preserving real usage/turn identity.
+Prohibited/broad/hosted, full-goal, A11, source-unreachable, external and release
+gates remain incomplete.
+
+## Earlier checkpoints
+
 The [configuration metadata branches](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
 pass the final twenty-seven-file **47/0 twice** matrix, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 252-source guard.
@@ -31,8 +45,6 @@ order and restart retain their original oracles under fixed yolo setup. Next
 inspect actual ConfigReadResponse origins for the distinct physical metadata
 version owner 3580; layers/write metadata cannot qualify it. Prohibited/broad/
 hosted, full-goal, A11, source-unreachable, external and release gates remain.
-
-## Earlier checkpoints
 
 The [read-state success source proof](read-state-update-success-limitation.md)
 establishes that exact owners 5850–5853 have no successful native producer in
