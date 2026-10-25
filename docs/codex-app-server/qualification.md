@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [thread-section membership unit](thread-section-membership-qualification.md)
+passes all eight reviewed functional files **19/0 twice**, compile/format,
+strict Credo and its source guard. Three direct owners bring contracts to
+**4,588 implemented / 1,974 missing / 59 blocked**, zero verified; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Exact native
+membership/order/history and restart evidence closes only these move owners.
+Current security/permission test restrictions and every broader gate remain.
+
 The [deprecated mode value unit](multi-agent-mode-values-qualification.md)
 passes all seven reviewed functional files **18/0 twice**, compile/format, strict
 Credo and its source guard. Six direct owners bring contracts to **4,585

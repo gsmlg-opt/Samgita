@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [thread membership unit](thread-section-membership-qualification.md) passes
+the final eight-file functional block **19/0 twice**, compile/format, strict Credo
+and the 231-file source guard. Three direct move owners bring contracts to
+**4,588 implemented / 1,974 missing / 59 blocked**, zero verified; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Continue
+source-backed reachable functional variants; the next bounded investigation
+checks authentic section-bearing native notifications and separately maps any
+already captured shared request fields. Do not manufacture emitters or promote
+aliases automatically. Security/permission tests and related automatic workflows
+remain prohibited; broader/local/hosted gates and no-release status stay intact.
+
 The [deprecated mode unit](multi-agent-mode-values-qualification.md) passes the
 seven-file functional block **18/0 twice**, compile/format, strict Credo and
 source guard. Six direct owners bring contracts to **4,585 implemented / 1,977

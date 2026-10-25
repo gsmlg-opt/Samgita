@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [thread membership continuation](thread-section-membership-qualification.md)
+passes eight reviewed functional files **19/0 twice**, compile/format, strict
+Credo and the 231-file guard. Three direct owners bring contracts to **4,588
+implemented / 1,974 missing / 59 blocked**, zero verified; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified. Native move effects,
+independent ordering/projections and unchanged four-call journal survive PID
+replacement. Full compatibility, A11, prohibited checks and hosted gates remain
+incomplete; no publication, production migration or deployment occurs.
+
 The [deprecated mode continuation](multi-agent-mode-values-qualification.md)
 passes seven reviewed functional files **18/0 twice**, compile/format, strict
 Credo and the 230-file guard. Six direct owners bring contracts to **4,585

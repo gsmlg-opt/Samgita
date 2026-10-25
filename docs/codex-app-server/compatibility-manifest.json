@@ -212277,79 +212277,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-membership-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionMoveParams.json#/properties/beforeThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: One case applies seven exact owning-method move maps to four real persisted threads and two custom sections, checking append/reorder/transfer/nullable removal, independent public lists/read projections, unchanged control/history/journal and durable native PID replacement. Only these three direct move owners gain scoped evidence; filter/sort/response aliases, notifications, other transport/platform/backend and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/beforeThreadId",
       "required": false,
       "schema": "v2/ThreadSectionMoveParams.json",
       "schema_sha256": "26ac790ecbad10c99327dea0a23cc2fe1ec1ed54e1cc38c1f2c25b33049183dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_membership_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "beforeThreadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-membership-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionMoveParams.json#/properties/sectionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: One case applies seven exact owning-method move maps to four real persisted threads and two custom sections, checking append/reorder/transfer/nullable removal, independent public lists/read projections, unchanged control/history/journal and durable native PID replacement. Only these three direct move owners gain scoped evidence; filter/sort/response aliases, notifications, other transport/platform/backend and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sectionId",
       "required": true,
       "schema": "v2/ThreadSectionMoveParams.json",
       "schema_sha256": "325e59ce2757d45964e0f4264e865c6f1ccdd26a100c177879fa9fed6ad77947",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_membership_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sectionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-membership-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionMoveParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: One case applies seven exact owning-method move maps to four real persisted threads and two custom sections, checking append/reorder/transfer/nullable removal, independent public lists/read projections, unchanged control/history/journal and durable native PID replacement. Only these three direct move owners gain scoped evidence; filter/sort/response aliases, notifications, other transport/platform/backend and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadSectionMoveParams.json",
       "schema_sha256": "40fbbac77288a584d53f439bd89b67c32d27c4988242917ed4eb9b6f8b5457dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_membership_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
