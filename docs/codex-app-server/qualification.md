@@ -19,6 +19,13 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [retained client-owner index](retained-client-owners-qualification.md) adds
+93 exact implemented owners from the unchanged terminal v21 native tests.
+Source preimages and the exact complete manifest diff match; inventory consistency
+and37 regressions pass. Counts are3492 implemented/3129 missing contracts and
+462 implemented/12 missing/11 blocked requirements, zero verified. This evidence
+index does not qualify referenced fields, sibling methods or new source changes.
+
 The [terminal4d2d1e3 hosted checkpoint](repair-qualification.md#terminal-hosted-checkpoint-at-4d2d1e3)
 passes foundation and both native execution jobs: driver700/0, all49 isolated
 profiles280/0, wire42/0, outside actual-native consumer1/0, platform59 core+11 web/0

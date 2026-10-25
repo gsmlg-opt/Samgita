@@ -24893,98 +24893,138 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "254bba94b48b28a59185c32b375409dab7dd8820c8e3aaad18d5e8686346c371",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/0/properties/text",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/0/properties/text",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "text"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ContentItem/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1469942969a11ce45071cbd4534a47f574f620230366a075f19c9d7ca0b1c704",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9988e834ba1d6e56d651944bad70a4789a148bac8142bbf4e8a43c85491ac920",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -31948,50 +31988,70 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Required message shape only; optional message members are absent.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "f81a1f52ec3d15c64fb0aa218f0f38d8f6240af3759545b72edd9d8f07197586",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/content",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/content",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "625a7e6563c4d35675ee623cda4e8cf0e12f20a92757c742525089a28d63fb1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "content"
     },
     {
@@ -32189,27 +32249,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/role",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/role",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "role"
     },
     {
@@ -32241,49 +32311,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b4f56b93438da9277c7d79e6e558d41d1a3b49db5eed187799861ecf5e6cf621",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive physical ClientRequest history content owner only; no opaque inject route, alias or equal-hash transfer.",
+        "Only the exact positive value and position shown; no sibling owner or equal-hash propagation.",
+        "Typed supplied-history user message and input_text only; no reasoning, encrypted or media input qualification. Exact durable JSONL, once-only next-model input, cold restart and source preservation are independent oracles."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "eff3cacadd91eb8f12280eb31bccdf643a8ca5502c01888b1fc3833dceb65756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42182,24 +42272,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/100",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only active local synthetic dynamic-tool turn with prescribed text/context/metadata/clientId and explicit original expectedTurnId.",
+        "Idle steer rejection and unselected media/encrypted/toolOutput cases are not evidence for these positive owner candidates.",
+        "No all parameter/null/permission/race/live-provider/transport/OS profile claim."
+      ],
       "pointer": "/oneOf/100",
       "schema": "ClientRequest.json",
       "schema_sha256": "63ff9fe693348d4c4fbbe98c102fb22298d66a817aa081c7f43d8ad7aecd716e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -42231,97 +42332,141 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/100/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only active local synthetic dynamic-tool turn with prescribed text/context/metadata/clientId and explicit original expectedTurnId.",
+        "Idle steer rejection and unselected media/encrypted/toolOutput cases are not evidence for these positive owner candidates.",
+        "No all parameter/null/permission/race/live-provider/transport/OS profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/100/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ebbffcf61bb5b2adf87deb10457e766e1faf2e88545adaee68818ba0aafbb1b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/100/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only active local synthetic dynamic-tool turn with prescribed text/context/metadata/clientId and explicit original expectedTurnId.",
+        "Idle steer rejection and unselected media/encrypted/toolOutput cases are not evidence for these positive owner candidates.",
+        "No all parameter/null/permission/race/live-provider/transport/OS profile claim."
+      ],
       "pointer": "/oneOf/100/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e3f643142e1f1ec344bf560d826d729c2833a5a84a27c587daf0ce2d0bf0422d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/100/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only active local synthetic dynamic-tool turn with prescribed text/context/metadata/clientId and explicit original expectedTurnId.",
+        "Idle steer rejection and unselected media/encrypted/toolOutput cases are not evidence for these positive owner candidates.",
+        "No all parameter/null/permission/race/live-provider/transport/OS profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/100/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9373a46ca7fc00ee0507725d455958e95d1de43fa91a5fc707766897d896f98c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/101",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only two explicit pending native file/command approval interruption scenarios; no automatic retry or completion authorization.",
+        "File absence, no successful item/output, exact interrupted/resolved native lifecycle and stale handles provide independent effects beyond empty response.",
+        "No all statuses/fields/null/races/loss/cold-pending/live-backend/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/101",
       "schema": "ClientRequest.json",
       "schema_sha256": "3b99fb7087b3220f4e037a5033df59cf3cf7e7f53341bd1ed4e39bab85852335",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -42353,75 +42498,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/101/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only two explicit pending native file/command approval interruption scenarios; no automatic retry or completion authorization.",
+        "File absence, no successful item/output, exact interrupted/resolved native lifecycle and stale handles provide independent effects beyond empty response.",
+        "No all statuses/fields/null/races/loss/cold-pending/live-backend/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/101/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fba3401263b768d4dfd72bef18718302e47426d2af291114224fe0e06c4c2a73",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/101/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only two explicit pending native file/command approval interruption scenarios; no automatic retry or completion authorization.",
+        "File absence, no successful item/output, exact interrupted/resolved native lifecycle and stale handles provide independent effects beyond empty response.",
+        "No all statuses/fields/null/races/loss/cold-pending/live-backend/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/101/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "28cc44df742e9b2556fcc780bb6825d18ef9272f2fb42ff646103715b3ed4d4b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/101/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only two explicit pending native file/command approval interruption scenarios; no automatic retry or completion authorization.",
+        "File absence, no successful item/output, exact interrupted/resolved native lifecycle and stale handles provide independent effects beyond empty response.",
+        "No all statuses/fields/null/races/loss/cold-pending/live-backend/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/101/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5d197fd1db65aa39e7e86a84da66c7f5c2daf14ad1f41af8c3422fdf98df8101",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -55228,24 +55406,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/31",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Null removal path supplies contextual profile; no nested/null branch owner selected."
+      ],
       "pointer": "/oneOf/31",
       "schema": "ClientRequest.json",
       "schema_sha256": "59ce083e7183216b483c2bb87a157c1e35b359266cd669095bc9fa42e61a83d4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -55277,97 +55464,134 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/31/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Null removal path supplies contextual profile; no nested/null branch owner selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/31/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c860a6a89cbbf6b5e96e694cc9a786a42db4c17ee61dc284c47bb2a6c227be14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/31/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Null removal path supplies contextual profile; no nested/null branch owner selected."
+      ],
       "pointer": "/oneOf/31/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9e728313bbd2fcf0f809e97c42dadb6e4e0825b408359f87f6a09e7db5f7961b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/31/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Null removal path supplies contextual profile; no nested/null branch owner selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/31/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9ff2c45021d6daa25aa2a358ac050f6b5e56f32e7877100efcd51070a789b602",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/32",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only prescribed active-to-future model/effort/summary/cwd update with local dynamic tool and experimental API. Existing omitted/null calls at119-127 are not used to promote their schema branches.",
+        "No arbitrary setting field, remote environment, live provider, concurrency or transport claim."
+      ],
       "pointer": "/oneOf/32",
       "schema": "ClientRequest.json",
       "schema_sha256": "b5647a79089abce054eb5895a32b443bf3a20cb00592bb9cbcc91b1c7bd377fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -55399,75 +55623,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/32/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only prescribed active-to-future model/effort/summary/cwd update with local dynamic tool and experimental API. Existing omitted/null calls at119-127 are not used to promote their schema branches.",
+        "No arbitrary setting field, remote environment, live provider, concurrency or transport claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/32/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0f8f3932270519695d41b2c6c5d38b6f8ea39283998f3fdbe504ad3cd789a1d3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/32/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only prescribed active-to-future model/effort/summary/cwd update with local dynamic tool and experimental API. Existing omitted/null calls at119-127 are not used to promote their schema branches.",
+        "No arbitrary setting field, remote environment, live provider, concurrency or transport claim."
+      ],
       "pointer": "/oneOf/32/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "d90d5bc75b9a39180dd22ebaa2f4f84267707e4a2e6c4e01b424afac63a528b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/32/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only prescribed active-to-future model/effort/summary/cwd update with local dynamic tool and experimental API. Existing omitted/null calls at119-127 are not used to promote their schema branches.",
+        "No arbitrary setting field, remote environment, live provider, concurrency or transport claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/32/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4990a4b48d5af9afd1b7491eff547913988708689eb0792a005e37fffa520265",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -56024,24 +56278,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/37",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Selected known persisted thread archive/unarchive visibility, notification identity and section-clearing retention only.",
+        "No full response-field/null/thread-state/race/retention/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/37",
       "schema": "ClientRequest.json",
       "schema_sha256": "4fa869b37a2635fc049f9bb95d72c23c67b0a870b3a6acd90c76a6ebb1e476f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -56073,75 +56339,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/37/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Selected known persisted thread archive/unarchive visibility, notification identity and section-clearing retention only.",
+        "No full response-field/null/thread-state/race/retention/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/37/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e9f102b342ccff268d33305271a352157d3a69862bb0dce79cdcd2df7bddc077",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/37/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Selected known persisted thread archive/unarchive visibility, notification identity and section-clearing retention only.",
+        "No full response-field/null/thread-state/race/retention/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/37/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1317c63c5f04dcf4bd40eb563ddd016d2d9d966088a3d59856b8189615bfb7b8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/37/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Selected known persisted thread archive/unarchive visibility, notification identity and section-clearing retention only.",
+        "No full response-field/null/thread-state/race/retention/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/37/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0f81da7811628fc0de16584f2c0875bc03d7fd0db4969f46d628f35eefa1c519",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -57122,24 +57424,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/45",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only four local prescribed text histories and ordinary concrete filters with limit100/created_at/useStateDbOnly true.",
+        "Existing null cases are not used to promote null owners. Native reverse-created_at anchor limitation at303-324 is not positive compatibility evidence.",
+        "No all filters, ancestry, other sort keys, races, scanning/repair or multi-provider/service/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/45",
       "schema": "ClientRequest.json",
       "schema_sha256": "cad52025306dfe6569da31f74732f912cac7b82d84ff81ec71c6f6496ea352c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57171,97 +57484,138 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/45/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only four local prescribed text histories and ordinary concrete filters with limit100/created_at/useStateDbOnly true.",
+        "Existing null cases are not used to promote null owners. Native reverse-created_at anchor limitation at303-324 is not positive compatibility evidence.",
+        "No all filters, ancestry, other sort keys, races, scanning/repair or multi-provider/service/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/45/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0fad9defc3f365b83853c3ed0f809e9dd1f91fdbe9fe32af2cff40279533e82e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/45/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only four local prescribed text histories and ordinary concrete filters with limit100/created_at/useStateDbOnly true.",
+        "Existing null cases are not used to promote null owners. Native reverse-created_at anchor limitation at303-324 is not positive compatibility evidence.",
+        "No all filters, ancestry, other sort keys, races, scanning/repair or multi-provider/service/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/45/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "189b6db943c928ad26ed7f3bb17e4e71b0e6e5a45ba7dbdf4d7d54867911f0f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/45/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only four local prescribed text histories and ordinary concrete filters with limit100/created_at/useStateDbOnly true.",
+        "Existing null cases are not used to promote null owners. Native reverse-created_at anchor limitation at303-324 is not positive compatibility evidence.",
+        "No all filters, ancestry, other sort keys, races, scanning/repair or multi-provider/service/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/45/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b18a0404fb95b98bea1dca933a2514a159cdce4c22ffb41cb26e5f724e7578ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/46",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/46",
       "schema": "ClientRequest.json",
       "schema_sha256": "20e97ae92a8f7ee5a6291b4decee7285a32a0d7d6dae7054320f17f03b502925",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57293,97 +57647,130 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/46/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/46/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "690e18b873dcb49cf9924dc62635bd6fe89139abab51cf721ebfc1060807c2b8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/46/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/46/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "3e3973fc051bb1052eb6d247111f6fab9e1381280c45c289b0d8ed2090414a45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/46/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/46/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0e49bcaae058fd0c28c7f377118bcb2cf81ba6bdcf2c9f7409a34f45f9338614",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/47",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners are already implemented."
+      ],
       "pointer": "/oneOf/47",
       "schema": "ClientRequest.json",
       "schema_sha256": "36b2a7a4a9a900c44cdf30d0bd33a0607b128aaad5e15746fb060302c0ed7f6e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57506,24 +57893,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/48",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/48",
       "schema": "ClientRequest.json",
       "schema_sha256": "751a48979b8cf445e13b0bcac8b130e0534ba3c4466d8b88c1e627e4cf67e9eb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57555,97 +57950,130 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/48/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/48/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "54d94744680f5d5484a82f7e4cc44f75eeb3b451d6fb8310c27f255fdcf3ad84",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/48/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/48/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "40fbe48146016c3c8a1907d56c1258935e550d61a3f128927b0ff87a3cb12866",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/48/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/48/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "46e1c751a28b1852fc4ba344eb5cd300cbed0a632dadb3c92980e106b34ed6e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/49",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners are already implemented."
+      ],
       "pointer": "/oneOf/49",
       "schema": "ClientRequest.json",
       "schema_sha256": "4b2ed168e19c7a35bc263bf1bed92f9bac235563388d52ddda717886428c7ced",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57890,24 +58318,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/50",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Omission/null paths are contextual evidence only; no nested-field or null-branch owner selected."
+      ],
       "pointer": "/oneOf/50",
       "schema": "ClientRequest.json",
       "schema_sha256": "9c4e353aef8c4b5e9b1d712b46fb78c6ce9242b7c53194112a40e9804689de40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -57939,97 +58376,132 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/50/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Omission/null paths are contextual evidence only; no nested-field or null-branch owner selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/50/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "6f68f98410615eb288e6def56f452f783afa5ed5ff8abe3e23c2d5de0d9ace8d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/50/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Omission/null paths are contextual evidence only; no nested-field or null-branch owner selected."
+      ],
       "pointer": "/oneOf/50/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "930bf1de2af0a2021d53ffca92f5a959946b9791473e7c959b9ba5c68016148b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/50/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Omission/null paths are contextual evidence only; no nested-field or null-branch owner selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/50/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b1ba97ceee40dba52e810db6ffdae3a77b727d2083a0f5078aa7158a2fb5e995",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/51",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/51",
       "schema": "ClientRequest.json",
       "schema_sha256": "afeb705c2317cece0424a307604bfbf0ddf16b8518910c6fc62ebeab322fb91d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58061,97 +58533,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/51/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/51/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0133a58858bedd03704d60caa8590650eab07771e2c7e19e7aa60fb8174c03e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/51/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/51/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "46450effad571d6fec063c1ecef22d82b61253d35c07f70201c351b5973a3c29",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/51/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/51/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9b53466841eaa650c6ab3df451807105f18129c2d2c3ddbcef6ce875b28424f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/52",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/52",
       "schema": "ClientRequest.json",
       "schema_sha256": "66df8de787eb2b55df9550f7fa6bceb02a1a17d71590a1b0d4743ee034c9c9af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58183,97 +58687,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/52/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/52/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9531565202c0219d96782a61066935c276e84f43eddefef98771f3342ad779bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/52/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/52/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "fc7d47b13c000dc867601ec2871cbded113f0632ef7b95c0fa46ce4728b9e006",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/52/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/52/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "acb3fc69b56f8ec0c2824b1b61824fd2aff91c4fe0b2a4ce2840d52b94a60a33",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/53",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/53",
       "schema": "ClientRequest.json",
       "schema_sha256": "074dd76803371c6143ab00fa14afe30721747b0808836cc67a75cd7e09ee515f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58305,97 +58841,130 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/53/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/53/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ad65a88c2de28788fb3f47eedff796d4a4ca4fefc557a1b426343b2a93eb85ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/53/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "pointer": "/oneOf/53/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8eb71c5b2d04ba8ee9407e5958b874d443f16ddf8a1a0f8b71db17e092f314af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/53/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/53/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "713e60d49913b4f69c5e0afdd514e9a45bd24b2bbe15ad1510fe15daa6411fc6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/54",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only exercised positive creation envelope/profile; appearance-field alternatives and arbitrary values are not selected."
+      ],
       "pointer": "/oneOf/54",
       "schema": "ClientRequest.json",
       "schema_sha256": "e849fc7d2c402d1cbd30db9b9d2b6f0420ac6359693bd1b041932fcdd105f511",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58427,97 +58996,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/54/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only exercised positive creation envelope/profile; appearance-field alternatives and arbitrary values are not selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/54/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a0ac9bdfb968ff9831fc0e0348b9be224c411d598f4bc70b5dc6904321424e30",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/54/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only exercised positive creation envelope/profile; appearance-field alternatives and arbitrary values are not selected."
+      ],
       "pointer": "/oneOf/54/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "984382f582f6d124507ea863b139aa4c6bd96fc6c800bf511e29fb34056af608",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/54/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only exercised positive creation envelope/profile; appearance-field alternatives and arbitrary values are not selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/54/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "444c358ef24e5a25298f406ab07c5a014e936c7cf6726e47a7c1c7bc2abe04e5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/55",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "No nested appearance or null contract is selected."
+      ],
       "pointer": "/oneOf/55",
       "schema": "ClientRequest.json",
       "schema_sha256": "490e1e3491ccaca9e7adff470a01b53bbf6342aaf10c2c92a25183112151287c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58549,97 +59154,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/55/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "No nested appearance or null contract is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/55/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "18352216e497e5555048e87f468f61b58b1ef80bbddc80c380b2ec06ae8e5ae0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/55/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "No nested appearance or null contract is selected."
+      ],
       "pointer": "/oneOf/55/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "85c56a5e16be46d892c53af3d48484e7a2bdbd3180176f6b73ce65913ebcdad7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/55/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "No nested appearance or null contract is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/55/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8b9d72d7e1add1ee1b5bf55a35da5aa013f14550cc0bbbe73a6b585cc113e05d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/56",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Unarchive is contextual observation only and excluded as a selected method."
+      ],
       "pointer": "/oneOf/56",
       "schema": "ClientRequest.json",
       "schema_sha256": "1bee34114ce7e327c01fe3384df250bdad0eb5855b5b6ec7ec6df1bdf97b8345",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58671,75 +59312,102 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/56/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Unarchive is contextual observation only and excluded as a selected method."
+      ],
       "nullable": false,
       "pointer": "/oneOf/56/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "81be52c2deb1f2da73d02510fc7ef65880530121ff7f35b29569bdb7afae733c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/56/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Unarchive is contextual observation only and excluded as a selected method."
+      ],
       "pointer": "/oneOf/56/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "a6b91e34493d2d693af9a9ef720f8a438f1b9fbec886e35a24c227d8b0e33313",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/56/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Unarchive is contextual observation only and excluded as a selected method."
+      ],
       "nullable": false,
       "pointer": "/oneOf/56/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b47e8a17f678b5d30f79d0af1c39b0d2f02932587c87220b9c910369c0c39ad8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -59264,24 +59932,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/60",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only known completed paginated three-text-turn history and includeTurns true. Expected identities are observed from separate native lifecycle events; prescribed content prevents mere self-comparison of the queried response.",
+        "Cold replay at257-272 qualifies item-list queries here, not this thread/read call; no thread/read restart claim from this selected test.",
+        "No all read fields/null/history/state/race/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/60",
       "schema": "ClientRequest.json",
       "schema_sha256": "99b7837ae86824af806b0bea7ce3cbe6ad302a645244d0a3118774bd2226d217",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -59313,97 +59992,140 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/60/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only known completed paginated three-text-turn history and includeTurns true. Expected identities are observed from separate native lifecycle events; prescribed content prevents mere self-comparison of the queried response.",
+        "Cold replay at257-272 qualifies item-list queries here, not this thread/read call; no thread/read restart claim from this selected test.",
+        "No all read fields/null/history/state/race/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/60/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4d19f9558e203fecc9b310d8d9ec19ed7e82a42b6012c00aeee5b6b72491b517",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/60/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only known completed paginated three-text-turn history and includeTurns true. Expected identities are observed from separate native lifecycle events; prescribed content prevents mere self-comparison of the queried response.",
+        "Cold replay at257-272 qualifies item-list queries here, not this thread/read call; no thread/read restart claim from this selected test.",
+        "No all read fields/null/history/state/race/OS/transport profile claim."
+      ],
       "pointer": "/oneOf/60/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "85160a1ce0cd060a3b73f4282a49181924b3c6404a60e9517caf471ea480d2ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/60/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only known completed paginated three-text-turn history and includeTurns true. Expected identities are observed from separate native lifecycle events; prescribed content prevents mere self-comparison of the queried response.",
+        "Cold replay at257-272 qualifies item-list queries here, not this thread/read call; no thread/read restart claim from this selected test.",
+        "No all read fields/null/history/state/race/OS/transport profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/60/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "dacd697c547220fb3657e258a4c3fa7f760b5fd4255d03991752db8053339662",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/61",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "Concurrent winning operation is intentionally unspecified; explicit subsequent read/unread operations independently establish positive effects."
+      ],
       "pointer": "/oneOf/61",
       "schema": "ClientRequest.json",
       "schema_sha256": "3a6edee80344f5739cfc7bd0e2b5ebfd855173cd1e052598f63ef9b282f841ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -59526,24 +60248,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/62",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Source title is generated once for each legacy/paginated mode; parent should run file to cover both instances.",
+        "No nested cursor, item, sort or history field owner is selected."
+      ],
       "pointer": "/oneOf/62",
       "schema": "ClientRequest.json",
       "schema_sha256": "f8bd835e611fafe7baaa9c04d0ff8e2bafc45ed9a964fdc48b6698ecc8b4018b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -59575,97 +60307,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/62/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Source title is generated once for each legacy/paginated mode; parent should run file to cover both instances.",
+        "No nested cursor, item, sort or history field owner is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/62/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "cf14df6f06e5c85508d1023f481abfe555d60705508d9183f8f4ebeb53ad50a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/62/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Source title is generated once for each legacy/paginated mode; parent should run file to cover both instances.",
+        "No nested cursor, item, sort or history field owner is selected."
+      ],
       "pointer": "/oneOf/62/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6054de7277ade04d6741bc932bd459970527dd545900e8bfc08f7eb81aca2e22",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/62/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Source title is generated once for each legacy/paginated mode; parent should run file to cover both instances.",
+        "No nested cursor, item, sort or history field owner is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/62/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9dfc46e1410741059d30ddb04f0083431f86cf68cf7ab163beaf0489c3ea9e9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/63",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only completed paginated local text history, limit2, asc/desc and exact observed opaque cursors across owned process restart.",
+        "No all parameters/null/input kinds/active-history/race/storage/transport/OS profile claim."
+      ],
       "pointer": "/oneOf/63",
       "schema": "ClientRequest.json",
       "schema_sha256": "c436a467a94cafbfc9c81ae9e7a7e5c0f8c0e4f23fcc6f090e5d33932722e6ee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -59697,75 +60469,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/63/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only completed paginated local text history, limit2, asc/desc and exact observed opaque cursors across owned process restart.",
+        "No all parameters/null/input kinds/active-history/race/storage/transport/OS profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/63/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "21391c2516add1412209484aaa2be8fe4d430bd63392ee334ea053dcca6bd3ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/63/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only completed paginated local text history, limit2, asc/desc and exact observed opaque cursors across owned process restart.",
+        "No all parameters/null/input kinds/active-history/race/storage/transport/OS profile claim."
+      ],
       "pointer": "/oneOf/63/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b42bfa800835a889f1adcaab544bd858073ad065b3cd8dc5dc3080d0f1584b68",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/63/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Only completed paginated local text history, limit2, asc/desc and exact observed opaque cursors across owned process restart.",
+        "No all parameters/null/input kinds/active-history/race/storage/transport/OS profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/63/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e79975c4d52733df59bfa91293a73245aabdb389e1f35698456c1292f3c3f1ba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -63129,24 +63931,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/88",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "No null/recursive/force nested-field owner selected; removal is contextual only."
+      ],
       "pointer": "/oneOf/88",
       "schema": "ClientRequest.json",
       "schema_sha256": "c7252a4959425fbe4550a5b8c53d4c62c46ca97cd216ced0883bfbb2dc914ff0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63275,24 +64087,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/89",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "Timestamp oracle is type/sign bound, not exact filesystem timestamp equality."
+      ],
       "pointer": "/oneOf/89",
       "schema": "ClientRequest.json",
       "schema_sha256": "aeacc61956520ad4e0eb14f2b155068db75bc02a5eefa330b396bcb4d487ac98",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63591,24 +64413,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/90",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "Symlink listing profile follows the exercised native target-kind semantics only."
+      ],
       "pointer": "/oneOf/90",
       "schema": "ClientRequest.json",
       "schema_sha256": "7e84f68761806a869c16a43e7fbb9dfb1bc0f2105a1a8a0b516ba5f869eb3be0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -64045,24 +64877,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/93",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "Local OS watcher success profile only; no notification completeness across arbitrary filesystems/OS."
+      ],
       "pointer": "/oneOf/93",
       "schema": "ClientRequest.json",
       "schema_sha256": "370bd4e72b46f36813aaca537d2cab75f643c93ec527879277d3c4d0cfd96d55",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -64191,24 +65033,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/94",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Select only missing envelope; method/enum/params owners already implemented.",
+        "Quiet evidence is bounded to 500ms and exercised local watcher/control profile; no claim of unbounded future silence."
+      ],
       "pointer": "/oneOf/94",
       "schema": "ClientRequest.json",
       "schema_sha256": "d5f9698daf4313acabb6a5f881fbf4893d1093abc3ba197c1e238f4bc028df1c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -64735,24 +65587,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/98",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Provider fixture emits SSE only; native app-server produces protocol events.",
+        "No additional turn option, callback, tool, settings or error owner is selected."
+      ],
       "pointer": "/oneOf/98",
       "schema": "ClientRequest.json",
       "schema_sha256": "821962088f3f23c85bd2ba9a85afc1772c1fa4b824f29cae891e5fc453007fa3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -64784,75 +65646,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/98/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Provider fixture emits SSE only; native app-server produces protocol events.",
+        "No additional turn option, callback, tool, settings or error owner is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/98/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b8546582deb75ed4bf373a89e3b9701e2672f05027bde473101111a73a12621e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/98/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Provider fixture emits SSE only; native app-server produces protocol events.",
+        "No additional turn option, callback, tool, settings or error owner is selected."
+      ],
       "pointer": "/oneOf/98/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f8f510d463a7fd8109bc69d6dc171a731ad335f4b579bb8043f2879a76c4b633",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-client-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/98/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected positive native operation envelope/method/params reference; referenced fields, defaults, null branches, sibling methods and other profiles receive no inherited evidence.",
+        "Provider fixture emits SSE only; native app-server produces protocol events.",
+        "No additional turn option, callback, tool, settings or error owner is selected."
+      ],
       "nullable": false,
       "pointer": "/oneOf/98/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a035613b113da2ef10746fb9e53549f247b5c86b376b5182d672f3b70619a50b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

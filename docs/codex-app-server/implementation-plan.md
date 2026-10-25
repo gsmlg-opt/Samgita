@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [retained client-owner index](retained-client-owners-qualification.md) binds
+93 precise existing positive operation/history owners to the terminal v21 native
+matrix, with every source preimage checked. No executable changes or verified
+promotions occur. Inventory consistency and37 regressions pass; the ledger is
+3492 implemented/3129 missing contracts, with unchanged462 implemented/12 missing/
+11 blocked requirements. Continue remaining actual-native behavior and final
+combined-source qualification; all incomplete gates below remain required.
+
 The [terminal hosted4d2d1e3 checkpoint](repair-qualification.md#terminal-hosted-checkpoint-at-4d2d1e3)
 passes foundation and both actual-native jobs, including700 default cases and280
 isolated-profile cases with zero failures. The required complete-evidence job

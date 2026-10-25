@@ -6,6 +6,17 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Retained client-owner continuation
+
+The [bounded index](retained-client-owners-qualification.md) binds93 existing
+positive operation/history owners to both passing native repeats in the terminal
+v21 package matrix. Every selected ID/pointer/hash and source preimage is checked;
+the resulting full JSON and exact93-owner diff match. Inventory consistency and37
+regressions pass. Counts become3492 implemented/3129 missing contracts, zero
+verified; requirements remain462 implemented/12 missing/11 blocked. This unit
+changes no executable. New native behavior and final-source qualification remain
+required, with A11, unreachable/external/OS and aggregate gates still incomplete.
+
 ## Terminal frozen v21 local matrix
 
 The complete combined runner terminates at exact executable source
