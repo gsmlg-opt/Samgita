@@ -131,6 +131,247 @@ defmodule SamgitaCodexDriver.NativeMcpResourceOriginProfile do
     close(ctx, native)
   end
 
+  test "genuine Apps context survives the first cold selective history read", ctx do
+    ctx = Map.put(ctx, :history_profile, true)
+    native = start(ctx)
+    {root, turn, expected, effects} = produce_history(ctx, native)
+    query = history_query(root, turn)
+
+    # Only the producer performs a full-history persistence barrier.
+    assert [%{"id" => ^turn, "status" => "completed"}] =
+             call(native.pid, "thread/read", %{"threadId" => root, "includeTurns" => true})[
+               "thread"
+             ]["turns"]
+
+    assert call(native.pid, "thread/items/read", query) === expected
+    assert_history_effects(ctx, root, effects)
+    assert_profile(ctx, native)
+    close_history(ctx, native)
+    assert_history_effects(ctx, root, effects)
+
+    cold = start(Map.put(ctx, :reuse_history, true))
+    refute cold.pid == native.pid
+    refute cold.started["pid"] == native.started["pid"]
+    assert call(cold.pid, "thread/loaded/list", %{})["data"] == []
+    assert_history_effects(ctx, root, effects)
+
+    # This is the first content request in a genuinely fresh native process:
+    # no resume, full-history hydration or new turn precedes this selection.
+    assert call(cold.pid, "thread/items/read", query) === expected
+    assert call(cold.pid, "thread/loaded/list", %{})["data"] == []
+    assert history_content_inputs(ctx) == ["thread/items/read"]
+    assert_history_effects(ctx, root, effects)
+    assert_idle(cold.pid)
+    assert_profile(ctx, cold)
+    close_history(ctx, cold)
+    assert_history_effects(ctx, root, effects)
+  end
+
+  test "exact remote clients redact resume payloads while retaining genuine Apps context", ctx do
+    ctx = Map.put(ctx, :history_profile, true)
+    native = start(ctx)
+    {root, turn, expected, effects} = produce_history(ctx, native)
+    query = history_query(root, turn)
+
+    assert [%{"id" => ^turn, "status" => "completed"}] =
+             call(native.pid, "thread/read", %{"threadId" => root, "includeTurns" => true})[
+               "thread"
+             ]["turns"]
+
+    assert call(native.pid, "thread/items/read", query) === expected
+    assert_profile(ctx, native)
+    close_history(ctx, native)
+    assert_history_effects(ctx, root, effects)
+
+    for client <- ["codex_chatgpt_android_remote", "codex_chatgpt_ios_remote"] do
+      remote = start(Map.merge(ctx, %{reuse_history: true, client_name: client}))
+      refute remote.started["pid"] == native.started["pid"]
+      assert call(remote.pid, "thread/loaded/list", %{})["data"] == []
+
+      resumed =
+        call(remote.pid, "thread/resume", %{
+          "threadId" => root,
+          "excludeTurns" => true,
+          "initialTurnsPage" => %{"limit" => 10, "itemsView" => "full"}
+        })
+
+      assert resumed["thread"]["id"] == root
+      assert resumed["thread"]["turns"] == []
+
+      assert [%{"id" => ^turn, "status" => "completed"} = page_turn] =
+               resumed["initialTurnsPage"]["data"]
+
+      actual = Enum.filter(page_turn["items"], &(&1["type"] == "mcpToolCall"))
+
+      redacted =
+        Enum.map(expected["data"], fn entry ->
+          entry["item"]
+          |> Map.put("arguments", "[redacted]")
+          |> Map.put("result", %{
+            "content" => [%{"type" => "text", "text" => "[redacted]"}],
+            "structuredContent" => nil,
+            "_meta" => nil
+          })
+        end)
+
+      # expected is prescribed below; appContext never comes from a returned item.
+      assert actual === redacted
+      assert_history_effects(ctx, root, effects)
+
+      # Redaction belongs only to the resume response, including for this same
+      # negotiated remote client. The persisted ordinary read remains intact.
+      assert call(remote.pid, "thread/items/read", query) === expected
+      assert history_content_inputs(ctx) == ["thread/resume", "thread/items/read"]
+      assert_history_effects(ctx, root, effects)
+      assert_idle(remote.pid)
+      assert_profile(ctx, remote)
+      close_history(ctx, remote)
+      assert_history_effects(ctx, root, effects)
+    end
+  end
+
+  defp produce_history(ctx, native) do
+    root = thread(ctx, native.pid)
+    assert rows(ctx, "model") == []
+    assert rows(ctx, "tool_call") == []
+
+    turn =
+      TurnFixture.start_turn(native.pid, root, [
+        %{"type" => "text", "text" => "OWNED_MCP_ORIGIN_V43"}
+      ])
+
+    events = TurnFixture.finish_turn(native.pid, root, turn)
+    assert_native_origins(events, root, turn)
+    assert_provider(ctx, root)
+    assert rows(ctx, "resource_read") == []
+    assert_idle(native.pid)
+
+    expected = %{
+      "data" =>
+        Enum.map(@calls, fn {origin, connector} ->
+          started = history_notification(events, "item/started", origin)
+          completed = history_notification(events, "item/completed", origin)
+          started_at_ms = started["startedAtMs"]
+          completed_at_ms = completed["completedAtMs"]
+          duration_ms = completed["item"]["durationMs"]
+          assert is_integer(started_at_ms) and is_integer(completed_at_ms)
+          assert started_at_ms <= completed_at_ms
+          assert is_integer(duration_ms) and duration_ms >= 0
+
+          %{
+            "turnId" => turn,
+            "startedAtMs" => started_at_ms,
+            "completedAtMs" => completed_at_ms,
+            "item" => %{
+              "id" => origin,
+              "type" => "mcpToolCall",
+              "server" => "codex_apps",
+              "tool" => connector <> "_product_search",
+              "arguments" => %{"query" => "lamps", "link_id" => "link_" <> connector},
+              "status" => "completed",
+              "appContext" => %{
+                "connectorId" => connector,
+                "linkId" => "link_" <> connector,
+                "resourceUri" => @uri,
+                "appName" => connector,
+                "actionName" => connector <> "_product_search"
+              },
+              "mcpAppResourceUri" => @uri,
+              "mcpAppUi" => nil,
+              "pluginId" => nil,
+              "readOnlyHint" => true,
+              "error" => nil,
+              "durationMs" => duration_ms,
+              "result" => %{
+                "_meta" => nil,
+                "content" => [%{"type" => "text", "text" => "Owned origin tool " <> connector}],
+                "structuredContent" => %{"connector" => connector, "products" => []}
+              }
+            }
+          }
+        end)
+    }
+
+    {root, turn, expected, history_effects(ctx)}
+  end
+
+  defp history_notification(events, method, origin) do
+    assert [params] =
+             for(
+               event <- events,
+               event.wire["method"] == method,
+               event.wire["params"]["item"]["id"] == origin,
+               do: event.wire["params"]
+             )
+
+    params
+  end
+
+  defp history_query(root, turn),
+    do: %{"threadId" => root, "turnId" => turn, "itemIds" => Enum.map(@calls, &elem(&1, 0))}
+
+  defp history_effects(ctx) do
+    %{
+      model: rows(ctx, "model"),
+      tools: rows(ctx, "tool_call"),
+      resources: rows(ctx, "resource_read"),
+      requests: File.read!(Path.join(ctx.root, "model-requests.json"))
+    }
+  end
+
+  defp assert_history_effects(ctx, root, expected) do
+    assert history_effects(ctx) === expected
+    assert_provider(ctx, root)
+    assert rows(ctx, "resource_read") == []
+    assert Enum.count(rows(ctx, "native_input"), &(&1["method"] == "turn/start")) == 1
+    assert Enum.count(rows(ctx, "native_input"), &(&1["method"] == "thread/start")) == 1
+    assert File.ls!(Path.join(ctx.root, "workspace")) == []
+  end
+
+  defp close_history(ctx, native) do
+    pid = native.pid
+    monitor = Process.monitor(pid)
+    assert :ok = StdioSessionFixture.close(pid, native.connection)
+    assert_receive {:DOWN, ^monitor, :process, ^pid, _}, 5_000
+
+    for key <- ["pid", "controller_pid", "namespace_owner_pid"],
+        do: await_exit(native.started[key], System.monotonic_time(:millisecond) + 5_000)
+
+    assert length(rows(ctx, "native_closed")) == length(rows(ctx, "native_started"))
+    assert rows(ctx, "fatal") == []
+    assert File.ls!(Path.join(ctx.root, "workspace")) == []
+  end
+
+  defp history_content_inputs(ctx) do
+    journal(ctx)["events"]
+    |> Enum.reverse()
+    |> Enum.take_while(&(&1["event"] != "native_started"))
+    |> Enum.reverse()
+    |> Enum.filter(&(&1["event"] == "native_input"))
+    |> Enum.map(& &1["method"])
+    |> Enum.filter(
+      &(&1 in ["thread/start", "thread/read", "thread/items/read", "thread/resume", "turn/start"])
+    )
+  end
+
+  defp await_history_started(ctx, pid, launch_index, deadline) do
+    case Enum.drop(rows(ctx, "native_started"), launch_index) do
+      [started] ->
+        started
+
+      [] ->
+        assert System.monotonic_time(:millisecond) < deadline, "Owned native readiness deadline"
+
+        receive do
+          {:codex_driver, ^pid, :events_available} -> :ok
+        after
+          10 -> :ok
+        end
+
+        await_history_started(ctx, pid, launch_index, deadline)
+    end
+  end
+
   defp assert_guard(ctx, pid, params, error) do
     before = %{
       reads: rows(ctx, "resource_read"),
@@ -282,6 +523,13 @@ defmodule SamgitaCodexDriver.NativeMcpResourceOriginProfile do
   end
 
   defp start(ctx) do
+    launch_index = length(rows(ctx, "native_started"))
+
+    history_args =
+      if Map.get(ctx, :history_profile, false), do: ["--history-profile"], else: []
+
+    reuse_args = if Map.get(ctx, :reuse_history, false), do: ["--reuse-history"], else: []
+
     {:ok, pid} =
       Session.start_link(
         request_timeout_ms: 10_000,
@@ -289,7 +537,9 @@ defmodule SamgitaCodexDriver.NativeMcpResourceOriginProfile do
           {Stdio,
            [
              executable: System.find_executable("python3"),
-             args: ["-B", @script, "--root", ctx.root, "--codex", ctx.binary],
+             args:
+               ["-B", @script, "--root", ctx.root, "--codex", ctx.binary] ++
+                 history_args ++ reuse_args,
              cwd: ctx.root,
              inherit_env: [],
              env: %{
@@ -315,11 +565,20 @@ defmodule SamgitaCodexDriver.NativeMcpResourceOriginProfile do
     assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
              Session.initialize(
                pid,
-               %{"name" => "samgita_owned_mcp_origin", "version" => "0.1.0"},
+               %{
+                 "name" => Map.get(ctx, :client_name, "samgita_owned_mcp_origin"),
+                 "version" => "0.1.0"
+               },
                %{"experimentalApi" => true}
              )
 
-    started = await_started(ctx, pid, System.monotonic_time(:millisecond) + 5_000)
+    started =
+      if launch_index == 0 do
+        await_started(ctx, pid, System.monotonic_time(:millisecond) + 5_000)
+      else
+        await_history_started(ctx, pid, launch_index, System.monotonic_time(:millisecond) + 5_000)
+      end
+
     %{pid: pid, connection: connection, started: started}
   end
 

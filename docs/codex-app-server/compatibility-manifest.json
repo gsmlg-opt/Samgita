@@ -90278,131 +90278,181 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallAppContext/properties/actionName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live native item/started and item/completed independently assert the exact five non-null context fields on two prescribed codex_apps calls.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/actionName",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "actionName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallAppContext/properties/appName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live native item/started and item/completed independently assert the exact five non-null context fields on two prescribed codex_apps calls.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/appName",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallAppContext/properties/connectorId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live native item/started and item/completed independently assert the exact five non-null context fields on two prescribed codex_apps calls.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpToolCallAppContext/properties/connectorId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "connectorId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallAppContext/properties/linkId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live native item/started and item/completed independently assert the exact five non-null context fields on two prescribed codex_apps calls.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/linkId",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "linkId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallAppContext/properties/resourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live native item/started and item/completed independently assert the exact five non-null context fields on two prescribed codex_apps calls.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/resourceUri",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "resourceUri"
     },
     {
@@ -186137,131 +186187,181 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallAppContext/properties/actionName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual warm persistence barrier and fresh owned native first-content thread/items/read assert the complete prescribed stored item with all five non-null context fields, before resume/hydration and without loading the thread or another model/tool effect.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/actionName",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "actionName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallAppContext/properties/appName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual warm persistence barrier and fresh owned native first-content thread/items/read assert the complete prescribed stored item with all five non-null context fields, before resume/hydration and without loading the thread or another model/tool effect.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/appName",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallAppContext/properties/connectorId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual warm persistence barrier and fresh owned native first-content thread/items/read assert the complete prescribed stored item with all five non-null context fields, before resume/hydration and without loading the thread or another model/tool effect.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpToolCallAppContext/properties/connectorId",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "connectorId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallAppContext/properties/linkId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual warm persistence barrier and fresh owned native first-content thread/items/read assert the complete prescribed stored item with all five non-null context fields, before resume/hydration and without loading the thread or another model/tool effect.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/linkId",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "linkId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallAppContext/properties/resourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual warm persistence barrier and fresh owned native first-content thread/items/read assert the complete prescribed stored item with all five non-null context fields, before resume/hydration and without loading the thread or another model/tool effect.",
+        "Expected connector/app/action/link/resource values come from prescribed local dependency inputs, not copied returned appContext. Exact Android/iOS native resume response redaction separately preserves context while ordinary stored reads remain intact; this is response behavior, not authorization or A11 closure.",
+        "Only this physical owner and selected non-null values gain scoped implemented evidence. Optional absence/null, sibling response schemas, other transports/backend/OS success and complete final local/hosted acceptance remain unqualified. No verified promotion or external service claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpToolCallAppContext/properties/resourceUri",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_resource_origin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "resourceUri"
     },
     {

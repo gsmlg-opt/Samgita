@@ -28,6 +28,7 @@ ALLOWED_METHODS = {
     "initialize", "initialized", "server/diagnostics", "thread/start",
     "thread/read", "thread/loaded/list", "turn/start", "mcpServer/resource/read",
 }
+HISTORY_METHODS = {"thread/items/read", "thread/resume"}
 MAX_BODY = 1_048_576
 
 
@@ -61,7 +62,7 @@ def result(connector):
 
 
 class OriginFixture(AppsFixture):
-    def __init__(self, root, namespace):
+    def __init__(self, root, namespace, reuse_history=False):
         self.root = root
         self.scenario = "enabled"
         self.product_sku = "codex"
@@ -70,6 +71,22 @@ class OriginFixture(AppsFixture):
         self.journal = {"namespace": namespace, "events": []}
         self.model_requests = []
         self.tool_calls = []
+        if reuse_history:
+            # Retain native-produced rollout/SQLite history and the independent
+            # effect oracle. No app-server items are fabricated or rewritten.
+            previous = json.loads((root / "origin-journal.json").read_text())
+            events = previous["events"]
+            assert not any(row["event"] == "fatal" for row in events)
+            assert sum(row["event"] == "native_started" for row in events) == sum(
+                row["event"] == "native_closed" for row in events
+            ), "Prior owned native process was not closed"
+            self.model_requests = json.loads((root / "model-requests.json").read_text())
+            self.tool_calls = [row["connector"] for row in events if row["event"] == "tool_call"]
+            assert len(self.model_requests) == 3 and self.tool_calls == [
+                connector for _, connector in CALLS
+            ], "History reuse requires the completed genuine producer"
+            assert (root / "codex" / "auth.json").is_file()
+            self.journal["events"] = events
         fixture = self
 
         class Handler(BaseHTTPRequestHandler):
@@ -286,7 +303,7 @@ def inside(args):
     fixture = OriginFixture(root, {
         "parent": args.parent_netns, "child": namespace,
         "interfaces": ["lo"], "default_route": False,
-    })
+    }, reuse_history=args.reuse_history)
     native = None
     reader = None
 
@@ -297,7 +314,7 @@ def inside(args):
     signal.signal(signal.SIGINT, stop)
     try:
         environment = fixture.configure()
-        with (root / "native-stderr.log").open("w") as stderr:
+        with (root / "native-stderr.log").open("a" if args.reuse_history else "w") as stderr:
             native = subprocess.Popen(
                 [str(args.codex), "app-server", "--listen", "stdio://"],
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=stderr,
@@ -320,7 +337,8 @@ def inside(args):
                 break
             assert len(line) <= MAX_BODY and line.endswith(b"\n"), "Native input bound"
             wire = json.loads(line)
-            assert wire.get("method") in ALLOWED_METHODS, "Forbidden app-server operation"
+            allowed = ALLOWED_METHODS | HISTORY_METHODS if args.history_profile else ALLOWED_METHODS
+            assert wire.get("method") in allowed, "Forbidden app-server operation"
             fixture.record("native_input", method=wire["method"])
             native.stdin.write(line.decode())
             native.stdin.flush()
@@ -347,9 +365,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--codex", required=True, type=Path)
+    parser.add_argument("--history-profile", action="store_true")
+    parser.add_argument("--reuse-history", action="store_true")
     parser.add_argument("--inside", action="store_true")
     parser.add_argument("--parent-netns")
     args = parser.parse_args()
+    assert not args.reuse_history or args.history_profile, "History reuse requires explicit profile"
     args.codex = args.codex.resolve(strict=True)
     assert hashlib.sha256(args.codex.read_bytes()).hexdigest() == NATIVE_SHA
     if not args.inside:
