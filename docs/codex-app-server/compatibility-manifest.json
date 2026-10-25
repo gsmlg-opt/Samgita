@@ -82014,24 +82014,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/AgentMessageDelivery/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/AgentMessageDelivery/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "bf4b3fff6944a7ce4f1371b095bc9b88545cd3effd59e955b8701c4fd015fd8b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -83153,53 +83163,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AsyncUserInputQuestion/properties/options",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/AsyncUserInputQuestion/properties/options",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "options"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AsyncUserInputQuestion/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/AsyncUserInputQuestion/properties/title",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "title"
     },
     {
@@ -89802,98 +89832,138 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/McpAppDisplayMode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/McpAppDisplayMode/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b895f5916ebe8b20ab640292921289649c414dc0e1b9dc08b240ced5b798a2e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/McpAppDisplayMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/McpAppDisplayMode/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "3141ab2296ba46fd5d16e1fc737fcf64e8708be0b898a40158d5652c11549cee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpAppUi/properties/preferredModelDisplayMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpAppUi/properties/preferredModelDisplayMode",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2592a6f326e297e6fb30369861bb50ede551558d6d9be597c60a33caed22581e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "preferredModelDisplayMode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpAppUi/properties/resourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpAppUi/properties/resourceUri",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "resourceUri"
     },
     {
@@ -90227,27 +90297,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpToolCallError/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact pinned rmcp/anyhow error string, failed/null-result live item and warm/first-cold history; independent correlated peer error -32001 and exact provider content-item sequence.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpToolCallError/properties/message",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
@@ -98461,24 +98541,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "378687a5b7cf35f4846d4d75b3d1b9dcb93d99f92c602e90b79e1c6a8891fad3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -100337,24 +100427,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/8/properties/error/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact pinned rmcp/anyhow error string, failed/null-result live item and warm/first-cold history; independent correlated peer error -32001 and exact provider content-item sequence.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/error/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b98d0d6beb342588fd60369ba26f3f8aadc8537b42b7a527fc68255182916117",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -100424,27 +100524,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/8/properties/mcpAppResourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/mcpAppResourceUri",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3d1a52dce9dcfa692e474896a3b3e0bf7d8d4fdef834b49deb846bd847b22edc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpAppResourceUri"
     },
     {
@@ -100483,24 +100593,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/8/properties/mcpAppUi/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/mcpAppUi/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "4c3798f354fc8aaa85ccb1e438b383b56f49e0e6bac98e7505c5ffbd78fb90e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -115132,49 +115252,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only; no whole params, request ID or approval-lifecycle claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "9c1f527a8e9a4e94d7f6b6792b27d3aa8c76d4155e1aff9752b0b2fa6781bb73",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only; no whole params, request ID or approval-lifecycle claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "70ad51b47154d1c966004bbf7bf9ce957681d0b66909dff5fb39fb0d7ab027b9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -115254,75 +115394,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/1/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Method and complete six-key params payload; runtime IDs are associated and native timestamp is guarded, while reason/item/grantRoot/keyset have independent prescribed assertions. Owned chmod prerequisite remains required.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "753f552194e28bbb580058d029fa2ae404809c5ddf0f21a046d76a93912d619c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/1/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Method and complete six-key params payload; runtime IDs are associated and native timestamp is guarded, while reason/item/grantRoot/keyset have independent prescribed assertions. Owned chmod prerequisite remains required.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/1/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "6cf5a7724def562f30cb5de1f2ed22aa99456aeed23c4815fe964b7c97f7ea38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/1/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Method and complete six-key params payload; runtime IDs are associated and native timestamp is guarded, while reason/item/grantRoot/keyset have independent prescribed assertions. Owned chmod prerequisite remains required.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "9c190fc30b0ce4291e92aba1d1b8c1697bac7f5518c78b021e26460c7d772770",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -115620,75 +115790,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/3/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Use modern profile 2026-07-28, not a legacy-only case. Exact native envelope compares prescribed form message/meta/schema; opaque native request ID is associated through handle, not independently qualified.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/3/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "bc651fbdf4b68a5041dc039cb42d64a2d5ce8a19bee2e237098fd3b58d948b25",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_string_formats_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/3/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Use modern profile 2026-07-28, not a legacy-only case. Exact native envelope compares prescribed form message/meta/schema; opaque native request ID is associated through handle, not independently qualified.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/3/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "c6aa213afd126e8c6b16a4a053872212f4f88d7247060b6f87700097ac12311a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_string_formats_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/3/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Use modern profile 2026-07-28, not a legacy-only case. Exact native envelope compares prescribed form message/meta/schema; opaque native request ID is associated through handle, not independently qualified.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/3/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "71483040c25d884083f640c6644480bba483980af2d3e6a31fe4794eefe53ddf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_string_formats_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -115742,49 +115942,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/4/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only; do not inherit full params/permission variant qualification.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "8a577f1cc8f4064f5c8c8614549fec686da29ce5fc6339d8c8ab42baad1bf475",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_glob_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/4/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only; do not inherit full params/permission variant qualification.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/4/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "028980a8b3af77c3e8f204591ab62bc663282291883867031e06c2a737159bb4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_glob_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -115864,49 +116084,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/5/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only. Future async insertion shifts lines: require exact named body/oracle text and review changed setup/catalog/fixture before final-matrix binding.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/5/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "5e84104faa68d0e5e12f9f7877c6f6f2307d508600bbfc3ea1ba0a1beb8f9721",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/5/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal only. Future async insertion shifts lines: require exact named body/oracle text and review changed setup/catalog/fixture before final-matrix binding.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/5/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "93e4d7055dbd8c5931c6b86415b88047ffe94e03ad12f76a888e837c2bdd780a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "enum"
     },
     {
@@ -116330,49 +116570,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/8/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal in stable/experimental loop; no entire params/variant or external production clock claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "b4c66025fbaec9a30597d60b1e8a026632a5f7a95f8ce9001ace56ca9d1d0bfe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ServerRequest.json#/oneOf/8/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact emitted method property and enum literal in stable/experimental loop; no entire params/variant or external production clock claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/oneOf/8/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "4ab7c94fb214877886ebc3e7e464941b7cabea3cfc1d2889f1f6a305654f1254",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -181489,76 +181749,106 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/AgentMessageDelivery/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/AgentMessageDelivery/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf4b3fff6944a7ce4f1371b095bc9b88545cd3effd59e955b8701c4fd015fd8b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/AsyncUserInputQuestion/properties/options",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/AsyncUserInputQuestion/properties/options",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "options"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/AsyncUserInputQuestion/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/AsyncUserInputQuestion/properties/title",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "title"
     },
     {
@@ -184841,98 +185131,138 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpAppDisplayMode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/McpAppDisplayMode/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b895f5916ebe8b20ab640292921289649c414dc0e1b9dc08b240ced5b798a2e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpAppDisplayMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/McpAppDisplayMode/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "3141ab2296ba46fd5d16e1fc737fcf64e8708be0b898a40158d5652c11549cee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpAppUi/properties/preferredModelDisplayMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpAppUi/properties/preferredModelDisplayMode",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "2592a6f326e297e6fb30369861bb50ede551558d6d9be597c60a33caed22581e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "preferredModelDisplayMode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpAppUi/properties/resourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpAppUi/properties/resourceUri",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "resourceUri"
     },
     {
@@ -185068,27 +185398,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallError/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact pinned rmcp/anyhow error string, failed/null-result live item and warm/first-cold history; independent correlated peer error -32001 and exact provider content-item sequence.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpToolCallError/properties/message",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
@@ -188965,24 +189305,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed titles and populated/omitted/null options, trimmed notice, async delivery and validation errors; exact live plus warm selective items, two provider calls, no pending interaction. No cold persistence claim.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "378687a5b7cf35f4846d4d75b3d1b9dcb93d99f92c602e90b79e1c6a8891fad3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -190957,24 +191307,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/8/properties/error/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact pinned rmcp/anyhow error string, failed/null-result live item and warm/first-cold history; independent correlated peer error -32001 and exact provider content-item sequence.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/error/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b98d0d6beb342588fd60369ba26f3f8aadc8537b42b7a527fc68255182916117",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -191045,27 +191405,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/8/properties/mcpAppResourceUri",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/mcpAppResourceUri",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "3d1a52dce9dcfa692e474896a3b3e0bf7d8d4fdef834b49deb846bd847b22edc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpAppResourceUri"
     },
     {
@@ -191104,24 +191474,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/8/properties/mcpAppUi/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed descriptor URI precedence/fallback and inline/fullscreen modes; exact live item and warm/first-cold selective history, one peer call and two provider calls, no URI fetch.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/mcpAppUi/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "4c3798f354fc8aaa85ccb1e438b383b56f49e0e6bac98e7505c5ffbd78fb90e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -191291,24 +191671,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/8/properties/result/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact pinned rmcp/anyhow error string, failed/null-result live item and warm/first-cold history; independent correlated peer error -32001 and exact provider content-item sequence.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/result/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_mcp_variants_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -212998,49 +213388,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit user/auto_review thread defaults cause the independently expected future approval route after an opposite active-turn update.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "1d9d7e589af08eae02ac20f3dad76d64ccaacb0a0c534686a357b00238f2f96f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/approvalsReviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit user/auto_review thread defaults cause the independently expected future approval route after an opposite active-turn update.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/0",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -218270,71 +218680,101 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both explicit reviewer directions while a dynamic tool is pending; omitted/null preserve the active update, real human decline versus the literal Guardian denial assessment; future turns retain the saved reviewer.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "1a0db5d003f61bd804b5bd01ab58a9203f5f3f68a72d2c1d69b6c235a8587627",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/approvalsReviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both explicit reviewer directions while a dynamic tool is pending; omitted/null preserve the active update, real human decline versus the literal Guardian denial assessment; future turns retain the saved reviewer.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/0",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/approvalsReviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both explicit reviewer directions while a dynamic tool is pending; omitted/null preserve the active update, real human decline versus the literal Guardian denial assessment; future turns retain the saved reviewer.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/1",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -218929,27 +219369,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnStartParams.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit null reviewer on the next turn retains the saved thread default instead of the preceding current-turn reviewer override.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "8ee439ef0fd0c49057c28accddf065e8789333a9912e62671637a9621a829ed2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -218976,24 +219426,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-reviewer-mcp-async-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/TurnStartParams.json#/properties/approvalsReviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit null reviewer on the next turn retains the saved thread default instead of the preceding current-turn reviewer override.",
+        "Only this original physical owner is bound to both complete v37 eight-file native runs. No sibling, alias, whole-family or cold-async inheritance. Final default/profile/platform/consumer and pushed hosted qualification remains required.",
+        "Actual pinned binary with synthetic dependencies is separate from real provider success. A11, source-unreachable/external/OS acceptance and full compatibility remain incomplete; no verified promotion."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/1",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

@@ -64,6 +64,27 @@ class ToolProvider(ModelFixture):
         if count == 2:
             return {"type": "message", "role": "assistant", "id": f"owned-answer-{index}",
                     "content": [{"type": "output_text", "text": "Owned interaction finished"}]}
+        async_scenarios = {
+            "async-questions": ("request_user_input_async", {"questions": [
+                {"title": "Choose owned color λ", "options": ["Green", "Blue"]},
+                {"title": "Provide owned detail"},
+                {"title": "Explicit null detail", "options": None},
+            ]}),
+            "async-notice": ("send_message_to_user_async", {"message": "  Owned async notice λ  "}),
+            "async-empty-questions": ("request_user_input_async", {"questions": []}),
+            "async-blank-title": ("request_user_input_async", {"questions": [{"title": " \n "}]}),
+            "async-empty-options": ("request_user_input_async", {"questions": [
+                {"title": "Owned invalid options", "options": []},
+            ]}),
+            "async-blank-option": ("request_user_input_async", {"questions": [
+                {"title": "Owned invalid options", "options": ["Green", " \t "]},
+            ]}),
+            "async-blank-notice": ("send_message_to_user_async", {"message": " \n\t "}),
+        }
+        if scenario in async_scenarios:
+            name, arguments = async_scenarios[scenario]
+            return {"type": "function_call", "name": name, "namespace": "functions",
+                    "call_id": marker, "arguments": json.dumps(arguments)}
         if scenario.startswith("input-"):
             questions = [{"id": "choice", "header": "Choice", "question": "Choose synthetic input",
                           "options": [{"label": "One", "description": "Synthetic one"},
@@ -93,7 +114,8 @@ def configure(root, provider):
         "visibility": "list", "supported_in_api": True, "priority": 1,
         "model_messages": {"instructions_template": "Synthetic tool qualification only."},
         "support_verbosity": False, "truncation_policy": {"mode": "bytes", "limit": 10000},
-        "input_modalities": ["text", "image", "audio"], "experimental_supported_tools": [],
+        "input_modalities": ["text", "image", "audio"],
+        "experimental_supported_tools": ["request_user_input_async", "send_message_to_user_async"],
     }]})
     (root / "codex" / "config.toml").write_text(f'''
 model = "mock-model"

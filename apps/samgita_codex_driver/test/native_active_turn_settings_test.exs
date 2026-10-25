@@ -115,6 +115,92 @@ defmodule SamgitaCodexDriver.NativeActiveTurnSettingsTest do
     assert_initial(future)
   end
 
+  for {initial, changed} <- [{"auto_review", "user"}, {"user", "auto_review"}] do
+    @initial initial
+    @changed changed
+    @tag scenario: "reviewer"
+    test "current-turn reviewer #{@changed} controls the next approval while future turns keep #{@initial}",
+         context do
+      pid = start(context)
+
+      thread =
+        thread(context, pid, %{
+          "model" => @model_a,
+          "dynamicTools" => [@lookup],
+          "approvalsReviewer" => @initial
+        })
+
+      {turn, tool, events} = begin_active(context, pid, thread)
+      assert_applied(pid, Map.put(target(thread, turn), "approvalsReviewer", @changed))
+      assert_applied(pid, target(thread, turn))
+      assert_applied(pid, Map.put(target(thread, turn), "approvalsReviewer", nil))
+      assert_pending(context, pid)
+      assert_tool(pid, thread, turn, tool)
+
+      assert :ok =
+               Session.respond(pid, tool.handle, {
+                 :ok,
+                 %{
+                   "contentItems" => [
+                     %{"type" => "inputText", "text" => "Synthetic lookup completed"}
+                   ],
+                   "success" => true
+                 }
+               })
+
+      events =
+        events ++
+          finish_reviewed_command(
+            pid,
+            context.fixture.workspace,
+            thread,
+            turn,
+            @changed,
+            "owned-reviewer-command-2"
+          )
+
+      assert notification(events, "turn/completed")["turn"]["id"] == turn
+
+      future =
+        start_turn(pid, thread, text("Future turn must retain its saved reviewer"), %{
+          "approvalsReviewer" => nil
+        })
+
+      finish_reviewed_command(
+        pid,
+        context.fixture.workspace,
+        thread,
+        future,
+        @initial,
+        "owned-reviewer-command-4"
+      )
+
+      requests = ModelFixture.requests(context.fixture)
+      {reviews, parents} = Enum.split_with(requests, &review_request?/1)
+      assert [review] = reviews
+      assert JSON.encode!(review) =~ "printf owned_reviewer_route"
+      assert [_first, continued, current_final, _future_command, future_final] = parents
+      Enum.each(parents, &assert_initial/1)
+
+      assert [output] = Enum.filter(continued["input"], &(&1["type"] == "function_call_output"))
+      assert output["call_id"] == "fixture-call-1"
+      assert output["output"] == "Synthetic lookup completed"
+
+      for {request, command} <- [
+            {current_final, "owned-reviewer-command-2"},
+            {future_final, "owned-reviewer-command-4"}
+          ] do
+        assert Enum.any?(request["input"], fn item ->
+                 item["type"] == "function_call_output" and item["call_id"] == command and
+                   is_binary(item["output"]) and item["output"] != ""
+               end)
+      end
+
+      assert length(requests) == 6
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+    end
+  end
+
   test "idle completed and mismatched targets cannot start work or consume the pending native tool",
        context do
     pid = start(context)
@@ -170,7 +256,9 @@ defmodule SamgitaCodexDriver.NativeActiveTurnSettingsTest do
           Map.put(params, "effort", 17),
           Map.put(params, "effort", ""),
           Map.put(params, "summary", "unsupported"),
-          Map.put(params, "serviceTier", 17)
+          Map.put(params, "serviceTier", 17),
+          Map.put(params, "approvalsReviewer", 17),
+          Map.put(params, "approvalsReviewer", "not-a-reviewer")
         ] do
       error = upstream_error(pid, "turn/settings/update", invalid, validation: :wire)
       assert error["code"] == -32_600
@@ -336,6 +424,71 @@ defmodule SamgitaCodexDriver.NativeActiveTurnSettingsTest do
     turn = start_turn(pid, thread, text("Future turn must use the original settings"))
     finish_turn(pid, thread, turn)
   end
+
+  defp finish_reviewed_command(pid, cwd, thread, turn, reviewer, command_id) do
+    events =
+      if reviewer == "user" do
+        {approval, before} =
+          await_tool(pid, [], System.monotonic_time(:millisecond) + 10_000)
+
+        assert approval.wire["method"] == "item/commandExecution/requestApproval"
+
+        assert %{"threadId" => ^thread, "turnId" => ^turn, "itemId" => ^command_id, "cwd" => ^cwd} =
+                 approval.wire["params"]
+
+        assert String.ends_with?(
+                 approval.wire["params"]["command"],
+                 " -c 'printf owned_reviewer_route'"
+               )
+
+        assert :ok = Session.respond(pid, approval.handle, {:ok, %{"decision" => "decline"}})
+        before ++ finish_turn(pid, thread, turn)
+      else
+        finish_turn(pid, thread, turn)
+      end
+
+    assert [command] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/completed",
+               event.wire["params"]["item"]["id"] == command_id,
+               do: event.wire["params"]["item"]
+             )
+
+    assert %{
+             "type" => "commandExecution",
+             "status" => "declined",
+             "aggregatedOutput" => nil,
+             "exitCode" => nil
+           } = command
+
+    started = notification(events, "item/autoApprovalReview/started")
+    completed = notification(events, "item/autoApprovalReview/completed")
+
+    if reviewer == "auto_review" do
+      assert started["threadId"] == thread and completed["threadId"] == thread
+      assert started["turnId"] == turn and completed["turnId"] == turn
+      assert started["targetItemId"] == command_id and completed["targetItemId"] == command_id
+      assert is_binary(started["reviewId"]) and started["reviewId"] != ""
+      assert completed["reviewId"] == started["reviewId"]
+      assert started["review"]["status"] == "inProgress"
+      assert completed["decisionSource"] == "agent"
+
+      assert completed["review"] == %{
+               "status" => "denied",
+               "riskLevel" => "high",
+               "userAuthorization" => "unknown",
+               "rationale" => "Owned reviewer routing denial only."
+             }
+    else
+      assert started == nil and completed == nil
+    end
+
+    events
+  end
+
+  defp review_request?(request),
+    do: get_in(request, ["client_metadata", "x-openai-subagent"]) == "guardian"
 
   defp target(thread, turn), do: %{"threadId" => thread, "turnId" => turn}
 

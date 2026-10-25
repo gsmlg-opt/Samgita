@@ -11,6 +11,9 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
   @scripts Path.expand("../../../scripts/codex", __DIR__)
   @binary_sha256 "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @call_id "interaction-call-1"
+  # Pinned rmcp ErrorData/ServiceError plus anyhow 1.0.103 context formatting.
+  # The explicitly empty inherited environment excludes Rust backtrace settings.
+  @protocol_error "tool call error: tool call failed for `fixture/confirm`\n\nCaused by:\n    Mcp error: -32001: Owned MCP protocol failure λ"
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")
@@ -89,7 +92,64 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
     )
   end
 
-  defp run_variant(ctx, status, result, is_error) do
+  @tag scenario: "ui_inline"
+  test "inline MCP UI survives live, warm and first cold selective history", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/inline", "inline")
+  end
+
+  @tag scenario: "ui_fullscreen"
+  test "fullscreen MCP UI survives live, warm and first cold selective history", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/fullscreen", "fullscreen")
+  end
+
+  @tag scenario: "ui_precedence"
+  test "nested MCP UI URI takes precedence over both legacy keys", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/nested-wins", "inline")
+  end
+
+  @tag scenario: "ui_resource_fallback"
+  test "flat MCP UI URI wins when the nested URI is not a string", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/flat-fallback", "fullscreen")
+  end
+
+  @tag scenario: "ui_output_template_fallback"
+  test "legacy output template supplies the MCP UI URI", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/template-fallback", "inline")
+  end
+
+  @tag scenario: "ui_unrecognized_preference"
+  test "unrecognized MCP display preference keeps the URI without a UI object", ctx do
+    run_ui_variant(ctx, "ui://owned/mcp/unrecognized", nil)
+  end
+
+  @tag scenario: "protocol_error"
+  test "real MCP protocol error has no result through first cold selective history", ctx do
+    run_variant(ctx, "failed", nil, false)
+  end
+
+  defp run_ui_variant(ctx, resource_uri, mode) do
+    ui =
+      if mode,
+        do: %{"resourceUri" => resource_uri, "preferredModelDisplayMode" => mode},
+        else: nil
+
+    run_variant(
+      ctx,
+      "completed",
+      %{
+        "content" => [%{"type" => "text", "text" => "Owned MCP structured success λ"}],
+        "structuredContent" => %{"ok" => true, "count" => 3, "labels" => ["blue", "λ"]},
+        "_meta" => %{
+          "fixture/result" => %{"variant" => "structured_success", "sequence" => 1},
+          "fixture/opaque" => ["λ", nil, 17]
+        }
+      },
+      false,
+      %{"mcpAppResourceUri" => resource_uri, "mcpAppUi" => ui}
+    )
+  end
+
+  defp run_variant(ctx, status, result, is_error, presentation \\ %{}) do
     pid = start(ctx)
     native_pid = assert_native(pid)
     id = thread(ctx, pid, %{"historyMode" => "paginated"})
@@ -123,7 +183,7 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
     assert duration_ms <= after_ms - before_ms + 1
 
     # Only generated timing comes from the observed item. Every semantic field
-    # is an independent literal in the test, separate from the peer implementation.
+    # is independently prescribed, including the pinned error formatting chain.
     expected = %{
       "id" => @call_id,
       "type" => "mcpToolCall",
@@ -135,13 +195,20 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
       "appContext" => nil,
       "mcpAppUi" => nil,
       "pluginId" => nil,
-      "error" => nil,
+      "error" => if(ctx.scenario == "protocol_error", do: %{"message" => @protocol_error}),
       "durationMs" => duration_ms,
       "result" => result
     }
 
+    expected = Map.merge(expected, presentation)
+
     expected_started =
-      Map.merge(expected, %{"status" => "inProgress", "durationMs" => nil, "result" => nil})
+      Map.merge(expected, %{
+        "status" => "inProgress",
+        "durationMs" => nil,
+        "result" => nil,
+        "error" => nil
+      })
 
     assert started === %{
              "threadId" => id,
@@ -219,6 +286,20 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
     effects.()
   end
 
+  defp assert_provider(ctx, nil) do
+    assert [first, continued] = requests = ModelFixture.requests(ctx.fixture)
+    assert first["model"] == "mock-model" and continued["model"] == "mock-model"
+    assert outputs(first) == []
+    assert [output] = outputs(continued)
+    assert output["call_id"] == @call_id
+    assert [header_item, error_item] = output["output"]
+    assert %{"text" => header} = header_item
+    assert header_item === %{"type" => "input_text", "text" => header}
+    assert error_item === %{"type" => "input_text", "text" => @protocol_error}
+    assert Regex.match?(~r/^Wall time: [0-9]+\.[0-9]{4} seconds\nOutput:$/, header)
+    requests
+  end
+
   defp assert_provider(ctx, expected_result) do
     assert [first, continued] = requests = ModelFixture.requests(ctx.fixture)
     assert first["model"] == "mock-model" and continued["model"] == "mock-model"
@@ -251,6 +332,15 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
     assert [initialize] = messages(rows, "in", "initialize")
     assert initialize["params"]["protocolVersion"] == "2025-06-18"
     assert messages(rows, "in", "server/discover") == []
+
+    refute Enum.any?(rows, fn
+             %{"direction" => "in", "message" => %{"method" => method}} ->
+               String.starts_with?(method, "resources/")
+
+             _ ->
+               false
+           end)
+
     assert [_] = messages(rows, "in", "tools/list")
     assert [call] = messages(rows, "in", "tools/call")
     assert call["params"]["name"] == "confirm"
@@ -263,11 +353,19 @@ defmodule SamgitaCodexDriver.NativePersistedMcpVariantsTest do
                do: message
              )
 
-    assert reply === %{
-             "jsonrpc" => "2.0",
-             "id" => call["id"],
-             "result" => Map.put(result, "isError", is_error)
-           }
+    if ctx.scenario == "protocol_error" do
+      assert reply === %{
+               "jsonrpc" => "2.0",
+               "id" => call["id"],
+               "error" => %{"code" => -32_001, "message" => "Owned MCP protocol failure λ"}
+             }
+    else
+      assert reply === %{
+               "jsonrpc" => "2.0",
+               "id" => call["id"],
+               "result" => Map.put(result, "isError", is_error)
+             }
+    end
 
     assert [%{"effect" => "tool-call-observed", "variant" => ctx.scenario, "sequence" => 1}] ===
              Enum.filter(rows, &Map.has_key?(&1, "effect"))

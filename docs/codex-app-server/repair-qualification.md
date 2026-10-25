@@ -6,6 +6,19 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Native reviewer/MCP/async continuation
+
+The [complete eight-file block](native-reviewer-mcp-async-qualification.md)
+passes **40/0 twice**, strict checks, 38 tooling regressions and matching
+1,495-file/binary guards. The preserved first run has three legacy-history
+fixture errors; only new async cases opt into paginated history. A subsequent
+Credo failure is repaired without exceptions or assertion changes. Forty-six
+exact physical owners bring contracts to **4,383 implemented / 2,238 missing**,
+zero verified. Requirements stay 462 implemented/12 missing/11 blocked.
+Complete final-source matrices and pushed hosted checks remain required; the
+scoped passes do not erase v36 failures or close A11/legacy/external/OS/full-goal
+gates. No release or deployment.
+
 ## Frozen v36 failures and scoped cleanup repair
 
 Exact baseline `9b5298290c5b8724a2ddc9158786d80aec85e80d` ran all **19 platform

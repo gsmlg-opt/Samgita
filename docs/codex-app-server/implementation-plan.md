@@ -21,14 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native reviewer/MCP/async block](native-reviewer-mcp-async-qualification.md)
+passes all eight owning files **40/0 twice**, strict checks, 38 tooling
+regressions and matching source/binary guards after preserving and repairing
+the history-mode and Credo failures. Forty-six exact owners bring contracts to
+**4,383 implemented / 2,238 missing**, zero verified; requirements remain
+462 implemented/12 missing/11 blocked. Freeze the combined source for all
+required complete local/platform/profile/consumer and pushed hosted checks.
+
 Frozen v36 preserves a second full-driver teardown failure and selected hosted
 partition timeout; fifteen package commands and subsequent hosted selected
 steps did not run. The [scripted cleanup/partition repair](scripted-cleanup-qualification.md)
 reproduces the race, removes competing cleanup owners, passes the four-file
 block **44/0 twice**, and retains all deadlines across four complete required
 CI partitions. Full final-source matrices and hosted qualification remain due.
-Continue the prepared native reviewer, MCP presentation/error and async-message
-cases; source-only proposals and unreachable leaves grant no verification.
+Source-only proposals and unreachable leaves grant no verification.
 
 The [native history/correlation continuation](native-history-correlation-qualification.md)
 passes all fourteen owning files **94/0 twice**, strict checks and matching

@@ -14,11 +14,41 @@ from model_fixture import ModelFixture
 from server_interaction_fixture import InteractionFixture
 
 
-VARIANTS = ("structured_success", "tool_error")
+UI_METADATA = {
+    "ui_inline": {
+        "ui": {"resourceUri": "ui://owned/mcp/inline"},
+        "openai/ui": {"preferredModelDisplayMode": "inline"},
+    },
+    "ui_fullscreen": {
+        "ui": {"resourceUri": "ui://owned/mcp/fullscreen"},
+        "openai/ui": {"preferredModelDisplayMode": "fullscreen"},
+    },
+    "ui_precedence": {
+        "ui": {"resourceUri": "ui://owned/mcp/nested-wins"},
+        "ui/resourceUri": "ui://owned/mcp/flat-loses",
+        "openai/outputTemplate": "ui://owned/mcp/template-loses",
+        "openai/ui": {"preferredModelDisplayMode": "inline"},
+    },
+    "ui_resource_fallback": {
+        "ui": {"resourceUri": 17},
+        "ui/resourceUri": "ui://owned/mcp/flat-fallback",
+        "openai/outputTemplate": "ui://owned/mcp/template-loses",
+        "openai/ui": {"preferredModelDisplayMode": "fullscreen"},
+    },
+    "ui_output_template_fallback": {
+        "openai/outputTemplate": "ui://owned/mcp/template-fallback",
+        "openai/ui": {"preferredModelDisplayMode": "inline"},
+    },
+    "ui_unrecognized_preference": {
+        "ui": {"resourceUri": "ui://owned/mcp/unrecognized"},
+        "openai/ui": {"preferredModelDisplayMode": "owned-unsupported"},
+    },
+}
+VARIANTS = ("structured_success", "tool_error", "protocol_error", *UI_METADATA)
 
 
 def tool_result(variant):
-    if variant == "structured_success":
+    if variant == "structured_success" or variant in UI_METADATA:
         return {
             "content": [{"type": "text", "text": "Owned MCP structured success λ"}],
             "structuredContent": {"ok": True, "count": 3, "labels": ["blue", "λ"]},
@@ -86,6 +116,7 @@ def mcp_server(journal, variant):
                 "name": "confirm", "description": "Owned result variant only",
                 "inputSchema": {"type": "object", "properties": {}},
                 "annotations": {"readOnlyHint": True, "destructiveHint": False},
+                **({"_meta": UI_METADATA[variant]} if variant in UI_METADATA else {}),
             }]}})
         elif method == "tools/call":
             assert message["params"]["name"] == "confirm"
@@ -94,7 +125,12 @@ def mcp_server(journal, variant):
             record({"effect": "tool-call-observed", "variant": variant, "sequence": calls})
             # Keep a repeated call visible rather than erasing its side effect.
             assert calls == 1
-            send({"id": identity, "result": tool_result(variant)})
+            if variant == "protocol_error":
+                send({"id": identity, "error": {
+                    "code": -32001, "message": "Owned MCP protocol failure λ",
+                }})
+            else:
+                send({"id": identity, "result": tool_result(variant)})
         elif method == "ping":
             send({"id": identity, "result": {}})
         elif identity is not None:

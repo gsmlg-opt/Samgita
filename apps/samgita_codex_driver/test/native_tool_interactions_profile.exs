@@ -83,6 +83,96 @@ defmodule SamgitaCodexDriver.NativeToolInteractionsProfile do
     ctx
   end
 
+  @tag :async_messages
+  test "async questions retain populated, omitted and null options without waiting for a reply",
+       ctx do
+    pid = client(ctx)
+    thread = thread(pid, ctx, %{}, "paginated")
+    turn = start_turn(pid, thread, "async-questions", "default")
+    events = finish(pid, turn)
+
+    expected = %{
+      "type" => "agentMessage",
+      "id" => turn.call,
+      "text" =>
+        "Choose owned color λ\n- Green\n- Blue\n\nProvide owned detail\n\nExplicit null detail",
+      "phase" => "final_answer",
+      "memoryCitation" => nil,
+      "delivery" => "async",
+      "questions" => [
+        %{"title" => "Choose owned color λ", "options" => ["Green", "Blue"]},
+        %{"title" => "Provide owned detail", "options" => nil},
+        %{"title" => "Explicit null detail", "options" => nil}
+      ]
+    }
+
+    assert_async_success(ctx, pid, turn, events, expected, "request_user_input_async")
+  end
+
+  @tag :async_messages
+  test "async notice trims whitespace and continues the same turn without a client interaction",
+       ctx do
+    pid = client(ctx)
+    thread = thread(pid, ctx, %{}, "paginated")
+    turn = start_turn(pid, thread, "async-notice", "default")
+    events = finish(pid, turn)
+
+    expected = %{
+      "type" => "agentMessage",
+      "id" => turn.call,
+      "text" => "Owned async notice λ",
+      "phase" => "final_answer",
+      "memoryCitation" => nil,
+      "delivery" => "async",
+      "questions" => nil
+    }
+
+    assert_async_success(ctx, pid, turn, events, expected, "send_message_to_user_async")
+  end
+
+  @tag :async_messages
+  test "invalid async questions and blank notices return native errors without async items",
+       ctx do
+    pid = client(ctx)
+    thread = thread(pid, ctx, %{}, "paginated")
+
+    for {scenario, tool, error} <- [
+          {"async-empty-questions", "request_user_input_async", "questions must not be empty"},
+          {"async-blank-title", "request_user_input_async", "question titles must not be empty"},
+          {"async-empty-options", "request_user_input_async",
+           "options must contain at least one non-empty answer"},
+          {"async-blank-option", "request_user_input_async",
+           "options must contain at least one non-empty answer"},
+          {"async-blank-notice", "send_message_to_user_async", "message must not be empty"}
+        ] do
+      before = length(requests(ctx))
+      turn = start_turn(pid, thread, scenario, "default")
+      events = finish(pid, turn)
+      assert_async_continuation(ctx, pid, turn, events, tool, error, before)
+      refute item(events, "item/started", turn.call)
+      refute item(events, "item/completed", turn.call)
+
+      refute Enum.any?(events, fn event ->
+               get_in(event.wire, ["params", "item", "delivery"]) == "async"
+             end)
+
+      history = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})
+
+      assert [%{"id" => turn_id, "status" => "completed"}] =
+               Enum.filter(history["thread"]["turns"], &(&1["id"] == turn.id))
+
+      assert turn_id == turn.id
+
+      assert call(pid, "thread/items/read", %{
+               "threadId" => thread,
+               "turnId" => turn.id,
+               "itemIds" => [turn.call]
+             }) === %{"data" => []}
+
+      assert length(requests(ctx)) == before + 2
+    end
+  end
+
   test "Plan input preserves multiple options and Unicode Other answers with explicit resolution",
        ctx do
     pid = client(ctx)
@@ -370,6 +460,118 @@ defmodule SamgitaCodexDriver.NativeToolInteractionsProfile do
     assert is_list(call(survivor, "thread/loaded/list", %{})["data"])
   end
 
+  defp assert_async_success(ctx, pid, turn, events, expected, tool) do
+    assert_async_continuation(ctx, pid, turn, events, tool, ~s({"accepted":true}), 0)
+
+    started = notification(events, "item/started", &(&1["item"]["id"] == turn.call))
+    completed = notification(events, "item/completed", &(&1["item"]["id"] == turn.call))
+    started_at = Map.fetch!(started, "startedAtMs")
+    completed_at = Map.fetch!(completed, "completedAtMs")
+    assert is_integer(started_at) and started_at > 0
+    assert is_integer(completed_at) and completed_at >= started_at
+
+    assert started === %{
+             "threadId" => turn.thread,
+             "turnId" => turn.id,
+             "item" => expected,
+             "startedAtMs" => started_at
+           }
+
+    assert completed === %{
+             "threadId" => turn.thread,
+             "turnId" => turn.id,
+             "item" => expected,
+             "completedAtMs" => completed_at
+           }
+
+    started_index = item_index(events, "item/started", &(&1["id"] == turn.call))
+    completed_index = item_index(events, "item/completed", &(&1["id"] == turn.call))
+
+    answer_index =
+      item_index(
+        events,
+        "item/completed",
+        &(&1["type"] == "agentMessage" and &1["text"] == "Owned interaction finished")
+      )
+
+    assert is_integer(started_index) and is_integer(completed_index) and is_integer(answer_index)
+    assert started_index < completed_index and completed_index < answer_index
+
+    # Full history supplies only the producer/store barrier. The selective
+    # expectation uses independent semantic literals, never the history payload.
+    history = call(pid, "thread/read", %{"threadId" => turn.thread, "includeTurns" => true})
+
+    assert [%{"id" => turn_id, "status" => "completed"}] =
+             history["thread"]["turns"]
+
+    assert turn_id == turn.id
+    provider_requests = requests(ctx)
+
+    assert call(pid, "thread/items/read", %{
+             "threadId" => turn.thread,
+             "turnId" => turn.id,
+             "itemIds" => [turn.call]
+           }) === %{
+             "data" => [
+               %{
+                 "turnId" => turn.id,
+                 "item" => expected,
+                 "startedAtMs" => started_at,
+                 "completedAtMs" => completed_at
+               }
+             ]
+           }
+
+    assert requests(ctx) === provider_requests
+    assert Session.status(pid).interactions == 0
+    assert Session.interaction_outcomes(pid) == []
+  end
+
+  defp item_index(events, method, predicate) do
+    Enum.find_index(events, fn event ->
+      event.wire["method"] == method and predicate.(event.wire["params"]["item"])
+    end)
+  end
+
+  defp assert_async_continuation(ctx, pid, turn, events, tool, output, before) do
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    assert Session.status(pid).interactions == 0
+    assert Session.interaction_outcomes(pid) == []
+    assert model_output(ctx, turn.call) === output
+    assert length(requests(ctx)) == before + 2
+    assert [first, continued] = Enum.drop(requests(ctx), before)
+    assert tool in advertised_tools(first["tools"])
+
+    assert [result] =
+             Enum.filter(continued["input"], fn item ->
+               item["type"] == "function_call_output" and item["call_id"] == turn.call
+             end)
+
+    assert result["output"] === output
+
+    assert [answer] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/completed",
+               item = event.wire["params"]["item"],
+               item["type"] == "agentMessage" and item["id"] != turn.call,
+               do: item
+             )
+
+    assert answer["text"] == "Owned interaction finished"
+    refute answer["delivery"] == "async"
+  end
+
+  defp advertised_tools(tools) do
+    Enum.flat_map(tools, fn tool ->
+      case tool["type"] do
+        "function" -> [tool["name"]]
+        "namespace" -> advertised_tools(tool["tools"])
+        _ -> []
+      end
+    end)
+  end
+
   defp client(ctx) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
 
@@ -398,10 +600,10 @@ defmodule SamgitaCodexDriver.NativeToolInteractionsProfile do
           )
       )
 
-  defp thread(pid, ctx, config \\ %{}) do
+  defp thread(pid, ctx, config \\ %{}, history_mode \\ "legacy") do
     call(pid, "thread/start", %{
       "cwd" => ctx.workspace,
-      "historyMode" => "legacy",
+      "historyMode" => history_mode,
       "config" => config,
       "dynamicTools" => [
         %{
