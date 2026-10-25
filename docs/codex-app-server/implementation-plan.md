@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [terminal hosted4d2d1e3 checkpoint](repair-qualification.md#terminal-hosted-checkpoint-at-4d2d1e3)
+passes foundation and both actual-native jobs, including700 default cases and280
+isolated-profile cases with zero failures. The required complete-evidence job
+fails; phase6/7, A11, upstream-unreachable emissions and external/OS success remain
+incomplete. The corresponding [terminal frozen v21 local matrix](repair-qualification.md#terminal-frozen-v21-local-matrix)
+passes all23 package commands and preserves both populated GitHub-page failures
+among19 platform commands. Both source guards match; the combined command and
+completeness gate remain failed. Continue remaining reachable behavior only after
+this terminal checkpoint; selected passes do not erase local failures.
+
 The [independent search/ranking block](search-ranking-qualification.md) passes
 **24/0 twice**, strict checks and matching source guard. Four exact owners bring
 contracts to3399 implemented/3222 missing, zero verified. Requirements remain

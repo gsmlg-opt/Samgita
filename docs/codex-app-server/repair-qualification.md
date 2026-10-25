@@ -6,6 +6,76 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal frozen v21 local matrix
+
+The complete combined runner terminates at exact executable source
+`4d2d1e370045fd268862435d868dd0a1d4ee2dc3` before further integration.
+Both manifest-inclusive 1,490-file source guards match. All23 package commands
+pass; all19 platform commands execute. The combined command exits1, preserving
+the two aggregate failures and the mandatory completeness exit1.
+
+| Check | Actual result |
+| --- | --- |
+| Default driver, seeds501432/987654 | **700/0 twice**, 698.461/703.264s |
+| All49 isolated native profiles, same seeds | **280/0 twice**, 645.877/652.1s; zero excluded |
+| Outside-umbrella actual-native consumer | **1/0** |
+| Neutral outside consumers | Core32/0, standalone1/0, WebSocket consumer1/0 |
+| Neutral WebSocket seeds455834/501432/987654 | **42/0 at each seed** |
+| Native wire | **42/0**; warning-free compile, format and audit pass |
+| Populated root, both seeds | Core230/0/one excluded; web131/one failure/eight excluded |
+| Platform/API/native | **59 core +11 web/0** |
+| Dedicated authority, both seeds | **3/0 twice** |
+| Original recovery/restart, both seeds | **4 core +1 web/0 twice** |
+| Remaining required platform checks | Compile, format, strict Credo, Dialyzer, audits, legacy checks, frozen web dependencies, assets and local production assembly pass |
+
+Both aggregate failures are the unchanged first-page membership assertion in
+`github_controller_test.exs:56`, after registration on the retained populated
+database. No pagination, assertion, data, guard or retry policy is changed.
+Recovery retains the same databases, explicit fixture evidence and intentional
+unresolved-work block; native completion still requires review and acceptance.
+
+Exact commands, exits, logs and source hashes are retained in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v21-20261025/` and their
+same-named Python runners. The terminal collector report is
+`/tmp/samgita-repair-final-v21-terminal-20261025.json`, SHA256
+`7915e6ecaaf9a47f78217c8fafdb147ccb7bbb9c3e11ce4c0e75b00ff1f0897a`.
+Counts remain462 implemented/12 missing/11 blocked requirements and3399
+implemented/3222 missing contracts, zero verified. This is local qualification,
+not publication, deployment, A11 or full compatibility acceptance.
+
+## Terminal hosted checkpoint at 4d2d1e3
+
+Both workflows finish against exact pushed source
+`4d2d1e370045fd268862435d868dd0a1d4ee2dc3`.
+[Foundation 40145185169](https://github.com/gsmlg-opt/Samgita/actions/runs/40145185169)
+passes. [Conformance 40145207220](https://github.com/gsmlg-opt/Samgita/actions/runs/40145207220)
+passes both required native execution jobs and fails its mandatory complete-evidence
+job. The overall conformance workflow remains **failed**.
+
+The default driver partitions pass **355 + 345 = 700/0**, seed501432. All49
+explicit isolated native profiles pass **280/0, zero excluded**. The wire package
+passes42/0; the outside-umbrella actual-native consumer passes1/0. Platform/API/
+native tests pass **59 core +11 web/0**; dedicated authority passes **3/0 at each
+of501432/987654**. Foundation repeats pass **230 core +131 web/0**, retaining
+one/eight exclusions. A fresh hosted database does not resolve the separate
+retained local GitHub first-page assertion.
+
+Metadata, exact steps and complete logs are retained in
+`/tmp/samgita-hosted-4d2d1e3-terminal-20261025/`. SHA256 values:
+
+| Artifact | SHA256 |
+| --- | --- |
+| `report.json` | `00868b3bbd2ae4332a28251add1f20367ff6fbc93823f614f50651fcc92d1bf1` |
+| `conformance.log` | `c3258676da9c3423217dcc0bc18ed04ccac35e9992dce7c21a3d6abdc1655516` |
+| `foundation.log` | `c3d4ddf9d59677e1f630727a0075425cd945b849a468c7b67d2ab6c07d85453f` |
+
+These are actual stock Codex results using owned synthetic dependencies. They do
+not qualify real external accounts/backends, other OSes, source-unreachable
+production emissions, A11 or the complete goal. Counts remain485 requirements,
+**462 implemented/12 missing/11 blocked**, and6621 contracts,
+**3399 implemented/3222 missing**, zero verified. No tag, publication, production
+migration or deployment occurs. Later executable changes require new qualification.
+
 ## Independent search/ranking continuation
 
 The [owning record](search-ranking-qualification.md) passes24/0 twice in the

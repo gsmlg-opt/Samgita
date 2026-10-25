@@ -19,6 +19,20 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [terminal4d2d1e3 hosted checkpoint](repair-qualification.md#terminal-hosted-checkpoint-at-4d2d1e3)
+passes foundation and both native execution jobs: driver700/0, all49 isolated
+profiles280/0, wire42/0, outside actual-native consumer1/0, platform59 core+11 web/0
+and authority3/0 at both fixed seeds. Mandatory completeness fails. These exact-source
+results do not qualify subsequent changes, the retained local GitHub-page failure,
+A11, unreachable production emitters, external/OS success or full compatibility.
+
+The corresponding [terminal frozen v21 local matrix](repair-qualification.md#terminal-frozen-v21-local-matrix)
+passes all23 package commands: driver700/0 twice, profiles280/0 twice,
+outside consumers and WebSocket42/0 at all three seeds. Both1,490-file guards
+match. All19 platform commands run; both populated aggregate repeats retain the
+GitHub-page assertion failure, while native authority/recovery/restart, strict
+checks, audit, assets and local assembly pass. Combined/completeness remain failed.
+
 The [independent search/ranking continuation](search-ranking-qualification.md)
 passes its complete four-file native block **24/0 twice**, with strict checks
 and a matching source guard. Four exact properties gain scoped implemented
