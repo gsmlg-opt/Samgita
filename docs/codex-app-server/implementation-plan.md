@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [search GitInfo unit](search-git-info-values-qualification.md) passes fifteen
+reviewed functional files **28/0 twice**, compile/format, strict Credo and the
+238-file guard. Four direct response owners bring contracts to **4,637
+implemented / 1,925 missing / 59 blocked**; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Actual full/child-null objects,
+independent content/control/history and the two-call journal qualify registered
+metadata projection only. Next implement source-backed local process and
+filesystem value/lifecycle checks with exact envelopes and independent child/file
+effects. Keep every prohibited/unrun gate and full goal/A11/hosted/release incomplete.
+
 The [turn-list null/archive unit](turn-list-null-values-qualification.md) passes
 fourteen reviewed functional files **27/0 twice**, compile/format, strict Credo
 and the 237-file guard. Three direct request owners bring contracts to **4,633

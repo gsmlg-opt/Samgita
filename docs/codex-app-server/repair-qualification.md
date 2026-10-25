@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [search GitInfo continuation](search-git-info-values-qualification.md) passes
+fifteen reviewed functional files **28/0 twice**, compile/format, strict Credo
+and the 238-file guard. Four precise response owners bring contracts to **4,637
+implemented / 1,925 missing / 59 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Native content/control and
+full/child-null metadata preserve original history and the two-call journal.
+No prohibited check, broad/hosted completion, A11 closure or release is claimed.
+
 The [turn-list null/archive continuation](turn-list-null-values-qualification.md)
 passes fourteen reviewed functional files **27/0 twice**, compile/format, strict
 Credo and the 237-file guard. Three exact request owners bring contracts to

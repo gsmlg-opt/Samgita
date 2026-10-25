@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [search GitInfo continuation](search-git-info-values-qualification.md) passes
+fifteen reviewed functional files **28/0 twice**, compile/format, strict Credo
+and the 238-file guard. Four direct response owners bring contracts to **4,637
+implemented / 1,925 missing / 59 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Independent full/child-null
+metadata, real content search and retained control/history do not qualify remote
+Git discovery or other profiles. Prohibited checks, broader/hosted gates and
+the full compatibility goal remain incomplete.
+
 The [turn-list null/archive continuation](turn-list-null-values-qualification.md)
 passes fourteen reviewed functional files **27/0 twice**, compile/format, strict
 Credo and the 237-file guard. Three direct request owners bring contracts to
