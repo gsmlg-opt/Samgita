@@ -221686,27 +221686,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-start-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnStartParams.json#/properties/disabledPluginIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five cases preserve omitted/null/empty/nonempty turn plugin lists, causal live settings snapshots, actual plugin-hint injection and subsequent omitted-turn retention. Only this direct request owner gains scoped evidence; no cold restart, remote plugin, other transport/backend/platform or complete lifecycle qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/disabledPluginIds",
       "required": false,
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "7406cd9d104565cc88ac0ed1bea5f10c105511a84cf8418877213ee7ce46c558",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disabledPluginIds"
     },
     {
@@ -222062,71 +222070,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-start-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnStartParams.json#/properties/personality",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two starting personalities and nine turns each preserve omitted/null/present values, public settings snapshots, original base instructions and exact turn/history association; invalid enum rejection causes no model call. Only these three direct request owners gain scoped evidence; no real model style, cold restart, other transport/backend/platform or complete lifecycle qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/personality",
       "required": false,
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "b6fc45519160b3fc3f0a0893c1e509c43dfe8c90535a2a4446dc2fdc5430d924",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_personality_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "personality"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-start-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/TurnStartParams.json#/properties/personality/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two starting personalities and nine turns each preserve omitted/null/present values, public settings snapshots, original base instructions and exact turn/history association; invalid enum rejection causes no model call. Only these three direct request owners gain scoped evidence; no real model style, cold restart, other transport/backend/platform or complete lifecycle qualification."
+      ],
       "pointer": "/properties/personality/anyOf/0",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "3d5163f5698fd3d68442457516b0d32472daf7937c975ee3d2626ffd118c163f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_personality_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-start-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/TurnStartParams.json#/properties/personality/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two starting personalities and nine turns each preserve omitted/null/present values, public settings snapshots, original base instructions and exact turn/history association; invalid enum rejection causes no model call. Only these three direct request owners gain scoped evidence; no real model style, cold restart, other transport/backend/platform or complete lifecycle qualification."
+      ],
       "pointer": "/properties/personality/anyOf/1",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_personality_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

@@ -1,5 +1,24 @@
 # Codex compatibility qualification
 
+The [turn-start settings unit](turn-start-settings-qualification.md) passes the
+two-file functional block **7/0 at both 501432/987654**, compile/format, strict
+Credo and its source guard. Four direct owners bring contracts to **4,541
+implemented / 2,021 missing / 59 blocked**, zero verified; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. The current user
+restriction prohibits security and permission-related tests. Broad suites,
+audits and hosted workflows containing them are unrun on these new sources;
+their gates remain incomplete. Continue independent functional compatibility.
+
+The [terminal v138 matrix](repair-qualification.md#terminal-frozen-v138-local-and-hosted-matrices)
+at exact pushed `b513717` ran before that restriction. It executed **28/42**
+planned local commands: driver **774/0 twice** and all platform commands, but
+the first 55-profile run had **311/1** on private Gateway teardown and stopped
+the package runner with **14 commands unrun**. The first retained GitHub-page
+assertion and complete-evidence gate also failed. Hosted foundation/selected
+native jobs passed; isolated command-action cases failed before native startup
+because `rg` was absent. The prerequisite patch is unverified hosted. Neither
+that matrix nor the new functional block establishes full compatibility or A11.
+
 The [native command-action unit](command-action-approval-qualification.md)
 passes the integrated four-file owning block **6/0 twice**, with strict checks,
 38 tooling regressions and an eight-file guard. Twenty-two exact live request

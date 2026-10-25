@@ -21,6 +21,27 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [turn-start settings unit](turn-start-settings-qualification.md) adds scoped
+functional evidence for four direct request owners. Its integrated two-file
+block passes **7/0 twice**, compile/format, strict Credo and the source guard.
+Contracts become **4,541 implemented / 2,021 missing / 59 blocked**, zero verified;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
+Next, qualify the remaining native project sort/default/null matrix and continue
+other reachable functional variants. The user's current instruction prohibits
+security and permission-related tests, including automatic CI that runs them.
+Do not execute broad root/driver/profile suites or audit/authority/approval
+checks under that restriction. Preserve those tests and incomplete gates; use
+source-reviewed functional files only. Push with CI suppression and explicitly
+record hosted checks as unrun; do not weaken workflow gates or release.
+
+The [v138 matrix](repair-qualification.md#terminal-frozen-v138-local-and-hosted-matrices)
+is terminal at pushed `b513717`: **19/19 platform + 9/23 package commands** ran
+before the new restriction; private Gateway teardown failed in the first full
+profile run, leaving fourteen commands unrun. Its cause is not established.
+Hosted isolated command-action failures establish a missing `rg` prerequisite;
+the narrow workflow prerequisite patch has no new hosted verification. Retain
+the first GitHub-page failure, complete-evidence failure and all broader gates.
+
 The [command-action continuation](command-action-approval-qualification.md)
 passes its complete four-file block **6/0 twice** after root integration,
 including exact live action requests, stock command effects, cold history and

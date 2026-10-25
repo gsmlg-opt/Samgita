@@ -6,6 +6,67 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Current functional-only verification
+
+The user's latest instruction prohibits security and permission-related tests.
+No broad suite, credential/authorization/approval profile, security audit or
+hosted workflow containing those tests is run after that instruction. Existing
+tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
+automatic foundation suite; no conformance workflow is dispatched. This records
+an unrun gate, not a passing gate or a new release policy.
+
+The [turn-start settings block](turn-start-settings-qualification.md) passes its
+two reviewed functional files **7/0 twice**, format/compile, strict Credo and the
+225-file source guard. Four exact request owners gain implemented evidence:
+**4,541 implemented / 2,021 missing / 59 blocked**, zero verified. Requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. No production
+driver/helper/deadline changes or security/permission tests occur in that unit.
+Independent functional compatibility continues; A11 and all earlier incomplete
+gates remain incomplete.
+
+## Terminal frozen v138 local and hosted matrices
+
+These runs started before the current testing restriction and are terminal on
+exact pushed `b513717f9921f7d10b0f63100d8eeafcc0bab5df`. All **19 platform**
+commands ran. The package runner executed **9/23** commands, stopped on its
+first failed full-profile command and left **14 commands unrun**. The separate
+complete-evidence command ran and failed. Earlier pending-matrix statements do
+not turn this incomplete matrix into a pass.
+
+| Area | Actual terminal result |
+| --- | --- |
+| Populated root repeats | **232 core/0 twice**; **131 web/1**, then **131 web/0**, with the existing exclusions. The first retained GitHub connection need not appear on the first page; its assertion remains unchanged. |
+| Runtime/API and dedicated native authority | **61 core + 11 web/0**; dedicated authority **6/0 twice**, before the new restriction. |
+| Populated recovery/restart | **4 core + 1 web/0 twice**, preserving the fail-closed activation guard and prior records. |
+| Independent driver | **774/0** at both seeds, approximately 792 seconds per command. |
+| First all-55-profile repeat | **311 tests / 1 failure**: `NativeGatewaySuccessProfile` on-exit at line 93, `private Gateway observation deadline`. Cause not established. This is separate from the already repaired Stdio owned-process cleanup and must not justify reverting it or raising deadlines. |
+| Later package commands | Fourteen unrun, including the second profile repeat, outside consumers and later WebSocket/wire checks. No final package source assertion was reached. |
+| Static/assembly | Root compile, format, strict Credo, Dialyzer, retained audit, assets and local production assembly passed before the restriction. Assembly is unpublished and undeployed. |
+| Complete evidence | Exit 1; requirements **462 implemented / 12 missing / 11 blocked**, contracts **4,537 implemented / 2,025 missing / 59 blocked**, zero verified on that revision. |
+
+Original logs/results are retained in
+`/tmp/samgita-repair-final-{platform,packages,combined}-v138-20261025/`.
+The collector binds all **1,514** recorded source files to immutable commit blobs
+and checks terminal logs; it does not invent the missing final package assertion.
+`/tmp/samgita-repair-final-v138-terminal-20261025.json` SHA256:
+`f45de3edda11ec341461f40c2e684d7f1c14275512097881bd720229bdb05f80`.
+
+Hosted results on that same revision:
+
+- [Foundation 40193960361](https://github.com/gsmlg-opt/Samgita/actions/runs/40193960361)
+  succeeds.
+- [Conformance 40193962165](https://github.com/gsmlg-opt/Samgita/actions/runs/40193962165)
+  passes its selected actual-binary/platform job. Complete evidence fails. The
+  isolated job fails three command-action cases before native startup because
+  `rg` is absent; later steps are unrun.
+
+The isolated profile tool-install step now includes `ripgrep` and `rg --version`,
+matching the already present selected-job prerequisite. Downloaded failure log:
+`/tmp/samgita-b513717-hosted-isolated-failure.log`. The narrow prerequisite patch
+is source-reviewed only, with no hosted rerun under the user's restriction.
+It does not resolve or explain the separate local Gateway teardown failure.
+No tag, release, publication, production migration or deployment occurs.
+
 ## Terminal frozen v107 local and hosted matrices
 
 Exact pushed `32576e3c0d23a305622c767893d6a761fcab8888` completes all
