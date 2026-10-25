@@ -6,6 +6,25 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Native history, voices and badRequest continuation
+
+The [nine-file owning block](native-history-voices-qualification.md) passes
+89/0 at both fixed seeds, including nine new actual-native cases, with warning-free
+compile, format, strict Credo and matching 1,495-file/binary guards. Exact supplied
+history survives storage/provider/cold boundaries; realtime voice selection
+reaches captured native sessions; a specific HTTP 400 signature produces native
+badRequest with explicit recovery and no retry. No lifecycle deadline, process
+cleanup, permission or activation guard changes.
+
+Exactly 140 original physical rows/nodes are bound to the final passing source;
+the complete manifest diff and unchanged sections match the expected JSON.
+Contracts become 3,781 implemented/2,840 missing, zero verified; requirements remain
+462 implemented/12 missing/11 blocked. The unpaired local-shell normalization
+proposal correction occurred during source review, not a native failure/repair.
+Historical retention and captured synthetic dependencies do not establish live
+legacy emission or external success. Continue the remaining live state cases
+and full final-source matrix, retaining all A11/aggregate/completeness blockers.
+
 ## Terminal frozen v24 local matrix
 
 The complete combined runner terminates at exact source

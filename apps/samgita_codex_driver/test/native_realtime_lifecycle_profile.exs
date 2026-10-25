@@ -100,6 +100,28 @@ defmodule SamgitaCodexDriver.NativeRealtimeLifecycleProfileTest do
     assert_idle(ctx, pid)
   end
 
+  test "explicit V1 and V2 voices reach the captured native session update", ctx do
+    selections =
+      for {version, voices} <- [
+            {"v1", ~w(juniper maple spruce ember vale breeze arbor sol)},
+            {"v2", ~w(alloy ash ballad coral echo sage shimmer verse marin)}
+          ],
+          voice <- voices,
+          do: {version, %{"voice" => voice}, voice}
+
+    assert_realtime_voice_selections(ctx, selections)
+  end
+
+  test "V3 exclusive voices and omitted or null defaults reach native session updates", ctx do
+    selections =
+      Enum.map(
+        ~w(aube bubbie haetsal hanul himari leher miko neer porto rindo rio rivage selva sonna tinta viola),
+        &{"v3", %{"voice" => &1}, &1}
+      ) ++ [{"v3", %{}, "cove"}, {"v3", %{"voice" => nil}, "cove"}]
+
+    assert_realtime_voice_selections(ctx, selections)
+  end
+
   test "audio text and speech append translate native frames and correlated backend notifications",
        ctx do
     pid = start(ctx)
@@ -812,6 +834,84 @@ defmodule SamgitaCodexDriver.NativeRealtimeLifecycleProfileTest do
     barrier(ctx)
     assert handshakes(ctx) == []
     assert_idle(ctx, pid)
+  end
+
+  defp assert_realtime_voice_selections(ctx, selections) do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(ctx.binary)), case: :lower) ==
+             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+
+    pid = start(ctx)
+
+    for {{version, voice_options, expected_voice}, index} <- Enum.with_index(selections, 1) do
+      thread = TurnFixture.thread(ctx, pid)
+      session_id = "synthetic-voice-#{version}-#{index}"
+
+      options =
+        Map.merge(voice_options, %{
+          "version" => version,
+          "realtimeSessionId" => session_id,
+          "transport" => %{"type" => "websocket"}
+        })
+
+      begin_realtime(pid, thread, options)
+      events = wait_event(pid, "thread/realtime/started")
+
+      assert notification(events, "thread/realtime/started") == %{
+               "threadId" => thread,
+               "realtimeSessionId" => session_id,
+               "version" => version
+             }
+
+      update = wait_frame(ctx, index, "session.update")["session"]
+      handshake = Enum.at(handshakes(ctx), index - 1)
+
+      expected_path =
+        case version do
+          "v1" -> "/v1/realtime?intent=quicksilver&model=synthetic-configured-realtime"
+          "v2" -> "/v1/realtime?model=synthetic-configured-realtime"
+          "v3" -> "/v1/live?model=synthetic-configured-realtime"
+        end
+
+      assert handshake["connection"] == index
+      assert handshake["path"] == expected_path
+      assert handshake["authorization"] == "Bearer SYNTHETIC_REALTIME_ONLY"
+      assert handshake["headers"]["x-session-id"] == session_id
+      assert update["audio"]["output"]["voice"] == expected_voice
+
+      case version do
+        "v1" ->
+          assert update["type"] == "quicksilver"
+
+        "v2" ->
+          assert update["type"] == "realtime"
+          assert update["output_modalities"] == ["audio"]
+
+        "v3" ->
+          assert update["delegation"] == %{"type" => "client"}
+          refute Map.has_key?(update, "type")
+      end
+
+      closed = stop(pid, thread)
+
+      await(fn ->
+        Enum.any?(journal(ctx), &(&1["event"] == "peer_closed" and &1["connection"] == index))
+      end)
+
+      barrier(ctx)
+      assert {:ok, trailing} = Session.drain(pid)
+      all_events = events ++ closed ++ trailing
+      refute notification(all_events, "thread/realtime/error")
+      refute Enum.any?(all_events, &(&1.kind == :server_request))
+
+      assert Enum.filter(frames(ctx, index), &(&1["type"] == "session.update")) == [
+               %{"type" => "session.update", "session" => update}
+             ]
+
+      assert length(handshakes(ctx)) == index
+      assert_idle(ctx, pid)
+    end
+
+    assert Enum.map(handshakes(ctx), & &1["connection"]) == Enum.to_list(1..length(selections))
   end
 
   defp start(ctx, negotiation \\ true) do

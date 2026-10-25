@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [history/voice/badRequest block](native-history-voices-qualification.md)
+adds nine actual-native cases, with 89/0 in the complete owning block at both
+fixed seeds. Compile, format, strict Credo and 1,495-file/binary guards pass.
+Exactly 140 physical owners gain implemented evidence: 3,781 implemented/2,840
+missing contracts; requirements remain 462 implemented/12 missing/11 blocked,
+zero verified. Continue live state/error projection cases, then the complete
+final-source local/hosted matrix. Retained aggregate failures, A11, unreachable
+emitters and external/backend/OS success remain incomplete.
+
 The [50 retained app/account/plugin owners](native-envelope-owners-qualification.md#app-account-and-plugin-requests-at-2ed6992)
 bind unchanged native assertions to terminal frozen v24. Contracts are 3,641
 implemented/2,980 missing, zero verified; requirements remain 462 implemented/

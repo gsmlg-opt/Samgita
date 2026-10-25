@@ -358,6 +358,13 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
   end
 
   for {scenario, error} <- [
+        {"http-400-invalid-image",
+         %{
+           "message" => "Invalid image in your last message. Please remove it and try again.",
+           "codexErrorInfo" => "badRequest",
+           "additionalDetails" => nil,
+           "misalignment" => nil
+         }},
         {"misalignment-terminal",
          %{
            "message" => "Owned synthetic policy block.",
@@ -469,6 +476,14 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
       assert notices(events, "model/rerouted") == []
       assert length(read_json(ctx, "requests.json")) == 1
 
+      if ctx.scenario == "http-400-invalid-image" do
+        assert [%{"index" => 1, "status" => 400, "url" => url}] =
+                 read_json(ctx, "http-responses.json")
+
+        assert String.starts_with?(url, "http://127.0.0.1:")
+        assert String.ends_with?(url, "/v1/responses")
+      end
+
       # A synchronous full read flushes canonical history before observing owned
       # rollout bytes. Public policy details are live-only at this native pin.
       persisted =
@@ -478,6 +493,14 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
                persisted["turns"],
                &(&1["id"] == turn and &1["status"] == "failed")
              )
+
+      if ctx.scenario == "http-400-invalid-image" do
+        assert [failed] = persisted["turns"]
+        assert failed["id"] == turn
+        assert failed["status"] == "failed"
+        assert failed["error"] == @terminal_sse_error
+        assert length(read_json(ctx, "requests.json")) == 1
+      end
 
       if details = @terminal_sse_error["misalignment"] do
         path = Map.fetch!(persisted, "path")

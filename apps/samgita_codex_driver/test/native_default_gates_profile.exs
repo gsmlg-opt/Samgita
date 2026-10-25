@@ -508,6 +508,984 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
   end
 
+  for {output_profile, function_output, custom_output, marker} <- [
+        {"plain", "Owned historical function result λ\n{\"ok\": true}",
+         "Owned historical custom result β\nline two", 913},
+        {"structured",
+         [
+           %{
+             "type" => "input_text",
+             "text" => "Owned structured function result α"
+           },
+           %{
+             "type" => "input_text",
+             "text" => "Owned structured function result β\nkept order"
+           }
+         ],
+         [
+           %{
+             "type" => "input_text",
+             "text" => "Owned structured custom result γ"
+           },
+           %{
+             "type" => "input_text",
+             "text" => "Owned structured custom result δ\nkept order"
+           }
+         ], 914}
+      ] do
+    @supplied_function_history_output function_output
+    @supplied_custom_history_output custom_output
+    @supplied_tool_history_marker marker
+
+    test "supplied #{output_profile} call-result history survives without executing tools", ctx do
+      marker = @supplied_tool_history_marker
+      {pid, journal} = client(ctx, true)
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      assert_no_import_work(ctx, pid, [])
+
+      history = [
+        %{
+          "type" => "message",
+          "id" => "msg_owned_tool_history_anchor",
+          "role" => "user",
+          "content" => [
+            %{
+              "type" => "input_text",
+              "text" => "Owned tool-history anchor λ"
+            }
+          ]
+        },
+        %{
+          "type" => "function_call",
+          "id" => "fc_owned_history_function",
+          "name" => "owned_historical_function",
+          "namespace" => "owned_history",
+          "status" => "completed",
+          "arguments" => " {\"marker\":\"owned function λ\", \"value\":7}\n",
+          "call_id" => "owned-history-function-call"
+        },
+        %{
+          "type" => "function_call_output",
+          "id" => "fco_owned_history_function",
+          "call_id" => "owned-history-function-call",
+          "name" => "owned_historical_function",
+          "namespace" => "owned_history",
+          "output" => @supplied_function_history_output
+        },
+        %{
+          "type" => "custom_tool_call",
+          "id" => "ctc_owned_history_custom",
+          "call_id" => "owned-history-custom-call",
+          "name" => "owned_historical_custom",
+          "namespace" => "owned_history",
+          "status" => "completed",
+          "input" => "Owned historical freeform input λ\nsecond line"
+        },
+        %{
+          "type" => "custom_tool_call_output",
+          "id" => "ctco_owned_history_custom",
+          "call_id" => "owned-history-custom-call",
+          "name" => "owned_historical_custom",
+          "output" => @supplied_custom_history_output
+        }
+      ]
+
+      [_, function_call, function_result, custom_call, custom_result] = history
+      known_ids = Enum.map(history, &Map.fetch!(&1, "id"))
+      requested_id = "00000000-0000-4000-8000-000000000#{marker}"
+      request = params(ctx, %{"threadId" => requested_id, "history" => history})
+      imported = call(pid, "thread/resume", request)["thread"]
+      id = Map.fetch!(imported, "id")
+      path = Map.fetch!(imported, "path")
+      assert count(journal, "thread/resume") == 1
+      assert last_params(journal, "thread/resume") == request
+      assert is_binary(id) and id != "" and id != requested_id
+      assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+      assert File.regular?(path)
+      assert imported["status"] == %{"type" => "idle"}
+      assert imported["ephemeral"] == false
+      assert imported["historyMode"] == "paginated"
+      assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+      assert_no_import_work(ctx, pid, [])
+
+      await(
+        fn ->
+          bytes = File.read!(path)
+
+          String.ends_with?(bytes, "\n") and
+            length(String.split(bytes, "\n", trim: true)) == length(history) + 2
+        end,
+        "paired tool history and settings flush"
+      )
+
+      imported_prefix = File.read!(path)
+      records = rollout_records(imported_prefix)
+      [meta | _] = records
+      assert meta["type"] == "session_meta"
+      assert Map.fetch!(meta, "ordinal") == 0
+      assert meta["payload"]["id"] == id
+      assert meta["payload"]["session_id"] == id
+      imported_items = Enum.filter(records, &(&1["type"] == "response_item"))
+      assert length(imported_items) == length(history)
+
+      for {{record, expected}, ordinal} <-
+            Enum.with_index(Enum.zip(imported_items, history), 1) do
+        assert Map.delete(record, "timestamp") == %{
+                 "ordinal" => ordinal,
+                 "type" => "response_item",
+                 "payload" => expected
+               }
+
+        assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+      end
+
+      prefix =
+        imported_prefix
+        |> String.split("\n", trim: true)
+        |> Enum.take(length(history) + 1)
+        |> Enum.join("\n")
+
+      assert_resume_rollout(ctx, path, prefix <> "\n", id, 1, "low", length(history) + 1)
+      assert_no_import_work(ctx, pid, [])
+
+      turn = start_turn(pid, id, marker, %{})
+      assert count(journal, "turn/start") == 1
+      assert last_params(journal, "turn/start") == turn_params(id, marker, %{})
+      completed_events = finish(pid, turn)
+      assert_default_completion(completed_events, id, turn)
+
+      for event <- completed_events,
+          event.wire["method"] in ["item/started", "item/completed"] do
+        assert get_in(event.wire, ["params", "item", "type"]) in ["userMessage", "agentMessage"]
+      end
+
+      assert [model_request] = read(ctx, "requests.json")
+      # Imported call/result records are inert historical context. They are not
+      # declarations or permission to execute these deliberately unregistered names.
+      definitions = JSON.encode!(Map.fetch!(model_request, "tools"))
+
+      for historical_name <- ["owned_historical_function", "owned_historical_custom"],
+          do: refute(definitions =~ historical_name)
+
+      input = Map.fetch!(model_request, "input")
+      assert Enum.filter(input, &(&1["id"] in known_ids)) == history
+
+      assert Enum.filter(input, &(&1["call_id"] == "owned-history-function-call")) ==
+               [function_call, function_result]
+
+      assert Enum.filter(input, &(&1["call_id"] == "owned-history-custom-call")) ==
+               [custom_call, custom_result]
+
+      for known_id <- known_ids,
+          do: assert(Enum.count(input, &(&1["id"] == known_id)) == 1)
+
+      history_positions =
+        for {item, index} <- Enum.with_index(input), item["id"] in known_ids, do: index
+
+      current_positions =
+        for {item, index} <- Enum.with_index(input),
+            item["role"] == "user",
+            part <- Map.get(item, "content", []),
+            part == %{"type" => "input_text", "text" => "synthetic:defaults:#{marker}"},
+            do: index
+
+      assert [current_position] = current_positions
+      assert current_position > Enum.max(history_positions)
+
+      assert %{
+               "thread_id" => ^id,
+               "turn_id" => ^turn,
+               "history_initialization" => "supplied_history"
+             } = JSON.decode!(model_request["client_metadata"]["x-codex-turn-metadata"])
+
+      assert :ok = Session.close(pid)
+      restart_owned_native(ctx)
+      durable = File.read!(path)
+      assert String.starts_with?(durable, imported_prefix)
+      assert String.ends_with?(durable, "\n")
+
+      retained_items =
+        durable
+        |> rollout_records()
+        |> Enum.filter(&(&1["type"] == "response_item" and &1["payload"]["id"] in known_ids))
+
+      assert retained_items == imported_items
+
+      for known_id <- known_ids,
+          do: assert(Enum.count(retained_items, &(&1["payload"]["id"] == known_id)) == 1)
+
+      assert read(ctx, "requests.json") == [model_request]
+      {cold, cold_journal} = client(ctx, true)
+      assert call(cold, "thread/loaded/list", %{})["data"] == []
+      saved = call(cold, "thread/read", %{"threadId" => id})["thread"]
+      assert saved["id"] == id
+      assert saved["path"] == path
+      assert saved["status"] == %{"type" => "notLoaded"}
+      assert call(cold, "thread/loaded/list", %{})["data"] == []
+      assert count(cold_journal, "thread/resume") == 0
+      assert count(cold_journal, "turn/start") == 0
+      assert_no_import_work(ctx, cold, [model_request])
+      assert File.read!(path) == durable
+    end
+  end
+
+  test "supplied web-search action history survives without executing searches", ctx do
+    {pid, journal} = client(ctx, true)
+    assert call(pid, "thread/loaded/list", %{})["data"] == []
+    assert_no_import_work(ctx, pid, [])
+
+    history = [
+      %{
+        "type" => "message",
+        "id" => "msg_owned_search_history_anchor",
+        "role" => "user",
+        "content" => [
+          %{
+            "type" => "input_text",
+            "text" => "Owned search-history anchor λ"
+          }
+        ]
+      },
+      %{
+        "type" => "web_search_call",
+        "id" => "ws_owned_history_search",
+        "status" => "completed",
+        "action" => %{
+          "type" => "search",
+          "query" => "Owned historical query α\nsecond line",
+          "queries" => [
+            "Owned historical query β",
+            "Owned historical query γ\nkept order"
+          ]
+        }
+      },
+      %{
+        "type" => "web_search_call",
+        "id" => "ws_owned_history_open_page",
+        "status" => "completed",
+        "action" => %{
+          "type" => "open_page",
+          "url" => "https://owned-search.invalid/page?q=alpha%20beta#section"
+        }
+      },
+      %{
+        "type" => "web_search_call",
+        "id" => "ws_owned_history_find_in_page",
+        "status" => "completed",
+        "action" => %{
+          "type" => "find_in_page",
+          "url" => "https://owned-search.invalid/docs?view=full#entry",
+          "pattern" => "Owned literal pattern δ\nkept line"
+        }
+      },
+      %{
+        "type" => "web_search_call",
+        "id" => "ws_owned_history_other",
+        "status" => "completed",
+        "action" => %{
+          "type" => "other"
+        }
+      }
+    ]
+
+    known_ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    requested_id = "00000000-0000-4000-8000-000000000915"
+    request = params(ctx, %{"threadId" => requested_id, "history" => history})
+    imported = call(pid, "thread/resume", request)["thread"]
+    id = Map.fetch!(imported, "id")
+    path = Map.fetch!(imported, "path")
+    assert count(journal, "thread/resume") == 1
+    assert last_params(journal, "thread/resume") == request
+    assert is_binary(id) and id != "" and id != requested_id
+    assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+    assert File.regular?(path)
+    assert imported["status"] == %{"type" => "idle"}
+    assert imported["ephemeral"] == false
+    assert imported["historyMode"] == "paginated"
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert_no_import_work(ctx, pid, [])
+
+    await(
+      fn ->
+        bytes = File.read!(path)
+
+        String.ends_with?(bytes, "\n") and
+          length(String.split(bytes, "\n", trim: true)) == length(history) + 2
+      end,
+      "web-search supplied history and settings flush"
+    )
+
+    imported_prefix = File.read!(path)
+    records = rollout_records(imported_prefix)
+    [meta | _] = records
+    assert meta["type"] == "session_meta"
+    assert Map.fetch!(meta, "ordinal") == 0
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["session_id"] == id
+    imported_items = Enum.filter(records, &(&1["type"] == "response_item"))
+    assert length(imported_items) == length(history)
+
+    for {{record, expected}, ordinal} <-
+          Enum.with_index(Enum.zip(imported_items, history), 1) do
+      assert Map.delete(record, "timestamp") == %{
+               "ordinal" => ordinal,
+               "type" => "response_item",
+               "payload" => expected
+             }
+
+      assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+    end
+
+    prefix =
+      imported_prefix
+      |> String.split("\n", trim: true)
+      |> Enum.take(length(history) + 1)
+      |> Enum.join("\n")
+
+    assert_resume_rollout(ctx, path, prefix <> "\n", id, 1, "low", length(history) + 1)
+    assert_no_import_work(ctx, pid, [])
+
+    turn = start_turn(pid, id, 915, %{})
+    assert count(journal, "turn/start") == 1
+    assert last_params(journal, "turn/start") == turn_params(id, 915, %{})
+    completed_events = finish(pid, turn)
+    assert_default_completion(completed_events, id, turn)
+
+    for event <- completed_events,
+        event.wire["method"] in ["item/started", "item/completed"] do
+      assert get_in(event.wire, ["params", "item", "type"]) in ["userMessage", "agentMessage"]
+    end
+
+    # These imported records are context; no search, URL access or tool call is requested.
+    assert [model_request] = read(ctx, "requests.json")
+    input = Map.fetch!(model_request, "input")
+    assert Enum.filter(input, &(&1["id"] in known_ids)) == history
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(input, &(&1["id"] == known_id)) == 1)
+
+    history_positions =
+      for {item, index} <- Enum.with_index(input), item["id"] in known_ids, do: index
+
+    current_positions =
+      for {item, index} <- Enum.with_index(input),
+          item["role"] == "user",
+          part <- Map.get(item, "content", []),
+          part == %{"type" => "input_text", "text" => "synthetic:defaults:915"},
+          do: index
+
+    assert [current_position] = current_positions
+    assert current_position > Enum.max(history_positions)
+
+    assert %{
+             "thread_id" => ^id,
+             "turn_id" => ^turn,
+             "history_initialization" => "supplied_history"
+           } = JSON.decode!(model_request["client_metadata"]["x-codex-turn-metadata"])
+
+    assert :ok = Session.close(pid)
+    restart_owned_native(ctx)
+    durable = File.read!(path)
+    assert String.starts_with?(durable, imported_prefix)
+    assert String.ends_with?(durable, "\n")
+
+    retained_items =
+      durable
+      |> rollout_records()
+      |> Enum.filter(&(&1["type"] == "response_item" and &1["payload"]["id"] in known_ids))
+
+    assert retained_items == imported_items
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(retained_items, &(&1["payload"]["id"] == known_id)) == 1)
+
+    assert read(ctx, "requests.json") == [model_request]
+    {cold, cold_journal} = client(ctx, true)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    saved = call(cold, "thread/read", %{"threadId" => id})["thread"]
+    assert saved["id"] == id
+    assert saved["path"] == path
+    assert saved["status"] == %{"type" => "notLoaded"}
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert count(cold_journal, "thread/resume") == 0
+    assert count(cold_journal, "turn/start") == 0
+    assert_no_import_work(ctx, cold, [model_request])
+    assert File.read!(path) == durable
+  end
+
+  test "completed local-shell history survives without executing its command", ctx do
+    sentinel = Path.join(ctx.workspace, "owned-local-shell-history-sentinel")
+    assert {:error, :enoent} = File.lstat(sentinel)
+
+    command_script =
+      "printf '%s\\n' 'owned-local-shell-history-executed-λ' > '" <> sentinel <> "'"
+
+    {pid, journal} = client(ctx, true)
+    assert call(pid, "thread/loaded/list", %{})["data"] == []
+    assert_no_import_work(ctx, pid, [])
+
+    history = [
+      %{
+        "type" => "message",
+        "id" => "msg_owned_local_shell_history_anchor",
+        "role" => "user",
+        "content" => [
+          %{"type" => "input_text", "text" => "Owned completed local-shell history anchor λ"}
+        ]
+      },
+      %{
+        "type" => "local_shell_call",
+        "id" => "lsc_owned_history_completed",
+        "call_id" => "owned-history-local-shell-call",
+        "status" => "completed",
+        "action" => %{
+          "type" => "exec",
+          "command" => ["/bin/sh", "-c", command_script],
+          "timeout_ms" => 700,
+          "working_directory" => ctx.workspace,
+          "env" => %{
+            "OWNED_HISTORY_LOCAL_SHELL" => "historical only λ",
+            "OWNED_HISTORY_SEQUENCE" => "first\nsecond"
+          },
+          "user" => "0"
+        }
+      },
+      %{
+        "type" => "function_call_output",
+        "id" => "fco_owned_history_local_shell",
+        "call_id" => "owned-history-local-shell-call",
+        "output" => "Owned historical local-shell result λ\nstatus=historical-completed"
+      }
+    ]
+
+    [_, shell_call, shell_output] = history
+    known_ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    requested_id = "00000000-0000-4000-8000-000000000916"
+    request = params(ctx, %{"threadId" => requested_id, "history" => history})
+    imported = call(pid, "thread/resume", request)["thread"]
+    id = Map.fetch!(imported, "id")
+    path = Map.fetch!(imported, "path")
+    assert count(journal, "thread/resume") == 1
+    assert last_params(journal, "thread/resume") == request
+    assert is_binary(id) and id != "" and id != requested_id
+    assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+    assert File.regular?(path)
+    assert imported["status"] == %{"type" => "idle"}
+    assert imported["ephemeral"] == false
+    assert imported["historyMode"] == "paginated"
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert_no_import_work(ctx, pid, [])
+
+    await(
+      fn ->
+        bytes = File.read!(path)
+
+        String.ends_with?(bytes, "\n") and
+          length(String.split(bytes, "\n", trim: true)) == length(history) + 2
+      end,
+      "completed local-shell supplied history and settings flush"
+    )
+
+    imported_prefix = File.read!(path)
+    records = rollout_records(imported_prefix)
+    [meta | _] = records
+    assert meta["type"] == "session_meta"
+    assert Map.fetch!(meta, "ordinal") == 0
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["session_id"] == id
+    imported_items = Enum.filter(records, &(&1["type"] == "response_item"))
+    assert length(imported_items) == length(history)
+
+    for {{record, expected}, ordinal} <-
+          Enum.with_index(Enum.zip(imported_items, history), 1) do
+      assert Map.delete(record, "timestamp") == %{
+               "ordinal" => ordinal,
+               "type" => "response_item",
+               "payload" => expected
+             }
+
+      assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+    end
+
+    prefix =
+      imported_prefix
+      |> String.split("\n", trim: true)
+      |> Enum.take(length(history) + 1)
+      |> Enum.join("\n")
+
+    assert_resume_rollout(ctx, path, prefix <> "\n", id, 1, "low", length(history) + 1)
+    assert_no_import_work(ctx, pid, [])
+    assert {:error, :enoent} = File.lstat(sentinel)
+
+    turn = start_turn(pid, id, 916, %{})
+    assert count(journal, "turn/start") == 1
+    assert last_params(journal, "turn/start") == turn_params(id, 916, %{})
+    completed_events = finish(pid, turn)
+    assert_default_completion(completed_events, id, turn)
+
+    for event <- completed_events,
+        event.wire["method"] in ["item/started", "item/completed"] do
+      assert get_in(event.wire, ["params", "item", "type"]) in ["userMessage", "agentMessage"]
+    end
+
+    assert {:error, :enoent} = File.lstat(sentinel)
+    assert [model_request] = read(ctx, "requests.json")
+    input = Map.fetch!(model_request, "input")
+    assert Enum.filter(input, &(&1["id"] in known_ids)) == history
+
+    assert Enum.filter(input, &(&1["call_id"] == "owned-history-local-shell-call")) ==
+             [shell_call, shell_output]
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(input, &(&1["id"] == known_id)) == 1)
+
+    history_positions =
+      for {item, index} <- Enum.with_index(input), item["id"] in known_ids, do: index
+
+    current_positions =
+      for {item, index} <- Enum.with_index(input),
+          item["role"] == "user",
+          part <- Map.get(item, "content", []),
+          part == %{"type" => "input_text", "text" => "synthetic:defaults:916"},
+          do: index
+
+    assert [current_position] = current_positions
+    assert current_position > Enum.max(history_positions)
+
+    assert %{
+             "thread_id" => ^id,
+             "turn_id" => ^turn,
+             "history_initialization" => "supplied_history"
+           } = JSON.decode!(model_request["client_metadata"]["x-codex-turn-metadata"])
+
+    assert :ok = Session.close(pid)
+    restart_owned_native(ctx)
+    assert {:error, :enoent} = File.lstat(sentinel)
+    durable = File.read!(path)
+    assert String.starts_with?(durable, imported_prefix)
+    assert String.ends_with?(durable, "\n")
+
+    retained_items =
+      durable
+      |> rollout_records()
+      |> Enum.filter(&(&1["type"] == "response_item" and &1["payload"]["id"] in known_ids))
+
+    assert retained_items == imported_items
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(retained_items, &(&1["payload"]["id"] == known_id)) == 1)
+
+    assert read(ctx, "requests.json") == [model_request]
+    {cold, cold_journal} = client(ctx, true)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    saved = call(cold, "thread/read", %{"threadId" => id})["thread"]
+    assert saved["id"] == id
+    assert saved["path"] == path
+    assert saved["status"] == %{"type" => "notLoaded"}
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert count(cold_journal, "thread/resume") == 0
+    assert count(cold_journal, "turn/start") == 0
+    assert_no_import_work(ctx, cold, [model_request])
+    assert File.read!(path) == durable
+    assert {:error, :enoent} = File.lstat(sentinel)
+  end
+
+  test "supplied declarations and paired search history remain inert through cold read", ctx do
+    {pid, journal} = client(ctx, true)
+    assert call(pid, "thread/loaded/list", %{})["data"] == []
+    assert_no_import_work(ctx, pid, [])
+
+    declared_tool = %{
+      "type" => "function",
+      "name" => "owned_history_declaration_only",
+      "description" => "Owned historical declaration λ",
+      "parameters" => %{
+        "type" => "object",
+        "properties" => %{"message" => %{"type" => "string"}},
+        "required" => ["message"],
+        "additionalProperties" => false
+      },
+      "x_owned_unknown" => %{
+        "flags" => [true, false, nil],
+        "nested" => [%{"value" => "retained declaration λ"}],
+        "revision" => 7
+      }
+    }
+
+    found_tool = %{
+      "type" => "function",
+      "name" => "owned_history_search_result_only",
+      "description" => "Owned historical search result β",
+      "parameters" => %{
+        "type" => "object",
+        "properties" => %{},
+        "additionalProperties" => false
+      },
+      "x_owned_unknown" => [
+        %{"value" => "retained search result β"},
+        ["nested", nil, false, 2]
+      ]
+    }
+
+    history = [
+      %{
+        "type" => "message",
+        "id" => "msg_owned_search_history_anchor",
+        "role" => "user",
+        "content" => [%{"type" => "input_text", "text" => "Owned search-history anchor λ"}]
+      },
+      %{
+        "type" => "additional_tools",
+        "id" => "at_owned_history_catalog",
+        "role" => "developer",
+        "tools" => [declared_tool]
+      },
+      %{
+        "type" => "tool_search_call",
+        "id" => "tsc_owned_history_search",
+        "call_id" => "owned-history-search-call",
+        "status" => "completed",
+        "execution" => "client",
+        "arguments" => %{
+          "query" => "owned historical search λ",
+          "limit" => 1,
+          "x_owned_unknown" => %{
+            "future" => ["β", false, nil, %{"revision" => 7}],
+            "order" => [2, 1]
+          }
+        }
+      },
+      %{
+        "type" => "tool_search_output",
+        "id" => "tso_owned_history_search",
+        "call_id" => "owned-history-search-call",
+        "status" => "completed",
+        "execution" => "client",
+        "tools" => [found_tool]
+      }
+    ]
+
+    known_ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    requested_id = "00000000-0000-4000-8000-000000000915"
+    request = params(ctx, %{"threadId" => requested_id, "history" => history})
+    imported = call(pid, "thread/resume", request)["thread"]
+    id = Map.fetch!(imported, "id")
+    path = Map.fetch!(imported, "path")
+    assert count(journal, "thread/resume") == 1
+    assert last_params(journal, "thread/resume") == request
+    assert is_binary(id) and id != "" and id != requested_id
+    assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+    assert File.regular?(path)
+    assert imported["status"] == %{"type" => "idle"}
+    assert imported["ephemeral"] == false
+    assert imported["historyMode"] == "paginated"
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert_no_import_work(ctx, pid, [])
+
+    await(
+      fn ->
+        bytes = File.read!(path)
+
+        String.ends_with?(bytes, "\n") and
+          length(String.split(bytes, "\n", trim: true)) == length(history) + 2
+      end,
+      "search supplied history and settings flush"
+    )
+
+    imported_prefix = File.read!(path)
+    records = rollout_records(imported_prefix)
+    [meta | _] = records
+    assert meta["type"] == "session_meta"
+    assert Map.fetch!(meta, "ordinal") == 0
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["session_id"] == id
+    imported_items = Enum.filter(records, &(&1["type"] == "response_item"))
+    assert length(imported_items) == length(history)
+
+    for {{record, expected}, ordinal} <-
+          Enum.with_index(Enum.zip(imported_items, history), 1) do
+      assert Map.delete(record, "timestamp") == %{
+               "ordinal" => ordinal,
+               "type" => "response_item",
+               "payload" => expected
+             }
+
+      assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+    end
+
+    prefix =
+      imported_prefix
+      |> String.split("\n", trim: true)
+      |> Enum.take(length(history) + 1)
+      |> Enum.join("\n")
+
+    assert_resume_rollout(ctx, path, prefix <> "\n", id, 1, "low", length(history) + 1)
+    assert_no_import_work(ctx, pid, [])
+
+    turn = start_turn(pid, id, 915, %{})
+    assert count(journal, "turn/start") == 1
+    assert last_params(journal, "turn/start") == turn_params(id, 915, %{})
+    completed_events = finish(pid, turn)
+    assert_default_completion(completed_events, id, turn)
+
+    for event <- completed_events,
+        event.wire["method"] in ["item/started", "item/completed"] do
+      assert get_in(event.wire, ["params", "item", "type"]) in ["userMessage", "agentMessage"]
+    end
+
+    assert [model_request] = read(ctx, "requests.json")
+    # Imported declarations and search results remain model-visible history.
+    # They do not register these names in the current runtime's active tools.
+    active_tools = JSON.encode!(Map.fetch!(model_request, "tools"))
+
+    for historical_name <- [
+          "owned_history_declaration_only",
+          "owned_history_search_result_only"
+        ],
+        do: refute(active_tools =~ historical_name)
+
+    input = Map.fetch!(model_request, "input")
+    assert Enum.filter(input, &(&1["id"] in known_ids)) == history
+
+    assert Enum.filter(input, &(&1["call_id"] == "owned-history-search-call")) ==
+             Enum.slice(history, 2, 2)
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(input, &(&1["id"] == known_id)) == 1)
+
+    history_positions =
+      for {item, index} <- Enum.with_index(input), item["id"] in known_ids, do: index
+
+    current_positions =
+      for {item, index} <- Enum.with_index(input),
+          item["role"] == "user",
+          part <- Map.get(item, "content", []),
+          part == %{"type" => "input_text", "text" => "synthetic:defaults:915"},
+          do: index
+
+    assert [current_position] = current_positions
+    assert current_position > Enum.max(history_positions)
+
+    assert %{
+             "thread_id" => ^id,
+             "turn_id" => ^turn,
+             "history_initialization" => "supplied_history"
+           } = JSON.decode!(model_request["client_metadata"]["x-codex-turn-metadata"])
+
+    assert :ok = Session.close(pid)
+    restart_owned_native(ctx)
+    durable = File.read!(path)
+    assert String.starts_with?(durable, imported_prefix)
+    assert String.ends_with?(durable, "\n")
+
+    retained_items =
+      durable
+      |> rollout_records()
+      |> Enum.filter(&(&1["type"] == "response_item" and &1["payload"]["id"] in known_ids))
+
+    assert retained_items == imported_items
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(retained_items, &(&1["payload"]["id"] == known_id)) == 1)
+
+    assert read(ctx, "requests.json") == [model_request]
+    {cold, cold_journal} = client(ctx, true)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    saved = call(cold, "thread/read", %{"threadId" => id})["thread"]
+    assert saved["id"] == id
+    assert saved["path"] == path
+    assert saved["status"] == %{"type" => "notLoaded"}
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert count(cold_journal, "thread/resume") == 0
+    assert count(cold_journal, "turn/start") == 0
+    assert_no_import_work(ctx, cold, [model_request])
+    assert File.read!(path) == durable
+  end
+
+  test "supplied message phases and status survive one turn and cold read", ctx do
+    {pid, journal} = client(ctx, true)
+    assert call(pid, "thread/loaded/list", %{})["data"] == []
+    assert_no_import_work(ctx, pid, [])
+
+    # These are supplied historical classifications, separate from current provider output.
+    history = [
+      %{
+        "type" => "message",
+        "id" => "msg_owned_phase_history_anchor",
+        "role" => "user",
+        "content" => [%{"type" => "input_text", "text" => "Owned phase-history anchor λ"}]
+      },
+      %{
+        "type" => "message",
+        "id" => "msg_owned_history_commentary",
+        "role" => "assistant",
+        "status" => "completed",
+        "phase" => "commentary",
+        "content" => [
+          %{
+            "type" => "output_text",
+            "text" => "Owned historical commentary λ",
+            "annotations" => [],
+            "logprobs" => []
+          }
+        ]
+      },
+      %{
+        "type" => "message",
+        "id" => "msg_owned_history_partial_answer",
+        "role" => "assistant",
+        "status" => "completed",
+        "phase" => "partial_answer",
+        "content" => [
+          %{
+            "type" => "output_text",
+            "text" => "Owned historical partial answer β",
+            "annotations" => [],
+            "logprobs" => []
+          }
+        ]
+      },
+      %{
+        "type" => "message",
+        "id" => "msg_owned_history_final_answer",
+        "role" => "assistant",
+        "status" => "completed",
+        "phase" => "final_answer",
+        "content" => [
+          %{
+            "type" => "output_text",
+            "text" => "Owned historical final answer γ",
+            "annotations" => [],
+            "logprobs" => []
+          }
+        ]
+      }
+    ]
+
+    known_ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    requested_id = "00000000-0000-4000-8000-000000000917"
+    request = params(ctx, %{"threadId" => requested_id, "history" => history})
+    imported = call(pid, "thread/resume", request)["thread"]
+    id = Map.fetch!(imported, "id")
+    path = Map.fetch!(imported, "path")
+    assert count(journal, "thread/resume") == 1
+    assert last_params(journal, "thread/resume") == request
+    assert is_binary(id) and id != "" and id != requested_id
+    assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+    assert File.regular?(path)
+    assert imported["status"] == %{"type" => "idle"}
+    assert imported["ephemeral"] == false
+    assert imported["historyMode"] == "paginated"
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert_no_import_work(ctx, pid, [])
+
+    await(
+      fn ->
+        bytes = File.read!(path)
+
+        String.ends_with?(bytes, "\n") and
+          length(String.split(bytes, "\n", trim: true)) == length(history) + 2
+      end,
+      "phase supplied history and settings flush"
+    )
+
+    imported_prefix = File.read!(path)
+    records = rollout_records(imported_prefix)
+    [meta | _] = records
+    assert meta["type"] == "session_meta"
+    assert Map.fetch!(meta, "ordinal") == 0
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["session_id"] == id
+    imported_items = Enum.filter(records, &(&1["type"] == "response_item"))
+    assert length(imported_items) == length(history)
+
+    for {{record, expected}, ordinal} <-
+          Enum.with_index(Enum.zip(imported_items, history), 1) do
+      assert Map.delete(record, "timestamp") == %{
+               "ordinal" => ordinal,
+               "type" => "response_item",
+               "payload" => expected
+             }
+
+      assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+    end
+
+    prefix =
+      imported_prefix
+      |> String.split("\n", trim: true)
+      |> Enum.take(length(history) + 1)
+      |> Enum.join("\n")
+
+    assert_resume_rollout(ctx, path, prefix <> "\n", id, 1, "low", length(history) + 1)
+    assert_no_import_work(ctx, pid, [])
+
+    turn = start_turn(pid, id, 917, %{})
+    assert count(journal, "turn/start") == 1
+    assert last_params(journal, "turn/start") == turn_params(id, 917, %{})
+    completed_events = finish(pid, turn)
+    assert_default_completion(completed_events, id, turn)
+
+    for event <- completed_events,
+        event.wire["method"] in ["item/started", "item/completed"] do
+      assert get_in(event.wire, ["params", "item", "type"]) in ["userMessage", "agentMessage"]
+    end
+
+    assert [model_request] = read(ctx, "requests.json")
+    input = Map.fetch!(model_request, "input")
+    assert Enum.filter(input, &(&1["id"] in known_ids)) == history
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(input, &(&1["id"] == known_id)) == 1)
+
+    history_positions =
+      for {item, index} <- Enum.with_index(input), item["id"] in known_ids, do: index
+
+    current_positions =
+      for {item, index} <- Enum.with_index(input),
+          item["role"] == "user",
+          part <- Map.get(item, "content", []),
+          part == %{"type" => "input_text", "text" => "synthetic:defaults:917"},
+          do: index
+
+    assert [current_position] = current_positions
+    assert current_position > Enum.max(history_positions)
+
+    assert %{
+             "thread_id" => ^id,
+             "turn_id" => ^turn,
+             "history_initialization" => "supplied_history"
+           } = JSON.decode!(model_request["client_metadata"]["x-codex-turn-metadata"])
+
+    assert :ok = Session.close(pid)
+    restart_owned_native(ctx)
+    durable = File.read!(path)
+    assert String.starts_with?(durable, imported_prefix)
+    assert String.ends_with?(durable, "\n")
+
+    retained_items =
+      durable
+      |> rollout_records()
+      |> Enum.filter(&(&1["type"] == "response_item" and &1["payload"]["id"] in known_ids))
+
+    assert retained_items == imported_items
+
+    for known_id <- known_ids,
+        do: assert(Enum.count(retained_items, &(&1["payload"]["id"] == known_id)) == 1)
+
+    assert read(ctx, "requests.json") == [model_request]
+    {cold, cold_journal} = client(ctx, true)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    saved = call(cold, "thread/read", %{"threadId" => id})["thread"]
+    assert saved["id"] == id
+    assert saved["path"] == path
+    assert saved["status"] == %{"type" => "notLoaded"}
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert count(cold_journal, "thread/resume") == 0
+    assert count(cold_journal, "turn/start") == 0
+    assert_no_import_work(ctx, cold, [model_request])
+    assert File.read!(path) == durable
+  end
+
   test "supplied typed content retains known history before one explicit turn", ctx do
     {pid, journal} = client(ctx, true)
     assert call(pid, "thread/loaded/list", %{})["data"] == []

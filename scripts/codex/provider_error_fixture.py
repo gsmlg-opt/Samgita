@@ -12,6 +12,9 @@ from model_fixture import ModelFixture
 
 
 HTTP_CASES = {
+    "http-400-invalid-image": (
+        400, "owned_invalid_image",
+        "The image data you provided does not represent a valid image", 1),
     "http-429-plain": (429, "owned_http_rate", "Owned HTTP rate limit.", 1),
     "http-429-quota": (429, "insufficient_quota", "Owned HTTP quota.", 1),
     "http-429-flex": (429, "flex_unavailable", "Owned HTTP flex capacity.", 1),
