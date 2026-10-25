@@ -17,6 +17,7 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @instructions "Owned section membership fixture instructions."
   @answer "Deterministic local fixture answer"
+  @needle "Owned real section member"
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -35,7 +36,7 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] in ["thread/section/move", "thread/list"] do
+      if wire["method"] in ["thread/section/move", "thread/list", "thread/search"] do
         capture(state, encoded, wire)
       else
         Stdio.send(state, encoded)
@@ -64,6 +65,9 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
   setup tags do
     ctx = TurnFixture.setup(tags)
     assert hash(File.read!(ctx.binary)) == @binary_sha
+    rg = System.find_executable("rg")
+    assert is_binary(rg) and File.regular?(rg), "BLOCKED_ENV: ripgrep required"
+    File.ln_s!(rg, Path.join(ctx.fixture.bin, "rg"))
 
     TurnFixture.configure_model(ctx, %{
       "model_messages" => %{"instructions_template" => @instructions}
@@ -89,8 +93,14 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
 
     threads =
       for {label, index} <- Enum.with_index(~w(a b c d), 1), into: %{} do
-        thread = TurnFixture.thread(ctx, pid, %{"historyMode" => "legacy"})
-        marker = "Owned real section member #{label} λ"
+        thread =
+          TurnFixture.thread(ctx, pid, %{
+            "historyMode" => "legacy",
+            "approvalPolicy" => "never",
+            "sandbox" => "danger-full-access"
+          })
+
+        marker = "#{@needle} #{label} λ"
         turn = TurnFixture.start_turn(pid, thread, [%{"type" => "text", "text" => marker}])
         complete_turn(pid, thread, turn, [], System.monotonic_time(:millisecond) + 20_000)
         requests = ModelFixture.requests(ctx.fixture)
@@ -98,9 +108,14 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
         assert_provider(List.last(requests), marker)
         saved = read(pid, thread)
         assert [%{"id" => ^turn, "status" => "completed"}] = saved["turns"]
-        assert is_binary(saved["preview"]) and saved["preview"] != ""
+        assert Map.fetch!(saved, "preview") == marker
+        assert Map.fetch!(saved, "historyMode") == "legacy"
         assert Map.fetch!(saved, "section") == nil
-        {label, %{id: thread, turns: saved["turns"], preview: saved["preview"]}}
+        path = Map.fetch!(saved, "path")
+        assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
+        assert File.lstat!(path).type == :regular
+
+        {label, %{id: thread, turns: saved["turns"], preview: marker, path: path}}
       end
 
     assert length(Enum.uniq(Enum.map(threads, fn {_label, row} -> row.id end))) == 4
@@ -143,6 +158,7 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
           replacement = restart(ctx, current)
           assert call(replacement, "thread/loaded/list", %{})["data"] == []
           assert_state(ctx, replacement, threads, sections, orders, journal)
+          assert call(replacement, "thread/loaded/list", %{})["data"] == []
           replacement
         else
           current
@@ -152,6 +168,9 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
     captures = Agent.get(ctx.capture, & &1)
     assert Enum.count(captures, &(&1["method"] == "thread/section/move")) == 7
     assert Enum.count(captures, &(&1["method"] == "thread/list")) == 54
+    assert Enum.count(captures, &(&1["method"] == "thread/search")) == 9
+    assert length(captures) == 70
+    assert call(final, "thread/loaded/list", %{})["data"] == []
     assert File.read!(ctx.fixture.requests) == journal
     assert length(ModelFixture.requests(ctx.fixture)) == 4
     assert :ok = close(final)
@@ -219,12 +238,42 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
       assert saved["preview"] == original.preview
     end
 
+    assert_search(ctx, pid, threads, assigned)
     assert File.read!(ctx.fixture.requests) == journal
     assert length(ModelFixture.requests(ctx.fixture)) == 4
     assert File.read!(ctx.config) == ctx.config_bytes
     assert File.ls!(ctx.fixture.workspace) == []
     assert Session.uncertain_operations(pid) == []
     assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
+  end
+
+  defp assert_search(ctx, pid, threads, assigned) do
+    response = request(ctx, pid, "thread/search", %{"searchTerm" => @needle, "limit" => 10})
+    assert Map.fetch!(response, "nextCursor") === nil
+    rows = Map.fetch!(response, "data")
+    expected_ids = Enum.map(threads, fn {_label, row} -> row.id end)
+
+    assert Enum.sort(Enum.map(rows, &Map.fetch!(Map.fetch!(&1, "thread"), "id"))) ==
+             Enum.sort(expected_ids)
+
+    by_id = Map.new(threads, fn {label, row} -> {row.id, {label, row}} end)
+
+    for row <- rows do
+      projection = Map.fetch!(row, "thread")
+      {label, original} = Map.fetch!(by_id, Map.fetch!(projection, "id"))
+      assert Map.fetch!(row, "snippet") == original.preview
+      assert Map.fetch!(projection, "preview") == original.preview
+      assert Map.fetch!(projection, "path") == original.path
+      assert Map.fetch!(projection, "historyMode") == "legacy"
+      assert_search_section(Map.fetch!(projection, "section"), assigned[label])
+    end
+  end
+
+  defp assert_search_section(nil, expected), do: assert(expected === nil)
+
+  defp assert_search_section(section, expected) do
+    assert section === expected
+    assert Map.fetch!(section, "appearance") === nil
   end
 
   defp assert_projections(data, threads, assigned) do
@@ -338,7 +387,16 @@ defmodule SamgitaCodexDriver.NativeThreadSectionMembershipValuesTest do
            [
              capture: ctx.capture,
              executable: ctx.binary,
-             args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
+             args:
+               NativeLaunchFixture.ordinary_args([
+                 "-c",
+                 ~s(approval_policy="never"),
+                 "-c",
+                 ~s(sandbox_mode="danger-full-access"),
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: fixture.workspace,
              inherit_env: [],
              env: %{

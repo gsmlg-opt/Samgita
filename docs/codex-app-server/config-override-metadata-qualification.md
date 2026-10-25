@@ -45,9 +45,11 @@ zero verified. Strict completeness still exits **1**. Only these exact null/
 discriminator owners gain scoped evidence; the whole source variant, aliases,
 other source kinds, provider-default resolution and full methods remain
 unqualified. The [51/0 twice matrix](timeline-error-values-qualification.md)
-precedes these two added assertions; a final combined functional matrix remains
-required. Its outside-consumer and syntax results are retained earlier evidence,
-not new runs for this continuation. Prohibited security/permission tests,
+precedes these two added assertions. Its outside-consumer and syntax results
+are earlier evidence. The later [search projection matrix](thread-section-membership-qualification.md#search-projection-continuation)
+reruns the final combined 51/0 twice block and independent consumer on source
+including both assertions; it closes only that scoped pending matrix.
+Prohibited security/permission tests,
 audits/broad/hosted gates, A11, source-unreachable and external/platform success,
 full compatibility and release remain incomplete. No publication or deployment.
 

@@ -5,14 +5,12 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
 Current Codex work follows the user's prohibition on security and permission
-tests. The [timeline error checkpoint](../codex-app-server/timeline-error-values-qualification.md)
+tests. The [search membership checkpoint](../codex-app-server/thread-section-membership-qualification.md#search-projection-continuation)
 passes 51 ordinary real-binary cases at each of two seeds, static checks and an
-outside consumer, including independent raw/API error formats, explicit recovery
-and cold no-load history/timeline persistence; it does not rerun the broad
-suites or hosted workflows below.
-The following [config continuation](../codex-app-server/config-override-metadata-qualification.md#default-and-origin-discriminators)
-passes its owning file 3/0 at both seeds plus static checks; final combined
-functional checks remain required after its two added null assertions.
+outside consumer, including the preceding config assertions, independent raw/API
+errors and current membership search through cold no-load persistence; it does
+not rerun the broad suites or hosted workflows below. All original history,
+order, journal and owned-process cleanup checks remain.
 Yolo is owned-fixture setup, with no permission assertions. All unrun gates,
 A11, real-provider acceptance and full compatibility remain incomplete; no
 release is authorized by these local results.

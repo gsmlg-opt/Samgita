@@ -1,5 +1,70 @@
 # Native thread-section membership
 
+## Search projection continuation
+
+Exactly **6173/6179** gain scoped native evidence: ThreadSearchResponse's
+legacy history-mode literal and explicit null appearance within an assigned
+ThreadSection. The existing four owned threads, two sections and seven moves
+now add one real content-search to each of nine state observations. Exact
+four-ID sets, prescribed Unicode snippets/previews, independently saved native
+paths and the current expected section ID/name are checked. A real assigned
+section must include appearance:null; an unassigned thread must instead have
+section:null. Neither missing output nor duplicate/missing search hits passes.
+
+The move sequence independently prescribes assignment, transfer and removal.
+Its nontrivial S[B,A]/T[C] cold state is read with empty loaded lists before and
+after the full observation. Later cold moves also preserve an empty final
+loaded list. Original full turns/previews, configuration/workspace, ready state
+and uncertainty checks remain; the complete provider journal stays byte-identical
+at exactly four requests. No new turn or inference is introduced. Fixed yolo
+options configure only the owned process/thread; no permission behavior is
+asserted. The owned ripgrep executable follows the existing search fixture.
+
+Nine searches plus the original 54 list and seven move requests give **70**
+correlated full request captures, below the unchanged 128-frame/4096-byte cap.
+No request/turn deadline, original ordering assertion or process cleanup changes.
+
+The pinned
+[search handler](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L2859)
+maps actual stored search results, retaining current section/history metadata.
+The state stores omitted appearance as None; stored-thread conversion preserves
+the section while mapping that optional appearance. The API
+[history mode](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs#L75)
+serializes Legacy as legacy; optional section appearance serializes as null.
+Seven complete producer/store/protocol files match the immutable source archive;
+both exact nodes and the response export match inventory/provenance. Independent
+read-only review finds no actionable defect or broader owner to promote.
+
+Base commit: 2747e3f. Focused v287 passes the owning scenario **1/0** at both
+seeds, **4.640/4.612** command seconds, plus compile/format/strict Credo and the
+255-source guard. No check fails. The final explicit twenty-eight-file matrix
+from the [timeline checkpoint](timeline-error-values-qualification.md) includes
+this and the two later config assertions. Both seeds 501432/987654 pass
+**51 tests / 0 failures**, warnings as errors, in **85.495/85.176** command
+seconds. Scoped format, warning-free compile, strict Credo on 479 sources,
+outside actual-binary consumer **1/0**, five fixture AST checks and the
+**255-source** unchanged-byte guard pass. All eight commands complete.
+
+Final commands/environment/logs: `/tmp/samgita-v288-functional-checks/functional/`.
+Results/source SHA256:
+ddf4404b228cc3b250d53e2f2a42abf6c0762fb083a836938c07769e66f01d93 /
+46f8f4abb2f80eceaf8c44455b1f543a8fc5dc3750ce2e1c6e2366437c443f8d.
+Adjacent source-evidence.json SHA256:
+3172ed6e20b92a26bdaca75caf0b81ff40af24ac9da177fdae7dd1dc73c42493.
+manifest-binding.json records only the two original/current owners and owning
+test SHA256 2899d6ea26693c4b7981a49c4ed2f79fa8bf0f85c4870c1ab090b4e9e4b07973.
+
+Inventory --check passes. Contracts become **4,741 implemented / 1,821 missing /
+59 blocked**, requirements remain **462 implemented / 12 missing / 11 blocked**,
+zero verified. Strict completeness still exits **1**. No paginated-mode literal,
+nonnull appearance, whole result/method, alias, other backend/OS/transport or
+full lifecycle is promoted. Runtime/shared helpers/dependencies are unchanged.
+Security/permission tests, audits and broad/hosted workflows remain unrun.
+A11, source-unreachable alternatives, external/platform success, full
+compatibility and release remain incomplete. No publication or deployment.
+
+## Previous membership checkpoint
+
 One functional scenario qualifies `thread/section/move` on the immutable
 `rust-v0.163.0` [pin](design.md), source
 `83086188ae0614bd882818ff1aa23f3194962012`, executable SHA256

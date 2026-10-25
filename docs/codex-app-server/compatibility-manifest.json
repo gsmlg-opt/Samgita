@@ -212176,24 +212176,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-membership-qualification.md#search-projection-continuation"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadHistoryMode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Every genuine content-search projection retains independently requested legacy history mode through seven section moves and a cold no-load readback.",
+        "Selected ordinary native Linux stdio search of four actual persisted threads only. Nine actual searches preserve exact IDs, literal content, paths, full histories and four-request provider journal across membership changes and cold restart. No paginated-mode literal, nonnull appearance, whole result/method, other source mode/backend/OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadHistoryMode/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "04e2d186ccb255f6d0c37c4cb75d23ed3cc54fd3499305f9b448be030ec04fe5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_membership_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212354,24 +212363,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-membership-qualification.md#search-projection-continuation"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSection/properties/appearance/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "A genuinely assigned search-result section has explicitly present appearance:null alongside its independently expected ID and prescribed name; the unassigned section itself remains null.",
+        "Selected ordinary native Linux stdio search of four actual persisted threads only. Nine actual searches preserve exact IDs, literal content, paths, full histories and four-request provider journal across membership changes and cold restart. No paginated-mode literal, nonnull appearance, whole result/method, other source mode/backend/OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadSection/properties/appearance/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_membership_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

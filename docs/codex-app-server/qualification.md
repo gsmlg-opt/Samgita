@@ -1,12 +1,23 @@
 # Codex compatibility qualification
 
+The [search membership continuation](thread-section-membership-qualification.md#search-projection-continuation)
+passes the final twenty-eight-file **51/0 twice** matrix, compile/format, strict
+Credo, outside consumer **1/0**, five Python AST checks and 255-source guard.
+This includes the preceding config assertions. Two exact owners bring contracts
+to **4,741 implemented / 1,821 missing / 59 blocked**, unchanged requirements
+and zero verified. Nine actual searches preserve four thread identities/content,
+legacy mode, current section/null appearance, all original membership/history
+effects and cold no-load behavior with exactly four provider calls. All
+prohibited/broader/hosted, full-goal, A11, source-unreachable/external and release
+gates remain incomplete.
+
 The [config default/origin continuation](config-override-metadata-qualification.md#default-and-origin-discriminators)
 passes its owning file **3/0 twice**, compile/format, strict Credo and the
 255-source guard. Three exact null/discriminator owners bring contracts to
 **4,739 implemented / 1,823 missing / 59 blocked**, unchanged requirements and
 zero verified. Existing desktop persistence/precedence/version/idle effects
-remain; no RPC or inference is added. The following combined matrix precedes
-two new assertions and must run again on final integrated source. All
+remain; no RPC or inference is added. That focused checkpoint did not rerun
+the earlier combined matrix; the current continuation above supplies it. All
 prohibited/broader/hosted, full-goal, A11, source-unreachable/external and release
 gates remain incomplete.
 
