@@ -526,6 +526,135 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     assert read_json(ctx, "cold-provider-attempts.json") == []
   end
 
+  @tag hook_scenario: "success"
+  test "hook catalog lists inert MCP metadata and warns for mixed sources and unsupported handlers",
+       ctx do
+    pid = ctx.pid
+    baseline = hooks(pid, ctx)
+    config = Path.join(ctx.root, "codex/config.toml")
+    config_bytes = File.read!(config)
+    path = Path.join(ctx.root, "codex/hooks.json")
+    refute File.exists?(path)
+    native_pid = state(ctx)["native_pid"]
+    assert call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+
+    # This is catalog input only. No hook trust is granted, no MCP server is
+    # configured, and no thread, turn or hook execution is requested.
+    source = %{
+      "hooks" => %{
+        "PreToolUse" => [
+          %{
+            "matcher" => "^owned-inert-tool$",
+            "hooks" => [
+              %{
+                "type" => "mcp_tool",
+                "server" => "owned-inert-server",
+                "tool" => "owned_inert_tool",
+                "input" => %{"marker" => "Owned inert catalog input", "count" => 7},
+                "timeout" => 5,
+                "statusMessage" => "Owned inert MCP catalog entry"
+              },
+              %{"type" => "prompt"},
+              %{"type" => "agent"}
+            ]
+          }
+        ]
+      }
+    }
+
+    bytes = JSON.encode!(source)
+    on_exit(fn -> if File.exists?(path), do: File.rm!(path) end)
+    File.write!(path, bytes)
+
+    warnings = [
+      "loading hooks from both #{path} and #{config}; prefer a single representation for this layer",
+      "skipping prompt hook in #{path}: prompt hooks are not supported yet",
+      "skipping agent hook in #{path}: agent hooks are not supported yet"
+    ]
+
+    assert [entry] = call(pid, "hooks/list", %{"cwds" => [ctx.workspace]})["data"]
+    assert entry["cwd"] == ctx.workspace
+    assert entry["errors"] == []
+    assert entry["warnings"] == warnings
+    assert [mcp | retained] = entry["hooks"]
+    assert length(retained) == length(baseline)
+
+    assert Map.drop(mcp, ["currentHash"]) == %{
+             "key" => "#{path}:pre_tool_use:0:0",
+             "eventName" => "preToolUse",
+             "handlerType" => "mcpTool",
+             "server" => "owned-inert-server",
+             "tool" => "owned_inert_tool",
+             "matcher" => "^owned-inert-tool$",
+             "timeoutSec" => 5,
+             "statusMessage" => "Owned inert MCP catalog entry",
+             "additionalContextLimit" => nil,
+             "sourcePath" => path,
+             "source" => "user",
+             "pluginId" => nil,
+             "displayOrder" => 0,
+             "enabled" => true,
+             "isManaged" => false,
+             "trustStatus" => "untrusted"
+           }
+
+    assert is_binary(mcp["currentHash"]) and byte_size(mcp["currentHash"]) > 0
+
+    assert retained ==
+             Enum.map(baseline, fn hook ->
+               Map.update!(hook, "displayOrder", &(&1 + 1))
+             end)
+
+    refute Enum.any?(entry["hooks"], &(&1["handlerType"] in ["prompt", "agent"]))
+
+    # Repeated reads must rediscover the same source and warnings without trust,
+    # registration, provider or execution effects.
+    for _ <- 1..2 do
+      assert call(pid, "hooks/list", %{"cwds" => [ctx.workspace]})["data"] == [entry]
+      assert File.read!(path) == bytes
+      assert File.read!(config) == config_bytes
+      assert read_json(ctx, "requests.json") == []
+      assert read_json(ctx, "provider-errors.json") == []
+
+      assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+               Session.status(pid)
+    end
+
+    # Remove only the new owned catalog file and require the original TOML
+    # catalog, hashes, ordering and empty-warning state to return exactly.
+    File.rm!(path)
+    assert hooks(pid, ctx) == baseline
+    assert hooks(pid, ctx) == baseline
+    refute File.exists?(path)
+    assert File.read!(config) == config_bytes
+    assert state(ctx)["native_pid"] == native_pid
+    assert File.exists?("/proc/#{native_pid}")
+    assert call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert read_json(ctx, "requests.json") == []
+    assert read_json(ctx, "provider-errors.json") == []
+
+    for name <- [
+          "SessionStart.json",
+          "UserPromptSubmit.json",
+          "Stop-first.json",
+          "Stop-second.json"
+        ],
+        do: refute(File.exists?(Path.join(ctx.root, name)))
+
+    assert {:ok, events} = Session.drain(pid)
+    assert lifecycle(events) == []
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    assert notices(events, "turn/started") == []
+    assert notices(events, "turn/completed") == []
+    assert notices(events, "item/started") == []
+    assert notices(events, "item/completed") == []
+    assert notices(events, "error") == []
+    assert Session.uncertain_operations(pid) == []
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(pid)
+  end
+
   defp hooks(pid, ctx, expected_events \\ ["sessionStart", "userPromptSubmit"]) do
     assert [entry] = call(pid, "hooks/list", %{"cwds" => [ctx.workspace]})["data"]
     assert entry["cwd"] == ctx.workspace and entry["warnings"] == [] and entry["errors"] == []

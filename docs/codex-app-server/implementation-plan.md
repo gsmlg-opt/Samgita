@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native hook-catalog case](hook-catalog-qualification.md) passes in the
+complete five-file block: 29/0 at both seeds, strict checks and matching
+1,495-file/binary guards. Six physical MCP metadata/warnings owners become
+implemented; prompt/agent schema variants retain source-proven unsupported
+discovery limits. Contracts are 3,849 implemented/2,772 missing; requirements
+remain 462 implemented/12 missing/11 blocked, zero verified. Freeze the combined
+source for complete retained-platform/package/consumer and final-pushed hosted
+qualification next. Do not close any retained failure or broader incomplete gate.
+
 The [52 retained request owners](native-request-owners-continuation.md) bind
 precise command/background/search/import envelopes to unchanged passing v24
 native assertions and dependencies. Full manifest/diff matches; no executable

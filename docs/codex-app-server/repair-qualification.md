@@ -6,6 +6,17 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Native hook catalog continuation
+
+The [five-file owning block](hook-catalog-qualification.md) passes 29/0 at both
+fixed seeds, strict checks and matching 1,495-file/binary guards. One new native
+case checks exact inert MCP metadata, three ordered warnings and same-process
+catalog restoration. Six precise owners become implemented; prompt/agent schema
+success remains missing with immutable skip/producer evidence. Contracts are
+3,849 implemented/2,772 missing, zero verified; requirements remain
+462 implemented/12 missing/11 blocked. No runtime/fixture/deadline/cleanup/authority
+change; complete final-source/hosted qualification and all broader gates remain.
+
 ## Retained command, search and import request owners
 
 The [52-owner evidence continuation](native-request-owners-continuation.md)
