@@ -112,8 +112,11 @@ defmodule SamgitaCodexDriver.TurnFixture do
   end
 
   def call(pid, method, params) do
-    case Session.request(pid, method, params) do
-      {:ok, %{"result" => result}} ->
+    id = "owned-turn-fixture-#{System.unique_integer([:positive, :monotonic])}"
+
+    case Session.request(pid, method, params, id: id) do
+      {:ok, %{"result" => result} = wire} ->
+        assert %{"id" => ^id, "result" => ^result} = wire
         result
 
       {:error, %Error{wire: wire} = error} ->

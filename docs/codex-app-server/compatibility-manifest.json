@@ -43683,124 +43683,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact server/diagnostics positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Actual /proc executable matches ctx.binary, native process changes on restart, and registered-thread gauges reflect exact owned threads.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "4f524950fdaba93d304a49e31740df2ee57895f127728902996b61b189863b5a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/1/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact server/diagnostics positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Actual /proc executable matches ctx.binary, native process changes on restart, and registered-thread gauges reflect exact owned threads.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/1/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact server/diagnostics positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Actual /proc executable matches ctx.binary, native process changes on restart, and registered-thread gauges reflect exact owned threads.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ce81eb8cb8ac68de430ac7bcdde3697eaec40f91da4e1a7fdb50a9d72edf1437",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/1/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact server/diagnostics positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Actual /proc executable matches ctx.binary, native process changes on restart, and registered-thread gauges reflect exact owned threads.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/1/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e2424e9e089cbaff5d1654fb488278164c8d5789ead56f623daee423681f59ec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/1/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact server/diagnostics positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Actual /proc executable matches ctx.binary, native process changes on restart, and registered-thread gauges reflect exact owned threads.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "284f1ae946c8e63a8d1d5fad60ed0eedfaa175e1ce7ed6a813e51d953a35a05e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -57353,490 +57403,690 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/26",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/metadata/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact Git patch values and thread/session identity persist through reads, clearing, native restart and a cold update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/26",
       "schema": "ClientRequest.json",
       "schema_sha256": "edffe9070a90254409c7a69f43921c08b73d01915d3fc1120e117cd9650bab32",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/26/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/metadata/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact Git patch values and thread/session identity persist through reads, clearing, native restart and a cold update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/26/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/26/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/metadata/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact Git patch values and thread/session identity persist through reads, clearing, native restart and a cold update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/26/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e3a7be962479a41b1ed9d594c3c976edbfef499803e4327d71a0a6c3e2f2add0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/26/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/metadata/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact Git patch values and thread/session identity persist through reads, clearing, native restart and a cold update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/26/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "38e186b3f5aed684f291eb75cded4f3deeaacb4d8e293276d9eab26a58222718",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/26/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/metadata/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact Git patch values and thread/session identity persist through reads, clearing, native restart and a cold update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/26/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a7c989bda5f53c70351e9ddd594be81f51c3be954ad19ecb9fb9a11629037ece",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/27",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/add positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Created/existing outcomes, exact payload/type/key, update notifications, identities and cold membership are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/27",
       "schema": "ClientRequest.json",
       "schema_sha256": "bd67ee42e8bb42d8578d717fbcb4b59b089eaf24c9e773ffdc69d7a13719925b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/27/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/add positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Created/existing outcomes, exact payload/type/key, update notifications, identities and cold membership are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/27/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/27/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/add positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Created/existing outcomes, exact payload/type/key, update notifications, identities and cold membership are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/27/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "235d9a3b915c3b7fa57758c7f7e6a464395e909c1935fa4dea5a3e16ca085128",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/27/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/add positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Created/existing outcomes, exact payload/type/key, update notifications, identities and cold membership are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/27/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c38c449279a724d3dfee8d2f747a3cd3149308be6593e494999199519c202dee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/27/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/add positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Created/existing outcomes, exact payload/type/key, update notifications, identities and cold membership are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/27/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4768a6dc9fcffc456b8515380440e01c7d0781190ada44f770b91d0dcd33dfb7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/28",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Warm and first cold list data equal exact independently retained created attachments; provider count remains one.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/28",
       "schema": "ClientRequest.json",
       "schema_sha256": "8fb523c27aa2029d4a337dc5d1dd9b4bf3bf6eacb85ec0c3b01204bff1f262ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/28/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Warm and first cold list data equal exact independently retained created attachments; provider count remains one.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/28/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/28/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Warm and first cold list data equal exact independently retained created attachments; provider count remains one.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/28/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "43d642a3891cc0b166d267f18198f6a2e900da48b6162f9fd1bcec89a1c9bc69",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/28/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Warm and first cold list data equal exact independently retained created attachments; provider count remains one.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/28/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "ee41f18b55f16c5d4612f3f67b433e5378baa8c70a94a1a6bc4bf88ab0a19b61",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/28/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Warm and first cold list data equal exact independently retained created attachments; provider count remains one.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/28/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f8f8eb9010ffb9f71827b46be38e73853f900cf21bb64e7baac0ba20e86e1bf0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/29",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachmentOwner/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact owner IDs/archive flags, filters, keyset pages, cold response and unchanged three samples are asserted.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/29",
       "schema": "ClientRequest.json",
       "schema_sha256": "472431b90fa84a94189e833444681977ffb6c3b71cc70c1f9695ff0bf2cca904",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/29/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachmentOwner/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact owner IDs/archive flags, filters, keyset pages, cold response and unchanged three samples are asserted.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/29/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/29/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachmentOwner/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact owner IDs/archive flags, filters, keyset pages, cold response and unchanged three samples are asserted.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/29/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "dd46e2526816b0a47b0063564418cac8edd7c40e69e2d9df822a79b56c3b4329",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/29/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachmentOwner/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact owner IDs/archive flags, filters, keyset pages, cold response and unchanged three samples are asserted.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/29/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0f73a48ef5b67416ea223c7408031efaf699c23f7bb057e9a0bf20f9bf4fcdec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/29/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachmentOwner/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact owner IDs/archive flags, filters, keyset pages, cold response and unchanged three samples are asserted.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/29/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf252f3f680d4e44fd1337c7742cc9c3bb46bdf20bd547c25c783c25515747a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -57963,124 +58213,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/30",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/remove positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful deletion ACK, exact deleted event, empty membership, repeat removal and recreation with new identity are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/30",
       "schema": "ClientRequest.json",
       "schema_sha256": "2fd3b62aeee003265efe272167dea63dd201c5ea62510b75c8e3bb7dfaf0cb91",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/30/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/remove positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful deletion ACK, exact deleted event, empty membership, repeat removal and recreation with new identity are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/30/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/30/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/remove positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful deletion ACK, exact deleted event, empty membership, repeat removal and recreation with new identity are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/30/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "6e043ed929e4416efba3d492609c37d81f02850a5608f926f345515bbea2364a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/30/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/remove positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful deletion ACK, exact deleted event, empty membership, repeat removal and recreation with new identity are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/30/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c186797e7ecbd071c70c5520f6717aa921a66c2bc4f8f1c6d4b739b8affe3970",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/30/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/attachment/remove positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful deletion ACK, exact deleted event, empty membership, repeat removal and recreation with new identity are checked.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/30/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c76ae0f9571eb3e13c5017429b7e76fa68098638785763bebb3ae95f1b2b453f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -58405,124 +58705,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/33",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/memoryMode/set positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Each positive mode change yields empty result and exact owned JSONL/SQLite mode; full history remains empty and provider remains idle.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/33",
       "schema": "ClientRequest.json",
       "schema_sha256": "c86cafa32134e75279d83527434a2645367c01d6611088cda3f489a361a39cc0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/33/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/memoryMode/set positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Each positive mode change yields empty result and exact owned JSONL/SQLite mode; full history remains empty and provider remains idle.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/33/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/33/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/memoryMode/set positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Each positive mode change yields empty result and exact owned JSONL/SQLite mode; full history remains empty and provider remains idle.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/33/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "688e84eb8163babfe604a42d95d1254c0f17f9517f8dfaa1eec0a39d843c3f76",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/33/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/memoryMode/set positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Each positive mode change yields empty result and exact owned JSONL/SQLite mode; full history remains empty and provider remains idle.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/33/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0715ab3d66bc83db97abfca3f97b79662651c226cb3a0659ea023cb6375bb2da",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/33/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/memoryMode/set positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Each positive mode change yields empty result and exact owned JSONL/SQLite mode; full history remains empty and provider remains idle.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/33/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2c9421354fe322a675628af6d1e665fb4ce3a6ba0d1aed34ebb68659cbb418d9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -58835,124 +59185,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/36",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact rollout/compress positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful trigger is followed by Zstandard magic, original-file removal, preserved recent bytes, exact summary reads, restart and resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/36",
       "schema": "ClientRequest.json",
       "schema_sha256": "99ab8885c04933eb4235fa79aeb56d7f2f244e131da8fe001511259746311304",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/36/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact rollout/compress positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful trigger is followed by Zstandard magic, original-file removal, preserved recent bytes, exact summary reads, restart and resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/36/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/36/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact rollout/compress positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful trigger is followed by Zstandard magic, original-file removal, preserved recent bytes, exact summary reads, restart and resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/36/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd27aa8aed69bd3e88c89defff6f7f30ba6fd656ae7ecd44deb094f207b7cc00",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/36/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact rollout/compress positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful trigger is followed by Zstandard magic, original-file removal, preserved recent bytes, exact summary reads, restart and resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/36/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9f2fc4ed19e3b6894af33c625053712c425bdbcb6cc5d29cc4de26f9bf51c436",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/36/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact rollout/compress positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Successful trigger is followed by Zstandard magic, original-file removal, preserved recent bytes, exact summary reads, restart and resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": true,
       "pointer": "/oneOf/36/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -60113,124 +60513,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/44",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/revert positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact thread revert result, cleared firstUnread, changed revision and unchanged two provider requests are checked after cold resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/44",
       "schema": "ClientRequest.json",
       "schema_sha256": "5b602f19f7321bfb4e5d619956e729517b092a718dce35a82ce32900f0847f72",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/44/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/revert positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact thread revert result, cleared firstUnread, changed revision and unchanged two provider requests are checked after cold resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/44/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/44/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/revert positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact thread revert result, cleared firstUnread, changed revision and unchanged two provider requests are checked after cold resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/44/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2bf249cbf8c35469898a9d1eece2c7eb291ba2e25763c681f7044a26d9210918",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/44/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/revert positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact thread revert result, cleared firstUnread, changed revision and unchanged two provider requests are checked after cold resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/44/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "69769577f61528b44cba07c438d508d110d3cfd3a77fbcee989ce0862df101eb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/44/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/revert positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact thread revert result, cleared firstUnread, changed revision and unchanged two provider requests are checked after cold resume.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/44/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "808e76a28faec4f3332f5faa4625c7fc3bd10c007112b646110332c1d0d5673e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -63471,124 +63921,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/64",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/items/read positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Full prescribed imageView entry with native lifecycle timestamps is checked warm and first-cold, after original source removal, with exact unchanged requests.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/64",
       "schema": "ClientRequest.json",
       "schema_sha256": "9ec067ab84fb2bd0adf8e230d7e1c283adaecd686ec8b2b5366e447a2b3a1ea8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/64/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/items/read positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Full prescribed imageView entry with native lifecycle timestamps is checked warm and first-cold, after original source removal, with exact unchanged requests.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/64/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/64/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/items/read positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Full prescribed imageView entry with native lifecycle timestamps is checked warm and first-cold, after original source removal, with exact unchanged requests.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/64/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "94406baf8568b2ea2ab85e94fd8704e8f9533474e2574896eadfb1c98db11b26",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/64/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/items/read positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Full prescribed imageView entry with native lifecycle timestamps is checked warm and first-cold, after original source removal, with exact unchanged requests.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/64/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6005cec640fe6942ec2e8a0cebbd43d58ad9e3cb169b979206fdb2bf4db7d94f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/64/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/items/read positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Full prescribed imageView entry with native lifecycle timestamps is checked warm and first-cold, after original source removal, with exact unchanged requests.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/64/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8373e186ced4b1deb4f6dde90b95e3759cf700255f047e9904c2f4e0289ee5c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -64023,124 +64523,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/68",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact hooks/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact positive hook metadata, workspace identity, requested CWD order and unchanged config/no executed sentinel are asserted; errors/gates are not selected evidence.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/68",
       "schema": "ClientRequest.json",
       "schema_sha256": "2419eedb9a41098548235559ce602b1b5958fb5335bb519375ff62c0a849db27",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/68/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact hooks/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact positive hook metadata, workspace identity, requested CWD order and unchanged config/no executed sentinel are asserted; errors/gates are not selected evidence.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/68/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/68/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact hooks/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact positive hook metadata, workspace identity, requested CWD order and unchanged config/no executed sentinel are asserted; errors/gates are not selected evidence.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/68/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "24e3a6443a8826e786645e4f01f3ae046556f0a9145927fde101a17d173e2346",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/68/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact hooks/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact positive hook metadata, workspace identity, requested CWD order and unchanged config/no executed sentinel are asserted; errors/gates are not selected evidence.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/68/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "32be1cc591e181f62b0771256ea9cfd6428965f2abcf791f757d5d5cb76191c1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/68/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact hooks/list positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Exact positive hook metadata, workspace identity, requested CWD order and unchanged config/no executed sentinel are asserted; errors/gates are not selected evidence.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/68/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "88ae322049b9b0fb9e055e397e46aa0070b08c3f671019e892ea1ffbd4ab991c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -69028,124 +69578,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/99",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact turn/settings/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Positive applied response updates the continued capture while original/future settings remain unchanged; no extra work is started by update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/99",
       "schema": "ClientRequest.json",
       "schema_sha256": "dbf39b055cf4bfd4023d465b5459c1e911146f9440438e15e546252fa2f8ff3f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/99/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact turn/settings/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Positive applied response updates the continued capture while original/future settings remain unchanged; no extra work is started by update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/99/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/99/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact turn/settings/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Positive applied response updates the continued capture while original/future settings remain unchanged; no extra work is started by update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/99/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1ac3bf5305f6187d6e2b133baaa6ffe7aa822e793324f875274a4949900286b5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/99/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact turn/settings/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Positive applied response updates the continued capture while original/future settings remain unchanged; no extra work is started by update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "pointer": "/oneOf/99/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "ada232d41c21981064ce49f8eb13767d75e41f78a17bcdccd62c5bb687ce06d5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-correlation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/99/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact turn/settings/update positive native envelope uses an explicit VM-unique known string request ID; the shared helper asserts that same response ID before returning the unchanged result to the original semantic/effect oracle. Positive applied response updates the continued capture while original/future settings remain unchanged; no extra work is started by update.",
+        "Only this physical envelope/id/method/literal/params-root owner is selected. No nested parameter or alias inheritance, numeric/error ID branch, malformed input, other helper consumer or whole method-family promotion. Bound to both passing v29 eight-file source/binary guards; full combined-source shared-helper regression remains required.",
+        "Unavailable external/backend/OS success, A11, upstream-unreachable emitters and full compatibility remain incomplete; no verified-state promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/99/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9a43c514178f6590fd89453af80350f11f22b248af759e17da342f86d5786a05",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

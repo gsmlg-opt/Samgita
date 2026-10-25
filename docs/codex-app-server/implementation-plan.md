@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit native correlation block](native-correlation-qualification.md)
+passes all eight owning files **54/0 twice**, strict checks and matching
+1,495-file/binary guards. Sixty exact request-envelope owners bring contracts to
+**4,185 implemented / 2,436 missing**, zero verified; requirements remain
+462 implemented/12 missing/11 blocked. Continue settings/search behavior and
+the complete final-source driver/profile/platform/hosted matrix; all broader
+incomplete gates remain open.
+
 The [retained native envelope index](retained-native-envelope-qualification.md)
 binds 52 explicit request-correlation and 60 notification outer-field owners to
 unchanged v27 native assertions. All dependency/node/row/excerpt/log checks match;
