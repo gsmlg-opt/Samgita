@@ -1,8 +1,8 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 4,383 implemented / 2,238 missing
-field/variant contracts**. Selected notification, Project, filesystem, process,
+11 blocked requirements** and **0 verified / 4,383 implemented / 2,179 missing /
+59 blocked field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
@@ -18,6 +18,13 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [pinned output audit](pinned-output-blockers.md) classifies 57 queue-start
+result leaves and two serializer-omitted null arms as blocked using immutable
+upstream evidence. All 59 remain required and unverified; no mock or schema
+forwarding acceptance is substituted. Five inProgress histories still lack
+exhaustive producer proof and remain missing. Requirements and the complete
+denominator are unchanged; the evidence gate must continue to fail.
 
 The [reviewer/MCP/async continuation](native-reviewer-mcp-async-qualification.md)
 passes all eight owning files **40/0 twice**, strict checks, 38 tooling

@@ -184405,15 +184405,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/FunctionCallOutputContentItem/oneOf/1/properties/detail/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The exact public Option field uses skip_serializing_if=Option::is_none. None (including deserialized null) is omitted when the typed response is serialized; schema acceptance and absent fields do not establish native null output.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/protocol/src/models.rs#L2206-L2231; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/item.rs#L880-L1068; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/thread_history.rs#L431-L470; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L6162-L6188",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/1/properties/detail/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -188635,15 +188642,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The exact public Option field uses skip_serializing_if=Option::is_none. None (including deserialized null) is omitted when the typed response is serialized; schema acceptance and absent fields do not establish native null output.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/ext/items/src/image_generation.rs#L21-L43; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/item.rs#L880-L1068; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/thread_history.rs#L431-L470; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L6162-L6188",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196373,15 +196387,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "35bbfdf0f8a8582ab497ef79ce4c15e32256f77f4fe91eef104ec007924b3e4b",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196395,15 +196416,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "2cf5b6b59f50135f55d92b682daa8965eed6ac35a578ff9ff8dd855c78417c81",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196417,15 +196445,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "5c4cb0cd529b9ef3b0c9801e81bc6fcefbda725613ff7fb7c1ac64e8f4cbd003",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196439,15 +196474,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/10",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/10",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "de2a398b6ea0440accc0af4a91f82db3140883d9ce257cfcb0dcaf3c23a7effe",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196461,15 +196503,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/11",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/11",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "48a45918c1fbf8914cf5d37942314e16e54d508bb3e0b1ff11b8da96dc4ada62",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196483,15 +196532,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/12",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/12",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "d553a1a231599d11439c94c4ab902761f07ef654f50c3b2a7da5c31eacd98529",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196505,15 +196561,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/13",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/13",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "cfb8480a9adfe82621263aa8aa8a011376984a458b1e0d26dd3610d5e55ebda4",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196527,15 +196590,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/14",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/14",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "c494f200f7f18a48d81653a80ac7f0eeba86a208b72efa78571fa93662be5e19",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196549,15 +196619,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/2",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "7b4b0ebf6f6b5c83a1f365e79708d16167afc0696f74ce57eeb2ac777940039c",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196571,15 +196648,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/3",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "aa4534c31803c5c819178fa6113533d5e0784fe556451e39c4398c3e9c55114c",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196593,15 +196677,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/4",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "bb9c9ca58f9516ee5d236217d83cdf07f42681c885a4930d9b3f7197983c9f14",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196615,15 +196706,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/5",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "0dc9c759e0f93f7504eaa42d43cf800e839bd72ed8b52e5d6a9be6447936b31b",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196637,15 +196735,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/6",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "71c6e33b9a41e84fb083149fc92aca883d0f670f9ea459a8a395ecc4def3ab01",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196659,15 +196764,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/7",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "17b80dcb3bb8ebbfb4a11ff80575c6112e5bed01bcf2ea8166b93502a6aca238",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196681,15 +196793,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/8",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "e450058032c96ecd194348e1d95732707f34e23a657c46ec629bcd56d53235cd",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196703,15 +196822,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/0/enum/9",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/9",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "563a36217598845a7d4a6be692f38812a1fe57bacb32ff847eec3e75500fc295",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196725,15 +196851,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f1962078edb8d49af00cc63ca4823b2e78913a8842218ca8d57807d92b238ab0",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196748,18 +196881,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196774,18 +196914,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed/properties/httpStatusCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed/properties/httpStatusCode",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196799,15 +196946,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/2",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "70103f592db40925fc3aa4925f35689aa08160c89ff3951a230194b0d71f22ac",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196822,18 +196976,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196848,18 +197009,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed/properties/httpStatusCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed/properties/httpStatusCode",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196873,15 +197041,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/3",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "49bbe80d2d313c11bd843ac654b9bd6eabcf1fcc661d90da9e2189be5244d9d2",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196896,18 +197071,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196922,18 +197104,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected/properties/httpStatusCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected/properties/httpStatusCode",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196947,15 +197136,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/4",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "49d6f49bf27ef0bba78cd5cab474481eb16068b30fa6fa89c19f9316c1472390",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196970,18 +197166,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196996,18 +197199,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts/properties/httpStatusCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts/properties/httpStatusCode",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197021,15 +197231,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/5",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "09bb9e56a080bfa3f32359fbe8b2c93a1e2428069a404e0646e69efdbc0ce4a9",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197044,18 +197261,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "892311863cfc9d514b41e032e7fe748f11e4c05d183fc379468d6d05caa1d02e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197070,18 +197294,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable/properties/turnKind",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable/properties/turnKind",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "aad990f1875c10f8b1bdfecbda4154118e2d70d1d1035a71ac24e35fdecf7683",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197095,15 +197326,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/CodexErrorInfo/anyOf/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/6",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "9943adb624aabdfff478f9bf2b5f437b3ba2dc3b740e345db018c93e4c7602d1",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197118,18 +197356,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/detailedExplanation",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/detailedExplanation",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "96a4d33e625ed5df6c1085aa8de6996ca8d7b2e6ff928f42715ec58834087f15",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197144,18 +197389,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/errorType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/errorType",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "125a122840fbacf628b7f0088ee6f611490f4e4f2478d423fd2d94112eeb6053",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197170,18 +197422,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/reviewTarget",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/reviewTarget",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "fb3767e83a9f4006132983b127ac00a2562f3370101b35bc6e0670be3cdc58e6",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197196,18 +197455,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/steer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/steer",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "a486807a0fb03c31ca9b94a6cf2f6ea77662e61c3f4d7f53a84e88dc77f4726a",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197221,15 +197487,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/steer/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/MisalignmentErrorDetails/properties/steer/anyOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "fa3208633b4a6cc3ca0744844d98cb370556c65e9425a76f821f138e2c42df65",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197243,15 +197516,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentErrorDetails/properties/steer/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/MisalignmentErrorDetails/properties/steer/anyOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197266,18 +197546,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/MisalignmentSteer/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MisalignmentSteer/properties/message",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197291,15 +197578,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/NonSteerableTurnKind/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/NonSteerableTurnKind/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "049325e91469f33f035f3153f87a3a89d93e41f292dd00fc5df091496a7ad2c2",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197313,15 +197607,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/NonSteerableTurnKind/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/NonSteerableTurnKind/enum/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "714be13672ef0c561905c6074384a9278cfe11bbef038a6fd631e8eb1a38c4a4",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197437,15 +197738,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/error/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/Turn/properties/error/anyOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "c1aaa92f65bbaec529d993afd04174f79910b3e3d2a00be166ac49abdaba1745",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197724,18 +198032,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/additionalDetails",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/additionalDetails",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197750,18 +198065,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/codexErrorInfo",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/codexErrorInfo",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "10daedac9c1391368783ac616be99c403332ba59a178fb8e0f14616a85ec4228",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197775,15 +198097,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/codexErrorInfo/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnError/properties/codexErrorInfo/anyOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "31bacac5a6a9291d9130208653fc0162b5b746d7cefcb90149a401479100fe99",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197797,15 +198126,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/codexErrorInfo/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnError/properties/codexErrorInfo/anyOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197820,18 +198156,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnError/properties/message",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197846,18 +198189,25 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/misalignment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/misalignment",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "c8694b64c20f1fd502320f7dd881f50f3f81850c0802dc1917ec36e98e2a7865",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197871,15 +198221,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/misalignment/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnError/properties/misalignment/anyOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f0d044434e1c397e98c3954099ee36eb8ee7f31d5b7b212ceb51fbdded56af5c",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197893,15 +198250,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnError/properties/misalignment/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes error=None. This node is reachable only through the non-null TurnError branch; pre-start failures return JSONRPCErrorError through Err, not response.turn.error.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnError/properties/misalignment/anyOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197975,15 +198339,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes items_view=TurnItemsView::NotLoaded; summary/full alternatives cannot occur in this response.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "8d1d7ada38ead9498660a3184eaf87712640228f44c1800d17cc0d5e40bb44ff",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -197997,15 +198368,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/1/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes items_view=TurnItemsView::NotLoaded; summary/full alternatives cannot occur in this response.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/1/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "2c4e6d88014dbb182046ae3939fd20aeb3d1e1ba07e542e49a4588980bf52fb5",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -198019,15 +198397,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes items_view=TurnItemsView::NotLoaded; summary/full alternatives cannot occur in this response.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/2",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "c197febd7b11aee8e6bdd6c535f684e1ce1e76569d0f40d8d4faf3d62d918e71",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -198041,15 +198426,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/2/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes items_view=TurnItemsView::NotLoaded; summary/full alternatives cannot occur in this response.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/2/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "dd71892cc339ebd9bb8256e3c0e93d56b62ae460a55442f0d0d86b82288ec2a8",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -198063,15 +198455,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes status=TurnStatus::InProgress; downstream completion/interruption/failure cannot rewrite the constructed result.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnStatus/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -198085,15 +198484,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes status=TurnStatus::InProgress; downstream completion/interruption/failure cannot rewrite the constructed result.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnStatus/enum/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "f855378058a19fb7ebeb43188cc3fb801b899123d893631a2f807044e2c7e437",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -198107,15 +198513,22 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/pinned-output-blockers.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The sole success constructor fixes status=TurnStatus::InProgress; downstream completion/interruption/failure cannot rewrite the constructed result.",
+        "Immutable source evidence: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1023-L1028; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1391-L1395; https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L1897-L1907",
+        "Required contract retained. Source-only unreachable output is neither implemented-and-verified behavior nor an approved exclusion. Codec/scripted support cannot establish real native emission; --require-verified remains required and failing.",
+        "Five inProgress canonical-history leaves remain missing because exhaustive producer closure is not proven. A11, legacy/external/OS success and full compatibility remain incomplete."
+      ],
       "pointer": "/definitions/TurnStatus/enum/2",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

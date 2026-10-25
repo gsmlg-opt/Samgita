@@ -6,6 +6,18 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Required upstream output blockers
+
+The [source-bound audit](pinned-output-blockers.md) classifies 57 queue-start
+result leaves and two omitted null arms as blocked, with immutable source
+excerpts and exact original rows/nodes. All requirements remain mandatory;
+scripted peers cannot qualify nonexistent native emission. Five inProgress
+history leaves remain missing because exhaustive producer closure is unproven.
+Contracts are **4,383 implemented / 2,179 missing / 59 blocked**, zero verified;
+requirements remain 462 implemented/12 missing/11 blocked. Complete-evidence,
+A11, legacy/external/OS and the full goal remain incomplete. Final-source
+matrices and hosted qualification are next; no publication or deployment.
+
 ## Native reviewer/MCP/async continuation
 
 The [complete eight-file block](native-reviewer-mcp-async-qualification.md)

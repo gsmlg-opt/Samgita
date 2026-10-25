@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [immutable output audit](pinned-output-blockers.md) retains all 59 newly
+classified blocked result contracts and five unresolved histories. Contracts
+are **4,383 implemented / 2,179 missing / 59 blocked**, zero verified;
+requirements stay 462 implemented/12 missing/11 blocked. This source-only
+classification grants no native acceptance or denominator reduction. Freeze
+the combined source for complete final-source local and pushed hosted checks,
+then continue remaining reachable behavior; all broader blockers remain open.
+
 The [native reviewer/MCP/async block](native-reviewer-mcp-async-qualification.md)
 passes all eight owning files **40/0 twice**, strict checks, 38 tooling
 regressions and matching source/binary guards after preserving and repairing
