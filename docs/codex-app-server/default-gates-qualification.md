@@ -1,5 +1,10 @@
 # Native defaults and experimental-presence differentials
 
+The [custom-base precedence continuation](#custom-base-instructions-override-personality-stripping)
+adds a two-thread native differential to this profile. Its complete temporary
+owning file passes **21 ExUnit cases at each seed**; the earlier smaller results
+below remain historical. Broad default/negotiation requirements remain missing.
+
 Five stock-binary cases pass at seeds `501432` and `987654`. Python AST,
 namespace preflight, warnings-as-errors compilation, formatting and scoped
 strict Credo pass. Broad `lifecycle:missing-null-default` and
@@ -197,3 +202,55 @@ pass. Exact commands/logs are under
 audit is `/tmp/samgita-thread-start-personality-audit-20261025.md`, SHA256
 `cbb1fa41a7322a4827d320bd2262af7b6a24144012a4b640a766408489c9e590`.
 Complete final-source local/hosted qualification remains a separate gate.
+
+## Custom base instructions override personality stripping
+
+The added differential combines branches previously tested separately: both
+new threads explicitly send `personality:"none"`, with `baseInstructions:null`
+versus a distinct nonempty custom base. The null case inherits the fixed catalog
+template and removes its Personality H1 plus nested H2 up to the following Rules
+H1. The explicit custom case preserves every byte, including those headings,
+Unicode and the literal `{{ personality }}`. Independent heredocs specify both
+expected provider inputs; no driver transformation constructs the oracle.
+
+Pinned `models-manager/src/model_info.rs:46-98` selects custom base instructions
+before its personality-None stripping branch. Existing config/thread sources
+forward the typed overrides. The native app-server creates both threads with no
+inference; the test then explicitly starts exactly two synthetic assistant turns.
+Their first real provider developer messages must equal the distinct expected
+strings. Exact wire field presence, model, lack of a top-level `instructions`
+field, separate user markers, correlated completions, full saved text-turn
+histories and unchanged history bytes are checked. Loaded IDs remain distinct;
+no sibling marker, extra request, resume/fork, pending interaction, uncertainty,
+event gap or workspace effect appears. Config bytes and owned process cleanup
+remain checked. No generated writing-style or real provider acceptance is inferred.
+
+The profile has nineteen test statements, expanding to **21 actual ExUnit cases**
+because two existing tests are generated. All original tests and helpers are
+preserved byte for byte; one case is inserted. The candidate passes all 21 at
+both `501432` and `987654`, with formatting and original source/build guards.
+
+The first temporary harness run retained **21 setup failures**, zero outbound
+driver frames. Its long owned TMPDIR produced a 108-byte Unix Socket path;
+the isolated Erlang/Mint diagnostic reproduces `:badarg` at that length, while
+the shortened 98-byte absent address returns ordinary `:enoent`. Only harness
+TMPDIR was shortened. Candidate, fixtures, request bounds, deadlines and all
+assertions stayed unchanged. No original test database or record was involved.
+Failed and corrected logs remain under
+`/tmp/samgita-v57-default-precedence-candidate/evidence/native-r1/` and
+`native-r2/`, respectively. This was one evidenced harness repair, not a retry
+until green or a product transport change.
+
+The broader null/default/experimental lifecycle, other heading cases,
+resume/fork combinations, real provider/OS/backend profiles and A11 remain
+incomplete. The subsequent complete six-file integrated block passes **37/0 at
+both seeds**, including all 21 cases in this owning profile. Root/driver compile
+and format, strict Credo (448 source files), namespace/sandbox checks, 38 tooling
+regressions and the 1,507-file/executable guards pass. Exact commands/logs are
+`/tmp/samgita-native-continuation-v58-20261025/`; terminal report SHA256
+`58108203bdffacfc5e6e8ef57238ab6b6857cfa0217ad9c789354e8c3e60d042`.
+Candidate handoff SHA256 is
+`7707a06b07532a69ab0fbc0622fa5e850eb3a4c250cd14c287663d04095e939e`;
+its evidence index preserves 475 files, including the failed launch and both
+successful journals. Complete new final-source local/hosted matrices are separate
+gates; no broad requirement state or release claim changes.

@@ -2205,6 +2205,136 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     assert :ok = Session.close(pid)
   end
 
+  test "explicit custom base instructions take precedence over personality none", ctx do
+    literal = """
+    Owned catalog intro λ
+    # Personality
+    Owned catalog style {{ personality }}
+    ## Details
+    Owned removable catalog detail.
+    # Rules
+    Owned stable catalog rule.
+    """
+
+    stripped = """
+    Owned catalog intro λ
+    # Rules
+    Owned stable catalog rule.
+    """
+
+    custom = """
+    Owned custom base λ
+    # Personality
+    Owned custom style {{ personality }}
+    ## Details
+    Owned custom detail must remain.
+    # Rules
+    Owned custom stable rule.
+    """
+
+    config_path = Path.join(ctx.root, "codex/config.toml")
+    config = File.read!(config_path)
+    refute Regex.match?(~r/^\s*(personality|instructions|model_instructions_file)\s*=/m, config)
+    assert File.ls!(ctx.workspace) == []
+    catalog_path = Path.join(ctx.root, "codex/models.json")
+    catalog = read(ctx, "codex/models.json")
+    assert length(catalog["models"]) == 1
+
+    catalog =
+      put_in(
+        catalog,
+        ["models", Access.at(0), "model_messages", "instructions_template"],
+        literal
+      )
+
+    File.write!(catalog_path, JSON.encode!(catalog))
+    File.write!(config_path, "personality = \"none\"\n" <> config)
+    restart_owned_native(ctx)
+    {pid, journal} = client(ctx, false)
+    assert read(ctx, "requests.json") == []
+
+    cases = [{nil, stripped}, {custom, custom}]
+
+    snapshots =
+      for {{base, expected}, marker} <- Enum.with_index(cases, 960) do
+        requests = read(ctx, "requests.json")
+        extra = %{"personality" => "none", "baseInstructions" => base}
+        response = start(pid, ctx, extra)
+        sent = last_params(journal, "thread/start")
+        assert sent == params(ctx, extra)
+        assert Map.fetch!(sent, "personality") == "none"
+        assert Map.fetch!(sent, "baseInstructions") == base
+        assert_default_session_settings(ctx, response, "low")
+        thread = response["thread"]["id"]
+        assert is_binary(thread) and thread != ""
+        assert response["thread"]["turns"] == []
+        assert response["thread"]["status"] == %{"type" => "idle"}
+        assert_no_import_work(ctx, pid, requests)
+
+        turn = start_turn(pid, thread, marker, %{})
+        assert last_params(journal, "turn/start") == turn_params(thread, marker, %{})
+        assert_default_completion(finish(pid, turn), thread, turn)
+        actual = read(ctx, "requests.json")
+        assert length(actual) == marker - 959
+        assert Enum.take(actual, length(requests)) == requests
+        request = List.last(actual)
+        assert request["model"] == "mock-model"
+        refute Map.has_key?(request, "instructions")
+
+        assert %{
+                 "type" => "message",
+                 "role" => "developer",
+                 "content" => [%{"type" => "input_text", "text" => ^expected}]
+               } = hd(request["input"])
+
+        user_texts =
+          for input <- request["input"],
+              input["role"] == "user",
+              content <- input["content"],
+              content["type"] == "input_text",
+              do: content["text"]
+
+        assert Enum.count(user_texts, &(&1 == "synthetic:defaults:#{marker}")) == 1
+
+        for other <- 960..961, other != marker do
+          refute Enum.any?(user_texts, &String.contains?(&1, "synthetic:defaults:#{other}"))
+        end
+
+        saved =
+          call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+        assert [saved_turn] = saved["turns"]
+        assert_default_text_turn(saved_turn, turn, marker)
+        assert File.regular?(saved["path"])
+        assert_no_import_work(ctx, pid, actual)
+        %{id: thread, thread: saved, path: saved["path"], bytes: File.read!(saved["path"])}
+      end
+
+    ids = Enum.map(snapshots, & &1.id)
+    assert length(Enum.uniq(ids)) == 2
+    assert Enum.sort(call(pid, "thread/loaded/list", %{})["data"]) == Enum.sort(ids)
+
+    for saved <- snapshots do
+      assert call(pid, "thread/read", %{
+               "threadId" => saved.id,
+               "includeTurns" => true
+             })["thread"] == saved.thread
+
+      assert File.read!(saved.path) == saved.bytes
+    end
+
+    assert count(journal, "thread/start") == 2
+    assert count(journal, "turn/start") == 2
+    assert count(journal, "thread/resume") == 0
+    assert count(journal, "thread/fork") == 0
+    requests = read(ctx, "requests.json")
+    assert length(requests) == 2
+    assert_no_import_work(ctx, pid, requests)
+    assert File.read!(config_path) == "personality = \"none\"\n" <> config
+    assert File.ls!(ctx.workspace) == []
+    assert :ok = Session.close(pid)
+  end
+
   test "omitted section lists all while explicit null lists only unsectioned threads", ctx do
     {pid, journal} = client(ctx, true)
     unsectioned = start(pid, ctx)["thread"]["id"]
