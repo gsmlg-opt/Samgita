@@ -1,10 +1,11 @@
 # Real native approvals and current platform authority
 
-The latest [foreign-Session ticket case](#a-ticket-cannot-authorize-another-native-session)
-extends the dedicated authority profile to **5/0 at both seeds** in an isolated
-source/build layout using the retained authority database. Earlier four- and
-three-case results remain historical evidence below. Broad platform authority,
-final integrated qualification and full compatibility remain incomplete.
+The [same-Session generation case](#a-ticket-cannot-authorize-a-new-connection-generation)
+extends the dedicated authority profile to six cases. Candidate and final root
+checks pass **6/0 at both seeds**, preserving the retained authority database.
+Earlier five-, four- and three-case results remain historical evidence below.
+Broad platform authority, final integrated qualification and full compatibility
+remain incomplete.
 
 Three new platform integration cases extend the existing two-Agent native
 journey. The owning integration module passes **4/0** at seeds `501432` and
@@ -340,3 +341,42 @@ owner additions are separately checked. Exact commands/logs are in
 `442f8ce0f72b451984723a292e310d7ee62d5f7799e7666176bb15d4b72b3ceb`.
 This remains scoped native authority evidence, not the final full matrix or
 complete authorization/A11 acceptance.
+
+## A ticket cannot authorize a new connection generation
+
+The sixth case commits an actual approval response ticket at driver generation1
+with the original **2,000ms** deadline. Public reconnect, initialize and explicit
+warm resume on the same Session obtain a genuine generation2 replay and fresh
+complete local handle. Native request identity and Session instance remain the
+same. Twice replying with the current handle and old ticket returns exact
+`stale_session`, with the original deadline strictly live before and after each
+call. Database snapshots and history reads stay outside that measured interval.
+
+An opt-in decorator journals real WebSocket application sends across both
+connections. The journal remains byte-equivalent around rejection; no reply,
+turn or retry is sent. Native pending handle/timer, history, provider count,
+workspace and durable domain/audit/receipt/job snapshots remain exact. The Task
+stays in progress and unaccepted, its Attempt running with unresolved effects.
+Closing the borrowed WebSocket leaves the owned native listener alive; checked
+listener/provider shutdown subsequently proves their reaping without resolving
+durable uncertainty. All previously retained database rows remain unchanged.
+
+The complete six-case candidate profile passes at seeds501432/987654 on the
+same allowlisted authority database. The first strict Credo pass found one alias
+suggestion; adding only that alias was followed by passing compile, format,
+strict Credo and both complete repeats. Logs and hashes are in
+`/tmp/samgita-v84-native-candidates/` and
+`/tmp/samgita-v85-candidate-static-repair/`. Independent review found no actionable
+issue in `/tmp/samgita-v87-candidate-behavior-review.json`. The later candidate
+bridge block also preserves **6/0 twice** in
+`/tmp/samgita-v96-bridge-and-authority-checks/`.
+
+This qualifies one actual Linux/WebSocket generation fence. It does not establish
+instantaneous post-ticket database revocation, remote idempotency, every
+interaction/transport/OS profile or full authorization/A11 acceptance. The broad
+manifest requirement remains missing. Final combined root checks pass **6/0
+twice**, plus driver59/0 and bridge17/0 twice, compile, format, strict Credo449
+files and the source guard in `/tmp/samgita-v103-integrated-checks/`. Its exact
+commands/hashes are linked from
+[Session qualification](session-confidentiality-qualification.md#executed-evidence-and-remaining-gates).
+Complete frozen-source local and exact-pushed hosted matrices remain required.

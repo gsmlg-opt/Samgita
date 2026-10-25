@@ -48,6 +48,7 @@ defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
   alias Samgita.Domain.{CommandReceipt, TaskAttempt}
   alias Samgita.Domain.Task, as: DomainTask
   alias SamgitaCodexDriver.{ModelFixture, Session}
+  alias SamgitaCodexDriver.Transport.Stdio
 
   @moduletag :e2e
   @moduletag timeout: 90_000
@@ -692,6 +693,310 @@ defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
 
       assert_retained_records(retained)
     end)
+  end
+
+  test "a live committed approval ticket cannot authorize a fresh handle after same-Session reconnect",
+       %{database: database} do
+    Sandbox.unboxed_run(Repo, fn ->
+      database_backend!(database)
+      retained = retained_records()
+
+      %{
+        ctx: ctx,
+        pid: pid,
+        fixture: fixture,
+        event: original,
+        recorded: recorded,
+        native_owner: native_owner,
+        sent_path: sent_path
+      } = SamgitaWeb.CodexGenerationRuntimeFixture.pending()
+
+      before_status = Session.status(pid)
+      assert before_status.generation == 1
+      assert original.wire["id"] === 0
+      assert original.handle.generation == before_status.generation
+      assert Port.info(native_owner.port)
+      assert :atomics.get(native_owner.owner.completion, 1) == 0
+      assert File.ls!(fixture.workspace) == []
+
+      native_before = %{
+        history: pending_instance_history(pid, original),
+        provider_requests: ModelFixture.requests(fixture),
+        workspace_entries: File.ls!(fixture.workspace)
+      }
+
+      assert length(native_before.provider_requests) == 1
+      wire = %{"id" => original.wire["id"], "result" => %{"decision" => "accept"}}
+
+      reply =
+        command(%{
+          "expected_version" => recorded["version"],
+          "native" => wire,
+          "timeout_ms" => 2_000
+        })
+
+      assert {:ok, operation} =
+               CodexRuntime.reply(
+                 Principal.operator(),
+                 ctx.project["id"],
+                 ctx.runtime["id"],
+                 recorded["id"],
+                 reply
+               )
+
+      receipt =
+        Repo.get_by!(CommandReceipt, principal: "operator", command_id: reply["command_id"])
+
+      prepared = snapshot(ctx, receipt.id)
+      stored_prepared = Enum.find(prepared.operations, &(&1.id == operation["id"]))
+      assert stored_prepared.timeout_ms == 2_000
+      assert_native_pending(ctx, pid, fixture, original)
+      assert prepared.runtime.instance_id == before_status.instance_id
+      assert prepared.runtime.driver_generation == before_status.generation
+      sent_prefix = File.read!(sent_path)
+
+      # This call returns after the one-use ticket commits. Do not add database
+      # snapshots, history reads or quiet waits inside its original two seconds.
+      assert {:ok, ticket} = dispatch(ctx, operation)
+      assert ticket["native"] == wire
+      assert ticket["instance_id"] == before_status.instance_id
+      assert ticket["driver_generation"] == before_status.generation
+      assert {:ok, deadline, 0} = DateTime.from_iso8601(ticket["dispatch_expires_at"])
+      deadline_ms = DateTime.to_unix(deadline, :millisecond)
+
+      for authority_deadline <- [
+            prepared.attempt.lease_expires_at,
+            prepared.attempt.execution_deadline
+          ] do
+        assert DateTime.diff(authority_deadline, deadline, :millisecond) > 5_000
+      end
+
+      assert remaining_generation_dispatch_ms(deadline_ms) <= 2_000
+      assert :ok = Session.reconnect(pid)
+
+      reconnected = Session.status(pid)
+      assert reconnected.instance_id == before_status.instance_id
+      assert reconnected.generation == before_status.generation + 1
+      assert reconnected.phase == :new
+      assert reconnected.interactions == 0
+
+      assert_receive {:codex_driver, ^pid, {:gap, gap}},
+                     remaining_generation_dispatch_ms(deadline_ms)
+
+      assert gap == reconnected.gap
+      assert gap.reason == :explicit_reconnect
+      assert gap.generation == before_status.generation
+
+      assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+               Session.initialize(
+                 pid,
+                 %{"name" => "samgita_native_generation", "version" => "0.1.0"},
+                 %{"experimentalApi" => true},
+                 timeout_ms: remaining_generation_dispatch_ms(deadline_ms)
+               )
+
+      thread_id = original.wire["params"]["threadId"]
+
+      assert {:ok, %{"result" => %{"thread" => %{"id" => ^thread_id}}}} =
+               Session.request(
+                 pid,
+                 "thread/resume",
+                 %{"threadId" => thread_id},
+                 timeout_ms: remaining_generation_dispatch_ms(deadline_ms)
+               )
+
+      {replay, replay_events} = collect_generation_replay(pid, original, deadline_ms)
+      assert replay.wire == original.wire
+      assert replay.handle.id === original.handle.id
+      assert replay.handle.generation == before_status.generation + 1
+      refute replay.handle.reference == original.handle.reference
+      current_status = Session.status(pid)
+      assert current_status.instance_id == ticket["instance_id"]
+      assert current_status.generation == replay.handle.generation
+      refute current_status.generation == ticket["driver_generation"]
+      assert current_status.gap == gap
+      assert current_status.phase == :ready
+      assert String.starts_with?(File.read!(sent_path), sent_prefix)
+
+      interaction = Map.fetch!(:sys.get_state(pid).interactions, replay.handle.id)
+      assert interaction.handle == replay.handle
+
+      guards = [
+        expected_instance_id: ticket["instance_id"],
+        expected_generation: ticket["driver_generation"],
+        dispatch_deadline_ms: deadline_ms
+      ]
+
+      # The complete current native handle and same instance pass the earlier
+      # checks. Only the original committed ticket's generation is stale.
+      for _submission <- 1..2 do
+        sent_before = File.read!(sent_path)
+        assert System.system_time(:millisecond) < deadline_ms
+
+        assert {:error,
+                %SamgitaProtocolCodex.Error{
+                  code: :stale_session,
+                  details: %{},
+                  uncertain: false,
+                  wire: nil
+                }} =
+                 Session.respond(pid, replay.handle, {:ok, ticket["native"]["result"]}, guards)
+
+        assert System.system_time(:millisecond) < deadline_ms
+        assert File.read!(sent_path) == sent_before
+        assert :sys.get_state(pid).interactions == %{replay.handle.id => interaction}
+        assert Session.interaction_outcomes(pid) == []
+      end
+
+      # All observations below occur after both measured no-send boundaries.
+      assert_no_generation_completion(replay_events)
+      dispatched = snapshot(ctx, receipt.id)
+      assert_programmatic_ticket_delta(ctx, prepared, dispatched, operation, ticket)
+      assert dispatched.runtime.driver_generation == before_status.generation
+      assert dispatched.runtime.instance_id == current_status.instance_id
+
+      evidence =
+        Map.merge(native_before, %{
+          interaction: interaction,
+          instance_id: current_status.instance_id,
+          generation: current_status.generation,
+          gap: gap,
+          sent_path: sent_path
+        })
+
+      assert_generation_approval_pending(ctx, pid, fixture, replay, evidence)
+
+      for _submission <- 1..2 do
+        sent_before = File.read!(sent_path)
+
+        assert dispatch(ctx, ticket) ==
+                 {:error, Error.new(:conflict, %{reason: "dispatch_not_repeatable"})}
+
+        assert File.read!(sent_path) == sent_before
+        assert snapshot(ctx, receipt.id) == dispatched
+        assert_generation_approval_pending(ctx, pid, fixture, replay, evidence)
+      end
+
+      assert dispatched.event.state == "reply_prepared"
+      assert dispatched.task.state == "in_progress"
+      assert dispatched.task.accepted_at == nil
+      assert dispatched.attempt.state == "running"
+      refute dispatched.attempt.effects_resolved
+      assert Port.info(native_owner.port)
+      assert :atomics.get(native_owner.owner.completion, 1) == 0
+      assert Session.status(pid).transport["owned_process"] == false
+
+      frames = for line <- File.stream!(sent_path), line != "\n", do: JSON.decode!(line)
+      assert Enum.count(frames, &(&1["method"] == "initialize")) == 2
+      assert Enum.count(frames, &(&1["method"] == "thread/start")) == 1
+      assert Enum.count(frames, &(&1["method"] == "turn/start")) == 1
+      assert Enum.count(frames, &(&1["method"] == "thread/resume")) == 1
+      sent_before = File.read!(sent_path)
+      monitor = Process.monitor(pid)
+      assert :ok = Session.close(pid)
+      assert_receive {:DOWN, ^monitor, :process, ^pid, :normal}, 5_000
+      assert File.read!(sent_path) == sent_before
+      assert Port.info(native_owner.port)
+      assert :atomics.get(native_owner.owner.completion, 1) == 0
+      assert :ok = Stdio.close(native_owner)
+      assert_checked_stdio_reaped(native_owner)
+      assert :ok = ModelFixture.close(fixture)
+      assert_checked_stdio_reaped(fixture.transport)
+      assert ModelFixture.requests(fixture) == native_before.provider_requests
+      assert File.ls!(fixture.workspace) == native_before.workspace_entries
+      assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
+      assert snapshot(ctx, receipt.id) == dispatched
+      assert_retained_records(retained)
+    end)
+  end
+
+  defp remaining_generation_dispatch_ms(deadline_ms) do
+    remaining = deadline_ms - System.system_time(:millisecond)
+    assert remaining > 0, "Original two-second generation ticket expired"
+    remaining
+  end
+
+  defp collect_generation_replay(pid, original, deadline_ms, collected \\ []) do
+    assert {:ok, incoming} = Session.drain(pid)
+    collected = collected ++ incoming
+    assert_no_generation_completion(collected)
+
+    case Enum.filter(collected, &(&1.kind == :server_request)) do
+      [replay] ->
+        assert replay.wire == original.wire
+        assert remaining_generation_dispatch_ms(deadline_ms) <= 2_000
+        {replay, collected}
+
+      [] ->
+        remaining = remaining_generation_dispatch_ms(deadline_ms)
+
+        receive do
+          {:codex_driver, ^pid, :events_available} ->
+            collect_generation_replay(pid, original, deadline_ms, collected)
+
+          {:codex_driver, ^pid, {:gap, _}} ->
+            flunk("Unexpected second gap during native generation replay")
+        after
+          remaining -> flunk("Native replay exceeded original two-second dispatch deadline")
+        end
+
+      _ ->
+        flunk("Unexpected additional native request during generation replay")
+    end
+  end
+
+  defp assert_no_generation_completion(events) do
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] in [
+               "serverRequest/resolved",
+               "item/commandExecution/outputDelta",
+               "turn/completed"
+             ] ||
+               (event.wire["method"] == "item/completed" &&
+                  get_in(event.wire, ["params", "item", "type"]) == "commandExecution")
+           end)
+  end
+
+  defp assert_generation_approval_pending(ctx, pid, fixture, replay, evidence) do
+    assert :sys.get_state(pid).interactions == %{replay.handle.id => evidence.interaction}
+    assert Session.interaction_outcomes(pid) == []
+    assert Session.uncertain_operations(pid) == []
+
+    assert Map.take(
+             Session.status(pid),
+             [:phase, :instance_id, :generation, :pending, :interactions, :uncertain, :gap]
+           ) == %{
+             phase: :ready,
+             instance_id: evidence.instance_id,
+             generation: evidence.generation,
+             pending: 0,
+             interactions: 1,
+             uncertain: 0,
+             gap: evidence.gap
+           }
+
+    assert ModelFixture.requests(fixture) == evidence.provider_requests
+    assert length(evidence.provider_requests) == 1
+    assert File.ls!(fixture.workspace) == evidence.workspace_entries
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    assert_no_generation_completion(events)
+    assert pending_instance_history(pid, replay) == evidence.history
+    assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
+
+    for line <- File.stream!(evidence.sent_path), line != "\n" do
+      wire = JSON.decode!(line)
+      assert Map.has_key?(wire, "method")
+
+      assert wire["method"] in [
+               "initialize",
+               "initialized",
+               "thread/start",
+               "turn/start",
+               "thread/resume",
+               "thread/read"
+             ]
+    end
   end
 
   defp pending_instance_history(pid, event) do
