@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [loaded search environment unit](search-environment-values-qualification.md)
+passes the final twenty-five-file **40/0 twice** block, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 251-source
+guard. Two exact children bring contracts to **4,709 implemented / 1,853 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Three explicit assertions use independently
+prescribed cwd/local ID on every correlated real loaded hit; all previous
+effects remain. Next inspect canonical notification environment children
+2472/2473 against genuine thread/started notices; preserve their missing state
+until a concrete production branch and native assertions are qualified. Do not
+invent separate owners for inventory-deduplicated response aliases. Keep every
+prohibited/broad/hosted, full-goal, A11, external and release gate incomplete.
+
+## Earlier checkpoints
+
 The [per-thread config unit](thread-start-config-values-qualification.md) passes
 twenty-five reviewed functional files **40/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source
@@ -33,8 +48,6 @@ the bounded loaded-search environment assertions for physical fields 6170/6171
 in the existing search GitInfo case. No parent-array/alias promotion is implied.
 Keep every prohibited/broad/hosted, full-goal, A11, external and release gate
 incomplete.
-
-## Earlier checkpoints
 
 The [memory status reader unit](memory-status-reader-qualification.md) passes
 twenty-four reviewed functional files **39/0 twice**, compile/format, strict

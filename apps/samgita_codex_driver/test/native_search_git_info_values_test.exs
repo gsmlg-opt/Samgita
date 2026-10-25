@@ -203,6 +203,9 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
       assert Map.fetch!(thread, "preview") == original.text
       assert Map.fetch!(thread, "path") == original.path
       assert Map.fetch!(thread, "historyMode") == "paginated"
+      assert [environment] = Map.fetch!(thread, "environments")
+      assert Map.fetch!(environment, "cwd") === ctx.fixture.workspace
+      assert Map.fetch!(environment, "environmentId") === "local"
       assert Map.fetch!(thread, "turns") == []
       assert Map.fetch!(thread, "gitInfo") === Map.fetch!(expected, id)
     end

@@ -211851,53 +211851,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-environment-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadEnvironment/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_loaded_search_environment_children: Three added assertions in the existing genuine two-thread/two-turn/four-search GitInfo journey require every correlated returned thread to have exactly one non-null environment with independently owned workspace cwd and literal local environmentId. Real search enriches the actually loaded configuration snapshot; fixture supplies model text only, and all existing metadata/content/history/provider journal/config/input and bounded cleanup/deadline effects remain. No new requests/turns or weakened assertions. Only these two physical child fields gain scoped evidence, not enclosing array/runtimeWorkspaceRoots/aliases/whole method/response or unloaded/remote/multiple-environment, other OS/transport/backend/external behavior. Prohibited/broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/cwd",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-environment-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadEnvironment/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_loaded_search_environment_children: Three added assertions in the existing genuine two-thread/two-turn/four-search GitInfo journey require every correlated returned thread to have exactly one non-null environment with independently owned workspace cwd and literal local environmentId. Real search enriches the actually loaded configuration snapshot; fixture supplies model text only, and all existing metadata/content/history/provider journal/config/input and bounded cleanup/deadline effects remain. No new requests/turns or weakened assertions. Only these two physical child fields gain scoped evidence, not enclosing array/runtimeWorkspaceRoots/aliases/whole method/response or unloaded/remote/multiple-environment, other OS/transport/backend/external behavior. Prohibited/broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/environmentId",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {

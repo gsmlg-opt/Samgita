@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [loaded search environment unit](search-environment-values-qualification.md)
+passes the final twenty-five-file **40/0 twice** block, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.
+Two direct child fields bring contracts to **4,709 implemented / 1,853 missing /
+59 blocked**, with unchanged requirements and zero verified. Three added
+assertions prescribe owned cwd/local ID in each actual loaded search hit;
+all prior metadata/history/provider checks remain. No array/alias/other-method
+or remote environment inherits this evidence. Prohibited/broader/hosted/full-goal/
+A11/external/release gates remain incomplete.
+
 The [per-thread configuration unit](thread-start-config-values-qualification.md)
 passes twenty-five reviewed functional files **40/0 twice**, compile/format,
 strict Credo, outside consumer **1/0**, three Python AST checks and the 251-source

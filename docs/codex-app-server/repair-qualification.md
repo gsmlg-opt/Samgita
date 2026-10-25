@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [loaded search environment continuation](search-environment-values-qualification.md)
+adds three assertions and two exact child-field bindings. The final
+twenty-five-file **40/0 twice** matrix, strict/static checks, outside consumer
+**1/0**, three Python AST checks and 251-source guard pass; artifacts are in
+`/tmp/samgita-v254-functional-checks/functional/`. Contracts are **4,709
+implemented / 1,853 missing / 59 blocked**, with unchanged requirements and zero
+verified. All prior search/GitInfo/content/history/provider/cleanup assertions
+remain, with no additional native requests or broader promotion. No runtime or
+shared helper changes. Prohibited/broader/hosted checks, A11 and the full goal
+remain incomplete.
+
 The [per-thread config continuation](thread-start-config-values-qualification.md)
 adds one exact request field. The final twenty-five-file **40/0 twice** matrix,
 strict/static checks, outside consumer **1/0**, three Python AST checks and
