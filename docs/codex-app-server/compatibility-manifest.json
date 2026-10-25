@@ -91322,157 +91322,211 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitation/properties/entries",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitation/properties/entries",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "67b690ba77f4d721d9e623e88079a00d66c12103e382365ad794adcfe690ed65",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "entries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitation/properties/threadIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitation/properties/threadIds",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitationEntry/properties/lineEnd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/lineEnd",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "lineEnd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitationEntry/properties/lineStart",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/lineStart",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "lineStart"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitationEntry/properties/note",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/note",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "note"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-citation-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MemoryCitationEntry/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: ordinary Responses text is parsed by stock Codex into two prescribed complete agentMessage citation maps, modern rollout-ID precedence and legacy thread-ID fallback, first-seen deduplication, trimmed literal paths/notes and exact line bounds; ordered live starts/completions and native identity/timestamps are asserted.",
+        "Synthetic inert paths/non-UUID references, no memory retrieval. Warm and first-cold selective/history assertions preserve native items and original rollout/config/catalog/single-request provider bytes, without propagating evidence to another export or wrapper. Other OS/transport, external memory, broad/hosted and security/permission gates remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/path",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
@@ -98100,24 +98154,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-web-search-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/action/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock Linux stdio standalone web.run start notifications contain explicit action:null with prescribed stable call IDs, empty display/results, exact ordered lifecycle and native thread/turn/timestamp correlation; local Responses and alpha/search peers cause the real executor to emit these frames.",
+        "Only this direct notification null branch is implemented; completed items have nonnull actions. No selective-response null owner5483, alias, whole union, external search service, other OS/transport or full compatibility is qualified. Required security/permission and broader/hosted gates remain unrun; no fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -98194,15 +98257,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners",
+        "docs/codex-app-server/standalone-web-search-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/results",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
-        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+        "Retained Responses-only profile supplies null results. Supplemental real standalone web.run profile directly compares literal populated opaque results (future types and nested values), empty array, omitted-backend results normalized to null and explicit null; complete native live items and actual warm/first-cold thread/items/read are asserted separately.",
+        "Local alpha/search backend data, Linux stdio only for the new evidence. No real search service, selective-response action:null, alias or whole union, other OS/transport or full compatibility is qualified. State remains implemented; required security/permission and broader/hosted gates are unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/results",
@@ -98217,7 +98281,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs",
+          "apps/samgita_codex_driver/test/native_standalone_web_search_test.exs"
         ]
       },
       "transport_coverage": [
@@ -190836,15 +190901,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners",
+        "docs/codex-app-server/standalone-web-search-qualification.md"
       ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/results",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
-        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+        "Retained Responses-only profile supplies null results. Supplemental real standalone web.run profile directly compares literal populated opaque results (future types and nested values), empty array, omitted-backend results normalized to null and explicit null; complete native live items and actual warm/first-cold thread/items/read are asserted separately.",
+        "Local alpha/search backend data, Linux stdio only for the new evidence. No real search service, selective-response action:null, alias or whole union, other OS/transport or full compatibility is qualified. State remains implemented; required security/permission and broader/hosted gates are unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/results",
@@ -190859,7 +190925,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs",
+          "apps/samgita_codex_driver/test/native_standalone_web_search_test.exs"
         ]
       },
       "transport_coverage": [

@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [standalone web executor](standalone-web-search-qualification.md) and
+[native citation events](memory-citation-events-qualification.md) pass the
+final **33-file, 59/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, ten provider ASTs and the **265-source** unchanged-byte guard.
+Seven direct physical owners become implemented and two existing result fields
+gain scoped opaque-result evidence: **4,800 implemented / 1,762 missing /
+59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements, zero verified. Actual web.run starts establish action:null;
+completed structured results and citation maps survive first cold selection
+with preserved bytes and exact inference budgets. Draft oracle failures and
+source-backed repairs remain recorded. Selective null-action owner5483 stays
+missing. Inventory consistency passes; strict completeness exits **1**.
+All prohibited/broad/hosted, full-goal, A11, unavailable external/OS, unresolved
+legacy and release gates remain incomplete. No publication/deployment.
+
 The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
 passes the final **31-file, 57/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.

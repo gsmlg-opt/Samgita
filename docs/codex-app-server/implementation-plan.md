@@ -21,6 +21,27 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [standalone web executor](standalone-web-search-qualification.md) and
+[native citation events](memory-citation-events-qualification.md) pass the
+final **33-file, 59/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, ten fixture ASTs and the **265-source** unchanged-byte guard.
+Seven direct physical owners become implemented; two existing result fields
+gain supplemental evidence. Counts are **4,800 implemented / 1,762 missing /
+59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Real web.run null starts, opaque final results
+and complete citation maps retain literal independent oracles, native history,
+first cold selection and original bytes/request budgets. Failed draft
+expectations and their source-backed corrections remain recorded. Inventory
+consistency passes; strict completeness exits **1**.
+
+Continue canonical notification Reasoning owners2595–2600 through the genuine
+ordinary Responses finalization path, using a separately scoped actual-binary
+profile. Keep selective null-action owner5483 missing until its own current
+producer is demonstrated. All prohibited/broad/hosted, full-goal, A11,
+unresolved legacy, unavailable external/OS and release gates stay incomplete.
+
+## Earlier checkpoints
+
 The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
 passes the final **31-file, 57/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
@@ -42,7 +63,7 @@ completed items. Keep that entry unqualified, preserve historical begin-source
 evidence and do not manufacture native history. All prohibited/broad/hosted,
 full-goal, A11, source-unreachable/external and release gates remain incomplete.
 
-## Earlier checkpoints
+### Prior checkpoint sequence
 
 The [web-item](streamed-web-search-qualification.md),
 [canonical dynamic-tool](dynamic-tool-exposure-qualification.md) and
