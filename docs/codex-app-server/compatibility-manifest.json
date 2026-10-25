@@ -140656,144 +140656,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorCandidate/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentDetectedConnectorCandidate/properties/name",
       "required": true,
       "schema": "v2/ExternalAgentConfigDetectResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "name"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": false,
-      "has_default": false,
-      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorCandidate/properties/sessionCount",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ExternalAgentDetectedConnectorCandidate/properties/sessionCount",
-      "required": true,
-      "schema": "v2/ExternalAgentConfigDetectResponse.json",
-      "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "sessionCount"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": false,
-      "has_default": false,
-      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorCandidate/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ExternalAgentDetectedConnectorCandidate/properties/source",
-      "required": true,
-      "schema": "v2/ExternalAgentConfigDetectResponse.json",
-      "schema_sha256": "b601edcbe6f8ce1020a728c483192a876814b5a33d7143c9d1bb385c98c375c3",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "source"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [],
-      "experimental": false,
-      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorSource/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "pointer": "/definitions/ExternalAgentDetectedConnectorSource/enum/0",
-      "schema": "v2/ExternalAgentConfigDetectResponse.json",
-      "schema_sha256": "2a86b522b0147e3e0f2f6bf27faf31158b7bbd5da443a24ade6f82c626f4aa17",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "enum"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [],
-      "experimental": false,
-      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorSource/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "pointer": "/definitions/ExternalAgentDetectedConnectorSource/enum/1",
-      "schema": "v2/ExternalAgentConfigDetectResponse.json",
-      "schema_sha256": "2cdaadaf6fc800cf8af9eedfd8a1d5980ba81977cd3766522ff2e219fd06db43",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "enum"
-    },
-    {
-      "default": [],
-      "direction": "schema_field",
-      "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
-      ],
-      "experimental": false,
-      "has_default": true,
-      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/properties/connectors",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [
-        "Selected empty_only native evidence: Only [] asserted; no connector contents or success. Other variants and full implementation qualification remain incomplete."
-      ],
-      "nullable": false,
-      "pointer": "/properties/connectors",
-      "required": false,
-      "schema": "v2/ExternalAgentConfigDetectResponse.json",
-      "schema_sha256": "e65b24387677ba0c59c5422b37624761388b24a171e8888b6e1655c5bd8df397",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -140801,10 +140679,174 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "name"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorCandidate/properties/sessionCount",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ExternalAgentDetectedConnectorCandidate/properties/sessionCount",
+      "required": true,
+      "schema": "v2/ExternalAgentConfigDetectResponse.json",
+      "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "sessionCount"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorCandidate/properties/source",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ExternalAgentDetectedConnectorCandidate/properties/source",
+      "required": true,
+      "schema": "v2/ExternalAgentConfigDetectResponse.json",
+      "schema_sha256": "b601edcbe6f8ce1020a728c483192a876814b5a33d7143c9d1bb385c98c375c3",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "source"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorSource/enum/0",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "pointer": "/definitions/ExternalAgentDetectedConnectorSource/enum/0",
+      "schema": "v2/ExternalAgentConfigDetectResponse.json",
+      "schema_sha256": "2a86b522b0147e3e0f2f6bf27faf31158b7bbd5da443a24ade6f82c626f4aa17",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "enum"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/definitions/ExternalAgentDetectedConnectorSource/enum/1",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "pointer": "/definitions/ExternalAgentDetectedConnectorSource/enum/1",
+      "schema": "v2/ExternalAgentConfigDetectResponse.json",
+      "schema_sha256": "2cdaadaf6fc800cf8af9eedfd8a1d5980ba81977cd3766522ff2e219fd06db43",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "enum"
+    },
+    {
+      "default": [],
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": true,
+      "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/properties/connectors",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/properties/connectors",
+      "required": false,
+      "schema": "v2/ExternalAgentConfigDetectResponse.json",
+      "schema_sha256": "e65b24387677ba0c59c5422b37624761388b24a171e8888b6e1655c5bd8df397",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "connectors"
     },
     {
@@ -141078,122 +141120,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorCandidate/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentImportedConnectorCandidate/properties/name",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "name"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": false,
-      "has_default": false,
-      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorCandidate/properties/sessionCount",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ExternalAgentImportedConnectorCandidate/properties/sessionCount",
-      "required": true,
-      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
-      "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "sessionCount"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": false,
-      "has_default": false,
-      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorCandidate/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ExternalAgentImportedConnectorCandidate/properties/source",
-      "required": true,
-      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
-      "schema_sha256": "f1f3324c993a44822a3699a9b5877ea0647debd8ff44237a7e5f37115ffd1d6d",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "source"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [],
-      "experimental": false,
-      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorSource/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "pointer": "/definitions/ExternalAgentImportedConnectorSource/enum/0",
-      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
-      "schema_sha256": "2a86b522b0147e3e0f2f6bf27faf31158b7bbd5da443a24ade6f82c626f4aa17",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "enum"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
-      ],
-      "experimental": false,
-      "has_default": false,
-      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/properties/connectors",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [
-        "Selected empty_only native evidence: Only [] asserted; imported connectors missing. Other variants and full implementation qualification remain incomplete."
-      ],
-      "nullable": false,
-      "pointer": "/properties/connectors",
-      "required": true,
-      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
-      "schema_sha256": "ab57d20cae2eb26ad4c9aa6491c22e11e80e8ad7da442254fadc3386b5952220",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -141201,10 +141143,144 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "name"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorCandidate/properties/sessionCount",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ExternalAgentImportedConnectorCandidate/properties/sessionCount",
+      "required": true,
+      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
+      "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "sessionCount"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorCandidate/properties/source",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ExternalAgentImportedConnectorCandidate/properties/source",
+      "required": true,
+      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
+      "schema_sha256": "f1f3324c993a44822a3699a9b5877ea0647debd8ff44237a7e5f37115ffd1d6d",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "source"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentImportedConnectorSource/enum/0",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "pointer": "/definitions/ExternalAgentImportedConnectorSource/enum/0",
+      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
+      "schema_sha256": "2a86b522b0147e3e0f2f6bf27faf31158b7bbd5da443a24ade6f82c626f4aa17",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/external-connector-values-qualification.md"
+      ],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/properties/connectors",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_foreign_fixtures: Six independently prescribed owned Claude/Cursor source files feed nine exact native detect/readHistories(null) envelopes with matching response IDs. Detection yields Atlas/count2/remoteMcpServersConfig and Echo/count1/sessionToolUse with actual expected source paths/cwds. Successful repeated detection retains counts, and a distinct cold native process reads persisted candidate names/counts with empty actual history. Upstream readHistories merges detected and imported records and relabels every candidate remoteMcpServersConfig; the test asserts this semantic difference, never actual import or original Cursor provenance from that projection. Source/config/journal bytes remain unchanged, no model turn or native DB/ledger/rollout edit occurs. Only these eleven physical connector owners gain scoped evidence. Actual imports, completed/failure histories3967/3968, remote services, other OS/backend/transport profiles and aliases remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/properties/connectors",
+      "required": true,
+      "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
+      "schema_sha256": "ab57d20cae2eb26ad4c9aa6491c22e11e80e8ad7da442254fadc3386b5952220",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_external_connector_values_test.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "connectors"
     },
     {

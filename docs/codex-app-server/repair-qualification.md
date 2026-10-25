@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [external connector continuation](external-connector-values-qualification.md)
+passes eighteen reviewed functional files **32/0 twice**, compile/format,
+strict Credo and the 241-file guard. Eleven precise response owners bring
+contracts to **4,671 implemented / 1,891 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Six genuine
+foreign-input fixtures feed actual detect/persisted-candidate/cold-read behavior;
+the upstream imported-candidate label does not imply an import. Owners 3967/3968
+remain incomplete. No prohibited check, broad/hosted completion, A11 closure
+or release is claimed.
+
 The [native filesystem/process continuation](native-io-values-qualification.md)
 passes seventeen reviewed functional files **31/0 twice**, focused **2/0 + 1/0**,
 compile/format, strict Credo and the 240-file guard. Initial **31/3**, traced

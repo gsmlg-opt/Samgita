@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [external connector continuation](external-connector-values-qualification.md)
+passes eighteen reviewed functional files **32/0 twice**, compile/format,
+strict Credo and the 241-file guard. Eleven direct response owners bring contracts
+to **4,671 implemented / 1,891 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Actual
+candidate facts/provenance, repeated counts and cold native readback qualify no
+history import; owners 3967/3968 remain incomplete. Prohibited checks and
+broader/hosted/full-compatibility gates remain incomplete.
+
 The [native filesystem/process unit](native-io-values-qualification.md) passes
 seventeen reviewed functional files **31/0 twice**, focused **2/0 + 1/0**,
 compile/format, strict Credo and the 240-file guard. Original **31/3**, traced

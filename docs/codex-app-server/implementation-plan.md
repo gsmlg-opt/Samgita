@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [external connector unit](external-connector-values-qualification.md) passes
+eighteen reviewed functional files **32/0 twice**, compile/format, strict Credo
+and the 241-file guard. Eleven precise response owners bring contracts to
+**4,671 implemented / 1,891 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Genuine
+detect/repeated-count/cold-read evidence qualifies persisted candidates with the
+upstream source relabeling; actual import and owners 3967/3968 remain incomplete.
+Continue source-backed start defaults/instruction provenance and a bounded local
+collaboration-item reachability investigation. Keep every prohibited/unrun gate
+and the full goal/A11/hosted/release incomplete.
+
 The [native I/O unit](native-io-values-qualification.md) passes seventeen reviewed
 functional files **31/0 twice**, focused process **2/0** and filesystem **1/0**,
 compile/format, strict Credo and the 240-file guard. The initial **31/3**, traced
