@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [native command-action unit](command-action-approval-qualification.md)
+passes the integrated four-file owning block **6/0 twice**, with strict checks,
+38 tooling regressions and an eight-file guard. Twenty-two exact live request
+owners bring contracts to **4,537 implemented / 2,025 missing / 59 blocked**,
+zero verified; requirements remain **462 implemented / 12 missing / 11 blocked**,
+zero verified. Source-derived policy and completed-source oracle corrections
+retain their original failed runs. The complete new-source matrices follow;
+the full goal, A11 and unavailable real success profiles remain incomplete.
+
 The [native output-selection unit](native-output-selection-qualification.md)
 passes both complete web-search/citation profiles **2/0 twice** after root
 integration, plus strict checks, 38 tooling regressions and the six-file guard.
@@ -141,12 +150,12 @@ external/backend/OS success remain incomplete. Full final-source checks remain
 mandatory before any completion/publication claim.
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 4,515 implemented / 2,047 missing /
+11 blocked requirements** and **0 verified / 4,537 implemented / 2,025 missing /
 59 blocked field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 4,515 directly exercised
+MCP entries have scoped implementation evidence. These 4,537 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The

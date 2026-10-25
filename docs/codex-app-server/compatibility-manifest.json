@@ -70653,516 +70653,726 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "f4661e089265ffe6ce6f2c07697bcc8efeeb5a9f37a815b26dadbbefd47543d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/0/properties/command",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/0/properties/name",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/0/properties/path",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/0/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "e89378a972c32a1cea56f1be02987ccb0090ed5dbd97678060600fcedbfa4ef5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/0/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "04a362f6eb2c541562bb7e89cdfaa3412f33332c198b77477a254c572d1b8d97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/1",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "e23c1ab1c298ef54ae793e21f4b25df0ab5871ba45075bd96a67fe91c1db8543",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/1/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/1/properties/command",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/1/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/CommandAction/oneOf/1/properties/path",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/1/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bb8880c928f85045e39a55f16ad49474059b0e82a0991227e3a8a70650cf8ba8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/1/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "f70691b86b44e997e0fa7e4f15a592e3fbc132730828d85e13cbfc6136fb5683",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/2",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "4e859b5a13907ba3e6effb352d623b7adbd4939a63bebdfd2f89813660ef3a27",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/2/properties/command",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/CommandAction/oneOf/2/properties/path",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2/properties/query",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/CommandAction/oneOf/2/properties/query",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "query"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/2/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "e8b88db6dfac51c1654081c76d9dcb55fd01b66f27570a8f7509c7aa2d218e58",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native approval request has independently prescribed Read/ListFiles/Search action fields before the sole explicit accept; one real stock command, exact unchanged inputs/output/provenance, native completion and warm/first-cold history are checked. This physical request owner only, positive nonnull values.",
+        "No omitted/null variants, sibling/history-owner propagation, persistent policy amendment, other transports/OS/backend, A11, full lifecycle or complete compatibility qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/2/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "c98b38b7516ca9985b48db1c1f53b2270a3a1603165e960788dc5ff71f8bae1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:97-261",
+          "apps/samgita_codex_driver/test/native_command_action_approval_profile.exs:365-382"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact live native approval params retain the independently fixed Unknown command action and present nonempty commandActions array for two simultaneously pending commands, before either answer; independent decline/accept and actual effects preserve identity. Retained test/fixture hashes match both frozen v107 default repeats and the integrated six-case block twice.",
+        "This physical request owner and positive nonempty form only; no null/omission, sibling/history-owner propagation, other transports/OS/backend, A11, broad approval lifecycle or complete qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/3",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "f74d7dfe9bbc78e2e3f2803daf7acf95f84a1271b07fb0b0273afc435ac48f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:65-227",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:363-364"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/3/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact live native approval params retain the independently fixed Unknown command action and present nonempty commandActions array for two simultaneously pending commands, before either answer; independent decline/accept and actual effects preserve identity. Retained test/fixture hashes match both frozen v107 default repeats and the integrated six-case block twice.",
+        "This physical request owner and positive nonempty form only; no null/omission, sibling/history-owner propagation, other transports/OS/backend, A11, broad approval lifecycle or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/3/properties/command",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:65-227",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:363-364"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/3/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact live native approval params retain the independently fixed Unknown command action and present nonempty commandActions array for two simultaneously pending commands, before either answer; independent decline/accept and actual effects preserve identity. Retained test/fixture hashes match both frozen v107 default repeats and the integrated six-case block twice.",
+        "This physical request owner and positive nonempty form only; no null/omission, sibling/history-owner propagation, other transports/OS/backend, A11, broad approval lifecycle or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandAction/oneOf/3/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "e6113971adf15012e1a53013998b5a37bbe6e265e7e97b0ce7fd9742ee8049e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:65-227",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:363-364"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandAction/oneOf/3/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact live native approval params retain the independently fixed Unknown command action and present nonempty commandActions array for two simultaneously pending commands, before either answer; independent decline/accept and actual effects preserve identity. Retained test/fixture hashes match both frozen v107 default repeats and the integrated six-case block twice.",
+        "This physical request owner and positive nonempty form only; no null/omission, sibling/history-owner propagation, other transports/OS/backend, A11, broad approval lifecycle or complete qualification."
+      ],
       "pointer": "/definitions/CommandAction/oneOf/3/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:65-227",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:363-364"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -73138,27 +73348,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-action-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/commandActions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact live native approval params retain the independently fixed Unknown command action and present nonempty commandActions array for two simultaneously pending commands, before either answer; independent decline/accept and actual effects preserve identity. Retained test/fixture hashes match both frozen v107 default repeats and the integrated six-case block twice.",
+        "This physical request owner and positive nonempty form only; no null/omission, sibling/history-owner propagation, other transports/OS/backend, A11, broad approval lifecycle or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/commandActions",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "464e01e612f16ee238c65c0f219b27ec74066bd05f49b0b2c5ad458c4887247d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:65-227",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs:363-364"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "commandActions"
     },
     {

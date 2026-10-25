@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [command-action continuation](command-action-approval-qualification.md)
+passes its complete four-file block **6/0 twice** after root integration,
+including exact live action requests, stock command effects, cold history and
+owned cleanup. Compile/format, strict Credo, 38 tooling tests and the eight-file
+guard pass. Twenty-two exact physical owners bring contracts to **4,537
+implemented / 2,025 missing / 59 blocked**, zero verified; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. All 55 profiles
+have required explicit hosted invocations. Freeze this integrated source and
+run every full local and exact-pushed hosted check. The five inProgress history
+leaves still need complete producer/provenance evidence; no fabricated native
+scenario or blocked promotion is justified by the bounded audit. Continue
+independent reachable behavior while A11/legacy/external/OS gates stay open.
+
 The [native output-selection unit](native-output-selection-qualification.md)
 adds two complete actual-binary profiles, **2/0 twice** after root integration,
 with warning-free compile/format, strict Credo, all 38 tooling regressions and
