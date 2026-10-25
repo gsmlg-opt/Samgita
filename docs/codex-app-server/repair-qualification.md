@@ -6,6 +6,19 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Independent search/ranking continuation
+
+The [owning record](search-ranking-qualification.md) passes24/0 twice in the
+complete four-file native block, with warning-free compile, format, strict
+Credo and a matching source guard. Its first ordinary-pagination failure exposes
+the pinned created_at forward-cursor precision defect. Exact duplicate/skip
+diagnostics retain that limitation; valid created pagination is not claimed.
+All independent full/first sort/timestamp, updated/recency continuation and local
+plugin rank/keyword assertions remain. Four exact physical owners bring contracts
+to3399 implemented/3222 missing; requirements stay462 implemented/12 missing/
+11 blocked, zero verified. Freeze this source for complete local/hosted checks;
+all broader compatibility/security/publication gates stay incomplete.
+
 ## Fork lifecycle continuation
 
 The [owning record](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)

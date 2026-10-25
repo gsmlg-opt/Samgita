@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,395 implemented / 3,226 missing
+11 blocked requirements** and **0 verified / 3,399 implemented / 3,222 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,395 directly exercised
+MCP entries have scoped implementation evidence. These 3,399 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [independent search/ranking continuation](search-ranking-qualification.md)
+passes its complete four-file native block **24/0 twice**, with strict checks
+and a matching source guard. Four exact properties gain scoped implemented
+evidence. Its first failure proves a pinned created_at forward-cursor precision
+defect; the later passing diagnostic preserves exact duplicate/skip behavior,
+not a valid pagination claim. All six independent sort/metadata expectations,
+updated/recency continuation and competing local plugin ranks stay checked.
+Final-source local/hosted matrices and all broader gates remain required.
 
 The [fork lifecycle continuation](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)
 passes the complete seven-file native block **43/0 at both fixed seeds**, with

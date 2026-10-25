@@ -689,6 +689,124 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     assert_idle(pid)
   end
 
+  test "local search ranks competing name and keyword matches exactly across restart", ctx do
+    expected_rows = [
+      {"rank-visible", "ORBIT", []},
+      {"orbit", "Independent internal exact", []},
+      {"orbit-prefix", "Independent prefix", []},
+      {"contains-orbit", "Independent substring", []},
+      {"rank-keyword", "Independent keyword", ["orbit"]},
+      {"rank-substring", "Independent keyword substring", ["xx-orbit-xx"]}
+    ]
+
+    control = {"rank-nomatch", "Independent control", []}
+    fixture_rows = Enum.reverse(expected_rows ++ [control])
+    fixture_names = Enum.map(fixture_rows, &elem(&1, 0))
+    assert marketplace(ctx.workspace, @market, fixture_names) == ctx.marketplace
+
+    for {name, display_name, keywords} <- fixture_rows do
+      description =
+        if name == "rank-nomatch",
+          do: "Only-description-token",
+          else: "Synthetic ranking metadata"
+
+      File.write!(
+        Path.join(ctx.workspace, "#{name}/.codex-plugin/plugin.json"),
+        JSON.encode!(%{
+          "name" => name,
+          "description" => description,
+          "keywords" => keywords,
+          "interface" => %{"displayName" => display_name}
+        })
+      )
+    end
+
+    source_paths =
+      [config(ctx), ctx.marketplace] ++
+        Enum.flat_map(fixture_names ++ [@plugin, "fixture-hidden"], fn name ->
+          [
+            Path.join(ctx.workspace, "#{name}/.codex-plugin/plugin.json"),
+            Path.join(ctx.workspace, "#{name}/skills/inspect/SKILL.md")
+          ]
+        end)
+
+    source_bytes = Enum.map(source_paths, &{&1, File.read!(&1)})
+    auth_path = Path.join(ctx.root, "codex/auth.json")
+
+    assert_sources = fn ->
+      for {path, bytes} <- source_bytes do
+        assert File.lstat!(path).type == :regular
+        assert File.read!(path) === bytes
+      end
+
+      refute File.exists?(auth_path)
+    end
+
+    expected_ids = [
+      "rank-visible@#{@market}",
+      "orbit@#{@market}",
+      "orbit-prefix@#{@market}",
+      "contains-orbit@#{@market}",
+      "rank-keyword@#{@market}",
+      "rank-substring@#{@market}"
+    ]
+
+    assert_ranked_search = fn pid ->
+      for options <- [%{}, %{"scope" => "personal"}] do
+        result = search(pid, ctx, "  ORBIT!!!  ", options)
+        rows = Map.fetch!(result, "data")
+        assert Enum.map(rows, &Map.fetch!(Map.fetch!(&1, "plugin"), "id")) === expected_ids
+        assert Map.fetch!(result, "nextCursor") === nil
+
+        for {row, {name, display_name, keywords}} <- Enum.zip(rows, expected_rows) do
+          plugin = Map.fetch!(row, "plugin")
+          assert Map.fetch!(plugin, "name") === name
+          assert Map.fetch!(plugin, "keywords") === keywords
+          assert Map.fetch!(Map.fetch!(plugin, "interface"), "displayName") === display_name
+          assert Map.fetch!(plugin, "installed") === false
+          assert Map.fetch!(plugin, "enabled") === false
+
+          assert Map.fetch!(plugin, "source") === %{
+                   "type" => "local",
+                   "path" => Path.join(ctx.workspace, name)
+                 }
+
+          assert Map.fetch!(row, "marketplaceName") === @market
+          assert Map.fetch!(row, "marketplacePath") === ctx.marketplace
+        end
+
+        assert search(pid, ctx, "Only-description-token", options) === %{
+                 "data" => [],
+                 "nextCursor" => nil
+               }
+
+        assert search(pid, ctx, "  ORBIT!!!  ", Map.put(options, "cursor", "synthetic-next")) ===
+                 %{"data" => [], "nextCursor" => nil}
+      end
+
+      assert_idle(pid)
+      assert_sources.()
+    end
+
+    assert_sources.()
+    pid = start(ctx)
+    assert_ranked_search.(pid)
+    native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{connection: connection} = :sys.get_state(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    await_process_exit(native)
+    assert_sources.()
+
+    cold = start(ctx)
+    cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
+    refute cold_native == native
+    assert_ranked_search.(cold)
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert :ok = StdioSessionFixture.close(cold, cold_connection)
+    await_process_exit(cold_native)
+    assert_sources.()
+  end
+
   test "configured local Git upgrades materialize revisions and distinguish noops and invalid kinds",
        ctx do
     source = Path.join(ctx.root, "git-source")

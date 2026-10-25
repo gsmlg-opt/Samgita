@@ -21,13 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [independent search/ranking block](search-ranking-qualification.md) passes
+**24/0 twice**, strict checks and matching source guard. Four exact owners bring
+contracts to3399 implemented/3222 missing, zero verified. Requirements remain
+462 implemented/12 missing/11 blocked, zero verified. Source-proven created_at
+forward pagination is incorrect and remains incomplete; ordinary updated/
+recency continuation is separately asserted. Freeze this executable/manifest
+source for the complete local and final-pushed hosted qualification next.
+
 The [fork lifecycle continuation](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)
 passes its complete seven-file native block **43/0 twice**, fixed seeds, with
 compile/format/strict Credo and a matching source guard. Paginated ephemeral,
 active callback and prediction inheritance cases deepen five existing owners;
 counts and all broader incomplete gates remain unchanged. Source-backed first
-oracle failures remain recorded. Next complete independent search/ranking
-oracles, then freeze source for the complete local and pushed hosted matrices.
+oracle failures remain recorded. The later search/ranking block above precedes
+the complete local and pushed hosted matrices.
 
 The [image-view/fork continuation](image-view-fork-qualification.md) passes
 its complete six-file native owning block **36/0 twice**, fixed seeds, with

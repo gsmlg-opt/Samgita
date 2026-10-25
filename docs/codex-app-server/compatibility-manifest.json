@@ -159402,27 +159402,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-ranking-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSummary/properties/keywords",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_rank_keywords: Six prescribed exact display/internal/prefix/substring/keyword ranks plus description-only exclusion, reverse input order, exact empty/nonempty keywords, identity/local provenance and installed:false/enabled:false. Default/personal scopes, explicit cursor-empty behavior, confirmed cold restart, unchanged source/config/skill bytes, absent auth and no model/tool/install execution. Four-file block24/0 both fixed seeds, strict checks/source guard. Only first-page local Linux stdio ranking and exact fields; limit/cap, remote identity/pagination, sharing, full summary fields, backend/OS/A11 remain incomplete. No verified or sibling promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/keywords",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:692-808"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "keywords"
     },
     {
@@ -159720,14 +159728,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/search-ranking-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/properties/data",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "actual_native_local_rank_keywords: Six prescribed exact display/internal/prefix/substring/keyword ranks plus description-only exclusion, reverse input order, exact empty/nonempty keywords, identity/local provenance and installed:false/enabled:false. Default/personal scopes, explicit cursor-empty behavior, confirmed cold restart, unchanged source/config/skill bytes, absent auth and no model/tool/install execution. Four-file block24/0 both fixed seeds, strict checks/source guard. Only first-page local Linux stdio ranking and exact fields; limit/cap, remote identity/pagination, sharing, full summary fields, backend/OS/A11 remain incomplete. No verified or sibling promotion."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -159742,7 +159752,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:692-808"
         ]
       },
       "transport_coverage": [
@@ -198280,27 +198291,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-ranking-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/createdAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_independent_timestamp_oracle: Owned raw native milliseconds read with mode=ro/query_only independently determine six full/first-page sort orders, exact createdAt/updatedAt/recencyAt seconds, snippets and metadata-only history; four real assistant turns, control exclusion, warm/cold source/history/time invariance and updated/recency forward continuations. Initial ordinary created_at continuation fails because immutable recorder truncates to seconds; exact duplicate/same-cursor and descending-filter diagnostics preserve that upstream limitation without qualifying valid created paging. Four-file block24/0 both fixed seeds with strict checks/source guard. Only local paginated Linux stdio and selected physical fields; reverse/valid-created pagination, full Thread/search variants, other stores/transports/OS/services/A11 remain unqualified. No verified or alias promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/createdAt",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "51b6dbc3b1e027206424d99128fdae03ab698a995d2963dce3269172c2ddf9c2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:219-518"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAt"
     },
     {
@@ -198999,27 +199018,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-ranking-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/recencyAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_independent_timestamp_oracle: Owned raw native milliseconds read with mode=ro/query_only independently determine six full/first-page sort orders, exact createdAt/updatedAt/recencyAt seconds, snippets and metadata-only history; four real assistant turns, control exclusion, warm/cold source/history/time invariance and updated/recency forward continuations. Initial ordinary created_at continuation fails because immutable recorder truncates to seconds; exact duplicate/same-cursor and descending-filter diagnostics preserve that upstream limitation without qualifying valid created paging. Four-file block24/0 both fixed seeds with strict checks/source guard. Only local paginated Linux stdio and selected physical fields; reverse/valid-created pagination, full Thread/search variants, other stores/transports/OS/services/A11 remain unqualified. No verified or alias promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/recencyAt",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "fe11f3dd5c48e7a49414653fede335bb260d0122d370b3419fd7d04950a85508",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:219-518"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "recencyAt"
     },
     {
@@ -199403,27 +199430,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-ranking-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/updatedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_independent_timestamp_oracle: Owned raw native milliseconds read with mode=ro/query_only independently determine six full/first-page sort orders, exact createdAt/updatedAt/recencyAt seconds, snippets and metadata-only history; four real assistant turns, control exclusion, warm/cold source/history/time invariance and updated/recency forward continuations. Initial ordinary created_at continuation fails because immutable recorder truncates to seconds; exact duplicate/same-cursor and descending-filter diagnostics preserve that upstream limitation without qualifying valid created paging. Four-file block24/0 both fixed seeds with strict checks/source guard. Only local paginated Linux stdio and selected physical fields; reverse/valid-created pagination, full Thread/search variants, other stores/transports/OS/services/A11 remain unqualified. No verified or alias promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/updatedAt",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "d97af10c09666cd5124a0441852e3e7a382f753263fb58898a000e4ebdc03ec1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:219-518"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "updatedAt"
     },
     {
@@ -199604,7 +199639,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/search-ranking-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -200263,7 +200299,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Two exact matching native rows; filtered archive/source and paged order are checked.",
-        "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
+        "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. That earlier checkpoint had no independent sort-precedence fixture; subsequent evidence below adds it.",
+        "actual_native_independent_timestamp_oracle: Owned raw native milliseconds read with mode=ro/query_only independently determine six full/first-page sort orders, exact createdAt/updatedAt/recencyAt seconds, snippets and metadata-only history; four real assistant turns, control exclusion, warm/cold source/history/time invariance and updated/recency forward continuations. Initial ordinary created_at continuation fails because immutable recorder truncates to seconds; exact duplicate/same-cursor and descending-filter diagnostics preserve that upstream limitation without qualifying valid created paging. Four-file block24/0 both fixed seeds with strict checks/source guard. Only local paginated Linux stdio and selected physical fields; reverse/valid-created pagination, full Thread/search variants, other stores/transports/OS/services/A11 remain unqualified. No verified or alias promotion."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -200278,10 +200315,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:30-38,40-65"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:30-38,40-65",
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:219-518"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
