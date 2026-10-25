@@ -1,5 +1,10 @@
 # Real native approvals and current platform authority
 
+The latest [queued-ticket expiry case](#queued-response-expires-after-ticket-commit)
+extends the dedicated authority profile to **4/0 at both seeds**. Earlier
+three-case results remain historical evidence below. Broad platform authority
+and full compatibility acceptance remain incomplete.
+
 Three new platform integration cases extend the existing two-Agent native
 journey. The owning integration module passes **4/0** at seeds `501432` and
 `987654`, 5.3 and 5.2 seconds, on the retained
@@ -228,3 +233,44 @@ source SHA256 `109df93b98e453039768346c53b807187b0777d32f2d32e4a0ecfbb0b0cbf839`
 This strengthens the still-missing `lifecycle:samgita-authorization`; counts and
 verified states do not change. Full API/race/interaction/transport/OS/backend,
 final-source matrices, A11 and publication gates remain separate requirements.
+
+## Queued response expires after ticket commit
+
+The added case uses a genuine native pending command approval and an authorized
+operator accept response with the supported two-second operation timeout. It
+commits the normal one-use dispatch ticket. Attempt, interaction and execution
+deadlines must extend more than five seconds beyond that ticket; no product
+deadline changes.
+
+The test suspends only its owned Session, queues the exact valid-handle response
+with the ticket's instance/generation/deadline guards, and observes that call in
+the mailbox before expiry. It resumes after the actual ticket deadline. A
+same-sender status call proves processing order before the exact
+`dispatch_expired`, `uncertain:false` rejection is inspected. The timer crosses
+the real deadline; it is not a readiness substitute or a larger timeout.
+
+Native interaction, provider requests and workspace stay exact. Every selected
+Task/Attempt/authority/native/audit/receipt/job snapshot is preserved after each
+rejection, as are all prior retained database records. There is no resolution,
+command output, turn completion, review or acceptance. The durable operation
+remains expired `in_flight`, event `reply_prepared`, effects unresolved. Even a
+genuine-token settlement repeatedly rejects `uncertain_outcome` without receipts;
+both direct redispatch and `Driver.execute` reject `dispatch_not_repeatable`.
+Checked owned shutdown does not resolve the durable effect. Failure cleanup
+resumes only the owned Session before the existing confirmed shutdown.
+
+This complete four-case profile passes both `501432` and `987654` against the
+same retained allowlisted authority database. The dedicated database preserves
+its intentionally unresolved history without contaminating recovery activation.
+No database was cleared, Task dropped, mapping fabricated or guard bypassed.
+The first temporary launcher failed before tests because Devenv overrode inherited
+PostgreSQL variables; setting them after entering Devenv corrected the launcher.
+Parent integration adds only the two required formatting blank lines.
+
+Integrated verification and exact commands/logs are shared with the native MCP
+block at `/tmp/samgita-native-continuation-v52-20261025/`; terminal report SHA256
+`f1aeed3fdffbb777dc139faa41c5ecb835a44137cf01e52f28ac5a92a3d92c1e`.
+Compile, format, strict Credo and source/binary guards pass. This qualifies local
+queued expiry after ticket commit, not instantaneous database revocation,
+remote idempotency, every interaction or full `samgita-authorization`. That broad
+requirement, A11, external profiles and final-source matrices remain incomplete.

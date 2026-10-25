@@ -52,6 +52,13 @@ cannot contaminate global activation/restart checks. It observes the actual
 PostgreSQL blocker before allowing management to commit, then requires rejected
 dispatch with no ticket/send. This qualifies that pre-ticket ordering only.
 
+The additive [queued-ticket expiry case](native-authority-qualification.md#queued-response-expires-after-ticket-commit)
+observes a genuine response queued before its committed ticket deadline and
+handled afterward. Session rejects it without consuming the native interaction;
+the expired durable operation stays unresolved and cannot be redispatched or
+settled as an ordinary success. It does not add synchronous revocation across
+the commit-to-send interval or remote idempotency.
+
 The sending Agent chooses the native action. Samgita validates and records it:
 
 1. **Prepare:** persist a native request or client notification with a command UUID, current lease proof,

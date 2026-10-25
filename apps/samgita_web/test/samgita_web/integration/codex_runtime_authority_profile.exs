@@ -277,6 +277,269 @@ defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
     end)
   end
 
+  test "a genuine queued approval expires after ticket commit without consuming native or durable authority",
+       %{database: database} do
+    Sandbox.unboxed_run(Repo, fn ->
+      database_backend!(database)
+      retained = retained_records()
+      {ctx, pid, fixture, event, recorded} = pending_authority_fixture()
+      wire = %{"id" => event.wire["id"], "result" => %{"decision" => "accept"}}
+
+      reply =
+        command(%{
+          "expected_version" => recorded["version"],
+          "native" => wire,
+          "timeout_ms" => 2_000
+        })
+
+      assert {:ok, operation} =
+               CodexRuntime.reply(
+                 Principal.operator(),
+                 ctx.project["id"],
+                 ctx.runtime["id"],
+                 recorded["id"],
+                 reply
+               )
+
+      receipt =
+        Repo.get_by!(CommandReceipt, principal: "operator", command_id: reply["command_id"])
+
+      prepared = snapshot(ctx, receipt.id)
+      interaction = Map.fetch!(:sys.get_state(pid).interactions, event.handle.id)
+      provider_requests = ModelFixture.requests(fixture)
+      workspace_entries = File.ls!(fixture.workspace)
+
+      evidence = %{
+        provider_requests: provider_requests,
+        interaction: interaction,
+        workspace_entries: workspace_entries
+      }
+
+      assert interaction.handle == event.handle
+      assert_pending_handle(pid, event, interaction)
+      assert_native_pending(ctx, pid, fixture, event)
+      assert {:ok, ticket} = dispatch(ctx, operation)
+      dispatched = snapshot(ctx, receipt.id)
+      assert_programmatic_ticket_delta(ctx, prepared, dispatched, operation, ticket)
+      assert ticket["native"] == wire
+      assert ticket["instance_id"] == Session.status(pid).instance_id
+      assert ticket["driver_generation"] == event.handle.generation
+      assert {:ok, deadline, 0} = DateTime.from_iso8601(ticket["dispatch_expires_at"])
+      deadline_ms = DateTime.to_unix(deadline, :millisecond)
+
+      # Expire only the short issued ticket, while the current Attempt and the
+      # original pending interaction retain their existing authority deadlines.
+      for authority_deadline <- [
+            dispatched.attempt.lease_expires_at,
+            dispatched.attempt.execution_deadline,
+            dispatched.event.expires_at
+          ] do
+        assert DateTime.diff(authority_deadline, deadline, :millisecond) > 5_000
+      end
+
+      assert Enum.find(dispatched.operations, &(&1.id == ticket["id"])).timeout_ms == 2_000
+
+      guards = [
+        expected_instance_id: ticket["instance_id"],
+        expected_generation: ticket["driver_generation"],
+        dispatch_deadline_ms: deadline_ms
+      ]
+
+      ordering = expire_queued_approval(pid, event.handle, ticket["native"]["result"], guards)
+      assert ordering.queued_at < deadline_ms
+      assert ordering.resumed_at > deadline_ms
+      assert ordering.handled_at >= ordering.resumed_at
+      assert DateTime.compare(DateTime.utc_now(), deadline) == :gt
+
+      IO.puts(
+        "native authority ticket expiry database=#{database} queued=#{ordering.queued_at} " <>
+          "deadline=#{deadline_ms} resumed=#{ordering.resumed_at} handled=#{ordering.handled_at}"
+      )
+
+      assert_expired_approval_preserved(
+        ctx,
+        receipt.id,
+        dispatched,
+        pid,
+        fixture,
+        event,
+        evidence
+      )
+
+      settlement =
+        command(%{
+          "expected_version" => ticket["version"],
+          "dispatch_token" => ticket["dispatch_token"],
+          "delivery_outcome" => "uncertain"
+        })
+
+      for attrs <- [
+            settlement,
+            settlement,
+            Map.put(settlement, "command_id", Ecto.UUID.generate())
+          ] do
+        # Even certain local no-send evidence cannot turn an expired ticket
+        # into an ordinary settlement or manufacture a successful receipt.
+        assert CodexRuntime.settle(
+                 ctx.principal,
+                 ctx.project["id"],
+                 ctx.runtime["id"],
+                 ticket["id"],
+                 attrs
+               ) == {:error, Error.new(:uncertain_outcome)}
+
+        refute Repo.get_by(CommandReceipt,
+                 principal: "agent:" <> ctx.agent["id"],
+                 command_id: attrs["command_id"]
+               )
+
+        assert_expired_approval_preserved(
+          ctx,
+          receipt.id,
+          dispatched,
+          pid,
+          fixture,
+          event,
+          evidence
+        )
+
+        assert_retained_records(retained)
+      end
+
+      for _submission <- 1..2 do
+        assert dispatch(ctx, ticket) ==
+                 {:error, Error.new(:conflict, %{reason: "dispatch_not_repeatable"})}
+
+        assert Driver.execute(
+                 pid,
+                 ctx.principal,
+                 ctx.project["id"],
+                 ctx.runtime["id"],
+                 ticket["id"],
+                 %{"expected_version" => ticket["version"], "proof" => ctx.proof},
+                 interaction_handle: event.handle
+               ) == {:error, Error.new(:conflict, %{reason: "dispatch_not_repeatable"})}
+
+        assert_expired_approval_preserved(
+          ctx,
+          receipt.id,
+          dispatched,
+          pid,
+          fixture,
+          event,
+          evidence
+        )
+
+        assert_retained_records(retained)
+      end
+
+      stored = Enum.find(dispatched.operations, &(&1.id == ticket["id"]))
+      assert stored.state == "in_flight"
+      assert stored.response_payload == nil
+      assert dispatched.event.state == "reply_prepared"
+      assert dispatched.task.state == "in_progress"
+      assert dispatched.task.accepted_at == nil
+      assert dispatched.attempt.state == "running"
+      refute dispatched.attempt.effects_resolved
+      assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
+      assert :ok = Session.close(pid)
+      assert snapshot(ctx, receipt.id) == dispatched
+      assert ModelFixture.requests(fixture) == provider_requests
+      assert File.ls!(fixture.workspace) == workspace_entries
+      assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
+
+      assert {:ok, %{"owner" => "hub", "admission_open" => true}} =
+               Platform.status(Principal.operator())
+
+      assert_retained_records(retained)
+    end)
+  end
+
+  defp expire_queued_approval(pid, handle, result, guards) do
+    # Registered after the fixture's shutdown callback, so failure cleanup
+    # resumes this owned Session before any existing close waits for it.
+    on_exit(fn ->
+      if Process.alive?(pid), do: assert(:ok = :sys.resume(pid))
+    end)
+
+    assert :ok = :sys.suspend(pid)
+
+    try do
+      call = {:respond, handle, {:ok, result}, guards}
+      request = :gen_server.send_request(pid, call)
+      caller = self()
+      assert {:messages, messages} = Process.info(pid, :messages)
+
+      assert [{:"$gen_call", {^caller, _tag}, ^call}] =
+               Enum.filter(messages, fn
+                 {:"$gen_call", {^caller, _tag}, ^call} -> true
+                 _ -> false
+               end)
+
+      queued_at = System.system_time(:millisecond)
+      deadline_ms = Keyword.fetch!(guards, :dispatch_deadline_ms)
+      assert queued_at < deadline_ms
+
+      # The timer only advances to the genuine ticket boundary. The mailbox
+      # assertion above establishes ordering independently of timer duration.
+      receive do
+      after
+        max(0, deadline_ms + 1 - System.system_time(:millisecond)) -> :ok
+      end
+
+      resumed_at = System.system_time(:millisecond)
+      assert resumed_at > deadline_ms
+      assert :ok = :sys.resume(pid)
+
+      # Sent by the same caller after the queued response: status cannot
+      # complete until Session has handled that exact expired response.
+      assert %{phase: :ready, interactions: 1, interaction_outcomes: 0, pending: 0, uncertain: 0} =
+               Session.status(pid)
+
+      handled_at = System.system_time(:millisecond)
+
+      assert {:reply,
+              {:error,
+               %SamgitaProtocolCodex.Error{
+                 code: :dispatch_expired,
+                 uncertain: false,
+                 wire: nil
+               }}} = :gen_server.receive_response(request, 5_000)
+
+      %{queued_at: queued_at, resumed_at: resumed_at, handled_at: handled_at}
+    after
+      if Process.alive?(pid), do: assert(:ok = :sys.resume(pid))
+    end
+  end
+
+  defp assert_expired_approval_preserved(
+         ctx,
+         receipt_id,
+         expected,
+         pid,
+         fixture,
+         event,
+         evidence
+       ) do
+    assert snapshot(ctx, receipt_id) == expected
+    assert ModelFixture.requests(fixture) == evidence.provider_requests
+    assert File.ls!(fixture.workspace) == evidence.workspace_entries
+    assert_pending_handle(pid, event, evidence.interaction)
+    assert {:ok, events} = Session.drain(pid)
+
+    refute Enum.any?(events, fn observed ->
+             observed.wire["method"] in [
+               "serverRequest/resolved",
+               "item/commandExecution/outputDelta",
+               "turn/completed"
+             ] ||
+               (observed.wire["method"] == "item/completed" &&
+                  get_in(observed.wire, ["params", "item", "type"]) == "commandExecution")
+           end)
+
+    assert_native_pending(ctx, pid, fixture, event)
+  end
+
   defp assert_pending_handle(pid, event, interaction) do
     assert :sys.get_state(pid).interactions == %{event.handle.id => interaction}
     assert Session.interaction_outcomes(pid) == []
