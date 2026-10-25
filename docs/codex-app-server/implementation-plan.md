@@ -21,6 +21,28 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [sleep, compaction and command-output unit](native-runtime-values-qualification.md)
+passes the final **37-file, 63/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, twelve fixture ASTs and the **271-source** unchanged-byte
+guard. Twelve exact physical owners bring contracts to **4,818 implemented /
+1,744 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Real 1-ms sleep, completed local
+compaction and native stdout/stderr byte streams retain literal independent
+maps, source-backed reply barriers, history and cleanup. Failed draft metadata
+and static-check expectations plus their corrections remain recorded. Inventory
+consistency passes; strict completeness remains exit **1**.
+
+Continue canonical Plan notification fields2591–2594 through actual plan-mode
+Responses `<proposed_plan>` extraction. The native producer derives ID from
+the returned turn ID and preserves literal final text/trailing newline. Use an
+ordinary provider-only profile with complete start/final maps and first-cold
+history, not an old isolation profile. Keep branch2590, aliases and unexercised
+deltas outside this four-field unit; selective null-action owner5483 and all
+deprecated/unreachable paths remain unqualified. All prohibited/broad/hosted,
+full-goal, A11, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [native reasoning-item unit](reasoning-item-events-qualification.md) passes
 the final **34-file, 60/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, eleven fixture ASTs and the **267-source** unchanged-byte
@@ -40,7 +62,7 @@ selective null-action owner5483 missing until its own producer is demonstrated.
 All prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
 external/OS and release gates remain incomplete.
 
-## Earlier checkpoints
+### Earlier reasoning checkpoint
 
 The [standalone web executor](standalone-web-search-qualification.md) and
 [native citation events](memory-citation-events-qualification.md) pass the

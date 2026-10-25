@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [sleep, compaction and command-output unit](native-runtime-values-qualification.md)
+passes the final **37-file, 63/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, twelve provider ASTs and the **271-source** unchanged-byte
+guard. Twelve direct owners bring contracts to **4,818 implemented / 1,744
+missing / 59 blocked**, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Real 1-ms execution, local compaction with
+preserved seed/history and actual stdout/stderr binary deltas retain independent
+oracles and owned cleanup. The omitted emittedAtMs draft expectation and Credo
+failure/correction remain recorded; no assertion or gate is removed. Inventory
+consistency passes; strict completeness exits **1**. Prohibited/broad/hosted,
+full-goal, A11, unresolved legacy, unavailable external/OS and release gates
+remain incomplete. No publication/deployment.
+
 The [native reasoning-item unit](reasoning-item-events-qualification.md) passes
 the final **34-file, 60/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, eleven provider ASTs and the **267-source** unchanged-byte

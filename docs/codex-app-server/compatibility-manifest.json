@@ -85741,90 +85741,126 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#native-command-streams"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CommandExecOutputStream/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual Linux stdio command/exec output stream branches/literals only: one owned Python command writes exact stdout/stderr binary payloads, each canonical base64 delta retains the literal process ID, stream label, false cap flag and host-bounded emittedAtMs. Per-stream reconstruction is exact; relative pipe ordering is unconstrained.",
+        "A source-backed output-worker-join reply barrier precedes the final drain; exact exit7/empty captured output, stable request correlation, no extra deltas, no inference entry points, and both owned native/child shutdown are asserted. No cap/timeout/other process profile, alias, other export/OS/transport or full compatibility is qualified; broader/hosted and security/permission gates remain unrun, state implemented only."
+      ],
       "pointer": "/definitions/CommandExecOutputStream/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "815fffa84ad0e3219252a82bab9b4a4c57c8657e7120c1a85f705280986b9fda",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#native-command-streams"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CommandExecOutputStream/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual Linux stdio command/exec output stream branches/literals only: one owned Python command writes exact stdout/stderr binary payloads, each canonical base64 delta retains the literal process ID, stream label, false cap flag and host-bounded emittedAtMs. Per-stream reconstruction is exact; relative pipe ordering is unconstrained.",
+        "A source-backed output-worker-join reply barrier precedes the final drain; exact exit7/empty captured output, stable request correlation, no extra deltas, no inference entry points, and both owned native/child shutdown are asserted. No cap/timeout/other process profile, alias, other export/OS/transport or full compatibility is qualified; broader/hosted and security/permission gates remain unrun, state implemented only."
+      ],
       "pointer": "/definitions/CommandExecOutputStream/oneOf/0/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "05963a879a3427b14226073912b47d3e89782ba84ec774266d2a37f4f1b0be7a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#native-command-streams"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CommandExecOutputStream/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual Linux stdio command/exec output stream branches/literals only: one owned Python command writes exact stdout/stderr binary payloads, each canonical base64 delta retains the literal process ID, stream label, false cap flag and host-bounded emittedAtMs. Per-stream reconstruction is exact; relative pipe ordering is unconstrained.",
+        "A source-backed output-worker-join reply barrier precedes the final drain; exact exit7/empty captured output, stable request correlation, no extra deltas, no inference entry points, and both owned native/child shutdown are asserted. No cap/timeout/other process profile, alias, other export/OS/transport or full compatibility is qualified; broader/hosted and security/permission gates remain unrun, state implemented only."
+      ],
       "pointer": "/definitions/CommandExecOutputStream/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "689710a21f44d10978add3ae3a5b1e47b461e51f46f1c71514c0185831c7f382",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#native-command-streams"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CommandExecOutputStream/oneOf/1/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual Linux stdio command/exec output stream branches/literals only: one owned Python command writes exact stdout/stderr binary payloads, each canonical base64 delta retains the literal process ID, stream label, false cap flag and host-bounded emittedAtMs. Per-stream reconstruction is exact; relative pipe ordering is unconstrained.",
+        "A source-backed output-worker-join reply barrier precedes the final drain; exact exit7/empty captured output, stable request correlation, no extra deltas, no inference entry points, and both owned native/child shutdown are asserted. No cap/timeout/other process profile, alias, other export/OS/transport or full compatibility is qualified; broader/hosted and security/permission gates remain unrun, state implemented only."
+      ],
       "pointer": "/definitions/CommandExecOutputStream/oneOf/1/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "69eebd60afb6710a7e806c067dc55dc54734afc8826aedb373608712f508de3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -98520,124 +98556,169 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#real-sleep"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/14",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification Sleep owner only: always_on clock.sleep executes one requested millisecond under the system clock, exact literal item maps and IDs/duration/type are retained in ordered starts/completions, real function output has native IDs and elapsed time at least1ms within host turn bounds. Exactly two local Responses requests are asserted.",
+        "Warm and first-cold selective/full history preserve final native item/timestamps and rollout/config/catalog/provider bytes. No interruption, virtual/operator clock, other duration/OS/transport, alias or other export is qualified. Whole compatibility and required broader/hosted/security/permission gates remain incomplete; state implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/14",
       "schema": "ServerNotification.json",
       "schema_sha256": "06167c547335aaf0708f3721b108c90238c4ba4d735e02a9d744bcb5e25d8638",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#real-sleep"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/14/properties/durationMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification Sleep owner only: always_on clock.sleep executes one requested millisecond under the system clock, exact literal item maps and IDs/duration/type are retained in ordered starts/completions, real function output has native IDs and elapsed time at least1ms within host turn bounds. Exactly two local Responses requests are asserted.",
+        "Warm and first-cold selective/full history preserve final native item/timestamps and rollout/config/catalog/provider bytes. No interruption, virtual/operator clock, other duration/OS/transport, alias or other export is qualified. Whole compatibility and required broader/hosted/security/permission gates remain incomplete; state implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/durationMs",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "durationMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#real-sleep"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/14/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification Sleep owner only: always_on clock.sleep executes one requested millisecond under the system clock, exact literal item maps and IDs/duration/type are retained in ordered starts/completions, real function output has native IDs and elapsed time at least1ms within host turn bounds. Exactly two local Responses requests are asserted.",
+        "Warm and first-cold selective/full history preserve final native item/timestamps and rollout/config/catalog/provider bytes. No interruption, virtual/operator clock, other duration/OS/transport, alias or other export is qualified. Whole compatibility and required broader/hosted/security/permission gates remain incomplete; state implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#real-sleep"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/14/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification Sleep owner only: always_on clock.sleep executes one requested millisecond under the system clock, exact literal item maps and IDs/duration/type are retained in ordered starts/completions, real function output has native IDs and elapsed time at least1ms within host turn bounds. Exactly two local Responses requests are asserted.",
+        "Warm and first-cold selective/full history preserve final native item/timestamps and rollout/config/catalog/provider bytes. No interruption, virtual/operator clock, other duration/OS/transport, alias or other export is qualified. Whole compatibility and required broader/hosted/security/permission gates remain incomplete; state implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4e04329ada7fc477fb4a8d06a0fe936647a2c3cb7f528ba73b6b5b8d551eebdf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#real-sleep"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/14/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification Sleep owner only: always_on clock.sleep executes one requested millisecond under the system clock, exact literal item maps and IDs/duration/type are retained in ordered starts/completions, real function output has native IDs and elapsed time at least1ms within host turn bounds. Exactly two local Responses requests are asserted.",
+        "Warm and first-cold selective/full history preserve final native item/timestamps and rollout/config/catalog/provider bytes. No interruption, virtual/operator clock, other duration/OS/transport, alias or other export is qualified. Whole compatibility and required broader/hosted/security/permission gates remain incomplete; state implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a2291af1be89edadcf17a24d4d88c18f834ac1320275575f8fa1d7926f96bc5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -192261,75 +192342,102 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#local-compaction"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/18/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ThreadItemsReadResponse contextCompaction ID/type/literal only: a genuine locally compacted owned thread supplies a UUID-v7 item with host-bounded creation timestamp, exact native start/completion association and actual warm/first-cold selective item maps. Duplicate/absent/wrong-turn selections and saved full history retain the seed user/assistant content and same completed compaction item.",
+        "Two local Responses requests, explicit compact prompt and metadata bind the new turn independently; rollout/config/catalog/provider bytes, unloaded state and owned cleanup remain. No deprecated thread/compacted notice, remote compaction, alias/whole union/other export/OS/transport or full compatibility promotion. Required broader/hosted and security/permission checks remain unrun; state implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/18/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#local-compaction"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/18/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ThreadItemsReadResponse contextCompaction ID/type/literal only: a genuine locally compacted owned thread supplies a UUID-v7 item with host-bounded creation timestamp, exact native start/completion association and actual warm/first-cold selective item maps. Duplicate/absent/wrong-turn selections and saved full history retain the seed user/assistant content and same completed compaction item.",
+        "Two local Responses requests, explicit compact prompt and metadata bind the new turn independently; rollout/config/catalog/provider bytes, unloaded state and owned cleanup remain. No deprecated thread/compacted notice, remote compaction, alias/whole union/other export/OS/transport or full compatibility promotion. Required broader/hosted and security/permission checks remain unrun; state implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/18/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "62fa6e946c31fe6c9b319ed770642ab4a770ff71f7c57a7268e3351b751fb291",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-runtime-values-qualification.md#local-compaction"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/18/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ThreadItemsReadResponse contextCompaction ID/type/literal only: a genuine locally compacted owned thread supplies a UUID-v7 item with host-bounded creation timestamp, exact native start/completion association and actual warm/first-cold selective item maps. Duplicate/absent/wrong-turn selections and saved full history retain the seed user/assistant content and same completed compaction item.",
+        "Two local Responses requests, explicit compact prompt and metadata bind the new turn independently; rollout/config/catalog/provider bytes, unloaded state and owned cleanup remain. No deprecated thread/compacted notice, remote compaction, alias/whole union/other export/OS/transport or full compatibility promotion. Required broader/hosted and security/permission checks remain unrun; state implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/18/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a157ae6712f5e68a38af58752535525f30d15ea8ecf3cb9ed31a6a97438a40a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
