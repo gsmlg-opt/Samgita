@@ -58,6 +58,13 @@ update leaves future thread defaults unchanged. Selected `none` omits
 setting intact. Actual applied snapshots and provider requests establish these
 semantics; the native hardcoded TurnContext summary field is not a selection
 oracle. This correction does not qualify cold restoration.
+The [Personality input correction](personality-input-qualification.md) likewise
+accepts only three source-declared unit-object variants on four request graphs,
+composing with existing input supplements. Fresh `none` removes the Personality
+section from the model template before initial inference. Later updates and cold
+resume retain inherited base instructions; subscribed warm rejoin ignores these
+overrides. Friendly and pragmatic no longer select different styles.
+Original objects are preserved and public selected values remain canonical strings.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

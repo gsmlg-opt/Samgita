@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [Personality input repair](personality-input-qualification.md) accepts three
+native unit-object values on four real request graphs. Eleven expanded native
+cases prove fresh instruction stripping, retained inherited instructions, idle
+updates and distinct warm/cold resume. Final **42 schema /119 ordinary driver
+twice**, outside consumer **1/0**, format/compile, strict Credo518, inventory and
+336-source guard pass; all328 other prior sources and prior pinned artifacts
+remain unchanged. No state/owner promotion: **5,018 implemented /1,537 missing
+/66 blocked** contracts, unchanged requirements and zero verified. Prohibited/
+broad/hosted, A11, legacy/external/platform and full-goal gates stay incomplete;
+no publication or deployment.
+
 The [ReasoningSummary input repair](reasoning-summary-input-qualification.md)
 reproduces and fixes native unit-object rejection on three real request graphs.
 Twenty-four new native profiles prove canonical applied settings, provider summary

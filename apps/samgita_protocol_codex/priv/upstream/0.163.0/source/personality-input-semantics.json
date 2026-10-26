@@ -1,0 +1,73 @@
+{
+  "definition": "Personality",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "none": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "none"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "friendly": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "friendly"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "pragmatic": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "pragmatic"
+      ],
+      "type": "object"
+    }
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/resume",
+    "thread/settings/update",
+    "thread/start",
+    "turn/start"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+    "v2/ThreadSettingsUpdateParams.json": "749419634bb7ed66216d72bf9d8734ecf0e6efaa8cd46fe51a117d1b42ed9657",
+    "v2/ThreadStartParams.json": "80a40a7fac15b4bf70efb7f893fb353acc0a0d30c68f54aee4f01923deca85de",
+    "v2/TurnStartParams.json": "abf0d6d29d223b38c650ff1155cb9c9f9b4211e6d0e20c57d750a9e1babfdb41"
+  },
+  "semantics": "The ordinary lowercase Personality unit enum accepts one-key none/friendly/pragmatic objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Preserve canonical string schema, caller objects, outer null/omission distinctions, enclosing constraints and negotiation on exactly four input graphs. Native owns instruction construction: fresh none strips the model template's Personality section, while later updates and resume retain inherited base instructions. Friendly/pragmatic no longer select distinct styles. Output schemas remain canonical.",
+  "source_sha256": {
+    "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

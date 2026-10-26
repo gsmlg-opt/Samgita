@@ -11,7 +11,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/response-item-input-semantics.json",
                       "source/collaboration-input-semantics.json",
                       "source/multi-agent-input-semantics.json",
-                      "source/reasoning-summary-input-semantics.json"
+                      "source/reasoning-summary-input-semantics.json",
+                      "source/personality-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -24,6 +25,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @multi_agent Enum.find(@corrections, &(&1["definition"] == "MultiAgentMode"))
   @summary Enum.find(@corrections, &(&1["definition"] == "ReasoningSummary"))
   @summary_methods @summary["methods"]
+  @personality Enum.find(@corrections, &(&1["definition"] == "Personality"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -61,6 +63,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       end
     end)
     |> multi_agent_input()
+    |> personality_input()
   end
 
   def contract("ClientRequest.json", "thread/resume", document) do
@@ -69,6 +72,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       ["definitions", "ResponseItem", "oneOf"],
       &Enum.map(&1, fn branch -> response_input(branch) end)
     )
+    |> personality_input()
   end
 
   def contract("ClientRequest.json", method, document)
@@ -80,6 +84,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
     )
     |> multi_agent_input()
     |> summary_input()
+    |> personality_input()
   end
 
   def contract("ClientRequest.json", method, document) when method in @summary_methods,
@@ -134,6 +139,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
           [@response["canonical_tag"] | @response["input_aliases"]]
         ),
       else: branch
+  end
+
+  defp personality_input(document) do
+    update_in(
+      document,
+      ["definitions", "Personality"],
+      &%{"oneOf" => [&1 | @personality["input_object_branches"]]}
+    )
   end
 
   defp legacy_fields?(value) when is_map(value),

@@ -36,6 +36,9 @@ MULTI_AGENT_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json")
 SUMMARY_SEMANTICS = "source/reasoning-summary-input-semantics.json"
 SUMMARY_METHODS = ("thread/settings/update", "turn/settings/update", "turn/start")
 SUMMARY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/TurnSettingsUpdateParams.json")
+PERSONALITY_SEMANTICS = "source/personality-input-semantics.json"
+PERSONALITY_METHODS = ("thread/resume", "thread/settings/update", "thread/start", "turn/start")
+PERSONALITY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json", "v2/ThreadResumeParams.json")
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -267,6 +270,42 @@ def derive_summary(vendor):
     }
 
 
+def derive_personality(vendor):
+    if digest(vendor / CONFIG_TYPES) != CONFIG_TYPES_SHA256:
+        raise ValueError("Pinned personality input decoder changed")
+    rust = (vendor / CONFIG_TYPES).read_text()
+    declaration = re.search(
+        r'#\[serde\(rename_all = "lowercase"\)\]\n'
+        r'#\[strum\(serialize_all = "lowercase"\)\]\n'
+        r'pub enum Personality \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    None,\n    Friendly,\n    Pragmatic,':
+        raise ValueError("Pinned Personality unit variants changed")
+    names = [name.lower() for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    hashes = {}
+    for name in PERSONALITY_SCHEMAS:
+        path = vendor / "experimental" / name
+        document = json.loads(path.read_text())
+        if document["definitions"]["Personality"] != {
+                "type": "string", "enum": names,
+                "description": "Deprecated: `friendly` and `pragmatic` no longer select a style."}:
+            raise ValueError("Official canonical personality contract changed: " + name)
+        hashes[name] = digest(path)
+    document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
+    if request_methods(document, "Personality") != list(PERSONALITY_METHODS):
+        raise ValueError("Personality request input graph changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(PERSONALITY_METHODS),
+        "definition": "Personality",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary lowercase Personality unit enum accepts one-key none/friendly/pragmatic objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Preserve canonical string schema, caller objects, outer null/omission distinctions, enclosing constraints and negotiation on exactly four input graphs. Native owns instruction construction: fresh none strips the model template's Personality section, while later updates and resume retain inherited base instructions. Friendly/pragmatic no longer select distinct styles. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -307,7 +346,8 @@ def corrections(vendor):
     return ((SEMANTICS, derive(vendor)), (RESPONSE_SEMANTICS, derive_response_item(vendor)),
             (COLLABORATION_SEMANTICS, derive_collaboration(vendor)),
             (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)),
-            (SUMMARY_SEMANTICS, derive_summary(vendor)))
+            (SUMMARY_SEMANTICS, derive_summary(vendor)),
+            (PERSONALITY_SEMANTICS, derive_personality(vendor)))
 
 
 def write(vendor):

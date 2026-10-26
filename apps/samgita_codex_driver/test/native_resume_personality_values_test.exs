@@ -15,6 +15,7 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @answer "Deterministic local fixture answer"
   @literal """
   Owned resume personality base λ
   # Personality
@@ -113,7 +114,7 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
             %{"personality" => nil},
             %{"personality" => "none"},
             %{"personality" => "friendly"}
-          ],
+          ] ++ Enum.map(unit_cases(), &elem(&1, 1)),
           1
         ),
         [original],
@@ -131,8 +132,8 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
         end
       )
 
-    assert length(Enum.uniq(turns)) == 5
-    assert_functional_state(ctx, pid, 5)
+    assert length(Enum.uniq(turns)) == 11
+    assert_functional_state(ctx, pid, 11)
     assert File.read!(ctx.config) == ctx.config_bytes
     assert :ok = Session.close(pid)
   end
@@ -151,7 +152,7 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
 
     {current, completed} =
       Enum.reduce(Enum.with_index(parents, 1), {first, []}, fn {parent, index}, {prior, rows} ->
-        count = 4 + index - 1
+        count = length(parents) + index - 1
         cold = restart(ctx, prior, count)
         assert call(cold, "thread/loaded/list", %{})["data"] == []
 
@@ -174,8 +175,8 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
       end)
 
     for {thread, turns} <- completed, do: assert_history(read(current, thread), thread, turns)
-    assert length(Enum.uniq(Enum.map(parents, & &1.thread))) == 4
-    assert_functional_state(ctx, current, 8)
+    assert length(Enum.uniq(Enum.map(parents, & &1.thread))) == 10
+    assert_functional_state(ctx, current, 20)
     assert File.read!(ctx.config) == ctx.config_bytes
     assert :ok = Session.close(current)
   end
@@ -186,7 +187,14 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
       {"null", %{"personality" => nil}, "pragmatic"},
       {"friendly", %{"personality" => "friendly"}, "friendly"},
       {"none", %{"personality" => "none"}, "none"}
-    ]
+    ] ++ unit_cases()
+  end
+
+  defp unit_cases do
+    for name <- ~w(none friendly pragmatic), payload <- [nil, %{}] do
+      kind = if is_nil(payload), do: "null", else: "empty-map"
+      {"tagged-#{name}-#{kind}", %{"personality" => %{name => payload}}, name}
+    end
   end
 
   defp new_thread(ctx, pid) do
@@ -217,6 +225,11 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
     assert saved["id"] == thread
     assert Enum.map(saved["turns"], & &1["id"]) == turns
     assert Enum.all?(saved["turns"], &(&1["status"] == "completed"))
+
+    for turn <- saved["turns"] do
+      assert [%{"type" => "userMessage"}, %{"type" => "agentMessage", "text" => @answer}] =
+               turn["items"]
+    end
   end
 
   defp complete(ctx, pid, thread, marker, count) do
@@ -260,6 +273,17 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
       assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
                completed
 
+      assert [answer] =
+               for(
+                 event <- events,
+                 event.wire["method"] == "item/completed",
+                 event.wire["params"]["threadId"] == thread,
+                 event.wire["params"]["turnId"] == turn,
+                 event.wire["params"]["item"]["type"] == "agentMessage",
+                 do: event.wire["params"]["item"]
+               )
+
+      assert answer["text"] === @answer
       refute Enum.any?(events, &(&1.wire["method"] in ["error", "warning"]))
     else
       assert System.monotonic_time(:millisecond) < deadline, "native resume turn deadline"

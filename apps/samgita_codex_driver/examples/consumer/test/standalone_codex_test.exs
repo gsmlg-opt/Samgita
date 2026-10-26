@@ -109,6 +109,22 @@ defmodule StandaloneCodexTest do
                SamgitaProtocolCodex.Schema.validate_request(method, params, experimental: true)
     end
 
+    for method <- ["thread/start", "thread/resume", "thread/settings/update", "turn/start"],
+        personality <- ~w(none friendly pragmatic),
+        payload <- [nil, %{}] do
+      params = %{"personality" => %{personality => payload}}
+
+      params =
+        case method do
+          "thread/start" -> params
+          "turn/start" -> Map.merge(params, %{"threadId" => "owned-thread", "input" => []})
+          _ -> Map.put(params, "threadId", "owned-thread")
+        end
+
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(method, params, experimental: true)
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

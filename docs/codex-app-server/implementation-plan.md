@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [Personality input repair](personality-input-qualification.md) adds source-
+supported objects on four request graphs with original wire values intact.
+Eleven expanded native cases prove fresh instructions, later inherited base,
+idle selection and subscribed warm versus genuinely cold resume. Final **42
+schema /119 ordinary driver twice**, outside consumer **1/0**, format/compile,
+strict Credo518, inventory and336-source guard pass; all328 other prior sources
+and prior pinned artifacts remain unchanged. No state/owner promotion: **5,018
+implemented /1,537 missing /66 blocked** contracts; **462 implemented /12 missing
+/11 blocked** requirements; zero verified. Next qualify the actual native live
+failed dynamic-tool notification at physical owner2120, retaining its distinction
+from persisted-item evidence and overall turn success. Prohibited/broad/hosted,
+A11, legacy/external/OS/platform/full-goal gates remain incomplete.
+
 The [ReasoningSummary input repair](reasoning-summary-input-qualification.md)
 adds source-supported null/empty-map objects on exactly three request graphs.
 Twenty-four new native profiles prove applied canonical selection, provider

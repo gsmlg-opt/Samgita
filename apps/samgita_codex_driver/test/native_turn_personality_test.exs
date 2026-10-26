@@ -16,6 +16,7 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @answer "Deterministic local fixture answer"
   @literal """
   Owned turn personality base λ
   # Personality
@@ -48,7 +49,9 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] == "turn/start" do
+      if wire["method"] in ["thread/start", "turn/start"] or
+           (wire["method"] == "thread/settings/update" and
+              Map.has_key?(wire["params"], "personality")) do
         capture(state, encoded, wire)
       else
         Stdio.send(state, encoded)
@@ -86,7 +89,8 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
 
     File.write!(
       config,
-      "cli_auth_credentials_store = \"ephemeral\"\n" <>
+      ~s(personality = "pragmatic"\n) <>
+        "cli_auth_credentials_store = \"ephemeral\"\n" <>
         "check_for_update_on_startup = false\nallow_login_shell = false\n" <>
         File.read!(config) <>
         "\n[features]\napps = false\nplugins = false\nrecommended_plugins = false\nshell_snapshot = false\n"
@@ -103,22 +107,74 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
     end
   end
 
+  for name <- ~w(none friendly pragmatic), payload <- [nil, %{}] do
+    @tag initial_personality: %{name => payload}, canonical_personality: name
+    test "fresh tagged #{name} with #{inspect(payload)} selects canonical metadata and original instructions",
+         ctx do
+      pid = start(ctx)
+      thread = new_thread(ctx, pid, ctx.initial_personality)
+      assert ModelFixture.requests(ctx.fixture) == []
+      snapshot(ctx, pid, thread, ctx.canonical_personality, 0)
+      expected = if ctx.canonical_personality == "none", do: @stripped, else: @literal
+
+      turn = ordinary_turn(ctx, pid, thread, "owned-tagged-initial-personality", expected, 1)
+      assert_saved(ctx, pid, thread, [turn], 1)
+      assert :ok = Session.close(pid)
+    end
+  end
+
+  test "idle tagged personality updates preserve inherited instructions for omitted-personality turns",
+       ctx do
+    pid = start(ctx)
+    thread = new_thread(ctx, pid, "none")
+    first = ordinary_turn(ctx, pid, thread, "owned-idle-personality-original", @stripped, 1)
+
+    turns =
+      for {{input, canonical}, index} <- Enum.with_index(unit_personalities(), 1) do
+        requests = ModelFixture.requests(ctx.fixture)
+        summary = if rem(index, 2) == 0, do: "concise", else: "detailed"
+        params = %{"threadId" => thread, "personality" => input, "summary" => summary}
+        assert call(pid, "thread/settings/update", params) == %{}
+        sent = captured(ctx, "thread/settings/update")
+        assert length(sent) == index
+        assert List.last(sent)["params"] === params
+
+        snapshot_event(
+          pid,
+          thread,
+          canonical,
+          summary,
+          [],
+          System.monotonic_time(:millisecond) + 5_000
+        )
+
+        assert ModelFixture.requests(ctx.fixture) == requests
+
+        ordinary_turn(
+          ctx,
+          pid,
+          thread,
+          "owned-idle-personality-followup-#{index}",
+          @stripped,
+          index + 1
+        )
+      end
+
+    assert length(turns) == 6
+    assert_saved(ctx, pid, thread, [first | turns], 7)
+    assert :ok = Session.close(pid)
+  end
+
   defp qualify(ctx, initial) do
     pid = start(ctx)
-
-    thread =
-      TurnFixture.thread(ctx, pid, %{
-        "personality" => initial,
-        "approvalPolicy" => "never",
-        "sandbox" => "danger-full-access"
-      })
+    thread = new_thread(ctx, pid, initial)
 
     expected_instructions = if initial == "none", do: @stripped, else: @literal
 
     assert ModelFixture.requests(ctx.fixture) == []
     snapshot(ctx, pid, thread, initial, 0)
 
-    cases = [
+    canonical_cases = [
       {%{}, initial},
       {%{"personality" => nil}, initial},
       {%{"personality" => "pragmatic"}, "pragmatic"},
@@ -130,13 +186,22 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
       {%{}, "none"}
     ]
 
+    cases =
+      canonical_cases ++
+        Enum.map(unit_personalities(), fn {input, canonical} ->
+          {%{"personality" => input}, canonical}
+        end)
+
+    assert length(canonical_cases) == 9
+    assert length(cases) == 15
+
     turns =
       for {{extra, expected}, index} <- Enum.with_index(cases, 1) do
         marker = "owned-turn-personality-#{initial}-#{index}"
         input = [%{"type" => "text", "text" => marker}]
         params = Map.merge(%{"threadId" => thread, "input" => input}, extra)
         turn = call(pid, "turn/start", params)["turn"]["id"]
-        sent = Agent.get(ctx.capture, & &1)
+        sent = captured(ctx, "turn/start")
         assert length(sent) == index
         assert List.last(sent)["params"] === params
 
@@ -171,7 +236,7 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
         turn
       end
 
-    assert length(Enum.uniq(turns)) == 9
+    assert length(Enum.uniq(turns)) == 15
     before = ModelFixture.requests(ctx.fixture)
     captures = Agent.get(ctx.capture, & &1)
     invalid = %{"threadId" => thread, "input" => [], "personality" => "unknown-owned-style"}
@@ -182,7 +247,7 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
     assert error["code"] == -32_600
     assert error["message"] =~ "unknown variant `unknown-owned-style`"
     assert ModelFixture.requests(ctx.fixture) == before
-    snapshot(ctx, pid, thread, "none", 10)
+    snapshot(ctx, pid, thread, "pragmatic", 16)
     assert ModelFixture.requests(ctx.fixture) == before
 
     saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
@@ -198,6 +263,90 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
     assert :ok = Session.close(pid)
   end
 
+  defp unit_personalities,
+    do:
+      for(
+        name <- ~w(none friendly pragmatic),
+        payload <- [nil, %{}],
+        do: {%{name => payload}, name}
+      )
+
+  defp captured(ctx, method),
+    do: Agent.get(ctx.capture, &Enum.filter(&1, fn wire -> wire["method"] == method end))
+
+  defp new_thread(ctx, pid, initial) do
+    thread =
+      TurnFixture.thread(ctx, pid, %{
+        "personality" => initial,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
+    assert [sent] = captured(ctx, "thread/start")
+
+    assert sent["params"] === %{
+             "model" => "mock-model",
+             "modelProvider" => "fixture",
+             "cwd" => ctx.fixture.workspace,
+             "sandbox" => "danger-full-access",
+             "approvalPolicy" => "never",
+             "ephemeral" => false,
+             "personality" => initial
+           }
+
+    thread
+  end
+
+  defp ordinary_turn(ctx, pid, thread, marker, instructions, count) do
+    params = %{"threadId" => thread, "input" => [%{"type" => "text", "text" => marker}]}
+    turn = call(pid, "turn/start", params)["turn"]["id"]
+    sent = captured(ctx, "turn/start")
+    assert length(sent) == count
+    assert List.last(sent)["params"] === params
+    refute Map.has_key?(List.last(sent)["params"], "personality")
+    events = complete_turn(pid, thread, turn, [], System.monotonic_time(:millisecond) + 20_000)
+    refute Enum.any?(events, &(&1.wire["method"] in ["error", "warning"]))
+    requests = ModelFixture.requests(ctx.fixture)
+    assert length(requests) == count
+    request = List.last(requests)
+    assert request["model"] == "mock-model"
+    refute Map.has_key?(request, "instructions")
+
+    assert %{
+             "type" => "message",
+             "role" => "developer",
+             "content" => [%{"type" => "input_text", "text" => ^instructions}]
+           } = hd(request["input"])
+
+    user_texts =
+      for item <- request["input"],
+          item["role"] == "user",
+          content <- item["content"],
+          content["type"] == "input_text",
+          do: content["text"]
+
+    assert Enum.count(user_texts, &(&1 == marker)) == 1
+    turn
+  end
+
+  defp assert_saved(ctx, pid, thread, turns, count) do
+    saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+    assert Enum.map(saved["turns"], & &1["id"]) == turns
+    assert length(Enum.uniq(turns)) == count
+    assert Enum.all?(saved["turns"], &(&1["status"] == "completed"))
+
+    for turn <- saved["turns"] do
+      assert [%{"type" => "userMessage"}, %{"type" => "agentMessage", "text" => @answer}] =
+               turn["items"]
+    end
+
+    assert length(ModelFixture.requests(ctx.fixture)) == count
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert File.read!(ctx.config) == ctx.config_bytes
+    assert Session.uncertain_operations(pid) == []
+    assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
+  end
+
   defp complete_turn(pid, thread, turn, events, deadline) do
     assert {:ok, incoming} = Session.drain(pid)
     events = events ++ incoming
@@ -208,6 +357,17 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
       assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
                completed
 
+      assert [answer] =
+               for(
+                 event <- events,
+                 event.wire["method"] == "item/completed",
+                 event.wire["params"]["threadId"] == thread,
+                 event.wire["params"]["turnId"] == turn,
+                 event.wire["params"]["item"]["type"] == "agentMessage",
+                 do: event.wire["params"]["item"]
+               )
+
+      assert answer["text"] === @answer
       events
     else
       assert System.monotonic_time(:millisecond) < deadline, "native turn completion deadline"
