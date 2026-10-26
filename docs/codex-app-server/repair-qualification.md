@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
+pass the six-file **12/0 twice** functional matrix, scoped format/compile,
+outside consumer **1/0**, two fixture ASTs and the 311-source guard. Only five
+exact output owners gain implemented evidence; all executable/cleanup sources
+are unchanged. Contracts become **5,014 implemented / 1,541 missing / 66 blocked**,
+unchanged requirements and zero verified. Inventory passes; strict completeness
+exits **1**. The source-evidence table selector is corrected; no functional test
+fails or changes. Prohibited/broad/hosted, A11 and full-goal gates stay open.
+
 The [actual native diagnostics](native-diagnostics-success-qualification.md)
 pass the affected five-file **11/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 311-source guard. Native process/RSS/gauge and

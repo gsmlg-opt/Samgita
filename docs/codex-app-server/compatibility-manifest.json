@@ -212753,50 +212753,70 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "result.data[0].thread.source is the exact subAgent object alternative. The unchanged complete-map equality uses independently configured literals and the separately created native parent ID in both warm and first cold archived search; unique native response IDs remain correlated.",
+        "Actual pinned MAv2 spawn/wait, independently resolved child ID, child-before-root completion, exact three-root/one-child provider requests, native archival, unchanged rollout bytes and non-hydrating cold search establish the producer and effects. Six reviewed functional files pass12/0 at seeds501432/987654; format, warnings-as-errors compile, outside actual-binary consumer1/0, two fixture ASTs and311-source guard pass. Thirteen whole source files match the immutable archive. All production, test, fixture and cleanup sources are unchanged.",
+        "Implemented-only local actual-native/synthetic-provider evidence for this exact physical owner. Null agent_path6116, active empty-preview success, other source variants, external providers, OS/transports and crash recovery are not inferred. No hash/sibling propagation or verified promotion. Security/credential/authentication/authorization/permission/approval checks, broad suites and hosted workflows remain unrun; A11, producerless legacy, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/2",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bbce661435ba821f7be32791dd37b61ece19be6224bd89a35a96a476db8c7fca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/2/properties/subAgent",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "result.data[0].thread.source.subAgent is the exact one-key thread_spawn object. The unchanged complete-map equality uses independently configured literals and the separately created native parent ID in both warm and first cold archived search; unique native response IDs remain correlated.",
+        "Actual pinned MAv2 spawn/wait, independently resolved child ID, child-before-root completion, exact three-root/one-child provider requests, native archival, unchanged rollout bytes and non-hydrating cold search establish the producer and effects. Six reviewed functional files pass12/0 at seeds501432/987654; format, warnings-as-errors compile, outside actual-binary consumer1/0, two fixture ASTs and311-source guard pass. Thirteen whole source files match the immutable archive. All production, test, fixture and cleanup sources are unchanged.",
+        "Implemented-only local actual-native/synthetic-provider evidence for this exact physical owner. Null agent_path6116, active empty-preview success, other source variants, external providers, OS/transports and crash recovery are not inferred. No hash/sibling propagation or verified promotion. Security/credential/authentication/authorization/permission/approval checks, broad suites and hosted workflows remain unrun; A11, producerless legacy, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "nullable": false,
       "pointer": "/definitions/SessionSource/oneOf/2/properties/subAgent",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "9b6d07a001914b4ca8eebb47fbc9e0f0a905a6f3673f77480f25f9b497b89185",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "subAgent"
     },
     {
@@ -212889,50 +212909,70 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "result.data[0].thread.source.subAgent selects the actual thread_spawn alternative. The unchanged complete-map equality uses independently configured literals and the separately created native parent ID in both warm and first cold archived search; unique native response IDs remain correlated.",
+        "Actual pinned MAv2 spawn/wait, independently resolved child ID, child-before-root completion, exact three-root/one-child provider requests, native archival, unchanged rollout bytes and non-hydrating cold search establish the producer and effects. Six reviewed functional files pass12/0 at seeds501432/987654; format, warnings-as-errors compile, outside actual-binary consumer1/0, two fixture ASTs and311-source guard pass. Thirteen whole source files match the immutable archive. All production, test, fixture and cleanup sources are unchanged.",
+        "Implemented-only local actual-native/synthetic-provider evidence for this exact physical owner. Null agent_path6116, active empty-preview success, other source variants, external providers, OS/transports and crash recovery are not inferred. No hash/sibling propagation or verified promotion. Security/credential/authentication/authorization/permission/approval checks, broad suites and hosted workflows remain unrun; A11, producerless legacy, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "418b6a3cb6a8f2071c75bde43d24bd2d5e54f4393d2655d7d0b4b5d41ac805fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "result.data[0].thread.source.subAgent.thread_spawn is the exact five-key native provenance record. The unchanged complete-map equality uses independently configured literals and the separately created native parent ID in both warm and first cold archived search; unique native response IDs remain correlated.",
+        "Actual pinned MAv2 spawn/wait, independently resolved child ID, child-before-root completion, exact three-root/one-child provider requests, native archival, unchanged rollout bytes and non-hydrating cold search establish the producer and effects. Six reviewed functional files pass12/0 at seeds501432/987654; format, warnings-as-errors compile, outside actual-binary consumer1/0, two fixture ASTs and311-source guard pass. Thirteen whole source files match the immutable archive. All production, test, fixture and cleanup sources are unchanged.",
+        "Implemented-only local actual-native/synthetic-provider evidence for this exact physical owner. Null agent_path6116, active empty-preview success, other source variants, external providers, OS/transports and crash recovery are not inferred. No hash/sibling propagation or verified promotion. Security/credential/authentication/authorization/permission/approval checks, broad suites and hosted workflows remain unrun; A11, producerless legacy, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c6e5f3dbc6c89a404fc99ac62e681d6cbc78454bad267a4462fce04e91eb659d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread_spawn"
     },
     {
@@ -213007,24 +213047,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "result.data[0].thread.source.subAgent.thread_spawn.agent_path is the literal nonnull /root/search_child string. The unchanged complete-map equality uses independently configured literals and the separately created native parent ID in both warm and first cold archived search; unique native response IDs remain correlated.",
+        "Actual pinned MAv2 spawn/wait, independently resolved child ID, child-before-root completion, exact three-root/one-child provider requests, native archival, unchanged rollout bytes and non-hydrating cold search establish the producer and effects. Six reviewed functional files pass12/0 at seeds501432/987654; format, warnings-as-errors compile, outside actual-binary consumer1/0, two fixture ASTs and311-source guard pass. Thirteen whole source files match the immutable archive. All production, test, fixture and cleanup sources are unchanged.",
+        "Implemented-only local actual-native/synthetic-provider evidence for this exact physical owner. Null agent_path6116, active empty-preview success, other source variants, external providers, OS/transports and crash recovery are not inferred. No hash/sibling propagation or verified promotion. Security/credential/authentication/authorization/permission/approval checks, broad suites and hosted workflows remain unrun; A11, producerless legacy, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "1bef6f9728beaba3998133575a18426e06da265fee27e0614fc8f5fd05ab1a19",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

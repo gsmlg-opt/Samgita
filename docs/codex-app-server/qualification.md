@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
+pass the six-file **12/0 twice** ordinary actual-binary matrix, scoped
+format/compile, outside consumer **1/0**, two fixture ASTs and the 311-source
+guard. All executable sources and cleanup remain unchanged. Genuine native
+child lifecycle/archive/cold-search effects bind exact owners
+6105/6106/6111/6112/6115 and thirteen immutable source files. Contracts become
+**5,014 implemented / 1,541 missing / 66 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Inventory passes;
+strict completeness exits **1**. Null path 6116 and other profiles remain
+unproven. Prohibited/broad/hosted, A11, legacy/external/platform and
+full-goal/release gates remain incomplete. No publication or deployment.
+
 The [actual native diagnostics](native-diagnostics-success-qualification.md)
 pass the final five-file **11/0 twice** functional matrix, static checks, outside
 consumer **1/0** and the 311-source guard. Exact owned PID/executable/parent,

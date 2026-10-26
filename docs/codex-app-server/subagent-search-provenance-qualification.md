@@ -1,6 +1,7 @@
 # Native child provenance in archived search
 
-Exactly **6113, 6114, 6117, 6118 and 6119** gain implemented-only evidence:
+The initial unit adds implemented-only evidence for exactly **6113, 6114, 6117,
+6118 and 6119**:
 ThreadSearchResponse's nested `agent_nickname`, `agent_path`, descriptive
 `agent_role`, `depth` and `parent_thread_id`. The immutable target remains Codex
 `rust-v0.163.0`, source `83086188ae0614bd882818ff1aa23f3194962012`, binary
@@ -107,3 +108,64 @@ passes **57/0** at both fixed seeds, compile/format, strict Credo, outside
 consumer **1/0**, eight fixture ASTs and the 261-source guard. It tests the final
 archived-only profile alongside all retained selected functional files; active
 empty-preview success and other unqualified profiles are not inferred.
+
+## Exact enclosing source alternatives
+
+On base `f0fadacf5be060e03db77007763183cf19ef5199`, fresh execution of the
+unchanged test also establishes these five exact physical owners. `R` is the
+correlated native `thread/search` result, checked in warm and first cold search.
+
+| Owner | Actual result location | Independent expected value |
+| --- | --- | --- |
+| 6105 | `R.data[0].thread.source` | Complete `subAgent` object alternative |
+| 6106 | `R.data[0].thread.source.subAgent` | One-key `thread_spawn` object |
+| 6111 | Same nested source | Actual `thread_spawn` alternative |
+| 6112 | `R.data[0].thread.source.subAgent.thread_spawn` | Complete five-key record shown above |
+| 6115 | Record's `agent_path` | Nonnull literal `/root/search_child` |
+
+The existing exact-map equality requires each nested shape and literal; expected
+values are not copied from another response. The separately created parent ID,
+native child identity, complete provider messages/history, child-before-root
+completion and archive effects remain required. This is direct evidence for
+these output nodes, not promotion through shared hashes or references. No test,
+fixture, protocol, driver or cleanup code changes are necessary.
+
+The native route is experimental `thread/search` in `common.rs`, followed by
+`thread_processor.rs` and `thread-store/src/local/search_threads.rs`. The
+actual producer is MAv2 `spawn_agent` through `core/src/thread_spawn.rs` and
+agent control; `protocol/src/protocol.rs` and `v2/thread_data.rs` preserve its
+nested source. Thirteen complete files match the pinned source archive. The
+schema graph is `ThreadSearchResponse.data -> ThreadSearchResult.thread ->
+Thread.source -> SessionSource -> SubAgentSource`; the exact five node hashes
+and independently preserved assertion paths are recorded in source evidence.
+
+The six reviewed functional files pass **12 tests / 0 failures** at each seed
+`501432` and `987654`. Scoped formatting, warnings-as-errors compilation, two
+fixture ASTs and the outside-umbrella actual-binary consumer **1/0** also pass.
+All **311** guarded sources are byte-identical to the base commit. The preceding
+strict Credo result remains evidence for unchanged source; it is not rerun or
+presented as a new invocation. The source-check script initially counted schema
+rows as source files; it was restricted to the actual `.rs` table and follows
+the schema's actual `allOf` source reference. No functional check fails, no
+timeout changes, and no assertion is removed.
+
+Reproduce with `/tmp/samgita-v347-run.py` and
+`/tmp/samgita-v347-source.py`. Exact command arrays and log hashes are in
+`/tmp/samgita-v347-functional-checks/results.json` (SHA256
+`f21453f34eace400a54c51ef09648c70cdb727fc8e4980a5791fc2eaa1173aaa`).
+Adjacent `source.json` SHA256 is
+`6c0e739ceeecc86262c116065ec864e3bccef9f49a4d1bf82cad20965a002650`;
+`source-evidence.json` SHA256 is
+`77631453b9347a1ed7e25e4ed302d15790105c3c6998b3b9283cfd63ae590a7c`.
+`/tmp/samgita-v347-bind.py --verify` checks the final manifest and produces
+`final-binding.json` alongside them.
+
+Contracts become **5,014 implemented / 1,541 missing / 66 blocked**; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Inventory
+consistency passes; strict completeness still exits **1**. Null AgentPath 6116,
+other source alternatives, active empty-preview success and other
+OS/transports/providers remain unqualified. This is an actual Codex process
+with a synthetic local model provider, not real-provider acceptance. Prohibited
+security/permission and mixed/broad/hosted checks remain unrun; A11, legacy
+producerless paths, external/platform acceptance and full-goal/release gates
+remain incomplete. No publication, production migration or deployment occurs.

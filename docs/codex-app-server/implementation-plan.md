@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
+pass the six-file **12/0 twice** functional matrix, scoped format/compile,
+outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.
+Native delegation, archival and first cold search bind exact owners
+6105/6106/6111/6112/6115 and thirteen immutable files without executable changes.
+Contracts are **5,014 implemented / 1,541 missing / 66 blocked**; requirements
+stay **462 implemented / 12 missing / 11 blocked**, zero verified. Null path
+6116 remains unproven. Next inspect complete live/selective/cold memory-citation
+and compaction items. Prohibited/broad/hosted, A11 and full-goal gates stay open.
+
 The [actual native diagnostics](native-diagnostics-success-qualification.md)
 pass the affected five-file **11/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 311-source guard. Actual owned process/RSS and
