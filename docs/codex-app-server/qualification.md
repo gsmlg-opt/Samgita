@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [canonical Project root/sorting inputs](project-canonical-fields-qualification.md)
+bind exactly three canonical ClientRequest owners299–301 to unchanged actual
+native tests already included in the latest **48-file, 97/0 twice** functional
+matrix. Literal roots, committed SQLite order/times, full Project maps, both
+sorted page/cursor matrices and cold-native reads establish actual consumption.
+Five archive-matching files, three nodes and real request-reference graphs pass;
+all296 current/committed guarded sources equal that tested code. This unit changes
+no executable source or test and reruns none. Ledger: **4,956 implemented /
+1,599 missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements, zero verified. Inventory passes; strict completeness
+exits **1**. Prohibited/broad/hosted, full-goal, A11, external/OS and release
+gates remain incomplete. No publication/deployment.
+
 The [native initial PTY dimensions](terminal-size-values-qualification.md)
 pass the final **48-file, 97/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**

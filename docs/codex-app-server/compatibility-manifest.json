@@ -30982,71 +30982,101 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-canonical-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ProjectRoot/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical ClientRequest ProjectRoot.path299 and ProjectSortKey position300/recencyAt301 only. Exact project/create and project/list schema routes plus pinned Rust request-to-v2 mapping bind these physical owners. Unchanged real-native project matrix sends complete encoded literal roots/sort values, matches real response IDs, and independently verifies native committed SQLite roots/times, full Project maps, sorted lists/pages/cursors and cold-native reads. Not equal-hash or generic forwarding evidence.",
+        "Declared existing private beta/alpha roots persist in that caller order and survive native replacement; complete SQL ordinal/path rows and full public map are checked with zero inference. Position uses a real project/move then both known ID orders; recency uses exactly two completed native member turns, independently observed committed timestamps/nulls and full ledger pages/cursors for both directions, repeated after cold native replacement. No SQLite writes/seeding/backdating or fabricated app-server/project data. Exact owning test and all296 current/committed guarded sources match the latest V318 reviewed48-file97/0 twice matrix; documentation indexing changes no executable source and reruns no tests.",
+        "Only selected ordinary existing declared roots and SQLite-backed Linux-x86_64-musl/stdio ordering. No arbitrary path/Git discovery, symlink/root authorization, cwd execution, other stores/OS/transports, complete Project lifecycle or sibling/reference promotions. Existing deadlines/bounds, capture, native/provider ownership and fixed yolo remain. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. A11/external/full-goal/release remain incomplete; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProjectRoot/properties/path",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-canonical-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ProjectSortKey/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical ClientRequest ProjectRoot.path299 and ProjectSortKey position300/recencyAt301 only. Exact project/create and project/list schema routes plus pinned Rust request-to-v2 mapping bind these physical owners. Unchanged real-native project matrix sends complete encoded literal roots/sort values, matches real response IDs, and independently verifies native committed SQLite roots/times, full Project maps, sorted lists/pages/cursors and cold-native reads. Not equal-hash or generic forwarding evidence.",
+        "Declared existing private beta/alpha roots persist in that caller order and survive native replacement; complete SQL ordinal/path rows and full public map are checked with zero inference. Position uses a real project/move then both known ID orders; recency uses exactly two completed native member turns, independently observed committed timestamps/nulls and full ledger pages/cursors for both directions, repeated after cold native replacement. No SQLite writes/seeding/backdating or fabricated app-server/project data. Exact owning test and all296 current/committed guarded sources match the latest V318 reviewed48-file97/0 twice matrix; documentation indexing changes no executable source and reruns no tests.",
+        "Only selected ordinary existing declared roots and SQLite-backed Linux-x86_64-musl/stdio ordering. No arbitrary path/Git discovery, symlink/root authorization, cwd execution, other stores/OS/transports, complete Project lifecycle or sibling/reference promotions. Existing deadlines/bounds, capture, native/provider ownership and fixed yolo remain. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. A11/external/full-goal/release remain incomplete; implemented only."
+      ],
       "pointer": "/definitions/ProjectSortKey/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8d784204e3edfa6723ffb89cf3a6bc3519c742254213a8d372743f29588c869c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-canonical-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ProjectSortKey/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical ClientRequest ProjectRoot.path299 and ProjectSortKey position300/recencyAt301 only. Exact project/create and project/list schema routes plus pinned Rust request-to-v2 mapping bind these physical owners. Unchanged real-native project matrix sends complete encoded literal roots/sort values, matches real response IDs, and independently verifies native committed SQLite roots/times, full Project maps, sorted lists/pages/cursors and cold-native reads. Not equal-hash or generic forwarding evidence.",
+        "Declared existing private beta/alpha roots persist in that caller order and survive native replacement; complete SQL ordinal/path rows and full public map are checked with zero inference. Position uses a real project/move then both known ID orders; recency uses exactly two completed native member turns, independently observed committed timestamps/nulls and full ledger pages/cursors for both directions, repeated after cold native replacement. No SQLite writes/seeding/backdating or fabricated app-server/project data. Exact owning test and all296 current/committed guarded sources match the latest V318 reviewed48-file97/0 twice matrix; documentation indexing changes no executable source and reruns no tests.",
+        "Only selected ordinary existing declared roots and SQLite-backed Linux-x86_64-musl/stdio ordering. No arbitrary path/Git discovery, symlink/root authorization, cwd execution, other stores/OS/transports, complete Project lifecycle or sibling/reference promotions. Existing deadlines/bounds, capture, native/provider ownership and fixed yolo remain. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. A11/external/full-goal/release remain incomplete; implemented only."
+      ],
       "pointer": "/definitions/ProjectSortKey/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "5f3d33f60aa3fb8febb42290a8f818424a7b86332fea09698221db67073fbb14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
