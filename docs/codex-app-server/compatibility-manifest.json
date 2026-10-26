@@ -29137,24 +29137,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/explicit-input-enums-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/LocalShellStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Two explicitly supplied canonical ClientRequest enum inputs only: Personality.none270 and LocalShellStatus.incomplete234. Exact live request routes and independent immutable physical-node hashing bind each owner. Existing unchanged native turn/resume-personality and supplied-local-shell modules are all included in latest reviewed49-file99/0 twice functional matrix; all297 current/committed guarded sources match. Documentation indexing changes no executable/test and reruns no test. Not shared-hash or generic forwarding evidence.",
+        "Personality none is explicitly selected through actual turn/resume frames, independently observed native applied settings, native initial stripped Personality instruction section and inherited provider base instructions; no claim of external model style or dynamic rewriting of a previously fixed base. LocalShell incomplete is the literal in the complete genuine native raw/durable canonical shell, unchanged cold supplied-history maps and explicit consuming followup provider copy,1->1->2, no call_id, synthesized output, tool/shell work or app-server emulator. This is current generic Responses data-history behavior, not genuine legacy shell emission/execution.",
+        "Only physical234/270 become implemented. Title89/in_progress233 stay missing and unchanged; no sibling enums/methods/refs receive evidence. Selected local synthetic native Linux-x86_64-musl/stdio profiles only; full history/personality/legacy lifecycle, real external providers/OS/transports, A11 and full-goal/release remain incomplete. Existing yolo setup, deadlines/bounds and cleanup retained. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/LocalShellStatus/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "4fdb0ec82541791c2580296b8572e8b25544c271990edeb4c7002be4351e61b4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_local_shell_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -30153,24 +30163,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/explicit-input-enums-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/Personality/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Two explicitly supplied canonical ClientRequest enum inputs only: Personality.none270 and LocalShellStatus.incomplete234. Exact live request routes and independent immutable physical-node hashing bind each owner. Existing unchanged native turn/resume-personality and supplied-local-shell modules are all included in latest reviewed49-file99/0 twice functional matrix; all297 current/committed guarded sources match. Documentation indexing changes no executable/test and reruns no test. Not shared-hash or generic forwarding evidence.",
+        "Personality none is explicitly selected through actual turn/resume frames, independently observed native applied settings, native initial stripped Personality instruction section and inherited provider base instructions; no claim of external model style or dynamic rewriting of a previously fixed base. LocalShell incomplete is the literal in the complete genuine native raw/durable canonical shell, unchanged cold supplied-history maps and explicit consuming followup provider copy,1->1->2, no call_id, synthesized output, tool/shell work or app-server emulator. This is current generic Responses data-history behavior, not genuine legacy shell emission/execution.",
+        "Only physical234/270 become implemented. Title89/in_progress233 stay missing and unchanged; no sibling enums/methods/refs receive evidence. Selected local synthetic native Linux-x86_64-musl/stdio profiles only; full history/personality/legacy lifecycle, real external providers/OS/transports, A11 and full-goal/release remain incomplete. Existing yolo setup, deadlines/bounds and cleanup retained. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/Personality/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b9ca9244fa4639a7ad1b0be4d9ffbf905e7ddea75162e98611b5f0f6f1e168a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
+          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

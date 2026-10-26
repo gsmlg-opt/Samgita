@@ -21,6 +21,28 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit canonical input enums](explicit-input-enums-qualification.md)
+bind exactly LocalShellStatus.incomplete234 and Personality.none270 to unchanged
+native cases in the latest **49-file, 99/0 twice** functional matrix. Initial
+template/settings effects and genuine raw/durable/cold-history data establish
+the explicit values; no legacy shell-execution or external model-style claim.
+Thirty-three archive-matching files, four independently hashed nodes and all297
+current/committed guarded sources pass the binding. This documentation-only unit
+reruns no tests. Contracts: **4,960 implemented / 1,595 missing / 66 blocked**;
+requirements unchanged **462 implemented / 12 missing / 11 blocked**, zero verified.
+Title89/in_progress233 remain missing. Inventory passes; strict completeness exits
+**1**. Prohibited/broad/hosted, A11, external/OS and full-goal/release gates stay
+incomplete. No publication/deployment.
+
+Next qualify canonical mode owners261/263–267 with the responsible ordinary
+native cases using fixed yolo, then ConfigurationUpdate102/426–429 through genuine
+native control generation and unchanged current raw-history input. Keep raw
+controls distinct from actual outer serialization and a new cold followup
+control. Source medium→high→unchanged high→low must not be supplied by the model
+peer. Every verification restriction and incomplete gate remains in force.
+
+## Earlier checkpoints
+
 The [shared turn reasoning inputs](turn-shared-reasoning-values-qualification.md)
 pass the final **49-file, 99/0 twice** functional matrix, compile/format, strict
 Credo, outside consumer **1/0**,27 fixture ASTs and the **297-source** guard.
@@ -33,16 +55,6 @@ Seventeen archive-matching files, two nodes and final binding pass; all prior296
 sources remain unchanged. Strict completeness exits **1**. Prohibited/broad/
 hosted, full-goal, A11, external/OS and release gates remain incomplete.
 No publication/deployment.
-
-Next qualify ConfigurationUpdate102/426–429 through genuine native control
-generation and unchanged current raw-history input. Keep raw controls distinct
-from actual outer serialization and from a new cold followup control. Source
-medium→high→unchanged high→low must not be supplied by the model peer. Then bind
-remaining ordinary canonical mode/personality owners only to their exact native
-inputs/effects. Fixed yolo and every verification restriction remain; prohibited/
-broad/hosted, A11, external/OS and full-goal gates stay incomplete.
-
-## Earlier checkpoints
 
 The [canonical Project root/sorting inputs](project-canonical-fields-qualification.md)
 bind exactly three canonical ClientRequest owners299–301 to unchanged actual

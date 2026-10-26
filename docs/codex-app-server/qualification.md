@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [explicit canonical input enums](explicit-input-enums-qualification.md)
+bind exactly LocalShellStatus.incomplete234 and Personality.none270 to unchanged
+native cases in the latest **49-file, 99/0 twice** functional matrix. Initial
+template/settings effects and genuine raw/durable/cold-history data establish
+the explicit values; no legacy shell-execution or external model-style claim.
+Thirty-three archive-matching files, four independently hashed nodes and all297
+current/committed guarded sources pass the binding. This documentation-only unit
+reruns no tests. Contracts: **4,960 implemented / 1,595 missing / 66 blocked**;
+requirements unchanged **462 implemented / 12 missing / 11 blocked**, zero verified.
+Title89/in_progress233 remain missing. Inventory passes; strict completeness exits
+**1**. Prohibited/broad/hosted, A11, external/OS and full-goal/release gates stay
+incomplete. No publication/deployment.
+
 The [shared turn reasoning inputs](turn-shared-reasoning-values-qualification.md)
 pass the final **49-file, 99/0 twice** functional matrix, compile/format, strict
 Credo, outside consumer **1/0**,27 fixture ASTs and the **297-source** guard.
