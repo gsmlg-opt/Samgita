@@ -221,6 +221,16 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     refute Map.fetch!(user, "id") == Map.fetch!(assistant, "id")
     history = [user, assistant]
 
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [{0, "internal_chat_message_metadata_passthrough"}, {1, "phase"}],
+      []
+    )
+
     # The only raw ResponseItem client input in the pin is explicitly unstable
     # thread/resume.history. These are native-created payloads, never fabricated
     # rollout records or manually completed schema maps.
@@ -344,6 +354,19 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     history = captured_dynamic_history(payloads)
     assert_dynamic_payloads(history, source_turn, began, ended)
     assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 4
+
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [
+        {1, "internal_chat_message_metadata_passthrough"},
+        {2, "internal_chat_message_metadata_passthrough"}
+      ],
+      [effects]
+    )
 
     cold = start(ctx)
     cold_process = native_process(cold)
@@ -481,6 +504,19 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     assert_search_payloads(history, source_turn, began, ended)
     assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 6
 
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [
+        {1, "internal_chat_message_metadata_passthrough"},
+        {2, "internal_chat_message_metadata_passthrough"}
+      ],
+      [effects]
+    )
+
     cold = start(ctx)
     cold_process = native_process(cold)
     refute cold_process == source_process
@@ -611,6 +647,20 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     history = captured_custom_history(payloads)
     assert_custom_payloads(history, source_turn, began, ended)
     assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 4
+
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [
+        {1, "internal_chat_message_metadata_passthrough"},
+        {2, "internal_chat_message_metadata_passthrough"}
+      ],
+      [target, Path.join(ctx.root, "custom-effect-snapshots.json")]
+    )
+
     cold = start(ctx)
     cold_process = native_process(cold)
     refute cold_process == source_process
@@ -909,6 +959,106 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
   defp history_source_paths(%{custom_history: true}), do: [@custom_script]
   defp history_source_paths(%{search_history: true}), do: [@search_script, @exposure_script]
   defp history_source_paths(_), do: []
+
+  # These are intentionally modified CLIENT inputs, not native-null emissions
+  # or unchanged-history preservation. Each request changes exactly one field
+  # on one genuinely captured ResponseItem; serde None omits that field durably.
+  defp assert_null_history_inputs(
+         ctx,
+         source_id,
+         source_path,
+         source_bytes,
+         history,
+         selections,
+         paths
+       ) do
+    assert length(selections) == 2
+    before_requests = requests(ctx)
+    retained = Map.new(paths, &{&1, null_retained_file(&1)})
+    pid = start(ctx)
+    native = native_process(pid)
+    assert call(pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    imports =
+      Enum.reduce(selections, {[], []}, fn {index, key}, {ids, import_paths} ->
+        original = Enum.fetch!(history, index)
+        assert_null_source_field(original, key)
+        submitted = List.update_at(history, index, &Map.put(&1, key, nil))
+        expected = List.update_at(history, index, &Map.delete(&1, key))
+        assert Map.has_key?(Enum.fetch!(submitted, index), key)
+        assert Map.fetch!(Enum.fetch!(submitted, index), key) === nil
+        refute Map.has_key?(Enum.fetch!(expected, index), key)
+        assert submitted !== expected
+
+        imported =
+          call(pid, "thread/resume", %{
+            "threadId" => source_id,
+            "history" => submitted,
+            "model" => "mock-model",
+            "modelProvider" => "fixture",
+            "cwd" => ctx.fixture.workspace,
+            "approvalPolicy" => "never",
+            "sandbox" => "danger-full-access"
+          })["thread"]
+
+        id = Map.fetch!(imported, "id")
+        assert is_binary(id) and id != "" and id != source_id
+        refute id in ids
+        assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+        path = Map.fetch!(read_thread(pid, id), "path")
+        refute path == source_path or path in import_paths
+        assert_null_persistence(ctx, path, expected, index, key)
+        assert {:ok, events} = Session.drain(pid, 256)
+        assert Session.status(pid).buffered_events == 0
+        assert_custom_no_work(events)
+        refute Enum.any?(events, &(&1.wire["method"] == "turn/started"))
+        assert requests(ctx) === before_requests
+        assert File.read!(source_path) === source_bytes
+
+        for {retained_path, value} <- retained,
+            do: assert(null_retained_file(retained_path) === value)
+
+        assert_unchanged(ctx)
+        assert_idle(pid)
+        {[id | ids], [path | import_paths]}
+      end)
+
+    assert {[_second_id, _first_id], [_second_path, _first_path]} = imports
+    assert :ok = Session.close(pid)
+    assert_gone(native)
+    assert requests(ctx) === before_requests
+    assert File.read!(source_path) === source_bytes
+    for {path, value} <- retained, do: assert(null_retained_file(path) === value)
+    assert_unchanged(ctx)
+  end
+
+  defp assert_null_source_field(original, "internal_chat_message_metadata_passthrough") do
+    assert is_map(Map.fetch!(original, "internal_chat_message_metadata_passthrough"))
+  end
+
+  defp assert_null_source_field(original, "phase") do
+    assert original["type"] == "message" and original["role"] == "assistant"
+    # This producer has no phase. Explicit null is a distinct legal client input
+    # which normalizes to the same omitted field; it is not a native phase claim.
+    refute Map.has_key?(original, "phase")
+  end
+
+  defp assert_null_persistence(ctx, path, expected, changed_index, key) do
+    {_bytes, payloads} = rollout(ctx, path)
+    ids = Enum.map(expected, &Map.fetch!(&1, "id"))
+    selected = Enum.filter(payloads, &(&1["id"] in ids))
+    assert selected === expected
+    assert length(Enum.uniq(ids)) == length(ids)
+    assert length(selected) == length(ids)
+    refute Map.has_key?(Enum.fetch!(selected, changed_index), key)
+    assert Enum.map(selected, &Map.fetch!(&1, "id")) === ids
+  end
+
+  defp null_retained_file(path) do
+    stat = File.stat!(path, time: :posix)
+    assert stat.type == :regular
+    {File.read!(path), stat.inode, stat.size, stat.mtime, stat.ctime}
+  end
 
   defp search_fixture(binary) do
     root =

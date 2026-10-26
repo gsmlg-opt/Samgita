@@ -21,6 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit-null history inputs](supplied-history-inputs-qualification.md#explicit-null-client-inputs)
+pass the final **42-file, 80/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. Eight exact null owners become implemented:
+**4,905 implemented / 1,650 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Modified client nulls normalize to omission with exact other fields/IDs, no
+inference/effect and retained source/files; original four case bodies survive
+after removing only added calls/whitespace. Nine archive-matching files, eight
+physical nodes, inventory and final binding pass. Initial Credo failure and
+result-consumption correction are recorded; strict completeness exits **1**.
+
+Continue the genuine Reasoning supplied-history profile for exact client-input
+owners350–353/458–460: real native user/Reasoning/assistant maps, complete raw
+summary/content/metadata oracles, unchanged cold import, one followup consuming
+history, plus a separately labelled explicit-null Reasoning metadata input.
+Use a scenario-gated Responses-only extension while preserving existing
+reasoning provider/default behavior and all four earlier journeys. Require
+inference **1 → 1 → 2**, no repeated reasoning/tool work, immutable source
+records and explicit owned cleanup. Retain fixed yolo and every verification
+restriction. Prohibited/broad/hosted, full-goal, A11, historical/unreachable,
+unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [genuine compact steering rejection](compact-steering-error-qualification.md)
 passes the final **42-file, 80/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
@@ -43,8 +68,6 @@ summary/content/metadata imports and followup consumption using the existing
 local provider. Retain fixed yolo and every verification restriction. Prohibited/
 broad/hosted, full-goal, A11, historical/unreachable, unavailable external/OS and
 release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [custom tool-history unit](supplied-history-inputs-qualification.md#custom-tool-history)
 passes the final **41-file, 79/0 twice** matrix, compile/format, strict Credo,

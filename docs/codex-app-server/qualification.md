@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [explicit-null history inputs](supplied-history-inputs-qualification.md#explicit-null-client-inputs)
+pass the final **42-file, 80/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. Eight exact client-null owners become implemented:
+**4,905 implemented / 1,650 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Each deliberate one-field mutation normalizes to key omission with all other
+native fields/IDs exact, no inference/effect, and original source/effect files
+retained. Four existing case bodies survive after removing added calls and
+their whitespace. Nine archive-matching files, eight nodes, inventory and final
+binding pass. The initial unused-return Credo warning and its two-import-result
+assertion correction remain recorded; no check is weakened. Strict completeness
+exits **1**. Prohibited/broad/hosted, full-goal, A11, historical/external/OS and
+release gates remain incomplete. No publication/deployment.
+
 The [genuine compact steering rejection](compact-steering-error-qualification.md)
 passes the final **42-file, 80/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and

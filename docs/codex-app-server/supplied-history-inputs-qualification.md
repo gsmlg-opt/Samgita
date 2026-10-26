@@ -59,7 +59,8 @@ The final owning file passes **1/0 twice**, seeds501432/987654, with SHA256
 provider request copies. Consequently the provider journal checks literal
 semantic contents and supplied-history initialization; metadata retention is
 checked in the native imported rollout. Whole-payload provider echo would be
-an incorrect oracle. Explicit-null metadata/phase owners376/379 stay missing.
+an incorrect oracle. Explicit-null metadata/phase owners376/379 were left open
+here and are qualified separately in the client-input differential unit below.
 
 ## Terminal timeline time
 
@@ -158,7 +159,8 @@ into raw function output. `protocol/src/models.rs:1455–1484` stamps output
 creation time. Ordinary executed-tool metadata capture defaults off in
 `features/src/lib.rs:1148–1152`. Explicitly enabled host-only fields deliberately
 skip deserialization (`models.rs:989–1008`); this test does not claim to retain
-those fields or manufacture them. Explicit-null owners483/506 stay missing.
+those fields or manufacture them. Explicit-null owners483/506 were left open
+here and are qualified separately in the client-input differential unit below.
 The upstream unstable-import/new-identity limits still apply.
 
 The media test body is byte-identical to the preceding commit, independently
@@ -250,7 +252,7 @@ The raw route carries ResponseItems, without SessionMeta dynamic declarations.
 The followup therefore independently asserts that the owned namespace/function
 is absent from callable tools. This proves completed-history consumption only;
 it does not claim registration restoration or callable continuity. Explicit-null
-owners390/497, server-side search, absent/null call IDs and encryption variants
+owners390/497 are handled separately below; server-side search, absent/null call IDs and encryption variants
 remain unqualified. The two preceding case bodies are byte-identical.
 
 Fourteen complete producer files match the immutable archive. The source chain
@@ -319,8 +321,9 @@ Native output has exact success framing and trailing newline, with only its
 numeric wall duration bounded independently by host turn elapsed time plus
 the formatter's rounding precision. No arbitrary substring/output echo replaces
 that oracle. Generated user/output IDs have UUIDv7 `msg_`/`ctco_` forms; original
-provider IDs remain literal in durable history. Explicit-null owners519/530,
-encrypted content, namespace/status alternatives and stable import remain open.
+provider IDs remain literal in durable history. Explicit-null owners519/530 are
+handled separately below; encrypted content, namespace/status alternatives and
+stable import remain open.
 
 Fifteen complete producer files match the immutable archive. Genuine execution
 is rooted in `core/src/tools/router.rs:295–305`,
@@ -371,3 +374,96 @@ Inventory consistency passes; strict completeness exits **1**. Contracts become
 security/permission tests, broad/hosted workflows, full-goal, A11,
 historical/unreachable and external/OS profiles and release gates remain
 incomplete. No publication, deployment or production migration occurs.
+
+## Explicit-null client inputs
+
+Eight new differentials exercise **modified client input**, using the original
+four real-native histories above. Each clones the captured payload list and
+sets exactly one selected field on one record to explicit null. This does not
+claim native-null emission or unchanged-map import. The source assistant phase
+is originally absent: its differential deliberately adds null, while the other
+seven selections replace actual captured non-null metadata objects.
+
+| Owner | Selected physical client field |
+| --- | --- |
+|376|Message internal metadata, null alternative|
+|379|Message phase, null alternative|
+|483|FunctionCall internal metadata, null alternative|
+|506|FunctionCallOutput internal metadata, null alternative|
+|497|ToolSearchCall internal metadata, null alternative|
+|390|ToolSearchOutput internal metadata, null alternative|
+|519|CustomToolCall internal metadata, null alternative|
+|530|CustomToolCallOutput internal metadata, null alternative|
+
+Each physical node is `{ "type": "null" }`, SHA256
+`b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb`.
+Only those exact `ClientRequest.json` locations can be promoted. No shared-hash,
+parent branch, other nullable field or server-output promotion follows.
+
+One additional cold owned native per original case accepts two serial imports.
+Each yields a distinct new idle thread ID/path, preserves every other field,
+original ID and ordering exactly, and durably omits only the selected key.
+The helper asserts complete selected maps, distinct IDs, exact count and field
+absence. Submitted null remains distinct from expected omitted-key output.
+The source rollout bytes, configuration/scripts and effect files remain
+unchanged through explicit close/reap. No added turn-start, inference, client
+callback, fileChange, pending interaction or uncertain operation occurs.
+
+The original four unchanged-history import/followup journeys still run after
+these differentials with the same inference budgets and assertions. Removing
+only the four added helper call blocks and their formatter whitespace restores
+each original case body byte-identically. New file snapshots compare
+bytes/inode/size and **second-resolution** mtime/ctime; they do not establish
+nanosecond or continuous monitoring. The retained custom provider independently
+compares its existing nanosecond snapshots across the broader import/followup
+interval.
+
+Nine complete producer files match the official immutable source archive:
+`protocol/src/models.rs:1024–1228` derives deserialization and declares the
+selected optional fields with skip-on-None serialization;
+`app-server-protocol/src/protocol/common.rs:274–288` decodes the actual request;
+`v2/thread.rs:354–362` exposes the unstable history input;
+`app-server/src/request_processors/thread_processor.rs:4791–4803` clones decoded
+records into `InitialHistory::Forked`; `core/src/session/mod.rs:1729–1770` assigns
+only missing IDs and persists the original records. Replay reconstruction at
+`session/mod.rs:1831–1835` is separate. `thread-store/src/live_thread.rs:220–266`,
+`rollout/src/policy.rs:22–29,80–99`,
+`thread-store/src/local/live_writer.rs:340–350` and
+`rollout/src/recorder.rs:2107–2111` retain and serialize those records. Thus
+explicit null becomes serde `None` and is omitted, without metadata restamping.
+
+The initial owning file passes **4/0**, seed501432, in **10.1 seconds**. The first
+integrated run stops at strict Credo's unused `Enum.reduce` return warning,
+before native matrix execution. The correction consumes the two-import result
+and asserts exactly two IDs/paths; it removes no assertion or bound. Failure
+artifacts remain `/tmp/samgita-v308-functional-checks/functional/`. Final
+commands/environment/results use `/tmp/samgita-v308-run.py` and
+`/tmp/samgita-v308-functional-checks/final-functional/`.
+
+The final **42-file matrix passes 80/0 twice**, seeds501432/987654, in
+**138.338/137.779 seconds**. Scoped format, warnings-as-errors compile, strict
+Credo on492 sources, outside actual-binary consumer **1/0**, twenty fixture AST
+checks and the **283-source** unchanged-byte guard pass. Final source review
+finds no functional defect within these limits; it does not replace execution.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Owning test | `76ec53bb37b7ffd12e3ca408ea6bb4409136b57cbc00c90fd5e396a5e9647347` |
+| Results | `25461d45f883f15d8ee62a04f8f24f58cb533fd3174f2601b2428fb34cb9b91b` |
+| Source guard | `4e0faa3b01f05c6315035e7134d13f3300d4bb6c5caccec54503b404b2717abb` |
+| Pinned producers and eight nodes | `456ad3e7364abf6d7d344736f544d3bfb86f240c055fd552aa11cb34a6af36f4` |
+| Original case preservation | `1a3cd54912486e1978ada41a32c135eb92737125d5e89d743620e26f921d77a7` |
+| Resulting manifest | `0b840627652de4bb5b9c219569be114fd45da41a238a90fbe98f9c30d2972f07` |
+
+An initial manifest patch emitted unique hunks out of file order and was
+rejected without changing the manifest; sorted unique hunks apply successfully.
+Final binding proves exactly eight promotions, unchanged schema identities,
+planned tests and requirements, preserved four case bodies, and matching final
+source hashes. Inventory consistency passes; strict completeness exits **1**.
+Contracts become **4,905 implemented / 1,650 missing / 66 blocked**;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
+These inputs do not qualify native-null production, followup inference from
+modified histories, arbitrary nullable values, stable import, other providers/
+transports/OS, full-goal, A11 or historical/external profiles. Prohibited
+security/permission/approval tests and broad/hosted workflows stay unrun.
+No release, publication, production migration or deployment occurs.
