@@ -233,6 +233,224 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert_import_journey(ctx, warm, warm_native, selected)
   end
 
+  test "inert subagent import persists rewritten native files and treats supplied names as advisory",
+       ctx do
+    ctx = subagent_context(ctx)
+    assert_retained(ctx)
+    assert Path.wildcard(Path.join(ctx.agent_target, "*")) === []
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm.pid)
+    assert_no_execution(ctx, warm.pid)
+    selected = assert_subagent_detection(ctx, warm.pid, true)
+
+    # The pinned importer re-discovers the scope. These names are advisory,
+    # so a different request hint neither selects nor renames source agents.
+    selected = put_in(selected, ["details", "subagents"], [%{"name" => "owned-requested-hint"}])
+    successes = Enum.map(~w(owned-alpha owned-beta), &subagent_success/1)
+    first = import_subagents(ctx, warm.pid, selected, successes, nil)
+    first_history = assert_history(ctx, warm.pid, first.id, successes)
+    assert_no_execution(ctx, warm.pid)
+
+    # Repetition follows known completion and durable history, never an
+    # ambiguous disconnect. Existing imported files must remain unchanged.
+    second = import_subagents(ctx, warm.pid, selected, [], first.bytes)
+    refute second.id == first.id
+    second_history = assert_history(ctx, warm.pid, second.id, [])
+    assert assert_history(ctx, warm.pid, first.id, successes) === first_history
+    assert_subagent_detection(ctx, warm.pid, false)
+    assert_no_execution(ctx, warm.pid)
+    assert_idle(ctx, warm.pid)
+    assert_retained(ctx)
+    close(warm, warm_native)
+
+    cold = start(ctx)
+    cold_native = native_id(ctx, cold.pid)
+    refute cold_native == warm_native
+    assert assert_history(ctx, cold.pid, first.id, successes) === first_history
+    assert assert_history(ctx, cold.pid, second.id, []) === second_history
+    assert_imported_subagents(ctx, first.bytes)
+    assert_subagent_detection(ctx, cold.pid, false)
+    assert_no_execution(ctx, cold.pid)
+    assert_idle(ctx, cold.pid)
+    assert_retained(ctx)
+    close(cold, cold_native)
+    assert_imported_subagents(ctx, first.bytes)
+    assert_wire_inventory(ctx)
+  end
+
+  defp subagent_context(ctx) do
+    source = Path.join(ctx.fixture.home, ".claude/agents")
+    target = Path.join(ctx.fixture.codex_home, "agents")
+    File.mkdir_p!(source)
+
+    documents = %{
+      "alpha" => {"Claude alpha helper", "Owned notes from Claude in CLAUDE.md."},
+      "beta" => {"Claude beta helper", "Owned beta notes from Claude in CLAUDE.md."}
+    }
+
+    inputs =
+      Map.new(documents, fn {stem, {description, body}} ->
+        path = Path.join(source, stem <> ".md")
+        bytes = "---\nname: owned-#{stem}\ndescription: #{description}\n---\n#{body}\n"
+        File.write!(path, bytes, [:exclusive])
+        {path, bytes}
+      end)
+
+    expected = %{
+      "alpha.toml" => %{
+        "name" => "owned-alpha",
+        "description" => "Codex alpha helper",
+        "developer_instructions" => "Owned notes from Codex in AGENTS.md."
+      },
+      "beta.toml" => %{
+        "name" => "owned-beta",
+        "description" => "Codex beta helper",
+        "developer_instructions" => "Owned beta notes from Codex in AGENTS.md."
+      }
+    }
+
+    Map.merge(ctx, %{
+      agent_source: source,
+      agent_target: target,
+      expected_agents: expected,
+      expected_detect_count: 3,
+      inputs: Map.merge(ctx.inputs, inputs)
+    })
+  end
+
+  defp assert_subagent_detection(ctx, pid, present) do
+    detected =
+      call(ctx, pid, "externalAgentConfig/detect", %{
+        "includeHome" => true,
+        "migrationSource" => "claude-code",
+        "maxSessionAgeDays" => 1,
+        "maxSessions" => 4
+      })
+
+    assert Map.fetch!(detected, "connectors") === []
+    items = Map.fetch!(detected, "items")
+    assert [session] = Enum.filter(items, &(&1["itemType"] == "SESSIONS"))
+    assert_selected(ctx, session)
+    subagents = Enum.filter(items, &(&1["itemType"] == "SUBAGENTS"))
+    assert length(items) === if(present, do: 2, else: 1)
+    assert_subagent_selection(ctx, subagents, present)
+  end
+
+  defp assert_subagent_selection(ctx, [selected], true) do
+    details = Map.new(~w(commands hooks mcpServers plugins sessions skills), &{&1, []})
+    names = Enum.map(~w(owned-alpha owned-beta), &%{"name" => &1})
+
+    assert selected === %{
+             "itemType" => "SUBAGENTS",
+             "description" => "Migrate subagents from #{ctx.agent_source} to #{ctx.agent_target}",
+             "cwd" => nil,
+             "details" => Map.put(details, "subagents", names)
+           }
+
+    selected
+  end
+
+  defp assert_subagent_selection(_ctx, selected, false), do: assert(selected === [])
+
+  defp import_subagents(ctx, pid, selected, successes, previous_bytes) do
+    params = %{
+      "migrationSource" => "claude-code",
+      "providerId" => @attribution,
+      "migrationItems" => [selected]
+    }
+
+    started_at_ms = System.system_time(:millisecond)
+    {request_id, receipt} = request(ctx, pid, "externalAgentConfig/import", params)
+    assert %{"importId" => id} = receipt
+    assert Map.keys(receipt) === ["importId"]
+    assert_uuid(id)
+    # This synchronous category writes files before the native receipt.
+    bytes = assert_imported_subagents(ctx, previous_bytes)
+    events = await_completion(pid, id, [], now() + 10_000)
+    notices = Enum.map(events, & &1.wire)
+    expected_result = %{"itemType" => "SUBAGENTS", "successes" => successes, "failures" => []}
+
+    relevant =
+      Enum.filter(notices, fn wire ->
+        wire["params"]["importId"] == id and
+          wire["method"] in [
+            "externalAgentConfig/import/progress",
+            "externalAgentConfig/import/completed"
+          ]
+      end)
+
+    [progress_at, completed_at] = Enum.map(relevant, &Map.fetch!(&1, "emittedAtMs"))
+    finished_at_ms = System.system_time(:millisecond)
+
+    for timestamp <- [progress_at, completed_at] do
+      assert is_integer(timestamp)
+      assert timestamp >= started_at_ms and timestamp <= finished_at_ms
+    end
+
+    assert progress_at <= completed_at
+
+    assert relevant === [
+             %{
+               "emittedAtMs" => progress_at,
+               "method" => "externalAgentConfig/import/progress",
+               "params" => %{"importId" => id, "itemTypeResults" => [expected_result]}
+             },
+             %{
+               "emittedAtMs" => completed_at,
+               "method" => "externalAgentConfig/import/completed",
+               "params" => %{"importId" => id, "itemTypeResults" => [expected_result]}
+             }
+           ]
+
+    assert_receipt_before_notifications(ctx, request_id, id, 2)
+    assert_retained(ctx)
+    %{id: id, bytes: bytes}
+  end
+
+  defp subagent_success(name),
+    do: %{
+      "itemType" => "SUBAGENTS",
+      "cwd" => nil,
+      "source" => name,
+      "target" => name,
+      "title" => nil
+    }
+
+  defp assert_imported_subagents(ctx, previous_bytes) do
+    assert Enum.sort(File.ls!(ctx.agent_target)) === ~w(alpha.toml beta.toml)
+
+    bytes =
+      Map.new(ctx.expected_agents, fn {filename, expected} ->
+        path = Path.join(ctx.agent_target, filename)
+        bytes = bounded_file(path)
+
+        {json, 0} =
+          System.cmd("python3", [
+            "-B",
+            "-c",
+            "import json,sys,tomllib; from pathlib import Path; print(json.dumps(tomllib.loads(Path(sys.argv[1]).read_text())))",
+            path
+          ])
+
+        assert JSON.decode!(json) === expected
+        {path, bytes}
+      end)
+
+    if previous_bytes, do: assert(bytes === previous_bytes)
+    assert_retained(ctx)
+    bytes
+  end
+
+  defp assert_no_execution(ctx, pid) do
+    assert_unloaded(ctx, pid)
+
+    assert call(ctx, pid, "thread/list", %{"limit" => 100, "useStateDbOnly" => true}) ===
+             %{"data" => [], "nextCursor" => nil, "backwardsCursor" => nil, "readStates" => %{}}
+
+    assert Path.wildcard(Path.join(ctx.fixture.codex_home, "sessions/**/rollout-*.jsonl")) === []
+    assert requests(ctx) === []
+  end
+
   defp limited_source_context(ctx) do
     middle = Path.join(Path.dirname(ctx.source), "middle.jsonl")
     older = Path.join(Path.dirname(ctx.source), "older.jsonl")
@@ -480,7 +698,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert Map.fetch!(import_result, "failures") === []
     assert Map.fetch!(import_result, "itemType") === "SESSIONS"
     target = import_target(import_result, expect_target)
-    assert_receipt_before_processing(ctx, request_id, id)
+    assert_receipt_before_notifications(ctx, request_id, id, 3)
 
     %{
       id: id,
@@ -533,7 +751,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     end
   end
 
-  defp assert_receipt_before_processing(ctx, request_id, id) do
+  defp assert_receipt_before_notifications(ctx, request_id, id, expected_count) do
     indexed = capture(ctx) |> Enum.with_index()
 
     assert [{_receipt, receipt_index}] =
@@ -550,7 +768,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
           ] and entry.wire["params"]["importId"] == id
       end)
 
-    assert length(notices) == 3
+    assert length(notices) == expected_count
     for {_entry, index} <- notices, do: assert(index > receipt_index)
   end
 

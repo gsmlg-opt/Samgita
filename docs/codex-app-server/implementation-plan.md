@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [inert subagent import](native-subagent-import-qualification.md) passes the
+affected four-file **9/0 twice** functional matrix, static checks, outside
+consumer **1/0** and the 310-source guard. Actual native files/results prove
+kind 180 and advisory details/name owners 260/606 without executing an imported
+agent or calling a model. Both operation histories and exact TOML survive cold
+reads. Thirty-four immutable files bind the graph; all 309 unrelated sources
+and production cleanup stay unchanged. Contracts are **5,005 implemented /
+1,550 missing / 66 blocked**, unchanged requirements and zero verified.
+
 The [session detection limits](native-session-detection-limits-qualification.md)
 pass the affected four-file **8/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Positive modification-age and
@@ -85,13 +94,12 @@ and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-The next ordinary gap is inert SUBAGENTS import: bind source Markdown to actual
-native TOML, durable results, completed repeats and cold histories without
-executing an imported agent. Requested named details are advisory in the pin;
-do not invent selective import or rename behavior. A different requested session
-title can separately test its actual ignored behavior without claiming a setter.
-The mixed original import suite stays unrun. Preserve fixed-YOLO setup, the
-prohibited test boundary and all remaining full-goal gates.
+The next ordinary import gap is the requested session title: a different supplied
+title should exercise the pin's accepted/ignored behavior while retaining source
+title, full processing/history and cold reads. Do not claim a setter or rename.
+Then continue reviewed ordinary diagnostics/process fields and remaining method
+variants; restricted or unavailable acceptance profiles remain incomplete.
+Preserve fixed-YOLO setup, the prohibited test boundary and all full-goal gates.
 
 ## Earlier checkpoints
 

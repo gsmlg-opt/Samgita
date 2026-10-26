@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [inert subagent import](native-subagent-import-qualification.md) passes the
+affected four-file **9/0 twice** functional matrix, static checks, outside
+consumer **1/0** and the 310-source guard. Actual Markdown-to-TOML effects,
+advisory-name semantics, durable repeated import and cold histories establish
+exact owners 180/260/606 with zero execution/inference. Thirty-four immutable
+files bind the graph and two preserved full-shape oracle corrections. Contracts
+become **5,005 implemented / 1,550 missing / 66 blocked**; requirements remain
+unchanged, zero verified. All 309 unrelated sources and process cleanup remain
+unchanged. Prohibited/broad/hosted, A11, legacy/external/OS/platform and
+full-goal/release gates stay incomplete.
+
 The [session detection limits](native-session-detection-limits-qualification.md)
 pass the final affected four-file **8/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Three foreign files with

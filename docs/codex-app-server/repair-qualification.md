@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [inert subagent import](native-subagent-import-qualification.md) passes the
+affected four-file **9/0 twice** functional matrix, static checks, outside
+consumer **1/0** and the 310-source guard. Native filesystem effects, advisory
+names and durable repeat/cold histories bind exact owners 180/260/606 and 34
+immutable files. Two initial full-shape oracle failures are retained and corrected
+with additional fields/timestamp bounds, not removed assertions or longer
+deadlines. Contracts become **5,005 implemented / 1,550 missing / 66 blocked**,
+unchanged requirements and zero verified. Production cleanup and all 309
+unrelated sources remain unchanged. Inventory passes; strict completeness exits
+**1**. Prohibited/broad/hosted, A11 and full-goal/release gates remain incomplete.
+
 The [session detection limits](native-session-detection-limits-qualification.md)
 pass the affected four-file **8/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Exact owners 3954/3955 bring

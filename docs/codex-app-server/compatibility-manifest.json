@@ -27442,24 +27442,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-subagent-import-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned inert SUBAGENTS migration imports two existing owned Claude Markdown documents into actual native agent TOML. Each source filename differs from its frontmatter name. Full independently expected TOML maps parsed with standard-library tomllib retain exactly name, rewritten description and rewritten developer_instructions; filenames remain source stems, while native success source/target identities remain frontmatter names. No optional tools, model, hook or permission metadata is supplied, no imported agent is invoked, and provider requests, loaded threads and native rollouts remain zero.",
+        "Actual detection includes the two full subagent name entries and preserves the separate untouched SESSIONS selection. The positive import request replaces advisory details.subagents with one different name. Native still imports both real sources and creates neither a request-named file nor renamed success: the pinned scope importer re-discovers eligible source documents and does not use requested detail names as selection or rename controls. This explicitly implements accepted/ignored request metadata semantics, not selective import. Only exact physical owners180/260/606 are mapped; no sibling/hash/reference propagation occurs.",
+        "SUBAGENTS is synchronous: actual filesystem effects are present by the correlated native import receipt. Exactly one full progress notification and one completion then preserve the same operation ID and exact two success maps, with emittedAtMs integer/order/bounded-wall-clock assertions. Durable full import history precedes an explicit completed repeat with distinct receipt and empty successes, unchanged native TOML bytes, no duplicate files and no execution. Re-detection in warm and distinct cold native processes excludes imported subagents while retaining the unchanged separate session input. Both durable history records and exact native/source/config bytes survive normal owned shutdown and cold reads.",
+        "Final affected4-file9/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and310-source guard. All309 unrelated sources and production protocol/driver/process cleanup remain byte-identical.34 whole files match the immutable archive, including exact thread-list and notification-envelope source; the import request graph independently resolves180/260/606. Two original new-oracle failures are retained: missing backwardsCursor/readStates and missing emittedAtMs. Source-backed full-shape corrections add explicit values and timestamp bounds without stripping metadata, weakening assertions, changing deadlines or touching production code. All prior Claude/Cursor/age-count journeys remain intact.",
+        "Scoped implemented kind and advisory-field behavior only; actual subagent execution, optional agent metadata, repository-scope import and full family/transport/OS qualification remain incomplete. Fixed yolo is ordinary setup only. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, mixed/broad suites and hosted workflows are unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real Claude service, package publication, deployment or production migration is established."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/5",
       "schema": "ClientRequest.json",
       "schema_sha256": "3624def288954308d3b5bc44ba07017b5520c048f7dd0cc5e8d88671b3529a67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -29975,27 +29987,39 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-subagent-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/subagents",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned inert SUBAGENTS migration imports two existing owned Claude Markdown documents into actual native agent TOML. Each source filename differs from its frontmatter name. Full independently expected TOML maps parsed with standard-library tomllib retain exactly name, rewritten description and rewritten developer_instructions; filenames remain source stems, while native success source/target identities remain frontmatter names. No optional tools, model, hook or permission metadata is supplied, no imported agent is invoked, and provider requests, loaded threads and native rollouts remain zero.",
+        "Actual detection includes the two full subagent name entries and preserves the separate untouched SESSIONS selection. The positive import request replaces advisory details.subagents with one different name. Native still imports both real sources and creates neither a request-named file nor renamed success: the pinned scope importer re-discovers eligible source documents and does not use requested detail names as selection or rename controls. This explicitly implements accepted/ignored request metadata semantics, not selective import. Only exact physical owners180/260/606 are mapped; no sibling/hash/reference propagation occurs.",
+        "SUBAGENTS is synchronous: actual filesystem effects are present by the correlated native import receipt. Exactly one full progress notification and one completion then preserve the same operation ID and exact two success maps, with emittedAtMs integer/order/bounded-wall-clock assertions. Durable full import history precedes an explicit completed repeat with distinct receipt and empty successes, unchanged native TOML bytes, no duplicate files and no execution. Re-detection in warm and distinct cold native processes excludes imported subagents while retaining the unchanged separate session input. Both durable history records and exact native/source/config bytes survive normal owned shutdown and cold reads.",
+        "Final affected4-file9/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and310-source guard. All309 unrelated sources and production protocol/driver/process cleanup remain byte-identical.34 whole files match the immutable archive, including exact thread-list and notification-envelope source; the import request graph independently resolves180/260/606. Two original new-oracle failures are retained: missing backwardsCursor/readStates and missing emittedAtMs. Source-backed full-shape corrections add explicit values and timestamp bounds without stripping metadata, weakening assertions, changing deadlines or touching production code. All prior Claude/Cursor/age-count journeys remain intact.",
+        "Scoped implemented kind and advisory-field behavior only; actual subagent execution, optional agent metadata, repository-scope import and full family/transport/OS qualification remain incomplete. Fixed yolo is ordinary setup only. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, mixed/broad suites and hosted workflows are unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real Claude service, package publication, deployment or production migration is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/subagents",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "2543d5d821d62cc10114a76cb33da413f9e5260b895421cbde1c0f09aaa1759a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "subagents"
     },
     {
@@ -41124,27 +41148,39 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-subagent-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SubagentMigration/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned inert SUBAGENTS migration imports two existing owned Claude Markdown documents into actual native agent TOML. Each source filename differs from its frontmatter name. Full independently expected TOML maps parsed with standard-library tomllib retain exactly name, rewritten description and rewritten developer_instructions; filenames remain source stems, while native success source/target identities remain frontmatter names. No optional tools, model, hook or permission metadata is supplied, no imported agent is invoked, and provider requests, loaded threads and native rollouts remain zero.",
+        "Actual detection includes the two full subagent name entries and preserves the separate untouched SESSIONS selection. The positive import request replaces advisory details.subagents with one different name. Native still imports both real sources and creates neither a request-named file nor renamed success: the pinned scope importer re-discovers eligible source documents and does not use requested detail names as selection or rename controls. This explicitly implements accepted/ignored request metadata semantics, not selective import. Only exact physical owners180/260/606 are mapped; no sibling/hash/reference propagation occurs.",
+        "SUBAGENTS is synchronous: actual filesystem effects are present by the correlated native import receipt. Exactly one full progress notification and one completion then preserve the same operation ID and exact two success maps, with emittedAtMs integer/order/bounded-wall-clock assertions. Durable full import history precedes an explicit completed repeat with distinct receipt and empty successes, unchanged native TOML bytes, no duplicate files and no execution. Re-detection in warm and distinct cold native processes excludes imported subagents while retaining the unchanged separate session input. Both durable history records and exact native/source/config bytes survive normal owned shutdown and cold reads.",
+        "Final affected4-file9/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and310-source guard. All309 unrelated sources and production protocol/driver/process cleanup remain byte-identical.34 whole files match the immutable archive, including exact thread-list and notification-envelope source; the import request graph independently resolves180/260/606. Two original new-oracle failures are retained: missing backwardsCursor/readStates and missing emittedAtMs. Source-backed full-shape corrections add explicit values and timestamp bounds without stripping metadata, weakening assertions, changing deadlines or touching production code. All prior Claude/Cursor/age-count journeys remain intact.",
+        "Scoped implemented kind and advisory-field behavior only; actual subagent execution, optional agent metadata, repository-scope import and full family/transport/OS qualification remain incomplete. Fixed yolo is ordinary setup only. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, mixed/broad suites and hosted workflows are unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real Claude service, package publication, deployment or production migration is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubagentMigration/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
