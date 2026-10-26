@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine Exec source](native-exec-source-qualification.md) passes the current
+**56-file,110/0 twice** functional matrix, compile/format, strict Credo on506
+sources, outside consumer1/0,30 fixture ASTs plus the inline EOF launcher and307
+guarded sources. Only existing owner675 gains supplemental evidence, with no
+state/count promotion: **4,996 implemented /1,559 missing /66 blocked** contracts;
+**462 implemented /12 missing /11 blocked** requirements, zero verified. Actual
+CLI/provider/canonical identities, paginated durable item IDs and two fresh
+native readers prove positive exec/vscode/mixed list/search before hydration,
+stable cold history and exactly2 inferences.31 whole source files match the
+archive; all306 prior guarded sources remain unchanged. Three source-backed
+oracle corrections preserve bounds, deadlines and cleanup. Inventory passes;
+strict completeness exits **1**. Prohibited/broad/hosted, A11, unavailable
+legacy/external/OS/platform and full-goal/release gates remain incomplete.
+No publication/deployment.
+
+Continue the source-backed genuine inline Custom Review child producer profile
+for owner678. Derive its identity from actual provider metadata and canonical
+SessionMeta, distinguish the parent review response, wait for durable native
+history and repeat positive source discovery in a fresh reader. The draft in
+`/tmp/native_review_source_values_test.exs` is not runtime evidence. Preserve
+fixed-yolo setup and the prohibited verification boundary.
+
+## Earlier checkpoints
+
 The [source-kind and local plugin filters](native-source-and-local-plugin-filters-qualification.md)
 pass the current **55-file,109/0 twice** functional matrix, compile/format,
 strict Credo on505 sources, outside consumer1/0,30 fixture ASTs and306-source
@@ -37,16 +61,6 @@ extracted with all bounds/assertions preserved; final checks pass. Inventory
 passes; strict completeness exits **1**. Prohibited/broad/hosted, A11, unavailable
 legacy/external/OS/platform and full-goal/release gates remain incomplete.
 No publication/deployment.
-
-Continue the genuine pinned combined-binary Exec producer profile: ordinary
-assistant CLI execution produces real source metadata, then actual driver
-list/search must positively distinguish exec/vscode and retain cold discovery.
-Keep CLI JSONL separate from app-server RPC and supply stdin EOF through owned
-test-only launch plumbing; preserve shared transports and existing process
-cleanup. Other positive source producers/remote catalogs remain unverified.
-Preserve fixed-yolo setup and the prohibited verification boundary.
-
-## Earlier checkpoints
 
 The [initialization title and current local-shell inputs](native-title-and-current-shell-qualification.md)
 pass the current **53-file,107/0 twice** functional matrix, compile/format,

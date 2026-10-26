@@ -43105,15 +43105,16 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md",
+        "docs/codex-app-server/native-exec-source-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/2",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
-        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
-        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+        "Explicit sourceKinds exec reaches actual thread/list and thread/search. Genuine pinned combined-binary codex exec --json produces one persistent Exec-source thread through a real owned assistant inference; ordinary app-server produces one distinct vscode control and one more inference. Independent CLI/provider/canonical SessionMeta identities, separate thread_source user attribution, paginated durable ItemCompleted IDs/content and source metadata establish actual producer identity. Two fresh readers run12 exact singleton/mixed-OR list/search requests before hydration, then complete native paginated turn/item queries; correct IDs/projections/snippets and cold full-item identity/content retain exactly2 inference requests. Complete bounded CLI output, normal exit0/owner/PID reaping and retained source/history/config/journal/sidecar bytes; no injected history or metadata rewrite. Earlier populated-exclusion evidence remains valid. Positive CLI/MCP/Review/Compact/Other/Unknown producers, other OS/transports and legacy production are separate incomplete profiles.",
+        "Final reviewed56-file110/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on506 sources, outside actual-binary consumer1/0,30 fixture ASTs plus inline EOF-launcher AST and307-source guard.31 complete files equal immutable pinned archive; exact physical owner675 and both typed request graphs are independently checked. All306 prior guarded sources remain byte-identical. Three initial oracle failures are retained: contextual user ResponseItem, distinct raw/public user IDs and internal assistant Text tag. Source-backed corrections preserve native observations, bounds, deadlines and process cleanup. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Supplemental evidence only for existing implemented physical owner675; no new owner, sibling/ref/hash propagation, requirements change or verified promotion. Owned local fake-model and Linux-x86_64-musl/stdio only. Prohibited/broad/hosted checks, unavailable external/platform/OS profiles, A11 and full compatibility/release remain incomplete; no publication or deployment."
       ],
       "pointer": "/definitions/ThreadSourceKind/enum/2",
       "schema": "ClientRequest.json",
@@ -43126,7 +43127,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs",
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
         ]
       },
       "transport_coverage": [

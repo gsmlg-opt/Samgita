@@ -42,6 +42,11 @@ are fabricated. Native `threadSource` attribution is separate from SessionSource
 hardcodes VSCode for ordinary app-server starts. A separate executable's source
 flag cannot qualify this artifact.
 
+Subsequent [genuine Exec evidence](native-exec-source-qualification.md) adds a
+real CLI producer and positive cold list/search discrimination for owner675.
+The exclusion-only limits above describe this original profile; the six other
+absent producer kinds gain no positive evidence from that later test.
+
 Pinned source identifies real CLI/TUI, Exec and Review producer possibilities.
 The bounded Compact constructor search is **not global unreachability proof**;
 ordinary manual compaction retains the current session. Other/Unknown producers
