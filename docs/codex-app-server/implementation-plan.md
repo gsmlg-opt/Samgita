@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native history, sorting and initialization inputs](native-history-and-sort-inputs-qualification.md)
+pass the current **52-file, 103/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer1/0,29 fixture ASTs and302-source guard. Seventeen
+exact owners become implemented: **4,983 implemented / 1,572 missing / 66 blocked**
+contracts; unchanged **462 implemented / 12 missing / 11 blocked** requirements,
+zero verified. Genuine native ConfigurationUpdate versus raw cold input,
+independent SQLite search/list ordering/pages, current filtered controls and
+explicit startup/clear provenance each have separate input/effect oracles.
+Ordinary native startup defaults are fixed yolo; prior296 other sources remain
+unchanged. Forty-six archive files,17 physical nodes and final binding pass.
+The initial missing assistant classification and two nested capture helpers are
+corrected with full assertions/bounds retained. Inventory passes; strict
+completeness exits **1**. Prohibited/broad/hosted, legacy/external/OS, A11 and
+full-goal/release gates remain incomplete. No publication/deployment.
+
+Continue remaining ordinary explicit-input/schema owners with their actual
+native paths and independent effects, distinguishing current synthetic generic
+data handling from genuine legacy production emission. Do not infer sibling
+qualification from shared hashes/references. Preserve fixed-yolo ordinary
+launches and every prohibited verification boundary; missing/blocked profiles
+and complete-goal/release gates remain open.
+
+## Earlier checkpoints
+
 The [canonical mode inputs](canonical-mode-inputs-qualification.md) pass the
 current **49-file, 99/0 twice** functional matrix, compile/format, strict Credo,
 outside consumer1/0,27 fixture ASTs and297-source guard. Six exact plan/legacy-mode
@@ -33,16 +57,6 @@ and other293 guarded sources preserved. Twelve archive files, six physical nodes
 and final binding pass. Inventory passes; strict completeness exits **1**.
 Prohibited/broad/hosted, A11, external/OS and full-goal/release gates remain
 incomplete. No publication/deployment.
-
-Next qualify ConfigurationUpdate102/426–429 through genuine native control
-generation and unchanged current raw-history input. Keep raw controls distinct
-from outer native serialization and a new cold followup control; source
-medium→high→unchanged high→low must not be supplied by the model peer. Then
-qualify missing ordinary search/list sort inputs and filtered history controls
-with their own current native input/effect oracles. Fixed yolo and every
-verification restriction remain; broader acceptance stays incomplete.
-
-## Earlier checkpoints
 
 The [explicit canonical input enums](explicit-input-enums-qualification.md)
 bind exactly LocalShellStatus.incomplete234 and Personality.none270 to unchanged

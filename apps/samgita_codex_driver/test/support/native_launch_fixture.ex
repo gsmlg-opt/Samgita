@@ -4,6 +4,10 @@ defmodule SamgitaCodexDriver.NativeLaunchFixture do
 
   @ordinary_overrides [
     "-c",
+    ~s(approval_policy="never"),
+    "-c",
+    ~s(sandbox_mode="danger-full-access"),
+    "-c",
     "features.plugins=false",
     "-c",
     "features.recommended_plugins=false"
@@ -11,8 +15,8 @@ defmodule SamgitaCodexDriver.NativeLaunchFixture do
   @local_enabled "\n[features]\nplugins = true\nremote_plugin = false\n"
   @local_startup "\n[features]\nplugins = false\nremote_plugin = false\nrecommended_plugins = false\n"
 
-  # Root CLI overrides leave fixture TOML and its existing [features] appenders
-  # intact. This helper belongs only to explicitly owned native test launches.
+  # Fixed yolo defaults and plugin overrides leave fixture TOML intact. This
+  # helper belongs only to explicitly owned ordinary native test launches.
   def ordinary_args(args), do: @ordinary_overrides ++ args
 
   # The callback must finish native initialization before returning. Only the

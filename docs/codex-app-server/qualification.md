@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [native history, sorting and initialization inputs](native-history-and-sort-inputs-qualification.md)
+pass the current **52-file, 103/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer1/0,29 fixture ASTs and302-source guard. Seventeen
+exact owners become implemented: **4,983 implemented / 1,572 missing / 66 blocked**
+contracts; unchanged **462 implemented / 12 missing / 11 blocked** requirements,
+zero verified. Genuine native ConfigurationUpdate versus raw cold input,
+independent SQLite search/list ordering/pages, current filtered controls and
+explicit startup/clear provenance each have separate input/effect oracles.
+Ordinary native startup defaults are fixed yolo; prior296 other sources remain
+unchanged. Forty-six archive files,17 physical nodes and final binding pass.
+The initial missing assistant classification and two nested capture helpers are
+corrected with full assertions/bounds retained. Inventory passes; strict
+completeness exits **1**. Prohibited/broad/hosted, legacy/external/OS, A11 and
+full-goal/release gates remain incomplete. No publication/deployment.
+
 The [canonical mode inputs](canonical-mode-inputs-qualification.md) pass the
 current **49-file, 99/0 twice** functional matrix, compile/format, strict Credo,
 outside consumer1/0,27 fixture ASTs and297-source guard. Six exact plan/legacy-mode

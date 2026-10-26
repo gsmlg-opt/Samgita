@@ -24943,27 +24943,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ConfigurationReasoning/properties/effort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine native ConfigurationUpdate generation on medium/high/unchanged-high/low selected turns; assistant-only peer creates no controls. Whole raw native notifications,11 actual native-written payload maps and complete outer control serialization; exact current raw maps submitted unchanged through cold thread/resume.history. Source controls in provider prefixes are medium,medium/high,medium/high,medium/high/low while request-level effort remains medium. Imported raw controls remain durably unannotated and absent from the effective provider copy; an explicitly requested cold followup creates a separately identified new native medium control after its own user. Exactly4->4->5 requests,9 management captures. Ordinary configuration/serialization only, no supplied/forged sidecar or provenance-policy matrix; no cold raw-event claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigurationReasoning/properties/effort",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_update_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "effort"
     },
     {
@@ -35215,168 +35225,238 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/14",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine native ConfigurationUpdate generation on medium/high/unchanged-high/low selected turns; assistant-only peer creates no controls. Whole raw native notifications,11 actual native-written payload maps and complete outer control serialization; exact current raw maps submitted unchanged through cold thread/resume.history. Source controls in provider prefixes are medium,medium/high,medium/high,medium/high/low while request-level effort remains medium. Imported raw controls remain durably unannotated and absent from the effective provider copy; an explicitly requested cold followup creates a separately identified new native medium control after its own user. Exactly4->4->5 requests,9 management captures. Ordinary configuration/serialization only, no supplied/forged sidecar or provenance-policy matrix; no cold raw-event claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/14",
       "schema": "ClientRequest.json",
       "schema_sha256": "a3bfe26ea3c0a54c97d785de366471b3c7e69bffec07c0fa6a7f9f4b30d409cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_update_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/14/properties/reasoning",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine native ConfigurationUpdate generation on medium/high/unchanged-high/low selected turns; assistant-only peer creates no controls. Whole raw native notifications,11 actual native-written payload maps and complete outer control serialization; exact current raw maps submitted unchanged through cold thread/resume.history. Source controls in provider prefixes are medium,medium/high,medium/high,medium/high/low while request-level effort remains medium. Imported raw controls remain durably unannotated and absent from the effective provider copy; an explicitly requested cold followup creates a separately identified new native medium control after its own user. Exactly4->4->5 requests,9 management captures. Ordinary configuration/serialization only, no supplied/forged sidecar or provenance-policy matrix; no cold raw-event claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/14/properties/reasoning",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2e9f0dea1f4f8afc89695e597f74211a11d2286cda39aca7869a1cca98d2a907",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_update_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoning"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/14/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine native ConfigurationUpdate generation on medium/high/unchanged-high/low selected turns; assistant-only peer creates no controls. Whole raw native notifications,11 actual native-written payload maps and complete outer control serialization; exact current raw maps submitted unchanged through cold thread/resume.history. Source controls in provider prefixes are medium,medium/high,medium/high,medium/high/low while request-level effort remains medium. Imported raw controls remain durably unannotated and absent from the effective provider copy; an explicitly requested cold followup creates a separately identified new native medium control after its own user. Exactly4->4->5 requests,9 management captures. Ordinary configuration/serialization only, no supplied/forged sidecar or provenance-policy matrix; no cold raw-event claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/14/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ee6cc9aa63ed4f140f1fc4b68a99ada7cdc641ee6bfd26af4485ac63f4c58e0d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_update_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/14/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine native ConfigurationUpdate generation on medium/high/unchanged-high/low selected turns; assistant-only peer creates no controls. Whole raw native notifications,11 actual native-written payload maps and complete outer control serialization; exact current raw maps submitted unchanged through cold thread/resume.history. Source controls in provider prefixes are medium,medium/high,medium/high,medium/high/low while request-level effort remains medium. Imported raw controls remain durably unannotated and absent from the effective provider copy; an explicitly requested cold followup creates a separately identified new native medium control after its own user. Exactly4->4->5 requests,9 management captures. Ordinary configuration/serialization only, no supplied/forged sidecar or provenance-policy matrix; no cold raw-event claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/14/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "557e21556c6da812b610ebfb382fb3213dec010ba3fb852ba82b66e8c082ae92",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_update_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/15",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/15",
       "schema": "ClientRequest.json",
       "schema_sha256": "c5e2298f1b01ec426d9f30a4eef0c8a22cf1e4b4ed967c4b87fa852329d23f4a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/15/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/15/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4c062c7cc30a317ab38edcfb7fb8e6d215294e9b076d5a25e25b07073d3b398f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/15/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/15/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "67b9937bcd2af4efaee2e73e3ad1f33f45bfa4156bb4c1007e00c480064020ad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -35643,72 +35723,102 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/17",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/17",
       "schema": "ClientRequest.json",
       "schema_sha256": "96507f3c1b51d1c67416703c4c2c18ba35f992426e3da529ec7ee4b0ecff3de3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/17/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/17/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c25b1ca0ddbeae1c31f20642bbb84341cf237c1feb1d277b87ce3a43e9d1107e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/17/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current CompactionTrigger and Other raw-history input/filtering only. Trigger map is captured from a genuinely native manual-compaction backend request; declared current Other provider data passes through the stock generic Responses decoder and its complete native raw notification. A real native user plus each complete captured map is sent unchanged via cold thread/resume.history, with complete actual wire/response correlation. Idle import and user persistence, durable/model omission and one deliberate ordinary followup are required before/after close. Exact2->2->3 and1->1->2 provider counts and5/4 captured frames; controls do not launch another compaction or work. Other is synthetic current provider data, not genuine historical/legacy backend traffic or a native legacy reasoning producer.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/17/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c494f200f7f18a48d81653a80ac7f0eeba86a208b72efa78571fa93662be5e19",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_filtered_history_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42588,46 +42698,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSearchSortKey/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/search created_at/updated_at and separate thread/list updated_at/recency_at inputs in both directions. Two real native threads and3 actual assistant turns establish independent read-only SQLite millisecond oracles; later first-thread continuation makes updated/recency order differ from created order without seeding/editing rows. Actual full and first pages plus unchanged-cursor list continuation/cold repeats, exact native histories/timestamp projections and retained provider/config/catalog/rollout bytes.45 whole captured frames, exactly3 inference requests. Created search continuation remains unqualified due pinned precision defect; no universal updated-versus-recency swap discrimination or reverse-paging claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadSearchSortKey/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f72b9d50beef799d41aaf408c10da1b76dfd07c472fdc68896f3ec3e7a75018a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_sort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSearchSortKey/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/search created_at/updated_at and separate thread/list updated_at/recency_at inputs in both directions. Two real native threads and3 actual assistant turns establish independent read-only SQLite millisecond oracles; later first-thread continuation makes updated/recency order differ from created order without seeding/editing rows. Actual full and first pages plus unchanged-cursor list continuation/cold repeats, exact native histories/timestamp projections and retained provider/config/catalog/rollout bytes.45 whole captured frames, exactly3 inference requests. Created search continuation remains unqualified due pinned precision defect; no universal updated-versus-recency swap discrimination or reverse-paging claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadSearchSortKey/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c285192d29fb9166e755cedf513320a12119ca743028918b183131c6bef6efd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_sort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42759,46 +42889,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSortKey/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/search created_at/updated_at and separate thread/list updated_at/recency_at inputs in both directions. Two real native threads and3 actual assistant turns establish independent read-only SQLite millisecond oracles; later first-thread continuation makes updated/recency order differ from created order without seeding/editing rows. Actual full and first pages plus unchanged-cursor list continuation/cold repeats, exact native histories/timestamp projections and retained provider/config/catalog/rollout bytes.45 whole captured frames, exactly3 inference requests. Created search continuation remains unqualified due pinned precision defect; no universal updated-versus-recency swap discrimination or reverse-paging claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadSortKey/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c285192d29fb9166e755cedf513320a12119ca743028918b183131c6bef6efd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_sort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSortKey/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact thread/search created_at/updated_at and separate thread/list updated_at/recency_at inputs in both directions. Two real native threads and3 actual assistant turns establish independent read-only SQLite millisecond oracles; later first-thread continuation makes updated/recency order differ from created order without seeding/editing rows. Actual full and first pages plus unchanged-cursor list continuation/cold repeats, exact native histories/timestamp projections and retained provider/config/catalog/rollout bytes.45 whole captured frames, exactly3 inference requests. Created search continuation remains unqualified due pinned precision defect; no universal updated-versus-recency swap discrimination or reverse-paging claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadSortKey/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "206af32e3b9197b7395c79ab58e472eb1b84f691aa5dbc9a096541a81225a35d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_sort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -43076,46 +43226,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadStartSource/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ThreadStartSource startup/clear supplied in real thread/start frames. Actual provider metadata is independently prescribed new/cleared on each owning native runtime, with matching thread/turn IDs and isolated markers. Four explicit turns preserve all four distinct prior histories/paths/API maps before and after clear and cold process replacement, with no new inference;8 full captured client frames and4 provider requests. This labels new runtime initialization; no destructive clear command, startup hook behavior, persisted initialization recovery or rollout-byte equality claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadStartSource/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "d522d11b17088c4f35b33d1627b8dee2a5120215c0a5f8d53d89037a87ad06d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-history-and-sort-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadStartSource/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ThreadStartSource startup/clear supplied in real thread/start frames. Actual provider metadata is independently prescribed new/cleared on each owning native runtime, with matching thread/turn IDs and isolated markers. Four explicit turns preserve all four distinct prior histories/paths/API maps before and after clear and cold process replacement, with no new inference;8 full captured client frames and4 provider requests. This labels new runtime initialization; no destructive clear command, startup hook behavior, persisted initialization recovery or rollout-byte equality claim.",
+        "Final reviewed52-file103/0 twice functional matrix, warnings-as-errors compile, scoped format, strict Credo, outside actual-binary consumer1/0,29 fixture ASTs and302-source guard.46 complete pinned archive files and17 individually hashed physical nodes/actual request paths. Fixed-yolo ordinary native launch defaults; all prior297 sources except this test-only startup helper remain identical and5 focused sources are added. No credential/authentication/authorization/permission/approval/security behavior or audit is tested.",
+        "Only exact explicitly listed owners become implemented; no sibling/ref/hash propagation. Local synthetic Responses backend and Linux-x86_64-musl/stdio only; existing bounded lifecycle/cleanup preserved. Full history/sorting/default/lifecycle, real external providers, other OS/transports, absent legacy producers, A11 and full-goal/release remain incomplete. Prohibited tests/audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ThreadStartSource/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "2bd7916a0e96fbf0ffeec52bc348ff47ca7e52b66e60f463c3cd70e222f1cea0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
