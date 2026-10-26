@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [query uncertainty repair](query-uncertainty-qualification.md) fixes two
+reproduced Session defects: lost query responses misclassified as uncertain
+execution, and pending queries reserving mutation capacity. Six pinned query
+methods and one count change; unknown/mutating operations remain conservative.
+The final nine-file **43/0 twice** ordinary matrix, four selected capacity cases
+twice, scoped format/compile, strict Credo510, outside consumer **1/0** and the
+312-source guard pass. The initial location-filter invocation runs only four
+cases; corrected whole-file runs execute all43 and retain the original logs.
+No source/timeout/assertion workaround occurs. Counts remain **5,018 implemented
+/1,537 missing /66 blocked** contracts, unchanged requirements and zero verified.
+All310 other prior sources and cleanup are unchanged. Prohibited/broad/hosted,
+A11, legacy/external/platform and full-goal/release gates remain incomplete.
+
 The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
 pass the eight-file **14/0 twice** ordinary native matrix, scoped
 format/compile, outside consumer **1/0**, two fixture ASTs and the 311-source

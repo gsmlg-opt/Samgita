@@ -97,6 +97,16 @@ remain uncertain until caller-owned reconciliation. Local request IDs do not
 create upstream idempotency. `abandon/2` only stops a local wait; use the actual
 upstream interruption operation where appropriate and reconcile its effects.
 
+Known execution queries, including `server/diagnostics`, `thread/search`,
+`thread/searchOccurrences`, `thread/items/list`, `thread/items/read` and
+`thread/timeline/list`, report a lost response without recording uncertain
+execution. Pending queries consume `max_pending`; pending mutations and retained
+uncertain mutations also consume `max_uncertain`. Unknown methods remain
+potentially mutating. A query failure still reports transport gaps where
+applicable and never causes an automatic retry or resolves another operation.
+See the [query recovery qualification](../../docs/codex-app-server/query-uncertainty-qualification.md)
+for exact pinned-source semantics, fault checks and limits.
+
 A normally returned transport-open error leaves the Session disconnected and
 available for another explicit reconnect. If a replacement open callback raises,
 throws or exits, reconnect returns a sanitized `transport_callback_failed` and

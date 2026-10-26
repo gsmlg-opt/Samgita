@@ -34,7 +34,12 @@ defmodule SamgitaCodexDriver.Session do
 
   # Conservative, audited reads. Unclassified/extension operations are mutations.
   # A caller cannot suppress uncertainty by labelling a mutation as a read.
-  @read_only ~w(initialize thread/list thread/loaded/list thread/read thread/turns/list model/list config/read configRequirements/read account/read skills/list)
+  @read_only ~w(
+    initialize server/diagnostics
+    thread/list thread/loaded/list thread/read thread/turns/list
+    thread/search thread/searchOccurrences thread/items/list thread/items/read thread/timeline/list
+    model/list config/read configRequirements/read account/read skills/list
+  )
 
   def start_link(opts) do
     opts = Keyword.put_new(opts, :owner, self())
@@ -461,11 +466,13 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp request_capacity(state, method) do
+    pending_mutations = Enum.count(state.pending, fn {_id, pending} -> pending.mutation end)
+
     cond do
       map_size(state.pending) >= state.opts[:max_pending] ->
         {:error, Error.new(:too_many_requests)}
 
-      map_size(state.uncertain) + map_size(state.pending) >= state.opts[:max_uncertain] and
+      map_size(state.uncertain) + pending_mutations >= state.opts[:max_uncertain] and
           method not in @read_only ->
         {:error, Error.new(:reconciliation_required)}
 

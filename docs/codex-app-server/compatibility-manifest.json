@@ -5443,14 +5443,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/diagnostics-memory-qualification.md"
+        "docs/codex-app-server/diagnostics-memory-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:server/diagnostics",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ServerDiagnosticsParams"
@@ -5481,7 +5483,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -6573,7 +6576,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/items/list",
@@ -6581,7 +6585,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: An actual two-turn persisted history supplies first-turn entries; agentMessage text matches native output; targeted read returns exactly the requested agent entry. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions."
+        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ThreadItemsListParams"
@@ -6612,7 +6617,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -6626,7 +6632,8 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/items/read",
@@ -6634,7 +6641,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: An actual two-turn persisted history supplies first-turn entries; agentMessage text matches native output; targeted read returns exactly the requested agent entry. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions."
+        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ThreadItemsReadParams"
@@ -6665,7 +6673,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -7879,14 +7888,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/search",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ThreadSearchParams"
@@ -7917,7 +7928,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -7931,14 +7943,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/searchOccurrences",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ThreadSearchOccurrencesParams"
@@ -7969,7 +7983,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -8193,14 +8208,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/timeline/list",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "params": {
         "$ref": "#/definitions/ThreadTimelineListParams"
@@ -8232,7 +8249,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_protocol_codex/test/timeline_schema_test.exs"
+          "apps/samgita_protocol_codex/test/timeline_schema_test.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9974,7 +9992,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/capacity-deadline-qualification.md"
+        "docs/codex-app-server/capacity-deadline-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "id": "lifecycle:bounded-buffering",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9982,7 +10001,8 @@
         "scripted_peer_fault: Event count bound preserves2 values and exposes lost-history gap.",
         "local_driver_negative: Notification wire byte/depth and invalid JSON rejection without sending104-109.",
         "scripted_websocket_peer: Oversized advertised-frame and fragmented aggregate bounds188-218.",
-        "Seven deterministic client-boundary cases now directly assert pending, uncertainty, request-ID, interaction, outcome and byte quotas with visible rejection/gaps and no silent approval response. Native backend/OS and all concurrency variants remain unqualified."
+        "Seven deterministic client-boundary cases now directly assert pending, uncertainty, request-ID, interaction, outcome and byte quotas with visible rejection/gaps and no silent approval response. Native backend/OS and all concurrency variants remain unqualified.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "required_behavior": "bound pending calls, frames, and notifications; explicit overflow and recovery gap; no silent critical drops",
       "schema_sha256": "b250461608f7bbd7566f6aa18e9a690e4f75d859747061d3bd58d2e9eb5b76d6",
@@ -10003,7 +10023,8 @@
           "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:89",
           "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:110",
           "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:129",
-          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:156"
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:156",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [],
@@ -10064,7 +10085,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/capacity-deadline-qualification.md"
+        "docs/codex-app-server/capacity-deadline-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "id": "lifecycle:deadline-uncertainty",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10073,7 +10095,8 @@
         "scripted_peer_fault: Read response deadline uncertain=false; late response observable.",
         "scripted_peer_fault: Mutation send failure uncertain=true.",
         "scripted_peer_fault: Failed notification write also settles held mutation uncertain; reconnect no replay.",
-        "A direct sent-mutation response deadline retains uncertainty after an opaque late response and reconnect; only explicit valid reconciliation clears it. This scripted client fault does not prove native result validation or response/deadline races."
+        "A direct sent-mutation response deadline retains uncertainty after an opaque late response and reconnect; only explicit valid reconciliation clears it. This scripted client fault does not prove native result validation or response/deadline races.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "required_behavior": "timeout/disconnect of mutation is uncertain; never resend as an automatic recovery action",
       "schema_sha256": "9c0bff829152023d131084db5addf70fd24efd28b210760653fc49fa28f6b91d",
@@ -10090,7 +10113,8 @@
           "apps/samgita_codex_driver/test/session_test.exs:233",
           "apps/samgita_codex_driver/test/session_test.exs:249",
           "apps/samgita_codex_driver/test/native_notification_test.exs:177",
-          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:7"
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:7",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [],
@@ -10103,7 +10127,8 @@
         "docs/codex-app-server/approval-loss-qualification.md",
         "docs/codex-app-server/command-replay-cancellation-qualification.md",
         "docs/codex-app-server/approval-cold-restart-qualification.md",
-        "docs/codex-app-server/cold-items-process-config-qualification.md"
+        "docs/codex-app-server/cold-items-process-config-qualification.md",
+        "docs/codex-app-server/query-uncertainty-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10113,7 +10138,8 @@
         "Earlier completed-turn native reconnect and scripted-peer ambiguity are supplemented by selected actual native file/permission callback loss cases. No upstream deduplication or replay cursor guarantee.",
         "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
         "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits.",
-        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete."
+        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
       ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
@@ -10130,7 +10156,8 @@
           "apps/samgita_codex_driver/test/session_test.exs:203",
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
           "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287",
-          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs"
+          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs",
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
         ]
       },
       "transport_coverage": [

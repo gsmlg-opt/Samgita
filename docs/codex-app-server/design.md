@@ -81,6 +81,15 @@ in the bounded uncertainty table. A caller cannot label an unclassified operatio
 as a safe read. `abandon/2` stops a local wait only. Reconciliation records caller
 evidence; it does not query upstream implicitly or resend anything.
 
+Execution queries are classified from the pinned native implementation. Lost
+diagnostics/search/history responses do not represent potentially executed work;
+the [query recovery record](query-uncertainty-qualification.md) lists the six
+additional query methods. All pending calls count against `max_pending`, while
+only pending mutations reserve `max_uncertain` alongside retained uncertain
+mutations. This preserves inspection capacity without clearing unresolved work.
+Native queries may update internal read caches; the classification concerns
+execution effects, not an assertion of zero internal writes or access rights.
+
 `request_native/3` preserves the original envelope, including trace and future
 fields. Native schema validation is the default. Explicit `validation: :wire`
 allows protocol experiments without claiming schema conformance. Every response

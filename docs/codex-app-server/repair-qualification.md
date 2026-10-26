@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [query uncertainty repair](query-uncertainty-qualification.md) reproduces
+both false uncertainty after query loss and false capacity reservation by
+pending queries. Six source-proven query names and one reservation count are
+fixed. The nine-file **43/0 twice** ordinary matrix, four selected capacity cases
+twice, format/compile, strict Credo510, outside consumer **1/0** and312-source
+guard pass; all310 other prior sources and cleanup stay unchanged. The initial
+location-filter command only runs four cases; corrected full-file commands
+execute43 without exclusions. Counts stay **5,018 implemented /1,537 missing /
+66 blocked** contracts, unchanged requirements and zero verified. No gate is
+waived; prohibited/broad/hosted, A11 and full-goal acceptance remain incomplete.
+
 The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
 pass the eight-file **14/0 twice** functional matrix, scoped format/compile,
 outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.

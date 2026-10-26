@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [query uncertainty repair](query-uncertainty-qualification.md) reproduces
+false query uncertainty and pending-read reservation before changing six
+source-proven query names and one capacity calculation. The final nine-file
+**43/0 twice** ordinary matrix, four selected existing capacity cases twice,
+format/compile, strict Credo510, outside consumer **1/0** and312-source guard
+pass. Initial Mix location filtering excludes the other files; corrected
+whole-file invocations are recorded separately. All310 other prior sources and
+cleanup remain unchanged. Counts stay **5,018 implemented /1,537 missing /66
+blocked** contracts and **462 implemented /12 missing /11 blocked** requirements,
+zero verified. No new schema owner or requirement is promoted. Next continue
+source-proven ordinary negotiation/default behavior; mixed/prohibited and
+external/platform/full-goal gates stay incomplete.
+
 The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
 pass the eight-file **14/0 twice** functional matrix, scoped format/compile,
 outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.
