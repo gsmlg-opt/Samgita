@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [generic ContextCompaction history inputs](context-compaction-history-inputs-qualification.md)
+pass the final **46-file, 91/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-five fixture ASTs and the
+**292-source** guard. Seven exact raw-metadata/client-null owners become
+implemented: **4,944 implemented / 1,611 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Actual raw/durable map equality, generated cmp_ ID/source metadata,
+cold import and followup retain **1 → 1 → 2** with no compaction/tool work.
+This qualifies generic native decoding/history of local synthetic Responses,
+not real backend emission or legacy execution. Twenty-one archive-matching
+files, fourteen nodes and final binding pass; all prior290 sources and excluded/
+deferred owners remain unchanged. Strict completeness exits **1**. Prohibited/
+broad/hosted, full-goal, A11, external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [native AgentMessage history inputs](agent-message-history-inputs-qualification.md)
 pass the final **45-file, 89/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-four fixture ASTs and the

@@ -21,6 +21,33 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [generic ContextCompaction history inputs](context-compaction-history-inputs-qualification.md)
+pass the final **46-file, 91/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-five fixture ASTs and the
+**292-source** guard. Seven exact raw-metadata/client-null owners become
+implemented: **4,944 implemented / 1,611 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Actual raw/durable map equality, generated cmp_ ID/source metadata,
+cold import and followup retain **1 → 1 → 2** with no compaction/tool work.
+This qualifies generic native decoding/history of local synthetic Responses,
+not real backend emission or legacy execution. Twenty-one archive-matching
+files, fourteen nodes and final binding pass; all prior290 sources and excluded/
+deferred owners remain unchanged. Strict completeness exits **1**. Prohibited/
+broad/hosted, full-goal, A11, external/OS and release gates remain incomplete.
+No publication/deployment.
+
+Next qualify LocalShellCall metadata469–471 through current generic Responses
+decoding, actual raw/durable identity, no-call-ID source and unchanged/client-null
+cold history, **1 → 1 → 2**. Require independent native canonical null fields,
+generated lsh_ ID/source turn, exact provider copy, no synthetic output or tool
+execution. This is current decode/input evidence, not legacy shell execution,
+call pairing or real upstream emission. Then qualify nested image-detail nulls
+114/198 with distinct durable and provider-copy ID/metadata oracles. Retain fixed
+yolo and every verification restriction; full-goal, A11, prohibited/broad/hosted,
+external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [native AgentMessage history inputs](agent-message-history-inputs-qualification.md)
 pass the final **45-file, 89/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-four fixture ASTs and the
@@ -35,18 +62,6 @@ Initial cross-thread selector and Credo complexity failures are corrected and
 recorded without weaker gates. Strict completeness exits **1**. Prohibited/
 broad/hosted, full-goal, A11, legacy/external/OS and release gates remain
 incomplete. No publication/deployment.
-
-Next qualify generic current ContextCompaction history owners433/435–440,
-excluding434: ID-less current Responses item, actual native generated identity,
-raw notification equal to durable whole map, closed-source capture and unchanged/
-client-null cold import, **1 → 1 → 2** consuming followup without compaction or
-tool work. This is current generic decode/history evidence, not real backend
-emission, remote-v2 checkpoint installation or legacy execution acceptance.
-Then qualify the separate no-call-ID LocalShellCall metadata route with the same
-explicit limits. Retain fixed yolo and every verification restriction; full-goal,
-A11, prohibited/broad/hosted, external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [client-supplied Compaction metadata object](compaction-history-inputs-qualification.md#client-supplied-metadata-object)
 passes the final **44-file, 87/0 twice** functional matrix, compile/format,
