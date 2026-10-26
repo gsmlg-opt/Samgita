@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [current LocalShellCall history inputs](local-shell-history-inputs-qualification.md)
+pass the final **47-file, 93/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,26 fixture ASTs and the **294-source**
+guard. Three exact metadata/client-null owners become implemented: **4,947
+implemented / 1,608 missing / 66 blocked** contracts, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Genuine raw/durable
+maps, generated lsh_ ID/source turn and cold import/followup retain **1 → 1 → 2**,
+without shell/tool execution or synthesized output. This is generic current
+Responses/history evidence, not real backend or legacy emission. Twenty-three
+archive-matching files, seven nodes and final binding pass; all prior292 sources
+and ConfigurationUpdate426–429 remain unchanged. Strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, external/OS and release gates remain
+incomplete. No publication/deployment.
+
+Next qualify nested image-detail client nulls114/198, with genuine current user
+and dynamic-tool sources, exact durable omission and distinct provider-copy
+ID/metadata oracles. Then qualify initial PTY cols/rows96/97/297/298 through
+actual kernel measurements and normal exit, preserving original resize cases.
+Retain fixed yolo and every verification restriction. Required prohibited/
+broad/hosted, A11, external/OS and full-goal gates remain incomplete.
+
+## Earlier checkpoints
+
 The [generic ContextCompaction history inputs](context-compaction-history-inputs-qualification.md)
 pass the final **46-file, 91/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-five fixture ASTs and the
@@ -35,18 +58,6 @@ files, fourteen nodes and final binding pass; all prior290 sources and excluded/
 deferred owners remain unchanged. Strict completeness exits **1**. Prohibited/
 broad/hosted, full-goal, A11, external/OS and release gates remain incomplete.
 No publication/deployment.
-
-Next qualify LocalShellCall metadata469–471 through current generic Responses
-decoding, actual raw/durable identity, no-call-ID source and unchanged/client-null
-cold history, **1 → 1 → 2**. Require independent native canonical null fields,
-generated lsh_ ID/source turn, exact provider copy, no synthetic output or tool
-execution. This is current decode/input evidence, not legacy shell execution,
-call pairing or real upstream emission. Then qualify nested image-detail nulls
-114/198 with distinct durable and provider-copy ID/metadata oracles. Retain fixed
-yolo and every verification restriction; full-goal, A11, prohibited/broad/hosted,
-external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [native AgentMessage history inputs](agent-message-history-inputs-qualification.md)
 pass the final **45-file, 89/0 twice** functional matrix, compile/format,

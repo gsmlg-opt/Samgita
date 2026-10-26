@@ -36373,71 +36373,101 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-shell-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected CURRENT generic Responses LocalShellCall data-history input only. A bounded local synthetic Responses stream supplies incomplete local_shell_call with inert action data, no ID/call_id/metadata, and an ordinary assistant. Stock pinned Codex emits its actual raw item and writes the identical full durable map with generated lsh_ ID, call_id:null, canonical action nulls and source turn_id metadata. Closed-source user/shell maps import unchanged cold, then one explicit continuation consumes the original shell copy with only passthrough removed. Inference1->1->2; no shell/tool execution, paired output or repeated work.",
+        "Owner471 separately changes only shell metadata to present CLIENT null; native persisted history omits exactly that key while every sibling field/map/ID remains exact. Not native-null emission. The provider supplies only generic current Responses data; it does not manufacture app-server frames, IDs, rollouts or sidecars. Generic production decoding establishes this native input path, not real backend emission or a genuine legacy execution/pairing path.",
+        "Only selected nonempty source-turn object and client-null metadata branches. ConfigurationUpdate426-429 stay missing and unchanged; other shared types/aliases gain no evidence. Arbitrary metadata, real legacy producer/execution, full restoration, external providers/OS/transports, A11 and full-goal/release remain unqualified. Prior292 guarded sources and original fixture stay byte-identical; existing bounds, deadlines and owned cleanup remain. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_local_shell_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-shell-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected CURRENT generic Responses LocalShellCall data-history input only. A bounded local synthetic Responses stream supplies incomplete local_shell_call with inert action data, no ID/call_id/metadata, and an ordinary assistant. Stock pinned Codex emits its actual raw item and writes the identical full durable map with generated lsh_ ID, call_id:null, canonical action nulls and source turn_id metadata. Closed-source user/shell maps import unchanged cold, then one explicit continuation consumes the original shell copy with only passthrough removed. Inference1->1->2; no shell/tool execution, paired output or repeated work.",
+        "Owner471 separately changes only shell metadata to present CLIENT null; native persisted history omits exactly that key while every sibling field/map/ID remains exact. Not native-null emission. The provider supplies only generic current Responses data; it does not manufacture app-server frames, IDs, rollouts or sidecars. Generic production decoding establishes this native input path, not real backend emission or a genuine legacy execution/pairing path.",
+        "Only selected nonempty source-turn object and client-null metadata branches. ConfigurationUpdate426-429 stay missing and unchanged; other shared types/aliases gain no evidence. Arbitrary metadata, real legacy producer/execution, full restoration, external providers/OS/transports, A11 and full-goal/release remain unqualified. Prior292 guarded sources and original fixture stay byte-identical; existing bounds, deadlines and owned cleanup remain. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_local_shell_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-shell-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected CURRENT generic Responses LocalShellCall data-history input only. A bounded local synthetic Responses stream supplies incomplete local_shell_call with inert action data, no ID/call_id/metadata, and an ordinary assistant. Stock pinned Codex emits its actual raw item and writes the identical full durable map with generated lsh_ ID, call_id:null, canonical action nulls and source turn_id metadata. Closed-source user/shell maps import unchanged cold, then one explicit continuation consumes the original shell copy with only passthrough removed. Inference1->1->2; no shell/tool execution, paired output or repeated work.",
+        "Owner471 separately changes only shell metadata to present CLIENT null; native persisted history omits exactly that key while every sibling field/map/ID remains exact. Not native-null emission. The provider supplies only generic current Responses data; it does not manufacture app-server frames, IDs, rollouts or sidecars. Generic production decoding establishes this native input path, not real backend emission or a genuine legacy execution/pairing path.",
+        "Only selected nonempty source-turn object and client-null metadata branches. ConfigurationUpdate426-429 stay missing and unchanged; other shared types/aliases gain no evidence. Arbitrary metadata, real legacy producer/execution, full restoration, external providers/OS/transports, A11 and full-goal/release remain unqualified. Prior292 guarded sources and original fixture stay byte-identical; existing bounds, deadlines and owned cleanup remain. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/4/properties/internal_chat_message_metadata_passthrough/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_local_shell_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

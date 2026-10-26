@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [current LocalShellCall history inputs](local-shell-history-inputs-qualification.md)
+pass the final **47-file, 93/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,26 fixture ASTs and the **294-source**
+guard. Three exact metadata/client-null owners become implemented: **4,947
+implemented / 1,608 missing / 66 blocked** contracts, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Genuine raw/durable
+maps, generated lsh_ ID/source turn and cold import/followup retain **1 → 1 → 2**,
+without shell/tool execution or synthesized output. This is generic current
+Responses/history evidence, not real backend or legacy emission. Twenty-three
+archive-matching files, seven nodes and final binding pass; all prior292 sources
+and ConfigurationUpdate426–429 remain unchanged. Strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, external/OS and release gates remain
+incomplete. No publication/deployment.
+
 The [generic ContextCompaction history inputs](context-compaction-history-inputs-qualification.md)
 pass the final **46-file, 91/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-five fixture ASTs and the
