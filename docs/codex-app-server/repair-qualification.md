@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [compaction input alias repair](compaction-input-alias-qualification.md)
+adds the exact native alias to the supplied-history input contract, preserving
+caller tags, official exports, canonical output and earlier tool semantics.
+The new real-native profile and final reviewed block pass: **21 schema /54 driver
+cases twice**, outside consumer **1/0**, format/compile, strict Credo513, inventory
+and322-source guard. The initial nesting-lint failure and helper-only extraction
+remain recorded. All312 other previous sources, Session/cleanup/providers and
+v350 tests are unchanged. Counts stay **5,018 implemented /1,537 missing /66
+blocked**, unchanged requirements and zero verified. No prohibited/broad/hosted
+check runs; A11 and full-goal acceptance remain incomplete.
+
 The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
 adds the pinned native custom decoder's legacy input contract and format
 consistency without changing caller values or official exports. Three new

@@ -9,6 +9,8 @@ defmodule SamgitaProtocolCodex.Schema do
   serializer's camelCase fields where that release's JSON exporter disagrees.
   A pinned input supplement covers thread/start's legacy dynamic-tool decoder;
   native normalization and exposure defaults never rewrite the caller's values.
+  A separate input-only supplement accepts thread/resume's native compaction
+  alias; canonicalization and persisted tags remain native responsibilities.
 
   All four message directions and correlated result schemas are available.
   `experimental: true` selects the complete upstream input profile. The default

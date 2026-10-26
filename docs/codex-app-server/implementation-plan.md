@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [compaction input alias repair](compaction-input-alias-qualification.md)
+reproduces rejection of the source-supported `compaction_summary` history tag.
+Input-only enum augmentation preserves caller values and official/output schemas;
+one new real-native profile proves genuine checkpoint import, canonical persisted
+records and exact continuation input with unchanged source bytes. Final reviewed
+**21 schema /54 ordinary driver cases twice**, outside consumer **1/0**, scoped
+format/compile, strict Credo513, inventory and322-source guard pass. The initial
+nesting-lint failure and equivalent helper extraction remain recorded. All312
+other previous sources, Session/cleanup/providers and v350 tests stay unchanged.
+No state/owner promotion; counts remain **5,018 implemented /1,537 missing /66
+blocked** contracts and **462 implemented /12 missing /11 blocked** requirements,
+zero verified. Next examine remaining source-declared ordinary input aliases;
+prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal acceptance
+remain incomplete.
+
 The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
 reproduces local rejection of native-supported declarations and acceptance of
 native-invalid mixed formats. A source-pinned input supplement preserves all

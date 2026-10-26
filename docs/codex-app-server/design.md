@@ -31,6 +31,10 @@ likewise follows the real request field's custom decoder omitted from JSON
 exports. It augments the accepted input contract and checks list-wide format
 consistency; native Codex owns normalization, grouping and exposure defaults.
 Neither the supplement nor validation rewrites the original request.
+The separate [compaction input alias](compaction-input-alias-qualification.md)
+extends only the native Compaction input tag set for supplied-history resume.
+Native canonicalization remains observable through persisted records and actual
+continuation input; output contracts never accept a fictitious alias emitter.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

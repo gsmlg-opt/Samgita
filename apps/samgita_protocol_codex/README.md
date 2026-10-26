@@ -44,6 +44,13 @@ be reproduced with `scripts/codex/generate_input_semantics.py`; see
 `docs/codex-app-server/legacy-dynamic-tool-input-qualification.md` for the three
 actual-native profiles and remaining limits.
 
+A second input-only descriptor covers the pinned `compaction_summary` alias in
+`thread/resume.history`. The driver preserves that caller tag; native Codex alone
+serializes, persists and consumes canonical `compaction` items. All original
+field constraints and output contracts remain intact. See
+`docs/codex-app-server/compaction-input-alias-qualification.md` for genuine
+checkpoint import/continuation evidence and its limits.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend

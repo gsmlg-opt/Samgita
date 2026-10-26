@@ -81,6 +81,11 @@ defmodule SamgitaCodexDriver.NativeSuppliedCompactionHistoryTest do
     assert_history_journey(ctx, :client_object)
   end
 
+  test "current client compaction_summary alias is imported and consumed as canonical compaction",
+       ctx do
+    assert_history_journey(ctx, :client_alias)
+  end
+
   defp assert_history_journey(ctx, metadata_mode) do
     source = TurnFixture.start(ctx)
     source_native = native_process(source)
@@ -206,6 +211,24 @@ defmodule SamgitaCodexDriver.NativeSuppliedCompactionHistoryTest do
     assert_retained(ctx, source_path, source_bytes)
   end
 
+  defp submitted_history(_ctx, [user, checkpoint] = history, _source_turn, :client_alias) do
+    # The current client supplies only the source-supported alias tag. The
+    # captured native checkpoint and every expected persisted/provider value
+    # remain canonical; this does not claim native alias emission.
+    assert Map.fetch!(checkpoint, "type") === "compaction"
+    modified = Map.put(checkpoint, "type", "compaction_summary")
+    assert Map.fetch!(modified, "type") === "compaction_summary"
+    assert Map.put(modified, "type", "compaction") === checkpoint
+    submitted = [user, modified]
+    assert submitted !== history
+    assert hd(submitted) === user
+
+    assert Enum.map(submitted, &Map.fetch!(&1, "id")) ===
+             Enum.map(history, &Map.fetch!(&1, "id"))
+
+    {submitted, history}
+  end
+
   defp submitted_history(_ctx, [user, checkpoint] = history, source_turn, :client_object) do
     # This object is intentionally supplied by the current client. The actual
     # native checkpoint captured above has no metadata; no native emission,
@@ -251,6 +274,15 @@ defmodule SamgitaCodexDriver.NativeSuppliedCompactionHistoryTest do
 
   defp assert_profile_import(ctx, path, history, :original, _source_turn),
     do: assert_import(ctx, path, history)
+
+  defp assert_profile_import(ctx, path, history, :client_alias, _source_turn) do
+    assert_import(ctx, path, history)
+    {_bytes, rows} = rollout(ctx, path)
+
+    refute Enum.any?(rows, fn row ->
+             row["type"] == "response_item" and row["payload"]["type"] == "compaction_summary"
+           end)
+  end
 
   defp assert_profile_import(ctx, path, history, :client_object, source_turn) do
     {_bytes, rows} = rollout(ctx, path)

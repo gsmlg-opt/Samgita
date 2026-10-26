@@ -413,6 +413,7 @@ def generate(source):
         shutil.copyfile(origin, VENDOR / "source" / name)
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/dynamic_tools.rs", VENDOR / "source/dynamic-tools.rs")
+    shutil.copyfile(source / "codex-rs/protocol/src/models.rs", VENDOR / "source/models.rs")
     shutil.copyfile(source / PROTOCOL / "v2/realtime.rs", VENDOR / "source/realtime.rs")
     from generate_input_semantics import write as write_input_semantics
     write_input_semantics(VENDOR)
@@ -484,9 +485,10 @@ def main():
     actual = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     expected = merge_progress(expected, actual)
     if args.check or args.require_verified:
-        from generate_input_semantics import SEMANTICS as input_semantics, derive as input_contract
-        if (VENDOR / input_semantics).read_text() != encode(input_contract(VENDOR)):
-            raise SystemExit("Source-derived input semantics changed: " + input_semantics)
+        from generate_input_semantics import corrections as input_corrections
+        for relative, semantics in input_corrections(VENDOR):
+            if (VENDOR / relative).read_text() != encode(semantics):
+                raise SystemExit("Source-derived input semantics changed: " + relative)
         from generate_output_semantics import corrections
         for relative, semantics in corrections(VENDOR):
             if (VENDOR / relative).read_text() != encode(semantics):

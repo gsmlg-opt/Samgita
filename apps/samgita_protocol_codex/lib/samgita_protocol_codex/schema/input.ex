@@ -3,30 +3,38 @@ defmodule SamgitaProtocolCodex.Schema.Input do
 
   alias SamgitaProtocolCodex.Error
 
-  # ThreadStartParams uses a custom serde decoder omitted by the JSON exporter.
-  # Keep its accepted input contract separate from the untouched official export.
+  # The exporter omits a custom decoder and a serde input alias. Source-derived
+  # contracts remain separate from official exports and caller wire values.
   @root Path.expand("../../../priv/upstream/0.163.0", __DIR__)
-  @semantics_path Path.join(@root, "source/input-semantics.json")
-  @external_resource @semantics_path
-  @semantics @semantics_path |> File.read!() |> JSON.decode!()
-  @legacy @semantics["legacy_schema"]
+  @corrections (for relative <- [
+                      "source/input-semantics.json",
+                      "source/response-item-input-semantics.json"
+                    ] do
+                  path = Path.join(@root, relative)
+                  @external_resource path
+                  path |> File.read!() |> JSON.decode!()
+                end)
+  @legacy Enum.find_value(@corrections, & &1["legacy_schema"])
+  @response Enum.find(@corrections, &(&1["definition"] == "ResponseItem"))
 
-  unless @semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
-    raise "pinned input contract commit changed"
-  end
+  for semantics <- @corrections do
+    unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
+      raise "pinned input contract commit changed"
+    end
 
-  for {relative, expected} <-
-        Map.merge(
-          @semantics["source_sha256"],
-          Map.new(@semantics["schemas_sha256"], fn {name, hash} ->
-            {"experimental/" <> name, hash}
-          end)
-        ) do
-    @external_resource Path.join(@root, relative)
-    unless Base.encode16(:crypto.hash(:sha256, File.read!(Path.join(@root, relative))),
-             case: :lower
-           ) == expected do
-      raise "pinned input contract source or export changed"
+    for {relative, expected} <-
+          Map.merge(
+            semantics["source_sha256"],
+            Map.new(semantics["schemas_sha256"], fn {name, hash} ->
+              {"experimental/" <> name, hash}
+            end)
+          ) do
+      @external_resource Path.join(@root, relative)
+      unless Base.encode16(:crypto.hash(:sha256, File.read!(Path.join(@root, relative))),
+               case: :lower
+             ) == expected do
+        raise "pinned input contract source or export changed"
+      end
     end
   end
 
@@ -44,6 +52,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
           properties
       end
     end)
+  end
+
+  def contract("ClientRequest.json", "thread/resume", document) do
+    update_in(
+      document,
+      ["definitions", "ResponseItem", "oneOf"],
+      &Enum.map(&1, fn branch -> response_input(branch) end)
+    )
   end
 
   def contract(_filename, _method, document), do: document
@@ -64,6 +80,17 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   end
 
   def check(_direction, _method, _value), do: :ok
+
+  defp response_input(branch) do
+    if get_in(branch, ["properties", "type", "enum"]) == [@response["canonical_tag"]],
+      do:
+        put_in(
+          branch,
+          ["properties", "type", "enum"],
+          [@response["canonical_tag"] | @response["input_aliases"]]
+        ),
+      else: branch
+  end
 
   defp legacy_fields?(value) when is_map(value),
     do:

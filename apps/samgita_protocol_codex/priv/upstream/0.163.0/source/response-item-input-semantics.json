@@ -1,0 +1,20 @@
+{
+  "canonical_tag": "compaction",
+  "definition": "ResponseItem",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_aliases": [
+    "compaction_summary"
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "method": "thread/resume",
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32"
+  },
+  "semantics": "Accept the pinned serde input alias only on the canonical Compaction input branch, retaining every original property/type constraint. Never rewrite the caller's tag or change output contracts; native decoding, serialization and history persistence own canonicalization.",
+  "source_sha256": {
+    "source/models.rs": "df9a3da250376d86203a8a1219b2e4b5353a62274d094bb36998560433bd58eb",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

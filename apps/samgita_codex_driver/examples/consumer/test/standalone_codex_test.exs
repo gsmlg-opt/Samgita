@@ -41,6 +41,21 @@ defmodule StandaloneCodexTest do
                experimental: true
              )
 
+    assert :ok =
+             SamgitaProtocolCodex.Schema.validate_request(
+               "thread/resume",
+               %{
+                 "threadId" => "owned-source",
+                 "history" => [
+                   %{
+                     "type" => "compaction_summary",
+                     "encrypted_content" => "SYNTHETIC_OPAQUE_CHECKPOINT"
+                   }
+                 ]
+               },
+               experimental: true
+             )
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

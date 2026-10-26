@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [compaction input alias repair](compaction-input-alias-qualification.md)
+accepts native `compaction_summary` supplied history without rewriting the caller
+tag. Actual checkpoint import and continuation produce canonical persisted and
+provider-consumed items. The final reviewed matrix passes **21 schema /54 ordinary
+driver cases twice**, outside consumer **1/0**, format/compile, strict Credo513,
+inventory and322-source guard; all312 other previous sources, Session and cleanup
+remain unchanged. The initial lint failure stays recorded. No requirement/owner
+promotion: **5,018 implemented /1,537 missing /66 blocked** contracts, unchanged
+requirements and zero verified. Prohibited/broad/hosted, A11, legacy/external/
+platform and full-goal/release gates remain incomplete; no publication/deployment.
+
 The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
 now accepts the pinned native decoder's legacy flat declarations and rejects
 native-invalid mixed formats without rewriting wire values or official JSON.
