@@ -34392,24 +34392,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/12",
       "schema": "ClientRequest.json",
       "schema_sha256": "ee0aedce5f548d36a13a981a6d9fe696f83309b36f50fd2efa057d345d39f35d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -34441,223 +34451,313 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/id",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/internal_chat_message_metadata_passthrough/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/result",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/result",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "result"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/revised_prompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/revised_prompt",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "revised_prompt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/status",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "15a940bbe154256dfd8bc6f5607279750d6ebcda7271b58b88991bff104a3557",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/12/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current ImageGenerationCall raw client-history input only. The pinned current official Responses item shape produces a real native user/image durable pair with exact ig_ ID, completed status, Unicode revised_prompt, fixed tiny PNG result and native source turn_id metadata. Whole maps import unchanged cold; one explicit followup consumes the complete original image copy with only custom-provider passthrough removed. Two profiles retain inference1->1->2, exact source/imported originals, config/catalog/script bytes, empty workspace and owned cleanup.",
+        "Owner412 is a separate modified CLIENT input: source image metadata object deliberately set null normalizes to omitted key, preserving every other map/ID and the same explicit followup budget. Not native-null emission. Image-capable input_modalities[text,image] is fixed before either native; text-only result-clearing behavior is not exercised or inferred. Native raw image persistence does not require a live imageGeneration item pair on this pinned generic path; no such notification coverage is promoted.",
+        "Only nonempty ID and revised prompt, literal completed status/result/source metadata and pinned unstable history input. Excluded408, nullID/prompt, arbitrary metadata/statuses, actual image generation/quality, image_gen HTTP/extension/artifact paths, entire context restoration, external providers/OS/transports, full-goal/A11/release remain unqualified. Session default8MiB/local capture1MiB bounds, existing deadlines and all prior285 sources stay intact. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/12/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6175ef5ea88d0a8b52c614f5ba749d15e82c3c755dafc95b5fae1ef7be13679e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_image_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

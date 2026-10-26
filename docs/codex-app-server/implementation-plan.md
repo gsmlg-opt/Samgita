@@ -21,6 +21,32 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [current image-result history inputs](image-history-inputs-qualification.md)
+pass the final **44-file, 86/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
+**287-source** guard. Ten exact raw-image/client-null owners become implemented:
+**4,933 implemented / 1,622 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Genuine whole native maps, cold import and one consuming followup retain
+**1 → 1 → 2**. Native source-turn metadata and original ig_ ID/result/status/
+prompt remain exact; client-null metadata normalizes separately to omission.
+Twenty-three archive-matching files, eleven nodes and final binding pass;
+all prior285 sources and owner408 stay unchanged. Strict completeness exits
+**1**. Real image generation, prohibited/broad/hosted, full-goal, A11,
+historical/external/OS and release gates remain incomplete. No publication/deployment.
+
+Next qualify current client-supplied non-null Compaction metadata422 without
+claiming native emission. Preserve both existing unchanged/null profiles and
+the original provider; require exact added object, no restamping, whole durable
+maps, original cmp_ request copy and **2 → 2 → 3** with no new compaction.
+Then qualify actual child-completion AgentMessage metadata448–450 and the
+separate generic ContextCompaction decode/history route, with their source and
+external-emission limits explicit. Retain fixed yolo and every verification
+restriction. Prohibited/broad/hosted, full-goal, A11, historical/unreachable,
+unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [completed WebSearchCall history input](supplied-history-inputs-qualification.md#completed-web-search-history)
 passes the final **43-file, 84/0 twice** functional matrix, compile/format,
 strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
@@ -32,21 +58,6 @@ verified. Genuine raw maps, unchanged cold import and consuming followup retain
 previous cases, two-import body and default producer remain intact;399 stays
 missing. Twenty-one archive-matching files, five nodes, inventory/final binding
 pass. No native semantic repair; strict completeness exits **1**.
-
-Continue current raw ImageGenerationCall history for exact client owners407/
-409–417, excluding408: official current Responses producer, native durable raw
-user/image pair and source turn metadata, unchanged/null cold import and one
-explicit followup consuming the complete image-capable provider copy. Configure
-image input support before native start; require exact result/revised_prompt/
-status/ig_ ID, **1 → 1 → 2**, no extension/image HTTP/artifact or tool path, no
-assumed live imageGeneration notification pair. Preserve every existing source
-and keep null metadata explicitly modified client input. Separately qualify
-current client-supplied non-null Compaction metadata422 without claiming native
-emission. Retain fixed yolo and every verification restriction. Prohibited/
-broad/hosted, full-goal, A11, historical/unreachable, unavailable external/OS and
-release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [genuine compaction history inputs](compaction-history-inputs-qualification.md)
 pass the final **43-file, 83/0 twice** functional matrix, compile/format,

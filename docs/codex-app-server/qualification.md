@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [current image-result history inputs](image-history-inputs-qualification.md)
+pass the final **44-file, 86/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
+**287-source** guard. Ten exact raw-image/client-null owners become implemented:
+**4,933 implemented / 1,622 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Genuine whole native maps, cold import and one consuming followup retain
+**1 → 1 → 2**. Native source-turn metadata and original ig_ ID/result/status/
+prompt remain exact; client-null metadata normalizes separately to omission.
+Twenty-three archive-matching files, eleven nodes and final binding pass;
+all prior285 sources and owner408 stay unchanged. Strict completeness exits
+**1**. Real image generation, prohibited/broad/hosted, full-goal, A11,
+historical/external/OS and release gates remain incomplete. No publication/deployment.
+
 The [completed WebSearchCall history input](supplied-history-inputs-qualification.md#completed-web-search-history)
 passes the final **43-file, 84/0 twice** functional matrix, compile/format,
 strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
