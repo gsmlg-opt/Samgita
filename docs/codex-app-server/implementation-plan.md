@@ -21,6 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine compact steering rejection](compact-steering-error-qualification.md)
+passes the final **42-file, 80/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. The full native RPC data and explicit interruption,
+late-output exclusion and cold continuation supplement existing entries168/187/
+188 and owner1818 with **zero promotions**. Requirements stay **462 implemented /
+12 missing / 11 blocked**; contracts stay **4,897 implemented / 1,658 missing /
+66 blocked**, zero verified. Notification/queue blockers remain byte-identical.
+Ten archive-matching files, physical schema/hash ownership, inventory and final
+binding pass; strict completeness exits **1**. Initial parsing and evidence-script
+failures/corrections remain recorded without weakening checks.
+
+Continue explicit-null history inputs for owners376/379/483/506/497/390/519/530:
+clone genuinely captured records, deliberately change one selected client field
+to null, and require exact source-backed omission in durable native records.
+Retain every other value/ID and the four preceding unchanged-import journeys.
+Use no inference/effect on the added imports and distinguish modified client
+acceptance from native-null emission. Then consider genuine reasoning-history
+summary/content/metadata imports and followup consumption using the existing
+local provider. Retain fixed yolo and every verification restriction. Prohibited/
+broad/hosted, full-goal, A11, historical/unreachable, unavailable external/OS and
+release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [custom tool-history unit](supplied-history-inputs-qualification.md#custom-tool-history)
 passes the final **41-file, 79/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, nineteen fixture ASTs and the **281-source** guard.
@@ -44,8 +69,6 @@ omission on persistence. Do not call modified input an original native emission.
 Retain fixed yolo and every verification restriction. Prohibited/broad/hosted,
 full-goal, A11, historical/unreachable, unavailable external/OS and release gates
 remain incomplete.
-
-## Earlier checkpoints
 
 The [client tool-search history unit](supplied-history-inputs-qualification.md#client-tool-search-history)
 passes the final **41-file, 78/0 twice** matrix, compile/format, strict Credo,

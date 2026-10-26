@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [genuine compact steering rejection](compact-steering-error-qualification.md)
+passes the final **42-file, 80/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. The complete native RPC error, unchanged active task,
+intentional interruption, late-output exclusion and cold continuation supplement
+three existing entries and owner1818; **zero promotions**, unchanged **4,897
+implemented / 1,658 missing / 66 blocked** contracts, **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Ten archive-matching
+files, exact schema locations, inventory and final binding pass. The initial
+reserved-attribute parse failure and evidence-script hash correction remain
+recorded. Notification/queue error blockers stay untouched; strict completeness
+exits **1**. Prohibited/broad/hosted, full-goal, A11, historical/external/OS and
+release gates remain incomplete. No publication/deployment.
+
 The [custom tool-history unit](supplied-history-inputs-qualification.md#custom-tool-history)
 passes the final **41-file, 79/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, nineteen fixture ASTs and the **281-source** guard.

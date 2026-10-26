@@ -8791,14 +8791,16 @@
       "direction": "client_request",
       "evidence": [
         "Seven selected actual Linux/stdio active/idle steering scenarios, expected-turn and input rejection, accepted context/metadata association, structured media/encrypted toolOutput and cold-resume history: apps/samgita_codex_driver/test/native_turn_steering_test.exs; docs/codex-app-server/turn-input-qualification.md. Remaining fields/profiles and real media semantics remain unqualified.",
-        "docs/codex-app-server/core-thread-turn-qualification.md"
+        "docs/codex-app-server/core-thread-turn-qualification.md",
+        "docs/codex-app-server/compact-steering-error-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:turn/steer",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native behavior: Active turn preserved; accepted content/context/metadata and client ID associated. Idle and malformed cases negative-only. Selected input variants only."
+        "Selected actual-native behavior: Active turn preserved; accepted content/context/metadata and client ID associated. Idle and malformed cases negative-only. Selected input variants only.",
+        "Additional actual-native compact steering rejection: genuine held compaction and native item/turn readiness precede one explicit-ID turn/steer. Entire -32600 RPC error.data is the independently prescribed TurnError with activeTurnNotSteerable compact, null additionalDetails/misalignment. Rejection leaves the same task active with two unchanged provider requests; intentional interruption and late output release alone cancel it. Ordinary and cold continuations preserve accepted inputs but exclude rejected input/checkpoint, with four total requests, no client callbacks/effects/uncertainty and owned cleanup. Local fixed-yolo Linux/stdio only; this supplements already implemented RPC data/envelopes/turn-steer and cannot qualify notification2076-2078 or queue5778-5780, Review-kind, other OS/transport/backend, full compatibility, A11 or prohibited/unrun tests. No owner/state promotion."
       ],
       "params": {
         "$ref": "#/definitions/TurnSteerParams"
@@ -8829,7 +8831,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_turn_steering_test.exs"
+          "apps/samgita_codex_driver/test/native_turn_steering_test.exs",
+          "apps/samgita_codex_driver/test/native_compact_steering_error_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9683,7 +9686,8 @@
     {
       "direction": "response_error_envelope",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/compact-steering-error-qualification.md"
       ],
       "id": "envelope:JSONRPCError",
       "implementation_module": "SamgitaProtocolCodex.Wire",
@@ -9696,7 +9700,8 @@
         "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
         "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
         "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
-        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified.",
+        "Additional actual-native compact steering rejection: genuine held compaction and native item/turn readiness precede one explicit-ID turn/steer. Entire -32600 RPC error.data is the independently prescribed TurnError with activeTurnNotSteerable compact, null additionalDetails/misalignment. Rejection leaves the same task active with two unchanged provider requests; intentional interruption and late output release alone cancel it. Ordinary and cold continuations preserve accepted inputs but exclude rejected input/checkpoint, with four total requests, no client callbacks/effects/uncertainty and owned cleanup. Local fixed-yolo Linux/stdio only; this supplements already implemented RPC data/envelopes/turn-steer and cannot qualify notification2076-2078 or queue5778-5780, Review-kind, other OS/transport/backend, full compatibility, A11 or prohibited/unrun tests. No owner/state promotion."
       ],
       "schema": "JSONRPCError.json",
       "schema_sha256": "d7ea353d4875ae204625da5a00a1ecb5afc69101d5778b9acc253a49f8932992",
@@ -9714,16 +9719,20 @@
           "apps/samgita_protocol_codex/test/wire_test.exs:54",
           "apps/samgita_codex_driver/test/session_test.exs:127",
           "apps/samgita_codex_driver/test/real_session_test.exs:194",
-          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76"
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76",
+          "apps/samgita_codex_driver/test/native_compact_steering_error_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "JSONRPCError"
     },
     {
       "direction": "response_error_envelope",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/compact-steering-error-qualification.md"
       ],
       "id": "envelope:JSONRPCErrorError",
       "implementation_module": "SamgitaProtocolCodex.Wire",
@@ -9736,7 +9745,8 @@
         "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
         "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
         "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
-        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified.",
+        "Additional actual-native compact steering rejection: genuine held compaction and native item/turn readiness precede one explicit-ID turn/steer. Entire -32600 RPC error.data is the independently prescribed TurnError with activeTurnNotSteerable compact, null additionalDetails/misalignment. Rejection leaves the same task active with two unchanged provider requests; intentional interruption and late output release alone cancel it. Ordinary and cold continuations preserve accepted inputs but exclude rejected input/checkpoint, with four total requests, no client callbacks/effects/uncertainty and owned cleanup. Local fixed-yolo Linux/stdio only; this supplements already implemented RPC data/envelopes/turn-steer and cannot qualify notification2076-2078 or queue5778-5780, Review-kind, other OS/transport/backend, full compatibility, A11 or prohibited/unrun tests. No owner/state promotion."
       ],
       "schema": "JSONRPCErrorError.json",
       "schema_sha256": "12cc5cd5d9df9246defa609c472375020fe5250f3aeabd7d529076cecd9f541e",
@@ -9754,10 +9764,13 @@
           "apps/samgita_protocol_codex/test/wire_test.exs:54",
           "apps/samgita_codex_driver/test/session_test.exs:127",
           "apps/samgita_codex_driver/test/real_session_test.exs:194",
-          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76"
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76",
+          "apps/samgita_codex_driver/test/native_compact_steering_error_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "JSONRPCErrorError"
     },
     {
@@ -77634,7 +77647,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/compact-steering-error-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -77643,7 +77657,8 @@
       "limitations": [
         "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
         "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
-        "Only values explicitly asserted by the named test; not every schema-valid value."
+        "Only values explicitly asserted by the named test; not every schema-valid value.",
+        "Additional actual-native compact steering rejection: genuine held compaction and native item/turn readiness precede one explicit-ID turn/steer. Entire -32600 RPC error.data is the independently prescribed TurnError with activeTurnNotSteerable compact, null additionalDetails/misalignment. Rejection leaves the same task active with two unchanged provider requests; intentional interruption and late output release alone cancel it. Ordinary and cold continuations preserve accepted inputs but exclude rejected input/checkpoint, with four total requests, no client callbacks/effects/uncertainty and owned cleanup. Local fixed-yolo Linux/stdio only; this supplements already implemented RPC data/envelopes/turn-steer and cannot qualify notification2076-2078 or queue5778-5780, Review-kind, other OS/transport/backend, full compatibility, A11 or prohibited/unrun tests. No owner/state promotion."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -77659,10 +77674,13 @@
         ],
         "verified": [
           "apps/samgita_protocol_codex/test/wire_test.exs:5",
-          "apps/samgita_codex_driver/test/session_test.exs:127"
+          "apps/samgita_codex_driver/test/session_test.exs:127",
+          "apps/samgita_codex_driver/test/native_compact_steering_error_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
