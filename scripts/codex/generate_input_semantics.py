@@ -126,6 +126,23 @@ ITEMS_VIEW_SCHEMAS = {
         "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
     },
 }
+MERGE_STRATEGY_SEMANTICS = "source/merge-strategy-input-semantics.json"
+CONFIG = "source/config.rs"
+CONFIG_SHA256 = "93f7493dba38114e4be349e6d327605cfd88b8eb8454db6f5173d329e87fb9af"
+MERGE_STRATEGY_PATHS = (("config/batchWrite", ("edits", "[]", "mergeStrategy")),
+                        ("config/value/write", ("mergeStrategy",)))
+MERGE_STRATEGY_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
+        "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
+        "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -965,6 +982,158 @@ def derive_items_view(vendor):
     }
 
 
+def derive_merge_strategy(vendor):
+    sources = {CONFIG: CONFIG_SHA256, COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned merge strategy input source changed: " + name)
+    rust = (vendor / CONFIG).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub enum MergeStrategy \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    Replace,\n    Upsert,':
+        raise ValueError("Pinned MergeStrategy unit variants or declaration changed")
+    names = [name[:1].lower() + name[1:]
+             for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    edit_fields = ('    pub key_path: String,\n'
+                   '    pub value: JsonValue,\n'
+                   '    pub merge_strategy: MergeStrategy,')
+    file_fields = (
+        "    /// Path to the config file to write; defaults to the user's `config.toml` when omitted.\n"
+        '    #[ts(optional = nullable)]\n'
+        '    pub file_path: Option<String>,\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub expected_version: Option<String>,')
+    bodies = {
+        "ConfigEdit": edit_fields,
+        "ConfigValueWriteParams": edit_fields + '\n' + file_fields,
+        "ConfigBatchWriteParams": (
+            '    pub edits: Vec<ConfigEdit>,\n' + file_fields + '\n'
+            '    /// When true, hot-reload updated runtime settings into loaded threads after writing.\n'
+            '    /// Session-static model, reasoning-effort, Plan-mode reasoning-effort, and service-tier\n'
+            '    /// defaults are not reloaded. The deprecated personality setting is also not reloaded.\n'
+            '    #[serde(default, skip_serializing_if = "std::ops::Not::not")]\n'
+            '    pub reload_user_config: bool,'),
+    }
+    for owner, body in bodies.items():
+        params = re.search(
+            r'#\[derive\(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS\)\]\n'
+            r'#\[serde\(rename_all = "camelCase"\)\]\n'
+            r'#\[ts\(export_to = "v2/"\)\]\n'
+            r'pub struct ' + owner + r' \{\n(.*?)\n\}', rust, re.S)
+        if not params or params[1] != body:
+            raise ValueError("Pinned required merge strategy fields or enclosing declaration changed: " + owner)
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    for variant, method, owner in (
+            ("ConfigValueWrite", "config/value/write", "ConfigValueWriteParams"),
+            ("ConfigBatchWrite", "config/batchWrite", "ConfigBatchWriteParams")):
+        method_declaration = (
+            '    },\n    ' + variant + ' => "' + method + '" {\n'
+            '        params: v2::' + owner + ',\n'
+            '        serialization: global("config"),\n'
+            '        manual_payload_conversion: manual,\n'
+            '        response: v2::ConfigWriteResponse,\n    },')
+        if method_declaration not in common:
+            raise ValueError("Pinned standard config-write method declaration changed: " + method)
+
+    def input_paths(node, path, seen, document):
+        if isinstance(node, dict):
+            reference = node.get("$ref")
+            if reference == "#/definitions/MergeStrategy":
+                return [path]
+            if reference:
+                if reference in seen:
+                    return []
+                return input_paths(document["definitions"][reference.removeprefix("#/definitions/")],
+                                   path, seen | {reference}, document)
+            if "properties" in node:
+                return [result for key, child in node["properties"].items()
+                        for result in input_paths(child, (*path, key), seen, document)]
+            if "items" in node:
+                return input_paths(node["items"], (*path, "[]"), seen, document)
+            return [result for child in node.values()
+                    for result in input_paths(child, path, seen, document)]
+        if isinstance(node, list):
+            return [result for child in node
+                    for result in input_paths(child, path, seen, document)]
+        return []
+
+    def check_edit(definition):
+        properties = definition["properties"]
+        if (definition["type"] != "object"
+                or definition["required"] != ["keyPath", "mergeStrategy", "value"]
+                or properties["keyPath"] != {"type": "string"}
+                or properties["value"] is not True
+                or properties["mergeStrategy"] != {"$ref": "#/definitions/MergeStrategy"}):
+            raise ValueError("Official required nonnullable merge strategy edit contract changed")
+
+    hashes = {}
+    for profile, schemas in MERGE_STRATEGY_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned merge strategy schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["MergeStrategy"] != {"enum": names, "type": "string"}:
+                raise ValueError("Official canonical merge strategy contract changed: " + profile + "/" + name)
+            if name == "ClientRequest.json":
+                paths = sorted(
+                    (method, field_path) for branch in document["oneOf"]
+                    for field_path in input_paths(branch["properties"]["params"], (), set(), document)
+                    for method in branch["properties"]["method"]["enum"])
+                if paths != list(MERGE_STRATEGY_PATHS):
+                    raise ValueError("MergeStrategy request property-reference paths changed: " + profile)
+                for method, owner in (("config/value/write", "ConfigValueWriteParams"),
+                                      ("config/batchWrite", "ConfigBatchWriteParams")):
+                    branches = [branch for branch in document["oneOf"]
+                                if branch["properties"]["method"]["enum"] == [method]]
+                    if len(branches) != 1 or branches[0]["properties"]["params"] != {
+                            "$ref": "#/definitions/" + owner}:
+                        raise ValueError("Pinned config-write params reference changed: " + method)
+                single = document["definitions"]["ConfigValueWriteParams"]
+                batch = document["definitions"]["ConfigBatchWriteParams"]
+            elif name == "v2/ConfigValueWriteParams.json":
+                single, batch = document, None
+            else:
+                single, batch = None, document
+            if single is not None:
+                check_edit(single)
+                if set(single["properties"]) != {"keyPath", "value", "mergeStrategy", "filePath", "expectedVersion"}:
+                    raise ValueError("Official single config-write enclosing fields changed")
+            if batch is not None:
+                if (batch["type"] != "object" or batch["required"] != ["edits"]
+                        or set(batch["properties"]) != {"edits", "filePath", "expectedVersion", "reloadUserConfig"}
+                        or batch["properties"]["edits"] != {
+                            "items": {"$ref": "#/definitions/ConfigEdit"}, "type": "array"}
+                        or batch["properties"]["reloadUserConfig"].get("type") != "boolean"):
+                    raise ValueError("Official config-write batch array contract changed")
+                edit = document["definitions"]["ConfigEdit"]
+                check_edit(edit)
+                if set(edit["properties"]) != {"keyPath", "value", "mergeStrategy"}:
+                    raise ValueError("Official nested config edit fields changed")
+            if any((vendor / profile / ("v2/" + owner + ".json")).exists()
+                   for owner in ("ConfigEdit", "MergeStrategy")):
+                raise ValueError("Pinned nested-only merge strategy export boundary changed")
+            if profile == "experimental":
+                hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": [method for method, _path in MERGE_STRATEGY_PATHS],
+        "definition": "MergeStrategy",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary camelCase MergeStrategy unit enum accepts one-key replace/upsert objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Both stable and full input reach exactly config/value/write.mergeStrategy and config/batchWrite.edits[].mergeStrategy. Preserve the complete canonical string enum, original caller values, required non-Option fields and enclosing batch array constraints. A null unit payload selects a present strategy; outer null and omission remain invalid. No strategy default, normalization or output change is introduced. Native owns the configuration edit, version comparison and persistence; independently observed ordinary desktop replacement/upsert effects and cold final-state retention are required. This input family does not establish arbitrary config keys, null deletion, mixed-edit atomic failure, concurrent writers, overrides, hot reload or every transport/platform behavior. No thread or inference is needed for the bounded ordinary consumer.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -1013,7 +1182,8 @@ def corrections(vendor):
             (LIST_SORT_SEMANTICS, derive_list_sort(vendor)),
             (DIRECTION_SEMANTICS, derive_direction(vendor)),
             (PROJECT_SORT_SEMANTICS, derive_project_sort(vendor)),
-            (ITEMS_VIEW_SEMANTICS, derive_items_view(vendor)))
+            (ITEMS_VIEW_SEMANTICS, derive_items_view(vendor)),
+            (MERGE_STRATEGY_SEMANTICS, derive_merge_strategy(vendor)))
 
 
 def write(vendor):

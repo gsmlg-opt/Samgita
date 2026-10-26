@@ -21,6 +21,23 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [merge-strategy input repair](merge-strategy-input-qualification.md) accepts
+four native unit objects on both standard config-write paths, retaining required
+non-Option strategies and exact caller bytes. Eight independent ordinary desktop
+edits distinguish Replace/Upsert; ten layer reads and a cold process retain the
+exact final file/version and unrelated configuration, with zero inference.
+Final **82 schema /137 ordinary driver twice**, outside consumer **1/0**,
+strict Credo537, inventory and367-source guard pass; all359 other prior sources,
+thirteen descriptors and770 exports remain unchanged. Root compile/format/assets,
+forced Dialyzer, architecture scanners and local production assembly pass.
+The first strict-Credo
+failure is retained; extracting the unchanged capture callback fixes its nesting
+without exemptions. Counts remain **5,038 implemented /1,517 missing /66
+blocked** contracts and **462 implemented /12 missing /11 blocked** requirements,
+zero verified. Next reproduce twenty source-kind objects with a genuine vscode
+producer and explicit limits on the nine other positive sources. Prohibited/
+broad/hosted, A11, legacy/external/OS/platform and full-goal gates stay incomplete.
+
 The [turn-view input repair](turn-items-view-input-qualification.md) accepts six
 native objects on standard turn listing and experimental resume bootstrap pages.
 It preserves the complete described canonical oneOf, original bytes and gates.

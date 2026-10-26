@@ -209,6 +209,21 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for strategy <- ["replace", "upsert"], payload <- [nil, %{}] do
+      edit = %{
+        "keyPath" => "desktop",
+        "value" => %{"appearanceTheme" => "light"},
+        "mergeStrategy" => %{strategy => payload}
+      }
+
+      for {method, params} <- [
+            {"config/value/write", edit},
+            {"config/batchWrite", %{"edits" => [edit]}}
+          ] do
+        assert :ok = SamgitaProtocolCodex.Schema.validate_request(method, params)
+      end
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

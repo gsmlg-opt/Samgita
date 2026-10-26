@@ -19,7 +19,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/thread-sort-key-input-semantics.json",
                       "source/sort-direction-input-semantics.json",
                       "source/project-sort-key-input-semantics.json",
-                      "source/turn-items-view-input-semantics.json"
+                      "source/turn-items-view-input-semantics.json",
+                      "source/merge-strategy-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -40,6 +41,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @direction Enum.find(@corrections, &(&1["definition"] == "SortDirection"))
   @project_sort Enum.find(@corrections, &(&1["definition"] == "ProjectSortKey"))
   @items_view Enum.find(@corrections, &(&1["definition"] == "TurnItemsView"))
+  @merge_strategy Enum.find(@corrections, &(&1["definition"] == "MergeStrategy"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -122,6 +124,10 @@ defmodule SamgitaProtocolCodex.Schema.Input do
 
   def contract("ClientRequest.json", "thread/items/list", document),
     do: direction_input(document)
+
+  def contract("ClientRequest.json", method, document)
+      when method in ["config/batchWrite", "config/value/write"],
+      do: merge_strategy_input(document)
 
   def contract(_filename, _method, document), do: document
 
@@ -235,6 +241,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "TurnItemsView"],
       &%{"oneOf" => [&1 | @items_view["input_object_branches"]]}
+    )
+  end
+
+  defp merge_strategy_input(document) do
+    update_in(
+      document,
+      ["definitions", "MergeStrategy"],
+      &%{"oneOf" => [&1 | @merge_strategy["input_object_branches"]]}
     )
   end
 

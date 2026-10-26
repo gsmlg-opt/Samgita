@@ -101,6 +101,12 @@ turn listing and the experimental resume bootstrap page. Request null/omission
 defaults to Summary even though the enum default is Full. Genuine persisted
 items distinguish NotLoaded; the current two-item producer leaves richer
 Summary filtering and object-specific cold resume unqualified.
+The [merge-strategy correction](merge-strategy-input-qualification.md) accepts
+native unit objects on the two standard configuration-write paths, including
+batch edit arrays. Strategies remain required, nonnullable fields with no local
+default. Eight genuine ordinary desktop edits distinguish replacement from
+recursive merge while preserving other configuration; a cold process reads the
+exact final file and layer without replaying a mutation.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

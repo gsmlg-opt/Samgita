@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [implementation ledger](implementation-plan.md#current-checkpoint) records
+the current checkpoint. Recent native input repairs cover
+[list keys](list-sort-input-qualification.md),
+[directions](sort-direction-input-qualification.md),
+[project keys](project-sort-key-input-qualification.md),
+[turn item views](turn-items-view-input-qualification.md) and
+[configuration merge strategies](merge-strategy-input-qualification.md).
+Each binds native acceptance and observable effects to the immutable release,
+preserving all official exports, original caller data and existing gates.
+Their scoped evidence does not promote complete requirements or physical owners.
+The user's restriction leaves security/permission tests, audits, mixed broad
+suites and hosted workflows unrun/incomplete; A11, producerless legacy,
+external/platform profiles and full compatibility remain incomplete.
+
 The [failed/running child family](collaboration-failure-running-qualification.md)
 qualifies five exact live/selective owners through actual child failure,
 observed provider requests before close, continued parent execution and independent

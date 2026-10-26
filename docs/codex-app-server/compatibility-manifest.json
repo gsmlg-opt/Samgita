@@ -1249,14 +1249,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/configuration-qualification.md"
+        "docs/codex-app-server/configuration-qualification.md",
+        "docs/codex-app-server/merge-strategy-input-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:config/batchWrite",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified.",
+        "Scoped MergeStrategy input correction on exactly standard config/value/write.mergeStrategy and config/batchWrite.edits[].mergeStrategy: four replace/upsert null-or-empty-map objects preserve original bytes, canonical schemas, required nonOption fields and absence of local defaults. Eight real desktop-table writes each change state with independent sentinel expectations: Replace removes a present key; Upsert preserves a separate key while changing another. Ten actual persisted-layer reads, immediate version/file correlation and final unloaded-process exact file/UserLayer continuity pass with original non-desktop config/metadata retained,8/12x4KiB captures,0 inference and owned cleanup. A strict-Credo nested callback finding is repaired by extracting its unchanged recording body, preserving every assertion; failed logs remain separate. Final82schema/137reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and367stable sources with770unchanged exports and13unchanged prior descriptors. No physical owner/state promotion, arbitrary-config/mixed-failure/concurrent-writer/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
       ],
       "params": {
         "$ref": "#/definitions/ConfigBatchWriteParams"
@@ -1287,7 +1289,9 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_config_test.exs"
+          "apps/samgita_codex_driver/test/native_config_test.exs",
+          "apps/samgita_protocol_codex/test/merge_strategy_input_test.exs",
+          "apps/samgita_codex_driver/test/native_merge_strategy_unit_input_test.exs"
         ]
       },
       "transport_coverage": [
@@ -1399,14 +1403,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/configuration-qualification.md"
+        "docs/codex-app-server/configuration-qualification.md",
+        "docs/codex-app-server/merge-strategy-input-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:config/value/write",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified.",
+        "Scoped MergeStrategy input correction on exactly standard config/value/write.mergeStrategy and config/batchWrite.edits[].mergeStrategy: four replace/upsert null-or-empty-map objects preserve original bytes, canonical schemas, required nonOption fields and absence of local defaults. Eight real desktop-table writes each change state with independent sentinel expectations: Replace removes a present key; Upsert preserves a separate key while changing another. Ten actual persisted-layer reads, immediate version/file correlation and final unloaded-process exact file/UserLayer continuity pass with original non-desktop config/metadata retained,8/12x4KiB captures,0 inference and owned cleanup. A strict-Credo nested callback finding is repaired by extracting its unchanged recording body, preserving every assertion; failed logs remain separate. Final82schema/137reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and367stable sources with770unchanged exports and13unchanged prior descriptors. No physical owner/state promotion, arbitrary-config/mixed-failure/concurrent-writer/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
       ],
       "params": {
         "$ref": "#/definitions/ConfigValueWriteParams"
@@ -1437,7 +1443,9 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_config_test.exs"
+          "apps/samgita_codex_driver/test/native_config_test.exs",
+          "apps/samgita_protocol_codex/test/merge_strategy_input_test.exs",
+          "apps/samgita_codex_driver/test/native_merge_strategy_unit_input_test.exs"
         ]
       },
       "transport_coverage": [
@@ -10470,7 +10478,8 @@
         "docs/codex-app-server/list-sort-input-qualification.md",
         "docs/codex-app-server/sort-direction-input-qualification.md",
         "docs/codex-app-server/project-sort-key-input-qualification.md",
-        "docs/codex-app-server/turn-items-view-input-qualification.md"
+        "docs/codex-app-server/turn-items-view-input-qualification.md",
+        "docs/codex-app-server/merge-strategy-input-qualification.md"
       ],
       "id": "lifecycle:missing-null-default",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10496,7 +10505,8 @@
         "Scoped ThreadSortKey input repair: the tenth pinned supplement accepts exactly eight created_at/updated_at/recency_at/section_position objects with null/empty-map payload only on standard thread/list, preserving original bytes and all canonical/null/omission/enclosing contracts. Red protocol5/2fail and native1/1fail reproduce local rejection; an exact-one-line temporary wire diagnostic proves acceptance and final coverage uses default validation. Two real threads/three assistant turns and public custom section/moves establish independent created/updated/recency/section discriminators. Query-only native columns plus32warm/cold full pages prove exact ordering, IDs and row/section/time projections, original request bytes/correlation, retained histories/journal and unloaded replacement state with no extra inference. Capture40calls/48x4KiB and existing deadlines/owned cleanup remain. Eight archive-matched sources,770unchanged exports and nine unchanged prior descriptors bind the repair. Final62schema/128ordinary driver cases twice, outside consumer1/0 and strict checks pass with353stable sources. Native uses full negotiation; default/full schema options are structural evidence. No pagination, universal UpdatedAt/RecencyAt swap discrimination, physical owner/state/count promotion, prohibited/broad/hosted gate or complete compatibility/publication claim.",
         "Scoped SortDirection input correction on exactly six full request graphs: four asc/desc null-or-empty-map objects preserve original wire values, standard/full method and nested-page negotiation. Independent native chronology, real item identities/timing and public project moves prescribe all40 history and8 project ordered queries warm/cold;16cold reads precede resume with no extra inference. Exact runtime projections and the source-prescribed first-cold-resume checkpoint, original SessionMeta creation restoration and bracketed update clock are asserted; every other field and subsequent frozen state stays exact. Only one resume is initially unloaded. Capture45/48 and11/16, provider3/0, original bytes/history and owned cleanup retained. Final67schema and10affected actual-binary cases pass twice plus outsideconsumer1/0 and strict checks, with357stable sources and770unchanged exports. This does not promote physical owners/states or qualify cursor/legacy/other-backend breadth, prohibited/broad/hosted gates or full compatibility.",
         "Scoped ProjectSortKey input correction on experimental project/list only: four position/recencyAt null-or-empty-map objects preserve original bytes, canonical outputs, method negotiation and key-dependent native defaults. Four public project creates and one move prescribe position order; two genuine assistant-only turns and read-only native recency columns prescribe active order plus directional ID ties/null-last empty projects. All16 combinations of key objects and omitted/null/asc/desc directions pass warm and unloaded cold:32 complete pages,41/48 bounded captures,2 inference, exact catalog/config/provider journal/project/thread/history retention and owned cleanup. Final72 schema and135 reviewed ordinary driver cases pass twice, outsideconsumer1/0, strict/static/assembly checks and360stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full-compatibility claim.",
-        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
+        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
+        "Scoped MergeStrategy input correction on exactly standard config/value/write.mergeStrategy and config/batchWrite.edits[].mergeStrategy: four replace/upsert null-or-empty-map objects preserve original bytes, canonical schemas, required nonOption fields and absence of local defaults. Eight real desktop-table writes each change state with independent sentinel expectations: Replace removes a present key; Upsert preserves a separate key while changing another. Ten actual persisted-layer reads, immediate version/file correlation and final unloaded-process exact file/UserLayer continuity pass with original non-desktop config/metadata retained,8/12x4KiB captures,0 inference and owned cleanup. A strict-Credo nested callback finding is repaired by extracting its unchanged recording body, preserving every assertion; failed logs remain separate. Final82schema/137reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and367stable sources with770unchanged exports and13unchanged prior descriptors. No physical owner/state promotion, arbitrary-config/mixed-failure/concurrent-writer/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
       ],
       "required_behavior": "retain absent versus null versus explicit values; apply no undocumented driver defaults",
       "schema_sha256": "050381955e3a76bb19f7cb266f6f931c72dcbf0aa02b73afdd7781f5f6e77568",
@@ -10541,7 +10551,9 @@
           "apps/samgita_protocol_codex/test/project_sort_key_input_test.exs",
           "apps/samgita_codex_driver/test/native_project_sort_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/turn_items_view_input_test.exs",
-          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs",
+          "apps/samgita_protocol_codex/test/merge_strategy_input_test.exs",
+          "apps/samgita_codex_driver/test/native_merge_strategy_unit_input_test.exs"
         ]
       },
       "transport_coverage": [
