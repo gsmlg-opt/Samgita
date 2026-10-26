@@ -87055,24 +87055,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-failure-running-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual v1 collaboration failure/running-close family: one genuine failed child A, explicit wait/close with exact error, then a distinct held child B with real sampled-request barrier before close. Exactly six root plus two child model requests, actual native IDs/tool outputs, continued parent completion, complete live started/completed root envelopes and independently prescribed warm/first-cold selective persisted items pass with normal validation and codec retention. Fixed YOLO, unchanged configs/base provider, bounded queues/capture/deadlines and owned cleanup remain; every prior executable source/pin/770exports unchanged. Final47-schema/123-driver cases twice, outside consumer1/0, format/compile, strict Credo523, inventory and344-source guard pass. Thirteen archive-matched sources bind the exact production emitters. Only actual live item/completed closeAgent(B) running/null state, captured before native shutdown after a real provider-request barrier. It is a historical pre-close snapshot; B is absent from loaded native state afterward. No race-selected spawn state or claim of B still running after close. No new driver defect, broad v1/v2/lifecycle/family, other transport/OS/provider/platform, prohibited/broad/hosted/A11/full-goal or publication acceptance is claimed."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "7c383a026fe390d47c193f7ff6ae41fa899e690edd001dba7febfb1019f58568",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_failure_running_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -87131,24 +87139,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-failure-running-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual v1 collaboration failure/running-close family: one genuine failed child A, explicit wait/close with exact error, then a distinct held child B with real sampled-request barrier before close. Exactly six root plus two child model requests, actual native IDs/tool outputs, continued parent completion, complete live started/completed root envelopes and independently prescribed warm/first-cold selective persisted items pass with normal validation and codec retention. Fixed YOLO, unchanged configs/base provider, bounded queues/capture/deadlines and owned cleanup remain; every prior executable source/pin/770exports unchanged. Final47-schema/123-driver cases twice, outside consumer1/0, format/compile, strict Credo523, inventory and344-source guard pass. Thirteen archive-matched sources bind the exact production emitters. Only actual live completed wait(A) and closeAgent(A) errored states with independently prescribed terminal invalid_prompt message. Native tool status is failed while the parent later completes normally; no all-error or cancellation variant claim. No new driver defect, broad v1/v2/lifecycle/family, other transport/OS/provider/platform, prohibited/broad/hosted/A11/full-goal or publication acceptance is claimed."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "d93e2f1028afa503cbc4e1e44da8eaa6e46ee05f3c57b2a57a7f67c041de4aa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_failure_running_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -87453,24 +87469,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-failure-running-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual v1 collaboration failure/running-close family: one genuine failed child A, explicit wait/close with exact error, then a distinct held child B with real sampled-request barrier before close. Exactly six root plus two child model requests, actual native IDs/tool outputs, continued parent completion, complete live started/completed root envelopes and independently prescribed warm/first-cold selective persisted items pass with normal validation and codec retention. Fixed YOLO, unchanged configs/base provider, bounded queues/capture/deadlines and owned cleanup remain; every prior executable source/pin/770exports unchanged. Final47-schema/123-driver cases twice, outside consumer1/0, format/compile, strict Credo523, inventory and344-source guard pass. Thirteen archive-matched sources bind the exact production emitters. Only exact actual item/started wait(A), closeAgent(A), closeAgent(B) inProgress maps with empty agentsStates, matching real completed identities/timestamps. No persisted inProgress promotion; completed history upserts terminal items. No new driver defect, broad v1/v2/lifecycle/family, other transport/OS/provider/platform, prohibited/broad/hosted/A11/full-goal or publication acceptance is claimed."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_failure_running_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -187082,24 +187106,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-failure-running-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual v1 collaboration failure/running-close family: one genuine failed child A, explicit wait/close with exact error, then a distinct held child B with real sampled-request barrier before close. Exactly six root plus two child model requests, actual native IDs/tool outputs, continued parent completion, complete live started/completed root envelopes and independently prescribed warm/first-cold selective persisted items pass with normal validation and codec retention. Fixed YOLO, unchanged configs/base provider, bounded queues/capture/deadlines and owned cleanup remain; every prior executable source/pin/770exports unchanged. Final47-schema/123-driver cases twice, outside consumer1/0, format/compile, strict Credo523, inventory and344-source guard pass. Thirteen archive-matched sources bind the exact production emitters. Only independent warm and first-cold selective ThreadItemsReadResponse closeAgent(B) historical running/null state, with completed tool status and absent loaded B. Read schema/codec validation uses actual responses; no live root/sibling export propagation. No new driver defect, broad v1/v2/lifecycle/family, other transport/OS/provider/platform, prohibited/broad/hosted/A11/full-goal or publication acceptance is claimed."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "7c383a026fe390d47c193f7ff6ae41fa899e690edd001dba7febfb1019f58568",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_failure_running_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -187158,24 +187190,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-failure-running-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentStatus/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual v1 collaboration failure/running-close family: one genuine failed child A, explicit wait/close with exact error, then a distinct held child B with real sampled-request barrier before close. Exactly six root plus two child model requests, actual native IDs/tool outputs, continued parent completion, complete live started/completed root envelopes and independently prescribed warm/first-cold selective persisted items pass with normal validation and codec retention. Fixed YOLO, unchanged configs/base provider, bounded queues/capture/deadlines and owned cleanup remain; every prior executable source/pin/770exports unchanged. Final47-schema/123-driver cases twice, outside consumer1/0, format/compile, strict Credo523, inventory and344-source guard pass. Thirteen archive-matched sources bind the exact production emitters. Only independent warm and first-cold selective ThreadItemsReadResponse wait(A)/closeAgent(A) errored states with exact original message and failed tool status; no other error/status/history export propagation. No new driver defect, broad v1/v2/lifecycle/family, other transport/OS/provider/platform, prohibited/broad/hosted/A11/full-goal or publication acceptance is claimed."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/4",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "d93e2f1028afa503cbc4e1e44da8eaa6e46ee05f3c57b2a57a7f67c041de4aa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_failure_running_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [failed/running child family](collaboration-failure-running-qualification.md)
+qualifies five exact live/selective owners through actual child failure,
+observed provider requests before close, continued parent execution and independent
+warm/cold history. Final **47 schema /123 ordinary driver twice**, outside
+consumer **1/0**, format/compile, strict Credo523, inventory and344-source guard
+pass; all342 prior sources and every pin remain unchanged. Contracts become
+**5,038 implemented /1,517 missing /66 blocked**, unchanged requirements and zero
+verified. No driver defect, spawn/persisted-inProgress/v2 alias or full-goal
+acceptance is claimed. Prohibited/broad/hosted, A11, legacy/external/platform
+gates stay incomplete; no publication/deployment.
+
 The [history-mode input repair](history-mode-input-qualification.md) reproduces
 local rejection of four source-supported thread/start objects. A seventh input
 descriptor preserves canonical outputs, caller values and prior corrections;

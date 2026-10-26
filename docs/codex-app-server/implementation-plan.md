@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [failed/running child family](collaboration-failure-running-qualification.md)
+qualifies exactly owners2083/2086/2098/5292/5295 through actual v1 child failure,
+sampled-request barrier before close and independent live/warm/first-cold states.
+Final **47 schema /123 ordinary driver twice**, outside consumer **1/0**,
+format/compile, strict Credo523, inventory and344-source guard pass; all342 prior
+sources and every pin stay unchanged. Contracts become **5,038 implemented /1,517
+missing /66 blocked**; requirements remain **462 implemented /12 missing /11
+blocked**, zero verified. No driver defect or persisted-inProgress/spawn/v2
+propagation is claimed. Next reproduce the source-confirmed ThreadStartSource
+unit-object mismatch, preserving original inputs and checking actual new/cleared
+provider initialization and retained histories. Reason-specific hooks are outside
+the permitted verification and remain unqualified. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform/full-goal gates remain incomplete.
+
 The [history-mode input repair](history-mode-input-qualification.md) fixes the
 reproduced schema/native mismatch for four unit objects on thread/start only.
 Actual default-validation creation, four ordinary turns and unloaded cold reads
