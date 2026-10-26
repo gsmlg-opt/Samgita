@@ -29954,24 +29954,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ModeKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ModeKind/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4354994c96acaaf7aae4ce88763bf1f192449b2d6d8867674a03262490df9a53",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -30005,116 +30015,166 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/MultiAgentMode/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "62ff422438477f3c53e37e390b7b55f0a752b8af07bc1c68aa6e42507f45273b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/MultiAgentMode/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0229ffaf15cae75be6b592891859be5b48251a4d59f651acfe32b56d2b25cb63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/MultiAgentMode/oneOf/0/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "c66c800df5dbce5cf537d23f0a6afc2ce5396486a77fa9640e6e7fc49ce2d67c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/MultiAgentMode/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "60e2eb020616ce3c9a11e85c2eae1fcf869ee6ace6bcb4c20d1ed789b67c5d50",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/canonical-mode-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/MultiAgentMode/oneOf/1/properties/custom",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact canonical ClientRequest ModeKind.plan261 and published MultiAgentMode263-267 inputs only. Real Plan mode produces native ordered start/delta/final items and warm/selective-first cold persisted history; fixtures emit only assistant Responses text, not native items. Multi-agent thread/turn matrices explicitly supply both strings and required custom text, capture complete delegated client frames and response IDs, then observe fixed native explicitRequestOnly snapshots, unchanged independent instructions and exact five-request completed histories. This qualifies the pinned deprecated no-op, never active delegation.",
+        "Latest reviewed49-file99/0 twice functional matrix, compile/format, strict Credo, outside actual-binary consumer1/0,27 fixture ASTs and297-source guard. Four positive functional fixture setup maps now explicitly use never/danger-full-access; every existing behavioral assertion/deadline/bound/cleanup and all other293 guarded sources remain unchanged. No policy, credential, authentication, authorization, approval or security behavior is tested. Source12 complete archive files,6 individually hashed physical nodes and actual request graph; no ref/hash sibling propagation.",
+        "Only261/263-267 promoted. No deserializer-only none alias, ModeKind siblings, null wrappers, permissions, delegation, full collaboration/history/lifecycle, real external services, other OS/transports, A11 or full-goal/release claim. Fixed yolo is ordinary fixture setup. Prohibited security/auth/permission/approval tests, audits and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/MultiAgentMode/oneOf/1/properties/custom",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "custom"
     },
     {

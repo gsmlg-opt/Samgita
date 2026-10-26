@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [canonical mode inputs](canonical-mode-inputs-qualification.md) pass the
+current **49-file, 99/0 twice** functional matrix, compile/format, strict Credo,
+outside consumer1/0,27 fixture ASTs and297-source guard. Six exact plan/legacy-mode
+owners261/263–267 become implemented: **4,966 implemented / 1,589 missing /
+66 blocked** contracts; unchanged **462 implemented / 12 missing / 11 blocked**
+requirements, zero verified. Native Plan lifecycle/history and deprecated-mode
+no-op effects are distinct; no active delegation claim. Four ordinary thread
+setup maps become explicitly yolo, with all assertions/bounds/deadlines/cleanup
+and other293 guarded sources preserved. Twelve archive files, six physical nodes
+and final binding pass. Inventory passes; strict completeness exits **1**.
+Prohibited/broad/hosted, A11, external/OS and full-goal/release gates remain
+incomplete. No publication/deployment.
+
+Next qualify ConfigurationUpdate102/426–429 through genuine native control
+generation and unchanged current raw-history input. Keep raw controls distinct
+from outer native serialization and a new cold followup control; source
+medium→high→unchanged high→low must not be supplied by the model peer. Then
+qualify missing ordinary search/list sort inputs and filtered history controls
+with their own current native input/effect oracles. Fixed yolo and every
+verification restriction remain; broader acceptance stays incomplete.
+
+## Earlier checkpoints
+
 The [explicit canonical input enums](explicit-input-enums-qualification.md)
 bind exactly LocalShellStatus.incomplete234 and Personality.none270 to unchanged
 native cases in the latest **49-file, 99/0 twice** functional matrix. Initial
@@ -33,15 +56,6 @@ requirements unchanged **462 implemented / 12 missing / 11 blocked**, zero verif
 Title89/in_progress233 remain missing. Inventory passes; strict completeness exits
 **1**. Prohibited/broad/hosted, A11, external/OS and full-goal/release gates stay
 incomplete. No publication/deployment.
-
-Next qualify canonical mode owners261/263–267 with the responsible ordinary
-native cases using fixed yolo, then ConfigurationUpdate102/426–429 through genuine
-native control generation and unchanged current raw-history input. Keep raw
-controls distinct from actual outer serialization and a new cold followup
-control. Source medium→high→unchanged high→low must not be supplied by the model
-peer. Every verification restriction and incomplete gate remains in force.
-
-## Earlier checkpoints
 
 The [shared turn reasoning inputs](turn-shared-reasoning-values-qualification.md)
 pass the final **49-file, 99/0 twice** functional matrix, compile/format, strict

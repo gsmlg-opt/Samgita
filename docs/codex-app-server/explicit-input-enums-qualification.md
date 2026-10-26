@@ -80,8 +80,11 @@ completeness still exits **1**.
 | Resulting manifest | 45a15d3106ce4dd28d41fef09ea5de54307eb58163688aae1f3b30a6005abcba |
 
 Contracts: **4,960 implemented / 1,595 missing / 66 blocked**. Requirements:
-**462 implemented / 12 missing / 11 blocked**, zero verified. Fixed yolo setup,
-bounds and owned-process cleanup remain unchanged. Full history/personality,
+**462 implemented / 12 missing / 11 blocked**, zero verified. Existing startup,
+bounds and owned-process cleanup remain unchanged in this binding. The later
+[canonical-mode unit](canonical-mode-inputs-qualification.md) makes four ordinary
+thread setup overrides explicitly yolo and reruns the permitted matrix.
+Full history/personality,
 legacy execution, external providers, other OS/transports, A11 and full-goal
 acceptance remain incomplete. Prohibited security/auth/permission/approval tests,
 audits and broad/hosted workflows stay unrun. No release, publication or deployment.

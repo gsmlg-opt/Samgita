@@ -105,7 +105,14 @@ defmodule SamgitaCodexDriver.NativeTurnPersonalityTest do
 
   defp qualify(ctx, initial) do
     pid = start(ctx)
-    thread = TurnFixture.thread(ctx, pid, %{"personality" => initial})
+
+    thread =
+      TurnFixture.thread(ctx, pid, %{
+        "personality" => initial,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
     expected_instructions = if initial == "none", do: @stripped, else: @literal
 
     assert ModelFixture.requests(ctx.fixture) == []

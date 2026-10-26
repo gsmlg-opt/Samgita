@@ -335,8 +335,8 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
         "model" => "mock-model",
         "modelProvider" => "fixture",
         "cwd" => ctx.fixture.workspace,
-        "sandbox" => "read-only",
-        "approvalPolicy" => "on-request",
+        "sandbox" => "danger-full-access",
+        "approvalPolicy" => "never",
         "historyMode" => "paginated",
         "ephemeral" => false
       })

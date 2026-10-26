@@ -190,7 +190,12 @@ defmodule SamgitaCodexDriver.NativeResumePersonalityValuesTest do
   end
 
   defp new_thread(ctx, pid) do
-    TurnFixture.thread(ctx, pid, %{"personality" => "none", "historyMode" => "legacy"})
+    TurnFixture.thread(ctx, pid, %{
+      "personality" => "none",
+      "historyMode" => "legacy",
+      "approvalPolicy" => "never",
+      "sandbox" => "danger-full-access"
+    })
   end
 
   defp resume(ctx, pid, thread, extra) do
