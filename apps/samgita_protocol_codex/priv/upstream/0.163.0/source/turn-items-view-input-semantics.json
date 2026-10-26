@@ -1,0 +1,71 @@
+{
+  "definition": "TurnItemsView",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "notLoaded": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "notLoaded"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "summary"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "full": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "full"
+      ],
+      "type": "object"
+    }
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/resume",
+    "thread/turns/list"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+    "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7"
+  },
+  "semantics": "The ordinary camelCase TurnItemsView unit enum accepts one-key notLoaded/summary/full objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches only thread/turns/list.itemsView; full input additionally reaches thread/resume.initialTurnsPage.itemsView. Preserve the entire canonical described oneOf as the first input branch, original caller values, nullable fields and active enclosing initialTurnsPage negotiation. Full is the enum default, while omitted/null request itemsView defaults to Summary; present unit objects select Some(view). Native owns item projection and pagination. Accepted input does not execute a turn. Independent populated history, selected view and cold persistence evidence remain required; assistant-only history does not establish intermediate-item Summary filtering. Outputs remain canonical.",
+  "source_sha256": {
+    "source/common.rs": "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502",
+    "source/thread_data.rs": "293359f14a1a11da8d54acce7bc69b5756c1d30b5a59e8768f5ce6b4e02edeb1"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

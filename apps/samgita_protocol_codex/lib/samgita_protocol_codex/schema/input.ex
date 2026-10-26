@@ -18,7 +18,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/thread-search-sort-key-input-semantics.json",
                       "source/thread-sort-key-input-semantics.json",
                       "source/sort-direction-input-semantics.json",
-                      "source/project-sort-key-input-semantics.json"
+                      "source/project-sort-key-input-semantics.json",
+                      "source/turn-items-view-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -38,6 +39,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @list_sort Enum.find(@corrections, &(&1["definition"] == "ThreadSortKey"))
   @direction Enum.find(@corrections, &(&1["definition"] == "SortDirection"))
   @project_sort Enum.find(@corrections, &(&1["definition"] == "ProjectSortKey"))
+  @items_view Enum.find(@corrections, &(&1["definition"] == "TurnItemsView"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -88,6 +90,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
     )
     |> personality_input()
     |> direction_input()
+    |> items_view_input()
   end
 
   def contract("ClientRequest.json", method, document)
@@ -114,9 +117,11 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   def contract("ClientRequest.json", "project/list", document),
     do: document |> project_sort_input() |> direction_input()
 
-  def contract("ClientRequest.json", method, document)
-      when method in ["thread/turns/list", "thread/items/list"],
-      do: direction_input(document)
+  def contract("ClientRequest.json", "thread/turns/list", document),
+    do: document |> direction_input() |> items_view_input()
+
+  def contract("ClientRequest.json", "thread/items/list", document),
+    do: direction_input(document)
 
   def contract(_filename, _method, document), do: document
 
@@ -222,6 +227,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "ProjectSortKey"],
       &%{"oneOf" => [&1 | @project_sort["input_object_branches"]]}
+    )
+  end
+
+  defp items_view_input(document) do
+    update_in(
+      document,
+      ["definitions", "TurnItemsView"],
+      &%{"oneOf" => [&1 | @items_view["input_object_branches"]]}
     )
   end
 

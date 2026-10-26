@@ -109,6 +109,23 @@ PROJECT_SORT_SCHEMAS = {
         "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
     },
 }
+ITEMS_VIEW_SEMANTICS = "source/turn-items-view-input-semantics.json"
+ITEMS_VIEW_PATHS = {
+    "stable": (("thread/turns/list", ("itemsView",)),),
+    "experimental": (("thread/resume", ("initialTurnsPage", "itemsView")),
+                     ("thread/turns/list", ("itemsView",))),
+}
+ITEMS_VIEW_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
+        "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -812,6 +829,142 @@ def derive_project_sort(vendor):
     }
 
 
+def derive_items_view(vendor):
+    sources = {THREAD_DATA: THREAD_DATA_SHA256, THREAD: SOURCES[THREAD],
+               COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned turn items view input source changed: " + name)
+    rust = (vendor / THREAD_DATA).read_text()
+    declaration = re.search(
+        r'#\[derive\(Default, Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub enum TurnItemsView \{\n(.*?)\n\}', rust, re.S)
+    descriptions = (
+        "`items` was not loaded for this turn. The field is intentionally empty.",
+        "`items` contains only a display summary for this turn.",
+        "`items` contains every ThreadItem available from persisted app-server history for this turn.",
+    )
+    variants = ("NotLoaded", "Summary", "Full")
+    body = "\n".join(
+        f"    /// {description}\n" + ("    #[default]\n" if variant == "Full" else "")
+        + f"    {variant}," for variant, description in zip(variants, descriptions))
+    if not declaration or declaration[1] != body:
+        raise ValueError("Pinned TurnItemsView unit variants, descriptions or enum default changed")
+    names = [variant[:1].lower() + variant[1:] for variant in variants]
+    canonical = {"oneOf": [
+        {"description": description, "enum": [name], "type": "string"}
+        for name, description in zip(names, descriptions)]}
+    thread = (vendor / THREAD).read_text()
+    field_description = "How much item detail to include for each returned turn; defaults to summary."
+    field = (f"    /// {field_description}\n"
+             "    #[ts(optional = nullable)]\n"
+             "    pub items_view: Option<TurnItemsView>,")
+    for owner in ("ThreadTurnsListParams", "ThreadResumeInitialTurnsPageParams"):
+        params = re.search(
+            r'#\[derive\(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS\)\]\n'
+            r'#\[serde\(rename_all = "camelCase"\)\]\n'
+            r'#\[ts\(export_to = "v2/"\)\]\n'
+            r'pub struct ' + owner + r' \{\n(.*?)\n\}', thread, re.S)
+        if not params or field not in params[1]:
+            raise ValueError("Pinned items view Option field or request default changed: " + owner)
+    resume_page = (
+        '    #[experimental("thread/resume.initialTurnsPage")]\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub initial_turns_page: Option<ThreadResumeInitialTurnsPageParams>,')
+    if resume_page not in thread:
+        raise ValueError("Pinned items view enclosing resume page gate changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    for method in (
+            '    },\n    ThreadResume => "thread/resume" {\n'
+            '        params: v2::ThreadResumeParams,\n'
+            '        inspect_params: true,\n'
+            '        serialization: thread_or_path(params.thread_id, params.path),\n'
+            '        response: v2::ThreadResumeResponse,\n    },',
+            '    },\n    ThreadTurnsList => "thread/turns/list" {\n'
+            '        params: v2::ThreadTurnsListParams,\n'
+            '        // Explicitly concurrent: this primarily reads append-only rollout storage.\n'
+            '        serialization: None,\n'
+            '        response: v2::ThreadTurnsListResponse,\n    },'):
+        if method not in common:
+            raise ValueError("Pinned standard items view method or parameter inspection changed")
+
+    def input_paths(node, path, seen, document):
+        if isinstance(node, dict):
+            reference = node.get("$ref")
+            if reference == "#/definitions/TurnItemsView":
+                return [path]
+            if reference:
+                if reference in seen:
+                    return []
+                return input_paths(document["definitions"][reference.removeprefix("#/definitions/")],
+                                   path, seen | {reference}, document)
+            if "properties" in node:
+                return [result for key, child in node["properties"].items()
+                        for result in input_paths(child, (*path, key), seen, document)]
+            return [result for child in node.values()
+                    for result in input_paths(child, path, seen, document)]
+        if isinstance(node, list):
+            return [result for child in node
+                    for result in input_paths(child, path, seen, document)]
+        return []
+
+    expected_field = {
+        "anyOf": [{"$ref": "#/definitions/TurnItemsView"}, {"type": "null"}],
+        "description": field_description,
+    }
+    hashes = {}
+    for profile, schemas in ITEMS_VIEW_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned turn items view schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["TurnItemsView"] != canonical:
+                raise ValueError("Official described TurnItemsView contract changed: " + profile + "/" + name)
+            if name == "ClientRequest.json":
+                paths = sorted(
+                    (method, field_path) for branch in document["oneOf"]
+                    for field_path in input_paths(branch["properties"]["params"], (), set(), document)
+                    for method in branch["properties"]["method"]["enum"])
+                if paths != list(ITEMS_VIEW_PATHS[profile]):
+                    raise ValueError("TurnItemsView request property-reference paths changed: " + profile)
+                owners = ("ThreadTurnsListParams", "ThreadResumeInitialTurnsPageParams")
+                fields = [document["definitions"][owner]["properties"]["itemsView"] for owner in owners]
+                resume = document["definitions"]["ThreadResumeParams"]
+                if profile == "stable" and "initialTurnsPage" in resume["properties"]:
+                    raise ValueError("Pinned items view stable resume page exclusion changed")
+            elif name == "v2/ThreadTurnsListParams.json":
+                fields = [document["properties"]["itemsView"]]
+            else:
+                fields = [document["definitions"]["ThreadResumeInitialTurnsPageParams"]["properties"]["itemsView"]]
+                resume = document
+            if any(value != expected_field for value in fields):
+                raise ValueError("Official nullable itemsView field contract changed: " + profile + "/" + name)
+            if profile == "experimental" and name != "v2/ThreadTurnsListParams.json":
+                if resume["properties"]["initialTurnsPage"] != {
+                        "anyOf": [{"$ref": "#/definitions/ThreadResumeInitialTurnsPageParams"}, {"type": "null"}],
+                        "description": "When present, include a `thread/turns/list` page in the resume response so clients can bootstrap recent turns without a second request."}:
+                    raise ValueError("Official items view enclosing resume page contract changed")
+            if profile == "experimental":
+                hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": [method for method, _path in ITEMS_VIEW_PATHS["experimental"]],
+        "definition": "TurnItemsView",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary camelCase TurnItemsView unit enum accepts one-key notLoaded/summary/full objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches only thread/turns/list.itemsView; full input additionally reaches thread/resume.initialTurnsPage.itemsView. Preserve the entire canonical described oneOf as the first input branch, original caller values, nullable fields and active enclosing initialTurnsPage negotiation. Full is the enum default, while omitted/null request itemsView defaults to Summary; present unit objects select Some(view). Native owns item projection and pagination. Accepted input does not execute a turn. Independent populated history, selected view and cold persistence evidence remain required; assistant-only history does not establish intermediate-item Summary filtering. Outputs remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -859,7 +1012,8 @@ def corrections(vendor):
             (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)),
             (LIST_SORT_SEMANTICS, derive_list_sort(vendor)),
             (DIRECTION_SEMANTICS, derive_direction(vendor)),
-            (PROJECT_SORT_SEMANTICS, derive_project_sort(vendor)))
+            (PROJECT_SORT_SEMANTICS, derive_project_sort(vendor)),
+            (ITEMS_VIEW_SEMANTICS, derive_items_view(vendor)))
 
 
 def write(vendor):

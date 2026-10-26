@@ -191,6 +191,24 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for view <- ["notLoaded", "summary", "full"], payload <- [nil, %{}] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/turns/list",
+                 %{"threadId" => "outside-owned-thread", "itemsView" => %{view => payload}}
+               )
+
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/resume",
+                 %{
+                   "threadId" => "outside-owned-thread",
+                   "initialTurnsPage" => %{"itemsView" => %{view => payload}}
+                 },
+                 experimental: true
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

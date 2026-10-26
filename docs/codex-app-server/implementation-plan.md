@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [turn-view input repair](turn-items-view-input-qualification.md) accepts six
+native objects on standard turn listing and experimental resume bootstrap pages.
+It preserves the complete described canonical oneOf, original bytes and gates.
+Two genuine turns supply exact original rows/items across12 warm and6 unloaded
+cold projection pages; Summary/Full's identical two-item producer leaves richer
+filtering unqualified. Final **77 schema /136 ordinary driver twice**, outside
+consumer **1/0**, strict Credo535, inventory and363-source guard pass; all356
+other prior sources, twelve descriptors and770 exports stay unchanged. Root
+compile/format/assets, forced Dialyzer, architecture scanners and local production
+assembly pass. Counts remain **5,038 implemented /1,517 missing /66 blocked**
+contracts and **462
+implemented /12 missing /11 blocked** requirements, zero verified. Next reproduce
+the four required MergeStrategy objects with real Replace/Upsert desktop-table
+effects. Cold object-specific resume, prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [project-key input repair](project-sort-key-input-qualification.md) accepts
 four native unit objects on experimental project/list with exact original bytes.
 Public moves and independently stored recencies prescribe both orders, defaults,

@@ -95,6 +95,12 @@ project moves and stored recencies prescribe position/default/recency order,
 including directional ID ties and empty projects last. Queries preserve original
 objects and complete warm/cold project state; the unused stable enum does not
 enable the experimental method.
+The [turn-view correction](turn-items-view-input-qualification.md) preserves the
+complete described canonical oneOf and accepts native unit objects on standard
+turn listing and the experimental resume bootstrap page. Request null/omission
+defaults to Summary even though the enum default is Full. Genuine persisted
+items distinguish NotLoaded; the current two-item producer leaves richer
+Summary filtering and object-specific cold resume unqualified.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
