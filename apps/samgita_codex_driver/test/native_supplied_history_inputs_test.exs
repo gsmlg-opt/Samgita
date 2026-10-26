@@ -53,6 +53,71 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     }
   }
 
+  @search_script Path.expand(
+                   "../../../scripts/codex/supplied_tool_search_history_fixture.py",
+                   __DIR__
+                 )
+  @exposure_script Path.expand("../../../scripts/codex/dynamic_tool_exposure_fixture.py", __DIR__)
+  @search_marker "Owned genuine supplied-history tool-search 163"
+  @search_followup "Owned continuation consumes completed tool-search evidence 163"
+  @search_answer "Owned exposure completed λ"
+  @search_followup_answer "Owned imported tool-search evidence consumed λ"
+  @search_output "Owned synthetic record result λ"
+  @search_effect "owned-tool-search-effect-once-163\n"
+  @search_arguments ~s({"key": "owned exposure λ", "count": 7, "nested": {"enabled": true, "labels": ["α", "β"]}})
+  @search_argument_map %{
+    "key" => "owned exposure λ",
+    "count" => 7,
+    "nested" => %{"enabled" => true, "labels" => ["α", "β"]}
+  }
+  @search_schema %{
+    "type" => "object",
+    "properties" => %{
+      "key" => %{"type" => "string"},
+      "count" => %{"type" => "integer"},
+      "nested" => %{
+        "type" => "object",
+        "properties" => %{
+          "enabled" => %{"type" => "boolean"},
+          "labels" => %{"type" => "array", "items" => %{"type" => "string"}}
+        },
+        "required" => ["enabled", "labels"],
+        "additionalProperties" => false
+      }
+    },
+    "required" => ["key", "count", "nested"],
+    "additionalProperties" => false
+  }
+  @search_namespace %{
+    "type" => "namespace",
+    "name" => "owned_catalog",
+    "description" => "Owned canonical catalog description β",
+    "tools" => [
+      %{
+        "type" => "function",
+        "name" => "quasar_lookup_824",
+        "description" => "quasar_lookup_824 retrieves the owned synthetic record λ",
+        "inputSchema" => @search_schema,
+        "deferLoading" => true
+      }
+    ]
+  }
+  @search_provider_namespace %{
+    "type" => "namespace",
+    "name" => "owned_catalog",
+    "description" => "Owned canonical catalog description β",
+    "tools" => [
+      %{
+        "type" => "function",
+        "name" => "quasar_lookup_824",
+        "description" => "quasar_lookup_824 retrieves the owned synthetic record λ",
+        "strict" => false,
+        "parameters" => @search_schema,
+        "defer_loading" => true
+      }
+    ]
+  }
+
   setup tags do
     binary = System.get_env("CODEX_BINARY")
 
@@ -64,21 +129,31 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     # Select the existing normal provider fixture even if a previous profile has
     # configured an alternate script. Restore the environment immediately.
     previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
-    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", @script)
+    selected_script = if tags[:search_history], do: @search_script, else: @script
+    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", selected_script)
 
     ctx =
       try do
-        if tags[:dynamic_history], do: dynamic_fixture(binary), else: TurnFixture.setup(tags)
+        cond do
+          tags[:search_history] -> search_fixture(binary)
+          tags[:dynamic_history] -> dynamic_fixture(binary)
+          true -> TurnFixture.setup(tags)
+        end
       after
         if previous,
           do: System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", previous),
           else: System.delete_env("CODEX_MODEL_FIXTURE_SCRIPT")
       end
 
-    TurnFixture.configure_model(ctx, %{
+    model = %{
       "input_modalities" => ["text", "image", "audio"],
       "supports_image_detail_original" => true
-    })
+    }
+
+    model =
+      if tags[:search_history], do: Map.put(model, "supports_search_tool", true), else: model
+
+    TurnFixture.configure_model(ctx, model)
 
     config = Path.join(ctx.fixture.codex_home, "config.toml")
 
@@ -92,12 +167,22 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
 
     File.mkdir!(Path.join(ctx.root, "tmp"))
 
-    Map.put(ctx, :unchanged_files, [
+    unchanged_files = [
       {config, File.read!(config)},
       {Path.join(ctx.fixture.codex_home, "turn-models.json"),
        File.read!(Path.join(ctx.fixture.codex_home, "turn-models.json"))},
       {@script, File.read!(@script)}
-    ])
+    ]
+
+    unchanged_files =
+      if tags[:search_history] do
+        unchanged_files ++
+          Enum.map([@search_script, @exposure_script], &{&1, File.read!(&1)})
+      else
+        unchanged_files
+      end
+
+    Map.put(ctx, :unchanged_files, unchanged_files)
   end
 
   test "unstable native history import preserves genuine raw media and message metadata", ctx do
@@ -325,6 +410,380 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     assert File.read!(effects) === @tool_effect
     assert File.read!(source_path) === source_bytes
     assert_unchanged(ctx)
+  end
+
+  @tag search_history: true
+  test "unstable native import consumes genuine completed client tool-search history once", ctx do
+    effects = Path.join(ctx.fixture.workspace, "owned-supplied-search-effects.log")
+    refute File.exists?(effects)
+    source = start(ctx)
+    source_process = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access",
+        "historyMode" => "legacy",
+        "dynamicTools" => [@search_namespace]
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+
+    source_turn =
+      TurnFixture.start_turn(source, source_id, [
+        %{"type" => "text", "text" => @search_marker, "text_elements" => []}
+      ])
+
+    {tool, events} = await_dynamic_tool(source, [], System.monotonic_time(:millisecond) + 10_000)
+
+    assert tool.wire["params"] === %{
+             "threadId" => source_id,
+             "turnId" => source_turn,
+             "callId" => "owned-exposure-call",
+             "namespace" => "owned_catalog",
+             "tool" => "quasar_lookup_824",
+             "arguments" => @search_argument_map
+           }
+
+    assert [initial, searched] = requests(ctx)
+    assert Enum.any?(initial["tools"], &(&1["type"] == "tool_search"))
+    assert_search_provider(searched, false, false)
+    refute File.exists?(effects)
+
+    # Only this genuine client-tool callback performs the owned effect. The
+    # native client search itself is local BM25, not another client callback.
+    File.write!(effects, @search_effect, [:append])
+
+    assert :ok =
+             Session.respond(
+               source,
+               tool.handle,
+               {:ok,
+                %{
+                  "success" => true,
+                  "contentItems" => [%{"type" => "inputText", "text" => @search_output}]
+                }}
+             )
+
+    events = collect(source, source_turn, events, System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(events, source_id, source_turn)
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+    assert_search_answer(events, source_turn, @search_answer)
+    source_path = Map.fetch!(read_thread(source, source_id), "path")
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert [^initial, ^searched, completed] = requests(ctx)
+    assert_search_provider(completed, true, false)
+    assert File.read!(effects) === @search_effect
+    assert_idle(source)
+    assert %{interactions: 0} = Session.status(source)
+    assert :ok = Session.close(source)
+    assert_gone(source_process)
+
+    {source_bytes, payloads} = rollout(ctx, source_path)
+    history = captured_search_history(payloads)
+    assert_search_payloads(history, source_turn, began, ended)
+    assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 6
+
+    cold = start(ctx)
+    cold_process = native_process(cold)
+    refute cold_process == source_process
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    # The pin marks this input "[UNSTABLE] FOR CODEX CLOUD - DO NOT USE".
+    # Complete ResponseItems are imported untouched. They do not carry SessionMeta
+    # and cannot restore the original dynamic registration. The followup below
+    # consumes completed evidence only; it does not claim callable continuity.
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => history,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = Map.fetch!(imported, "id")
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert Map.fetch!(imported, "preview") == @search_marker
+    assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+    imported_path = Map.fetch!(read_thread(cold, imported_id), "path")
+    refute imported_path == source_path
+    assert_search_import(ctx, imported_path, history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert Enum.filter(import_events, &(&1.kind == :server_request)) == []
+    assert requests(ctx) === [initial, searched, completed]
+    assert File.read!(effects) === @search_effect
+    assert File.read!(source_path) === source_bytes
+
+    followup_turn =
+      TurnFixture.start_turn(cold, imported_id, [
+        %{"type" => "text", "text" => @search_followup, "text_elements" => []}
+      ])
+
+    followup_events =
+      collect(cold, followup_turn, [], System.monotonic_time(:millisecond) + 20_000)
+
+    assert_turn_completed(followup_events, imported_id, followup_turn)
+    assert Enum.filter(followup_events, &(&1.kind == :server_request)) == []
+    assert_search_answer(followup_events, followup_turn, @search_followup_answer)
+    assert Map.fetch!(read_thread(cold, imported_id), "id") == imported_id
+    assert [^initial, ^searched, ^completed, followup] = requests(ctx)
+    assert_search_provider(followup, true, true)
+
+    metadata =
+      followup
+      |> Map.fetch!("client_metadata")
+      |> Map.fetch!("x-codex-turn-metadata")
+      |> JSON.decode!()
+
+    assert Map.fetch!(metadata, "history_initialization") == "supplied_history"
+
+    # The imported transcript does not restore an executable owned namespace.
+    refute Enum.any?(followup["tools"], fn tool ->
+             tool["name"] in ["owned_catalog", "quasar_lookup_824"] or
+               Enum.any?(Map.get(tool, "tools", []), &(&1["name"] == "quasar_lookup_824"))
+           end)
+
+    assert_search_import(ctx, imported_path, history)
+    {_bytes, imported_payloads} = rollout(ctx, imported_path)
+
+    assert [%{"content" => [%{"type" => "output_text", "text" => @search_followup_answer}]}] =
+             Enum.filter(
+               imported_payloads,
+               &(&1["id"] == "owned-supplied-search-followup-answer")
+             )
+
+    assert File.read!(effects) === @search_effect
+    assert File.read!(source_path) === source_bytes
+    assert_unchanged(ctx)
+    assert_idle(cold)
+    assert %{interactions: 0} = Session.status(cold)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_process)
+    assert File.read!(effects) === @search_effect
+    assert File.read!(source_path) === source_bytes
+    assert_unchanged(ctx)
+  end
+
+  defp search_fixture(binary) do
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-supplied-search-#{Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    fixture = ModelFixture.start(root, "namespace_deferred")
+    File.write!(fixture.requests, "[]")
+    on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+    %{binary: binary, fixture: fixture, root: root}
+  end
+
+  defp assert_search_answer(events, turn, text) do
+    assert %{"turnId" => ^turn, "item" => %{"type" => "agentMessage", "text" => ^text}} =
+             TurnFixture.notification(
+               events,
+               "item/completed",
+               &(&1["turnId"] == turn and &1["item"]["type"] == "agentMessage")
+             )
+  end
+
+  defp captured_search_history(payloads) do
+    selected =
+      Enum.filter(payloads, fn item ->
+        case item["type"] do
+          "message" ->
+            (item["role"] == "user" and
+               item["content"] === [%{"type" => "input_text", "text" => @search_marker}]) or
+              (item["role"] == "assistant" and item["id"] == "owned-exposure-answer")
+
+          type when type in ["tool_search_call", "tool_search_output"] ->
+            item["call_id"] == "owned-exposure-search"
+
+          type when type in ["function_call", "function_call_output"] ->
+            item["call_id"] == "owned-exposure-call"
+
+          _ ->
+            false
+        end
+      end)
+
+    assert [
+             %{"type" => "message", "role" => "user"},
+             %{"type" => "tool_search_call"},
+             %{"type" => "tool_search_output"},
+             %{"type" => "function_call"},
+             %{"type" => "function_call_output"},
+             %{"type" => "message", "role" => "assistant"}
+           ] = selected
+
+    selected
+  end
+
+  defp assert_search_payloads(
+         [user, search, found, invocation, output, assistant],
+         turn,
+         began,
+         ended
+       ) do
+    user_metadata = Map.fetch!(user, "internal_chat_message_metadata_passthrough")
+    created = Map.fetch!(user_metadata, "create_time")
+    assert is_number(created) and created >= began and created <= ended
+    assert is_binary(Map.fetch!(user, "id")) and byte_size(user["id"]) > 0
+
+    assert user_metadata === %{
+             "turn_id" => turn,
+             "create_time" => created,
+             "content_item_kinds" => ["user.text"]
+           }
+
+    assert_search_pair(search, found, turn, began, ended)
+    assert_search_function(invocation, output, turn, began, ended)
+    assert Map.fetch!(assistant, "id") == "owned-exposure-answer"
+
+    assert_message(
+      assistant,
+      "assistant",
+      [%{"type" => "output_text", "text" => @search_answer}],
+      turn,
+      began,
+      ended
+    )
+  end
+
+  defp assert_search_pair(search, found, turn, began, ended) do
+    search_id = Map.fetch!(search, "id")
+    assert is_binary(search_id) and String.starts_with?(search_id, "tsc_")
+
+    assert search === %{
+             "type" => "tool_search_call",
+             "id" => search_id,
+             "call_id" => "owned-exposure-search",
+             "execution" => "client",
+             "arguments" => %{"query" => "quasar_lookup_824", "limit" => 1},
+             "internal_chat_message_metadata_passthrough" => %{"turn_id" => turn}
+           }
+
+    found_id = Map.fetch!(found, "id")
+    assert is_binary(found_id) and String.starts_with?(found_id, "tso_")
+    found_metadata = Map.fetch!(found, "internal_chat_message_metadata_passthrough")
+    found_created = Map.fetch!(found_metadata, "create_time")
+    assert is_number(found_created) and found_created >= began and found_created <= ended
+
+    assert found === %{
+             "type" => "tool_search_output",
+             "id" => found_id,
+             "call_id" => "owned-exposure-search",
+             "status" => "completed",
+             "execution" => "client",
+             "tools" => [@search_provider_namespace],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => found_created
+             }
+           }
+  end
+
+  defp assert_search_function(invocation, output, turn, began, ended) do
+    call_id = Map.fetch!(invocation, "id")
+    assert is_binary(call_id) and String.starts_with?(call_id, "fc_")
+
+    assert invocation === %{
+             "type" => "function_call",
+             "id" => call_id,
+             "call_id" => "owned-exposure-call",
+             "namespace" => "owned_catalog",
+             "name" => "quasar_lookup_824",
+             "arguments" => @search_arguments,
+             "internal_chat_message_metadata_passthrough" => %{"turn_id" => turn}
+           }
+
+    output_id = Map.fetch!(output, "id")
+    assert is_binary(output_id) and String.starts_with?(output_id, "fco_")
+    output_metadata = Map.fetch!(output, "internal_chat_message_metadata_passthrough")
+    output_created = Map.fetch!(output_metadata, "create_time")
+    assert is_number(output_created) and output_created >= began and output_created <= ended
+
+    assert output === %{
+             "type" => "function_call_output",
+             "id" => output_id,
+             "call_id" => "owned-exposure-call",
+             "output" => @search_output,
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => output_created
+             }
+           }
+  end
+
+  defp assert_search_import(ctx, path, history) do
+    {_bytes, payloads} = rollout(ctx, path)
+    assert captured_search_history(payloads) === history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+  end
+
+  defp assert_search_provider(request, completed?, followup?) do
+    input = Map.fetch!(request, "input")
+    assert [search] = Enum.filter(input, &(&1["type"] == "tool_search_call"))
+
+    assert Map.delete(search, "id") === %{
+             "type" => "tool_search_call",
+             "call_id" => "owned-exposure-search",
+             "execution" => "client",
+             "arguments" => %{"query" => "quasar_lookup_824", "limit" => 1}
+           }
+
+    assert [found] = Enum.filter(input, &(&1["type"] == "tool_search_output"))
+
+    assert Map.delete(found, "id") === %{
+             "type" => "tool_search_output",
+             "call_id" => "owned-exposure-search",
+             "status" => "completed",
+             "execution" => "client",
+             "tools" => [@search_provider_namespace]
+           }
+
+    assert Enum.count(input, fn item ->
+             item["role"] == "user" and
+               item["content"] === [%{"type" => "input_text", "text" => @search_marker}]
+           end) == 1
+
+    if completed? do
+      assert [invocation] = Enum.filter(input, &(&1["type"] == "function_call"))
+
+      assert Map.delete(invocation, "id") === %{
+               "type" => "function_call",
+               "call_id" => "owned-exposure-call",
+               "namespace" => "owned_catalog",
+               "name" => "quasar_lookup_824",
+               "arguments" => @search_arguments
+             }
+
+      assert [output] = Enum.filter(input, &(&1["type"] == "function_call_output"))
+
+      assert Map.delete(output, "id") === %{
+               "type" => "function_call_output",
+               "call_id" => "owned-exposure-call",
+               "output" => @search_output
+             }
+    end
+
+    if followup? do
+      assert Enum.count(input, fn item ->
+               item["role"] == "user" and
+                 item["content"] === [%{"type" => "input_text", "text" => @search_followup}]
+             end) == 1
+
+      assert Enum.count(input, fn item ->
+               item["role"] == "assistant" and
+                 item["content"] === [%{"type" => "output_text", "text" => @search_answer}]
+             end) == 1
+    end
   end
 
   defp dynamic_fixture(binary) do

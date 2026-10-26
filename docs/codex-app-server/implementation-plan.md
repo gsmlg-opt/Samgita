@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [client tool-search history unit](supplied-history-inputs-qualification.md#client-tool-search-history)
+passes the final **41-file, 78/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, eighteen fixture ASTs and the **280-source** guard.
+Four exact metadata owners become implemented: **4,893 implemented / 1,662
+missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Genuine search, one handler effect
+and six whole imported payloads retain strict inference **3 → 3 → 4**, original
+bytes and cleanup; import does not restore callable registration. The initial
+complexity failure is repaired by extracting assertions without changing any
+gate. Both preceding cases remain byte-identical. Inventory/final binding pass;
+strict completeness exits **1**.
+
+Continue genuine custom-call/output metadata owners517/518/528/529 using one
+native freeform apply_patch against an explicitly owned disposable file. Capture
+four whole native payloads, import unchanged into a cold distinct thread and
+consume them with one followup. Require literal patch/output and host timing
+oracles, one actual file change, inference **2 → 2 → 3**, original rollout/file
+identity and no repeated execution. The provider emits Responses only; do not
+run the older output-notice namespace wrapper. Retain fixed yolo and every
+verification restriction. Prohibited/broad/hosted, full-goal, A11,
+historical/unreachable, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [pinned notification-error producer review](native-error-producer-limitations.md)
 records seven source-backed blocked owners, no acceptance promotion:
 **4,889 implemented / 1,666 missing / 66 blocked** contracts, unchanged
@@ -40,8 +64,6 @@ consumption cannot imply subsequent callability. Keep the newly documented
 notification producer gaps open and RPC data acceptance separate. Retain fixed
 yolo and every verification restriction. All prohibited/broad/hosted, full-goal,
 A11, legacy/historical, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [genuine tool-history continuation](supplied-history-inputs-qualification.md#dynamic-tool-history)
 passes the final **41-file, 77/0 twice** matrix, compile/format, strict Credo,

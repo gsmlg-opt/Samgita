@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [client tool-search history unit](supplied-history-inputs-qualification.md#client-tool-search-history)
+passes the final **41-file, 78/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, eighteen fixture ASTs and the **280-source** guard.
+Four exact metadata owners bring contracts to **4,893 implemented / 1,662
+missing / 66 blocked**, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Genuine local search and one client effect
+produce six unchanged imported payloads with inference **3 → 3 → 4**; dynamic
+registration is explicitly absent after import. The initial Credo complexity
+failure is fixed by assertion extraction with no weakened gate. Both prior case
+bodies remain byte-identical. Fourteen archive-matching files, six nodes,
+inventory and final binding pass; strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, historical/external/OS and release gates
+remain incomplete. No publication/deployment.
+
 The [pinned notification-error producer review](native-error-producer-limitations.md)
 classifies seven missing owners as source-backed **blocked**, with zero new
 acceptance: **4,889 implemented / 1,666 missing / 66 blocked** contracts,

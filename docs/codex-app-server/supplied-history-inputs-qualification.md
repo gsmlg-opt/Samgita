@@ -226,3 +226,74 @@ requirements remain **462 implemented / 12 missing / 11 blocked**, zero
 verified. Prohibited security/permission checks, broad/hosted workflows, A11,
 unresolved legacy emitters, unavailable external/OS profiles, full-goal
 verification and release gates remain incomplete. No publication or deployment.
+
+## Client tool-search history
+
+The third supplied-history case adds exactly owners388/389/495/496: raw
+ToolSearchOutput and ToolSearchCall metadata fields and non-null object branches.
+The new Responses-only fixture delegates its first three replies unchanged to
+the reviewed deferred-namespace producer. The real pinned native executable
+performs local BM25 search, returns the exact namespace/function schema, and
+dispatches one genuine `item/tool/call`. Only the client handler appends the
+owned effect and returns the independently prescribed result.
+
+After source shutdown, six whole native payloads are selected in order: user,
+search call, search output, function call, function output and assistant. Search
+IDs use native `tsc_`/`tso_` prefixes. Call metadata is exactly the original
+`turn_id`; output metadata adds host-bounded `create_time`. A cold import retains
+all six original maps/IDs/order unchanged in a distinct thread/path. It produces
+no inference or callback. One explicit followup consumes the completed evidence,
+with a strict total inference budget **3 → 3 → 4** and one callback/effect.
+Original rollout/config/provider bytes and owned process exits remain asserted.
+
+The raw route carries ResponseItems, without SessionMeta dynamic declarations.
+The followup therefore independently asserts that the owned namespace/function
+is absent from callable tools. This proves completed-history consumption only;
+it does not claim registration restoration or callable continuity. Explicit-null
+owners390/497, server-side search, absent/null call IDs and encryption variants
+remain unqualified. The two preceding case bodies are byte-identical.
+
+Fourteen complete producer files match the immutable archive. The source chain
+includes `core/src/tools/handlers/tool_search.rs:220–282`,
+`core/src/tools/context.rs:218–252` and `protocol/src/models.rs:1455–1484`.
+`core/src/context_manager/normalize.rs:21–86,170–225` distinguishes the complete
+genuine pair from inserted empty results or removed orphan outputs.
+`app-server/src/request_processors/thread_processor.rs:4200–4215,4780–4803`,
+`core/src/thread_manager.rs:310–321`, `core/src/session/mod.rs:835–838` and
+`history/src/lib.rs:448–460` establish the registration limitation.
+
+Both initial focused runs pass **3/0**, seeds501432/987654. The first integrated
+attempt then fails strict Credo, exit8: `assert_search_payloads/4` has complexity
+12 against limit9. Extracting search-pair and function-pair assertions preserves
+every assertion and deadline; no rule, exclusion or timeout changes.
+The original failure remains in
+`/tmp/samgita-v305-functional-checks/functional/strict-credo.log`.
+
+The final runner uses `/tmp/samgita-v305-run.py` with only its output directory
+changed from `functional` to `final-functional`. Exact eight commands and
+environment are retained in that script and
+`/tmp/samgita-v305-functional-checks/final-functional/results.json`.
+The reviewed **41-file matrix passes 78/0 twice**, seeds501432/987654, in
+131.996/131.092 seconds. Scoped format, warnings-as-errors compile, strict
+Credo on491 sources, outside actual-binary consumer **1/0**, eighteen fixture
+AST checks and the **280-source** before/after guard pass. Test SHA256:
+`dc7a18d0d785105ba54099d5ce909afc81d88bf62a00791c7aa533959c8b2ba0`;
+new provider SHA256:
+`80bfd289eef8237184ed86bdd9445b9efc7873fff25f40fdb601c5f5be1a0520`.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Final results | `9ff81d9b69ff98e58968fdb4cb9183210fc8f294008a3867e245386bb84453d8` |
+| Final source guard | `b5ce762264feef5a37f042d44ca43112fb6d37f6f34edfcd65219e300f86d00e` |
+| Pinned files and six exact nodes | `cd8a762ea3fe071e4ca92d32d479c2a9316575cdad9d2f0f346ec18436a3a938` |
+| Existing case preservation | `448de5ddb355b70ae0e7e6de43090889f2631432035a1c683d872cf23dcf26fa` |
+| Resulting manifest | `e2eed96a36242b314cd3df101b28f8e8a900fd3d830a55f95e690a705204eb47` |
+
+Unique whole-record changes and `final-binding.json` prove exactly four
+promotions, unchanged null alternatives, previous function metadata and all
+requirements. Inventory consistency passes; strict completeness exits **1**.
+Contracts become **4,893 implemented / 1,662 missing / 66 blocked**;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
+Prohibited security/permission tests, broad/hosted workflows, A11, unavailable
+external/OS profiles, historical/unreachable paths, the full goal and release
+gates remain incomplete. No publication or deployment.

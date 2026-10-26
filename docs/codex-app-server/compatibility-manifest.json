@@ -33682,49 +33682,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#client-tool-search-history"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/10/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct non-null raw ToolSearchCall/ToolSearchOutput metadata input only: real native local BM25 search, one genuine item/tool/call and one independently prescribed handler effect produce six complete native payloads. Exact turn_id and host-bounded output create_time survive unchanged cold import into a distinct thread. Inference counts3->3->4 and one callback/effect remain fixed; original source bytes/config and both owned process exits are asserted.",
+        "Pinned experimental UNSTABLE FOR CODEX CLOUD history input only. ResponseItems do not restore SessionMeta dynamic registration: the continuation consumes completed evidence and independently asserts the owned namespace/function absent from executable tools. Explicit-null owners390/497, server-executed search, absent/null call IDs, encryption and callable continuity remain unqualified. Existing media/dynamic case bodies stay byte-identical.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission tests and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/10/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#client-tool-search-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/10/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct non-null raw ToolSearchCall/ToolSearchOutput metadata input only: real native local BM25 search, one genuine item/tool/call and one independently prescribed handler effect produce six complete native payloads. Exact turn_id and host-bounded output create_time survive unchanged cold import into a distinct thread. Inference counts3->3->4 and one callback/effect remain fixed; original source bytes/config and both owned process exits are asserted.",
+        "Pinned experimental UNSTABLE FOR CODEX CLOUD history input only. ResponseItems do not restore SessionMeta dynamic registration: the continuation consumes completed evidence and independently asserts the owned namespace/function absent from executable tools. Explicit-null owners390/497, server-executed search, absent/null call IDs, encryption and callable continuity remain unqualified. Existing media/dynamic case bodies stay byte-identical.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission tests and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/10/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -36754,49 +36774,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#client-tool-search-history"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/6/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct non-null raw ToolSearchCall/ToolSearchOutput metadata input only: real native local BM25 search, one genuine item/tool/call and one independently prescribed handler effect produce six complete native payloads. Exact turn_id and host-bounded output create_time survive unchanged cold import into a distinct thread. Inference counts3->3->4 and one callback/effect remain fixed; original source bytes/config and both owned process exits are asserted.",
+        "Pinned experimental UNSTABLE FOR CODEX CLOUD history input only. ResponseItems do not restore SessionMeta dynamic registration: the continuation consumes completed evidence and independently asserts the owned namespace/function absent from executable tools. Explicit-null owners390/497, server-executed search, absent/null call IDs, encryption and callable continuity remain unqualified. Existing media/dynamic case bodies stay byte-identical.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission tests and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/6/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#client-tool-search-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/6/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct non-null raw ToolSearchCall/ToolSearchOutput metadata input only: real native local BM25 search, one genuine item/tool/call and one independently prescribed handler effect produce six complete native payloads. Exact turn_id and host-bounded output create_time survive unchanged cold import into a distinct thread. Inference counts3->3->4 and one callback/effect remain fixed; original source bytes/config and both owned process exits are asserted.",
+        "Pinned experimental UNSTABLE FOR CODEX CLOUD history input only. ResponseItems do not restore SessionMeta dynamic registration: the continuation consumes completed evidence and independently asserts the owned namespace/function absent from executable tools. Explicit-null owners390/497, server-executed search, absent/null call IDs, encryption and callable continuity remain unqualified. Existing media/dynamic case bodies stay byte-identical.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission tests and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/6/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
