@@ -3037,14 +3037,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-partial-error-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:marketplace/upgrade",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native local-Git marketplace partial failure: one valid configured source and one representable Git entry missing source produce the independently prescribed sorted selected names, one good activated root and exact populated bad marketplaceName/message in a successful JSON-RPC response. Authored source files/revision/activation metadata and unchanged config/catalog/provider journal distinguish partial success from whole-operation success. Explicit warm repeat and distinct cold-process repeat preserve the activated root and exact repeated error with no upgradedRoots. Only requested local Git upgrade occurs; no turns/inference/remote service/plugin installation. Original request bytes/correlation, fixed bounds and owned cleanup remain enforced. Initial1/0, final1ordinary case twice and strict checks pass with374stable sources/all373prior unchanged; prior full matrix/consumer/static/assembly retained by source equivalence, not rerun. Only4343/4344 gain scoped implemented evidence; no verified/whole-method promotion, arbitrary error/staged activation rollback/concurrency/remote/backend/OS breadth, prohibited/broad/hosted gate, full compatibility/publication/deployment claim."
       ],
       "params": {
         "$ref": "#/definitions/MarketplaceUpgradeParams"
@@ -3075,7 +3077,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17554,14 +17557,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-partial-error-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:marketplace/upgrade",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native local-Git marketplace partial failure: one valid configured source and one representable Git entry missing source produce the independently prescribed sorted selected names, one good activated root and exact populated bad marketplaceName/message in a successful JSON-RPC response. Authored source files/revision/activation metadata and unchanged config/catalog/provider journal distinguish partial success from whole-operation success. Explicit warm repeat and distinct cold-process repeat preserve the activated root and exact repeated error with no upgradedRoots. Only requested local Git upgrade occurs; no turns/inference/remote service/plugin installation. Original request bytes/correlation, fixed bounds and owned cleanup remain enforced. Initial1/0, final1ordinary case twice and strict checks pass with374stable sources/all373prior unchanged; prior full matrix/consumer/static/assembly retained by source equivalence, not rerun. Only4343/4344 gain scoped implemented evidence; no verified/whole-method promotion, arbitrary error/staged activation rollback/concurrency/remote/backend/OS breadth, prohibited/broad/hosted gate, full compatibility/publication/deployment claim."
       ],
       "prerequisites": [
         "initialized"
@@ -17578,7 +17583,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
         ]
       },
       "transport_coverage": [
@@ -156299,53 +156305,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/marketplace-partial-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeResponse.json#/definitions/MarketplaceUpgradeErrorInfo/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native local-Git marketplace partial failure: one valid configured source and one representable Git entry missing source produce the independently prescribed sorted selected names, one good activated root and exact populated bad marketplaceName/message in a successful JSON-RPC response. Authored source files/revision/activation metadata and unchanged config/catalog/provider journal distinguish partial success from whole-operation success. Explicit warm repeat and distinct cold-process repeat preserve the activated root and exact repeated error with no upgradedRoots. Only requested local Git upgrade occurs; no turns/inference/remote service/plugin installation. Original request bytes/correlation, fixed bounds and owned cleanup remain enforced. Initial1/0, final1ordinary case twice and strict checks pass with374stable sources/all373prior unchanged; prior full matrix/consumer/static/assembly retained by source equivalence, not rerun. Only4343/4344 gain scoped implemented evidence; no verified/whole-method promotion, arbitrary error/staged activation rollback/concurrency/remote/backend/OS breadth, prohibited/broad/hosted gate, full compatibility/publication/deployment claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/MarketplaceUpgradeErrorInfo/properties/marketplaceName",
       "required": true,
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/marketplace-partial-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeResponse.json#/definitions/MarketplaceUpgradeErrorInfo/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native local-Git marketplace partial failure: one valid configured source and one representable Git entry missing source produce the independently prescribed sorted selected names, one good activated root and exact populated bad marketplaceName/message in a successful JSON-RPC response. Authored source files/revision/activation metadata and unchanged config/catalog/provider journal distinguish partial success from whole-operation success. Explicit warm repeat and distinct cold-process repeat preserve the activated root and exact repeated error with no upgradedRoots. Only requested local Git upgrade occurs; no turns/inference/remote service/plugin installation. Original request bytes/correlation, fixed bounds and owned cleanup remain enforced. Initial1/0, final1ordinary case twice and strict checks pass with374stable sources/all373prior unchanged; prior full matrix/consumer/static/assembly retained by source equivalence, not rerun. Only4343/4344 gain scoped implemented evidence; no verified/whole-method promotion, arbitrary error/staged activation rollback/concurrency/remote/backend/OS breadth, prohibited/broad/hosted gate, full compatibility/publication/deployment claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/MarketplaceUpgradeErrorInfo/properties/message",
       "required": true,
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {

@@ -127,6 +127,10 @@ The [section-rank cursor profile](section-rank-cursor-qualification.md) exercise
 the native integer path through public moves, unchanged reverse anchors and
 warm/cold pages. It neither rewrites cursors nor repairs the separate native
 created_at precision defect; the whole cursor contract stays missing.
+The [marketplace partial-error profile](marketplace-partial-error-qualification.md)
+retains per-entry failures inside a successful native upgrade response. Real
+local Git activation and warm/cold no-ops distinguish request completion from
+success of every selected marketplace; it adds no remote plugin integration.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

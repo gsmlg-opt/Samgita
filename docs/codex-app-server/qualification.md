@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [marketplace partial-error profile](marketplace-partial-error-qualification.md)
+adds exact populated native name/message errors alongside a real local Git
+success, retaining installed state through warm/cold no-op repeats. Initial1/0,
+focused1/0 twice and strict checks pass with374 stable sources/all373 prior
+unchanged. Only two owners become scoped implemented; full compatibility and
+prohibited/hosted gates remain incomplete.
+
 The [section-rank reverse cursor](section-rank-cursor-qualification.md) passes
 initial1/0 and affected4/0 twice, with strict checks and373 stable sources. Its
 positive integer-rank branch preserves the distinct created_at defect and

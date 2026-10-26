@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [marketplace partial-error profile](marketplace-partial-error-qualification.md)
+qualifies exact owners4343/4344 via a real local Git upgrade alongside a native
+missing-source error, then warm/cold no-op/error repeats with exact retained
+files/revision/metadata and zero provider requests. Initial1/0, focused **1/0
+twice**, driver compile/format, strict Credo543 and inventory pass with374 stable
+sources; all373 prior sources remain exact. Contracts become **5,042 implemented
+/1,513 missing /66 blocked**; requirements remain **462 implemented /12 missing
+/11 blocked**, zero verified. Prior full matrix/consumer/root/static/assembly
+checks retain source equivalence, without new-run claims. Continue remaining
+reachable ordinary effects; prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal gates stay incomplete.
+
 The [section-rank cursor profile](section-rank-cursor-qualification.md) proves
 positive opposite-direction anchor inclusion and continuation through20 warm/
 unloaded-cold pages using public rank moves and unchanged native cursors. Initial
