@@ -467,3 +467,95 @@ modified histories, arbitrary nullable values, stable import, other providers/
 transports/OS, full-goal, A11 or historical/external profiles. Prohibited
 security/permission/approval tests and broad/hosted workflows stay unrun.
 No release, publication, production migration or deployment occurs.
+
+## Reasoning history
+
+The fifth supplied-history case captures genuine native user/Reasoning/assistant
+records and qualifies seven exact client-input owners. The Responses provider
+extension runs only for `reasoning_history`; its original `response_events`
+function/registration and default behavior remain intact. The real immutable
+binary creates every app-server event and rollout record. The literal provider
+reasoning is synthetic fixture text, not external model-private reasoning.
+
+| Owners | Physical input contract |
+| --- | --- |
+|350–353|Reasoning summary_text object, text, type and literal tag|
+|458/459|Reasoning internal metadata property and non-null object|
+|460|Reasoning internal metadata explicit-null input|
+
+One source turn produces two summary objects and three mixed content objects:
+`reasoning_text`, empty `text` and nonempty `text`, with independent literal
+values. Ordered native start/completion events retain exact item arrays and
+host-bounded millisecond timestamps. After source close/reap, bounded native
+JSONL yields three complete records. The Reasoning retains its provider ID,
+the complete summary/content object arrays and exactly `{turn_id: source_turn}`
+metadata, without create_time. The user/assistant whole maps and distinct IDs
+have separate literal and host-time oracles.
+
+The existing two-import helper performs separate modified client-null inputs
+for Reasoning metadata and already-covered user metadata. Only owner460 is new;
+the user is not counted twice. Null normalizes to omitted metadata while every
+other field/ID/order remains exact and inference remains one. These are client
+mutations, not native-null metadata production. The helper is unchanged.
+
+A third sequential owned native imports the original three maps **unchanged**
+into a distinct idle thread/path. Import causes no inference, turn-start, tool
+work or newly generated reasoning. One explicit followup consumes the original
+summary/content and conversation, returning only a new assistant answer.
+Inference is **1 → 1 → 2** overall. The provider independently asserts the
+complete Reasoning request copy and literal prior messages. Non-OpenAI request
+copies omit internal metadata and IDs lacking underscore prefixes; the original
+durable maps retain both. Every original imported map remains exact after the
+followup. Source rollout, configuration/catalog/scripts and empty workspace stay
+unchanged through close/reap, with the existing deadlines and bounds.
+
+Fifteen full producer files match the official immutable archive. The new chain
+uses `codex-api/src/sse/responses.rs:354–359` to decode ordinary Responses items;
+`core/src/tools/router.rs:295–308` and
+`core/src/stream_events_utils.rs:93–105,360–399` finalize non-tool records.
+`core/src/session/mod.rs:3481–3484,3520–3551` preserves supplied IDs and stamps
+turn metadata; `protocol/src/models.rs:1455–1484` excludes Reasoning creation
+time. Its summary objects are declared at `models.rs:2093–2101`. Content
+serialization at `:1734–1740` retains the mixed content array because it contains
+one reasoning_text element. The previous unit's decode/fork/persistence chain
+applies unchanged to the actual submitted records. `core/src/client.rs:1007–1009,
+1092–1095` strips metadata/non-prefixed IDs only from provider request copies;
+`core/src/client_common.rs:60–68,91–93` retains their summary/content.
+
+The ordinary nullable `encrypted_content: null` in the native Reasoning map is
+only a serialization observation. No non-null encrypted-content, encryption,
+credential or other security behavior is exercised or inferred.
+
+The owning file passes **5/0**, seed501432, in **12.4 seconds**, log
+`/tmp/samgita-v309-history-501432.log`. There is no native semantic failure or
+oracle correction. The initial draft patch's numeric hunk headers were rejected
+before repository mutation; plain headers apply the identical code. Final
+environment/commands and artifacts use `/tmp/samgita-v309-run.py` and
+`/tmp/samgita-v309-functional-checks/`. Original four case bodies, existing null
+helpers and the provider's original function/registration remain byte-identical.
+
+The final **42-file matrix passes 81/0 twice**, seeds501432/987654, in
+**147.110/140.949 seconds**. Scoped format, warnings-as-errors compile, strict
+Credo on492 sources, outside actual-binary consumer **1/0**, twenty fixture ASTs
+and the **283-source** unchanged-byte guard pass. Read-only review finds no
+functional defect in the added profile; the real native runs establish the
+stated behavior.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Results | `7561a958e4e8ca7578c7984d94199bd74d3a93cea083876f5fe19b0ddd0723a9` |
+| Source guard | `e459f9a46988b208c75874d3342fe546964591466a7177380a6d1ca156464e03` |
+| Pinned producers and seven nodes | `a1b0743fef93430399ea77d81b899d47f7fb1d1ebdc5fcea4e7f096fd1a2a267` |
+| Prior cases/helpers/provider preservation | `2e920ed21ada0817978c67c45df5adef759cbdbaa95031b5c9dbb7060b7e36c6` |
+| Resulting manifest | `73be5827b0ae0e918807f8cb61c3272a49f695faa4f262d06b407ad4267d6ff3` |
+
+Unique whole-record patching and final binding prove exactly seven promotions,
+unchanged schema identities/planned tests/requirements and preserved earlier
+sources. Inventory consistency passes; strict completeness exits **1**.
+Contracts become **4,912 implemented / 1,643 missing / 66 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified.
+Only the selected unstable input, local fixture and Linux/stdio profile are
+qualified. Other branches/providers/OS/transports, full-goal, A11, historical/
+external and release gates remain incomplete; prohibited security/permission/
+approval tests and broad/hosted workflows remain unrun. No publication,
+deployment or production migration occurs.

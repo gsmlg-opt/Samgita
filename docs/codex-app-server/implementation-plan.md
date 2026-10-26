@@ -21,6 +21,32 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine Reasoning history input](supplied-history-inputs-qualification.md#reasoning-history)
+passes the final **42-file, 81/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. Seven exact summary/metadata owners become implemented:
+**4,912 implemented / 1,643 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Genuine raw maps, unchanged cold import and one consuming followup retain
+inference **1 → 1 → 2**; separately modified client-null metadata is omitted
+without inference. Four prior cases, null helpers and original provider behavior
+remain intact. Fifteen archive-matching files, seven exact nodes, inventory and
+final binding pass. No native semantic repair; strict completeness exits **1**.
+
+Continue genuine remote-v2 compaction supplied-history owners418/419/420/424/425
+and separate client-null421/423. Capture actual current
+`compacted.payload.replacement_history`, preserve whole user/checkpoint maps and
+native cmp_ IDs, import unchanged cold and require exactly one explicit consuming
+followup with inference **2 → 2 → 3**. Do not fabricate top-level legacy rows,
+restore sidecar metadata as passthrough, infer non-null metadata owner422, or
+claim actual provider checkpoint quality/encryption. Prefer a separate owning
+test/provider to preserve all earlier history cases/default fixtures. Retain
+fixed yolo and every verification restriction. Prohibited/broad/hosted, full-goal,
+A11, historical/unreachable, unavailable external/OS and release gates remain
+incomplete.
+
+## Earlier checkpoints
+
 The [explicit-null history inputs](supplied-history-inputs-qualification.md#explicit-null-client-inputs)
 pass the final **42-file, 80/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
@@ -43,8 +69,6 @@ inference **1 → 1 → 2**, no repeated reasoning/tool work, immutable source
 records and explicit owned cleanup. Retain fixed yolo and every verification
 restriction. Prohibited/broad/hosted, full-goal, A11, historical/unreachable,
 unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [genuine compact steering rejection](compact-steering-error-qualification.md)
 passes the final **42-file, 80/0 twice** functional matrix, compile/format,

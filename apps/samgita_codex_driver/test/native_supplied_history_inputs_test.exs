@@ -125,6 +125,15 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
   @custom_followup_answer "Owned imported custom patch evidence consumed λ🙂"
   @custom_patch "*** Begin Patch\n*** Update File: owned-notice.txt\n@@\n-owned before\n+owned after λ🙂\n*** End Patch\n"
 
+  @reasoning_script Path.expand(
+                      "../../../scripts/codex/reasoning_item_events_fixture.py",
+                      __DIR__
+                    )
+  @reasoning_marker "Owned genuine supplied-history reasoning 163"
+  @reasoning_followup "Owned continuation consumes supplied reasoning evidence 163"
+  @reasoning_answer "Owned source reasoning completed λ🙂"
+  @reasoning_followup_answer "Owned imported reasoning evidence consumed λ🙂"
+
   setup tags do
     binary = System.get_env("CODEX_BINARY")
 
@@ -709,6 +718,280 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     assert requests(ctx) === [initial, completed, continuation]
   end
 
+  @tag reasoning_history: true
+  test "unstable native import consumes genuine reasoning history without generating it again",
+       ctx do
+    source = start(ctx)
+    source_process = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access",
+        "historyMode" => "legacy"
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+    source_turn = custom_turn(source, source_id, @reasoning_marker)
+    events = collect(source, source_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert_turn_completed(events, source_id, source_turn)
+    assert_reasoning_live(events, source_id, source_turn, began, ended)
+    assert_custom_answer(events, source_turn, @reasoning_answer)
+    assert_custom_no_work(events)
+    source_path = Map.fetch!(read_thread(source, source_id), "path")
+    assert [initial] = requests(ctx)
+    assert Enum.filter(initial["input"], &(&1["type"] == "reasoning")) == []
+    assert_idle(source)
+    assert :ok = Session.close(source)
+    assert_gone(source_process)
+
+    # Capture real native ResponseItems before using the unstable input API.
+    # The Python producer emits only ordinary Responses events, never history.
+    {source_bytes, payloads} = rollout(ctx, source_path)
+    history = captured_reasoning_history(payloads)
+    assert_reasoning_payloads(history, source_turn, began, ended)
+    assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 3
+    assert_reasoning_retained(ctx, source_path, source_bytes)
+
+    # Explicit-null CLIENT inputs: one Reasoning metadata field and one genuine
+    # user Message metadata field. Keep the existing two-import invariant.
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [
+        {1, "internal_chat_message_metadata_passthrough"},
+        {0, "internal_chat_message_metadata_passthrough"}
+      ],
+      []
+    )
+
+    assert requests(ctx) === [initial]
+    assert_reasoning_retained(ctx, source_path, source_bytes)
+    cold = start(ctx)
+    cold_process = native_process(cold)
+    refute cold_process == source_process
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => history,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = Map.fetch!(imported, "id")
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert Map.fetch!(imported, "preview") == @reasoning_marker
+    assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+    imported_path = Map.fetch!(read_thread(cold, imported_id), "path")
+    refute imported_path == source_path
+    assert_reasoning_import(ctx, imported_path, history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert_custom_no_work(import_events)
+    assert_reasoning_not_generated(import_events)
+    refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
+    assert requests(ctx) === [initial]
+    assert_reasoning_retained(ctx, source_path, source_bytes)
+
+    followup_turn = custom_turn(cold, imported_id, @reasoning_followup)
+    followup = collect(cold, followup_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(followup, imported_id, followup_turn)
+    assert_custom_answer(followup, followup_turn, @reasoning_followup_answer)
+    assert_custom_no_work(followup)
+    assert_reasoning_not_generated(followup)
+    assert Map.fetch!(read_thread(cold, imported_id), "id") == imported_id
+    assert [^initial, continuation] = requests(ctx)
+    assert_reasoning_provider(continuation)
+    assert_reasoning_import(ctx, imported_path, history)
+    assert_reasoning_retained(ctx, source_path, source_bytes)
+    assert_idle(cold)
+    assert %{interactions: 0} = Session.status(cold)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_process)
+    assert_reasoning_retained(ctx, source_path, source_bytes)
+    assert requests(ctx) === [initial, continuation]
+  end
+
+  defp reasoning_fixture(binary) do
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-supplied-reasoning-#{Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    fixture = ModelFixture.start(root, "reasoning_history")
+    File.write!(fixture.requests, "[]")
+    on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+    %{binary: binary, fixture: fixture, root: root}
+  end
+
+  defp reasoning_summary do
+    [
+      %{"type" => "summary_text", "text" => "Owned summary λ🙂"},
+      %{"type" => "summary_text", "text" => "Owned second summary"}
+    ]
+  end
+
+  defp reasoning_content do
+    [
+      %{"type" => "reasoning_text", "text" => "Owned raw α🙂"},
+      %{"type" => "text", "text" => ""},
+      %{"type" => "text", "text" => "Owned text alternative"}
+    ]
+  end
+
+  defp reasoning_params(events, method) do
+    for event <- events,
+        event.wire["method"] == method,
+        event.wire["params"]["item"]["type"] == "reasoning",
+        do: event.wire["params"]
+  end
+
+  defp assert_reasoning_live(events, thread, turn, began, ended) do
+    item = %{
+      "type" => "reasoning",
+      "id" => "owned-reasoning-populated",
+      "summary" => ["Owned summary λ🙂", "Owned second summary"],
+      "content" => ["Owned raw α🙂", "", "Owned text alternative"]
+    }
+
+    assert [started] = reasoning_params(events, "item/started")
+    assert [completed] = reasoning_params(events, "item/completed")
+    started_at = Map.fetch!(started, "startedAtMs")
+    completed_at = Map.fetch!(completed, "completedAtMs")
+    assert is_integer(started_at) and is_integer(completed_at)
+    assert trunc(began * 1_000) <= started_at
+    assert started_at <= completed_at and completed_at <= trunc(ended * 1_000)
+
+    assert started === %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => item,
+             "startedAtMs" => started_at
+           }
+
+    assert completed === %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => item,
+             "completedAtMs" => completed_at
+           }
+
+    order =
+      for event <- events,
+          event.wire["method"] in ["item/started", "item/completed"],
+          event.wire["params"]["item"]["type"] == "reasoning",
+          do: event.wire["method"]
+
+    assert order === ["item/started", "item/completed"]
+  end
+
+  defp assert_reasoning_not_generated(events) do
+    assert reasoning_params(events, "item/started") == []
+    assert reasoning_params(events, "item/completed") == []
+  end
+
+  defp captured_reasoning_history(payloads) do
+    selected =
+      Enum.filter(payloads, fn item ->
+        item["type"] == "reasoning" or
+          (item["type"] == "message" and item["role"] == "user" and
+             item["content"] === [%{"type" => "input_text", "text" => @reasoning_marker}]) or
+          (item["type"] == "message" and item["id"] == "owned-reasoning-source-answer")
+      end)
+
+    assert [
+             %{"type" => "message", "role" => "user"},
+             %{"type" => "reasoning"},
+             %{"type" => "message", "role" => "assistant"}
+           ] = selected
+
+    selected
+  end
+
+  defp assert_reasoning_payloads([user, reasoning, assistant], turn, began, ended) do
+    user_id = Map.fetch!(user, "id")
+    assert_custom_native_id(user_id, "msg")
+    created = custom_created(user, began, ended)
+
+    assert user === %{
+             "type" => "message",
+             "id" => user_id,
+             "role" => "user",
+             "content" => [%{"type" => "input_text", "text" => @reasoning_marker}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => created,
+               "content_item_kinds" => ["user.text"]
+             }
+           }
+
+    assert reasoning === %{
+             "type" => "reasoning",
+             "id" => "owned-reasoning-populated",
+             "summary" => reasoning_summary(),
+             "content" => reasoning_content(),
+             "encrypted_content" => nil,
+             "internal_chat_message_metadata_passthrough" => %{"turn_id" => turn}
+           }
+
+    assert assistant === %{
+             "type" => "message",
+             "id" => "owned-reasoning-source-answer",
+             "role" => "assistant",
+             "content" => [%{"type" => "output_text", "text" => @reasoning_answer}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "content_item_kinds" => ["unknown"]
+             }
+           }
+  end
+
+  defp assert_reasoning_import(ctx, path, history) do
+    {_bytes, payloads} = rollout(ctx, path)
+    assert captured_reasoning_history(payloads) === history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+  end
+
+  defp assert_reasoning_provider(request) do
+    input = Map.fetch!(request, "input")
+
+    # Non-OpenAI request copies lose metadata; IDs without an underscore are
+    # removed (client.rs:1007-1009,1092-1095). Durable originals above retain both.
+    assert Enum.filter(input, &(&1["type"] == "reasoning")) === [
+             %{
+               "type" => "reasoning",
+               "summary" => reasoning_summary(),
+               "content" => reasoning_content(),
+               "encrypted_content" => nil
+             }
+           ]
+
+    assert_custom_provider_message(input, "user", @reasoning_marker)
+    assert_custom_provider_message(input, "assistant", @reasoning_answer)
+    assert_custom_provider_message(input, "user", @reasoning_followup)
+    metadata = JSON.decode!(request["client_metadata"]["x-codex-turn-metadata"])
+    assert Map.fetch!(metadata, "history_initialization") == "supplied_history"
+  end
+
+  defp assert_reasoning_retained(ctx, source_path, source_bytes) do
+    assert File.read!(source_path) === source_bytes
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_unchanged(ctx)
+  end
+
   defp custom_fixture(binary) do
     root =
       Path.join(
@@ -939,10 +1222,12 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
            ) == 1
   end
 
+  defp history_script(%{reasoning_history: true}), do: @reasoning_script
   defp history_script(%{custom_history: true}), do: @custom_script
   defp history_script(%{search_history: true}), do: @search_script
   defp history_script(_), do: @script
 
+  defp history_fixture(binary, %{reasoning_history: true}), do: reasoning_fixture(binary)
   defp history_fixture(binary, %{custom_history: true}), do: custom_fixture(binary)
   defp history_fixture(binary, %{search_history: true}), do: search_fixture(binary)
   defp history_fixture(binary, %{dynamic_history: true}), do: dynamic_fixture(binary)
@@ -956,6 +1241,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
 
   defp history_model(model, _), do: model
 
+  defp history_source_paths(%{reasoning_history: true}), do: [@reasoning_script]
   defp history_source_paths(%{custom_history: true}), do: [@custom_script]
   defp history_source_paths(%{search_history: true}), do: [@search_script, @exposure_script]
   defp history_source_paths(_), do: []

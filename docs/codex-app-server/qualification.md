@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [genuine Reasoning history input](supplied-history-inputs-qualification.md#reasoning-history)
+passes the final **42-file, 81/0 twice** functional matrix, compile/format,
+strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
+the **283-source** guard. Seven exact summary/metadata owners become implemented:
+**4,912 implemented / 1,643 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Three genuine native maps import unchanged cold, then one real followup consumes
+the exact summary/content with inference **1 → 1 → 2** and no repeated work.
+The separate client-null Reasoning metadata input normalizes to omission.
+Four prior cases, null helpers and default provider function/registration stay
+byte-identical. Fifteen archive-matching files, seven nodes, inventory and final
+binding pass; no native semantic failure or oracle repair occurs. Strict
+completeness exits **1**. Prohibited/broad/hosted, full-goal, A11, historical/
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [explicit-null history inputs](supplied-history-inputs-qualification.md#explicit-null-client-inputs)
 pass the final **42-file, 80/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
