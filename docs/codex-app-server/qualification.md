@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [actual native session import](native-session-import-success-qualification.md)
+passes the affected four-file **5/0 twice** matrix, static checks, outside
+consumer1/0 and310 guarded sources. Real detection, receipt/progress/completion,
+native Legacy persistence, completed-source deduplication and cold reads with
+zero inference implement exactly owners184/258/596. Contracts become **4,999
+implemented /1,556 missing /66 blocked**; requirements remain unchanged and
+zero verified. The initial title/name oracle failure is preserved and corrected
+from native storage/projection source, with exact null name and separate title
+assertions. All309 prior sources are unchanged. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal/release gates stay incomplete.
+
 The [genuine terminal Cli source](native-cli-source-qualification.md) passes the
 affected three-file **4/0 twice** matrix, format/compile, strict Credo, outside
 consumer1/0, two Python ASTs and309 guarded sources. Ordinary TUI completion,

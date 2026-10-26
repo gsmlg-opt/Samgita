@@ -21,17 +21,35 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-The [appServer source-artifact investigation](app-server-source-artifact-limit.md)
+The [actual native session import](native-session-import-success-qualification.md)
+passes a separate success-only profile and the affected four-file5/0-twice
+matrix, static checks and outside consumer1/0. Actual processing/persistence,
+completed-source deduplication and cold Legacy history have zero inference;
+21 whole immutable files and exact owners184/258/596 are checked. Contracts are
+4,999 implemented/1,556 missing/66 blocked, zero verified. All309 previous
+guarded sources remain unchanged. This does not complete the import family or
+any prohibited/external/full-goal gate.
+
+The [genuine terminal Cli source](native-cli-source-qualification.md) is committed
+as `a74536c696506c5ab9f6ff0bc5cc70b135833d4e`. The affected three-file block
+passes4/0 at both fixed seeds, static checks and outside consumer1/0. A real
+owned PTY, native completion/normal quit, actual Cli persistence and cold source
+discrimination supplement existing owner673. No state/count or full-goal
+promotion occurs.35 Codex and12 crossterm files match immutable archives;
+309 guarded sources stay stable, including307 unrelated prior files.
+The previous57-file matrix is historical and not rerun on changed source.
+
+The preceding [appServer source-artifact investigation](app-server-source-artifact-limit.md)
 adds source-only limitations for existing owner676: the selected combined CLI
 has no mcp-server entry and hardcodes app-server source VSCode. The real
 session-source selector belongs to a separate executable.18 whole immutable
 files and the exact schema graph match; positive production remains incomplete.
-No tests or states are promoted and no tests rerun. All308 current/committed
-sources still equal the latest57-file111/0-twice matrix below. Inventory passes;
+No tests or states were promoted and no tests rerun. At that checkpoint, all308
+current/committed sources equaled the57-file111/0-twice matrix below. Inventory passes;
 strict completeness exits **1**, counts unchanged and all broader gates open.
 
-The [genuine Review child source](native-review-source-qualification.md) passes
-the current **57-file,111/0 twice** functional matrix, compile/format, strict
+The earlier [genuine Review child source](native-review-source-qualification.md) passes
+its **57-file,111/0 twice** functional matrix, compile/format, strict
 Credo on507 sources, outside consumer1/0,30 fixture ASTs plus the existing inline
 Exec launcher and308 guarded sources. Only existing owner678 gains supplemental
 evidence; counts stay **4,996 implemented /1,559 missing /66 blocked** contracts,
@@ -46,13 +64,15 @@ preserves assertions, bounds and deadlines. Inventory passes; strict completenes
 exits **1**. Prohibited/broad/hosted, A11, unavailable legacy/external/OS/platform
 and full-goal/release gates remain incomplete. No publication/deployment.
 
-Continue independent genuine source-producer work. Exact source investigation
+Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-Ordinary TUI CLI source feasibility is under source-only investigation in
-`/tmp/samgita-v338-candidate-report.md`; actual same-artifact Cli startup needs
-an owned PTY and meaningful native completion/normal exit. Review that report
-before a test-only harness draft. No source finding is native acceptance;
-preserve fixed-yolo setup and the prohibited test boundary.
+Cursor request-cwd fallback is the next ordinary gap: distinguish absent
+embedded cwd from an explicit embedded cwd using owned inert foreign input,
+actual native import, deduplication and cold persistence. Keep Claude embedded
+metadata semantics separate; request title is not a verified setter. The mixed
+existing import suite contains prohibited cases; extend only the reviewed
+success-only profile. Source findings alone remain unaccepted. Preserve
+fixed-yolo setup, the prohibited test boundary and all remaining full-goal gates.
 
 ## Earlier checkpoints
 

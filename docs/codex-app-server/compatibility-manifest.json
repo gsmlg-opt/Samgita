@@ -27545,18 +27545,23 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-session-import-success-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected negative_only native evidence: MEMORY disabled; SESSIONS out-of-scope rejection. Neither import succeeds. Other variants and full implementation qualification remain incomplete."
+        "Real success-only Claude-format session import on pinned Linux-x86_64-musl/stdio. The owned source is explicitly synthetic foreign-format two-message input, never fabricated native history or evidence of a real Claude service. Actual detector returns the exact SESSIONS/details.sessions/path/cwd/title selection. Real correlated import response is an acknowledgement; independently captured ordered validation/import progress and completion identify durable processing. Actual import result target, native Legacy thread, raw canonical SessionMeta/messages/events and independent timestamp/content/full-public-turn oracles agree. No recordHistory call, native rollout/SQLite mutation, model inference, command or external backend is used.",
+        "A second explicit operation occurs only after observed completion/history. Identical source content produces a distinct empty completed receipt/history, one original native thread and exact unchanged rollout/public history, proving completed-source dedup rather than exactly-once remote execution. Normal owned closure/reaping precedes a distinct cold native reader. Both durable import histories, one thread, complete public/raw imported messages, source timestamps and IDs survive with zero provider requests and no loaded/resumed execution. All successful native frames and response IDs, import progress association and receipt-before-processing order are bounded and asserted.",
+        "Pinned native distinction: imported success history.title retains the parsed transcript title while thread/list.name is null. Importer patches metadata.title, without the separate legacy name/index update consumed by the public stored-thread projection; no wire value is normalized, dropped or renamed to manufacture success. Initial wrong name oracle remains as a recorded failure; full list projection now asserts exact null and all other timestamp/source/provenance/history fields. Claude cwd/title come from input records; this profile does not establish request cwd fallback, title override, Cursor import, changed-source append or whole import-family completeness.",
+        "Final affected4-file5/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside real-binary consumer1/0, retained PTY/inline Exec ASTs and310-source guard. All309 previous sources, production driver/protocol/process cleanup and shared fixtures remain byte-identical; only one success-only test module is added.21 complete files match immutable source archive and actual import request graph independently resolves canonical184/258/596. Fixed-yolo ordinary setup. Prohibited security/credential/authentication/authorization/permission/approval tests/audits and mixed original import suite are unrun.",
+        "Scoped implemented evidence only for these three exact physical owners. Existing negative historical evidence is retained but not rerun; no sibling/hash/reference/default/nullable propagation or verified status. Broad/hosted checks, A11, legacy/external/platform/OS success, full compatibility and release remain incomplete. No published package, real Claude/provider integration, deployment or production migration is established."
       ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/9",
       "schema": "ClientRequest.json",
       "schema_sha256": "2f9a4cd002dccf2bab3edd4f1f2110edc6e7af7942c2d68ab053f5f26845a5b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27564,10 +27569,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -29894,21 +29902,26 @@
       "default": [],
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-session-import-success-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/sessions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected negative_only native evidence: Session path rejected; memory import disabled. Other variants and full implementation qualification remain incomplete."
+        "Real success-only Claude-format session import on pinned Linux-x86_64-musl/stdio. The owned source is explicitly synthetic foreign-format two-message input, never fabricated native history or evidence of a real Claude service. Actual detector returns the exact SESSIONS/details.sessions/path/cwd/title selection. Real correlated import response is an acknowledgement; independently captured ordered validation/import progress and completion identify durable processing. Actual import result target, native Legacy thread, raw canonical SessionMeta/messages/events and independent timestamp/content/full-public-turn oracles agree. No recordHistory call, native rollout/SQLite mutation, model inference, command or external backend is used.",
+        "A second explicit operation occurs only after observed completion/history. Identical source content produces a distinct empty completed receipt/history, one original native thread and exact unchanged rollout/public history, proving completed-source dedup rather than exactly-once remote execution. Normal owned closure/reaping precedes a distinct cold native reader. Both durable import histories, one thread, complete public/raw imported messages, source timestamps and IDs survive with zero provider requests and no loaded/resumed execution. All successful native frames and response IDs, import progress association and receipt-before-processing order are bounded and asserted.",
+        "Pinned native distinction: imported success history.title retains the parsed transcript title while thread/list.name is null. Importer patches metadata.title, without the separate legacy name/index update consumed by the public stored-thread projection; no wire value is normalized, dropped or renamed to manufacture success. Initial wrong name oracle remains as a recorded failure; full list projection now asserts exact null and all other timestamp/source/provenance/history fields. Claude cwd/title come from input records; this profile does not establish request cwd fallback, title override, Cursor import, changed-source append or whole import-family completeness.",
+        "Final affected4-file5/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside real-binary consumer1/0, retained PTY/inline Exec ASTs and310-source guard. All309 previous sources, production driver/protocol/process cleanup and shared fixtures remain byte-identical; only one success-only test module is added.21 complete files match immutable source archive and actual import request graph independently resolves canonical184/258/596. Fixed-yolo ordinary setup. Prohibited security/credential/authentication/authorization/permission/approval tests/audits and mixed original import suite are unrun.",
+        "Scoped implemented evidence only for these three exact physical owners. Existing negative historical evidence is retained but not rerun; no sibling/hash/reference/default/nullable propagation or verified status. Broad/hosted checks, A11, legacy/external/platform/OS success, full compatibility and release remain incomplete. No published package, real Claude/provider integration, deployment or production migration is established."
       ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/sessions",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "d03d84c54ea4d06ca4e8a210657c60890e93ae22b4077578bcbe4b346baffc1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -29916,10 +29929,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sessions"
     },
     {
@@ -40777,21 +40793,26 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-session-import-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SessionMigration/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected negative_only native evidence: Owned path outside source projects root is rejected; title not imported. Other variants and full implementation qualification remain incomplete."
+        "Real success-only Claude-format session import on pinned Linux-x86_64-musl/stdio. The owned source is explicitly synthetic foreign-format two-message input, never fabricated native history or evidence of a real Claude service. Actual detector returns the exact SESSIONS/details.sessions/path/cwd/title selection. Real correlated import response is an acknowledgement; independently captured ordered validation/import progress and completion identify durable processing. Actual import result target, native Legacy thread, raw canonical SessionMeta/messages/events and independent timestamp/content/full-public-turn oracles agree. No recordHistory call, native rollout/SQLite mutation, model inference, command or external backend is used.",
+        "A second explicit operation occurs only after observed completion/history. Identical source content produces a distinct empty completed receipt/history, one original native thread and exact unchanged rollout/public history, proving completed-source dedup rather than exactly-once remote execution. Normal owned closure/reaping precedes a distinct cold native reader. Both durable import histories, one thread, complete public/raw imported messages, source timestamps and IDs survive with zero provider requests and no loaded/resumed execution. All successful native frames and response IDs, import progress association and receipt-before-processing order are bounded and asserted.",
+        "Pinned native distinction: imported success history.title retains the parsed transcript title while thread/list.name is null. Importer patches metadata.title, without the separate legacy name/index update consumed by the public stored-thread projection; no wire value is normalized, dropped or renamed to manufacture success. Initial wrong name oracle remains as a recorded failure; full list projection now asserts exact null and all other timestamp/source/provenance/history fields. Claude cwd/title come from input records; this profile does not establish request cwd fallback, title override, Cursor import, changed-source append or whole import-family completeness.",
+        "Final affected4-file5/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside real-binary consumer1/0, retained PTY/inline Exec ASTs and310-source guard. All309 previous sources, production driver/protocol/process cleanup and shared fixtures remain byte-identical; only one success-only test module is added.21 complete files match immutable source archive and actual import request graph independently resolves canonical184/258/596. Fixed-yolo ordinary setup. Prohibited security/credential/authentication/authorization/permission/approval tests/audits and mixed original import suite are unrun.",
+        "Scoped implemented evidence only for these three exact physical owners. Existing negative historical evidence is retained but not rerun; no sibling/hash/reference/default/nullable propagation or verified status. Broad/hosted checks, A11, legacy/external/platform/OS success, full compatibility and release remain incomplete. No published package, real Claude/provider integration, deployment or production migration is established."
       ],
       "nullable": false,
       "pointer": "/definitions/SessionMigration/properties/path",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -40799,10 +40820,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {

@@ -1,5 +1,10 @@
 # Native import and local catalog lifecycle qualification
 
+The later [success-only session profile](native-session-import-success-qualification.md)
+adds actual native import/persistence, completed-source deduplication and cold
+reads from synthetic foreign-format input, with zero inference. It does not
+rerun this original mixed suite or qualify every import variant.
+
 This unit targets immutable Codex `rust-v0.163.0`, source commit
 `83086188ae0614bd882818ff1aa23f3194962012`, using the actual Linux stdio
 app-server through the reusable driver. The test operates only on synthetic
