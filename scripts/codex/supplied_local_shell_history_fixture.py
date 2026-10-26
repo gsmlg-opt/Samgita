@@ -21,23 +21,25 @@ ANSWER = "Owned imported local-shell evidence consumed λ"
 _assistant_events = model.response_events
 
 
-def local_shell_item():
-    return {"type": "local_shell_call", "status": "incomplete",
+def local_shell_item(status="incomplete"):
+    return {"type": "local_shell_call", "status": status,
             "action": {"type": "exec", "command": COMMAND}}
 
 
-def response_events(index, completed_item):
+def response_events(index, completed_item, status="incomplete"):
     assistant = _assistant_events(index, completed_item)
     assert 1 <= index <= 2, "Unexpected extra local-shell-history inference"
     if index == 1:
         # No app-server frames, native identities, turn metadata or history rows.
         return assistant[:1] + [{
-            "type": "response.output_item.done", "item": local_shell_item(),
+            "type": "response.output_item.done", "item": local_shell_item(status),
         }] + assistant[1:]
     return assistant
 
 
 class SuppliedLocalShellHistoryFixture(model.ModelFixture):
+    shell_status = "incomplete"
+
     def config(self, codex_home):
         super().config(codex_home)
         path = Path(codex_home, "config.toml")
@@ -76,7 +78,7 @@ class SuppliedLocalShellHistoryFixture(model.ModelFixture):
             assert isinstance(identity, str) and identity.startswith("lsh_") and len(identity) > 4
             assert shell == {
                 "type": "local_shell_call", "id": identity, "call_id": None,
-                "status": "incomplete", "action": {
+                "status": self.shell_status, "action": {
                     "type": "exec", "command": COMMAND, "timeout_ms": None,
                     "working_directory": None, "env": None, "user": None,
                 },

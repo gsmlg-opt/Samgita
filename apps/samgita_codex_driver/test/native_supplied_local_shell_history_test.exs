@@ -11,7 +11,12 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
             "../../../scripts/codex/supplied_local_shell_history_fixture.py",
             __DIR__
           )
-  @script_sha "db35c22999991a7a74fbc0368aa0bfabefc4782be38744b3bac98beb70ff8f30"
+  @script_sha "f79e843b2a33cd2154b038f249fe1daa21909ad50c13e9490077e1e5e031cf64"
+  @in_progress_script Path.expand(
+                        "../../../scripts/codex/supplied_in_progress_local_shell_history_fixture.py",
+                        __DIR__
+                      )
+  @in_progress_sha "32ce3a38c1f6b72abde6b0db02b21242af60ebda6be72c952fa454945d8f7850"
   @original_script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @original_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @marker "Owned generic current local-shell history 163 λ"
@@ -23,7 +28,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
   @max_file_bytes 4_194_304
   @max_line_bytes 262_144
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -31,6 +36,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
 
     assert hash(binary) == @binary_sha
     assert hash(@script) == @script_sha
+    assert hash(@in_progress_script) == @in_progress_sha
     assert hash(@original_script) == @original_sha
 
     root =
@@ -42,7 +48,9 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
     File.mkdir!(root)
     on_exit(fn -> File.rm_rf!(root) end)
     previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
-    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", @script)
+    shell_status = Map.get(tags, :shell_status, "incomplete")
+    script = if shell_status == "in_progress", do: @in_progress_script, else: @script
+    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", script)
 
     fixture =
       try do
@@ -63,13 +71,14 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
       assert Port.info(fixture.port) == nil
     end)
 
-    ctx = %{binary: binary, fixture: fixture, root: root}
+    ctx = %{binary: binary, fixture: fixture, root: root, shell_status: shell_status}
     TurnFixture.configure_model(ctx, %{})
 
     unchanged =
       Enum.map(
         [
           @script,
+          @in_progress_script,
           @original_script,
           Path.join(fixture.codex_home, "config.toml"),
           Path.join(fixture.codex_home, "turn-models.json")
@@ -84,104 +93,114 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
     @tag null_metadata: null_metadata
     test "generic current local-shell item survives cold supplied history, client_null=#{null_metadata}",
          ctx do
-      source = TurnFixture.start(ctx)
-      source_native = native_process(source)
-
-      source_id =
-        TurnFixture.thread(ctx, source, %{
-          "historyMode" => "legacy",
-          "experimentalRawEvents" => true,
-          "approvalPolicy" => "never",
-          "sandbox" => "danger-full-access"
-        })
-
-      began = System.system_time(:microsecond) / 1_000_000
-      source_turn = TurnFixture.start_turn(source, source_id, text(@marker))
-      source_events = collect(source, &terminal(&1, source_turn), [], now() + 20_000)
-      assert_completed(source_events, source_id, source_turn)
-      assert_answer(source_events, source_id, source_turn, @source_answer)
-      assert [first] = requests(ctx)
-      assert_no_work(ctx, source, source_events)
-      source_path = read_thread(source, source_id)["path"]
-      ended = System.system_time(:microsecond) / 1_000_000
-      assert :ok = Session.close(source)
-      assert_gone(source_native)
-
-      # Generic current Responses decoding, not legacy shell execution/emission
-      # or call/output pairing. Only actual native payload maps transfer.
-      {source_bytes, rows} = rollout(ctx, source_path)
-      history = captured_history(rows, source_turn, began, ended)
-      [user, shell] = history
-      assert_raw_shell(source_events, source_id, source_turn, shell)
-
-      {submitted, expected_history} =
-        if ctx.null_metadata do
-          # Deliberate current client input; do not label this unchanged native
-          # history or evidence that the native source emitted explicit null.
-          modified = Map.put(shell, @metadata, nil)
-          assert Map.has_key?(modified, @metadata)
-          assert Map.fetch!(modified, @metadata) === nil
-          assert Map.delete(modified, @metadata) === Map.delete(shell, @metadata)
-          {[user, modified], [user, Map.delete(shell, @metadata)]}
-        else
-          {history, history}
-        end
-
-      if ctx.null_metadata, do: assert(submitted !== history), else: assert(submitted === history)
-      assert byte_size(JSON.encode!(submitted)) <= 1_048_576
-      cold = TurnFixture.start(ctx)
-      cold_native = native_process(cold)
-      refute cold_native == source_native
-      assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
-
-      # The raw input is explicitly unstable upstream. Exclude the distinct
-      # rollout envelope/harness sidecar; never synthesize native history rows.
-      imported =
-        call(cold, "thread/resume", %{
-          "threadId" => source_id,
-          "history" => submitted,
-          "model" => "mock-model",
-          "modelProvider" => "fixture",
-          "cwd" => ctx.fixture.workspace,
-          "approvalPolicy" => "never",
-          "sandbox" => "danger-full-access"
-        })["thread"]
-
-      imported_id = imported["id"]
-      assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
-      assert imported["preview"] == @marker
-      assert imported["status"] === %{"type" => "idle"}
-      imported_path = read_thread(cold, imported_id)["path"]
-      refute imported_path == source_path
-      assert_import(ctx, imported_path, expected_history)
-      assert {:ok, import_events} = Session.drain(cold, 256)
-      assert length(import_events) <= 256
-      assert byte_size(JSON.encode!(Enum.map(import_events, & &1.wire))) <= 1_048_576
-      assert Session.status(cold).buffered_events == 0
-      assert_no_work(ctx, cold, import_events)
-      refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
-      assert requests(ctx) === [first]
-      assert_retained(ctx, source_path, source_bytes)
-
-      followup_turn = TurnFixture.start_turn(cold, imported_id, text(@followup))
-      followup = collect(cold, &terminal(&1, followup_turn), [], now() + 20_000)
-      assert_completed(followup, imported_id, followup_turn)
-      assert_answer(followup, imported_id, followup_turn, @answer)
-      assert_no_work(ctx, cold, followup)
-      assert [^first, consumed] = requests(ctx)
-      assert_provider(consumed, shell)
-      assert read_thread(cold, imported_id)["path"] == imported_path
-      assert_import(ctx, imported_path, expected_history)
-      assert_retained(ctx, source_path, source_bytes)
-      assert :ok = Session.close(cold)
-      assert_gone(cold_native)
-      assert_import(ctx, imported_path, expected_history)
-      assert requests(ctx) === [first, consumed]
-      assert_retained(ctx, source_path, source_bytes)
+      assert_history_journey(ctx)
     end
   end
 
-  defp captured_history(rows, source_turn, began, ended) do
+  @tag null_metadata: false, shell_status: "in_progress"
+  test "generic current in_progress local-shell data survives native raw output and cold supplied history",
+       ctx do
+    assert_history_journey(ctx)
+  end
+
+  defp assert_history_journey(ctx) do
+    source = TurnFixture.start(ctx)
+    source_native = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "historyMode" => "legacy",
+        "experimentalRawEvents" => true,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+    source_turn = TurnFixture.start_turn(source, source_id, text(@marker))
+    source_events = collect(source, &terminal(&1, source_turn), [], now() + 20_000)
+    assert_completed(source_events, source_id, source_turn)
+    assert_answer(source_events, source_id, source_turn, @source_answer)
+    assert [first] = requests(ctx)
+    assert_no_work(ctx, source, source_events)
+    source_path = read_thread(source, source_id)["path"]
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert :ok = Session.close(source)
+    assert_gone(source_native)
+
+    # Generic current Responses decoding, not legacy shell execution/emission
+    # or call/output pairing. Only actual native payload maps transfer.
+    {source_bytes, rows} = rollout(ctx, source_path)
+    history = captured_history(rows, source_turn, began, ended, ctx.shell_status)
+    [user, shell] = history
+    assert_raw_shell(source_events, source_id, source_turn, shell)
+
+    {submitted, expected_history} =
+      if ctx.null_metadata do
+        # Deliberate current client input; do not label this unchanged native
+        # history or evidence that the native source emitted explicit null.
+        modified = Map.put(shell, @metadata, nil)
+        assert Map.has_key?(modified, @metadata)
+        assert Map.fetch!(modified, @metadata) === nil
+        assert Map.delete(modified, @metadata) === Map.delete(shell, @metadata)
+        {[user, modified], [user, Map.delete(shell, @metadata)]}
+      else
+        {history, history}
+      end
+
+    if ctx.null_metadata, do: assert(submitted !== history), else: assert(submitted === history)
+    assert byte_size(JSON.encode!(submitted)) <= 1_048_576
+    cold = TurnFixture.start(ctx)
+    cold_native = native_process(cold)
+    refute cold_native == source_native
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    # The raw input is explicitly unstable upstream. Exclude the distinct
+    # rollout envelope/harness sidecar; never synthesize native history rows.
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => submitted,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = imported["id"]
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert imported["preview"] == @marker
+    assert imported["status"] === %{"type" => "idle"}
+    imported_path = read_thread(cold, imported_id)["path"]
+    refute imported_path == source_path
+    assert_import(ctx, imported_path, expected_history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert length(import_events) <= 256
+    assert byte_size(JSON.encode!(Enum.map(import_events, & &1.wire))) <= 1_048_576
+    assert Session.status(cold).buffered_events == 0
+    assert_no_work(ctx, cold, import_events)
+    refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
+    assert requests(ctx) === [first]
+    assert_retained(ctx, source_path, source_bytes)
+
+    followup_turn = TurnFixture.start_turn(cold, imported_id, text(@followup))
+    followup = collect(cold, &terminal(&1, followup_turn), [], now() + 20_000)
+    assert_completed(followup, imported_id, followup_turn)
+    assert_answer(followup, imported_id, followup_turn, @answer)
+    assert_no_work(ctx, cold, followup)
+    assert [^first, consumed] = requests(ctx)
+    assert_provider(consumed, shell, ctx.shell_status)
+    assert read_thread(cold, imported_id)["path"] == imported_path
+    assert_import(ctx, imported_path, expected_history)
+    assert_retained(ctx, source_path, source_bytes)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_native)
+    assert_import(ctx, imported_path, expected_history)
+    assert requests(ctx) === [first, consumed]
+    assert_retained(ctx, source_path, source_bytes)
+  end
+
+  defp captured_history(rows, source_turn, began, ended, expected_status) do
     payloads = for %{"type" => "response_item", "payload" => item} <- rows, do: item
 
     assert [user] =
@@ -194,7 +213,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
     selected = Enum.filter(payloads, &(&1 === user or &1 === shell))
     assert selected === [user, shell]
     assert_source_user(user, source_turn, began, ended)
-    assert_source_local_shell(shell, source_turn, user["id"])
+    assert_source_local_shell(shell, source_turn, user["id"], expected_status)
     refute Enum.any?(rows, &(&1["type"] == "compacted"))
     refute Enum.any?(payloads, &(&1["type"] == "function_call_output"))
     selected
@@ -219,12 +238,15 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
            }
   end
 
-  defp assert_source_local_shell(shell, source_turn, user_id) do
+  defp assert_source_local_shell(shell, source_turn, user_id, expected_status) do
     shell_id = Map.fetch!(shell, "id")
     assert is_binary(shell_id) and String.starts_with?(shell_id, "lsh_")
     assert byte_size(shell_id) > 4 and shell_id != user_id
 
-    assert shell === Map.put(canonical_shell(shell_id), @metadata, %{"turn_id" => source_turn})
+    assert shell ===
+             Map.put(canonical_shell(shell_id, expected_status), @metadata, %{
+               "turn_id" => source_turn
+             })
   end
 
   defp assert_raw_shell(events, thread, turn, shell) do
@@ -255,13 +277,15 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
            )
   end
 
-  defp assert_provider(request, shell) do
+  defp assert_provider(request, shell, expected_status) do
     input = request["input"]
 
     assert Enum.filter(input, &(&1["type"] == "local_shell_call")) ===
              [Map.delete(shell, @metadata)]
 
-    assert Map.delete(shell, @metadata) === canonical_shell(Map.fetch!(shell, "id"))
+    assert Map.delete(shell, @metadata) ===
+             canonical_shell(Map.fetch!(shell, "id"), expected_status)
+
     assert Enum.filter(input, &(&1["type"] == "function_call_output")) === []
 
     for marker <- [@marker, @followup] do
@@ -293,6 +317,13 @@ defmodule SamgitaCodexDriver.NativeSuppliedLocalShellHistoryTest do
       }
     }
   end
+
+  # Keep the original complete incomplete oracle; the new current profile changes
+  # only the independently prescribed status. Never infer it from observed data.
+  defp canonical_shell(id, "incomplete"), do: canonical_shell(id)
+
+  defp canonical_shell(id, "in_progress"),
+    do: Map.put(canonical_shell(id), "status", "in_progress")
 
   defp collect(pid, predicate, events, deadline) do
     assert {:ok, incoming} = Session.drain(pid, 256)

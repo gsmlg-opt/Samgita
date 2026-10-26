@@ -24545,27 +24545,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-title-and-current-shell-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ClientInfo/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Three separately owned fresh native processes accept omitted, explicit null and a prescribed Unicode ClientInfo.title. Complete real initialize wire, original matching correlation ID, selected native response keys/codexHome/unix/linux and independently prescribed name/version userAgent boundaries; subsequent correlated empty thread/loaded/list proves ordinary readiness. Zero threads/turns/provider inference, unchanged source/config/catalog/empty journal and owned executable/PID cleanup. Pinned handler clones complete params for analytics before runtime destructures title:_title; downstream analytics propagation/outcome remains explicitly unverified. No global title-nonuse or invented title effect is claimed.",
+        "Final reviewed53-file107/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo, outside actual-binary consumer1/0,30 fixture ASTs and304-source guard.22 complete files equal the immutable pinned archive; two physical nodes and actual request graphs independently resolved. Exactly two prior test/fixture sources adapt, other300 prior guarded sources remain unchanged, and two focused sources are added. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only this exact physical owner becomes scoped implemented. No sibling/reference/hash propagation or fully verified claim. Synthetic local backend and Linux-x86_64-musl/stdio only; downstream analytics, real external providers, other OS/transports, legacy production emitters, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ClientInfo/properties/title",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_title_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
@@ -29125,24 +29135,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-title-and-current-shell-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/LocalShellStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Current LocalShellStatus.in_progress decoder/raw-history data only. Ordinary synthetic Responses data has an inert command and no native ID/call ID/passthrough metadata. Stock native creates the whole lsh_ raw/durable map with literal in_progress, canonical null call/action fields and source-turn metadata. Actual user/shell maps transfer unchanged through cold thread/resume.history; new idle thread retains them once/in order without inference. One deliberate followup consumes the original whole shell minus only provider metadata, with exact1->1->2 request budget and no synthesized tool output/execution/compaction. Both original incomplete/native-metadata and incomplete/client-null journeys retain all full-map oracles, deadlines, bounds and cleanup. No genuine legacy shell emission, execution or call/output-pairing acceptance.",
+        "Final reviewed53-file107/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo, outside actual-binary consumer1/0,30 fixture ASTs and304-source guard.22 complete files equal the immutable pinned archive; two physical nodes and actual request graphs independently resolved. Exactly two prior test/fixture sources adapt, other300 prior guarded sources remain unchanged, and two focused sources are added. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only this exact physical owner becomes scoped implemented. No sibling/reference/hash propagation or fully verified claim. Synthetic local backend and Linux-x86_64-musl/stdio only; downstream analytics, real external providers, other OS/transports, legacy production emitters, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/LocalShellStatus/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "7ba8684ecfd24588653c60005bffc8b6ce57be9016e44e2a703285fb48a7e323",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_local_shell_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

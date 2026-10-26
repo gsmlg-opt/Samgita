@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [initialization title and current local-shell inputs](native-title-and-current-shell-qualification.md)
+pass the current **53-file,107/0 twice** functional matrix, compile/format,
+strict Credo on503 sources, outside consumer1/0,30 fixture ASTs and304-source
+guard. Exactly two physical owners89/233 become scoped implemented:
+**4,985 implemented /1,570 missing /66 blocked** contracts; unchanged
+**462 implemented /12 missing /11 blocked** requirements, zero verified.
+Omitted/null/Unicode title inputs cross actual native initialization with usable
+readiness and selected name/version metadata; downstream analytics remains
+unverified. Current in_progress shell data retains native raw/durable/cold/provider
+maps with exactly1→1→2 requests; genuine legacy execution/emission remains
+unverified. Both original incomplete/null journeys and all bounds/cleanup remain
+intact. Twenty-two archive files, two independent nodes and final binding pass;
+other300 prior guarded sources remain unchanged. Inventory passes; strict
+completeness exits **1**. Prohibited/broad/hosted, legacy/external/OS, A11 and
+full-goal/release gates remain incomplete. No publication/deployment.
+
+Continue remaining ordinary native source-kind filters and local uninstalled
+plugin metadata/search inputs, with source-backed independent effects and exact
+physical-owner bindings. Keep positive source producers and remote catalog
+success separate from local filtering evidence. Preserve fixed-yolo ordinary
+launches and the prohibited verification boundary; full compatibility stays open.
+
+## Earlier checkpoints
+
 The [native history, sorting and initialization inputs](native-history-and-sort-inputs-qualification.md)
 pass the current **52-file, 103/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer1/0,29 fixture ASTs and302-source guard. Seventeen
@@ -35,15 +59,6 @@ The initial missing assistant classification and two nested capture helpers are
 corrected with full assertions/bounds retained. Inventory passes; strict
 completeness exits **1**. Prohibited/broad/hosted, legacy/external/OS, A11 and
 full-goal/release gates remain incomplete. No publication/deployment.
-
-Continue remaining ordinary explicit-input/schema owners with their actual
-native paths and independent effects, distinguishing current synthetic generic
-data handling from genuine legacy production emission. Do not infer sibling
-qualification from shared hashes/references. Preserve fixed-yolo ordinary
-launches and every prohibited verification boundary; missing/blocked profiles
-and complete-goal/release gates remain open.
-
-## Earlier checkpoints
 
 The [canonical mode inputs](canonical-mode-inputs-qualification.md) pass the
 current **49-file, 99/0 twice** functional matrix, compile/format, strict Credo,
