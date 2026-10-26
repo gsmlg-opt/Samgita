@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [actual native diagnostics](native-diagnostics-success-qualification.md)
+pass the final five-file **11/0 twice** functional matrix, static checks, outside
+consumer **1/0** and the 311-source guard. Exact owned PID/executable/parent,
+page-aligned positive RSS, full sorted uint64 gauges and actual two-thread live
+count survive normal closure and cold non-hydrating reads with zero inference.
+Thirty-nine immutable files bind exact owners 5073/5074/5075. Contracts become
+**5,009 implemented / 1,546 missing / 66 blocked**; requirements remain unchanged,
+zero verified. All 310 prior sources and production cleanup remain unchanged.
+Prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal/release
+gates stay incomplete. No publication or deployment occurs.
+
 The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
 passes the affected four-file **10/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Actual native processing,

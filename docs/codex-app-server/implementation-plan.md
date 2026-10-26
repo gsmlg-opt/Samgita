@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [actual native diagnostics](native-diagnostics-success-qualification.md)
+pass the affected five-file **11/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 311-source guard. Actual owned process/RSS and
+live-thread gauge behavior bind exact owners 5073/5074/5075 and 39 immutable
+files. Cold reads retain durable IDs without hydration or inference. Contracts
+are **5,009 implemented / 1,546 missing / 66 blocked**, unchanged requirements
+and zero verified. All 310 previous sources and production cleanup stay unchanged.
+
 The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
 passes the affected four-file **10/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Actual ignored request-title
@@ -102,12 +110,13 @@ and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-Continue reviewed ordinary diagnostics/process fields, then remaining ordinary
-method/field variants. The next success-only profile should bind actual owned
-PID/executable, page-multiple Linux RSS, full sorted gauge rows and real loaded
-thread counts across normal closure and cold reads, with zero inference.
-The existing mixed diagnostics/memory file is not the approved test unit.
-Preserve fixed-YOLO setup, the prohibited test boundary and all full-goal gates.
+Continue ordinary method/field variants. The next candidate is actual child
+provenance in ThreadSearchResponse: review the existing positive native subagent
+search journey, then strengthen exact raw response/source-wrapper/content/control
+and cold non-hydration oracles. Source findings alone cannot qualify the proposed
+owners. Keep imported subagent configuration distinct from actual native child
+execution; any model dependency must stay local and deterministic. Preserve
+fixed-YOLO setup, the prohibited test boundary and all full-goal gates.
 
 The twelve missing top-level requirements cannot be closed by these selected
 ordinary journeys. Nine directly require prohibited user-verification,

@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [actual native diagnostics](native-diagnostics-success-qualification.md)
+pass the affected five-file **11/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 311-source guard. Native process/RSS/gauge and
+cold non-hydration effects bind owners 5073/5074/5075 and 39 immutable files.
+All 310 previous sources and production cleanup remain unchanged. Contracts
+become **5,009 implemented / 1,546 missing / 66 blocked**, unchanged requirements
+and zero verified. No new functional failure or weakened assertion occurs.
+Inventory passes; strict completeness exits **1**. Prohibited/broad/hosted,
+A11 and full-goal/release gates remain incomplete.
+
 The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
 passes the affected four-file **10/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Exact owner 597 has actual

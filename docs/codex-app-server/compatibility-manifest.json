@@ -179440,79 +179440,112 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-diagnostics-success-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/definitions/ServerDiagnosticsProcess/properties/residentMemoryBytes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned success-only Linux stdio diagnostics preserve exact complete process/gauges payloads through captured native request/response bytes and unique-ID correlation. Positive uint32 process ID is independently bound to the immutable executable hash/link and owned wrapper PPid. Positive uint64 residentMemoryBytes is divisible by the independent operating-system page size from a bounded owned Python os.sysconf probe; Linux physicalFootprintBytes is present and null. RSS is intentionally not equated to a later changing proc snapshot. Every gauge row has exact name/value shape, a nonempty name and uint64 value; gauge names are sorted and unique, and request-in-flight remains within its source-supported bound.",
+        "One actual warm native process initially has no registered core.threads.live gauge. Two explicit ordinary empty persisted threads produce an exact independently returned loaded-ID set and live gauge2. Both are archived before normal owned close/reap. A distinct cold native process has a new independently bound PID, no registered core-live gauge and an empty loaded list. Reads return both durable thread IDs and empty turns; repeated diagnostics/loaded-list checks show those reads did not hydrate live execution. Capture method counts exclude any turn/start or hidden command. Provider requests remain zero and source/config/workspace bytes are unchanged.",
+        "Final five-file11/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on509 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and311-source guard. All310 previous sources and production protocol/driver/process cleanup remain byte-identical; only the separate success-only diagnostics test module is added.39 whole immutable files and the actual diagnostics request/response/native-snapshot graph independently bind exact5073/5074/5075. Probe/native/provider resources retain explicit ownership, finite deadlines and normal closure; no retry, sleep, assertion removal, skip or new functional failure occurs. Fixed yolo is ordinary setup only.",
+        "Scoped implemented positive Linux RSS/process/registered-gauge behavior only. Null/unavailable RSS, other OS memory metrics, disabled negotiation, transport reconnect, broad default/experimental/backend matrices and Agent-health semantics are not inferred. No sibling/hash/reference or verified promotion. Existing historical evidence remains but its mixed diagnostics/memory suite is not rerun. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, broad suites and hosted workflows remain unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real provider integration, package publication, deployment or production migration is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/ServerDiagnosticsProcess/properties/residentMemoryBytes",
       "required": false,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "8f759d27691871647f729a7988d8638fcadd6eb4c42b76dcaadb49e493060583",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "residentMemoryBytes"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-diagnostics-success-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/properties/gauges",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned success-only Linux stdio diagnostics preserve exact complete process/gauges payloads through captured native request/response bytes and unique-ID correlation. Positive uint32 process ID is independently bound to the immutable executable hash/link and owned wrapper PPid. Positive uint64 residentMemoryBytes is divisible by the independent operating-system page size from a bounded owned Python os.sysconf probe; Linux physicalFootprintBytes is present and null. RSS is intentionally not equated to a later changing proc snapshot. Every gauge row has exact name/value shape, a nonempty name and uint64 value; gauge names are sorted and unique, and request-in-flight remains within its source-supported bound.",
+        "One actual warm native process initially has no registered core.threads.live gauge. Two explicit ordinary empty persisted threads produce an exact independently returned loaded-ID set and live gauge2. Both are archived before normal owned close/reap. A distinct cold native process has a new independently bound PID, no registered core-live gauge and an empty loaded list. Reads return both durable thread IDs and empty turns; repeated diagnostics/loaded-list checks show those reads did not hydrate live execution. Capture method counts exclude any turn/start or hidden command. Provider requests remain zero and source/config/workspace bytes are unchanged.",
+        "Final five-file11/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on509 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and311-source guard. All310 previous sources and production protocol/driver/process cleanup remain byte-identical; only the separate success-only diagnostics test module is added.39 whole immutable files and the actual diagnostics request/response/native-snapshot graph independently bind exact5073/5074/5075. Probe/native/provider resources retain explicit ownership, finite deadlines and normal closure; no retry, sleep, assertion removal, skip or new functional failure occurs. Fixed yolo is ordinary setup only.",
+        "Scoped implemented positive Linux RSS/process/registered-gauge behavior only. Null/unavailable RSS, other OS memory metrics, disabled negotiation, transport reconnect, broad default/experimental/backend matrices and Agent-health semantics are not inferred. No sibling/hash/reference or verified promotion. Existing historical evidence remains but its mixed diagnostics/memory suite is not rerun. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, broad suites and hosted workflows remain unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real provider integration, package publication, deployment or production migration is established."
+      ],
       "nullable": false,
       "pointer": "/properties/gauges",
       "required": true,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "4b98bdfa39ade8b1d87ba0f171c86a3c6540534df8acdd78ff9553a803149fb4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "gauges"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-diagnostics-success-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/properties/process",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Real pinned success-only Linux stdio diagnostics preserve exact complete process/gauges payloads through captured native request/response bytes and unique-ID correlation. Positive uint32 process ID is independently bound to the immutable executable hash/link and owned wrapper PPid. Positive uint64 residentMemoryBytes is divisible by the independent operating-system page size from a bounded owned Python os.sysconf probe; Linux physicalFootprintBytes is present and null. RSS is intentionally not equated to a later changing proc snapshot. Every gauge row has exact name/value shape, a nonempty name and uint64 value; gauge names are sorted and unique, and request-in-flight remains within its source-supported bound.",
+        "One actual warm native process initially has no registered core.threads.live gauge. Two explicit ordinary empty persisted threads produce an exact independently returned loaded-ID set and live gauge2. Both are archived before normal owned close/reap. A distinct cold native process has a new independently bound PID, no registered core-live gauge and an empty loaded list. Reads return both durable thread IDs and empty turns; repeated diagnostics/loaded-list checks show those reads did not hydrate live execution. Capture method counts exclude any turn/start or hidden command. Provider requests remain zero and source/config/workspace bytes are unchanged.",
+        "Final five-file11/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on509 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and311-source guard. All310 previous sources and production protocol/driver/process cleanup remain byte-identical; only the separate success-only diagnostics test module is added.39 whole immutable files and the actual diagnostics request/response/native-snapshot graph independently bind exact5073/5074/5075. Probe/native/provider resources retain explicit ownership, finite deadlines and normal closure; no retry, sleep, assertion removal, skip or new functional failure occurs. Fixed yolo is ordinary setup only.",
+        "Scoped implemented positive Linux RSS/process/registered-gauge behavior only. Null/unavailable RSS, other OS memory metrics, disabled negotiation, transport reconnect, broad default/experimental/backend matrices and Agent-health semantics are not inferred. No sibling/hash/reference or verified promotion. Existing historical evidence remains but its mixed diagnostics/memory suite is not rerun. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, broad suites and hosted workflows remain unrun. A11, upstream-unreachable legacy, unavailable external/platform/OS success, full compatibility and release stay incomplete. No real provider integration, package publication, deployment or production migration is established."
+      ],
       "nullable": false,
       "pointer": "/properties/process",
       "required": true,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "bf6b1c95ae3ba32129f0f46a32002280fbe8a7faf0fc830224f0e56ccf6005b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process"
     },
     {
