@@ -7,6 +7,8 @@ defmodule SamgitaProtocolCodex.Schema do
   raw-response notifications. Its provenance is shipped with the pinned source.
   Separately source-checked timeline and realtime output corrections follow the native
   serializer's camelCase fields where that release's JSON exporter disagrees.
+  A pinned input supplement covers thread/start's legacy dynamic-tool decoder;
+  native normalization and exposure defaults never rewrite the caller's values.
 
   All four message directions and correlated result schemas are available.
   `experimental: true` selects the complete upstream input profile. The default
@@ -24,7 +26,7 @@ defmodule SamgitaProtocolCodex.Schema do
   """
 
   alias SamgitaProtocolCodex.{Error, Wire}
-  alias SamgitaProtocolCodex.Schema.{Gates, Output, Validator}
+  alias SamgitaProtocolCodex.Schema.{Gates, Input, Output, Validator}
 
   @version "0.163.0"
   @source Path.expand("../../priv/upstream/0.163.0/source/common.rs", __DIR__)
@@ -156,6 +158,7 @@ defmodule SamgitaProtocolCodex.Schema do
           else: value
 
       with :ok <- Wire.validate_value(value, opts),
+           :ok <- Input.check(direction, method, value),
            :ok <- Validator.validate(full_schema, value, full) do
         gates(direction, full_schema, schema, value, full, document, opts)
       end
@@ -219,9 +222,12 @@ defmodule SamgitaProtocolCodex.Schema do
   defp method_document(filename, profile, method) do
     available = documents(filename, profile)
 
-    Enum.find(available, hd(available), fn document ->
-      Enum.any?(document["oneOf"], &(wire_name(&1) == method))
-    end)
+    document =
+      Enum.find(available, hd(available), fn document ->
+        Enum.any?(document["oneOf"], &(wire_name(&1) == method))
+      end)
+
+    Input.contract(filename, method, document)
   end
 
   defp read(filename, profile) do

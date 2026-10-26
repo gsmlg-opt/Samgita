@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
+adds the pinned native custom decoder's legacy input contract and format
+consistency without changing caller values or official exports. Three new
+native profiles and the complete affected ordinary block pass: **17 schema /50
+driver cases twice**, outside consumer **1/0**, scoped format/compile, strict
+Credo512, inventory and319-source guard. The initial complexity-lint failure is
+retained; only declaration selection is extracted before the final rerun.
+All309 other previous sources, Session and cleanup are unchanged. Counts remain
+**5,018 implemented /1,537 missing /66 blocked** contracts, unchanged requirements
+and zero verified. No prohibited/broad/hosted check runs or gate waiver occurs;
+A11, legacy/external/platform and full-goal acceptance remain incomplete.
+
 The [query uncertainty repair](query-uncertainty-qualification.md) reproduces
 both false uncertainty after query loss and false capacity reservation by
 pending queries. Six source-proven query names and one reservation count are

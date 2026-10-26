@@ -35,6 +35,15 @@ all value/type constraints. See
 `docs/codex-app-server/thread-history-qualification.md`; received values are
 never rewritten to fit an incorrect export.
 
+`thread/start` also uses a custom native decoder for legacy flat `dynamicTools`
+without a `type` tag. A separately derived, hash-checked input contract accepts
+those declarations and enforces native list-wide format consistency, including
+nested tools. Original flags and wire values remain unchanged; native Codex owns
+namespace grouping, exposure defaults and flag precedence. The descriptor can
+be reproduced with `scripts/codex/generate_input_semantics.py`; see
+`docs/codex-app-server/legacy-dynamic-tool-input-qualification.md` for the three
+actual-native profiles and remaining limits.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend

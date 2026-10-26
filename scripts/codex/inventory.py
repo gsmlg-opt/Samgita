@@ -412,7 +412,10 @@ def generate(source):
         origin = source / PROTOCOL / name if name == "v1.rs" else source / "codex-rs/app-server-protocol/src/export.rs"
         shutil.copyfile(origin, VENDOR / "source" / name)
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
+    shutil.copyfile(source / "codex-rs/protocol/src/dynamic_tools.rs", VENDOR / "source/dynamic-tools.rs")
     shutil.copyfile(source / PROTOCOL / "v2/realtime.rs", VENDOR / "source/realtime.rs")
+    from generate_input_semantics import write as write_input_semantics
+    write_input_semantics(VENDOR)
     from generate_output_semantics import write as write_output_semantics
     write_output_semantics(VENDOR)
     (VENDOR / "source/supplemental-origin.json").write_text(encode({
@@ -443,7 +446,7 @@ def generate(source):
                   "build_platform": "x86_64-unknown-linux-musl",
                   "release_asset_sha256": ARCHIVE_SHA256, "binary_sha256": BINARY_SHA256,
                   "binary_version_output": "codex-cli " + VERSION,
-                  "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental", "codex app-server generate-ts --experimental --out typescript", "python3 scripts/codex/generate_supplement.py"],
+                  "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental", "codex app-server generate-ts --experimental --out typescript", "python3 scripts/codex/generate_supplement.py", "python3 scripts/codex/generate_input_semantics.py"],
                   "reproduce": ["python3 scripts/codex/fetch_pin.py", "python3 scripts/codex/inventory.py --generate", "python3 scripts/codex/inventory.py --check"],
                   "files_sha256": hashes}
     (VENDOR / "provenance.json").write_text(encode(provenance))
@@ -481,6 +484,9 @@ def main():
     actual = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     expected = merge_progress(expected, actual)
     if args.check or args.require_verified:
+        from generate_input_semantics import SEMANTICS as input_semantics, derive as input_contract
+        if (VENDOR / input_semantics).read_text() != encode(input_contract(VENDOR)):
+            raise SystemExit("Source-derived input semantics changed: " + input_semantics)
         from generate_output_semantics import corrections
         for relative, semantics in corrections(VENDOR):
             if (VENDOR / relative).read_text() != encode(semantics):

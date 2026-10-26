@@ -17,6 +17,30 @@ defmodule StandaloneCodexTest do
     Enum.each(dirs, &File.mkdir_p!/1)
     on_exit(fn -> File.rm_rf!(root) end)
     [home, codex, workspace] = dirs
+
+    File.write!(Path.join(codex, "config.toml"), """
+    approval_policy = "never"
+    sandbox_mode = "danger-full-access"
+    """)
+
+    assert :ok =
+             SamgitaProtocolCodex.Schema.validate_request(
+               "thread/start",
+               %{
+                 "dynamicTools" => [
+                   %{
+                     "namespace" => "owned_catalog",
+                     "name" => "synthetic_lookup",
+                     "description" => "Standalone legacy declaration",
+                     "inputSchema" => %{"type" => "object"},
+                     "exposeToContext" => false,
+                     "deferLoading" => nil
+                   }
+                 ]
+               },
+               experimental: true
+             )
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
+now accepts the pinned native decoder's legacy flat declarations and rejects
+native-invalid mixed formats without rewriting wire values or official JSON.
+Three new native profiles prove null defaults, deferred discovery, explicit
+false precedence, exact tool lifecycles and canonical cold history. The final
+reviewed matrix passes **17 schema /50 ordinary driver cases twice**, outside
+consumer **1/0**, scoped format/compile, strict Credo512, inventory and319-source
+guard. The initial lint failure remains recorded. All309 other prior sources,
+including Session/cleanup, are unchanged. Counts remain **5,018 implemented /
+1,537 missing /66 blocked** contracts, unchanged requirements and zero verified.
+Prohibited/broad/hosted, A11, legacy/external/platform and full-goal/release gates
+remain incomplete; no publication or deployment.
+
 The [query uncertainty repair](query-uncertainty-qualification.md) fixes two
 reproduced Session defects: lost query responses misclassified as uncertain
 execution, and pending queries reserving mutation capacity. Six pinned query

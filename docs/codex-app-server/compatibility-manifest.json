@@ -8154,7 +8154,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/start",
@@ -8162,7 +8163,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native behavior: Actual native start identity/cwd/provider used by successful local turn. Most start options are only constructed; no exact full start response or thread/started notice.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "params": {
         "$ref": "#/definitions/ThreadStartParams"
@@ -8194,7 +8196,9 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9591,14 +9595,16 @@
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/tool-interactions-qualification.md"
+        "docs/codex-app-server/tool-interactions-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/tool/call",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified."
+        "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "prerequisites": [
         "initialized"
@@ -9616,7 +9622,9 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
-          "apps/samgita_codex_driver/test/session_tool_retirement_test.exs"
+          "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [
@@ -10201,7 +10209,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/default-gates-qualification.md"
+        "docs/codex-app-server/default-gates-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "id": "lifecycle:experimental-negotiation",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10209,7 +10218,8 @@
         "local_schema_validation: False/null/empty collection/double-option source rules tested through213.",
         "actual_native_negative_local_synthetic_backend: Two experimental turn fields reject exact native gate error75 before provider execution78-80.",
         "Selected source-sensitive semantics do not qualify every pinned gated method/enum/custom deserializer.",
-        "actual_native_local_synthetic_backend: Five differential cases cover selected primitive bool vs optional false/empty/null gates, exact outbound presence, service-tier double-option normalization, LocalThreadStore paginated defaults including ephemeral threads, and turn null vs empty-map admission with no rejected dispatch. Nine new positive contracts only; this is not exhaustive negotiation/default, model fallback/raw-output/tool success, other stores/transports/backends or full lifecycle qualification."
+        "actual_native_local_synthetic_backend: Five differential cases cover selected primitive bool vs optional false/empty/null gates, exact outbound presence, service-tier double-option normalization, LocalThreadStore paginated defaults including ephemeral threads, and turn null vs empty-map admission with no rejected dispatch. Nine new positive contracts only; this is not exhaustive negotiation/default, model fallback/raw-output/tool success, other stores/transports/backends or full lifecycle qualification.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "required_behavior": "experimental methods and source-active gated fields/enum variants require capabilities.experimentalApi; false bools, null standard options and empty nonoptional collections are inactive; double options and custom deserializers follow pinned Rust semantics",
       "schema_sha256": "3b5a6f6300cf19cef93f3bae8e2a0dfbf6c837ad7b5ed599562bdb7eaa962182",
@@ -10224,7 +10234,9 @@
         "verified": [
           "apps/samgita_protocol_codex/test/schema_test.exs:155",
           "apps/samgita_codex_driver/test/turn_parameters_test.exs:54",
-          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [
@@ -10304,7 +10316,8 @@
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
         "docs/codex-app-server/default-gates-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/cold-items-process-config-qualification.md"
+        "docs/codex-app-server/cold-items-process-config-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "id": "lifecycle:missing-null-default",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10316,7 +10329,8 @@
         "Selected codec/notification maps do not qualify source-specific defaults across all methods.",
         "actual_native_local_synthetic_backend: Five differential cases cover selected primitive bool vs optional false/empty/null gates, exact outbound presence, service-tier double-option normalization, LocalThreadStore paginated defaults including ephemeral threads, and turn null vs empty-map admission with no rejected dispatch. Nine new positive contracts only; this is not exhaustive negotiation/default, model fallback/raw-output/tool success, other stores/transports/backends or full lifecycle qualification.",
         "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion.",
-        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete."
+        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "required_behavior": "retain absent versus null versus explicit values; apply no undocumented driver defaults",
       "schema_sha256": "050381955e3a76bb19f7cb266f6f931c72dcbf0aa02b73afdd7781f5f6e77568",
@@ -10334,7 +10348,9 @@
           "apps/samgita_protocol_codex/test/wire_test.exs:54",
           "apps/samgita_codex_driver/test/native_notification_test.exs:7",
           "apps/samgita_codex_driver/test/native_default_gates_profile.exs",
-          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [
@@ -14943,14 +14959,16 @@
       "capabilities": [],
       "direction": "server_request",
       "evidence": [
-        "docs/codex-app-server/tool-interactions-qualification.md"
+        "docs/codex-app-server/tool-interactions-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/tool/call",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified."
+        "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "params": {
         "$ref": "#/definitions/DynamicToolCallParams"
@@ -14982,7 +15000,9 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
-          "apps/samgita_codex_driver/test/session_tool_retirement_test.exs"
+          "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [
@@ -21125,7 +21145,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/start",
@@ -21133,7 +21154,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native behavior: Actual native start identity/cwd/provider used by successful local turn. Most start options are only constructed; no exact full start response or thread/started notice.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification."
       ],
       "prerequisites": [
         "initialized"
@@ -21151,7 +21173,9 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_protocol_codex/test/dynamic_tool_input_semantics_test.exs",
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
         ]
       },
       "transport_coverage": [

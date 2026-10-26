@@ -14,6 +14,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
   @description "quasar_lookup_824 retrieves the owned synthetic record λ"
   @namespace "owned_catalog"
   @namespace_description "Owned canonical catalog description β"
+  @legacy_namespace_description "Tools in the owned_catalog namespace."
   @read_notice "Full-history hydration is deprecated for paginated threads; omit `includeTurns` or set it to `false`, then page with `thread/turns/list` and `thread/items/list`."
   @arguments %{
     "key" => "owned exposure λ",
@@ -83,6 +84,23 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     end
   end
 
+  @tag scenario: "namespace_direct"
+  test "legacy null exposure flags select direct native tools and canonical cold history", ctx do
+    qualify(ctx, %{"exposeToContext" => nil, "deferLoading" => nil})
+  end
+
+  @tag scenario: "namespace_deferred"
+  test "legacy hidden exposure with absent deferral selects native discovery and canonical cold history",
+       ctx do
+    qualify(ctx, %{"exposeToContext" => false})
+  end
+
+  @tag scenario: "namespace_direct"
+  test "legacy explicit false deferral overrides hidden exposure in native tools and cold history",
+       ctx do
+    qualify(ctx, %{"exposeToContext" => false, "deferLoading" => false})
+  end
+
   @tag scenario: "top_deferred"
   test "canonical top-level deferred declaration is rejected without creating work or history",
        ctx do
@@ -142,13 +160,16 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     assert File.ls!(ctx.fixture.workspace) == []
   end
 
-  defp qualify(ctx) do
+  defp qualify(ctx, legacy_flags \\ nil) do
     namespaced = String.starts_with?(ctx.scenario, "namespace")
     deferred = String.ends_with?(ctx.scenario, "deferred")
     namespace = if namespaced, do: @namespace, else: nil
+
+    {declared, namespace_description, format} =
+      declaration_input(namespaced, deferred, legacy_flags)
+
     pid = start_native(ctx)
     native = native_id(pid)
-    declared = declaration(namespaced, deferred)
 
     started =
       call(pid, "thread/start", %{
@@ -162,7 +183,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
 
     thread = started["thread"]["id"]
     assert ModelFixture.requests(ctx.fixture) == []
-    input = "Owned canonical declaration #{ctx.scenario} λ"
+    input = "Owned #{format} declaration #{ctx.scenario} λ"
     host_started_at = System.monotonic_time(:millisecond)
 
     turn =
@@ -237,7 +258,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
              "Owned exposure completed λ"
 
     requests = ModelFixture.requests(ctx.fixture)
-    assert_provider(requests, namespaced, deferred)
+    assert_provider(requests, namespaced, deferred, namespace_description)
     hydrated = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})
     assert_read_notice(pid)
 
@@ -258,7 +279,8 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     assert call(pid, "thread/items/read", query) == %{"data" => [expected_entry]}
     path = hydrated["thread"]["path"]
     snapshot = File.read!(path)
-    assert_rollout(snapshot, deferred, namespaced)
+    assert_rollout(snapshot, deferred, namespaced, namespace_description)
+    if is_map(legacy_flags), do: assert_legacy_metadata(snapshot, deferred)
     assert_idle(pid)
     assert :ok = Session.close(pid)
     refute File.exists?("/proc/#{native}")
@@ -296,6 +318,24 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
       else: function
   end
 
+  defp declaration_input(_namespaced, _deferred, flags) when is_map(flags) do
+    declared =
+      Map.merge(
+        %{
+          "namespace" => @namespace,
+          "name" => @name,
+          "description" => @description,
+          "inputSchema" => @schema
+        },
+        flags
+      )
+
+    {declared, @legacy_namespace_description, "legacy"}
+  end
+
+  defp declaration_input(namespaced, deferred, nil),
+    do: {declaration(namespaced, deferred), @namespace_description, "canonical"}
+
   defp provider_function(deferred) do
     spec = %{
       "type" => "function",
@@ -308,16 +348,16 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     if deferred, do: Map.put(spec, "defer_loading", true), else: spec
   end
 
-  defp provider_namespace(namespaced, deferred) do
+  defp provider_namespace(namespaced, deferred, namespace_description) do
     %{
       "type" => "namespace",
       "name" => if(namespaced, do: @namespace, else: "functions"),
-      "description" => if(namespaced, do: @namespace_description, else: ""),
+      "description" => if(namespaced, do: namespace_description, else: ""),
       "tools" => [provider_function(deferred)]
     }
   end
 
-  defp assert_provider(requests, namespaced, deferred) do
+  defp assert_provider(requests, namespaced, deferred, namespace_description) do
     assert length(requests) == if(deferred, do: 3, else: 2)
     assert Enum.all?(requests, &(&1["model"] == "mock-model"))
     initial = hd(requests)
@@ -338,11 +378,13 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
                "call_id" => "owned-exposure-search",
                "status" => "completed",
                "execution" => "client",
-               "tools" => [provider_namespace(namespaced, true)]
+               "tools" => [provider_namespace(namespaced, true, namespace_description)]
              }
     else
       expected =
-        if namespaced, do: provider_namespace(true, false), else: provider_function(false)
+        if namespaced,
+          do: provider_namespace(true, false, namespace_description),
+          else: provider_function(false)
 
       assert dynamic == [expected]
       refute Enum.any?(initial["input"], &(&1["type"] == "tool_search_output"))
@@ -353,7 +395,7 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     assert output["output"] == "Owned synthetic record result λ"
   end
 
-  defp assert_rollout(snapshot, deferred, namespaced) do
+  defp assert_rollout(snapshot, deferred, namespaced, namespace_description) do
     rows = snapshot |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
     response_items = for %{"type" => "response_item", "payload" => item} <- rows, do: item
     [tool] = Enum.filter(response_items, &(&1["type"] == "function_call"))
@@ -367,10 +409,35 @@ defmodule SamgitaCodexDriver.NativeDynamicToolExposureTest do
     if deferred do
       [search] = Enum.filter(response_items, &(&1["type"] == "tool_search_output"))
       assert search["call_id"] == "owned-exposure-search"
-      assert search["tools"] == [provider_namespace(namespaced, true)]
+      assert search["tools"] == [provider_namespace(namespaced, true, namespace_description)]
     else
       refute Enum.any?(response_items, &(&1["type"] == "tool_search_output"))
     end
+  end
+
+  defp assert_legacy_metadata(snapshot, deferred) do
+    rows = snapshot |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+
+    assert [metadata] =
+             for(%{"type" => "session_meta", "payload" => metadata} <- rows, do: metadata)
+
+    function = %{
+      "type" => "function",
+      "name" => @name,
+      "description" => @description,
+      "inputSchema" => @schema
+    }
+
+    function = if deferred, do: Map.put(function, "deferLoading", true), else: function
+
+    assert metadata["dynamic_tools"] == [
+             %{
+               "type" => "namespace",
+               "name" => @namespace,
+               "description" => "",
+               "tools" => [function]
+             }
+           ]
   end
 
   defp item_event(events, method, type) do

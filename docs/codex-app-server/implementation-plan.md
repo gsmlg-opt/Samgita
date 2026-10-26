@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [legacy dynamic-tool input repair](legacy-dynamic-tool-input-qualification.md)
+reproduces local rejection of native-supported declarations and acceptance of
+native-invalid mixed formats. A source-pinned input supplement preserves all
+official exports and outgoing values. Three new actual-native cases prove
+direct/deferred/explicit-false precedence and canonical cold history. The final
+reviewed matrix passes **17 schema /50 ordinary driver cases twice**, outside
+consumer **1/0**, format/compile, strict Credo512, inventory and319-source guard.
+The initial strict-lint failure and helper-only correction remain recorded.
+All309 other prior sources, including Session and cleanup, stay unchanged.
+No state/owner promotion; counts remain **5,018 implemented /1,537 missing /66
+blocked** contracts and **462 implemented /12 missing /11 blocked** requirements,
+zero verified. Next investigate the source-declared compaction-summary input
+alias through genuine native history; broad/prohibited/hosted, A11, external/OS/
+platform and full-goal acceptance remain incomplete.
+
 The [query uncertainty repair](query-uncertainty-qualification.md) reproduces
 false query uncertainty and pending-read reservation before changing six
 source-proven query names and one capacity calculation. The final nine-file

@@ -26,6 +26,11 @@ artifacts. The timeline output correction in
 [history qualification](thread-history-qualification.md) changes six contract
 field names across two native turn-boundary variants, never received data or
 validation constraints. Hash checks fail closed on source/export drift.
+The [legacy dynamic-tool input supplement](legacy-dynamic-tool-input-qualification.md)
+likewise follows the real request field's custom decoder omitted from JSON
+exports. It augments the accepted input contract and checks list-wide format
+consistency; native Codex owns normalization, grouping and exposure defaults.
+Neither the supplement nor validation rewrites the original request.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
