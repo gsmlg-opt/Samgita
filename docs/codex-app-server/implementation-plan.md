@@ -21,6 +21,28 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [pinned notification-error producer review](native-error-producer-limitations.md)
+records seven source-backed blocked owners, no acceptance promotion:
+**4,889 implemented / 1,666 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Complete archive symbol evidence and fifteen matched source files distinguish
+legacy decode-only errors, a dormant stream constructor and accessible RPC
+data from canonical notification production. No fabricated history or mock
+producer is substituted. All 279 code hashes match the committed passing
+**41-file, 77/0 twice** matrix, static checks and outside consumer 1/0; that
+matrix is reused. Inventory/final binding pass; strict completeness exits **1**.
+
+Continue the ordinary tool-search history profile with a scoped provider-only
+fourth response, six unchanged native payloads, exact metadata and inference
+**3 → 3 → 4**. Preserve one handler effect, no replay and both existing cases.
+Raw history does not restore dynamic tool registration; completed-history
+consumption cannot imply subsequent callability. Keep the newly documented
+notification producer gaps open and RPC data acceptance separate. Retain fixed
+yolo and every verification restriction. All prohibited/broad/hosted, full-goal,
+A11, legacy/historical, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [genuine tool-history continuation](supplied-history-inputs-qualification.md#dynamic-tool-history)
 passes the final **41-file, 77/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
@@ -42,8 +64,6 @@ use accessible RPC error.data or fabricated legacy records as notification
 acceptance. Retain fixed yolo and every verification restriction. All
 prohibited/broad/hosted, full-goal, A11, legacy/unreachable, unavailable
 external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [genuine supplied-history and timestamp unit](supplied-history-inputs-qualification.md)
 passes the final **41-file, 76/0 twice** matrix, compile/format, strict Credo,

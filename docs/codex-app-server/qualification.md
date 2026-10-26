@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [pinned notification-error producer review](native-error-producer-limitations.md)
+classifies seven missing owners as source-backed **blocked**, with zero new
+acceptance: **4,889 implemented / 1,666 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Fifteen archive-matching files, seven physical nodes and a direct
+5,259-file archive symbol inventory distinguish retained legacy decoding,
+dormant stream errors and RPC data from real notification production. No
+fabricated native record or test substitutes for the absent path. Schema and
+planned acceptance remain intact. All 279 source hashes still match the
+committed **41-file, 77/0 twice** matrix and its static/outside-consumer proof;
+that matrix is reused without rerun. Inventory and final binding pass; strict
+completeness exits **1**. Prohibited/broad/hosted, full-goal, A11, historical/
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [genuine tool-history continuation](supplied-history-inputs-qualification.md#dynamic-tool-history)
 passes the final **41-file, 77/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **279-source**

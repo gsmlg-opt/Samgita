@@ -84750,15 +84750,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#retained-rollback-error"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/12",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned upstream explicitly retains ThreadRollbackFailed to deserialize legacy rollouts, with no current production constructor found. It does not affect turn status, so normal ErrorNotification delivery and legacy history projection filter it. A genuine historical/external profile remains separately unverified; fabricated records cannot establish ordinary native notification acceptance.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/12",
       "schema": "ServerNotification.json",
       "schema_sha256": "d553a1a231599d11439c94c4ab902761f07ef654f50c3b2a7da5c31eacd98529",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85157,15 +85162,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#dormant-stream-connection-error"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ResponseStreamConnectionFailed mapping requires dormant CodexErr::ResponseStreamFailed; complete archive source finds its sole construction in protocol error_tests.rs, not runtime. Actual API stream/connection failures and intermediate retries construct different errors. No genuine ordinary Responses-fixture producer exists for this selected notification shape; real behavioral acceptance remains blocked.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "70103f592db40925fc3aa4925f35689aa08160c89ff3951a230194b0d71f22ac",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85180,18 +85190,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#dormant-stream-connection-error"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ResponseStreamConnectionFailed mapping requires dormant CodexErr::ResponseStreamFailed; complete archive source finds its sole construction in protocol error_tests.rs, not runtime. Actual API stream/connection failures and intermediate retries construct different errors. No genuine ordinary Responses-fixture producer exists for this selected notification shape; real behavioral acceptance remains blocked.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85206,18 +85221,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#dormant-stream-connection-error"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed/properties/httpStatusCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ResponseStreamConnectionFailed mapping requires dormant CodexErr::ResponseStreamFailed; complete archive source finds its sole construction in protocol error_tests.rs, not runtime. Actual API stream/connection failures and intermediate retries construct different errors. No genuine ordinary Responses-fixture producer exists for this selected notification shape; real behavioral acceptance remains blocked.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/2/properties/responseStreamConnectionFailed/properties/httpStatusCode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85427,15 +85447,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#rpc-only-steering-error"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned active Compact/Review steering rejection returns typed JSON-RPC error.data, not ErrorNotification. Native affects_turn_status=false filters this variant from normal error notifications and legacy history projections; thread-start notifications clear turns. A genuine RPC profile cannot qualify this physical notification owner, and no fake native/history producer is substituted.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "09bb9e56a080bfa3f32359fbe8b2c93a1e2428069a404e0646e69efdbc0ce4a9",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85450,18 +85475,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#rpc-only-steering-error"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned active Compact/Review steering rejection returns typed JSON-RPC error.data, not ErrorNotification. Native affects_turn_status=false filters this variant from normal error notifications and legacy history projections; thread-start notifications clear turns. A genuine RPC profile cannot qualify this physical notification owner, and no fake native/history producer is substituted.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "892311863cfc9d514b41e032e7fe748f11e4c05d183fc379468d6d05caa1d02e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -85476,18 +85506,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-error-producer-limitations.md#rpc-only-steering-error"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable/properties/turnKind",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned active Compact/Review steering rejection returns typed JSON-RPC error.data, not ErrorNotification. Native affects_turn_status=false filters this variant from normal error notifications and legacy history projections; thread-start notifications clear turns. A genuine RPC profile cannot qualify this physical notification owner, and no fake native/history producer is substituted.",
+        "Source-backed producer limitation for the selected immutable ordinary local native path only; no global claim about every external/historical input. Schema identity, codec accessibility, planned tests and missing acceptance are preserved. No test was run or added, no transport evidence or verified state granted; full compatibility remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/5/properties/activeTurnNotSteerable/properties/turnKind",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "aad990f1875c10f8b1bdfecbda4154118e2d70d1d1035a71ac24e35fdecf7683",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
