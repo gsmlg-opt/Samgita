@@ -34622,102 +34622,142 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/13",
       "schema": "ClientRequest.json",
       "schema_sha256": "7cbd3939c75acf032449e0b19b5064680d22d3d8252f6374781526961b336db2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/encrypted_content",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/encrypted_content",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "encrypted_content"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/id",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
@@ -34744,72 +34784,102 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/internal_chat_message_metadata_passthrough/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/internal_chat_message_metadata_passthrough/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1fff9dc1698a85d6c67ca4f4620edd281a93c6583f7d2de1beba040dfba1efa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compaction-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/13/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current Compaction ResponseItem input only: real remote-v2 installation persists a genuine compacted.payload.replacement_history with original user and native cmp_ checkpoint maps. Capture after source close, import unchanged cold, then one explicit followup consumes the same whole checkpoint including cmp_ ID and exact synthetic opaque string. Strict inference2->2->3, native readiness/completion barriers, no repeated compaction/tool effects, unchanged original rollout/config/scripts and owned cleanup.",
+        "Separate modified-client profile sets only absent checkpoint metadata to explicit null; native serde omits that key while preserving every other map/ID and the followup budget. Owner421 is qualified only for this present-null input; owner423 is the null branch. Non-null metadata object422 stays missing. Owner420 has actual nonempty native IDs only, no null-ID claim. Original native metadata is absent, not null; replacement_history_metadata is a distinct harness sidecar and is never copied or fabricated as passthrough.",
+        "Only pinned experimental unstable thread/resume.history, local synthetic Responses and Linux/stdio. Captured user/checkpoint is a genuine subset, not complete original context/state restoration. Opaque-string retention does not establish provider compaction quality, cryptographic behavior, external services, automatic compaction, other OS/transports or full-goal/A11/release. Session retains bounded default8MiB buffers; local collected events/nested history are bounded1MiB. Prohibited security/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/13/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8b4da94fd2b9edcc596197a665199a715d25e509904cd5edcbed13fc318d997d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

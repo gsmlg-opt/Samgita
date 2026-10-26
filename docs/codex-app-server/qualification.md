@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [genuine compaction history inputs](compaction-history-inputs-qualification.md)
+pass the final **43-file, 83/0 twice** functional matrix, compile/format,
+strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
+and the **285-source** guard. Seven exact checkpoint/null-input owners become
+implemented: **4,919 implemented / 1,636 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Current native nested records, whole cmp_ checkpoint equality and
+two **2 → 2 → 3** profiles prove no repeated compaction. Non-null metadata422
+stays missing; all prior283 sources remain byte-identical. Seventeen full
+archive-matching files, eight nodes, inventory and final binding pass; no native
+repair occurs. Strict completeness exits **1**. Prohibited/broad/hosted,
+full-goal, A11, historical/external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [genuine Reasoning history input](supplied-history-inputs-qualification.md#reasoning-history)
 passes the final **42-file, 81/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and

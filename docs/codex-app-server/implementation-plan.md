@@ -21,6 +21,33 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine compaction history inputs](compaction-history-inputs-qualification.md)
+pass the final **43-file, 83/0 twice** functional matrix, compile/format,
+strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
+and the **285-source** guard. Seven exact checkpoint/null-input owners become
+implemented: **4,919 implemented / 1,636 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Genuine current nested checkpoint records, unchanged/null cold imports
+and exact cmp_ map consumption retain **2 → 2 → 3** with no repeated work.
+Metadata-object422 stays missing; all prior283 sources are byte-identical.
+Seventeen archive-matching files, eight nodes, inventory/final binding pass.
+No native semantic repair; strict completeness exits **1**.
+
+Continue genuine completed WebSearchCall history for exact client owners398/
+401–403: real raw user/search/assistant maps, unchanged cold import, one explicit
+consuming followup and separate client-null action/metadata differentials. Reuse
+the existing primary added/done SSE pair only behind web_search_history while
+preserving all five old cases, helper invariant and default sixteen-item fixture.
+Require exact UI/raw/provider-copy oracles, **1 → 1 → 2**, no new search/tool work,
+unchanged source bytes and owned cleanup. Do not promote399 or infer browsing,
+search restoration, other actions or external semantics. Then investigate the
+current raw image-generation producer separately from extension HTTP/artifact
+integration and absent live TurnItem notifications. Retain fixed yolo and every
+verification restriction. Prohibited/broad/hosted, full-goal, A11,
+historical/unreachable, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [genuine Reasoning history input](supplied-history-inputs-qualification.md#reasoning-history)
 passes the final **42-file, 81/0 twice** functional matrix, compile/format,
 strict Credo on492 sources, outside consumer **1/0**, twenty fixture ASTs and
@@ -44,8 +71,6 @@ test/provider to preserve all earlier history cases/default fixtures. Retain
 fixed yolo and every verification restriction. Prohibited/broad/hosted, full-goal,
 A11, historical/unreachable, unavailable external/OS and release gates remain
 incomplete.
-
-## Earlier checkpoints
 
 The [explicit-null history inputs](supplied-history-inputs-qualification.md#explicit-null-client-inputs)
 pass the final **42-file, 80/0 twice** functional matrix, compile/format,
