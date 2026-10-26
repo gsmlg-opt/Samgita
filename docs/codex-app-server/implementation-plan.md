@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [history-mode input repair](history-mode-input-qualification.md) fixes the
+reproduced schema/native mismatch for four unit objects on thread/start only.
+Actual default-validation creation, four ordinary turns and unloaded cold reads
+retain selected canonical modes. Final **47 schema /122 ordinary driver twice**,
+outside consumer **1/0**, format/compile, strict Credo522, inventory and342-source
+guard pass; all333 other prior sources, six descriptors, prior pins and770 exports
+stay unchanged. No state/owner promotion: **5,033 implemented /1,522 missing /66
+blocked** contracts; requirements **462 implemented /12 missing /11 blocked**,
+zero verified. Next execute the source-selected failed-child/running-child-close
+collaboration family, with actual provider barriers and independent live/cold
+item assertions; its prepared fixture/test have no runtime evidence yet.
+Prohibited/broad/hosted, A11, legacy/external/OS/platform/full-goal gates stay open.
+
 The [native creation snapshots](creation-snapshot-qualification.md) qualify fourteen
 exact live owners using distinct real local projects, legacy/paginated history,
 false Daybreak, independently pinned provenance and two actual first messages.

@@ -39,6 +39,13 @@ SUMMARY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/TurnSettingsUpdateParams.json")
 PERSONALITY_SEMANTICS = "source/personality-input-semantics.json"
 PERSONALITY_METHODS = ("thread/resume", "thread/settings/update", "thread/start", "turn/start")
 PERSONALITY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json", "v2/ThreadResumeParams.json")
+HISTORY_MODE_SEMANTICS = "source/history-mode-input-semantics.json"
+THREAD_DATA = "source/thread_data.rs"
+THREAD_DATA_SHA256 = "293359f14a1a11da8d54acce7bc69b5756c1d30b5a59e8768f5ce6b4e02edeb1"
+COMMON = "source/common.rs"
+COMMON_SHA256 = "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3"
+HISTORY_MODE_METHODS = ("thread/start",)
+HISTORY_MODE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -306,6 +313,59 @@ def derive_personality(vendor):
     }
 
 
+def derive_history_mode(vendor):
+    sources = {THREAD_DATA: THREAD_DATA_SHA256, THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned history mode input source changed: " + name)
+    rust = (vendor / THREAD_DATA).read_text()
+    declaration = re.search(
+        r'#\[derive\(Default, Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "lowercase"\)\]\n'
+        r'#\[ts\(rename_all = "lowercase", export_to = "v2/"\)\]\n'
+        r'pub enum ThreadHistoryMode \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    #[default]\n    Legacy,\n    Paginated,':
+        raise ValueError("Pinned ThreadHistoryMode unit variants changed")
+    names = [name.lower() for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    field = (
+        '    /// Persisted thread history contract to use for this new thread.\n'
+        '    #[experimental("thread/start.historyMode")]\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub history_mode: Option<ThreadHistoryMode>,')
+    if field not in (vendor / THREAD).read_text():
+        raise ValueError("Pinned historyMode field declaration changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    hashes = {}
+    for name in HISTORY_MODE_SCHEMAS:
+        path = vendor / "experimental" / name
+        document = json.loads(path.read_text())
+        if document["definitions"]["ThreadHistoryMode"] != {"type": "string", "enum": names}:
+            raise ValueError("Official canonical history mode contract changed: " + name)
+        definition = document["definitions"]["ThreadStartParams"] if name == HISTORY_MODE_SCHEMAS[0] else document
+        if definition["properties"]["historyMode"] != {
+                "anyOf": [{"$ref": "#/definitions/ThreadHistoryMode"}, {"type": "null"}],
+                "description": "Persisted thread history contract to use for this new thread."}:
+            raise ValueError("Official historyMode field contract changed: " + name)
+        hashes[name] = digest(path)
+    document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
+    if request_methods(document, "ThreadHistoryMode") != list(HISTORY_MODE_METHODS):
+        raise ValueError("ThreadHistoryMode request input graph changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(HISTORY_MODE_METHODS),
+        "definition": "ThreadHistoryMode",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary lowercase ThreadHistoryMode unit enum accepts one-key legacy/paginated objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/start reaches this input definition. Preserve the complete canonical string schema, caller objects, enclosing constraints, outer null/omission and experimental field negotiation. Native owns canonical creation mode and its persisted history contract; acceptance does not submit a turn. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -347,7 +407,8 @@ def corrections(vendor):
             (COLLABORATION_SEMANTICS, derive_collaboration(vendor)),
             (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)),
             (SUMMARY_SEMANTICS, derive_summary(vendor)),
-            (PERSONALITY_SEMANTICS, derive_personality(vendor)))
+            (PERSONALITY_SEMANTICS, derive_personality(vendor)),
+            (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)))
 
 
 def write(vendor):

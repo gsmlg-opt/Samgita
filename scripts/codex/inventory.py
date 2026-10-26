@@ -412,6 +412,7 @@ def generate(source):
         origin = source / PROTOCOL / name if name == "v1.rs" else source / "codex-rs/app-server-protocol/src/export.rs"
         shutil.copyfile(origin, VENDOR / "source" / name)
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
+    shutil.copyfile(source / PROTOCOL / "v2/thread_data.rs", VENDOR / "source/thread_data.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/dynamic_tools.rs", VENDOR / "source/dynamic-tools.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/models.rs", VENDOR / "source/models.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/config_types.rs", VENDOR / "source/config_types.rs")

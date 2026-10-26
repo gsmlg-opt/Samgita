@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [history-mode input repair](history-mode-input-qualification.md) reproduces
+local rejection of four source-supported thread/start objects. A seventh input
+descriptor preserves canonical outputs, caller values and prior corrections;
+actual default-validation creation, four real turns and unloaded cold reads pass.
+Final **47 schema /122 ordinary driver twice**, outside consumer **1/0**,
+format/compile, strict Credo522, inventory and342-source guard pass; all333 other
+prior sources, six descriptors, prior pins and770 exports remain unchanged. No
+state/owner promotion: **5,033 implemented /1,522 missing /66 blocked** contracts,
+unchanged requirements and zero verified. Prohibited/broad/hosted, A11, legacy/
+external/platform/full-goal gates remain incomplete; no publication/deployment.
+
 The [native creation snapshots](creation-snapshot-qualification.md) qualify fourteen
 exact live owners through two independently configured local projects/threads,
 zero creation-time inference, full-root notices and two genuine first-message

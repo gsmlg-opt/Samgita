@@ -125,6 +125,15 @@ defmodule StandaloneCodexTest do
                SamgitaProtocolCodex.Schema.validate_request(method, params, experimental: true)
     end
 
+    for mode <- ~w(legacy paginated), payload <- [nil, %{}] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/start",
+                 %{"historyMode" => %{mode => payload}},
+                 experimental: true
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 
