@@ -1,5 +1,11 @@
 # Codex compatibility qualification
 
+The [section-rank reverse cursor](section-rank-cursor-qualification.md) passes
+initial1/0 and affected4/0 twice, with strict checks and373 stable sources. Its
+positive integer-rank branch preserves the distinct created_at defect and
+missing whole-cursor owner5702. All372 prior sources remain exact; no state/count
+promotion or complete compatibility claim follows.
+
 The [medium configuration effects](medium-config-effects-qualification.md)
 qualify exactly two previously missing values through genuine config/provider
 effects and explicit new cold turns. Final **87 schema /141 ordinary driver

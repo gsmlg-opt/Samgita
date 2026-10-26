@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [section-rank cursor profile](section-rank-cursor-qualification.md) proves
+positive opposite-direction anchor inclusion and continuation through20 warm/
+unloaded-cold pages using public rank moves and unchanged native cursors. Initial
+native1/0, affected **4/0 twice**, strict checks and373 stable sources pass; all372
+prior sources stay exact. The separate created_at defect and whole cursor
+owner5702 remain missing. Counts remain **5,040 implemented /1,515 missing /66
+blocked** contracts and **462 implemented /12 missing /11 blocked** requirements,
+zero verified. Previous87schema/141ordinary-driver-twice and outside/static/local
+assembly evidence retains exact source equivalence. Continue remaining reachable
+ordinary field/effect variants; prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [medium configuration effects](medium-config-effects-qualification.md)
 qualify exactly3639/3642 via independent low/absent controls, actual native
 config/read and actual provider request fields, then explicit new cold turns.

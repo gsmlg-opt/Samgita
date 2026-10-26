@@ -123,6 +123,10 @@ verbosity overrides a distinct catalog default, and explicit search context size
 adds a hosted-tool field absent in the control. Cold startup remains idle until
 an explicit new turn. These request-shape observations do not imply execution by
 a real hosted-search backend or complete Config compatibility.
+The [section-rank cursor profile](section-rank-cursor-qualification.md) exercises
+the native integer path through public moves, unchanged reverse anchors and
+warm/cold pages. It neither rewrites cursors nor repairs the separate native
+created_at precision defect; the whole cursor contract stays missing.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
