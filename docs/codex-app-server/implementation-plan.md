@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [search-sort input repair](search-sort-input-qualification.md) accepts six
+native objects on experimental thread/search without changing its gate or bytes.
+Independent native timestamp order,24warm/cold queries and retained histories pass.
+Final **57 schema /126 ordinary driver twice**, outside consumer **1/0**,
+format/compile, strict Credo527, inventory and350-source guard pass; all343 other
+prior sources, eight descriptors and770 exports remain unchanged. Counts stay
+**5,038 implemented /1,517 missing /66 blocked** contracts and **462 implemented
+/12 missing /11 blocked** requirements, zero verified. Next reproduce ThreadSortKey
+objects on thread/list with independently prescribed timestamp/custom-section
+order. Its staged tests/patch remain unrun. Pagination, universal updated/recency
+discrimination, prohibited/broad/hosted, A11, legacy/external/OS/platform/full-goal
+gates remain incomplete.
+
 The [start-source input repair](start-source-input-qualification.md) accepts four
 native unit objects on thread/start without changing caller bytes or output
 contracts. Actual first-turn `new`/`cleared` metadata and retained warm/cold

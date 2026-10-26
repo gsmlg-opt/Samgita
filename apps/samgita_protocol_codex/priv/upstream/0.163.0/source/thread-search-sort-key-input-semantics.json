@@ -1,0 +1,68 @@
+{
+  "definition": "ThreadSearchSortKey",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "created_at"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "updated_at": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "updated_at"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "recency_at": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "recency_at"
+      ],
+      "type": "object"
+    }
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/search"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61"
+  },
+  "semantics": "The ordinary snake_case ThreadSearchSortKey unit enum accepts one-key created_at/updated_at/recency_at objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only experimental thread/search reaches this input definition; the unused stable enum does not make the method available. Preserve the complete canonical string schema, original caller values, required searchTerm, enclosing constraints, outer null/omission and experimental method negotiation. Native owns persisted query ordering and cursor semantics; accepted input does not execute a turn. Ordering and pagination require independent native evidence. Output schemas remain canonical.",
+  "source_sha256": {
+    "source/common.rs": "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

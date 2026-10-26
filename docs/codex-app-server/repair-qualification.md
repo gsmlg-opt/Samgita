@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [search-sort input repair](search-sort-input-qualification.md) reproduces
+local rejection of six native unit objects and preserves the experimental method
+gate. Actual timestamp ordering and retained warm/cold histories pass under normal
+validation. Final **57 schema /126 ordinary driver cases twice**, outside consumer
+**1/0**, strict checks, inventory and350-source guard pass; all343 other prior
+sources, eight descriptors and770 exports remain unchanged. No cursor repair or
+broader lifecycle qualification is inferred. Counts stay unchanged; completeness
+still exits1. Prohibited/broad/hosted checks, A11 and full-goal gates stay open.
+
 The [start-source input repair](start-source-input-qualification.md) reproduces
 local rejection and corrects only the native unit-object input contract. Actual
 default-validation starts/turns prove prescribed new/cleared provider metadata

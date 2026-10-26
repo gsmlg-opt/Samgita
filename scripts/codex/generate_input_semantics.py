@@ -49,6 +49,12 @@ HISTORY_MODE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 START_SOURCE_SEMANTICS = "source/thread-start-source-input-semantics.json"
 START_SOURCE_METHODS = ("thread/start",)
 START_SOURCE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
+SEARCH_SORT_SEMANTICS = "source/thread-search-sort-key-input-semantics.json"
+SEARCH_SORT_METHODS = ("thread/search",)
+SEARCH_SORT_SCHEMAS = {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -422,6 +428,78 @@ def derive_start_source(vendor):
     }
 
 
+def derive_search_sort(vendor):
+    sources = {THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned thread search sort input source changed: " + name)
+    rust = (vendor / THREAD).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "snake_case"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub enum ThreadSearchSortKey \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    CreatedAt,\n    UpdatedAt,\n    RecencyAt,':
+        raise ValueError("Pinned ThreadSearchSortKey unit variants changed")
+    names = [re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
+             for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    field = (
+        '    /// Optional sort key; defaults to created_at.\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub sort_key: Option<ThreadSearchSortKey>,')
+    if field not in rust:
+        raise ValueError("Pinned thread/search sortKey field declaration changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    method = (
+        '    #[experimental("thread/search")]\n'
+        '    ThreadSearch => "thread/search" {\n'
+        '        params: v2::ThreadSearchParams,')
+    if method not in common:
+        raise ValueError("Pinned thread/search experimental method declaration changed")
+    hashes = {}
+    for name, expected in SEARCH_SORT_SCHEMAS.items():
+        path = vendor / "experimental" / name
+        if digest(path) != expected:
+            raise ValueError("Pinned full thread search schema changed: " + name)
+        document = json.loads(path.read_text())
+        if document["definitions"]["ThreadSearchSortKey"] != {"type": "string", "enum": names}:
+            raise ValueError("Official canonical thread search sort contract changed: " + name)
+        definition = document["definitions"]["ThreadSearchParams"] if name == "ClientRequest.json" else document
+        if definition["properties"]["sortKey"] != {
+                "anyOf": [{"$ref": "#/definitions/ThreadSearchSortKey"}, {"type": "null"}],
+                "description": "Optional sort key; defaults to created_at."}:
+            raise ValueError("Official thread/search sortKey field contract changed: " + name)
+        if definition["required"] != ["searchTerm"]:
+            raise ValueError("Official thread/search required query field changed: " + name)
+        if name == "ClientRequest.json" and (
+                request_methods(document, "ThreadSearchSortKey") != list(SEARCH_SORT_METHODS)):
+            raise ValueError("ThreadSearchSortKey request input graph changed")
+        hashes[name] = expected
+    stable = json.loads((vendor / "stable/ClientRequest.json").read_text())
+    if stable["definitions"]["ThreadSearchSortKey"] != {"type": "string", "enum": names}:
+        raise ValueError("Official unused stable thread search sort definition changed")
+    if ("ThreadSearchParams" in stable["definitions"]
+            or request_methods(stable, "ThreadSearchSortKey")
+            or any("thread/search" in branch["properties"]["method"]["enum"]
+                   for branch in stable["oneOf"])
+            or (vendor / "stable/v2/ThreadSearchParams.json").exists()):
+        raise ValueError("Pinned experimental-only thread/search export boundary changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(SEARCH_SORT_METHODS),
+        "definition": "ThreadSearchSortKey",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary snake_case ThreadSearchSortKey unit enum accepts one-key created_at/updated_at/recency_at objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only experimental thread/search reaches this input definition; the unused stable enum does not make the method available. Preserve the complete canonical string schema, original caller values, required searchTerm, enclosing constraints, outer null/omission and experimental method negotiation. Native owns persisted query ordering and cursor semantics; accepted input does not execute a turn. Ordering and pagination require independent native evidence. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -465,7 +543,8 @@ def corrections(vendor):
             (SUMMARY_SEMANTICS, derive_summary(vendor)),
             (PERSONALITY_SEMANTICS, derive_personality(vendor)),
             (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)),
-            (START_SOURCE_SEMANTICS, derive_start_source(vendor)))
+            (START_SOURCE_SEMANTICS, derive_start_source(vendor)),
+            (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)))
 
 
 def write(vendor):

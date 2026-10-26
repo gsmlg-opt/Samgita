@@ -72,6 +72,12 @@ null/omission and original object bytes. The latter selects `new` or `cleared`
 initialization on a new thread; it does not erase earlier histories or start
 inference. Its native first-turn metadata and cold-read evidence do not qualify
 source-specific hooks.
+The [search-sort input correction](search-sort-input-qualification.md) preserves
+the experimental `thread/search` method gate while accepting source-supported
+unit objects for its three timestamp keys. Native state provides an independent
+ordering oracle; these input forms neither execute a turn nor repair the pinned
+created-search cursor precision defect. Updated and recency clocks can coincide,
+so this fixture does not prove their distinction in every lifecycle.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
