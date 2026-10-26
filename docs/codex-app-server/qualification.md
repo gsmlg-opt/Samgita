@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [shared turn reasoning inputs](turn-shared-reasoning-values-qualification.md)
+pass the final **49-file, 99/0 twice** functional matrix, compile/format, strict
+Credo, outside consumer **1/0**,27 fixture ASTs and the **297-source** guard.
+Two exact concise/nested-null owners become implemented: **4,958 implemented /
+1,597 missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Applied selected settings, whole
+provider reasoning and genuine raw-bound history distinguish concise persistence
+and selected-null/effective-low fallback through three deliberate turns per case.
+Seventeen archive-matching files, two nodes and final binding pass; all prior296
+sources remain unchanged. Strict completeness exits **1**. Prohibited/broad/
+hosted, full-goal, A11, external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [canonical Project root/sorting inputs](project-canonical-fields-qualification.md)
 bind exactly three canonical ClientRequest owners299–301 to unchanged actual
 native tests already included in the latest **48-file, 97/0 twice** functional

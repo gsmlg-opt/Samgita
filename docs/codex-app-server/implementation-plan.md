@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [shared turn reasoning inputs](turn-shared-reasoning-values-qualification.md)
+pass the final **49-file, 99/0 twice** functional matrix, compile/format, strict
+Credo, outside consumer **1/0**,27 fixture ASTs and the **297-source** guard.
+Two exact concise/nested-null owners become implemented: **4,958 implemented /
+1,597 missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Applied selected settings, whole
+provider reasoning and genuine raw-bound history distinguish concise persistence
+and selected-null/effective-low fallback through three deliberate turns per case.
+Seventeen archive-matching files, two nodes and final binding pass; all prior296
+sources remain unchanged. Strict completeness exits **1**. Prohibited/broad/
+hosted, full-goal, A11, external/OS and release gates remain incomplete.
+No publication/deployment.
+
+Next qualify ConfigurationUpdate102/426–429 through genuine native control
+generation and unchanged current raw-history input. Keep raw controls distinct
+from actual outer serialization and from a new cold followup control. Source
+medium→high→unchanged high→low must not be supplied by the model peer. Then bind
+remaining ordinary canonical mode/personality owners only to their exact native
+inputs/effects. Fixed yolo and every verification restriction remain; prohibited/
+broad/hosted, A11, external/OS and full-goal gates stay incomplete.
+
+## Earlier checkpoints
+
 The [canonical Project root/sorting inputs](project-canonical-fields-qualification.md)
 bind exactly three canonical ClientRequest owners299–301 to unchanged actual
 native tests already included in the latest **48-file, 97/0 twice** functional
@@ -33,16 +56,6 @@ no executable source or test and reruns none. Ledger: **4,956 implemented /
 11 blocked** requirements, zero verified. Inventory passes; strict completeness
 exits **1**. Prohibited/broad/hosted, full-goal, A11, external/OS and release
 gates remain incomplete. No publication/deployment.
-
-Next qualify ordinary concise-summary356 and explicit nested effort-null602
-through independent three-turn native profiles: applied settings, exact provider
-reasoning, actual raw-bound history and omitted-followup persistence. Continue
-ConfigurationUpdate only with a genuine native producer and separately observed
-supplied-history serialization; do not equate raw controls with outer annotations.
-Fixed yolo and all verification restrictions remain. Prohibited/broad/hosted,
-A11, external/OS and full-goal gates stay incomplete.
-
-## Earlier checkpoints
 
 The [native initial PTY dimensions](terminal-size-values-qualification.md)
 pass the final **48-file, 97/0 twice** functional matrix, compile/format,
