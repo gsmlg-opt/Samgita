@@ -143112,21 +143112,25 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-session-detection-limits-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/maxSessionAgeDays",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected negative_or_empty_only native evidence: Zero requested with no sessions present; malformed negative maxSessions rejected. No actual session-limit behavior. Other variants and full implementation qualification remain incomplete."
+        "Real pinned success-only session discovery discriminates modification-age and newest-source count limits using three existing owned inert Claude JSONLs. All three contain identical recent explicit conversation timestamps and bytes, while independently asserted source mtimes are captured-now minus1 hour, minus2 hours and minus3 days. Native detect age1/count4 selects exactly newest+middle; age7/count4 selects exactly all3. Holding age7 constant, count1 selects exactly newest and count2 exactly newest+middle in actual native order. Full session maps, source identities, cwd/title, empty companion details and connectors are asserted, not just collection lengths.",
+        "All four correlated native detects happen before import, so completed-source ledger effects cannot manufacture filtering. The exact count1 selection then enters the complete real import/dedup/cold journey: receipt-before-progress/completion, one native Legacy thread, full durable/public/raw messages and source conversation chronology, two distinct completed operation receipts, unchanged native history and distinct cold native reader with zero inference. Every source mtime and byte snapshot remains exact through both shutdowns. Only the selected newest source is imported; no native history or database mutation is handcrafted.",
+        "Final affected4-file8/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and310-source guard. All309 unrelated sources and production protocol/driver/process cleanup remain byte-identical.29 complete files match the immutable archive; actual externalAgentConfig/detect request graph independently resolves the exact3954/3955 physical nodes. Existing Claude and both Cursor journeys, finite deadlines, capture bounds and cleanup remain intact. Ordinary native setup is fixed yolo.",
+        "Scoped implemented evidence only for the positive nonnull/nonzero age/count values of standalone v2 owners3954/3955; zero, null, omitted/default, boundary ties, parse-drop behavior, other sources and whole import-family completeness are not inferred. No twin/hash/reference propagation or verified promotion. Historical negative evidence remains but is not rerun. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, broad/mixed suites and hosted workflows remain unrun. A11, unavailable legacy/external/platform/OS success, full compatibility and release stay incomplete. No real Claude/provider integration, publication, deployment or production migration is established."
       ],
       "nullable": true,
       "pointer": "/properties/maxSessionAgeDays",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "52d3d7461c58b37eaeacde4089db52849d3596c16901c452a5264c73f84260c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -143134,31 +143138,38 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "maxSessionAgeDays"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-session-detection-limits-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/maxSessions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected negative_or_empty_only native evidence: Zero requested with no sessions present; malformed negative maxSessions rejected. No actual session-limit behavior. Other variants and full implementation qualification remain incomplete."
+        "Real pinned success-only session discovery discriminates modification-age and newest-source count limits using three existing owned inert Claude JSONLs. All three contain identical recent explicit conversation timestamps and bytes, while independently asserted source mtimes are captured-now minus1 hour, minus2 hours and minus3 days. Native detect age1/count4 selects exactly newest+middle; age7/count4 selects exactly all3. Holding age7 constant, count1 selects exactly newest and count2 exactly newest+middle in actual native order. Full session maps, source identities, cwd/title, empty companion details and connectors are asserted, not just collection lengths.",
+        "All four correlated native detects happen before import, so completed-source ledger effects cannot manufacture filtering. The exact count1 selection then enters the complete real import/dedup/cold journey: receipt-before-progress/completion, one native Legacy thread, full durable/public/raw messages and source conversation chronology, two distinct completed operation receipts, unchanged native history and distinct cold native reader with zero inference. Every source mtime and byte snapshot remains exact through both shutdowns. Only the selected newest source is imported; no native history or database mutation is handcrafted.",
+        "Final affected4-file8/0 twice functional matrix (seeds501432/987654), scoped format, warnings-as-errors compile, strict Credo on508 sources, outside actual-binary consumer1/0, retained relay/inline Exec ASTs and310-source guard. All309 unrelated sources and production protocol/driver/process cleanup remain byte-identical.29 complete files match the immutable archive; actual externalAgentConfig/detect request graph independently resolves the exact3954/3955 physical nodes. Existing Claude and both Cursor journeys, finite deadlines, capture bounds and cleanup remain intact. Ordinary native setup is fixed yolo.",
+        "Scoped implemented evidence only for the positive nonnull/nonzero age/count values of standalone v2 owners3954/3955; zero, null, omitted/default, boundary ties, parse-drop behavior, other sources and whole import-family completeness are not inferred. No twin/hash/reference propagation or verified promotion. Historical negative evidence remains but is not rerun. Prohibited security/credential/authentication/authorization/permission/approval tests/audits, broad/mixed suites and hosted workflows remain unrun. A11, unavailable legacy/external/platform/OS success, full compatibility and release stay incomplete. No real Claude/provider integration, publication, deployment or production migration is established."
       ],
       "nullable": true,
       "pointer": "/properties/maxSessions",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "96a9657f088eaa85a578648c497c00ff60306af42262c02a546418b23aac9627",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -143166,10 +143177,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "maxSessions"
     },
     {

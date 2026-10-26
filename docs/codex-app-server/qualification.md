@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [session detection limits](native-session-detection-limits-qualification.md)
+pass the final affected four-file **8/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Three foreign files with
+identical conversation times and distinct asserted mtimes independently prove
+native age/count filtering before full import/dedup/cold persistence. Twenty-nine
+immutable files and exact owners 3954/3955 are bound. Contracts become **5,002
+implemented / 1,553 missing / 66 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal/release gates remain incomplete.
+
 The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
 passes the final affected four-file **7/0 twice** functional matrix, static
 checks, outside consumer **1/0** and the 310-source guard. Actual import

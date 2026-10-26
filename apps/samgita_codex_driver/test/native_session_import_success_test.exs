@@ -214,6 +214,76 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert_cursor_import(ctx, :embedded)
   end
 
+  test "session discovery applies source modification age and newest-source count before import",
+       ctx do
+    ctx = limited_source_context(ctx)
+    assert_retained(ctx)
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm.pid)
+    assert_unloaded(ctx, warm.pid)
+
+    [newest, middle, older] = ctx.discovery_sources
+    assert_limited_selection(ctx, warm.pid, 1, 4, [newest, middle])
+    assert_limited_selection(ctx, warm.pid, 7, 4, [newest, middle, older])
+    selected = assert_limited_selection(ctx, warm.pid, 7, 1, [newest])
+    assert_limited_selection(ctx, warm.pid, 7, 2, [newest, middle])
+
+    # Detect limits refer to foreign file mtime, while imported chronology
+    # still comes from the unchanged explicit conversation timestamps.
+    assert_import_journey(ctx, warm, warm_native, selected)
+  end
+
+  defp limited_source_context(ctx) do
+    middle = Path.join(Path.dirname(ctx.source), "middle.jsonl")
+    older = Path.join(Path.dirname(ctx.source), "older.jsonl")
+    for path <- [middle, older], do: File.write!(path, ctx.source_bytes, [:exclusive])
+    captured_now = DateTime.utc_now() |> DateTime.to_unix()
+
+    mtimes = %{
+      ctx.source => captured_now - 3600,
+      middle => captured_now - 7200,
+      older => captured_now - 3 * 24 * 3600
+    }
+
+    for {path, mtime} <- mtimes do
+      File.touch!(path, mtime)
+      assert File.stat!(path, time: :posix).mtime === mtime
+      assert bounded_file(path) === ctx.source_bytes
+    end
+
+    assert ctx.created > captured_now - 60
+
+    Map.merge(ctx, %{
+      discovery_sources: [ctx.source, middle, older],
+      source_mtimes: mtimes,
+      expected_detect_count: 4,
+      inputs: ctx.inputs |> Map.put(middle, ctx.source_bytes) |> Map.put(older, ctx.source_bytes)
+    })
+  end
+
+  defp assert_limited_selection(ctx, pid, days, count, paths) do
+    detected =
+      call(ctx, pid, "externalAgentConfig/detect", %{
+        "includeHome" => true,
+        "migrationSource" => "claude-code",
+        "maxSessionAgeDays" => days,
+        "maxSessions" => count
+      })
+
+    assert Map.fetch!(detected, "connectors") === []
+    assert [selected] = Map.fetch!(detected, "items")
+
+    expected =
+      Enum.map(paths, fn path ->
+        assert File.regular?(path)
+        %{"path" => path, "cwd" => ctx.fixture.workspace, "title" => @prompt}
+      end)
+
+    assert_selected(Map.put(ctx, :expected_sessions, expected), selected)
+    assert_retained(ctx)
+    selected
+  end
+
   defp assert_cursor_import(ctx, mode) do
     ctx = cursor_context(ctx, mode)
     assert_retained(ctx)
@@ -358,13 +428,16 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
 
     details = Map.fetch!(selected, "details")
 
-    assert Map.fetch!(details, "sessions") === [
-             %{
-               "path" => ctx.source,
-               "cwd" => Map.get(ctx, :detected_cwd, ctx.fixture.workspace),
-               "title" => @prompt
-             }
-           ]
+    expected_sessions =
+      Map.get(ctx, :expected_sessions, [
+        %{
+          "path" => ctx.source,
+          "cwd" => Map.get(ctx, :detected_cwd, ctx.fixture.workspace),
+          "title" => @prompt
+        }
+      ])
+
+    assert Map.fetch!(details, "sessions") === expected_sessions
 
     for key <- ~w(commands hooks mcpServers plugins skills subagents),
         do: assert(Map.fetch!(details, key) === [])
@@ -737,7 +810,10 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
       ~w(initialize initialized server/diagnostics thread/loaded/list thread/list thread/read externalAgentConfig/detect externalAgentConfig/import externalAgentConfig/import/readHistories)
 
     assert Enum.all?(outgoing, &(&1["method"] in allowed))
-    assert Enum.count(outgoing, &(&1["method"] == "externalAgentConfig/detect")) == 1
+
+    assert Enum.count(outgoing, &(&1["method"] == "externalAgentConfig/detect")) ==
+             Map.get(ctx, :expected_detect_count, 1)
+
     assert Enum.count(outgoing, &(&1["method"] == "externalAgentConfig/import")) == 2
     for record <- records, do: assert(JSON.decode!(record.encoded) === record.wire)
   end
@@ -784,6 +860,9 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
 
     for directory <- Map.get(ctx, :retained_dirs, [ctx.fixture.workspace]),
         do: assert(File.ls!(directory) === [])
+
+    for {path, mtime} <- Map.get(ctx, :source_mtimes, %{}),
+        do: assert(File.stat!(path, time: :posix).mtime === mtime)
 
     if stored, do: assert(bounded_file(stored.path) === stored.bytes)
   end

@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [session detection limits](native-session-detection-limits-qualification.md)
+pass the affected four-file **8/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Positive modification-age and
+newest-source count effects precede the retained full import/dedup/cold journey;
+model requests remain zero. Twenty-nine immutable files bind owners 3954/3955.
+Contracts are **5,002 implemented / 1,553 missing / 66 blocked**, unchanged
+requirements and zero verified. All 309 unrelated sources and cleanup remain
+unchanged. No broader gate is completed.
+
 The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
 passes the affected four-file **7/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Actual request cwd fallback
@@ -76,13 +85,13 @@ and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-The next ordinary gap is session detection age/count behavior: use owned inert
-transcripts with independently controlled file mtimes, then distinguish actual
-native limits and order before importing a selected source. Request title is
-not a verified setter. The mixed existing import suite contains prohibited
-cases; extend only the reviewed success-only profile. Source findings alone
-remain unaccepted. Preserve fixed-YOLO setup, the prohibited test boundary and
-all remaining full-goal gates.
+The next ordinary gap is inert SUBAGENTS import: bind source Markdown to actual
+native TOML, durable results, completed repeats and cold histories without
+executing an imported agent. Requested named details are advisory in the pin;
+do not invent selective import or rename behavior. A different requested session
+title can separately test its actual ignored behavior without claiming a setter.
+The mixed original import suite stays unrun. Preserve fixed-YOLO setup, the
+prohibited test boundary and all remaining full-goal gates.
 
 ## Earlier checkpoints
 

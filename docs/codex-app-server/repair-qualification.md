@@ -15,6 +15,25 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [session detection limits](native-session-detection-limits-qualification.md)
+pass the affected four-file **8/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Exact owners 3954/3955 bring
+contracts to **5,002 implemented / 1,553 missing / 66 blocked**, unchanged
+requirements and zero verified. All 309 unrelated sources and process cleanup
+remain unchanged. Inventory passes; strict completeness exits **1**.
+
+The retained neutral replay repair is also rechecked using only the three
+reviewed functional cases at `integration_test.exs:384`, `:442` and `:498`:
+replay/live checkpoint advance, queued-control overflow recovery and oversized
+batch/retention-gap detection. Each seed `455834` and `987654` passes **3/0**
+(16 discovered, 13 excluded). No credential, authentication, authorization or
+approval case executes; the fixed synthetic connection token is setup only.
+Commands use `mix test` with those exact locations and `--max-cases 8` in the
+independent WebSocket package. Logs:
+`/tmp/samgita-v343-neutral-replay-{455834,987654}.log`. The package's broad suite,
+database recovery/protection suites, audits and hosted workflows stay unrun
+under the current restriction. Historical repair evidence remains below.
+
 The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
 passes the affected four-file **7/0 twice** functional matrix, static checks,
 outside consumer **1/0** and the 310-source guard. Native request cwd fallback
