@@ -98,6 +98,17 @@ DIRECTION_SCHEMAS = {
         "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
     },
 }
+PROJECT_SORT_SEMANTICS = "source/project-sort-key-input-semantics.json"
+PROJECT_SORT_METHODS = ("project/list",)
+PROJECT_SORT_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -710,6 +721,97 @@ def derive_direction(vendor):
     }
 
 
+def derive_project_sort(vendor):
+    sources = {PROJECT: PROJECT_SHA256, COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned project sort key input source changed: " + name)
+    rust = (vendor / PROJECT).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(rename_all = "camelCase", export_to = "v2/"\)\]\n'
+        r'pub enum ProjectSortKey \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    Position,\n    RecencyAt,':
+        raise ValueError("Pinned ProjectSortKey unit variants changed")
+    names = [name[:1].lower() + name[1:]
+             for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    params = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS, ExperimentalApi\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub struct ProjectListParams \{\n(.*?)\n\}', rust, re.S)
+    field = (
+        '    /// Defaults to position. Recency sorting always places empty projects last.\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub sort_key: Option<ProjectSortKey>,')
+    direction = (
+        '    /// Requires sortKey. Defaults to asc for position and desc for recencyAt.\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub sort_direction: Option<SortDirection>,')
+    if not params or field not in params[1] or direction not in params[1]:
+        raise ValueError("Pinned project/list sortKey field or defaults changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    method = (
+        '    #[experimental("project/list")]\n'
+        '    ProjectList => "project/list" {\n'
+        '        params: v2::ProjectListParams,\n'
+        '        serialization: global_shared_read("projects"),\n'
+        '        response: v2::ProjectListResponse,\n'
+        '    },')
+    if method not in common:
+        raise ValueError("Pinned project/list experimental method declaration changed")
+    hashes = {}
+    for profile, schemas in PROJECT_SORT_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned project sort key schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["ProjectSortKey"] != {"type": "string", "enum": names}:
+                raise ValueError("Official canonical project sort key contract changed: " + profile + "/" + name)
+            if profile == "stable":
+                if ("ProjectListParams" in document["definitions"]
+                        or request_methods(document, "ProjectSortKey")
+                        or any("project/list" in branch["properties"]["method"]["enum"]
+                               for branch in document["oneOf"])
+                        or (vendor / "stable/v2/ProjectListParams.json").exists()):
+                    raise ValueError("Pinned experimental-only project/list export boundary changed")
+                continue
+            if name == "ClientRequest.json":
+                if request_methods(document, "ProjectSortKey") != list(PROJECT_SORT_METHODS):
+                    raise ValueError("ProjectSortKey request input graph changed")
+                branches = [branch for branch in document["oneOf"]
+                            if branch["properties"]["method"]["enum"] == list(PROJECT_SORT_METHODS)]
+                if len(branches) != 1 or branches[0]["properties"]["params"] != {
+                        "$ref": "#/definitions/ProjectListParams"}:
+                    raise ValueError("Pinned project/list params reference changed")
+                definition = document["definitions"]["ProjectListParams"]
+            else:
+                definition = document
+            if (definition["type"] != "object" or definition.get("required")
+                    or set(definition["properties"]) != {"cursor", "limit", "sortKey", "sortDirection"}
+                    or definition["properties"]["sortKey"] != {
+                        "anyOf": [{"$ref": "#/definitions/ProjectSortKey"}, {"type": "null"}],
+                        "description": "Defaults to position. Recency sorting always places empty projects last."}):
+                raise ValueError("Official project/list sortKey field contract changed: " + name)
+            hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(PROJECT_SORT_METHODS),
+        "definition": "ProjectSortKey",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary camelCase ProjectSortKey unit enum accepts one-key position/recencyAt objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only experimental project/list.sortKey reaches this input definition; the unused stable enum does not make the method available. Preserve the complete canonical string schema, original caller values, enclosing constraints, outer null/omission and experimental method negotiation. A null unit payload still selects a present key. Native owns position/recency ordering, null-last recency, key-dependent default directions, the sortDirection-requires-sortKey rule and cursors. Accepted input does not execute a turn. Ordered results and cold persistence require independent native evidence. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -756,7 +858,8 @@ def corrections(vendor):
             (START_SOURCE_SEMANTICS, derive_start_source(vendor)),
             (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)),
             (LIST_SORT_SEMANTICS, derive_list_sort(vendor)),
-            (DIRECTION_SEMANTICS, derive_direction(vendor)))
+            (DIRECTION_SEMANTICS, derive_direction(vendor)),
+            (PROJECT_SORT_SEMANTICS, derive_project_sort(vendor)))
 
 
 def write(vendor):

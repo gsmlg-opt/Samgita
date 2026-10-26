@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [project-key input repair](project-sort-key-input-qualification.md) accepts
+four native unit objects on experimental project/list with exact original bytes.
+Public moves and independently stored recencies prescribe both orders, defaults,
+directional ID ties and empty projects last across32 warm/unloaded-cold pages.
+Final **72 schema /135 ordinary driver twice**, outside consumer **1/0**, strict
+Credo533, inventory and360-source guard pass; all353 other prior sources, eleven
+descriptors and770 exports remain unchanged. Root compile/format/assets, forced
+Dialyzer, architecture scanners and local production assembly pass. Counts remain
+**5,038 implemented
+/1,517 missing /66 blocked** contracts and **462 implemented /12 missing /11
+blocked** requirements, zero verified. Next reproduce six TurnItemsView objects
+on turn listing and resume initial pages; the assistant-only producer cannot
+prove richer Summary filtering. Prohibited/broad/hosted, A11, legacy/external/
+OS/platform and full-goal gates remain incomplete.
+
 The [direction input repair](sort-direction-input-qualification.md) accepts four
 native objects on six actual request paths, preserving original bytes and gates.
 Independent chronological/history/project oracles pass warm and unloaded cold

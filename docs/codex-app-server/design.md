@@ -89,6 +89,12 @@ List/search runtime projections differ after restart; cold resume additionally
 persists one settings checkpoint and advances updated time. Qualification asserts
 those explicit native boundaries while preserving original histories and all
 subsequent snapshots. Neither a query nor a resume implicitly executes a turn.
+The [project-key correction](project-sort-key-input-qualification.md) adds only
+the four native unit objects on experimental `project/list`. Independent public
+project moves and stored recencies prescribe position/default/recency order,
+including directional ID ties and empty projects last. Queries preserve original
+objects and complete warm/cold project state; the unused stable enum does not
+enable the experimental method.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
