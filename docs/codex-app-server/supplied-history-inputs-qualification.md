@@ -132,3 +132,97 @@ Prohibited security/permission checks, broad/hosted workflows, A11, unresolved
 legacy emitters, unavailable external/OS profiles, full-goal verification and
 release gates remain incomplete. No publication, deployment or production
 migration occurs.
+
+## Dynamic tool history
+
+The later tool continuation adds owners481/482/504/505: raw FunctionCall and
+FunctionCallOutput metadata properties and their non-null branches. A second
+case in the same owning file uses the unchanged normal provider's ordinary
+`dynamic_tool` scenario. It receives one genuine native `item/tool/call`, checks
+literal arguments, appends one owned effect record, and returns a prescribed
+result through the normal Session response API.
+
+The source turn consumes exactly two provider requests. After closing/reaping
+the source, the test captures four complete native-created payloads in order:
+user, function call, function output and assistant. It checks literal name,
+arguments, call ID and output. Call metadata is exactly the original `turn_id`;
+output metadata adds independently host-bounded `create_time`. A cold native
+imports those maps unchanged into a distinct thread, without inference,
+another tool request or another effect. One followup consumes the original
+arguments/result with supplied-history initialization. The inference budget is
+strictly **2 → 2 → 3**, and effect/dispatch counts remain one through shutdown.
+
+Pinned `core/src/tools/handlers/dynamic.rs:125–169` performs the real client
+dispatch; `core/src/tools/context.rs:579–603` turns the single text response
+into raw function output. `protocol/src/models.rs:1455–1484` stamps output
+creation time. Ordinary executed-tool metadata capture defaults off in
+`features/src/lib.rs:1148–1152`. Explicitly enabled host-only fields deliberately
+skip deserialization (`models.rs:989–1008`); this test does not claim to retain
+those fields or manufacture them. Explicit-null owners483/506 stay missing.
+The upstream unstable-import/new-identity limits still apply.
+
+The media test body is byte-identical to the preceding commit, independently
+checked by `/tmp/samgita-v303-functional-checks/media-preservation.json`.
+Its preserved fragment SHA256 is
+`7fcda2dc4029b8cddd85f67ad0adba15f0750ba6155e32e3102a0f745c895038`.
+The combined owning file passes **2/0 twice**, seeds501432/987654, with no native
+semantic failure or repair round. Logs are
+`/tmp/samgita-v303-history-{501432,987654}.log`; final file SHA256:
+`77d8a5b64107c505f2b7d988084b13b2fa0245feca86225950eb95a6ee368e83`.
+
+## Canonical tool values
+
+Eleven shared definition owners gain direct existing native evidence:
+
+| Owners | Exact observed values and limits |
+| --- | --- |
+|2080/2081/2085/2088 | Stable collaboration state message string/null and status completed/notFound. |
+|2090–2093 | Actual completed item tools sendInput, resumeAgent, wait and closeAgent. |
+|2100 | Closed-child wait completes with failed status. |
+|2118/2119 | Exact dynamic started inProgress and successful completed maps; completed survives warm/full/selective and first-cold selective history. |
+
+The existing collaboration profile prescribes literal child messages/states,
+checks exact completed maps and warm selective history, and independently
+checks actual provider results. It does not replace the native process or
+assert timing-dependent spawn/send/resume state snapshots. The dynamic profile
+checks full maps and one real handler execution; its inProgress value is
+live-only. Started collaboration status2098, interrupted2101, failed dynamic2120
+and other tool/status values remain unqualified.
+
+Direct conversions are in
+`app-server-protocol/src/protocol/v2/item.rs:948–983,1198–1203,1237–1259,1305–1335`.
+Dynamic lifecycle production is in `tools/handlers/dynamic.rs:218–270`.
+`core/src/tools/handlers/multi_agents/{wait,close_agent,send_input,resume_agent}.rs`
+supplies the exact terminal state/tool identities. These are direct literal
+observations, not evidence inferred from identical hashes or references.
+The unchanged collaboration/dynamic test SHA256 values are respectively
+`a196c56d901a47cd682de62b79bf999dcec947b989f83ed4686e7b41544df9d0` and
+`f803912fa5fcfabb09f62affb7fc8418ebae26937749c2127163cacd23444d84`.
+
+## Tool continuation evidence
+
+`/tmp/samgita-v303-run.py` records all eight serialized commands in
+`/tmp/samgita-v303-functional-checks/functional/results.json`. The final
+41-file matrix passes **77/0 twice**, seeds501432/987654, in
+136.624/130.713 seconds. Compile with warnings as errors, scoped format,
+strict Credo on 491 sources, outside actual-binary consumer **1/0**, seventeen
+fixture ASTs and the **279-source** before/after guard pass.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Results | `294e115f93055bdef73a6d5b153e5648b24aebefff80fa226c783ce74b5cad77` |
+| Source guard | `0f635f0ed68d709fc190cd3900894d8551aeb115d93b646a205eb52cda694e1d` |
+| Pinned-source evidence | `31b3566f0abb770311a35bc06de3e6e6ac8020cd5e8bb57c15eb9ce5454380c5` |
+| Resulting manifest | `52963c9f039319b8610115398073961995e44cfb7418b9f67e1f530e305ad504` |
+
+Nineteen complete source files match the immutable archive. Twenty exact nodes
+include the five unchanged null/status counterexamples; unique complete-record
+patches, original/current rows and tested bytes are bound in
+`source-evidence.json`, `manifest-binding.json` and `final-binding.json`.
+Inventory consistency passes; strict completeness exits **1**.
+
+Contracts become **4,889 implemented / 1,673 missing / 59 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero
+verified. Prohibited security/permission checks, broad/hosted workflows, A11,
+unresolved legacy emitters, unavailable external/OS profiles, full-goal
+verification and release gates remain incomplete. No publication or deployment.

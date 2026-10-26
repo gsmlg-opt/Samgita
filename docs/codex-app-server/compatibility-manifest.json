@@ -36286,49 +36286,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#dynamic-tool-history"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/5/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct raw non-null FunctionCall/FunctionCallOutput metadata input only: native source dispatches one ordinary dynamic tool with independently prescribed arguments/result and exactly one owned handler effect. Four complete native-created payloads import unchanged into a cold distinct thread, preserving exact turn_id metadata and host-bounded output create_time. Inference budget remains2 on import and3 after one followup, with zero repeat item/tool/call/effect; original bytes/config and cleanup remain asserted.",
+        "Upstream experimental UNSTABLE FOR CODEX CLOUD history import only. Ordinary executed-tool metadata capture is off; host-only executed_tool_calls/cell_id/completeness inputs intentionally do not deserialize and are not qualified. Explicit-null owners483/506, other raw tool types and stable/full server-output compatibility are not inferred. Media case remains byte-identical and passes in the same owning file.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/5/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#dynamic-tool-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/5/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct raw non-null FunctionCall/FunctionCallOutput metadata input only: native source dispatches one ordinary dynamic tool with independently prescribed arguments/result and exactly one owned handler effect. Four complete native-created payloads import unchanged into a cold distinct thread, preserving exact turn_id metadata and host-bounded output create_time. Inference budget remains2 on import and3 after one followup, with zero repeat item/tool/call/effect; original bytes/config and cleanup remain asserted.",
+        "Upstream experimental UNSTABLE FOR CODEX CLOUD history import only. Ordinary executed-tool metadata capture is off; host-only executed_tool_calls/cell_id/completeness inputs intentionally do not deserialize and are not qualified. Explicit-null owners483/506, other raw tool types and stable/full server-output compatibility are not inferred. Media case remains byte-identical and passes in the same owning file.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/5/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -37012,49 +37032,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#dynamic-tool-history"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/7/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct raw non-null FunctionCall/FunctionCallOutput metadata input only: native source dispatches one ordinary dynamic tool with independently prescribed arguments/result and exactly one owned handler effect. Four complete native-created payloads import unchanged into a cold distinct thread, preserving exact turn_id metadata and host-bounded output create_time. Inference budget remains2 on import and3 after one followup, with zero repeat item/tool/call/effect; original bytes/config and cleanup remain asserted.",
+        "Upstream experimental UNSTABLE FOR CODEX CLOUD history import only. Ordinary executed-tool metadata capture is off; host-only executed_tool_calls/cell_id/completeness inputs intentionally do not deserialize and are not qualified. Explicit-null owners483/506, other raw tool types and stable/full server-output compatibility are not inferred. Media case remains byte-identical and passes in the same owning file.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/7/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#dynamic-tool-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/7/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct raw non-null FunctionCall/FunctionCallOutput metadata input only: native source dispatches one ordinary dynamic tool with independently prescribed arguments/result and exactly one owned handler effect. Four complete native-created payloads import unchanged into a cold distinct thread, preserving exact turn_id metadata and host-bounded output create_time. Inference budget remains2 on import and3 after one followup, with zero repeat item/tool/call/effect; original bytes/config and cleanup remain asserted.",
+        "Upstream experimental UNSTABLE FOR CODEX CLOUD history import only. Ordinary executed-tool metadata capture is off; host-only executed_tool_calls/cell_id/completeness inputs intentionally do not deserialize and are not qualified. Explicit-null owners483/506, other raw tool types and stable/full server-output compatibility are not inferred. Media case remains byte-identical and passes in the same owning file.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/7/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -85484,53 +85524,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentState/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/CollabAgentState/properties/message",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentState/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/CollabAgentState/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "dc500401252d362dbaad10609f315dd1c9b30aea9948e9c14f0fe9ee8c431e1f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
@@ -85601,24 +85661,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -85667,24 +85737,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/6",
       "schema": "ServerNotification.json",
       "schema_sha256": "08ac7d6b57a7f8c112b089dffd656182d999988d7f77848c54e74e39cf01a88f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -85719,90 +85799,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "05130e2afecae09b27486f39585ed78b3b82aaf890485b2a9862a072012ad8ae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "f3a78c7b73099965c42471ed9782ed50b4e203f0eaffa7954cd546c1f759b5d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "4d4e6a16382bda8d5be5077e8f84ba7ccad4012a6a4f86ac920d7fb5a12424a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "54506a26e0f2fcb044102d56b4b6954005afea14c30e6a252b1fa7efcab92b52",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -85947,24 +86067,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentToolCallStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical collaboration values only: actual sendInput/resumeAgent/wait/closeAgent completions have exact tool literals; prescribed stable terminal child maps supply message string/null and completed/notFound, while closed-child wait is failed. Independent provider results corroborate completed messages/previous state/not_found. Exact native completed items and warm selective history are checked, with no cold-process replacement claim.",
+        "Only named stable terminal observations. Timing-dependent spawn/send/resume state snapshots are intentionally excluded. Started collab status2098, interrupted2101, other child status/tool alternatives and whole referenced branches remain unqualified.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -86484,46 +86614,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/DynamicToolCallStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical DynamicToolCallStatus literal only: exact complete native started map is inProgress and successful completed map is completed. Independently prescribed handler arguments/content and one genuine execution are asserted; completed item survives warm full/selective history and first-cold selective history. The started value is live-only; no persistence claim for inProgress.",
+        "Only inProgress/completed values on this ordinary native producer. Failed dynamic status owner2120 remains unqualified; no other enum alternative, export or producer inherits evidence.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#canonical-tool-values"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/DynamicToolCallStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical DynamicToolCallStatus literal only: exact complete native started map is inProgress and successful completed map is completed. Independently prescribed handler arguments/content and one genuine execution are asserted; completed item survives warm full/selective history and first-cold selective history. The started value is live-only; no persistence claim for inProgress.",
+        "Only inProgress/completed values on this ordinary native producer. Failed dynamic status owner2120 remains unqualified; no other enum alternative, export or producer inherits evidence.",
+        "Fixed-yolo local functional evidence only. Other transports/OS, full compatibility, A11, unavailable external/legacy profiles and release gates remain incomplete; prohibited security/permission checks and broad/hosted workflows remain unrun, implemented only."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

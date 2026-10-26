@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine tool-history continuation](supplied-history-inputs-qualification.md#dynamic-tool-history)
+passes the final **41-file, 77/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
+guard. Fifteen exact owners become implemented: **4,889 implemented / 1,673
+missing / 59 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. One genuine callback/effect,
+exact four-payload metadata import and strict inference **2 → 2 → 3** preserve
+source bytes, the original media body and owned cleanup. Shared stable tool
+values retain their precise live/warm/cold limits. No native semantic repair
+round occurs. Inventory/final binding pass; strict completeness exits **1**.
+
+Continue raw tool_search_call/tool_search_output metadata with six genuine
+native records and a bounded provider-only followup extension. Raw import does
+not restore dynamic tool registration: qualify consumption of completed search
+history, not subsequent callability. Preserve the existing cases unchanged,
+one handler effect and inference **3 → 3 → 4**. Separately record exact pinned
+source evidence for dormant or filtered notification error variants; do not
+use accessible RPC error.data or fabricated legacy records as notification
+acceptance. Retain fixed yolo and every verification restriction. All
+prohibited/broad/hosted, full-goal, A11, legacy/unreachable, unavailable
+external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [genuine supplied-history and timestamp unit](supplied-history-inputs-qualification.md)
 passes the final **41-file, 76/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
@@ -43,8 +67,6 @@ executed-tool metadata and explicit-null branches unqualified; shellCommand is
 a user Message producer, not a raw function-call source. Retain fixed yolo and
 every verification restriction. All prohibited/broad/hosted, full-goal, A11,
 legacy/unreachable, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [native item identity and shell provenance](native-item-identity-qualification.md)
 pass the final **40-file, 75/0 twice** matrix, compile/format, strict Credo,

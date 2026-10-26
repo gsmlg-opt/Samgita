@@ -36,6 +36,22 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
   @assistant_content [%{"type" => "output_text", "text" => @answer}]
   @max_rollout_bytes 4_194_304
   @max_line_bytes 262_144
+  @tool_marker "Owned genuine supplied-history dynamic tool 163"
+  @tool_followup "Owned continuation consumes the completed tool 163"
+  @tool_arguments ~s({"key": "synthetic"})
+  @tool_output "Owned supplied-history tool result λ🙂"
+  @tool_effect "owned-dynamic-effect-once-163\n"
+  @lookup %{
+    "type" => "function",
+    "name" => "fixture_lookup",
+    "description" => "Fixed owned supplied-history lookup",
+    "inputSchema" => %{
+      "type" => "object",
+      "properties" => %{"key" => %{"type" => "string"}},
+      "required" => ["key"],
+      "additionalProperties" => false
+    }
+  }
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")
@@ -52,7 +68,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
 
     ctx =
       try do
-        TurnFixture.setup(tags)
+        if tags[:dynamic_history], do: dynamic_fixture(binary), else: TurnFixture.setup(tags)
       after
         if previous,
           do: System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", previous),
@@ -174,6 +190,312 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     # Closing the importing native must also preserve the original source file.
     assert File.read!(source_path) === source_bytes
     assert_unchanged(ctx)
+  end
+
+  @tag dynamic_history: true
+  test "unstable native import consumes genuine dynamic-tool history without repeating its effect",
+       ctx do
+    effects = Path.join(ctx.fixture.workspace, "owned-supplied-history-effects.log")
+    refute File.exists?(effects)
+    source = start(ctx)
+    source_process = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access",
+        "historyMode" => "legacy",
+        "dynamicTools" => [@lookup]
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+
+    source_turn =
+      TurnFixture.start_turn(source, source_id, [
+        %{"type" => "text", "text" => @tool_marker, "text_elements" => []}
+      ])
+
+    {tool, events} = await_dynamic_tool(source, [], System.monotonic_time(:millisecond) + 10_000)
+
+    assert tool.wire["params"] === %{
+             "threadId" => source_id,
+             "turnId" => source_turn,
+             "callId" => "fixture-call-1",
+             "namespace" => nil,
+             "tool" => "fixture_lookup",
+             "arguments" => %{"key" => "synthetic"}
+           }
+
+    assert [first_request] = requests(ctx)
+    refute File.exists?(effects)
+
+    # This one real client-tool dispatch owns the effect. Imported transcript
+    # data must never invoke this handler or append the effect a second time.
+    File.write!(effects, @tool_effect, [:append])
+
+    assert :ok =
+             Session.respond(
+               source,
+               tool.handle,
+               {:ok,
+                %{
+                  "success" => true,
+                  "contentItems" => [%{"type" => "inputText", "text" => @tool_output}]
+                }}
+             )
+
+    events = collect(source, source_turn, events, System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(events, source_id, source_turn)
+    assert [^tool] = dynamic_calls(events)
+    saved = read_thread(source, source_id)
+    source_path = Map.fetch!(saved, "path")
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert [^first_request, source_continuation] = requests(ctx)
+    assert_tool_provider(source_continuation, false)
+    assert File.read!(effects) === @tool_effect
+    assert_idle(source)
+    assert %{interactions: 0} = Session.status(source)
+    assert :ok = Session.close(source)
+    assert_gone(source_process)
+
+    {source_bytes, payloads} = rollout(ctx, source_path)
+    history = captured_dynamic_history(payloads)
+    assert_dynamic_payloads(history, source_turn, began, ended)
+    assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 4
+
+    cold = start(ctx)
+    cold_process = native_process(cold)
+    refute cold_process == source_process
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => history,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = Map.fetch!(imported, "id")
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert Map.fetch!(imported, "preview") == @tool_marker
+    assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+    imported_path = Map.fetch!(read_thread(cold, imported_id), "path")
+    refute imported_path == source_path
+    assert_dynamic_import(ctx, imported_path, history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert dynamic_calls(import_events) == []
+    assert requests(ctx) === [first_request, source_continuation]
+    assert File.read!(effects) === @tool_effect
+    assert File.read!(source_path) === source_bytes
+
+    followup_turn =
+      TurnFixture.start_turn(cold, imported_id, [
+        %{"type" => "text", "text" => @tool_followup, "text_elements" => []}
+      ])
+
+    followup_events =
+      collect(cold, followup_turn, [], System.monotonic_time(:millisecond) + 20_000)
+
+    assert_turn_completed(followup_events, imported_id, followup_turn)
+    assert dynamic_calls(followup_events) == []
+    assert Map.fetch!(read_thread(cold, imported_id), "id") == imported_id
+    assert [^first_request, ^source_continuation, followup] = requests(ctx)
+    assert_tool_provider(followup, true)
+
+    metadata =
+      followup
+      |> Map.fetch!("client_metadata")
+      |> Map.fetch!("x-codex-turn-metadata")
+      |> JSON.decode!()
+
+    assert Map.fetch!(metadata, "history_initialization") == "supplied_history"
+    assert_dynamic_import(ctx, imported_path, history)
+    assert File.read!(effects) === @tool_effect
+    assert File.read!(source_path) === source_bytes
+    assert_unchanged(ctx)
+    assert_idle(cold)
+    assert %{interactions: 0} = Session.status(cold)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_process)
+    assert File.read!(effects) === @tool_effect
+    assert File.read!(source_path) === source_bytes
+    assert_unchanged(ctx)
+  end
+
+  defp dynamic_fixture(binary) do
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-supplied-dynamic-#{Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    fixture = ModelFixture.start(root, "dynamic_tool")
+    File.write!(fixture.requests, "[]")
+    on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+    %{binary: binary, fixture: fixture, root: root}
+  end
+
+  defp await_dynamic_tool(pid, events, deadline) do
+    assert {:ok, incoming} = Session.drain(pid)
+    events = events ++ incoming
+    assert length(events) <= 256
+    assert byte_size(JSON.encode!(Enum.map(events, & &1.wire))) <= 1_048_576
+
+    case dynamic_calls(events) do
+      [tool] ->
+        {tool, events}
+
+      [] ->
+        assert System.monotonic_time(:millisecond) < deadline, "Supplied-history tool deadline"
+        assert Session.status(pid).phase == :ready
+
+        receive do
+          {:codex_driver, ^pid, :events_available} -> :ok
+          {:codex_driver, ^pid, {:gap, _}} -> flunk("Unexpected supplied-history tool gap")
+        after
+          10 -> :ok
+        end
+
+        await_dynamic_tool(pid, events, deadline)
+
+      _ ->
+        flunk("Expected exactly one native dynamic-tool call")
+    end
+  end
+
+  defp dynamic_calls(events),
+    do: Enum.filter(events, &(&1.wire["method"] == "item/tool/call"))
+
+  defp assert_turn_completed(events, thread, turn) do
+    assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
+             TurnFixture.notification(events, "turn/completed", &(&1["turn"]["id"] == turn))
+  end
+
+  defp captured_dynamic_history(payloads) do
+    selected =
+      Enum.filter(payloads, fn item ->
+        case item["type"] do
+          "message" ->
+            (item["role"] == "user" and
+               item["content"] === [%{"type" => "input_text", "text" => @tool_marker}]) or
+              (item["role"] == "assistant" and item["id"] == "fixture-message-2")
+
+          type when type in ["function_call", "function_call_output"] ->
+            item["call_id"] == "fixture-call-1"
+
+          _ ->
+            false
+        end
+      end)
+
+    assert [
+             %{"type" => "message", "role" => "user"},
+             %{"type" => "function_call"},
+             %{"type" => "function_call_output"},
+             %{"type" => "message", "role" => "assistant"}
+           ] = selected
+
+    selected
+  end
+
+  defp assert_dynamic_payloads([user, invocation, output, assistant], turn, began, ended) do
+    user_metadata = Map.fetch!(user, "internal_chat_message_metadata_passthrough")
+    user_created = Map.fetch!(user_metadata, "create_time")
+    assert is_number(user_created) and user_created >= began and user_created <= ended
+
+    assert user_metadata === %{
+             "turn_id" => turn,
+             "create_time" => user_created,
+             "content_item_kinds" => ["user.text"]
+           }
+
+    assert user["content"] === [%{"type" => "input_text", "text" => @tool_marker}]
+    assert is_binary(Map.fetch!(user, "id")) and byte_size(user["id"]) > 0
+    call_id = Map.fetch!(invocation, "id")
+    assert is_binary(call_id) and String.starts_with?(call_id, "fc_")
+
+    assert invocation === %{
+             "type" => "function_call",
+             "id" => call_id,
+             "call_id" => "fixture-call-1",
+             "name" => "fixture_lookup",
+             "arguments" => @tool_arguments,
+             "internal_chat_message_metadata_passthrough" => %{"turn_id" => turn}
+           }
+
+    output_id = Map.fetch!(output, "id")
+    assert is_binary(output_id) and String.starts_with?(output_id, "fco_")
+    output_metadata = Map.fetch!(output, "internal_chat_message_metadata_passthrough")
+    output_created = Map.fetch!(output_metadata, "create_time")
+    assert is_number(output_created) and output_created >= began and output_created <= ended
+
+    assert output === %{
+             "type" => "function_call_output",
+             "id" => output_id,
+             "call_id" => "fixture-call-1",
+             "output" => @tool_output,
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => output_created
+             }
+           }
+
+    assert Map.fetch!(assistant, "id") == "fixture-message-2"
+    assert_message(assistant, "assistant", @assistant_content, turn, began, ended)
+  end
+
+  defp assert_dynamic_import(ctx, path, history) do
+    {_bytes, payloads} = rollout(ctx, path)
+    assert captured_dynamic_history(payloads) === history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+  end
+
+  defp assert_tool_provider(request, followup?) do
+    input = Map.fetch!(request, "input")
+    assert [invocation] = Enum.filter(input, &(&1["type"] == "function_call"))
+    call_id = Map.fetch!(invocation, "id")
+
+    assert invocation === %{
+             "type" => "function_call",
+             "id" => call_id,
+             "call_id" => "fixture-call-1",
+             "name" => "fixture_lookup",
+             "arguments" => @tool_arguments
+           }
+
+    assert [output] = Enum.filter(input, &(&1["type"] == "function_call_output"))
+    output_id = Map.fetch!(output, "id")
+
+    assert output === %{
+             "type" => "function_call_output",
+             "id" => output_id,
+             "call_id" => "fixture-call-1",
+             "output" => @tool_output
+           }
+
+    assert Enum.count(input, fn item ->
+             item["role"] == "user" and
+               item["content"] === [%{"type" => "input_text", "text" => @tool_marker}]
+           end) == 1
+
+    if followup? do
+      assert Enum.count(input, fn item ->
+               item["role"] == "user" and
+                 item["content"] === [%{"type" => "input_text", "text" => @tool_followup}]
+             end) == 1
+
+      assert Enum.count(input, fn item ->
+               item["role"] == "assistant" and item["content"] === @assistant_content
+             end) == 1
+    end
   end
 
   defp captured_history(payloads) do

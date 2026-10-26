@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [genuine tool-history continuation](supplied-history-inputs-qualification.md#dynamic-tool-history)
+passes the final **41-file, 77/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
+guard. Four raw metadata and eleven exact shared tool/state owners bring
+contracts to **4,889 implemented / 1,673 missing / 59 blocked**, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+One real dynamic dispatch/effect and strict inference **2 → 2 → 3** prove
+unchanged four-payload import and no repeat handling. The media body stays
+byte-identical. Stable collaboration values have warm history; only dynamic
+completed has the stated first-cold evidence. No native semantic failure occurs.
+Nineteen archive-matching files, twenty nodes, inventory and final binding pass;
+strict completeness exits **1**. Prohibited/broad/hosted, full-goal, A11,
+unresolved legacy, unavailable external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [genuine supplied-history and timestamp unit](supplied-history-inputs-qualification.md)
 passes the final **41-file, 76/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, seventeen fixture AST checks and the **279-source**
