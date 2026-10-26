@@ -107,6 +107,13 @@ batch edit arrays. Strategies remain required, nonnullable fields with no local
 default. Eight genuine ordinary desktop edits distinguish replacement from
 recursive merge while preserving other configuration; a cold process reads the
 exact final file and layer without replaying a mutation.
+The [source-kind correction](thread-source-kind-input-qualification.md) accepts
+twenty native unit objects inside the two discovery arrays, preserving the
+standard list/experimental search boundary and exact `vscode` rename. Outer
+null/omission/empty remain native-owned distinctions, including custom defaults
+and the list relation exception. One genuine vscode producer supplies positive
+object-filter evidence across unloaded cold discovery; the other selectors'
+populated exclusion does not qualify their own positive producers.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

@@ -1,0 +1,175 @@
+{
+  "definition": "ThreadSourceKind",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "cli": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "cli"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "vscode": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "vscode"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "exec": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "exec"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "appServer": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "appServer"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "subAgent": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "subAgent"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "subAgentReview": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "subAgentReview"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "subAgentCompact": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "subAgentCompact"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "subAgentThreadSpawn": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "subAgentThreadSpawn"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "subAgentOther": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "subAgentOther"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "unknown": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "unknown"
+      ],
+      "type": "object"
+    }
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/list",
+    "thread/search"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+    "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61"
+  },
+  "semantics": "The ordinary camelCase ThreadSourceKind unit enum, including explicitly renamed vscode and the real unknown variant, accepts one-key objects for its ten exact variants through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches exactly thread/list.sourceKinds[]; full additionally reaches experimental thread/search.sourceKinds[]. Preserve the complete canonical enum, caller arrays/objects and ordering, existing sort/direction corrections and method/field gates. Outer sourceKinds is an optional nullable array; elements are nonnullable enum values. Null unit payload selects a present filter, while outer omission/null/empty remain distinct caller inputs with native-owned default/relation behavior; no normalization, enum default or output change is introduced. Native owns persisted source filtering and pagination. The bounded ordinary producer supplies genuine vscode only: object-specific vscode inclusion and populated exclusion for other selectors do not establish positive producers for those nine source kinds, richer defaults, relation behavior, mixed-OR effects or every history/transport/platform combination. Cold populated results and original history/source retention require independent native evidence; input acceptance alone does not execute a turn.",
+  "source_sha256": {
+    "source/common.rs": "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

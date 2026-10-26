@@ -224,6 +224,26 @@ defmodule StandaloneCodexTest do
       end
     end
 
+    for kind <-
+          ~w(cli vscode exec appServer subAgent subAgentReview subAgentCompact subAgentThreadSpawn subAgentOther unknown),
+        payload <- [nil, %{}] do
+      object = %{kind => payload}
+
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request("thread/list", %{
+                 "sourceKinds" => [object]
+               })
+
+      for {method, params} <- [
+            {"thread/list", %{"sourceKinds" => [object]}},
+            {"thread/search",
+             %{"searchTerm" => "Outside owned source", "sourceKinds" => [object]}}
+          ] do
+        assert :ok =
+                 SamgitaProtocolCodex.Schema.validate_request(method, params, experimental: true)
+      end
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

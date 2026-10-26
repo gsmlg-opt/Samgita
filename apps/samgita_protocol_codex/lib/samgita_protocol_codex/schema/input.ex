@@ -20,7 +20,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/sort-direction-input-semantics.json",
                       "source/project-sort-key-input-semantics.json",
                       "source/turn-items-view-input-semantics.json",
-                      "source/merge-strategy-input-semantics.json"
+                      "source/merge-strategy-input-semantics.json",
+                      "source/thread-source-kind-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -42,6 +43,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @project_sort Enum.find(@corrections, &(&1["definition"] == "ProjectSortKey"))
   @items_view Enum.find(@corrections, &(&1["definition"] == "TurnItemsView"))
   @merge_strategy Enum.find(@corrections, &(&1["definition"] == "MergeStrategy"))
+  @source_kind Enum.find(@corrections, &(&1["definition"] == "ThreadSourceKind"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -111,10 +113,10 @@ defmodule SamgitaProtocolCodex.Schema.Input do
     do: summary_input(document)
 
   def contract("ClientRequest.json", "thread/search", document),
-    do: document |> search_sort_input() |> direction_input()
+    do: document |> search_sort_input() |> direction_input() |> source_kind_input()
 
   def contract("ClientRequest.json", "thread/list", document),
-    do: document |> list_sort_input() |> direction_input()
+    do: document |> list_sort_input() |> direction_input() |> source_kind_input()
 
   def contract("ClientRequest.json", "project/list", document),
     do: document |> project_sort_input() |> direction_input()
@@ -249,6 +251,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "MergeStrategy"],
       &%{"oneOf" => [&1 | @merge_strategy["input_object_branches"]]}
+    )
+  end
+
+  defp source_kind_input(document) do
+    update_in(
+      document,
+      ["definitions", "ThreadSourceKind"],
+      &%{"oneOf" => [&1 | @source_kind["input_object_branches"]]}
     )
   end
 

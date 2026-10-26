@@ -143,6 +143,23 @@ MERGE_STRATEGY_SCHEMAS = {
         "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
     },
 }
+SOURCE_KIND_SEMANTICS = "source/thread-source-kind-input-semantics.json"
+SOURCE_KIND_PATHS = {
+    "stable": (("thread/list", ("sourceKinds", "[]")),),
+    "experimental": (("thread/list", ("sourceKinds", "[]")),
+                     ("thread/search", ("sourceKinds", "[]"))),
+}
+SOURCE_KIND_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+        "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -1134,6 +1151,152 @@ def derive_merge_strategy(vendor):
     }
 
 
+def derive_source_kind(vendor):
+    sources = {THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned thread source kind input source changed: " + name)
+    rust = (vendor / THREAD).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(rename_all = "camelCase", export_to = "v2/"\)\]\n'
+        r'pub enum ThreadSourceKind \{\n(.*?)\n\}', rust, re.S)
+    variants = (("Cli", "cli"), ("VsCode", "vscode"), ("Exec", "exec"),
+                ("AppServer", "appServer"), ("SubAgent", "subAgent"),
+                ("SubAgentReview", "subAgentReview"), ("SubAgentCompact", "subAgentCompact"),
+                ("SubAgentThreadSpawn", "subAgentThreadSpawn"),
+                ("SubAgentOther", "subAgentOther"), ("Unknown", "unknown"))
+    body = '\n'.join(
+        ('    #[serde(rename = "vscode")]\n    #[ts(rename = "vscode")]\n'
+         if variant == "VsCode" else '') + '    ' + variant + ','
+        for variant, _name in variants)
+    if not declaration or declaration[1] != body:
+        raise ValueError("Pinned ThreadSourceKind unit variants or explicit vscode rename changed")
+    names = [name for _variant, name in variants]
+    field = (
+        '    /// Optional source filter; when set, only sessions from these source kinds\n'
+        '    /// are returned. When omitted or empty, defaults to interactive sources.\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub source_kinds: Option<Vec<ThreadSourceKind>>,')
+    for owner, derives in (
+            ("ThreadListParams", "Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS, ExperimentalApi"),
+            ("ThreadSearchParams", "Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS")):
+        params = re.search(
+            r'#\[derive\(' + re.escape(derives) + r'\)\]\n'
+            r'#\[serde\(rename_all = "camelCase"\)\]\n'
+            r'#\[ts\(export_to = "v2/"\)\]\n'
+            r'pub struct ' + owner + r' \{\n(.*?)\n\}', rust, re.S)
+        if not params or field not in params[1]:
+            raise ValueError("Pinned sourceKinds Option array declaration changed: " + owner)
+        search = ('    /// Required substring/full-text query for thread search.\n'
+                  '    pub search_term: String,')
+        if owner == "ThreadSearchParams" and search not in params[1]:
+            raise ValueError("Pinned required thread/search query changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    for method in (
+            '    },\n    ThreadList => "thread/list" {\n'
+            '        params: v2::ThreadListParams,\n'
+            '        inspect_params: true,\n'
+            '        serialization: None,\n'
+            '        response: v2::ThreadListResponse,\n    },',
+            '    #[experimental("thread/search")]\n'
+            '    ThreadSearch => "thread/search" {\n'
+            '        params: v2::ThreadSearchParams,\n'
+            '        serialization: None,\n'
+            '        response: v2::ThreadSearchResponse,\n    },'):
+        if method not in common:
+            raise ValueError("Pinned source filter standard/experimental method boundary changed")
+
+    def input_paths(node, path, seen, document):
+        if isinstance(node, dict):
+            reference = node.get("$ref")
+            if reference == "#/definitions/ThreadSourceKind":
+                return [path]
+            if reference:
+                if reference in seen:
+                    return []
+                return input_paths(document["definitions"][reference.removeprefix("#/definitions/")],
+                                   path, seen | {reference}, document)
+            if "properties" in node:
+                return [result for key, child in node["properties"].items()
+                        for result in input_paths(child, (*path, key), seen, document)]
+            if "items" in node:
+                return input_paths(node["items"], (*path, "[]"), seen, document)
+            return [result for child in node.values()
+                    for result in input_paths(child, path, seen, document)]
+        if isinstance(node, list):
+            return [result for child in node
+                    for result in input_paths(child, path, seen, document)]
+        return []
+
+    expected_field = {
+        "description": "Optional source filter; when set, only sessions from these source kinds are returned. When omitted or empty, defaults to interactive sources.",
+        "items": {"$ref": "#/definitions/ThreadSourceKind"},
+        "type": ["array", "null"],
+    }
+    hashes = {}
+    for profile, schemas in SOURCE_KIND_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned thread source kind schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["ThreadSourceKind"] != {"enum": names, "type": "string"}:
+                raise ValueError("Official canonical source kind enum changed: " + profile + "/" + name)
+            if name == "ClientRequest.json":
+                paths = sorted(
+                    (method, field_path) for branch in document["oneOf"]
+                    for field_path in input_paths(branch["properties"]["params"], (), set(), document)
+                    for method in branch["properties"]["method"]["enum"])
+                if paths != list(SOURCE_KIND_PATHS[profile]):
+                    raise ValueError("ThreadSourceKind request property-array paths changed: " + profile)
+                owners = [("thread/list", "ThreadListParams")]
+                if profile == "experimental":
+                    owners.append(("thread/search", "ThreadSearchParams"))
+                elif ("ThreadSearchParams" in document["definitions"]
+                      or any("thread/search" in branch["properties"]["method"]["enum"]
+                             for branch in document["oneOf"])
+                      or (vendor / "stable/v2/ThreadSearchParams.json").exists()):
+                    raise ValueError("Pinned experimental-only thread/search export boundary changed")
+                definitions = []
+                for method, owner in owners:
+                    branches = [branch for branch in document["oneOf"]
+                                if branch["properties"]["method"]["enum"] == [method]]
+                    if len(branches) != 1 or branches[0]["properties"]["params"] != {
+                            "$ref": "#/definitions/" + owner}:
+                        raise ValueError("Pinned source filter params reference changed: " + method)
+                    definitions.append((owner, document["definitions"][owner]))
+            else:
+                definitions = [(path.stem, document)]
+            for owner, definition in definitions:
+                required = ["searchTerm"] if owner == "ThreadSearchParams" else []
+                if (definition["type"] != "object" or definition.get("required", []) != required
+                        or definition["properties"]["sourceKinds"] != expected_field):
+                    raise ValueError("Official optional source array/nonnullable element contract changed: " + owner)
+                if owner == "ThreadSearchParams" and definition["properties"]["searchTerm"] != {
+                        "description": "Required substring/full-text query for thread search.", "type": "string"}:
+                    raise ValueError("Official required thread/search query contract changed")
+            if (vendor / profile / "v2/ThreadSourceKind.json").exists():
+                raise ValueError("Pinned nested-only source kind export boundary changed")
+            if profile == "experimental":
+                hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": [method for method, _path in SOURCE_KIND_PATHS["experimental"]],
+        "definition": "ThreadSourceKind",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary camelCase ThreadSourceKind unit enum, including explicitly renamed vscode and the real unknown variant, accepts one-key objects for its ten exact variants through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches exactly thread/list.sourceKinds[]; full additionally reaches experimental thread/search.sourceKinds[]. Preserve the complete canonical enum, caller arrays/objects and ordering, existing sort/direction corrections and method/field gates. Outer sourceKinds is an optional nullable array; elements are nonnullable enum values. Null unit payload selects a present filter, while outer omission/null/empty remain distinct caller inputs with native-owned default/relation behavior; no normalization, enum default or output change is introduced. Native owns persisted source filtering and pagination. The bounded ordinary producer supplies genuine vscode only: object-specific vscode inclusion and populated exclusion for other selectors do not establish positive producers for those nine source kinds, richer defaults, relation behavior, mixed-OR effects or every history/transport/platform combination. Cold populated results and original history/source retention require independent native evidence; input acceptance alone does not execute a turn.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -1183,7 +1346,8 @@ def corrections(vendor):
             (DIRECTION_SEMANTICS, derive_direction(vendor)),
             (PROJECT_SORT_SEMANTICS, derive_project_sort(vendor)),
             (ITEMS_VIEW_SEMANTICS, derive_items_view(vendor)),
-            (MERGE_STRATEGY_SEMANTICS, derive_merge_strategy(vendor)))
+            (MERGE_STRATEGY_SEMANTICS, derive_merge_strategy(vendor)),
+            (SOURCE_KIND_SEMANTICS, derive_source_kind(vendor)))
 
 
 def write(vendor):

@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [source-kind input repair](thread-source-kind-input-qualification.md) accepts
+twenty native objects on standard list and experimental search arrays, retaining
+original bytes, exact names and outer-array distinctions. One genuine vscode
+producer supplies40 cold discovery queries; the other selectors' populated
+exclusion does not qualify their own positive producers. Final **87 schema /138
+ordinary driver twice**, outside consumer **1/0**, strict Credo539, inventory
+and370-source guard pass; all363 other prior sources, fourteen descriptors and770
+exports remain unchanged. Root compile/format/assets, forced Dialyzer, architecture
+scanners and local production assembly pass. The first strict-Credo predicate
+finding and failed matrix are retained; every assertion/bound stays enforced.
+Counts remain **5,038 implemented /1,517 missing /66 blocked** contracts and
+**462 implemented /12 missing /11 blocked** requirements, zero verified.
+Next qualify genuine tool-containing Summary/Full/NotLoaded projections across
+warm list/resume and cold list. Prohibited/broad/hosted, A11, legacy/external/OS/
+platform and full-goal gates remain incomplete.
+
 The [merge-strategy input repair](merge-strategy-input-qualification.md) accepts
 four native unit objects on both standard config-write paths, retaining required
 non-Option strategies and exact caller bytes. Eight independent ordinary desktop

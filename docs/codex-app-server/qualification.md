@@ -5,8 +5,9 @@ the current checkpoint. Recent native input repairs cover
 [list keys](list-sort-input-qualification.md),
 [directions](sort-direction-input-qualification.md),
 [project keys](project-sort-key-input-qualification.md),
-[turn item views](turn-items-view-input-qualification.md) and
-[configuration merge strategies](merge-strategy-input-qualification.md).
+[turn item views](turn-items-view-input-qualification.md),
+[configuration merge strategies](merge-strategy-input-qualification.md) and
+[thread source kinds](thread-source-kind-input-qualification.md).
 Each binds native acceptance and observable effects to the immutable release,
 preserving all official exports, original caller data and existing gates.
 Their scoped evidence does not promote complete requirements or physical owners.
