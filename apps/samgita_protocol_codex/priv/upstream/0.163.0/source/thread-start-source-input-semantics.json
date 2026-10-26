@@ -1,0 +1,53 @@
+{
+  "definition": "ThreadStartSource",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "startup": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "startup"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "clear": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "clear"
+      ],
+      "type": "object"
+    }
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/start"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadStartParams.json": "80a40a7fac15b4bf70efb7f893fb353acc0a0d30c68f54aee4f01923deca85de"
+  },
+  "semantics": "The ordinary camelCase ThreadStartSource unit enum accepts one-key startup/clear objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/start reaches this standard input definition in both stable and full profiles. Preserve the complete canonical string schema, caller objects, enclosing constraints and outer null/omission. Native selects new/cleared history initialization for the new thread; acceptance does not submit a turn or clear other threads. Input acceptance and first-turn initialization provenance do not qualify source-specific SessionStart hook effects. Output schemas remain canonical.",
+  "source_sha256": {
+    "source/common.rs": "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

@@ -13,7 +13,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/multi-agent-input-semantics.json",
                       "source/reasoning-summary-input-semantics.json",
                       "source/personality-input-semantics.json",
-                      "source/history-mode-input-semantics.json"
+                      "source/history-mode-input-semantics.json",
+                      "source/thread-start-source-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -28,6 +29,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @summary_methods @summary["methods"]
   @personality Enum.find(@corrections, &(&1["definition"] == "Personality"))
   @history_mode Enum.find(@corrections, &(&1["definition"] == "ThreadHistoryMode"))
+  @start_source Enum.find(@corrections, &(&1["definition"] == "ThreadStartSource"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -67,6 +69,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
     |> multi_agent_input()
     |> personality_input()
     |> history_mode_input()
+    |> start_source_input()
   end
 
   def contract("ClientRequest.json", "thread/resume", document) do
@@ -157,6 +160,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "ThreadHistoryMode"],
       &%{"oneOf" => [&1 | @history_mode["input_object_branches"]]}
+    )
+  end
+
+  defp start_source_input(document) do
+    update_in(
+      document,
+      ["definitions", "ThreadStartSource"],
+      &%{"oneOf" => [&1 | @start_source["input_object_branches"]]}
     )
   end
 

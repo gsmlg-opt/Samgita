@@ -65,6 +65,13 @@ section from the model template before initial inference. Later updates and cold
 resume retain inherited base instructions; subscribed warm rejoin ignores these
 overrides. Friendly and pragmatic no longer select different styles.
 Original objects are preserved and public selected values remain canonical strings.
+The [history-mode input correction](history-mode-input-qualification.md) and
+[start-source input correction](start-source-input-qualification.md) apply only
+to `thread/start`. Source-derived unions preserve canonical strings, outer
+null/omission and original object bytes. The latter selects `new` or `cleared`
+initialization on a new thread; it does not erase earlier histories or start
+inference. Its native first-turn metadata and cold-read evidence do not qualify
+source-specific hooks.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

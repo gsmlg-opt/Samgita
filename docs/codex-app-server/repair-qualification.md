@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [start-source input repair](start-source-input-qualification.md) reproduces
+local rejection and corrects only the native unit-object input contract. Actual
+default-validation starts/turns prove prescribed new/cleared provider metadata
+and retained prior/unloaded-cold histories. Final **52 schema /124 ordinary driver
+cases twice**, outside consumer **1/0**, strict checks, inventory and347-source
+guard pass; all340 other prior sources and every old pin stay unchanged. Existing
+process cleanup, neutral replay and populated-database recovery repairs remain
+intact. Both retained plug_crypto locks are already2.2.1; no dependency audit or
+recovery/protection suite is rerun under the restriction. Counts stay unchanged,
+strict completeness exits1 and A11/full-goal acceptance remain incomplete.
+
 The [compaction input alias repair](compaction-input-alias-qualification.md)
 adds the exact native alias to the supplied-history input contract, preserving
 caller tags, official exports, canonical output and earlier tool semantics.

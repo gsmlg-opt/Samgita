@@ -46,6 +46,9 @@ COMMON = "source/common.rs"
 COMMON_SHA256 = "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3"
 HISTORY_MODE_METHODS = ("thread/start",)
 HISTORY_MODE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
+START_SOURCE_SEMANTICS = "source/thread-start-source-input-semantics.json"
+START_SOURCE_METHODS = ("thread/start",)
+START_SOURCE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -366,6 +369,59 @@ def derive_history_mode(vendor):
     }
 
 
+def derive_start_source(vendor):
+    sources = {THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned thread start source input changed: " + name)
+    rust = (vendor / THREAD).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "camelCase"\)\]\n'
+        r'#\[ts\(rename_all = "camelCase", export_to = "v2/"\)\]\n'
+        r'pub enum ThreadStartSource \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != '    Startup,\n    Clear,':
+        raise ValueError("Pinned ThreadStartSource unit variants changed")
+    names = [name[:1].lower() + name[1:] for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    field = (
+        '    pub history_mode: Option<ThreadHistoryMode>,\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub session_start_source: Option<ThreadStartSource>,')
+    if field not in rust:
+        raise ValueError("Pinned standard sessionStartSource field declaration changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    hashes = {}
+    for profile in ("stable", "experimental"):
+        for name in START_SOURCE_SCHEMAS:
+            path = vendor / profile / name
+            document = json.loads(path.read_text())
+            if document["definitions"]["ThreadStartSource"] != {"type": "string", "enum": names}:
+                raise ValueError("Official canonical start source contract changed: " + profile + "/" + name)
+            definition = document["definitions"]["ThreadStartParams"] if name == START_SOURCE_SCHEMAS[0] else document
+            if definition["properties"]["sessionStartSource"] != {
+                    "anyOf": [{"$ref": "#/definitions/ThreadStartSource"}, {"type": "null"}]}:
+                raise ValueError("Official sessionStartSource field contract changed: " + profile + "/" + name)
+            if name == START_SOURCE_SCHEMAS[0] and (
+                    request_methods(document, "ThreadStartSource") != list(START_SOURCE_METHODS)):
+                raise ValueError("ThreadStartSource request input graph changed: " + profile)
+            if profile == "experimental":
+                hashes[name] = digest(path)
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(START_SOURCE_METHODS),
+        "definition": "ThreadStartSource",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary camelCase ThreadStartSource unit enum accepts one-key startup/clear objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/start reaches this standard input definition in both stable and full profiles. Preserve the complete canonical string schema, caller objects, enclosing constraints and outer null/omission. Native selects new/cleared history initialization for the new thread; acceptance does not submit a turn or clear other threads. Input acceptance and first-turn initialization provenance do not qualify source-specific SessionStart hook effects. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -408,7 +464,8 @@ def corrections(vendor):
             (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)),
             (SUMMARY_SEMANTICS, derive_summary(vendor)),
             (PERSONALITY_SEMANTICS, derive_personality(vendor)),
-            (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)))
+            (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)),
+            (START_SOURCE_SEMANTICS, derive_start_source(vendor)))
 
 
 def write(vendor):

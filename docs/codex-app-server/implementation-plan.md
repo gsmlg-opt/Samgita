@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [start-source input repair](start-source-input-qualification.md) accepts four
+native unit objects on thread/start without changing caller bytes or output
+contracts. Actual first-turn `new`/`cleared` metadata and retained warm/cold
+histories pass. Final **52 schema /124 ordinary driver twice**, outside consumer
+**1/0**, format/compile, strict Credo525, inventory and347-source guard pass;
+all340 other prior sources, seven descriptors and770 exports remain unchanged.
+Contracts stay **5,038 implemented /1,517 missing /66 blocked**; requirements
+**462 implemented /12 missing /11 blocked**, zero verified. Next reproduce the
+source-selected ThreadSearchSortKey object mismatch and native persisted ordering;
+its staged tests/patch remain unrun. Source-specific hooks and prohibited/broad/
+hosted, A11, legacy/external/OS/platform/full-goal gates remain incomplete.
+
 The [failed/running child family](collaboration-failure-running-qualification.md)
 qualifies exactly owners2083/2086/2098/5292/5295 through actual v1 child failure,
 sampled-request barrier before close and independent live/warm/first-cold states.

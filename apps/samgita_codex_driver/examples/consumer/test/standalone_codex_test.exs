@@ -134,6 +134,15 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for source <- ~w(startup clear), payload <- [nil, %{}], opts <- [[], [experimental: true]] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/start",
+                 %{"sessionStartSource" => %{source => payload}},
+                 opts
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

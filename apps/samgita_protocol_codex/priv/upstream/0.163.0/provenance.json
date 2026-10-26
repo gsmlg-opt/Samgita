@@ -497,6 +497,7 @@
     "source/supplemental-typescript/ServerNotification.ts": "df9b5ab2f11010ac336fb7c5b6bb386a7c389cd5dbe742ac5c804fcc69bd40d9",
     "source/supplemental-typescript/SessionSource.ts": "b5dd65ef3b7695c8cee80e561857ac731cca6032183e6f0a2fd66410d9908c7c",
     "source/supplemental-typescript/ThreadId.ts": "7ffbbefebc5e49a3215dacf4639d4fdd79c5577f9cebdf46760bdfa7312a1109",
+    "source/thread-start-source-input-semantics.json": "61d0543d181e849e47aed49a322420ec3698ed12a92caaad35af9bef7d6c9bf3",
     "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502",
     "source/thread_data.rs": "293359f14a1a11da8d54acce7bc69b5756c1d30b5a59e8768f5ce6b4e02edeb1",
     "source/v1.rs": "e0642bd1bc7dbe5e24d508420471d705d5688efe8df3a8b40e3af22be55d7754",
