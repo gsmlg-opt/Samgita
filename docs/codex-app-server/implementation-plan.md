@@ -21,6 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine Review child source](native-review-source-qualification.md) passes
+the current **57-file,111/0 twice** functional matrix, compile/format, strict
+Credo on507 sources, outside consumer1/0,30 fixture ASTs plus the existing inline
+Exec launcher and308 guarded sources. Only existing owner678 gains supplemental
+evidence; counts stay **4,996 implemented /1,559 missing /66 blocked** contracts,
+**462 implemented /12 missing /11 blocked** requirements, zero verified. Actual
+inline ReviewTask/delegate persistence, independent provider/canonical child
+identity, parent lifecycle, positive child/vscode/mixed discovery and stable cold
+paging retain exactly2 model requests. Explicit12-field read-versus-summary
+expectations preserve native ancestry/session/casing differences.44 whole files
+match the archive; all307 prior guarded sources stay unchanged. Two initial
+projection failures and one static failure remain recorded; helper extraction
+preserves assertions, bounds and deadlines. Inventory passes; strict completeness
+exits **1**. Prohibited/broad/hosted, A11, unavailable legacy/external/OS/platform
+and full-goal/release gates remain incomplete. No publication/deployment.
+
+Continue independent genuine source-producer work. Exact source investigation
+finds no mcp-server entry or session-source selector in this combined binary;
+positive appServer source stays incomplete, with the separate upstream binary
+distinction recorded in `/tmp/samgita-v337-candidate-report.md`. Ordinary TUI CLI
+source feasibility is under source-only investigation. No source finding is
+native acceptance; preserve fixed-yolo setup and the prohibited test boundary.
+
+## Earlier checkpoints
+
 The [genuine Exec source](native-exec-source-qualification.md) passes the current
 **56-file,110/0 twice** functional matrix, compile/format, strict Credo on506
 sources, outside consumer1/0,30 fixture ASTs plus the inline EOF launcher and307
@@ -35,15 +60,6 @@ oracle corrections preserve bounds, deadlines and cleanup. Inventory passes;
 strict completeness exits **1**. Prohibited/broad/hosted, A11, unavailable
 legacy/external/OS/platform and full-goal/release gates remain incomplete.
 No publication/deployment.
-
-Continue the source-backed genuine inline Custom Review child producer profile
-for owner678. Derive its identity from actual provider metadata and canonical
-SessionMeta, distinguish the parent review response, wait for durable native
-history and repeat positive source discovery in a fresh reader. The draft in
-`/tmp/native_review_source_values_test.exs` is not runtime evidence. Preserve
-fixed-yolo setup and the prohibited verification boundary.
-
-## Earlier checkpoints
 
 The [source-kind and local plugin filters](native-source-and-local-plugin-filters-qualification.md)
 pass the current **55-file,109/0 twice** functional matrix, compile/format,

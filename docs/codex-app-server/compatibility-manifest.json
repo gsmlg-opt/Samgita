@@ -43201,15 +43201,17 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md",
+        "docs/codex-app-server/native-review-source-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/5",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
-        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
-        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+        "Explicit sourceKinds subAgentReview reaches actual thread/list and thread/search. Genuine native inline Custom review on a non-ephemeral Paginated vscode parent starts the real ReviewTask/delegate child; one prior ordinary parent turn and one real child model request against the inert local Responses fixture total exactly2. Inline response identifies parent review turn; child identity and parent-turn/thread links independently derive from actual provider metadata, canonical SessionMeta and durable completed UserMessage/AgentMessage items. Parent review entered/exited/completion and native paginated child/parent histories are distinct. Two fresh readers issue12 exact child/vscode/mixed-OR list/search queries before hydration, asserting independent IDs, full12-field route-specific projections and literal snippets, then stable public item IDs/content/full turns across cold paging. Canonical/config/source/journal bytes retained; bounded observable readiness, complete correlated wire capture and normal owned process reaping. Earlier populated exclusion evidence retained; no manufactured row/source, additional inference, legacy-producer or full review-method claim.",
+        "Pinned semantic differences remain explicit: canonical child source {subagent:review} versus public {subAgent:review}; canonical session_id is parent while unloaded stored public sessionId is child. Paginated/SQLite thread/read preserves canonical parent/classification, but ordinary unloaded DB list/search have parentThreadId:null and threadSource:null (including vscode summary classification). All12 fields remain asserted against their distinct source paths; driver responses are never normalized or patched. General ancestry/session consistency, loaded/resume/fallback paths and other physical field owners gain no qualification.",
+        "Final reviewed57-file111/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on507 sources, outside actual-binary consumer1/0,30 fixture ASTs plus existing inline Exec-launcher AST and308-source guard.44 whole source/template files equal the immutable archive; exact owner678 and actual producer/list/search graphs independently checked. All307 prior sources remain byte-identical. Two initial projection-oracle failures and initial strict-Credo failure remain recorded; helper extraction preserves assertions, bounds and deadlines. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Supplemental evidence only for existing implemented physical owner678; no new owner, state/requirements/count promotion, sibling/reference/hash propagation or verified claim. Linux-x86_64-musl/stdio and local fake model only. Other producers, prohibited/broad/hosted checks, unavailable external/platform/OS success, A11 and full compatibility/release remain incomplete; no publication/deployment."
       ],
       "pointer": "/definitions/ThreadSourceKind/enum/5",
       "schema": "ClientRequest.json",
@@ -43222,7 +43224,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs",
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
         ]
       },
       "transport_coverage": [

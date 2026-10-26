@@ -1,5 +1,21 @@
 # Codex compatibility qualification
 
+The [genuine Review child source](native-review-source-qualification.md) passes
+the current **57-file,111/0 twice** functional matrix, compile/format, strict
+Credo on507 sources, outside consumer1/0,30 fixture ASTs plus the existing inline
+Exec launcher and308 guarded sources. Only existing owner678 gains supplemental
+evidence; counts stay **4,996 implemented /1,559 missing /66 blocked** contracts,
+**462 implemented /12 missing /11 blocked** requirements, zero verified. Actual
+inline ReviewTask/delegate persistence, independent provider/canonical child
+identity, parent lifecycle, positive child/vscode/mixed discovery and stable cold
+paging retain exactly2 model requests. Explicit12-field read-versus-summary
+expectations preserve native ancestry/session/casing differences.44 whole files
+match the archive; all307 prior guarded sources stay unchanged. Two initial
+projection failures and one static failure remain recorded; helper extraction
+preserves assertions, bounds and deadlines. Inventory passes; strict completeness
+exits **1**. Prohibited/broad/hosted, A11, unavailable legacy/external/OS/platform
+and full-goal/release gates remain incomplete. No publication/deployment.
+
 The [genuine Exec source](native-exec-source-qualification.md) passes the current
 **56-file,110/0 twice** functional matrix, compile/format, strict Credo on506
 sources, outside consumer1/0,30 fixture ASTs plus the inline EOF launcher and307

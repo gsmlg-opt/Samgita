@@ -44,8 +44,10 @@ flag cannot qualify this artifact.
 
 Subsequent [genuine Exec evidence](native-exec-source-qualification.md) adds a
 real CLI producer and positive cold list/search discrimination for owner675.
-The exclusion-only limits above describe this original profile; the six other
-absent producer kinds gain no positive evidence from that later test.
+[Genuine Review child evidence](native-review-source-qualification.md) later
+adds its own positive producer/discovery for owner678. The exclusion-only limits
+above describe this original profile; the five other absent producer kinds gain
+no positive evidence from those later tests.
 
 Pinned source identifies real CLI/TUI, Exec and Review producer possibilities.
 The bounded Compact constructor search is **not global unreachability proof**;
