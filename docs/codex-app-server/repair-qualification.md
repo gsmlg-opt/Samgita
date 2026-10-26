@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
+pass the eight-file **14/0 twice** functional matrix, scoped format/compile,
+outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.
+Four exact output alternatives receive independent native notification and
+selective/cold-read evidence; all production/test/cleanup sources are unchanged.
+Contracts become **5,018 implemented / 1,537 missing / 66 blocked**, unchanged
+requirements and zero verified. Inventory passes; strict completeness exits
+**1**. Prohibited/broad/hosted, A11 and full-goal gates remain incomplete.
+
 The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
 pass the six-file **12/0 twice** functional matrix, scoped format/compile,
 outside consumer **1/0**, two fixture ASTs and the 311-source guard. Only five

@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
+pass the eight-file **14/0 twice** ordinary native matrix, scoped
+format/compile, outside consumer **1/0**, two fixture ASTs and the 311-source
+guard. Actual parsed citations and native compaction items independently survive
+live notifications, selective output and first cold reads. Four exact owners
+2564/2574/5523/5533 and twelve immutable files are bound; all executable sources
+remain unchanged. Contracts become **5,018 implemented / 1,537 missing / 66 blocked**,
+unchanged requirements and zero verified. Inventory passes; strict completeness
+exits **1**. Prohibited/broad/hosted, A11, legacy/external/platform and full-goal/
+release gates remain incomplete. No publication or deployment.
+
 The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
 pass the six-file **12/0 twice** ordinary actual-binary matrix, scoped
 format/compile, outside consumer **1/0**, two fixture ASTs and the 311-source

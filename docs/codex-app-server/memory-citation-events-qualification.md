@@ -1,5 +1,9 @@
 # Native memory-citation event fields
 
+Later [completed-item qualification](native-completed-item-alternatives-qualification.md)
+adds direct evidence for the nonnull citation alternatives in live and selective
+exports; the initial six-field checkpoint below remains historical evidence.
+
 This unit covers six physical `ServerNotification.json` fields **2295–2300**:
 citation entries and thread IDs, then each entry's line end/start, note and path.
 It does not enable memory retrieval. The target remains Codex `rust-v0.163.0`,

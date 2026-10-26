@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [completed-item alternatives](native-completed-item-alternatives-qualification.md)
+pass the eight-file **14/0 twice** functional matrix, scoped format/compile,
+outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.
+Separate actual notification/selective-response assertions, real native
+producer effects and first cold selection bind exact owners 2564/2574/5523/5533
+and twelve immutable files. Contracts are **5,018 implemented / 1,537 missing /
+66 blocked**; requirements and zero-verified status stay unchanged. No executable
+change or legacy-notification claim occurs. Next inspect a substantive ordinary
+experimental-negotiation/default-semantics regression gap; prohibited and
+external/platform/full-goal gates remain incomplete.
+
 The [exact search source alternatives](subagent-search-provenance-qualification.md#exact-enclosing-source-alternatives)
 pass the six-file **12/0 twice** functional matrix, scoped format/compile,
 outside consumer **1/0**, two fixture ASTs and the unchanged 311-source guard.
