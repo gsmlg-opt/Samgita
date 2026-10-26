@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Derive bounded pinned input corrections, retaining official JSON.
 
-Cover thread/start's custom dynamic-tool decoder and thread/resume's compaction
-input alias. These describe accepted input, never outgoing-value normalization.
+Cover custom dynamic-tool decoding, compaction and collaboration input aliases.
+These describe accepted input, never outgoing-value normalization.
 """
 
 import json
@@ -24,6 +24,11 @@ RESPONSE_SEMANTICS = "source/response-item-input-semantics.json"
 MODELS = "source/models.rs"
 MODELS_SHA256 = "df9a3da250376d86203a8a1219b2e4b5353a62274d094bb36998560433bd58eb"
 RESPONSE_SCHEMAS = ("ClientRequest.json", "v2/ThreadResumeParams.json")
+COLLABORATION_SEMANTICS = "source/collaboration-input-semantics.json"
+CONFIG_TYPES = "source/config_types.rs"
+CONFIG_TYPES_SHA256 = "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8"
+COLLABORATION_METHODS = ("thread/settings/update", "turn/start")
+COLLABORATION_SCHEMAS = ("ClientRequest.json", "v2/ThreadSettingsUpdateParams.json", "v2/TurnStartParams.json")
 
 
 def derive(vendor):
@@ -109,8 +114,60 @@ def derive_response_item(vendor):
     }
 
 
+def derive_collaboration(vendor):
+    if digest(vendor / CONFIG_TYPES) != CONFIG_TYPES_SHA256:
+        raise ValueError("Pinned collaboration mode decoder changed")
+    rust = (vendor / CONFIG_TYPES).read_text()
+    declaration = re.search(r'pub enum ModeKind \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or not declaration[1].startswith('    Plan,\n    #[default]\n'):
+        raise ValueError("Pinned ModeKind variants changed")
+    aliases = re.findall(r'alias = "([^"\n]+)"', declaration[1])
+    if aliases != ["code", "pair_programming", "execute", "custom"]:
+        raise ValueError("Pinned Default aliases changed")
+    if not declaration[1].endswith('    )]\n    Default,'):
+        raise ValueError("Pinned alias target changed")
+    hashes = {}
+    for name in COLLABORATION_SCHEMAS:
+        path = vendor / "experimental" / name
+        document = json.loads(path.read_text())
+        if document["definitions"]["ModeKind"]["enum"] != ["plan", "default"]:
+            raise ValueError("Official canonical mode contract changed: " + name)
+        hashes[name] = digest(path)
+    document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
+    reachable = []
+    for branch in document["oneOf"]:
+        pending, seen = [branch["properties"]["params"]], set()
+        while pending:
+            value = pending.pop()
+            if isinstance(value, dict):
+                reference = value.get("$ref", "").removeprefix("#/definitions/")
+                if reference and reference not in seen:
+                    seen.add(reference)
+                    pending.append(document["definitions"][reference])
+                pending.extend(value.values())
+            elif isinstance(value, list):
+                pending.extend(value)
+        if "ModeKind" in seen:
+            reachable.extend(branch["properties"]["method"]["enum"])
+    if sorted(reachable) != list(COLLABORATION_METHODS):
+        raise ValueError("ModeKind request input graph changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(COLLABORATION_METHODS),
+        "definition": "ModeKind",
+        "canonical_tag": "default",
+        "input_aliases": aliases,
+        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256},
+        "schemas_sha256": hashes,
+        "semantics": "Accept the four pinned serde input aliases for ModeKind::Default only in its two reachable client request graphs. Preserve caller values, all collaboration settings constraints, experimental negotiation and canonical output schemas. Native decoding owns normalization to default and its actual mode behavior.",
+    }
+
+
 def corrections(vendor):
-    return ((SEMANTICS, derive(vendor)), (RESPONSE_SEMANTICS, derive_response_item(vendor)))
+    return ((SEMANTICS, derive(vendor)), (RESPONSE_SEMANTICS, derive_response_item(vendor)),
+            (COLLABORATION_SEMANTICS, derive_collaboration(vendor)))
 
 
 def write(vendor):

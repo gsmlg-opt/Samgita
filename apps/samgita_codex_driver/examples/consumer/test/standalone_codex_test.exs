@@ -56,6 +56,21 @@ defmodule StandaloneCodexTest do
                experimental: true
              )
 
+    for mode <- ~w(code pair_programming execute custom) do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/settings/update",
+                 %{
+                   "threadId" => "owned-thread",
+                   "collaborationMode" => %{
+                     "mode" => mode,
+                     "settings" => %{"model" => "mock-model"}
+                   }
+                 },
+                 experimental: true
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

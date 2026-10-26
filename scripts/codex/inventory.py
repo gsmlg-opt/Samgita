@@ -414,6 +414,7 @@ def generate(source):
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/dynamic_tools.rs", VENDOR / "source/dynamic-tools.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/models.rs", VENDOR / "source/models.rs")
+    shutil.copyfile(source / "codex-rs/protocol/src/config_types.rs", VENDOR / "source/config_types.rs")
     shutil.copyfile(source / PROTOCOL / "v2/realtime.rs", VENDOR / "source/realtime.rs")
     from generate_input_semantics import write as write_input_semantics
     write_input_semantics(VENDOR)

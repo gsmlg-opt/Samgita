@@ -1,0 +1,26 @@
+{
+  "canonical_tag": "default",
+  "definition": "ModeKind",
+  "generator": "scripts/codex/generate_input_semantics.py",
+  "input_aliases": [
+    "code",
+    "pair_programming",
+    "execute",
+    "custom"
+  ],
+  "kind": "locally-derived-input-contract-not-official-export",
+  "methods": [
+    "thread/settings/update",
+    "turn/start"
+  ],
+  "schemas_sha256": {
+    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "v2/ThreadSettingsUpdateParams.json": "749419634bb7ed66216d72bf9d8734ecf0e6efaa8cd46fe51a117d1b42ed9657",
+    "v2/TurnStartParams.json": "abf0d6d29d223b38c650ff1155cb9c9f9b4211e6d0e20c57d750a9e1babfdb41"
+  },
+  "semantics": "Accept the four pinned serde input aliases for ModeKind::Default only in its two reachable client request graphs. Preserve caller values, all collaboration settings constraints, experimental negotiation and canonical output schemas. Native decoding owns normalization to default and its actual mode behavior.",
+  "source_sha256": {
+    "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

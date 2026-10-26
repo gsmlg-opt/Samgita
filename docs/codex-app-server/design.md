@@ -35,6 +35,10 @@ The separate [compaction input alias](compaction-input-alias-qualification.md)
 extends only the native Compaction input tag set for supplied-history resume.
 Native canonicalization remains observable through persisted records and actual
 continuation input; output contracts never accept a fictitious alias emitter.
+The [collaboration input aliases](collaboration-input-alias-qualification.md)
+extend only the two request graphs that reach `ModeKind`. They preserve caller
+values and canonical output contracts; real applied settings, literal assistant
+items and first cold history reads establish the native Default behavior.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

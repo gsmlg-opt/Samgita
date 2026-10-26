@@ -3,12 +3,13 @@ defmodule SamgitaProtocolCodex.Schema.Input do
 
   alias SamgitaProtocolCodex.Error
 
-  # The exporter omits a custom decoder and a serde input alias. Source-derived
+  # The exporter omits a custom decoder and serde input aliases. Source-derived
   # contracts remain separate from official exports and caller wire values.
   @root Path.expand("../../../priv/upstream/0.163.0", __DIR__)
   @corrections (for relative <- [
                       "source/input-semantics.json",
-                      "source/response-item-input-semantics.json"
+                      "source/response-item-input-semantics.json",
+                      "source/collaboration-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -16,6 +17,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                 end)
   @legacy Enum.find_value(@corrections, & &1["legacy_schema"])
   @response Enum.find(@corrections, &(&1["definition"] == "ResponseItem"))
+  @collaboration Enum.find(@corrections, &(&1["definition"] == "ModeKind"))
+  @collaboration_methods @collaboration["methods"]
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -59,6 +62,15 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "ResponseItem", "oneOf"],
       &Enum.map(&1, fn branch -> response_input(branch) end)
+    )
+  end
+
+  def contract("ClientRequest.json", method, document)
+      when method in @collaboration_methods do
+    update_in(
+      document,
+      ["definitions", "ModeKind", "enum"],
+      &(&1 ++ @collaboration["input_aliases"])
     )
   end
 

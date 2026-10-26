@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [collaboration input alias repair](collaboration-input-alias-qualification.md)
+accepts four native Default aliases on their two real request graphs while
+preserving caller values and canonical outputs. Five new native profiles prove
+applied snapshots, canonical turn contexts, literal assistant behavior and first
+cold history. Final reviewed **25 schema /61 ordinary driver cases twice**,
+outside consumer **1/0**, scoped format/compile, strict Credo514, inventory and325
+source guard pass. All316 other previous sources, Session and cleanup remain
+unchanged; the initial compile error is recorded. No state/owner promotion:
+**5,018 implemented /1,537 missing /66 blocked** contracts, unchanged requirements
+and zero verified. Prohibited/broad/hosted, A11, legacy/external/platform and
+full-goal/release gates remain incomplete; no publication or deployment.
+
 The [compaction input alias repair](compaction-input-alias-qualification.md)
 accepts native `compaction_summary` supplied history without rewriting the caller
 tag. Actual checkpoint import and continuation produce canonical persisted and

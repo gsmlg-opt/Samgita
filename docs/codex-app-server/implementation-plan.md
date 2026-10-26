@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [collaboration input alias repair](collaboration-input-alias-qualification.md)
+reproduces rejection of four native Default aliases and corrects only the two
+reachable request input graphs. Five new native profiles prove applied settings,
+canonical turn persistence, literal assistant parsing and first cold item reads.
+Final reviewed **25 schema /61 ordinary driver cases twice**, outside consumer
+**1/0**, scoped format/compile, strict Credo514, inventory and325-source guard
+pass. All316 other prior sources, Session/cleanup/providers and earlier input
+tests stay unchanged; the initial compile-time guard failure remains recorded.
+No state/owner promotion: **5,018 implemented /1,537 missing /66 blocked**
+contracts; **462 implemented /12 missing /11 blocked** requirements; zero
+verified. Next inspect the separately deferred native `MultiAgentMode` `none`
+input without inventing active delegation behavior. Prohibited/broad/hosted,
+A11, legacy/external/OS/platform and full-goal acceptance remain incomplete.
+
 The [compaction input alias repair](compaction-input-alias-qualification.md)
 reproduces rejection of the source-supported `compaction_summary` history tag.
 Input-only enum augmentation preserves caller values and official/output schemas;

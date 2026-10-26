@@ -51,6 +51,13 @@ field constraints and output contracts remain intact. See
 `docs/codex-app-server/compaction-input-alias-qualification.md` for genuine
 checkpoint import/continuation evidence and its limits.
 
+A third input-only descriptor accepts native `ModeKind::Default` aliases `code`,
+`pair_programming`, `execute` and `custom` for `turn/start` and
+`thread/settings/update`. Caller values and experimental negotiation stay intact;
+Codex owns canonical `default` settings, parser behavior and persistence. See
+`docs/codex-app-server/collaboration-input-alias-qualification.md` for actual
+applied settings, literal assistant output and first cold history evidence.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend
