@@ -35599,71 +35599,101 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/agent-message-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current plaintext MAv2 AgentMessage input only. Native collaboration creates one child, waits for its actual terminal turn and delivers its exact FINAL_ANSWER as a native AgentMessage. Capture closed-source whole root user/message maps with original amsg_ ID, child/root paths, literal content, receiving turn_id and bounded actual create_time. Unchanged cold import and one explicit followup preserve native originals; non-OpenAI provider copy removes only passthrough. Inference4->4->5, original root/child bytes/config/catalog/scripts and bounded owned cleanup remain.",
+        "Owner450 is a separate deliberately modified CLIENT input: only captured AgentMessage metadata set to present null, canonically omitted after import with all sibling maps/IDs exact. Not native-null emission. No child is restored or historical message/tool dispatch re-executed; imported thread stays sole loaded thread and has no child, source root3/child1 observation counters stay unchanged, one followup observation is added. Exact target-thread/turn completion prevents the genuine child answer being selected as the root answer.",
+        "Only this unstable raw history subset and literal plaintext completion. No arbitrary metadata, protected/encrypted fields, legacy production history, whole rollout/runtime restoration, external provider/OS/transports or full-goal/A11/release claim. All prior287 guarded sources stay byte-identical; two new test/provider sources and one existing Python dependency extend the guard. Initial selector and strict-Credo complexity failures are retained and corrected without weaker assertions/deadlines. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_agent_message_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/agent-message-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current plaintext MAv2 AgentMessage input only. Native collaboration creates one child, waits for its actual terminal turn and delivers its exact FINAL_ANSWER as a native AgentMessage. Capture closed-source whole root user/message maps with original amsg_ ID, child/root paths, literal content, receiving turn_id and bounded actual create_time. Unchanged cold import and one explicit followup preserve native originals; non-OpenAI provider copy removes only passthrough. Inference4->4->5, original root/child bytes/config/catalog/scripts and bounded owned cleanup remain.",
+        "Owner450 is a separate deliberately modified CLIENT input: only captured AgentMessage metadata set to present null, canonically omitted after import with all sibling maps/IDs exact. Not native-null emission. No child is restored or historical message/tool dispatch re-executed; imported thread stays sole loaded thread and has no child, source root3/child1 observation counters stay unchanged, one followup observation is added. Exact target-thread/turn completion prevents the genuine child answer being selected as the root answer.",
+        "Only this unstable raw history subset and literal plaintext completion. No arbitrary metadata, protected/encrypted fields, legacy production history, whole rollout/runtime restoration, external provider/OS/transports or full-goal/A11/release claim. All prior287 guarded sources stay byte-identical; two new test/provider sources and one existing Python dependency extend the guard. Initial selector and strict-Credo complexity failures are retained and corrected without weaker assertions/deadlines. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_agent_message_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/agent-message-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected current plaintext MAv2 AgentMessage input only. Native collaboration creates one child, waits for its actual terminal turn and delivers its exact FINAL_ANSWER as a native AgentMessage. Capture closed-source whole root user/message maps with original amsg_ ID, child/root paths, literal content, receiving turn_id and bounded actual create_time. Unchanged cold import and one explicit followup preserve native originals; non-OpenAI provider copy removes only passthrough. Inference4->4->5, original root/child bytes/config/catalog/scripts and bounded owned cleanup remain.",
+        "Owner450 is a separate deliberately modified CLIENT input: only captured AgentMessage metadata set to present null, canonically omitted after import with all sibling maps/IDs exact. Not native-null emission. No child is restored or historical message/tool dispatch re-executed; imported thread stays sole loaded thread and has no child, source root3/child1 observation counters stay unchanged, one followup observation is added. Exact target-thread/turn completion prevents the genuine child answer being selected as the root answer.",
+        "Only this unstable raw history subset and literal plaintext completion. No arbitrary metadata, protected/encrypted fields, legacy production history, whole rollout/runtime restoration, external provider/OS/transports or full-goal/A11/release claim. All prior287 guarded sources stay byte-identical; two new test/provider sources and one existing Python dependency extend the guard. Initial selector and strict-Credo complexity failures are retained and corrected without weaker assertions/deadlines. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/2/properties/internal_chat_message_metadata_passthrough/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_agent_message_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

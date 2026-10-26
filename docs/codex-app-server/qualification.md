@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [native AgentMessage history inputs](agent-message-history-inputs-qualification.md)
+pass the final **45-file, 89/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-four fixture ASTs and the
+**290-source** guard. Three exact metadata/client-null owners become implemented:
+**4,937 implemented / 1,618 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Real native child completion supplies whole source maps, original amsg_ ID and
+turn/time metadata; cold import and one consuming followup retain **4 → 4 → 5**,
+with no restored child or repeated dispatch. Twenty-three archive-matching
+files, three nodes and final binding pass; all prior287 sources stay unchanged.
+Initial cross-thread selector and Credo complexity failures are corrected and
+recorded without weaker gates. Strict completeness exits **1**. Prohibited/
+broad/hosted, full-goal, A11, legacy/external/OS and release gates remain
+incomplete. No publication/deployment.
+
 The [client-supplied Compaction metadata object](compaction-history-inputs-qualification.md#client-supplied-metadata-object)
 passes the final **44-file, 87/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
