@@ -58,6 +58,14 @@ Codex owns canonical `default` settings, parser behavior and persistence. See
 `docs/codex-app-server/collaboration-input-alias-qualification.md` for actual
 applied settings, literal assistant output and first cold history evidence.
 
+A fourth descriptor covers deprecated `multiAgentMode` inputs: `none` and the
+single-key unit objects for `none`, `explicitRequestOnly` and `proactive`, with
+`null` or `{}` payload. The actual nested request decoder's pinned serde source
+and MIT license are included as references, never compiled. These three request
+fields are native no-ops; accepted input does not activate delegation. See
+`docs/codex-app-server/deprecated-mode-input-qualification.md` for exact native
+sends, applied snapshots and model/history evidence.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend

@@ -1,0 +1,15 @@
+{
+  "codex_cargo_lock_sha256": "17cdd862471774ba7aef836aaf0a0a3ed76bd23e503b1fc7278c89d1f2719d03",
+  "crate_sha256": "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e",
+  "crate_url": "https://static.crates.io/crates/serde/serde-1.0.228.crate",
+  "included_license": "LICENSE-MIT",
+  "kind": "pinned-dependency-source-reference-not-codex-export",
+  "license": "MIT OR Apache-2.0",
+  "license_sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+  "package": "serde",
+  "semantics": "Complete source reference only, never compiled. The internally tagged ClientRequest buffers nested params through ContentDeserializer; its enum decoder requires one map entry and unit decoder accepts null or an empty map. These are actual nested request-input semantics, not a change to outgoing JSON or canonical output values.",
+  "source_member": "serde-1.0.228/src/private/de.rs",
+  "source_sha256": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012",
+  "version": "1.0.228"
+}

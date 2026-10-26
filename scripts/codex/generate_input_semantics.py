@@ -5,6 +5,7 @@ Cover custom dynamic-tool decoding, compaction and collaboration input aliases.
 These describe accepted input, never outgoing-value normalization.
 """
 
+import hashlib
 import json
 import re
 
@@ -29,6 +30,16 @@ CONFIG_TYPES = "source/config_types.rs"
 CONFIG_TYPES_SHA256 = "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8"
 COLLABORATION_METHODS = ("thread/settings/update", "turn/start")
 COLLABORATION_SCHEMAS = ("ClientRequest.json", "v2/ThreadSettingsUpdateParams.json", "v2/TurnStartParams.json")
+MULTI_AGENT_SEMANTICS = "source/multi-agent-input-semantics.json"
+MULTI_AGENT_METHODS = ("thread/settings/update", "thread/start", "turn/start")
+MULTI_AGENT_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json")
+DECODER_RUST = "source/serde-1.0.228/private-de.rs"
+DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
+DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
+DECODER_LICENSE_SHA256 = "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+DECODER_CRATE_SHA256 = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
+DECODER_ORIGIN = "source/serde-1.0.228/origin.json"
+CARGO_LOCK_SHA256 = "17cdd862471774ba7aef836aaf0a0a3ed76bd23e503b1fc7278c89d1f2719d03"
 
 
 def derive(vendor):
@@ -134,22 +145,7 @@ def derive_collaboration(vendor):
             raise ValueError("Official canonical mode contract changed: " + name)
         hashes[name] = digest(path)
     document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
-    reachable = []
-    for branch in document["oneOf"]:
-        pending, seen = [branch["properties"]["params"]], set()
-        while pending:
-            value = pending.pop()
-            if isinstance(value, dict):
-                reference = value.get("$ref", "").removeprefix("#/definitions/")
-                if reference and reference not in seen:
-                    seen.add(reference)
-                    pending.append(document["definitions"][reference])
-                pending.extend(value.values())
-            elif isinstance(value, list):
-                pending.extend(value)
-        if "ModeKind" in seen:
-            reachable.extend(branch["properties"]["method"]["enum"])
-    if sorted(reachable) != list(COLLABORATION_METHODS):
+    if request_methods(document, "ModeKind") != list(COLLABORATION_METHODS):
         raise ValueError("ModeKind request input graph changed")
     return {
         "kind": "locally-derived-input-contract-not-official-export",
@@ -165,12 +161,107 @@ def derive_collaboration(vendor):
     }
 
 
+def request_methods(document, definition):
+    reachable = []
+    for branch in document["oneOf"]:
+        pending, seen = [branch["properties"]["params"]], set()
+        while pending:
+            value = pending.pop()
+            if isinstance(value, dict):
+                reference = value.get("$ref", "").removeprefix("#/definitions/")
+                if reference and reference not in seen:
+                    seen.add(reference)
+                    pending.append(document["definitions"][reference])
+                pending.extend(value.values())
+            elif isinstance(value, list):
+                pending.extend(value)
+        if definition in seen:
+            reachable.extend(branch["properties"]["method"]["enum"])
+    return sorted(reachable)
+
+
+def derive_multi_agent(vendor):
+    if digest(vendor / CONFIG_TYPES) != CONFIG_TYPES_SHA256:
+        raise ValueError("Pinned deprecated multi-agent input decoder changed")
+    rust = (vendor / CONFIG_TYPES).read_text()
+    if '#[serde(rename_all = "camelCase", from = "MultiAgentModeWire")]' not in rust:
+        raise ValueError("Pinned MultiAgentMode decoder changed")
+    declaration = re.search(r'enum MultiAgentModeWire \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != (
+            '    None,\n    Custom(String),\n    ExplicitRequestOnly,\n    Proactive,'):
+        raise ValueError("Pinned MultiAgentModeWire variants changed")
+    if 'MultiAgentModeWire::None => Self::Custom(String::new()),' not in rust:
+        raise ValueError("Pinned none input conversion changed")
+    decoder_sources = {
+        DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
+        DECODER_ORIGIN: hashlib.sha256(encode(decoder_origin()).encode()).hexdigest(),
+    }
+    for name, expected in decoder_sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned buffered input decoder reference changed: " + name)
+    decoder = (vendor / DECODER_RUST).read_text()
+    if 'Content::Map(ref v) if v.is_empty() => visitor.visit_unit(),' not in decoder:
+        raise ValueError("Pinned buffered unit payload contract changed")
+    hashes = {}
+    for name in MULTI_AGENT_SCHEMAS:
+        path = vendor / "experimental" / name
+        document = json.loads(path.read_text())
+        union = document["definitions"]["MultiAgentMode"]["oneOf"]
+        if len(union) != 2 or union[0] != {"type": "string", "enum": ["explicitRequestOnly", "proactive"]}:
+            raise ValueError("Official deprecated mode input contract changed: " + name)
+        hashes[name] = digest(path)
+    document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
+    if request_methods(document, "MultiAgentMode") != list(MULTI_AGENT_METHODS):
+        raise ValueError("MultiAgentMode request input graph changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(MULTI_AGENT_METHODS),
+        "definition": "MultiAgentMode",
+        "input_branches": [
+            {"type": "string", "enum": ["none"]},
+            *({"type": "object", "required": [name], "additionalProperties": False,
+               "properties": {name: {"enum": [None, {}]}}}
+              for name in ["none", "explicitRequestOnly", "proactive"]),
+        ],
+        "native_none_decoded_value": {"custom": ""},
+        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256, **decoder_sources},
+        "schemas_sha256": hashes,
+        "semantics": "The pinned native from=MultiAgentModeWire decoder accepts none and maps it to Custom with empty text. Internally tagged ClientRequest buffers nested params: its serde ContentDeserializer accepts one-key unit objects for none/explicitRequestOnly/proactive with null OR empty-map payload. Preserve exact caller values, reject additional distinct keys/nonempty payloads, and do not broaden outputs. All three current request fields are deprecated and ignored; decoding does not activate delegation or change effective public explicitRequestOnly settings.",
+    }
+
+
+def decoder_origin():
+    return {
+        "kind": "pinned-dependency-source-reference-not-codex-export",
+        "package": "serde", "version": "1.0.228", "license": "MIT OR Apache-2.0",
+        "included_license": "LICENSE-MIT",
+        "crate_url": "https://static.crates.io/crates/serde/serde-1.0.228.crate",
+        "crate_sha256": DECODER_CRATE_SHA256,
+        "upstream_commit": COMMIT, "codex_cargo_lock_sha256": CARGO_LOCK_SHA256,
+        "source_member": "serde-1.0.228/src/private/de.rs",
+        "source_sha256": DECODER_SHA256, "license_sha256": DECODER_LICENSE_SHA256,
+        "semantics": "Complete source reference only, never compiled. The internally tagged ClientRequest buffers nested params through ContentDeserializer; its enum decoder requires one map entry and unit decoder accepts null or an empty map. These are actual nested request-input semantics, not a change to outgoing JSON or canonical output values.",
+    }
+
+
+def verify_decoder_lock(path):
+    if digest(path) != CARGO_LOCK_SHA256 or (
+            'name = "serde"\nversion = "1.0.228"\n'
+            'source = "registry+https://github.com/rust-lang/crates.io-index"\n'
+            f'checksum = "{DECODER_CRATE_SHA256}"') not in path.read_text():
+        raise ValueError("Pinned Codex dependency lock changed")
+
+
 def corrections(vendor):
     return ((SEMANTICS, derive(vendor)), (RESPONSE_SEMANTICS, derive_response_item(vendor)),
-            (COLLABORATION_SEMANTICS, derive_collaboration(vendor)))
+            (COLLABORATION_SEMANTICS, derive_collaboration(vendor)),
+            (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)))
 
 
 def write(vendor):
+    (vendor / DECODER_ORIGIN).write_text(encode(decoder_origin()))
     for relative, value in corrections(vendor):
         (vendor / relative).write_text(encode(value))
 

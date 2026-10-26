@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [deprecated mode input repair](deprecated-mode-input-qualification.md)
+covers `none` and source-supported null/empty-map unit objects on three request
+graphs without claiming delegation. Seven new native profiles prove exact sends,
+applied summary barriers, fixed effective mode, provider output and history.
+Source review corrects the original negative/null-only interpretation; diagnostic
+bypass and superseded29/64 evidence remain separate. Final **30 schema /70
+ordinary driver twice**, outside consumer **1/0**, format/compile, strict
+Credo515, inventory and330-source guard pass. All319 other prior sources and
+older input descriptors stay unchanged. No state/owner promotion: **5,018
+implemented /1,537 missing /66 blocked** contracts; **462 implemented /12
+missing /11 blocked** requirements; zero verified. Next implement source-proven
+ModeKind unit objects with actual parser/persistence evidence; this checkpoint
+provides no runtime proof for them. Prohibited/broad/hosted, A11, legacy/external/
+OS/platform and full-goal gates remain incomplete.
+
 The [collaboration input alias repair](collaboration-input-alias-qualification.md)
 reproduces rejection of four native Default aliases and corrects only the two
 reachable request input graphs. Five new native profiles prove applied settings,

@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [deprecated mode input repair](deprecated-mode-input-qualification.md)
+accepts native `none` and the three unit variants' null/empty-map objects on
+three real request graphs. Source review corrects a mistaken negative and a
+null-only decoder interpretation; retained diagnostic bypass evidence does not
+replace final default-validation tests. Seven new native profiles prove exact
+sends, real applied barriers, fixed no-op settings, provider/completion/history.
+Final **30 schema /70 ordinary driver twice**, outside consumer **1/0**,
+format/compile, strict Credo515, inventory and330-source guard pass. All319 other
+prior sources, Session/cleanup/providers and older descriptors remain unchanged.
+The earlier29/64 matrix is superseded. No state/owner promotion: **5,018
+implemented /1,537 missing /66 blocked** contracts, unchanged requirements and
+zero verified. Prohibited/broad/hosted, A11, legacy/external/platform and full-goal
+gates remain incomplete; no publication or deployment.
+
 The [collaboration input alias repair](collaboration-input-alias-qualification.md)
 accepts four native Default aliases on their two real request graphs while
 preserving caller values and canonical outputs. Five new native profiles prove

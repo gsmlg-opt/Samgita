@@ -36,7 +36,9 @@ defmodule SamgitaCodexDriver.NativeMultiAgentModeValuesTest do
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] in ["thread/start", "turn/start"] do
+      if wire["method"] in ["thread/start", "turn/start"] or
+           (wire["method"] == "thread/settings/update" and
+              Map.has_key?(wire["params"], "multiAgentMode")) do
         capture(state, encoded, wire)
       else
         Stdio.send(state, encoded)
@@ -131,9 +133,61 @@ defmodule SamgitaCodexDriver.NativeMultiAgentModeValuesTest do
     finish(ctx, pid, 5)
   end
 
+  for {label, value} <- [
+        {"none string", "none"},
+        {"none object", %{"none" => nil}},
+        {"explicit object", %{"explicitRequestOnly" => nil}},
+        {"proactive object", %{"proactive" => nil}},
+        {"none empty-map object", %{"none" => %{}}},
+        {"explicit empty-map object", %{"explicitRequestOnly" => %{}}},
+        {"proactive empty-map object", %{"proactive" => %{}}}
+      ] do
+    @tag legacy_input: value
+    test "native #{label} reaches all three deprecated request paths without changing behavior",
+         ctx do
+      qualify_input(ctx, ctx.legacy_input)
+    end
+  end
+
+  defp qualify_input(ctx, value) do
+    pid = start(ctx)
+
+    result =
+      request(ctx, pid, "thread/start", Map.put(thread_params(ctx), "multiAgentMode", value))
+
+    assert result["multiAgentMode"] == "explicitRequestOnly"
+    assert ModelFixture.requests(ctx.fixture) == []
+    thread = result["thread"]["id"]
+    baseline = snapshot(ctx, pid, thread, "concise")
+
+    assert request(ctx, pid, "thread/settings/update", %{
+             "threadId" => thread,
+             "multiAgentMode" => value,
+             "summary" => "detailed"
+           }) == %{}
+
+    # The summary is a real applied-settings barrier even though the legacy
+    # multiAgentMode field itself is ignored. An ACK alone is insufficient.
+    applied =
+      snapshot_event(pid, thread, "detailed", [], System.monotonic_time(:millisecond) + 5000)
+
+    assert Map.take(applied, Map.keys(baseline)) === baseline
+    assert ModelFixture.requests(ctx.fixture) == []
+    marker = "owned-none-input-no-op-λ🙂"
+    turn = turn(ctx, pid, thread, marker, %{"multiAgentMode" => value}, 1)
+    assert snapshot(ctx, pid, thread, "concise") === baseline
+    assert_history(pid, thread, [turn])
+
+    assert Enum.map(Agent.get(ctx.capture, & &1), & &1["method"]) ==
+             ["thread/start", "thread/settings/update", "turn/start"]
+
+    assert Enum.all?(Agent.get(ctx.capture, & &1), &(&1["params"]["multiAgentMode"] === value))
+    finish(ctx, pid, 1)
+  end
+
   # rust-v0.163.0 explicitly ignores these deprecated request fields. These
   # cases qualify their native no-op behavior, never active delegation. The
-  # legacy deserializer-only "none" alias is not a published schema alternative.
+  # deserializer-only "none" input is covered separately; it is absent from the export.
   defp cases do
     [
       {"omitted", %{}},

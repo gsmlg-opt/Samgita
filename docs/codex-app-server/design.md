@@ -39,6 +39,11 @@ The [collaboration input aliases](collaboration-input-alias-qualification.md)
 extend only the two request graphs that reach `ModeKind`. They preserve caller
 values and canonical output contracts; real applied settings, literal assistant
 items and first cold history reads establish the native Default behavior.
+The separate [deprecated mode input correction](deprecated-mode-input-qualification.md)
+follows the pinned internally tagged request's buffered serde decoder, including
+null/empty-map unit objects. Referenced dependency source/license and Cargo.lock
+provenance remain distinct from official Codex exports. These deprecated fields
+are ignored by native: decoding never confers delegation or project authority.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

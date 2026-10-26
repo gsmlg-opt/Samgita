@@ -9,7 +9,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @corrections (for relative <- [
                       "source/input-semantics.json",
                       "source/response-item-input-semantics.json",
-                      "source/collaboration-input-semantics.json"
+                      "source/collaboration-input-semantics.json",
+                      "source/multi-agent-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -19,6 +20,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @response Enum.find(@corrections, &(&1["definition"] == "ResponseItem"))
   @collaboration Enum.find(@corrections, &(&1["definition"] == "ModeKind"))
   @collaboration_methods @collaboration["methods"]
+  @multi_agent Enum.find(@corrections, &(&1["definition"] == "MultiAgentMode"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -55,6 +57,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
           properties
       end
     end)
+    |> multi_agent_input()
   end
 
   def contract("ClientRequest.json", "thread/resume", document) do
@@ -72,6 +75,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       ["definitions", "ModeKind", "enum"],
       &(&1 ++ @collaboration["input_aliases"])
     )
+    |> multi_agent_input()
   end
 
   def contract(_filename, _method, document), do: document
@@ -92,6 +96,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   end
 
   def check(_direction, _method, _value), do: :ok
+
+  defp multi_agent_input(document) do
+    update_in(
+      document,
+      ["definitions", "MultiAgentMode", "oneOf"],
+      &(&1 ++ @multi_agent["input_branches"])
+    )
+  end
 
   defp response_input(branch) do
     if get_in(branch, ["properties", "type", "enum"]) == [@response["canonical_tag"]],

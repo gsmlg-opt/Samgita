@@ -71,6 +71,23 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for value <- [
+          "none",
+          %{"none" => nil},
+          %{"explicitRequestOnly" => nil},
+          %{"proactive" => nil},
+          %{"none" => %{}},
+          %{"explicitRequestOnly" => %{}},
+          %{"proactive" => %{}}
+        ] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/start",
+                 %{"multiAgentMode" => value},
+                 experimental: true
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

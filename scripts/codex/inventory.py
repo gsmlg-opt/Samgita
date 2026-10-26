@@ -416,7 +416,8 @@ def generate(source):
     shutil.copyfile(source / "codex-rs/protocol/src/models.rs", VENDOR / "source/models.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/config_types.rs", VENDOR / "source/config_types.rs")
     shutil.copyfile(source / PROTOCOL / "v2/realtime.rs", VENDOR / "source/realtime.rs")
-    from generate_input_semantics import write as write_input_semantics
+    from generate_input_semantics import verify_decoder_lock, write as write_input_semantics
+    verify_decoder_lock(source / "codex-rs/Cargo.lock")
     write_input_semantics(VENDOR)
     from generate_output_semantics import write as write_output_semantics
     write_output_semantics(VENDOR)
