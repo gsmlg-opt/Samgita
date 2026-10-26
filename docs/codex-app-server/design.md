@@ -117,6 +117,12 @@ null/omission/empty remain native-owned distinctions, including custom defaults
 and the list relation exception. One genuine vscode producer supplies positive
 object-filter evidence across unloaded cold discovery; the other selectors'
 populated exclusion does not qualify their own positive producers.
+The [medium configuration qualification](medium-config-effects-qualification.md)
+binds native config/read values to genuine provider request effects: explicit
+verbosity overrides a distinct catalog default, and explicit search context size
+adds a hosted-tool field absent in the control. Cold startup remains idle until
+an explicit new turn. These request-shape observations do not imply execution by
+a real hosted-search backend or complete Config compatibility.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

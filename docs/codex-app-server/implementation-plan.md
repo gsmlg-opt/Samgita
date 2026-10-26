@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [medium configuration effects](medium-config-effects-qualification.md)
+qualify exactly3639/3642 via independent low/absent controls, actual native
+config/read and actual provider request fields, then explicit new cold turns.
+Original histories/journal/config remain exact. Initial2/0, final **87 schema
+/141 ordinary driver twice**, outside consumer **1/0**, strict Credo541 and
+372-source guard pass; all371 prior sources,15 descriptors and770 exports stay
+unchanged. Root compile/format/assets, forced Dialyzer, architecture scanners and
+local production assembly also pass. Exactly two missing fields become scoped
+implemented: **5,040 implemented /1,515 missing /66 blocked** contracts;
+requirements **462 implemented /12 missing /11 blocked**, zero verified.
+Next qualify section-rank reverse cursors with unmodified native anchors and
+warm/cold pages, retaining the separate created_at precision defect and missing
+whole-cursor owner. Prohibited/broad/hosted, A11, legacy/external/OS/platform and
+full-goal gates remain incomplete.
+
 The [rich canonical item projection](rich-item-view-qualification.md) qualifies
 the genuine paginated tool-containing Summary/Full/NotLoaded distinction across
 warm list/resume and unloaded cold list. Original event-derived items/timestamps

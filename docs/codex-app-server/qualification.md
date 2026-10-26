@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [medium configuration effects](medium-config-effects-qualification.md)
+qualify exactly two previously missing values through genuine config/provider
+effects and explicit new cold turns. Final **87 schema /141 ordinary driver
+twice**, outside consumer **1/0**, strict/static/local assembly and372 stable
+sources pass; all371 prior sources remain exact. Contracts are **5,040 implemented
+/1,515 missing /66 blocked**; requirements stay **462 implemented /12 missing
+/11 blocked**, zero verified. This is no actual hosted-search execution,
+prohibited-check or full-compatibility claim.
+
 The [rich canonical projection](rich-item-view-qualification.md) now differentiates
 Summary, Full and NotLoaded with a genuine completed dynamic-tool turn and exact
 original items/timestamps across warm list/resume and unloaded cold list. Initial

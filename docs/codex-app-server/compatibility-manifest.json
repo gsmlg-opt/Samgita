@@ -1353,14 +1353,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/configuration-qualification.md"
+        "docs/codex-app-server/configuration-qualification.md",
+        "docs/codex-app-server/medium-config-effects-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:config/read",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified.",
+        "Scoped real-native medium configuration effects: separate otherwise equivalent control/selected homes distinguish catalog-low verbosity from explicit medium, and absent hosted search_context_size from explicit medium. Actual native config/read and actual recorded provider requests agree with independent constants. Selected cold startup/config/history reads add no work; one explicit new thread/turn independently repeats medium and retains the original journal entry and complete original histories/rollout/config/catalog/source snapshots. Per case3owned native PIDs/2model peers/3inference/9of24selected captures at4KiB; fixed bounds and cleanup retained. Initial2/0 and final87schema/141reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly pass with372stable sources, all371prior unchanged, 770unchanged exports and15unchanged descriptors. Exactly3639/3642 gain scoped implemented evidence; no verified or whole-method/field-graph promotion. No actual external search, backend/model/OS breadth, config-write concurrency, prohibited/broad/hosted or full-goal acceptance claim."
       ],
       "params": {
         "$ref": "#/definitions/ConfigReadParams"
@@ -1391,7 +1393,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_config_test.exs"
+          "apps/samgita_codex_driver/test/native_config_test.exs",
+          "apps/samgita_codex_driver/test/native_medium_config_effects_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16297,14 +16300,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/configuration-qualification.md"
+        "docs/codex-app-server/configuration-qualification.md",
+        "docs/codex-app-server/medium-config-effects-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:config/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified.",
+        "Scoped real-native medium configuration effects: separate otherwise equivalent control/selected homes distinguish catalog-low verbosity from explicit medium, and absent hosted search_context_size from explicit medium. Actual native config/read and actual recorded provider requests agree with independent constants. Selected cold startup/config/history reads add no work; one explicit new thread/turn independently repeats medium and retains the original journal entry and complete original histories/rollout/config/catalog/source snapshots. Per case3owned native PIDs/2model peers/3inference/9of24selected captures at4KiB; fixed bounds and cleanup retained. Initial2/0 and final87schema/141reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly pass with372stable sources, all371prior unchanged, 770unchanged exports and15unchanged descriptors. Exactly3639/3642 gain scoped implemented evidence; no verified or whole-method/field-graph promotion. No actual external search, backend/model/OS breadth, config-write concurrency, prohibited/broad/hosted or full-goal acceptance claim."
       ],
       "prerequisites": [
         "initialized"
@@ -16321,7 +16326,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_config_test.exs"
+          "apps/samgita_codex_driver/test/native_config_test.exs",
+          "apps/samgita_codex_driver/test/native_medium_config_effects_test.exs"
         ]
       },
       "transport_coverage": [
@@ -133697,24 +133703,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/medium-config-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Verbosity/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped real-native medium configuration effects: separate otherwise equivalent control/selected homes distinguish catalog-low verbosity from explicit medium, and absent hosted search_context_size from explicit medium. Actual native config/read and actual recorded provider requests agree with independent constants. Selected cold startup/config/history reads add no work; one explicit new thread/turn independently repeats medium and retains the original journal entry and complete original histories/rollout/config/catalog/source snapshots. Per case3owned native PIDs/2model peers/3inference/9of24selected captures at4KiB; fixed bounds and cleanup retained. Initial2/0 and final87schema/141reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly pass with372stable sources, all371prior unchanged, 770unchanged exports and15unchanged descriptors. Exactly3639/3642 gain scoped implemented evidence; no verified or whole-method/field-graph promotion. No actual external search, backend/model/OS breadth, config-write concurrency, prohibited/broad/hosted or full-goal acceptance claim."
+      ],
       "pointer": "/definitions/Verbosity/enum/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "9f0829df4e296698fc91784eef0f55e6f18779697980ae3c3a27dbe1ae5f9071",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_medium_config_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -133778,24 +133792,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/medium-config-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/WebSearchContextSize/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped real-native medium configuration effects: separate otherwise equivalent control/selected homes distinguish catalog-low verbosity from explicit medium, and absent hosted search_context_size from explicit medium. Actual native config/read and actual recorded provider requests agree with independent constants. Selected cold startup/config/history reads add no work; one explicit new thread/turn independently repeats medium and retains the original journal entry and complete original histories/rollout/config/catalog/source snapshots. Per case3owned native PIDs/2model peers/3inference/9of24selected captures at4KiB; fixed bounds and cleanup retained. Initial2/0 and final87schema/141reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly pass with372stable sources, all371prior unchanged, 770unchanged exports and15unchanged descriptors. Exactly3639/3642 gain scoped implemented evidence; no verified or whole-method/field-graph promotion. No actual external search, backend/model/OS breadth, config-write concurrency, prohibited/broad/hosted or full-goal acceptance claim."
+      ],
       "pointer": "/definitions/WebSearchContextSize/enum/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "9f0829df4e296698fc91784eef0f55e6f18779697980ae3c3a27dbe1ae5f9071",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_medium_config_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
