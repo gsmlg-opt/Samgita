@@ -1,10 +1,11 @@
 # Genuine compaction checkpoint history inputs
 
-Two actual-native profiles transfer a genuine installed remote-v2 compaction
+Two original actual-native profiles transfer a genuine installed remote-v2 compaction
 checkpoint through the pinned unstable `thread/resume.history` API. One imports
 the original maps unchanged; the other changes only an absent checkpoint
 metadata field to explicit client null. Both consume the checkpoint in one
-deliberate followup without executing another compaction.
+deliberate followup without executing another compaction. A later third profile
+adds one deliberately client-supplied metadata object, as detailed below.
 
 ## Native records and lifecycle
 
@@ -66,7 +67,7 @@ All selected physical nodes are in `ClientRequest.json` under
 |420|Actual nonempty native cmp_ ID; null-ID behavior remains open|
 |424/425|Exact compaction type and literal|
 |421/423|Explicit client-null metadata property/branch, normalized to omission|
-|422|Non-null metadata object remains missing and unchanged|
+|422|Not covered by the original two profiles; the later client-object profile below supplies its evidence|
 
 No shared-hash, enclosing union, reference, other variant or full-goal promotion
 follows. Pin remains `rust-v0.163.0`, source
@@ -94,7 +95,7 @@ Seventeen full files match the official source archive:
   recorder complete the same persistence chain as the earlier
   [history-input qualification](supplied-history-inputs-qualification.md).
 
-## Verification and bounds
+## Initial verification and bounds
 
 The owning two-case module passes **2/0**, seed501432, in **4.0 seconds**, log
 `/tmp/samgita-v310-compaction-history-501432.log`. Before execution the draft's
@@ -139,3 +140,66 @@ Inventory consistency passes; strict completeness exits **1**. Contracts become
 **462 implemented / 12 missing / 11 blocked**, zero verified. Full-goal, A11,
 historical/external/OS and release gates remain incomplete. No publication,
 production migration or deployment occurs.
+
+## Client-supplied metadata object
+
+A separate third case captures the same genuine current native checkpoint,
+requires its original metadata field to be absent, and clones only that
+checkpoint into a client input with this additional field:
+
+```elixir
+%{"internal_chat_message_metadata_passthrough" => %{"turn_id" => actual_source_turn}}
+```
+
+Deleting the added field must recover the complete original checkpoint; its
+native cmp_ ID, opaque checkpoint string and original user map remain exact.
+The actual source turn ID is intentionally supplied by this client, not proof
+that the original native checkpoint emitted or attested this metadata.
+
+Real `thread/resume.history` creates a distinct idle thread/path and writes both
+complete submitted maps exactly once in order, without restamping turn/time
+metadata. Equality is required before followup, after followup and after cold
+native close/reap. Import performs no inference or work. One deliberate
+followup requires the same original checkpoint in the non-OpenAI provider copy,
+with only passthrough removed, including its original cmp_ ID and checkpoint
+bytes. It must complete with the prescribed assistant answer and no new
+compaction or tool work. Requests remain **2 → 2 → 3**.
+
+The existing provider, setup and every original helper remain byte-identical.
+Both original named/tagged unchanged/null cases retain their exact assertions;
+their shared journey is extracted to avoid duplicating the entire lifecycle.
+Their original omission helper remains unchanged and the new object has a
+separate whole-map oracle. Existing source/config/provider retention, cleanup,
+buffer/file bounds and20s/60s deadlines remain. No native semantic repair or
+timeout increase occurs.
+
+The owning module passes **3/0**, seed501432, in **5.6 seconds**,
+`/tmp/samgita-v313-compaction-object-501432.log`. Final commands/environment:
+`/tmp/samgita-v313-run.py`; artifacts:
+`/tmp/samgita-v313-functional-checks/`. Final **44-file matrix passes87/0 twice**,
+seeds501432/987654, in **152.514/153.915 seconds**. Scoped format,
+warnings-as-errors compile, strict Credo on494 sources, outside actual-binary
+consumer **1/0**, twenty-two fixture ASTs and the287-source guard pass.
+Sixteen complete production files again match the pinned official archive;
+exact physical nodes421/422 independently match their schema hashes. All
+prior286 other guarded sources match baseline
+`33c40a8307a0f5ae6180460bc7076cfbbc9af8ed` byte-for-byte.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Results | `67ecfdf568f9f0876a45cef177d5d59a4d423cd9acd40b8539735b93a13587ff` |
+| Source guard | `376adc2e2b36310c4e1b5afeb185e5b535ca5e0a1dc5136aacc2c8515a52f32c` |
+| Sixteen pinned files and two nodes | `7c84b4ca5ece67cc9cfc235513ca9f523eda41e4de3d132ac103665b43f99e69` |
+| Resulting manifest | `87aad04ce75ceadbb31f069eac7e5e29c5df348186df22432c1fff35390a6ec4` |
+
+Final binding proves exactly **one promotion,422**, supplemental property421
+coverage, and historical-wording corrections only for418/419/420/423/424/425.
+Schema identities, planned tests and all requirements stay unchanged. Inventory
+consistency passes; strict completeness exits **1**. Contracts become **4,934
+implemented / 1,621 missing / 66 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified. This covers only the selected nonempty
+client turn_id object on current unstable raw input. Native-object emission,
+arbitrary metadata, sidecar equivalence, full state restoration, provider quality,
+external/OS/transports, A11 and the complete goal remain unqualified. Fixed yolo
+is setup only. Prohibited security/auth/permission/approval tests and broad/hosted
+workflows stay unrun; release gates stay incomplete. No publication or deployment.

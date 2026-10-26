@@ -72,138 +72,205 @@ defmodule SamgitaCodexDriver.NativeSuppliedCompactionHistoryTest do
     @tag null_metadata: null_metadata
     test "native installed compaction history survives cold import and consumption, client_null=#{null_metadata}",
          ctx do
-      source = TurnFixture.start(ctx)
-      source_native = native_process(source)
-
-      source_id =
-        TurnFixture.thread(ctx, source, %{
-          "historyMode" => "legacy",
-          "approvalPolicy" => "never",
-          "sandbox" => "danger-full-access"
-        })
-
-      began = System.system_time(:microsecond) / 1_000_000
-      source_turn = TurnFixture.start_turn(source, source_id, text(@marker))
-      seed_events = collect(source, &terminal(&1, source_turn), [], now() + 20_000)
-      assert_completed(seed_events, source_id, source_turn)
-      assert [first] = requests(ctx)
-      assert_no_work(ctx, source, seed_events)
-
-      # The empty RPC result acknowledges submission only. Require native item
-      # start/completion and its actual compact turn before capturing any history.
-      assert call(source, "thread/compact/start", %{"threadId" => source_id}) === %{}
-
-      compacted =
-        collect(
-          source,
-          fn events ->
-            if item = compaction_started(events, source_id), do: terminal(events, item["turnId"])
-          end,
-          [],
-          now() + 20_000
-        )
-
-      assert %{"turnId" => compact_turn, "item" => %{"id" => compact_item}} =
-               compaction_started(compacted, source_id)
-
-      assert %{
-               "threadId" => ^source_id,
-               "turnId" => ^compact_turn,
-               "item" => %{"id" => ^compact_item, "type" => "contextCompaction"}
-             } =
-               notification(compacted, "item/completed", &(&1["item"]["id"] == compact_item))
-
-      assert %{"threadId" => ^source_id, "turn" => %{"id" => ^compact_turn}} =
-               notification(compacted, "turn/started", &(&1["turn"]["id"] == compact_turn))
-
-      assert_completed(compacted, source_id, compact_turn)
-      assert [^first, compact_request] = requests(ctx)
-
-      assert [%{"type" => "compaction_trigger"}] =
-               Enum.filter(compact_request["input"], &(&1["type"] == "compaction_trigger"))
-
-      source_path = read_thread(source, source_id)["path"]
-      ended = System.system_time(:microsecond) / 1_000_000
-      assert_no_work(ctx, source, compacted)
-      assert :ok = Session.close(source)
-      assert_gone(source_native)
-
-      {source_bytes, rows} = rollout(ctx, source_path)
-      history = captured_history(rows, source_turn, began, ended)
-      [user, checkpoint] = history
-
-      # The source checkpoint genuinely lacks this field. The second profile
-      # changes one CLIENT field to null and independently expects serde omission;
-      # it does not claim native-null emission or a non-null metadata object.
-      refute Map.has_key?(checkpoint, @metadata)
-
-      submitted =
-        if ctx.null_metadata do
-          modified = Map.put(checkpoint, @metadata, nil)
-          assert Map.fetch!(modified, @metadata) === nil
-          assert Map.has_key?(modified, @metadata)
-          assert Map.delete(modified, @metadata) === checkpoint
-          [user, modified]
-        else
-          history
-        end
-
-      if ctx.null_metadata, do: assert(submitted !== history), else: assert(submitted === history)
-      cold = TurnFixture.start(ctx)
-      cold_native = native_process(cold)
-      refute cold_native == source_native
-      assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
-
-      # This raw input is explicitly unstable in the pin. Read current native
-      # maps; never synthesize CompactedItem/SessionMeta/legacy database records.
-      imported =
-        call(cold, "thread/resume", %{
-          "threadId" => source_id,
-          "history" => submitted,
-          "model" => "mock-model",
-          "modelProvider" => "fixture",
-          "cwd" => ctx.fixture.workspace,
-          "approvalPolicy" => "never",
-          "sandbox" => "danger-full-access"
-        })["thread"]
-
-      imported_id = imported["id"]
-      assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
-      assert imported["preview"] == @marker
-      assert imported["status"] === %{"type" => "idle"}
-      imported_path = read_thread(cold, imported_id)["path"]
-      refute imported_path == source_path
-      assert_import(ctx, imported_path, history)
-      assert {:ok, import_events} = Session.drain(cold, 256)
-      assert Session.status(cold).buffered_events == 0
-      assert_no_work(ctx, cold, import_events)
-      refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
-      assert requests(ctx) === [first, compact_request]
-      assert_retained(ctx, source_path, source_bytes)
-
-      followup_turn = TurnFixture.start_turn(cold, imported_id, text(@followup))
-      followup = collect(cold, &terminal(&1, followup_turn), [], now() + 20_000)
-      assert_completed(followup, imported_id, followup_turn)
-
-      assert %{
-               "threadId" => ^imported_id,
-               "turnId" => ^followup_turn,
-               "item" => %{"type" => "agentMessage", "text" => @answer}
-             } =
-               notification(followup, "item/completed", &(&1["item"]["type"] == "agentMessage"))
-
-      assert_no_work(ctx, cold, followup)
-      refute compaction_started(followup, imported_id)
-      assert [^first, ^compact_request, consumed] = requests(ctx)
-      assert_provider(consumed, checkpoint)
-      assert_import(ctx, imported_path, history)
-      assert_retained(ctx, source_path, source_bytes)
-      assert :ok = Session.close(cold)
-      assert_gone(cold_native)
-      assert_import(ctx, imported_path, history)
-      assert requests(ctx) === [first, compact_request, consumed]
-      assert_retained(ctx, source_path, source_bytes)
+      assert_history_journey(ctx, :original)
     end
+  end
+
+  test "current client Compaction metadata object persists and is consumed without restamping",
+       ctx do
+    assert_history_journey(ctx, :client_object)
+  end
+
+  defp assert_history_journey(ctx, metadata_mode) do
+    source = TurnFixture.start(ctx)
+    source_native = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "historyMode" => "legacy",
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+    source_turn = TurnFixture.start_turn(source, source_id, text(@marker))
+    seed_events = collect(source, &terminal(&1, source_turn), [], now() + 20_000)
+    assert_completed(seed_events, source_id, source_turn)
+    assert [first] = requests(ctx)
+    assert_no_work(ctx, source, seed_events)
+
+    # The empty RPC result acknowledges submission only. Require native item
+    # start/completion and its actual compact turn before capturing any history.
+    assert call(source, "thread/compact/start", %{"threadId" => source_id}) === %{}
+
+    compacted =
+      collect(
+        source,
+        fn events ->
+          if item = compaction_started(events, source_id), do: terminal(events, item["turnId"])
+        end,
+        [],
+        now() + 20_000
+      )
+
+    assert %{"turnId" => compact_turn, "item" => %{"id" => compact_item}} =
+             compaction_started(compacted, source_id)
+
+    assert %{
+             "threadId" => ^source_id,
+             "turnId" => ^compact_turn,
+             "item" => %{"id" => ^compact_item, "type" => "contextCompaction"}
+           } =
+             notification(compacted, "item/completed", &(&1["item"]["id"] == compact_item))
+
+    assert %{"threadId" => ^source_id, "turn" => %{"id" => ^compact_turn}} =
+             notification(compacted, "turn/started", &(&1["turn"]["id"] == compact_turn))
+
+    assert_completed(compacted, source_id, compact_turn)
+    assert [^first, compact_request] = requests(ctx)
+
+    assert [%{"type" => "compaction_trigger"}] =
+             Enum.filter(compact_request["input"], &(&1["type"] == "compaction_trigger"))
+
+    source_path = read_thread(source, source_id)["path"]
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert_no_work(ctx, source, compacted)
+    assert :ok = Session.close(source)
+    assert_gone(source_native)
+
+    {source_bytes, rows} = rollout(ctx, source_path)
+    history = captured_history(rows, source_turn, began, ended)
+    [_user, checkpoint] = history
+
+    # The source checkpoint genuinely lacks this field. Original/null profiles
+    # retain their omission oracle; the separate client-object profile adds only
+    # the source turn ID. Neither modification is native metadata emission.
+    refute Map.has_key?(checkpoint, @metadata)
+
+    {submitted, expected_history} =
+      submitted_history(ctx, history, source_turn, metadata_mode)
+
+    cold = TurnFixture.start(ctx)
+    cold_native = native_process(cold)
+    refute cold_native == source_native
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    # This raw input is explicitly unstable in the pin. Read current native
+    # maps; never synthesize CompactedItem/SessionMeta/legacy database records.
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => submitted,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = imported["id"]
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert imported["preview"] == @marker
+    assert imported["status"] === %{"type" => "idle"}
+    imported_path = read_thread(cold, imported_id)["path"]
+    refute imported_path == source_path
+    assert_profile_import(ctx, imported_path, expected_history, metadata_mode, source_turn)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert_no_work(ctx, cold, import_events)
+    refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
+    assert requests(ctx) === [first, compact_request]
+    assert_retained(ctx, source_path, source_bytes)
+
+    followup_turn = TurnFixture.start_turn(cold, imported_id, text(@followup))
+    followup = collect(cold, &terminal(&1, followup_turn), [], now() + 20_000)
+    assert_completed(followup, imported_id, followup_turn)
+
+    assert %{
+             "threadId" => ^imported_id,
+             "turnId" => ^followup_turn,
+             "item" => %{"type" => "agentMessage", "text" => @answer}
+           } =
+             notification(followup, "item/completed", &(&1["item"]["type"] == "agentMessage"))
+
+    assert_no_work(ctx, cold, followup)
+    refute compaction_started(followup, imported_id)
+    assert [^first, ^compact_request, consumed] = requests(ctx)
+    assert_provider(consumed, checkpoint)
+    assert_profile_import(ctx, imported_path, expected_history, metadata_mode, source_turn)
+    assert_retained(ctx, source_path, source_bytes)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_native)
+    assert_profile_import(ctx, imported_path, expected_history, metadata_mode, source_turn)
+    assert requests(ctx) === [first, compact_request, consumed]
+    assert_retained(ctx, source_path, source_bytes)
+  end
+
+  defp submitted_history(_ctx, [user, checkpoint] = history, source_turn, :client_object) do
+    # This object is intentionally supplied by the current client. The actual
+    # native checkpoint captured above has no metadata; no native emission,
+    # legacy row or restoration of original context is claimed.
+    metadata = %{"turn_id" => source_turn}
+    modified = Map.put(checkpoint, @metadata, metadata)
+    refute Map.has_key?(checkpoint, @metadata)
+    assert Map.fetch!(modified, @metadata) === %{"turn_id" => source_turn}
+    assert Map.delete(modified, @metadata) === checkpoint
+
+    assert modified === %{
+             "type" => "compaction",
+             "id" => Map.fetch!(checkpoint, "id"),
+             "encrypted_content" => @checkpoint,
+             @metadata => %{"turn_id" => source_turn}
+           }
+
+    submitted = [user, modified]
+    assert submitted !== history
+    assert hd(submitted) === user
+
+    assert Enum.map(submitted, &Map.fetch!(&1, "id")) ===
+             Enum.map(history, &Map.fetch!(&1, "id"))
+
+    {submitted, submitted}
+  end
+
+  defp submitted_history(ctx, [user, checkpoint] = history, _source_turn, :original) do
+    submitted =
+      if ctx.null_metadata do
+        modified = Map.put(checkpoint, @metadata, nil)
+        assert Map.fetch!(modified, @metadata) === nil
+        assert Map.has_key?(modified, @metadata)
+        assert Map.delete(modified, @metadata) === checkpoint
+        [user, modified]
+      else
+        history
+      end
+
+    if ctx.null_metadata, do: assert(submitted !== history), else: assert(submitted === history)
+    {submitted, history}
+  end
+
+  defp assert_profile_import(ctx, path, history, :original, _source_turn),
+    do: assert_import(ctx, path, history)
+
+  defp assert_profile_import(ctx, path, history, :client_object, source_turn) do
+    {_bytes, rows} = rollout(ctx, path)
+    [user, checkpoint] = history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert length(Enum.uniq(ids)) == 2
+    payloads = for %{"type" => "response_item", "payload" => item} <- rows, do: item
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+    assert Enum.filter(payloads, &(&1["type"] == "compaction")) === [checkpoint]
+    refute Enum.any?(rows, &(&1["type"] == "compacted"))
+    assert Map.fetch!(checkpoint, @metadata) === %{"turn_id" => source_turn}
+
+    assert checkpoint === %{
+             "type" => "compaction",
+             "id" => Map.fetch!(checkpoint, "id"),
+             "encrypted_content" => @checkpoint,
+             @metadata => %{"turn_id" => source_turn}
+           }
+
+    assert user[@metadata]["turn_id"] == source_turn
   end
 
   defp captured_history(rows, source_turn, began, ended) do

@@ -21,6 +21,33 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [client-supplied Compaction metadata object](compaction-history-inputs-qualification.md#client-supplied-metadata-object)
+passes the final **44-file, 87/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
+**287-source** guard. Exactly one new owner422 becomes implemented, with
+supplemental property421 evidence and six historical-wording corrections:
+**4,934 implemented / 1,621 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+The original native checkpoint lacks metadata; its deliberately modified client
+clone persists unchanged without restamping and is consumed in **2 → 2 → 3**.
+Both old unchanged/null profiles, original helpers/setup/providers and all other
+286 guarded sources remain intact. Sixteen archive-matching files, two nodes,
+inventory and final binding pass; strict completeness exits **1**. Native-object
+emission, prohibited/broad/hosted, full-goal, A11, external/OS and release gates
+remain incomplete. No publication/deployment.
+
+Next qualify actual child-completion AgentMessage metadata448–450: native
+spawn/wait/child completion, closed-source user/message capture, distinct cold
+import and explicit consuming followup, **4 → 4 → 5**, no restored child or
+repeated message/tool dispatch. Preserve exact native IDs/metadata/content and
+source root/child bytes, with separate modified-client null input. Then qualify
+the generic ContextCompaction decode/history route with its source and actual
+external-emission limits explicit. Retain fixed yolo and every verification
+restriction. Prohibited/broad/hosted, full-goal, A11, historical/unreachable,
+unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [current image-result history inputs](image-history-inputs-qualification.md)
 pass the final **44-file, 86/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
@@ -34,18 +61,6 @@ Twenty-three archive-matching files, eleven nodes and final binding pass;
 all prior285 sources and owner408 stay unchanged. Strict completeness exits
 **1**. Real image generation, prohibited/broad/hosted, full-goal, A11,
 historical/external/OS and release gates remain incomplete. No publication/deployment.
-
-Next qualify current client-supplied non-null Compaction metadata422 without
-claiming native emission. Preserve both existing unchanged/null profiles and
-the original provider; require exact added object, no restamping, whole durable
-maps, original cmp_ request copy and **2 → 2 → 3** with no new compaction.
-Then qualify actual child-completion AgentMessage metadata448–450 and the
-separate generic ContextCompaction decode/history route, with their source and
-external-emission limits explicit. Retain fixed yolo and every verification
-restriction. Prohibited/broad/hosted, full-goal, A11, historical/unreachable,
-unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [completed WebSearchCall history input](supplied-history-inputs-qualification.md#completed-web-search-history)
 passes the final **43-file, 84/0 twice** functional matrix, compile/format,

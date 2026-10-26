@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [client-supplied Compaction metadata object](compaction-history-inputs-qualification.md#client-supplied-metadata-object)
+passes the final **44-file, 87/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
+**287-source** guard. Exactly one new owner422 becomes implemented, with
+supplemental property421 evidence and six historical-wording corrections:
+**4,934 implemented / 1,621 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+The original native checkpoint lacks metadata; its deliberately modified client
+clone persists unchanged without restamping and is consumed in **2 → 2 → 3**.
+Both old unchanged/null profiles, original helpers/setup/providers and all other
+286 guarded sources remain intact. Sixteen archive-matching files, two nodes,
+inventory and final binding pass; strict completeness exits **1**. Native-object
+emission, prohibited/broad/hosted, full-goal, A11, external/OS and release gates
+remain incomplete. No publication/deployment.
+
 The [current image-result history inputs](image-history-inputs-qualification.md)
 pass the final **44-file, 86/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, twenty-two fixture ASTs and the
