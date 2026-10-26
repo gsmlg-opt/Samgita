@@ -459,7 +459,7 @@
     "experimental/v2/WindowsSandboxSetupStartParams.json": "8610d077fff4fc5811f2e33dea82617a15ffb82f08e55e1540aef877133f5b4f",
     "experimental/v2/WindowsSandboxSetupStartResponse.json": "830bf89deac3e73e36b7d9799ceed32ee25e782c30b1d25266374aa020d3bc7e",
     "experimental/v2/WindowsWorldWritableWarningNotification.json": "bfa34d4890c8121a04412b8d53314a13adf98289fdd948857fd97b808dcbe79e",
-    "source/collaboration-input-semantics.json": "bd1ef94a01f9a59eec43ff84197cd55b74570391118f4716c098d9166761ce9a",
+    "source/collaboration-input-semantics.json": "774291e5df1b96a8771a549a27d077c0d5a32a43e9ed38443e3beb81b0bc8454",
     "source/common.rs": "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3",
     "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8",
     "source/dynamic-tools.rs": "d73d51aa0cd0e6318d6fc1faa890a3524301af0c3ba2b2dc0d071728b2caa402",

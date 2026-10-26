@@ -86,6 +86,16 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     end
   end
 
+  for name <- ~w(plan default code pair_programming execute custom), payload <- [nil, %{}] do
+    @tag unit_mode: %{name => payload}, canonical_mode: name
+    test "native tagged #{name} with #{inspect(payload)} applies its parser and persists canonical history",
+         ctx do
+      if ctx.canonical_mode == "plan",
+        do: qualify(ctx, @plan, ctx.unit_mode),
+        else: qualify_default(ctx, ctx.unit_mode)
+    end
+  end
+
   defp qualify_default(ctx, mode) do
     warm = start(ctx)
     warm_native = native_id(warm)
@@ -280,7 +290,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     saved
   end
 
-  defp qualify(ctx, plan) do
+  defp qualify(ctx, plan, input_mode \\ "plan") do
     warm = start(ctx)
     warm_native = native_id(warm)
 
@@ -294,6 +304,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
       })["thread"]["id"]
 
     assert is_binary(thread) and byte_size(thread) > 0
+    if is_map(input_mode), do: update_mode(ctx, warm, thread, input_mode, "plan")
     before_ms = System.system_time(:millisecond)
 
     turn =
@@ -301,7 +312,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
         "threadId" => thread,
         "input" => [%{"type" => "text", "text" => @marker}],
         "collaborationMode" => %{
-          "mode" => "plan",
+          "mode" => input_mode,
           "settings" => %{
             "model" => "mock-model",
             "reasoning_effort" => nil,
@@ -320,6 +331,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     path = Map.fetch!(saved, "path")
     assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
     assert File.lstat!(path).type == :regular
+    assert_plan_context(path, turn)
 
     retained =
       Map.merge(ctx.inputs, %{
@@ -347,6 +359,14 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     assert_retained(ctx, cold, retained)
     close(cold, cold_native)
     for {file, bytes} <- retained, do: assert(snapshot(file) === bytes)
+  end
+
+  defp assert_plan_context(path, turn) do
+    records = snapshot(path).bytes |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+    assert [context] = for(row <- records, row["type"] == "turn_context", do: row["payload"])
+    assert context["turn_id"] == turn
+    assert context["collaboration_mode"]["mode"] === "plan"
+    assert context["collaboration_mode"]["settings"]["model"] == "mock-model"
   end
 
   defp item(turn, plan), do: %{"type" => "plan", "id" => turn <> "-plan", "text" => plan}

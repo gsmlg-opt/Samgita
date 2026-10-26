@@ -39,6 +39,10 @@ The [collaboration input aliases](collaboration-input-alias-qualification.md)
 extend only the two request graphs that reach `ModeKind`. They preserve caller
 values and canonical output contracts; real applied settings, literal assistant
 items and first cold history reads establish the native Default behavior.
+The [ModeKind unit-object extension](collaboration-unit-input-qualification.md)
+also follows the pinned buffered decoder, accepting exactly one known mode key
+with null/empty-map payload. Original objects stay intact; actual native Plan
+and Default parsing plus canonical persisted strings qualify the selected forms.
 The separate [deprecated mode input correction](deprecated-mode-input-qualification.md)
 follows the pinned internally tagged request's buffered serde decoder, including
 null/empty-map unit objects. Referenced dependency source/license and Cargo.lock

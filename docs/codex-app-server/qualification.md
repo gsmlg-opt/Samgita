@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [collaboration unit-object repair](collaboration-unit-input-qualification.md)
+accepts six known ModeKind keys with null/empty-map payload on two real request
+graphs. Twelve added native profiles prove distinct Plan/Default parser effects,
+applied settings, canonical context and warm/first-cold history. Wire-only
+characterization remains separate from final default-validation proof. Final
+**32 schema /82 ordinary driver twice**, outside consumer **1/0**, format/compile,
+strict Credo515, inventory and330-source guard pass; all323 other prior sources
+and previous MultiAgent/dynamic/compaction descriptors remain unchanged. No
+state/owner promotion: **5,018 implemented /1,537 missing /66 blocked** contracts,
+unchanged requirements and zero verified. Prohibited/broad/hosted, A11, legacy/
+external/platform and full-goal gates stay incomplete; no publication/deployment.
+
 The [deprecated mode input repair](deprecated-mode-input-qualification.md)
 accepts native `none` and the three unit variants' null/empty-map objects on
 three real request graphs. Source review corrects a mistaken negative and a

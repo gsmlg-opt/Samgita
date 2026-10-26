@@ -57,11 +57,45 @@ defmodule SamgitaProtocolCodex.CollaborationInputAliasTest do
   end
 
   test "aliases retain collaboration field experimental negotiation" do
-    for method <- @methods, mode <- ["default" | @aliases] do
+    for method <- @methods, mode <- ["default" | @aliases] ++ unit_objects() do
       assert {:error, %Error{code: :experimental_api_required}} =
                Schema.validate_request(method, params(method, mode))
     end
   end
+
+  test "native tagged mode inputs preserve the complete original object and settings" do
+    for method <- @methods, mode <- unit_objects() do
+      value = params(method, mode, %{"developer_instructions" => "Owned tagged mode λ🙂"})
+      wire = %{"id" => "owned-mode-object", "method" => method, "params" => value}
+      bytes = JSON.encode!(wire)
+
+      assert :ok = Schema.validate_request(method, value, experimental: true)
+      assert {:ok, ^bytes} = Wire.encode(wire)
+      assert {:ok, ^wire} = Wire.decode(bytes)
+      document = @export |> File.read!() |> JSON.decode!()
+      assert {:error, %Error{code: :schema_violation}} = Validator.validate(document, wire)
+    end
+  end
+
+  test "tagged mode inputs reject unknown keys, multiple members and non-unit payloads" do
+    for method <- @methods,
+        mode <- [
+          %{},
+          %{"none" => nil},
+          %{"plan" => nil, "default" => nil},
+          %{"code" => nil, "extra" => true},
+          %{"plan" => 3},
+          %{"custom" => false},
+          %{"execute" => []},
+          %{"default" => %{"extra" => nil}}
+        ] do
+      assert {:error, %Error{code: :schema_violation}} =
+               Schema.validate_request(method, params(method, mode), experimental: true)
+    end
+  end
+
+  defp unit_objects,
+    do: for(name <- ["plan", "default" | @aliases], payload <- [nil, %{}], do: %{name => payload})
 
   defp params(method, mode, extra \\ %{}) do
     base = %{

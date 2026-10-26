@@ -155,9 +155,10 @@ def derive_collaboration(vendor):
         "definition": "ModeKind",
         "canonical_tag": "default",
         "input_aliases": aliases,
-        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256},
+        "input_object_branches": unit_object_branches(["plan", "default", *aliases]),
+        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256, **buffered_decoder_sources(vendor)},
         "schemas_sha256": hashes,
-        "semantics": "Accept the four pinned serde input aliases for ModeKind::Default only in its two reachable client request graphs. Preserve caller values, all collaboration settings constraints, experimental negotiation and canonical output schemas. Native decoding owns normalization to default and its actual mode behavior.",
+        "semantics": "Accept the four pinned Default string aliases and externally tagged unit objects for plan/default and those aliases only in the two reachable request graphs. The internally tagged ClientRequest buffers nested params; its pinned serde decoder accepts null or empty-map unit payloads with exactly one known key. Preserve caller values, settings constraints, negotiation and canonical output schemas. Native owns canonical string normalization, parser behavior and persistence.",
     }
 
 
@@ -192,16 +193,7 @@ def derive_multi_agent(vendor):
         raise ValueError("Pinned MultiAgentModeWire variants changed")
     if 'MultiAgentModeWire::None => Self::Custom(String::new()),' not in rust:
         raise ValueError("Pinned none input conversion changed")
-    decoder_sources = {
-        DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
-        DECODER_ORIGIN: hashlib.sha256(encode(decoder_origin()).encode()).hexdigest(),
-    }
-    for name, expected in decoder_sources.items():
-        if digest(vendor / name) != expected:
-            raise ValueError("Pinned buffered input decoder reference changed: " + name)
-    decoder = (vendor / DECODER_RUST).read_text()
-    if 'Content::Map(ref v) if v.is_empty() => visitor.visit_unit(),' not in decoder:
-        raise ValueError("Pinned buffered unit payload contract changed")
+    decoder_sources = buffered_decoder_sources(vendor)
     hashes = {}
     for name in MULTI_AGENT_SCHEMAS:
         path = vendor / "experimental" / name
@@ -221,15 +213,32 @@ def derive_multi_agent(vendor):
         "definition": "MultiAgentMode",
         "input_branches": [
             {"type": "string", "enum": ["none"]},
-            *({"type": "object", "required": [name], "additionalProperties": False,
-               "properties": {name: {"enum": [None, {}]}}}
-              for name in ["none", "explicitRequestOnly", "proactive"]),
+            *unit_object_branches(["none", "explicitRequestOnly", "proactive"]),
         ],
         "native_none_decoded_value": {"custom": ""},
         "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256, **decoder_sources},
         "schemas_sha256": hashes,
         "semantics": "The pinned native from=MultiAgentModeWire decoder accepts none and maps it to Custom with empty text. Internally tagged ClientRequest buffers nested params: its serde ContentDeserializer accepts one-key unit objects for none/explicitRequestOnly/proactive with null OR empty-map payload. Preserve exact caller values, reject additional distinct keys/nonempty payloads, and do not broaden outputs. All three current request fields are deprecated and ignored; decoding does not activate delegation or change effective public explicitRequestOnly settings.",
     }
+
+
+def unit_object_branches(names):
+    return [{"type": "object", "required": [name], "additionalProperties": False,
+             "properties": {name: {"enum": [None, {}]}}} for name in names]
+
+
+def buffered_decoder_sources(vendor):
+    sources = {
+        DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
+        DECODER_ORIGIN: hashlib.sha256(encode(decoder_origin()).encode()).hexdigest(),
+    }
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned buffered input decoder reference changed: " + name)
+    decoder = (vendor / DECODER_RUST).read_text()
+    if 'Content::Map(ref v) if v.is_empty() => visitor.visit_unit(),' not in decoder:
+        raise ValueError("Pinned buffered unit payload contract changed")
+    return sources
 
 
 def decoder_origin():

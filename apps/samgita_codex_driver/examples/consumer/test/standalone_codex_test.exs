@@ -56,7 +56,12 @@ defmodule StandaloneCodexTest do
                experimental: true
              )
 
-    for mode <- ~w(code pair_programming execute custom) do
+    unit_modes =
+      for name <- ~w(plan default code pair_programming execute custom),
+          payload <- [nil, %{}],
+          do: %{name => payload}
+
+    for mode <- ~w(code pair_programming execute custom) ++ unit_modes do
       assert :ok =
                SamgitaProtocolCodex.Schema.validate_request(
                  "thread/settings/update",

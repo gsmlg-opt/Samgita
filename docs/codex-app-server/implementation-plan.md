@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [collaboration unit-object repair](collaboration-unit-input-qualification.md)
+reproduces rejection of native null/empty-map mode objects and adds only their
+input branches on two reachable request graphs. Twelve added native profiles
+prove applied snapshots, Plan versus literal assistant parsing, canonical
+contexts and first cold history. Final **32 schema /82 ordinary driver twice**,
+outside consumer **1/0**, format/compile, strict Credo515, inventory and330-source
+guard pass; all323 other prior sources and older MultiAgent/dynamic/compaction
+descriptors remain unchanged. No state/owner promotion: **5,018 implemented /
+1,537 missing /66 blocked** contracts; **462 implemented /12 missing /11 blocked**
+requirements; zero verified. Next reproduce the independently source-confirmed
+ReasoningSummary representations using actual applied settings/provider effects;
+do not use TurnContext.summary as an oracle because native hardcodes it to None.
+Prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal gates remain
+incomplete.
+
 The [deprecated mode input repair](deprecated-mode-input-qualification.md)
 covers `none` and source-supported null/empty-map unit objects on three request
 graphs without claiming delegation. Seven new native profiles prove exact sends,

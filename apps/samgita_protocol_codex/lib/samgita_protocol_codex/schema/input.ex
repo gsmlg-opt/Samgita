@@ -72,8 +72,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       when method in @collaboration_methods do
     update_in(
       document,
-      ["definitions", "ModeKind", "enum"],
-      &(&1 ++ @collaboration["input_aliases"])
+      ["definitions", "ModeKind"],
+      &collaboration_input/1
     )
     |> multi_agent_input()
   end
@@ -96,6 +96,11 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   end
 
   def check(_direction, _method, _value), do: :ok
+
+  defp collaboration_input(schema) do
+    canonical = Map.update!(schema, "enum", &(&1 ++ @collaboration["input_aliases"]))
+    %{"oneOf" => [canonical | @collaboration["input_object_branches"]]}
+  end
 
   defp multi_agent_input(document) do
     update_in(

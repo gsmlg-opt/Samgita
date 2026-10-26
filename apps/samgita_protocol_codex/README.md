@@ -57,6 +57,10 @@ A third input-only descriptor accepts native `ModeKind::Default` aliases `code`,
 Codex owns canonical `default` settings, parser behavior and persistence. See
 `docs/codex-app-server/collaboration-input-alias-qualification.md` for actual
 applied settings, literal assistant output and first cold history evidence.
+The same descriptor also accepts single-key unit objects for `plan`, `default`
+and those four aliases, with `null` or `{}` payload. See
+`docs/codex-app-server/collaboration-unit-input-qualification.md` for distinct
+native Plan/Default parser and canonical history evidence on these forms.
 
 A fourth descriptor covers deprecated `multiAgentMode` inputs: `none` and the
 single-key unit objects for `none`, `explicitRequestOnly` and `proactive`, with

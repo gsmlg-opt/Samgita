@@ -8,6 +8,98 @@
     "execute",
     "custom"
   ],
+  "input_object_branches": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "plan": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "plan"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "default": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "default"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "pair_programming": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "pair_programming"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "execute": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "execute"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "custom": {
+          "enum": [
+            null,
+            {}
+          ]
+        }
+      },
+      "required": [
+        "custom"
+      ],
+      "type": "object"
+    }
+  ],
   "kind": "locally-derived-input-contract-not-official-export",
   "methods": [
     "thread/settings/update",
@@ -18,9 +110,12 @@
     "v2/ThreadSettingsUpdateParams.json": "749419634bb7ed66216d72bf9d8734ecf0e6efaa8cd46fe51a117d1b42ed9657",
     "v2/TurnStartParams.json": "abf0d6d29d223b38c650ff1155cb9c9f9b4211e6d0e20c57d750a9e1babfdb41"
   },
-  "semantics": "Accept the four pinned serde input aliases for ModeKind::Default only in its two reachable client request graphs. Preserve caller values, all collaboration settings constraints, experimental negotiation and canonical output schemas. Native decoding owns normalization to default and its actual mode behavior.",
+  "semantics": "Accept the four pinned Default string aliases and externally tagged unit objects for plan/default and those aliases only in the two reachable request graphs. The internally tagged ClientRequest buffers nested params; its pinned serde decoder accepts null or empty-map unit payloads with exactly one known key. Preserve caller values, settings constraints, negotiation and canonical output schemas. Native owns canonical string normalization, parser behavior and persistence.",
   "source_sha256": {
-    "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8"
+    "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8",
+    "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
   },
   "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
 }
