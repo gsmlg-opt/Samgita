@@ -30346,24 +30346,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginListMarketplaceKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit plugin/list marketplaceKinds:[local] with forceRefetch:false reads a genuine owned catalog of7 uninstalled inert local plugin manifests. Exact independent catalog name/path/display metadata,7 ID/name/keyword/source/display projections and empty load errors, complete real outbound/inbound frames/correlation and whole-response warm/cold equality establish positive local metadata selection. No install/activation/executable plugin content, turn or inference; unchanged input/config/catalog/empty provider journal and owned PID cleanup. Remote marketplace kinds274-277 are not called or promoted, and feature-disabled replies are not remote success evidence.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/PluginListMarketplaceKind/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "15bba0861d0d143f24745682393a434da3df90ceb5a8bd05d6f7919d942190d5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -30456,68 +30466,98 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginSearchScope/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit global and workspace plugin/search inputs exclude the known ordinary local personal catalog. Positive local listing/personal-ranked results form populated controls; each scope has an exact empty local result/null nextCursor, complete real input/response correlation and unchanged cold repetition with zero inference. This is local-exclusion input behavior only. Positive built-in/global and remote workspace catalog success remain unverified; identical empty local results do not distinguish every global/workspace swap. No official catalog identity is fabricated and remote marketplace kinds274-277 stay uncalled/missing.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "786cb707c0636ab2ed8400f63529dc5cef8e24b0a832a4f82209b0b18c86a459",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginSearchScope/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit global and workspace plugin/search inputs exclude the known ordinary local personal catalog. Positive local listing/personal-ranked results form populated controls; each scope has an exact empty local result/null nextCursor, complete real input/response correlation and unchanged cold repetition with zero inference. This is local-exclusion input behavior only. Positive built-in/global and remote workspace catalog success remain unverified; identical empty local results do not distinguish every global/workspace swap. No official catalog identity is fabricated and remote marketplace kinds274-277 stay uncalled/missing.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "29cdac370427a3c5a1e0ade781009bee8e496747497648a3414f42193e6534dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginSearchScope/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit personal plugin/search over7 actual uninstalled inert local manifests. Independently prescribed six-result name/display/keyword ranking differs from reversed declaration order, with exact ID/name/keyword/local source/catalog provenance/display projections and null nextCursor; a separate description-only query excludes the nonmatching control. Complete real wire/native response correlation and whole-result cold repetition, zero turns/inference and retained fixture bytes. This qualifies positive ordinary local personal metadata/search; no installed/plugin execution, remote catalog or general pagination acceptance.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "b616d47c510f4492db16117ff870b28b82b90f3839e0ec79265579917e75bbc5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -43003,24 +43043,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "3e32720a84f76aa3c6d43c98afe5b44c70938bfb1eac76f371d1a60838da8b4a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -43054,46 +43104,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "c20d3fcfc0c2bd2a6ecb30670b66a69dce7b92ca87e3cefd922f3ec19b917e82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/3",
       "schema": "ClientRequest.json",
       "schema_sha256": "622214a100066aceb1d1ab827c78dee8aaf32f7cd66e8c02400287fe6cb589c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -43128,46 +43198,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/5",
       "schema": "ClientRequest.json",
       "schema_sha256": "5cc708a85d1d6e44ff3cf912b9ddffe694298365f329defe2360068555e9f006",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/6",
       "schema": "ClientRequest.json",
       "schema_sha256": "d85a2934393a355694655213a832fb9ac656cbc45e0c07bee9498246d5b131b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -43202,46 +43292,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/8",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/8",
       "schema": "ClientRequest.json",
       "schema_sha256": "8c84b24aaff54b79cff49fb22b4fb5b9c289d6a9a6991f9c3b2795f80e6aaaa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
+        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
+        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/9",
       "schema": "ClientRequest.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

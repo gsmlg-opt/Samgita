@@ -1,5 +1,22 @@
 # Codex compatibility qualification
 
+The [source-kind and local plugin filters](native-source-and-local-plugin-filters-qualification.md)
+pass the current **55-file,109/0 twice** functional matrix, compile/format,
+strict Credo on505 sources, outside consumer1/0,30 fixture ASTs and306-source
+guard. Eleven exact physical owners become scoped implemented:
+**4,996 implemented /1,559 missing /66 blocked** contracts; unchanged
+**462 implemented /12 missing /11 blocked** requirements, zero verified.
+Seven thread-source literals have populated exclusion/mixed-OR/cold evidence;
+positive special-source producers stay unverified. Local plugin listing/personal
+search have real positive metadata/rank results; global/workspace cover only
+local exclusion, and remote kinds274–277 remain missing. Twenty-seven whole
+archive files,11 independent nodes and final binding pass; all304 prior sources
+stay byte-identical. One initial nested recorder fails strict Credo and is
+extracted with all bounds/assertions preserved; final checks pass. Inventory
+passes; strict completeness exits **1**. Prohibited/broad/hosted, A11, unavailable
+legacy/external/OS/platform and full-goal/release gates remain incomplete.
+No publication/deployment.
+
 The [initialization title and current local-shell inputs](native-title-and-current-shell-qualification.md)
 pass the current **53-file,107/0 twice** functional matrix, compile/format,
 strict Credo on503 sources, outside consumer1/0,30 fixture ASTs and304-source
