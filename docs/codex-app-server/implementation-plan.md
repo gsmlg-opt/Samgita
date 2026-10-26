@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit-null image-detail history inputs](image-detail-history-inputs-qualification.md)
+pass the final **48-file, 95/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**
+guard. Only two physical null owners114/198 become implemented: **4,949 implemented /
+1,606 missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Genuine user/dynamic source maps,
+single nested client-null mutation, durable omission and exact provider-copy
+consumption retain **1 → 1 → 2 / 2 → 2 → 3**, with no cold callback/repeated effect.
+Durable IDs and outbound metadata/ID normalization remain separate oracles;
+PNG bytes/CRC/pixels and source high detail stay exact. Sixteen archive-matching
+files, two nodes and final binding pass; all prior294 sources remain unchanged.
+Strict completeness exits **1**. Native-null emission, real image retrieval/
+reasoning, prohibited/broad/hosted, full-goal, A11, external/OS and release gates
+remain incomplete. No publication/deployment.
+
+Next qualify initial PTY cols/rows96/97/297/298 through two distinct native
+APIs, actual child kernel measurements and normal exit. Preserve every original
+resize/default case/helper/script. Then continue ordinary reasoning-summary and
+explicit nested effort-null state transitions after pinned-source review. Fixed
+yolo and every verification restriction remain; prohibited/broad/hosted, A11,
+external/OS and full-goal gates stay incomplete.
+
+## Earlier checkpoints
+
 The [current LocalShellCall history inputs](local-shell-history-inputs-qualification.md)
 pass the final **47-file, 93/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**,26 fixture ASTs and the **294-source**
@@ -34,15 +58,6 @@ archive-matching files, seven nodes and final binding pass; all prior292 sources
 and ConfigurationUpdate426–429 remain unchanged. Strict completeness exits **1**.
 Prohibited/broad/hosted, full-goal, A11, external/OS and release gates remain
 incomplete. No publication/deployment.
-
-Next qualify nested image-detail client nulls114/198, with genuine current user
-and dynamic-tool sources, exact durable omission and distinct provider-copy
-ID/metadata oracles. Then qualify initial PTY cols/rows96/97/297/298 through
-actual kernel measurements and normal exit, preserving original resize cases.
-Retain fixed yolo and every verification restriction. Required prohibited/
-broad/hosted, A11, external/OS and full-goal gates remain incomplete.
-
-## Earlier checkpoints
 
 The [generic ContextCompaction history inputs](context-compaction-history-inputs-qualification.md)
 pass the final **46-file, 91/0 twice** functional matrix, compile/format,

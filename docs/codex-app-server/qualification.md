@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [explicit-null image-detail history inputs](image-detail-history-inputs-qualification.md)
+pass the final **48-file, 95/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**
+guard. Only two physical null owners114/198 become implemented: **4,949 implemented /
+1,606 missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Genuine user/dynamic source maps,
+single nested client-null mutation, durable omission and exact provider-copy
+consumption retain **1 → 1 → 2 / 2 → 2 → 3**, with no cold callback/repeated effect.
+Durable IDs and outbound metadata/ID normalization remain separate oracles;
+PNG bytes/CRC/pixels and source high detail stay exact. Sixteen archive-matching
+files, two nodes and final binding pass; all prior294 sources remain unchanged.
+Strict completeness exits **1**. Native-null emission, real image retrieval/
+reasoning, prohibited/broad/hosted, full-goal, A11, external/OS and release gates
+remain incomplete. No publication/deployment.
+
 The [current LocalShellCall history inputs](local-shell-history-inputs-qualification.md)
 pass the final **47-file, 93/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**,26 fixture ASTs and the **294-source**

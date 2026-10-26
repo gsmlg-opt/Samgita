@@ -25320,24 +25320,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-detail-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ContentItem/oneOf/1/properties/detail/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected explicit CLIENT-null nested detail inputs only. Current public user image/fileId low and actual dynamic InputImage callback/high separately produce genuine native history maps. After source close/reap, each clone changes exactly one captured nested detail to present null. Cold import persists the full original selected maps with only that detail omitted; one deliberate continuation consumes them. User budget1->1->2; dynamic budget2->2->3. Original matched call/output pair, content order, native IDs/source metadata/time and source assistant stay exact; no cold tool callback, registration, reply or repeated effect.",
+        "Independent whole-map durable and provider-copy oracles distinguish serialization layers. Durable IDs remain unchanged. Only custom-provider copies remove top-level passthrough and IDs failing the exact nonempty split_once-underscore predicate; native msg_/fc_/fco_ IDs remain, fixture-message-1/-2 IDs are omitted outbound. Selected user file_id or tiny2x2 PNG image_url remains exact with detail omitted, not null/high/auto. PNG bytes, CRC, dimensions and pixels are checked independently; source continuation still requires high. No synthesized raw rows, sidecars or app-server frames.",
+        "Only physical null owners114/198 become implemented; no sibling/reference/hash promotion. These deliberate current client modifications do not establish native-null emission, arbitrary image bytes, upload/file retrieval, real visual reasoning, resized-image fidelity, full restoration, external providers/OS/transports, A11 or full compatibility/release. Prior294 sources remain byte-identical. Existing deadlines/bounds and owned cleanup remain; fixed yolo only. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/ContentItem/oneOf/1/properties/detail/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_null_image_detail_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -27958,24 +27968,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-detail-history-inputs-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/1/properties/detail/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected explicit CLIENT-null nested detail inputs only. Current public user image/fileId low and actual dynamic InputImage callback/high separately produce genuine native history maps. After source close/reap, each clone changes exactly one captured nested detail to present null. Cold import persists the full original selected maps with only that detail omitted; one deliberate continuation consumes them. User budget1->1->2; dynamic budget2->2->3. Original matched call/output pair, content order, native IDs/source metadata/time and source assistant stay exact; no cold tool callback, registration, reply or repeated effect.",
+        "Independent whole-map durable and provider-copy oracles distinguish serialization layers. Durable IDs remain unchanged. Only custom-provider copies remove top-level passthrough and IDs failing the exact nonempty split_once-underscore predicate; native msg_/fc_/fco_ IDs remain, fixture-message-1/-2 IDs are omitted outbound. Selected user file_id or tiny2x2 PNG image_url remains exact with detail omitted, not null/high/auto. PNG bytes, CRC, dimensions and pixels are checked independently; source continuation still requires high. No synthesized raw rows, sidecars or app-server frames.",
+        "Only physical null owners114/198 become implemented; no sibling/reference/hash promotion. These deliberate current client modifications do not establish native-null emission, arbitrary image bytes, upload/file retrieval, real visual reasoning, resized-image fidelity, full restoration, external providers/OS/transports, A11 or full compatibility/release. Prior294 sources remain byte-identical. Existing deadlines/bounds and owned cleanup remain; fixed yolo only. Prohibited safety/auth/permission/approval tests and broad/hosted workflows stay unrun. Implemented only."
+      ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/1/properties/detail/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_null_image_detail_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
