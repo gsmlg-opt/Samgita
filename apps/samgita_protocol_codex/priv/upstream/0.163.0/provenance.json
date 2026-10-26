@@ -475,6 +475,7 @@
     "source/output-typescript/ThreadTimelineEntry.ts": "4d917b865b81ea61f9b3cee7400fd15fc3af0908ddb60d60c858b1c7abf9c148",
     "source/realtime-output-semantics.json": "10015c84e3598955b366ffb7783aa221217677fcd75179a6bbc2c878ae8d5ced",
     "source/realtime.rs": "d86584ad3d3285672112ccc997b50579822d402a8d0ac2d058efba4ed976ca0c",
+    "source/reasoning-summary-input-semantics.json": "ff4a677f7aa9a2317c7d2dea1dcacd454784eb72336ea963c4d46f00633b405d",
     "source/response-item-input-semantics.json": "261d036266899978e36a1f85ea9f762fc8ce05f708834551900aadc0d1d43863",
     "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",

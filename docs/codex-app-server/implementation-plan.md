@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ReasoningSummary input repair](reasoning-summary-input-qualification.md)
+adds source-supported null/empty-map objects on exactly three request graphs.
+Twenty-four new native profiles prove applied canonical selection, provider
+omission for `none`, retained null/omission semantics and distinct thread-owned
+versus active-turn effects. Final **37 schema /108 ordinary driver twice**,
+outside consumer **1/0**, format/compile, strict Credo517, inventory and334-source
+guard pass; all326 other prior sources and prior pinned artifacts are unchanged.
+No state/owner promotion: **5,018 implemented /1,537 missing /66 blocked**
+contracts; **462 implemented /12 missing /11 blocked** requirements; zero verified.
+Next reproduce independently source-confirmed Personality unit-object input with
+real fresh instruction construction, retained inherited instructions and warm/cold
+resume semantics. Cold summary restoration and all prohibited/broad/hosted, A11,
+legacy/external/OS/platform/full-goal gates stay incomplete.
+
 The [collaboration unit-object repair](collaboration-unit-input-qualification.md)
 reproduces rejection of native null/empty-map mode objects and adds only their
 input branches on two reachable request graphs. Twelve added native profiles

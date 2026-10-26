@@ -10,7 +10,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/input-semantics.json",
                       "source/response-item-input-semantics.json",
                       "source/collaboration-input-semantics.json",
-                      "source/multi-agent-input-semantics.json"
+                      "source/multi-agent-input-semantics.json",
+                      "source/reasoning-summary-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -21,6 +22,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @collaboration Enum.find(@corrections, &(&1["definition"] == "ModeKind"))
   @collaboration_methods @collaboration["methods"]
   @multi_agent Enum.find(@corrections, &(&1["definition"] == "MultiAgentMode"))
+  @summary Enum.find(@corrections, &(&1["definition"] == "ReasoningSummary"))
+  @summary_methods @summary["methods"]
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -76,7 +79,11 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       &collaboration_input/1
     )
     |> multi_agent_input()
+    |> summary_input()
   end
+
+  def contract("ClientRequest.json", method, document) when method in @summary_methods,
+    do: summary_input(document)
 
   def contract(_filename, _method, document), do: document
 
@@ -107,6 +114,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "MultiAgentMode", "oneOf"],
       &(&1 ++ @multi_agent["input_branches"])
+    )
+  end
+
+  defp summary_input(document) do
+    update_in(
+      document,
+      ["definitions", "ReasoningSummary"],
+      &%{"oneOf" => [&1 | @summary["input_object_branches"]]}
     )
   end
 

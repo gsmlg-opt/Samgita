@@ -48,6 +48,16 @@ follows the pinned internally tagged request's buffered serde decoder, including
 null/empty-map unit objects. Referenced dependency source/license and Cargo.lock
 provenance remain distinct from official Codex exports. These deprecated fields
 are ignored by native: decoding never confers delegation or project authority.
+The [ReasoningSummary input correction](reasoning-summary-input-qualification.md)
+applies only to its three reachable request graphs and preserves the canonical
+string schema inside an input-only union with four known unit-object branches.
+Objects retain their original bytes through dispatch. Native applies persistent
+thread settings or active-step settings according to the method; an active-step
+update leaves future thread defaults unchanged. Selected `none` omits
+`reasoning.summary` from provider requests. Outer null/omission leaves the selected
+setting intact. Actual applied snapshots and provider requests establish these
+semantics; the native hardcoded TurnContext summary field is not a selection
+oracle. This correction does not qualify cold restoration.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

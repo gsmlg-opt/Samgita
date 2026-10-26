@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Derive bounded pinned input corrections, retaining official JSON.
 
-Cover custom dynamic-tool decoding, compaction and collaboration input aliases.
+Cover custom dynamic-tool decoding and source-pinned input representations.
 These describe accepted input, never outgoing-value normalization.
 """
 
@@ -33,6 +33,9 @@ COLLABORATION_SCHEMAS = ("ClientRequest.json", "v2/ThreadSettingsUpdateParams.js
 MULTI_AGENT_SEMANTICS = "source/multi-agent-input-semantics.json"
 MULTI_AGENT_METHODS = ("thread/settings/update", "thread/start", "turn/start")
 MULTI_AGENT_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json")
+SUMMARY_SEMANTICS = "source/reasoning-summary-input-semantics.json"
+SUMMARY_METHODS = ("thread/settings/update", "turn/settings/update", "turn/start")
+SUMMARY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/TurnSettingsUpdateParams.json")
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -227,6 +230,43 @@ def unit_object_branches(names):
              "properties": {name: {"enum": [None, {}]}}} for name in names]
 
 
+def derive_summary(vendor):
+    if digest(vendor / CONFIG_TYPES) != CONFIG_TYPES_SHA256:
+        raise ValueError("Pinned reasoning summary input decoder changed")
+    rust = (vendor / CONFIG_TYPES).read_text()
+    declaration = re.search(
+        r'#\[serde\(rename_all = "lowercase"\)\]\n'
+        r'#\[strum\(serialize_all = "lowercase"\)\]\n'
+        r'pub enum ReasoningSummary \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != (
+            '    #[default]\n    Auto,\n    Concise,\n    Detailed,\n'
+            '    /// Option to disable reasoning summaries.\n    None,'):
+        raise ValueError("Pinned ReasoningSummary unit variants changed")
+    names = [name.lower() for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    hashes = {}
+    for name in SUMMARY_SCHEMAS:
+        path = vendor / "experimental" / name
+        document = json.loads(path.read_text())
+        union = document["definitions"]["ReasoningSummary"]["oneOf"]
+        if len(union) != 2 or [value for branch in union for value in branch["enum"]] != names:
+            raise ValueError("Official canonical summary contract changed: " + name)
+        hashes[name] = digest(path)
+    document = json.loads((vendor / "experimental/ClientRequest.json").read_text())
+    if request_methods(document, "ReasoningSummary") != list(SUMMARY_METHODS):
+        raise ValueError("ReasoningSummary request input graph changed")
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(SUMMARY_METHODS),
+        "definition": "ReasoningSummary",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {CONFIG_TYPES: CONFIG_TYPES_SHA256, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary lowercase ReasoningSummary unit enum accepts one-key objects for auto/concise/detailed/none through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Preserve the entire canonical string contract, caller objects, enclosing constraints, outer null/omission semantics and negotiation. Native owns canonical applied settings and scope; selected none omits provider reasoning.summary rather than sending a none string. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -266,7 +306,8 @@ def verify_decoder_lock(path):
 def corrections(vendor):
     return ((SEMANTICS, derive(vendor)), (RESPONSE_SEMANTICS, derive_response_item(vendor)),
             (COLLABORATION_SEMANTICS, derive_collaboration(vendor)),
-            (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)))
+            (MULTI_AGENT_SEMANTICS, derive_multi_agent(vendor)),
+            (SUMMARY_SEMANTICS, derive_summary(vendor)))
 
 
 def write(vendor):

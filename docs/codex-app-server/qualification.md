@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ReasoningSummary input repair](reasoning-summary-input-qualification.md)
+reproduces and fixes native unit-object rejection on three real request graphs.
+Twenty-four new native profiles prove canonical applied settings, provider summary
+omission for `none`, persistent thread versus active-turn scope and retained
+null/omission behavior. Final **37 schema /108 ordinary driver twice**, outside
+consumer **1/0**, format/compile, strict Credo517, inventory and334-source guard
+pass; all326 other prior sources and every prior pinned artifact stay unchanged.
+No state/owner promotion: **5,018 implemented /1,537 missing /66 blocked**
+contracts, unchanged requirements and zero verified. Cold restoration is not
+claimed. Prohibited/broad/hosted, A11, legacy/external/platform and full-goal gates
+remain incomplete; no publication or deployment.
+
 The [collaboration unit-object repair](collaboration-unit-input-qualification.md)
 accepts six known ModeKind keys with null/empty-map payload on two real request
 graphs. Twelve added native profiles prove distinct Plan/Default parser effects,
