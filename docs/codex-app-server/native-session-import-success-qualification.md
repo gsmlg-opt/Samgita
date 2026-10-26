@@ -169,3 +169,60 @@ suite, broad suites and hosted workflows remain unrun. A11, unreachable legacy
 paths, unavailable external/platform/OS success, full compatibility and release
 remain incomplete. No package publication, deployment, production migration or
 real Cursor/provider integration is established.
+
+## Advisory requested title
+
+A further positive case submits `Owned requested advisory title` in the selected
+session's request metadata, after checking actual detection of the different
+transcript-derived title. Captured outgoing bytes preserve that supplied value.
+Actual import success, progress/completion, durable successful history, thread
+preview and complete imported messages retain the original source title/text.
+The separate legacy name index remains null, and the requested hint is absent
+from the actual native rollout.
+
+This matches the pinned source: protocol conversion accepts the field, but
+`sessions/mod.rs:116–160` passes only path/cwd into source parsing;
+`sessions/export.rs:39–83` derives the imported title from that parsed source.
+The observed behavior is accepted/ignored advisory metadata. There is no
+request-driven title setter or rename claim.
+
+The case retains the full real import journey: correlated receipt and exact
+processing notices, one native Legacy thread, complete raw/public history and
+chronology, explicit repeat after known completion with a distinct empty
+operation history, unchanged canonical bytes and a distinct cold native reader.
+Zero model requests, unchanged source/config/workspace inputs, bounded capture,
+finite deadlines and normal owned shutdown all remain asserted.
+
+Only physical owner **597**,
+`ClientRequest.json#/definitions/SessionMigration/properties/title`, becomes
+scoped **implemented**. Node SHA256:
+`cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089`.
+The real import graph and 34 whole immutable source files match. Null, omitted
+and default variants, other formats/transports/OS and whole-family completeness
+are not inferred from this explicit-value case.
+
+Baseline: `06309b80592d6feb8513f13ee60e20930cb5749b`. The owning module
+initially passes **6/0**. Final affected four-file checks pass **10/0 twice**,
+seeds `501432` and `987654`, in 33.654s and 33.887s. Scoped format,
+warnings-as-errors compile, strict Credo on 508 sources, outside actual-binary
+consumer **1/0**, retained relay/inline Exec ASTs and the 310-source guard pass.
+All 309 unrelated sources and production protocol/driver/process cleanup remain
+byte-identical. No new failure, skipped assertion or deadline increase occurs.
+
+Commands/logs: `/tmp/samgita-v345-run.py` and
+`/tmp/samgita-v345-functional-checks/final/`; source/final bindings:
+`/tmp/samgita-v345-source.py` and `/tmp/samgita-v345-bind.py`.
+
+| Artifact | SHA256 |
+| --- | --- |
+| Functional results | `71234d9d74756b8ef36ac3122e529a1d19b153e4e2b62b0699bcd0a954487d79` |
+| Source guard | `6c8189e5b920504ab2a5e6b486977b71641324acb83462fe9a4223c6822e5146` |
+| Whole source/schema comparisons | `a1b0d87b2eb356704211b434221099e086aebb7139e85abe344ca801e79caac3` |
+
+Inventory consistency passes; strict completeness exits **1**. Contracts become
+**5,006 implemented / 1,549 missing / 66 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Fixed YOLO remains
+ordinary setup. Prohibited tests/audits, mixed/broad suites and hosted workflows,
+A11, upstream-unreachable legacy and unavailable external/platform/OS success,
+full compatibility and release stay incomplete. No real Claude/provider
+integration, package publication, deployment or production migration occurs.

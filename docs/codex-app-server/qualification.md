@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
+passes the affected four-file **10/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Actual native processing,
+durable successful history and cold raw/public data retain the parsed source
+title despite a different captured request hint. This qualifies accepted/ignored
+metadata at exact owner 597, with 34 immutable files and no setter/rename claim.
+Contracts become **5,006 implemented / 1,549 missing / 66 blocked**; requirements
+stay unchanged, zero verified. All prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal/release gates remain incomplete.
+
 The [inert subagent import](native-subagent-import-qualification.md) passes the
 affected four-file **9/0 twice** functional matrix, static checks, outside
 consumer **1/0** and the 310-source guard. Actual Markdown-to-TOML effects,

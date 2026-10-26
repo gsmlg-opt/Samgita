@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
+passes the affected four-file **10/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Exact owner 597 has actual
+accepted/ignored request-title evidence through complete native processing,
+durable results and cold raw/public reads; no setter/rename is invented.
+Contracts become **5,006 implemented / 1,549 missing / 66 blocked**, unchanged
+requirements and zero verified. All 309 unrelated sources and production cleanup
+stay unchanged. Inventory passes; strict completeness exits **1**.
+Prohibited/broad/hosted, A11 and full-goal/release gates remain incomplete.
+
 The [inert subagent import](native-subagent-import-qualification.md) passes the
 affected four-file **9/0 twice** functional matrix, static checks, outside
 consumer **1/0** and the 310-source guard. Native filesystem effects, advisory

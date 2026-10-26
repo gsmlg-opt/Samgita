@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [advisory requested title](native-session-import-success-qualification.md#advisory-requested-title)
+passes the affected four-file **10/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Actual ignored request-title
+behavior preserves parsed source data through complete import/repeat/cold
+history. Exact owner 597 and 34 immutable files are bound; all 309 unrelated
+sources and cleanup remain unchanged. Contracts are **5,006 implemented /
+1,549 missing / 66 blocked**, unchanged requirements and zero verified.
+
 The [inert subagent import](native-subagent-import-qualification.md) passes the
 affected four-file **9/0 twice** functional matrix, static checks, outside
 consumer **1/0** and the 310-source guard. Actual native files/results prove
@@ -94,12 +102,22 @@ and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-The next ordinary import gap is the requested session title: a different supplied
-title should exercise the pin's accepted/ignored behavior while retaining source
-title, full processing/history and cold reads. Do not claim a setter or rename.
-Then continue reviewed ordinary diagnostics/process fields and remaining method
-variants; restricted or unavailable acceptance profiles remain incomplete.
+Continue reviewed ordinary diagnostics/process fields, then remaining ordinary
+method/field variants. The next success-only profile should bind actual owned
+PID/executable, page-multiple Linux RSS, full sorted gauge rows and real loaded
+thread counts across normal closure and cold reads, with zero inference.
+The existing mixed diagnostics/memory file is not the approved test unit.
 Preserve fixed-YOLO setup, the prohibited test boundary and all full-goal gates.
+
+The twelve missing top-level requirements cannot be closed by these selected
+ordinary journeys. Nine directly require prohibited user-verification,
+approval, credential or platform-authorization tests. Enabled backend success
+also needs unavailable external/OS profiles and retained source-unreachable
+cells. Experimental negotiation and missing/null/default have reachable ordinary
+subsets, but their complete matrices include restricted or unavailable cells.
+The eleven separately blocked requirements retain their upstream source evidence;
+platform unavailability is not a globally absent producer. No mock substitutes
+for real legacy/backend success, and the complete goal remains active/incomplete.
 
 ## Earlier checkpoints
 

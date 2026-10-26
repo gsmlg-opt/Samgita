@@ -214,6 +214,35 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert_cursor_import(ctx, :embedded)
   end
 
+  test "session import retains the parsed source title when a requested advisory title differs",
+       ctx do
+    requested_title = "Owned requested advisory title"
+    assert requested_title != @prompt
+    assert_retained(ctx)
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm.pid)
+    assert_unloaded(ctx, warm.pid)
+
+    detected =
+      call(ctx, warm.pid, "externalAgentConfig/detect", %{
+        "includeHome" => true,
+        "migrationSource" => "claude-code",
+        "maxSessionAgeDays" => 1,
+        "maxSessions" => 4
+      })
+
+    assert Map.fetch!(detected, "connectors") === []
+    assert [selected] = Map.fetch!(detected, "items")
+    assert_selected(ctx, selected)
+    assert [session] = selected["details"]["sessions"]
+
+    selected =
+      put_in(selected, ["details", "sessions"], [%{session | "title" => requested_title}])
+
+    assert_import_journey(ctx, warm, warm_native, selected)
+    refute String.contains?(bounded_file(only_rollout(ctx)), requested_title)
+  end
+
   test "session discovery applies source modification age and newest-source count before import",
        ctx do
     ctx = limited_source_context(ctx)
