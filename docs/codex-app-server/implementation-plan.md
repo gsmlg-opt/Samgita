@@ -21,6 +21,33 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [completed WebSearchCall history input](supplied-history-inputs-qualification.md#completed-web-search-history)
+passes the final **43-file, 84/0 twice** functional matrix, compile/format,
+strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
+and the **285-source** guard. Four exact metadata/client-null owners become
+implemented: **4,923 implemented / 1,632 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Genuine raw maps, unchanged cold import and consuming followup retain
+**1 → 1 → 2**; separately modified nulls omit only their selected key. Five
+previous cases, two-import body and default producer remain intact;399 stays
+missing. Twenty-one archive-matching files, five nodes, inventory/final binding
+pass. No native semantic repair; strict completeness exits **1**.
+
+Continue current raw ImageGenerationCall history for exact client owners407/
+409–417, excluding408: official current Responses producer, native durable raw
+user/image pair and source turn metadata, unchanged/null cold import and one
+explicit followup consuming the complete image-capable provider copy. Configure
+image input support before native start; require exact result/revised_prompt/
+status/ig_ ID, **1 → 1 → 2**, no extension/image HTTP/artifact or tool path, no
+assumed live imageGeneration notification pair. Preserve every existing source
+and keep null metadata explicitly modified client input. Separately qualify
+current client-supplied non-null Compaction metadata422 without claiming native
+emission. Retain fixed yolo and every verification restriction. Prohibited/
+broad/hosted, full-goal, A11, historical/unreachable, unavailable external/OS and
+release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [genuine compaction history inputs](compaction-history-inputs-qualification.md)
 pass the final **43-file, 83/0 twice** functional matrix, compile/format,
 strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
@@ -45,8 +72,6 @@ current raw image-generation producer separately from extension HTTP/artifact
 integration and absent live TurnItem notifications. Retain fixed yolo and every
 verification restriction. Prohibited/broad/hosted, full-goal, A11,
 historical/unreachable, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [genuine Reasoning history input](supplied-history-inputs-qualification.md#reasoning-history)
 passes the final **42-file, 81/0 twice** functional matrix, compile/format,

@@ -134,6 +134,12 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
   @reasoning_answer "Owned source reasoning completed λ🙂"
   @reasoning_followup_answer "Owned imported reasoning evidence consumed λ🙂"
 
+  @web_script Path.expand("../../../scripts/codex/streamed_web_search_fixture.py", __DIR__)
+  @web_marker "Owned genuine supplied-history web search 163"
+  @web_followup "Owned continuation consumes supplied web evidence 163"
+  @web_answer "Owned source web evidence completed λ🙂"
+  @web_followup_answer "Owned imported web evidence consumed λ🙂"
+
   setup tags do
     binary = System.get_env("CODEX_BINARY")
 
@@ -821,6 +827,277 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     assert requests(ctx) === [initial, continuation]
   end
 
+  @tag web_history: true
+  test "unstable native import consumes genuine completed web evidence without another search",
+       ctx do
+    source = start(ctx)
+    source_process = native_process(source)
+
+    source_id =
+      TurnFixture.thread(ctx, source, %{
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access",
+        "historyMode" => "legacy"
+      })
+
+    began = System.system_time(:microsecond) / 1_000_000
+    source_turn = custom_turn(source, source_id, @web_marker)
+    events = collect(source, source_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert_turn_completed(events, source_id, source_turn)
+    assert_web_history_live(events, source_id, source_turn, began, ended)
+    assert_custom_answer(events, source_turn, @web_answer)
+    assert_custom_no_work(events)
+    source_path = Map.fetch!(read_thread(source, source_id), "path")
+    assert [initial] = requests(ctx)
+    assert Enum.filter(initial["input"], &(&1["type"] == "web_search_call")) == []
+    assert_idle(source)
+    assert :ok = Session.close(source)
+    assert_gone(source_process)
+
+    # Only the stock native writes these raw records. Provider search actions
+    # are inert completed evidence, not a request to restore or execute browsing.
+    {source_bytes, payloads} = rollout(ctx, source_path)
+    history = captured_web_history(payloads)
+    assert_web_history_payloads(history, source_turn, began, ended)
+    assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 3
+    assert_web_history_retained(ctx, source_path, source_bytes)
+
+    # Deliberately modified CLIENT inputs: each import sets exactly one field
+    # to null. Native serde omits it durably; this is not native null emission.
+    assert_null_history_inputs(
+      ctx,
+      source_id,
+      source_path,
+      source_bytes,
+      history,
+      [{1, "internal_chat_message_metadata_passthrough"}, {1, "action"}],
+      []
+    )
+
+    assert requests(ctx) === [initial]
+    assert_web_history_retained(ctx, source_path, source_bytes)
+    cold = start(ctx)
+    cold_process = native_process(cold)
+    refute cold_process == source_process
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => history,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = Map.fetch!(imported, "id")
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert Map.fetch!(imported, "preview") == @web_marker
+    assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+    imported_path = Map.fetch!(read_thread(cold, imported_id), "path")
+    refute imported_path == source_path
+    assert_web_history_import(ctx, imported_path, history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert_custom_no_work(import_events)
+    assert_web_history_not_generated(import_events)
+    refute Enum.any?(import_events, &(&1.wire["method"] == "turn/started"))
+    assert requests(ctx) === [initial]
+    assert_web_history_retained(ctx, source_path, source_bytes)
+
+    followup_turn = custom_turn(cold, imported_id, @web_followup)
+    followup = collect(cold, followup_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(followup, imported_id, followup_turn)
+    assert_custom_answer(followup, followup_turn, @web_followup_answer)
+    assert_custom_no_work(followup)
+    assert_web_history_not_generated(followup)
+    assert Map.fetch!(read_thread(cold, imported_id), "id") == imported_id
+    assert [^initial, continuation] = requests(ctx)
+    assert_web_history_provider(continuation)
+    assert_web_history_import(ctx, imported_path, history)
+    assert_web_history_retained(ctx, source_path, source_bytes)
+    assert_idle(cold)
+    assert %{interactions: 0} = Session.status(cold)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_process)
+    assert_web_history_retained(ctx, source_path, source_bytes)
+    assert requests(ctx) === [initial, continuation]
+  end
+
+  defp web_history_fixture(binary) do
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-supplied-web-#{Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    fixture = ModelFixture.start(root, "web_search_history")
+    File.write!(fixture.requests, "[]")
+    on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+    %{binary: binary, fixture: fixture, root: root}
+  end
+
+  defp web_history_action do
+    %{
+      "type" => "search",
+      "query" => "Owned primary λ",
+      "queries" => ["Owned different first", "Owned different second"]
+    }
+  end
+
+  defp web_history_params(events, method) do
+    for event <- events,
+        event.wire["method"] == method,
+        event.wire["params"]["item"]["type"] == "webSearch",
+        do: event.wire["params"]
+  end
+
+  defp assert_web_history_live(events, thread, turn, began, ended) do
+    placeholder = %{
+      "type" => "webSearch",
+      "id" => "owned-streamed-web-primary",
+      "query" => "",
+      "action" => %{"type" => "other"},
+      "results" => nil
+    }
+
+    final = %{
+      "type" => "webSearch",
+      "id" => "owned-streamed-web-primary",
+      "query" => "Owned primary λ",
+      "action" => web_history_action(),
+      "results" => nil
+    }
+
+    assert [started] = web_history_params(events, "item/started")
+    assert [completed] = web_history_params(events, "item/completed")
+    started_at = Map.fetch!(started, "startedAtMs")
+    completed_at = Map.fetch!(completed, "completedAtMs")
+    assert is_integer(started_at) and is_integer(completed_at)
+    assert trunc(began * 1_000) <= started_at
+    assert started_at <= completed_at and completed_at <= trunc(ended * 1_000)
+
+    assert started === %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => placeholder,
+             "startedAtMs" => started_at
+           }
+
+    assert completed === %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => final,
+             "completedAtMs" => completed_at
+           }
+
+    order =
+      for event <- events,
+          event.wire["method"] in ["item/started", "item/completed"],
+          event.wire["params"]["item"]["type"] == "webSearch",
+          do: event.wire["method"]
+
+    assert order === ["item/started", "item/completed"]
+  end
+
+  defp assert_web_history_not_generated(events) do
+    assert web_history_params(events, "item/started") == []
+    assert web_history_params(events, "item/completed") == []
+  end
+
+  defp captured_web_history(payloads) do
+    selected =
+      Enum.filter(payloads, fn item ->
+        item["type"] == "web_search_call" or
+          (item["type"] == "message" and item["role"] == "user" and
+             item["content"] === [%{"type" => "input_text", "text" => @web_marker}]) or
+          (item["type"] == "message" and item["id"] == "owned-web-history-source-answer")
+      end)
+
+    assert [
+             %{"type" => "message", "role" => "user"},
+             %{"type" => "web_search_call"},
+             %{"type" => "message", "role" => "assistant"}
+           ] = selected
+
+    selected
+  end
+
+  defp assert_web_history_payloads([user, search, assistant], turn, began, ended) do
+    user_id = Map.fetch!(user, "id")
+    assert_custom_native_id(user_id, "msg")
+    created = custom_created(user, began, ended)
+
+    assert user === %{
+             "type" => "message",
+             "id" => user_id,
+             "role" => "user",
+             "content" => [%{"type" => "input_text", "text" => @web_marker}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => created,
+               "content_item_kinds" => ["user.text"]
+             }
+           }
+
+    assert search === %{
+             "type" => "web_search_call",
+             "id" => "owned-streamed-web-primary",
+             "status" => "completed",
+             "action" => web_history_action(),
+             "internal_chat_message_metadata_passthrough" => %{"turn_id" => turn}
+           }
+
+    assert assistant === %{
+             "type" => "message",
+             "id" => "owned-web-history-source-answer",
+             "role" => "assistant",
+             "content" => [%{"type" => "output_text", "text" => @web_answer}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "content_item_kinds" => ["unknown"]
+             }
+           }
+  end
+
+  defp assert_web_history_import(ctx, path, history) do
+    {_bytes, payloads} = rollout(ctx, path)
+    assert captured_web_history(payloads) === history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+  end
+
+  defp assert_web_history_provider(request) do
+    input = Map.fetch!(request, "input")
+
+    # Non-OpenAI request copies lose metadata and non-prefixed provider IDs.
+    # Complete durable originals above retain the actual source metadata/IDs.
+    assert Enum.filter(input, &(&1["type"] == "web_search_call")) === [
+             %{
+               "type" => "web_search_call",
+               "status" => "completed",
+               "action" => web_history_action()
+             }
+           ]
+
+    assert_custom_provider_message(input, "user", @web_marker)
+    assert_custom_provider_message(input, "assistant", @web_answer)
+    assert_custom_provider_message(input, "user", @web_followup)
+    metadata = JSON.decode!(request["client_metadata"]["x-codex-turn-metadata"])
+    assert Map.fetch!(metadata, "history_initialization") == "supplied_history"
+  end
+
+  defp assert_web_history_retained(ctx, source_path, source_bytes) do
+    assert File.read!(source_path) === source_bytes
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_unchanged(ctx)
+  end
+
   defp reasoning_fixture(binary) do
     root =
       Path.join(
@@ -1222,11 +1499,13 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
            ) == 1
   end
 
+  defp history_script(%{web_history: true}), do: @web_script
   defp history_script(%{reasoning_history: true}), do: @reasoning_script
   defp history_script(%{custom_history: true}), do: @custom_script
   defp history_script(%{search_history: true}), do: @search_script
   defp history_script(_), do: @script
 
+  defp history_fixture(binary, %{web_history: true}), do: web_history_fixture(binary)
   defp history_fixture(binary, %{reasoning_history: true}), do: reasoning_fixture(binary)
   defp history_fixture(binary, %{custom_history: true}), do: custom_fixture(binary)
   defp history_fixture(binary, %{search_history: true}), do: search_fixture(binary)
@@ -1241,6 +1520,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
 
   defp history_model(model, _), do: model
 
+  defp history_source_paths(%{web_history: true}), do: [@web_script]
   defp history_source_paths(%{reasoning_history: true}), do: [@reasoning_script]
   defp history_source_paths(%{custom_history: true}), do: [@custom_script]
   defp history_source_paths(%{search_history: true}), do: [@search_script, @exposure_script]
@@ -1320,6 +1600,10 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
 
   defp assert_null_source_field(original, "internal_chat_message_metadata_passthrough") do
     assert is_map(Map.fetch!(original, "internal_chat_message_metadata_passthrough"))
+  end
+
+  defp assert_null_source_field(%{"type" => "web_search_call"} = original, "action") do
+    assert is_map(Map.fetch!(original, "action"))
   end
 
   defp assert_null_source_field(original, "phase") do

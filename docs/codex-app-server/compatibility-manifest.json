@@ -34094,24 +34094,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#completed-web-search-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/11/properties/action/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected completed WebSearchCall client-history input only. Existing primary added/done Responses pair creates native placeholder/final items and raw user/search/assistant records. Complete captured raw maps import unchanged cold with source IDs/turn metadata and exact differing query list. One explicit followup consumes the exact completed search evidence and original conversation, inference1->1->2, no new search/tool work and unchanged original source/config/scripts/workspace.",
+        "Owners398/403 are separate modified CLIENT inputs: each cloned actual search record has only action or internal metadata set null, normalized to that key omitted durably with all other fields/IDs/order exact and no inference. Not native-null emission, browsing execution or restored search functionality. Whole provider-copy search equality correctly omits non-OpenAI metadata and the non-prefixed provider ID while durable originals retain both. Native UI camelCase/placeholder fields are independently asserted and do not substitute for raw input owners.",
+        "Pinned unstable thread/resume.history, local synthetic provider and Linux/stdio only. Five original history cases and default sixteen-item producer function/registration remain byte-identical; the existing two-import helper body/invariant remains exact with one additional web action source-field clause. Excluded399, other actions/fields, stable import, actual browsing/backend semantics, external/OS profiles, full-goal/A11/release remain incomplete. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/11/properties/action/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -34179,71 +34189,101 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#completed-web-search-history"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected completed WebSearchCall client-history input only. Existing primary added/done Responses pair creates native placeholder/final items and raw user/search/assistant records. Complete captured raw maps import unchanged cold with source IDs/turn metadata and exact differing query list. One explicit followup consumes the exact completed search evidence and original conversation, inference1->1->2, no new search/tool work and unchanged original source/config/scripts/workspace.",
+        "Owners398/403 are separate modified CLIENT inputs: each cloned actual search record has only action or internal metadata set null, normalized to that key omitted durably with all other fields/IDs/order exact and no inference. Not native-null emission, browsing execution or restored search functionality. Whole provider-copy search equality correctly omits non-OpenAI metadata and the non-prefixed provider ID while durable originals retain both. Native UI camelCase/placeholder fields are independently asserted and do not substitute for raw input owners.",
+        "Pinned unstable thread/resume.history, local synthetic provider and Linux/stdio only. Five original history cases and default sixteen-item producer function/registration remain byte-identical; the existing two-import helper body/invariant remains exact with one additional web action source-field clause. Excluded399, other actions/fields, stable import, actual browsing/backend semantics, external/OS profiles, full-goal/A11/release remain incomplete. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a01c38625be9ab6888860ee556d799c7308759dd7c09e476e68c3a8dfbf6f54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "internal_chat_message_metadata_passthrough"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#completed-web-search-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected completed WebSearchCall client-history input only. Existing primary added/done Responses pair creates native placeholder/final items and raw user/search/assistant records. Complete captured raw maps import unchanged cold with source IDs/turn metadata and exact differing query list. One explicit followup consumes the exact completed search evidence and original conversation, inference1->1->2, no new search/tool work and unchanged original source/config/scripts/workspace.",
+        "Owners398/403 are separate modified CLIENT inputs: each cloned actual search record has only action or internal metadata set null, normalized to that key omitted durably with all other fields/IDs/order exact and no inference. Not native-null emission, browsing execution or restored search functionality. Whole provider-copy search equality correctly omits non-OpenAI metadata and the non-prefixed provider ID while durable originals retain both. Native UI camelCase/placeholder fields are independently asserted and do not substitute for raw input owners.",
+        "Pinned unstable thread/resume.history, local synthetic provider and Linux/stdio only. Five original history cases and default sixteen-item producer function/registration remain byte-identical; the existing two-import helper body/invariant remains exact with one additional web action source-field clause. Excluded399, other actions/fields, stable import, actual browsing/backend semantics, external/OS profiles, full-goal/A11/release remain incomplete. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "caa4489b817ed29251c00543700e133c734471c998229d28ddaa686431a8622d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/supplied-history-inputs-qualification.md#completed-web-search-history"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct selected completed WebSearchCall client-history input only. Existing primary added/done Responses pair creates native placeholder/final items and raw user/search/assistant records. Complete captured raw maps import unchanged cold with source IDs/turn metadata and exact differing query list. One explicit followup consumes the exact completed search evidence and original conversation, inference1->1->2, no new search/tool work and unchanged original source/config/scripts/workspace.",
+        "Owners398/403 are separate modified CLIENT inputs: each cloned actual search record has only action or internal metadata set null, normalized to that key omitted durably with all other fields/IDs/order exact and no inference. Not native-null emission, browsing execution or restored search functionality. Whole provider-copy search equality correctly omits non-OpenAI metadata and the non-prefixed provider ID while durable originals retain both. Native UI camelCase/placeholder fields are independently asserted and do not substitute for raw input owners.",
+        "Pinned unstable thread/resume.history, local synthetic provider and Linux/stdio only. Five original history cases and default sixteen-item producer function/registration remain byte-identical; the existing two-import helper body/invariant remains exact with one additional web action source-field clause. Excluded399, other actions/fields, stable import, actual browsing/backend semantics, external/OS profiles, full-goal/A11/release remain incomplete. Prohibited security/permission/approval tests and broad/hosted workflows remain unrun. Implemented only."
+      ],
       "pointer": "/definitions/ResponseItem/oneOf/11/properties/internal_chat_message_metadata_passthrough/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_supplied_history_inputs_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [completed WebSearchCall history input](supplied-history-inputs-qualification.md#completed-web-search-history)
+passes the final **43-file, 84/0 twice** functional matrix, compile/format,
+strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs
+and the **285-source** guard. Four exact metadata/client-null owners become
+implemented: **4,923 implemented / 1,632 missing / 66 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements and zero
+verified. Genuine whole raw maps, unchanged cold import and one consuming
+followup retain **1 → 1 → 2**, with no new search/tool work. Null action/metadata
+normalize separately to omission. Five old cases, two-import helper body and
+default sixteen-item producer remain byte-identical; owner399 stays missing.
+Twenty-one archive-matching files, five nodes, inventory and final binding
+pass; no native semantic repair. Strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, historical/external/OS and release gates
+remain incomplete. No publication/deployment.
+
 The [genuine compaction history inputs](compaction-history-inputs-qualification.md)
 pass the final **43-file, 83/0 twice** functional matrix, compile/format,
 strict Credo on493 sources, outside consumer **1/0**, twenty-one fixture ASTs

@@ -559,3 +559,89 @@ qualified. Other branches/providers/OS/transports, full-goal, A11, historical/
 external and release gates remain incomplete; prohibited security/permission/
 approval tests and broad/hosted workflows remain unrun. No publication,
 deployment or production migration occurs.
+
+## Completed web-search history
+
+The sixth history case uses the existing streamed provider's primary
+added/done pair behind the new `web_search_history` scenario. Codex itself
+produces the exact placeholder/final UI items and raw user/search/assistant
+records. The default sixteen-item producer function/registration and five
+previous case bodies remain byte-identical. The local fixture supplies inert
+completed evidence; it performs no search/browsing request or native-row write.
+
+Four exact `ClientRequest.json` owners are added:401/402 for the actual
+WebSearchCall metadata property/object and398/403 for separately modified
+client-null action/metadata inputs. The original raw search map has its literal
+provider ID, completed status, search action with independently prescribed
+primary query and differing query list, and exactly `{turn_id: source_turn}`
+metadata. It contains no invented create_time or extra fields. Complete native
+user/assistant maps have independent content, source-turn, timestamp and ID
+oracles; the UI placeholder/final camelCase maps are asserted separately.
+
+After source close/reap, two independent client-null imports clone that genuine
+history and change only search metadata or action to explicit null. Native
+serde omits exactly that key, preserving every other field/ID/order with no
+inference. The existing two-import helper body and invariant stay unchanged;
+one additional source-field clause requires a genuine web_search_call with a
+populated action. Existing metadata/phase clauses are retained.
+
+A third sequential owned native imports the three original maps **unchanged**
+into a distinct idle thread/path without turn-start or new search/tool work.
+One explicit followup consumes exactly the completed search evidence and prior
+conversation, returning an assistant only. Inference is **1 → 1 → 2**. The full
+outgoing search oracle independently omits only the non-OpenAI passthrough and
+non-prefixed provider ID; durable originals retain both. Source and imported
+original maps remain exact through followup and close/reap, with unchanged
+configuration/catalog/provider bytes and empty owned workspace.
+
+Twenty-one full producer files match the immutable source archive. In pinned
+`protocol/src/models.rs:1227–1245`, the selected optional fields use skip-on-None
+serialization; `:1447–1484,1554,1621` supplies turn metadata without search
+creation time. `codex-api/src/sse/responses.rs:354–359` decodes the done item;
+`core/src/session/turn.rs:2801+,2934+`, `tools/router.rs:257–308` and
+`stream_events_utils.rs:93–105,360–399` produce native non-tool lifecycle and
+persist its original map. `event_mapping.rs:228–239` and `web_search.rs:3–29`
+define the distinct UI query/action. The retained fork/persistence chain stores
+the submitted raw originals without restamping; `session/rollout_reconstruction.rs:
+513–518` and `context_manager/history.rs:1033–1053` retain their API history.
+`client_common.rs:60–68,91–93` and `client.rs:1007–1018,1092–1095` explain exact
+provider-copy normalization. No schema/ref or different wire-location inference
+is used.
+
+The owning file passes **6/0**, seed501432, in **15.2 seconds**, log
+`/tmp/samgita-v311-history-501432.log`. No native semantic failure or oracle
+repair occurs. Existing 60-second cases,20-second lifecycle bounds,256 events/
+1 MiB capture and4 MiB file/256 KiB line bounds remain. Exact final environment,
+commands/results/source guard use `/tmp/samgita-v311-run.py` and
+`/tmp/samgita-v311-functional-checks/`. Read-only review finds no functional
+defect within the stated profile and does not replace native execution.
+
+Owner399 stays missing: this producer's omission supplies no input evidence for
+that field. Client-null normalization does not establish native-null emission,
+search restoration, actual browsing/backend semantics, other actions,
+stable import, arbitrary legacy history, external providers/OS/transports,
+full-goal, A11 or release. Prohibited security/permission/approval tests and
+broad/hosted workflows remain unrun; their gates stay incomplete.
+
+The final **43-file matrix passes 84/0 twice**, seeds501432/987654, in
+**160.017/146.886 seconds**. Scoped format, warnings-as-errors compile, strict
+Credo on493 sources, outside actual-binary consumer **1/0**, twenty-one fixture
+AST checks and the **285-source** unchanged-byte guard pass. Other283 code
+sources match the preceding committed checkpoint; the two-import body,
+five case bodies and default provider function/registration also match exactly.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Results | `0a8ee950294a72be3b3cdaebb306ac739243a768b6a34ec3fc0236e6ccc929c4` |
+| Source guard | `cb790e0ba82f550fd5fe99aedbee6baf7981415d4c4089734b3bfe9894dd8024` |
+| Twenty-one pinned files and five nodes | `5863e9feddab469ae13cb413dc300a526bf5aa61f0d83e56821b6c26623bbf70` |
+| Case/helper/default preservation | `67441dd1c5292d0a5043bcba8a82ae081e13713a277bdeb7ecca2cd47ca022e0` |
+| Resulting manifest | `a0963d14bdba1df7a8125971d18353c17e7ac803472e3a221464e5cc72a0d7d5` |
+
+Unique-record patching and final binding prove exactly four promotions and
+unchanged schema identities/planned tests/requirements and excluded owner399.
+Inventory consistency passes; strict completeness exits **1**. Contracts become
+**4,923 implemented / 1,632 missing / 66 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Full-goal, A11,
+historical/external/OS and release gates stay incomplete. No publication,
+deployment or production migration occurs.
