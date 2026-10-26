@@ -1,5 +1,9 @@
 # Native turn-items view unit inputs
 
+Subsequent [rich canonical projection](rich-item-view-qualification.md) qualifies
+Summary-versus-Full filtering with a genuine tool-containing turn. The object
+fixture below retains its original two-item and cold-resume limitations.
+
 Default validation accepts six native unit objects: `notLoaded`, `summary` and
 `full`, each with a null or empty-map payload. Original values and bytes remain
 intact. Base: `3d049ec00be7d89c5141084c50930596999e8db9`.

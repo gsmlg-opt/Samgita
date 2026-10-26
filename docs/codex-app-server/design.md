@@ -99,8 +99,11 @@ The [turn-view correction](turn-items-view-input-qualification.md) preserves the
 complete described canonical oneOf and accepts native unit objects on standard
 turn listing and the experimental resume bootstrap page. Request null/omission
 defaults to Summary even though the enum default is Full. Genuine persisted
-items distinguish NotLoaded; the current two-item producer leaves richer
-Summary filtering and object-specific cold resume unqualified.
+items distinguish NotLoaded; the two-item object producer leaves richer
+object-specific Summary filtering and cold resume unqualified. The separate
+[rich canonical projection](rich-item-view-qualification.md) uses a genuine
+dynamic-tool turn to discriminate all three views across warm list/resume and
+unloaded cold list, retaining complete original rows and event-derived timing.
 The [merge-strategy correction](merge-strategy-input-qualification.md) accepts
 native unit objects on the two standard configuration-write paths, including
 batch edit arrays. Strategies remain required, nonnullable fields with no local

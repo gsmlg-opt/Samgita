@@ -7803,7 +7803,8 @@
         "docs/codex-app-server/compaction-input-alias-qualification.md",
         "docs/codex-app-server/personality-input-qualification.md",
         "docs/codex-app-server/sort-direction-input-qualification.md",
-        "docs/codex-app-server/turn-items-view-input-qualification.md"
+        "docs/codex-app-server/turn-items-view-input-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/resume",
@@ -7820,7 +7821,8 @@
         "Scoped compaction input-alias repair: default thread/resume.history validation accepts the precise native compaction_summary alias while preserving original wire values, canonical field constraints, experimental presence and output schemas. Four structural regressions and one new actual-native captured-checkpoint profile prove canonical import/persistence and exact continuation provider input, with source bytes/IDs retained and no work during import. Final reviewed21-schema/54-driver cases twice, outside consumer1/0, format/compile, strict Credo513, inventory and322-source guard pass; all312 other previous sources, Session/cleanup/providers and prior dynamic-tool tests unchanged. Six immutable source files and770 unchanged official exports are bound. This is one current-client alias with omitted metadata, not native alias emission, decryption, all historical formats, a third native rehydration or independent outgoing-byte capture. Outside consumer locally validates the supplement then runs the native list journey. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. Initial red and strict nesting-lint failure retained; see qualification.",
         "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
         "Scoped SortDirection input correction on exactly six full request graphs: four asc/desc null-or-empty-map objects preserve original wire values, standard/full method and nested-page negotiation. Independent native chronology, real item identities/timing and public project moves prescribe all40 history and8 project ordered queries warm/cold;16cold reads precede resume with no extra inference. Exact runtime projections and the source-prescribed first-cold-resume checkpoint, original SessionMeta creation restoration and bracketed update clock are asserted; every other field and subsequent frozen state stays exact. Only one resume is initially unloaded. Capture45/48 and11/16, provider3/0, original bytes/history and owned cleanup retained. Final67schema and10affected actual-binary cases pass twice plus outsideconsumer1/0 and strict checks, with357stable sources and770unchanged exports. This does not promote physical owners/states or qualify cursor/legacy/other-backend breadth, prohibited/broad/hosted gates or full compatibility.",
-        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
+        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "params": {
         "$ref": "#/definitions/ThreadResumeParams"
@@ -7866,7 +7868,8 @@
           "apps/samgita_protocol_codex/test/sort_direction_input_test.exs",
           "apps/samgita_codex_driver/test/native_sort_direction_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/turn_items_view_input_test.exs",
-          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -8365,7 +8368,8 @@
       "evidence": [
         "docs/codex-app-server/thread-history-qualification.md",
         "docs/codex-app-server/sort-direction-input-qualification.md",
-        "docs/codex-app-server/turn-items-view-input-qualification.md"
+        "docs/codex-app-server/turn-items-view-input-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/turns/list",
@@ -8374,7 +8378,8 @@
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
         "Scoped SortDirection input correction on exactly six full request graphs: four asc/desc null-or-empty-map objects preserve original wire values, standard/full method and nested-page negotiation. Independent native chronology, real item identities/timing and public project moves prescribe all40 history and8 project ordered queries warm/cold;16cold reads precede resume with no extra inference. Exact runtime projections and the source-prescribed first-cold-resume checkpoint, original SessionMeta creation restoration and bracketed update clock are asserted; every other field and subsequent frozen state stays exact. Only one resume is initially unloaded. Capture45/48 and11/16, provider3/0, original bytes/history and owned cleanup retained. Final67schema and10affected actual-binary cases pass twice plus outsideconsumer1/0 and strict checks, with357stable sources and770unchanged exports. This does not promote physical owners/states or qualify cursor/legacy/other-backend breadth, prohibited/broad/hosted gates or full compatibility.",
-        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim."
+        "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "params": {
         "$ref": "#/definitions/ThreadTurnsListParams"
@@ -8409,7 +8414,8 @@
           "apps/samgita_protocol_codex/test/sort_direction_input_test.exs",
           "apps/samgita_codex_driver/test/native_sort_direction_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/turn_items_view_input_test.exs",
-          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -21077,7 +21083,8 @@
         "docs/codex-app-server/resume-page-qualification.md",
         "docs/codex-app-server/command-replay-cancellation-qualification.md",
         "docs/codex-app-server/compaction-input-alias-qualification.md",
-        "docs/codex-app-server/personality-input-qualification.md"
+        "docs/codex-app-server/personality-input-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/resume",
@@ -21090,7 +21097,8 @@
         "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
         "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits.",
         "Scoped compaction input-alias repair: default thread/resume.history validation accepts the precise native compaction_summary alias while preserving original wire values, canonical field constraints, experimental presence and output schemas. Four structural regressions and one new actual-native captured-checkpoint profile prove canonical import/persistence and exact continuation provider input, with source bytes/IDs retained and no work during import. Final reviewed21-schema/54-driver cases twice, outside consumer1/0, format/compile, strict Credo513, inventory and322-source guard pass; all312 other previous sources, Session/cleanup/providers and prior dynamic-tool tests unchanged. Six immutable source files and770 unchanged official exports are bound. This is one current-client alias with omitted metadata, not native alias emission, decryption, all historical formats, a third native rehydration or independent outgoing-byte capture. Outside consumer locally validates the supplement then runs the native list journey. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. Initial red and strict nesting-lint failure retained; see qualification.",
-        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification."
+        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "prerequisites": [
         "initialized"
@@ -21116,7 +21124,8 @@
           "apps/samgita_codex_driver/test/native_supplied_compaction_history_test.exs",
           "apps/samgita_protocol_codex/test/personality_input_test.exs",
           "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
-          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs"
+          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -21487,14 +21496,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/turns/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "prerequisites": [
         "initialized"
@@ -21511,7 +21522,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -42938,14 +42950,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/resume-page-qualification.md"
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView",
@@ -42960,7 +42974,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -42971,13 +42986,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/resume-page-qualification.md"
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/0",
       "schema": "ClientRequest.json",
@@ -42990,7 +43007,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -43933,13 +43951,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/0",
       "schema": "ClientRequest.json",
@@ -43952,7 +43972,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -43963,13 +43984,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/0/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/0/enum/0",
       "schema": "ClientRequest.json",
@@ -43982,7 +44005,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -43993,13 +44017,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/1",
       "schema": "ClientRequest.json",
@@ -44012,7 +44038,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -44023,13 +44050,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/1/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: inProgress/empty-notLoaded start and completed/nonempty-summary terminal; exact identity/timing/order. No full-itemsView promotion. Installed assertion lines 80,84,86,92,393. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/1/enum/0",
       "schema": "ClientRequest.json",
@@ -44042,7 +44071,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -44053,14 +44083,16 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/2",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: full supplied to actual thread/turns/list; original user item is present.",
-        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised."
+        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/2",
       "schema": "ClientRequest.json",
@@ -44073,23 +44105,28 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/TurnItemsView/oneOf/2/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: full supplied to actual thread/turns/list; original user item is present.",
-        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised."
+        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/definitions/TurnItemsView/oneOf/2/enum/0",
       "schema": "ClientRequest.json",
@@ -44102,10 +44139,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -211033,14 +211073,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/resume-page-qualification.md"
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/initialTurnsPage",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "nullable": true,
       "pointer": "/properties/initialTurnsPage",
@@ -211055,7 +211097,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -211066,13 +211109,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/resume-page-qualification.md"
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/initialTurnsPage/anyOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/properties/initialTurnsPage/anyOf/0",
       "schema": "v2/ThreadResumeResponse.json",
@@ -211085,7 +211130,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -224391,7 +224437,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -224399,7 +224446,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Explicit full returns actual originating user item.",
-        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised."
+        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "nullable": true,
       "pointer": "/properties/itemsView",
@@ -224414,23 +224462,28 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemsView"
     },
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "id": "schema:v2/ThreadTurnsListParams.json#/properties/itemsView/anyOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Non-null TurnItemsView full branch.",
-        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised."
+        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "pointer": "/properties/itemsView/anyOf/0",
       "schema": "v2/ThreadTurnsListParams.json",
@@ -224443,10 +224496,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -224675,7 +224731,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/rich-item-view-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -224683,7 +224740,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Exactly one persisted native turn with original turn ID and user item presence.",
-        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised."
+        "Inclusive real occurrence turnCursor resolves to actual originating persisted turn with full user item. Only this one-turn forward cursor case exercised.",
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -224698,10 +224756,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:104-106",
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {

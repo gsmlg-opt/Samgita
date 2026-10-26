@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [rich canonical projection](rich-item-view-qualification.md) now differentiates
+Summary, Full and NotLoaded with a genuine completed dynamic-tool turn and exact
+original items/timestamps across warm list/resume and unloaded cold list. Initial
+native1/0, affected9/0 twice, strict checks and371 stable sources pass; all370
+previous sources remain exact. Supplemental evidence promotes no state or count.
+Object-specific richer filtering, cold resume and all broader gates retain their
+documented limits.
+
 The [implementation ledger](implementation-plan.md#current-checkpoint) records
 the current checkpoint. Recent native input repairs cover
 [list keys](list-sort-input-qualification.md),

@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [rich canonical item projection](rich-item-view-qualification.md) qualifies
+the genuine paginated tool-containing Summary/Full/NotLoaded distinction across
+warm list/resume and unloaded cold list. Original event-derived items/timestamps
+and full rows/history remain exact. Initial native1/0 and affected **9/0 twice**,
+compile/format, strict Credo540 and inventory pass with371 stable sources; all370
+prior sources,15 descriptors and770 exports remain unchanged. No production
+change or state/owner/count promotion: **5,038 implemented /1,517 missing /66
+blocked** contracts, **462 implemented /12 missing /11 blocked** requirements,
+zero verified. Prior runtime/consumer/static/assembly evidence retains exact
+source equivalence; no unchanged check is misreported as rerun. Next qualify
+medium verbosity and hosted-search context budget via actual native provider
+requests and owned cold config. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal gates stay incomplete.
+
 The [source-kind input repair](thread-source-kind-input-qualification.md) accepts
 twenty native objects on standard list and experimental search arrays, retaining
 original bytes, exact names and outer-array distinctions. One genuine vscode
