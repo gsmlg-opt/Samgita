@@ -43044,15 +43044,17 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md"
+        "docs/codex-app-server/native-source-and-local-plugin-filters-qualification.md",
+        "docs/codex-app-server/native-cli-source-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Explicit current cli/exec/appServer/subAgentReview/subAgentCompact/subAgentOther/unknown inputs reach both thread/list and thread/search. Two genuine native vscode threads complete one assistant turn each; independently prescribed IDs, source metadata, complete original user/assistant maps,8-field row projection and exact search snippets establish populated controls. Each literal singleton excludes both real rows, and each [literal,vscode] OR returns exactly those rows; baseline and all filters repeat on a distinct cold native before hydration with no extra inference or loaded thread. Exactly64 selected whole wire/correlated frames and2 provider requests; source/history/config/catalog/journal retained. This qualifies input acceptance, known nonmatching exclusion and mixed OR only. Positive CLI/Exec/MCP/Review/Compact/Other/Unknown producer rows and discrimination among absent kinds remain unverified; no injected SessionMeta/SQLite/attribution substitute or legacy producer claim.",
-        "Final reviewed55-file109/0 twice functional matrix, scoped format, warnings-as-errors compile, strict Credo on505 sources, outside actual-binary consumer1/0,30 fixture ASTs and306-source guard.27 complete files equal immutable pinned archive;11 independent physical nodes/actual request graphs. All304 prior guarded sources remain byte-identical and two focused test files are added. Initial nested recording helper is extracted without changing assertions/bounds. Fixed-yolo ordinary setup; no security/credential/authentication/authorization/permission/approval tests or audits run.",
-        "Only explicitly listed physical owners become scoped implemented; no sibling/reference/hash propagation or fully verified claim. Owned local fixtures and Linux-x86_64-musl/stdio only; unavailable positive producers/remote catalogs, other OS/transports, legacy production reachability, prohibited/broad/hosted checks, A11 and full compatibility/release remain incomplete."
+        "Prior explicit sourceKinds input/exclusion/mixed-OR evidence remains. Added genuine Cli producer: the immutable combined binary ordinary TUI with public --no-daemon and terminal stdin/stdout creates a persistent Cli session. A bounded test-only PTY relay remains in the existing Stdio owner session/group; native child inherits it, raw terminal output is base64 control data rather than invented app-server JSONL, and no controlling-terminal or extra server process is created. One plain assistant request to the local Responses fixture yields the actual OSC9 completion marker before exactly one ordinary /quit+Enter. Native exit0, ordered PTY EOF, owned completion and both native/relay PID disappearance are required. Provider IDs/canonical first SessionMeta and actual completed user/assistant records independently establish source cli; no SessionMeta/SQLite/source attribution is fabricated.",
+        "The shared Exec/Cli discovery journey retains original Exec assertions and independent vscode positive control, exactly2 model requests, canonical/raw/public item identity differences, complete8-field rows/history maps and literal snippets. Two fresh readers issue12 exact cli/vscode/mixed-OR list/search queries before hydration and preserve bounded correlated wire, no loaded threads/uncertainty, source/journal/history bytes and actual cold item IDs. Rapid /quit input initially became a paste newline; public tui.disable_paste_burst=true supplies deterministic ordinary keyboard submission without sleeps/deadline increases. Native first-start screen_reader_detection_done=true is asserted as the sole exact config change before freezing the cold baseline; no config write is ignored.",
+        "Current affected3-file4/0 twice functional matrix at seeds501432/987654, scoped format, warnings-as-errors compile, strict Credo on507 sources, outside real-binary consumer1/0, new PTY relay AST plus retained inline Exec AST, and309-source guard pass. Only the owning Exec source test changes;307 unrelated prior guarded sources are byte-identical and one test-only relay is added.35 whole Codex files and12 exact patched crossterm dependency files match immutable archives. Initial two input failures and first-start config-effect failure remain recorded. Existing stdio_owner.py and production protocol/driver are unchanged. Fixed-yolo setup; no security/credential/authentication/authorization/permission/approval tests/audits run.",
+        "Supplemental evidence only for existing implemented physical owner673. No state/count/requirement/sibling/reference promotion or verified claim. This is Linux-x86_64-musl with ordinary local TUI and stdio readers plus a fake model provider; it does not qualify every TUI configuration, PTY fault branch, external provider, other source kind/OS/transport, legacy production emission or whole-platform behavior. Prohibited/broad/hosted checks, A11, unavailable external/platform success, full compatibility and release remain incomplete; no publication/deployment."
       ],
       "pointer": "/definitions/ThreadSourceKind/enum/0",
       "schema": "ClientRequest.json",
@@ -43065,7 +43067,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_source_filter_values_test.exs",
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
         ]
       },
       "transport_coverage": [

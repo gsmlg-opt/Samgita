@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [genuine terminal Cli source](native-cli-source-qualification.md) passes the
+affected three-file **4/0 twice** matrix, format/compile, strict Credo, outside
+consumer1/0, two Python ASTs and309 guarded sources. Ordinary TUI completion,
+normal quit, real Cli persistence and cold positive list/search supplement only
+existing owner673; counts and states remain unchanged. Public paste handling and
+the exact first-start config effect correct three retained failing oracles,
+without changing production cleanup or deadlines.35 Codex files and12 exact
+crossterm files match immutable archives. The prior57-file matrix is historical;
+it is not rerun on changed source. Prohibited/broad/hosted, A11, legacy/external/
+OS/platform and full-goal/release gates remain incomplete.
+
 The [appServer source-artifact investigation](app-server-source-artifact-limit.md)
 adds source-only limitations for existing owner676: the selected combined CLI
 has no mcp-server entry and hardcodes app-server source VSCode. The real

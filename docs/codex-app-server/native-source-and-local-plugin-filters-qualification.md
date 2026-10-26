@@ -49,6 +49,11 @@ adds its own positive producer/discovery for owner678. The exclusion-only limits
 above describe this original profile; the five other absent producer kinds gain
 no positive evidence from those later tests.
 
+The later [genuine terminal Cli profile](native-cli-source-qualification.md)
+adds positive evidence for existing owner673 through the stock TUI and native
+cold discovery. Compact/Other/Unknown and the distinct appServer artifact
+retain their own incomplete positive-producer profiles.
+
 Pinned source identifies real CLI/TUI, Exec and Review producer possibilities.
 The bounded Compact constructor search is **not global unreachability proof**;
 ordinary manual compaction retains the current session. Other/Unknown producers

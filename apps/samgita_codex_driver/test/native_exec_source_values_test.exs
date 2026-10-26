@@ -16,6 +16,7 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
+  @tui_relay Path.expand("support/native_cli_tui_fixture.py", __DIR__)
   @provider_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @needle "Owned genuine Exec source discovery 163 λ"
   @exec_prompt "CLI producer: " <> @needle
@@ -120,7 +121,7 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
     def metadata(state), do: Stdio.metadata(state)
   end
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -154,7 +155,14 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
     File.write!(fixture.requests, "[]")
     on_exit(fn -> close_provider(fixture) end)
     capture = start_supervised!({Agent, fn -> %{count: 0, bytes: 0, records: []} end})
-    ctx = %{binary: binary, fixture: fixture, root: root, capture: capture}
+
+    ctx = %{
+      binary: binary,
+      fixture: fixture,
+      root: root,
+      capture: capture,
+      source: Map.get(tags, :native_source, "exec")
+    }
 
     TurnFixture.configure_model(ctx, %{
       "model_messages" => %{"instructions_template" => @instructions}
@@ -171,7 +179,8 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
         "check_for_update_on_startup = false\nallow_login_shell = false\n" <>
         File.read!(config) <>
         "\n[memories]\ngenerate_memories = false\nuse_memories = false\n" <>
-        "\n[features]\napps = false\nplugins = false\nrecommended_plugins = false\nshell_snapshot = false\nmemories = false\n"
+        "\n[features]\napps = false\nplugins = false\nrecommended_plugins = false\nshell_snapshot = false\nmemories = false\n" <>
+        tui_configuration(ctx.source)
     )
 
     sources = [
@@ -182,7 +191,8 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
       Path.join(__DIR__, "support/model_fixture.ex"),
       Path.join(__DIR__, "support/turn_fixture.ex"),
       Path.join(__DIR__, "support/native_launch_fixture.ex"),
-      Path.join(__DIR__, "support/stdio_session_fixture.ex")
+      Path.join(__DIR__, "support/stdio_session_fixture.ex"),
+      @tui_relay
     ]
 
     assert requests(ctx) == []
@@ -191,7 +201,27 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
 
   test "genuine CLI Exec and driver vscode sources retain positive list and search filters through cold discovery",
        ctx do
-    cli = produce_exec(ctx)
+    assert_discovery(ctx, &produce_exec/1)
+  end
+
+  @tag native_source: "cli"
+  test "genuine terminal CLI and driver vscode sources retain positive filters after normal quit and cold discovery",
+       ctx do
+    assert_discovery(ctx, &produce_cli/1)
+  end
+
+  defp tui_configuration("exec"), do: ""
+
+  defp tui_configuration("cli") do
+    # A single PTY write is rapid typed input. Use the public composer setting
+    # so Enter submits /quit instead of joining a detected multiline paste.
+    "\n[tui]\ndisable_paste_burst = true\nnotifications = [\"agent-turn-complete\"]\n" <>
+      "notification_method = \"osc9\"\nnotification_condition = \"always\"\n"
+  end
+
+  defp assert_discovery(ctx, launch) do
+    cli = launch.(ctx)
+    ctx = retain_producer_configuration(ctx)
     assert length(requests(ctx)) == 1
     exec_identity = provider_identity(ctx, 1, @exec_prompt)
     assert exec_identity.thread == cli.thread
@@ -201,7 +231,7 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
     exec_path = only_rollout(ctx)
 
     exec_source =
-      canonical(ctx, exec_path, cli.thread, exec_identity.turn, "exec", @exec_prompt, 1)
+      canonical(ctx, exec_path, cli.thread, exec_identity.turn, ctx.source, @exec_prompt, 1)
 
     producer = start(ctx)
     producer_native = native_id(ctx, producer)
@@ -257,6 +287,161 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
     assert length(requests(ctx)) == 2
     assert hash(File.read!(ctx.binary)) == @binary_sha
     assert_wire_inventory(ctx)
+  end
+
+  defp retain_producer_configuration(%{source: "exec"} = ctx), do: ctx
+
+  defp retain_producer_configuration(%{source: "cli"} = ctx) do
+    # The actual first TUI startup persists this documented local detection
+    # marker. Assert the entire precise change before freezing the cold baseline.
+    path = Path.join(ctx.fixture.codex_home, "config.toml")
+    original = Map.fetch!(ctx.inputs, path)
+    expected = original <> "screen_reader_detection_done = true\n"
+    assert bounded_file(path) === expected
+    %{ctx | inputs: Map.put(ctx.inputs, path, expected)}
+  end
+
+  defp produce_cli(ctx) do
+    native_args =
+      NativeLaunchFixture.ordinary_args(["--no-daemon", "--no-alt-screen", @exec_prompt])
+
+    assert {:ok, connection} =
+             Stdio.open(
+               executable: System.find_executable("python3"),
+               args: ["-B", @tui_relay, ctx.binary | native_args],
+               cwd: ctx.fixture.workspace,
+               inherit_env: [],
+               env: Map.put(environment(ctx), "TERM", "xterm-256color"),
+               max_message_bytes: @max_line_bytes
+             )
+
+    on_exit(fn -> assert :ok = Stdio.close(connection) end)
+    initial = %{ready: nil, output: <<>>, events: [], quit: false}
+
+    collected =
+      try do
+        collect_cli(ctx, connection, initial, now() + 20_000)
+      after
+        assert :ok = Stdio.close(connection)
+      end
+
+    assert :atomics.get(connection.owner.completion, 1) == 1
+    assert Port.info(connection.port) == nil
+    assert_gone(collected.ready["pid"])
+    assert_gone(collected.ready["relay_pid"])
+    assert collected.ready["executable"] === ctx.binary
+    assert collected.ready["argv"] === [ctx.binary | native_args]
+    assert length(:binary.matches(collected.output, completion_marker())) == 1
+    assert collected.quit === true
+    assert Enum.count(collected.events, &(&1["type"] == "ready")) == 1
+    assert List.last(collected.events) === %{"type" => "exit", "status" => 0}
+
+    identity = provider_identity(ctx, 1, @exec_prompt)
+    output_path = Path.join(ctx.root, "cli-terminal-output.bin")
+    record_path = Path.join(ctx.root, "cli-relay-events.jsonl")
+    record_bytes = Enum.map_join(collected.events, "", &(JSON.encode!(&1) <> "\n"))
+    File.write!(output_path, collected.output, [:exclusive])
+    File.write!(record_path, record_bytes, [:exclusive])
+
+    %{
+      thread: identity.thread,
+      native: collected.ready["pid"],
+      output_path: output_path,
+      bytes: collected.output,
+      record_path: record_path,
+      record_bytes: record_bytes
+    }
+  end
+
+  defp collect_cli(ctx, state, observed, until) do
+    port = state.port
+    remaining = max(until - now(), 0)
+    assert remaining > 0, cli_deadline(observed)
+
+    receive do
+      {^port, {:data, _data}} = message ->
+        assert {:ok, events, next} = Stdio.handle_info(message, state)
+        observed = Enum.reduce(events, observed, &cli_event(ctx, &1, &2))
+        {next, observed} = maybe_quit_cli(next, observed)
+        collect_cli(ctx, next, observed, until)
+
+      {^port, {:exit_status, _}} = message ->
+        assert {:ok, [{:closed, closed}], next} = Stdio.handle_info(message, state)
+
+        assert closed === %{"exit_status" => 0, "partial_message" => false},
+               cli_deadline(observed)
+
+        assert next.buffer === <<>>
+        observed
+    after
+      remaining -> flunk(cli_deadline(observed))
+    end
+  end
+
+  defp cli_event(ctx, {:message, encoded}, observed) do
+    event = JSON.decode!(encoded)
+    events = observed.events ++ [event]
+    assert length(events) <= 1024
+    assert byte_size(JSON.encode!(events)) <= @max_file_bytes
+    observed = %{observed | events: events}
+    apply_cli_event(ctx, event, observed)
+  end
+
+  defp apply_cli_event(ctx, %{"type" => "ready"} = ready, observed) do
+    assert observed.ready === nil
+    assert observed.output === <<>>
+    assert is_integer(ready["pid"]) and ready["pid"] > 0
+    assert ready["pid"] != ready["relay_pid"]
+    assert ready["pgid"] === ready["relay_pid"]
+    assert ready["sid"] === ready["relay_pid"]
+    assert ready["relay_pgid"] === ready["pgid"]
+    assert ready["relay_sid"] === ready["sid"]
+    assert hash(File.read!("/proc/#{ready["pid"]}/exe")) == @binary_sha
+    assert ready["executable"] === ctx.binary
+    %{observed | ready: ready}
+  end
+
+  defp apply_cli_event(_ctx, %{"type" => "output", "data" => encoded}, observed) do
+    assert is_map(observed.ready)
+    assert {:ok, chunk} = Base.decode64(encoded)
+    assert byte_size(chunk) > 0 and byte_size(chunk) <= 16_384
+    bytes = observed.output <> chunk
+    assert byte_size(bytes) <= 1_048_576
+    %{observed | output: bytes}
+  end
+
+  defp apply_cli_event(_ctx, %{"type" => "exit", "status" => 0}, observed) do
+    assert observed.quit === true
+    observed
+  end
+
+  defp apply_cli_event(_ctx, event, _observed),
+    do: flunk("Unexpected owned CLI relay event: #{inspect(event)}")
+
+  defp maybe_quit_cli(state, %{quit: false} = observed) do
+    if :binary.match(observed.output, completion_marker()) == :nomatch do
+      {state, observed}
+    else
+      input = %{"type" => "input", "data" => Base.encode64("/quit\r")}
+      assert {:ok, next} = Stdio.send(state, JSON.encode!(input))
+      {next, %{observed | quit: true}}
+    end
+  end
+
+  defp maybe_quit_cli(state, observed), do: {state, observed}
+
+  defp completion_marker, do: "\e]9;" <> @answer <> <<7>>
+
+  defp cli_deadline(observed) do
+    tail =
+      binary_part(
+        observed.output,
+        max(byte_size(observed.output) - 2048, 0),
+        min(byte_size(observed.output), 2048)
+      )
+
+    "Owned native CLI deadline/exit; ready=#{inspect(observed.ready)} " <>
+      "quit=#{observed.quit} events=#{length(observed.events)} terminal_tail=#{inspect(tail)}"
   end
 
   defp produce_exec(ctx) do
@@ -531,6 +716,8 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
     assert Map.fetch!(completed, "turn_id") === turn
     assert Map.fetch!(completed, "last_agent_message") === @answer
     assert Map.get(completed, "error") === nil
+    assert of_type(event_payloads, "turn_aborted") === []
+    assert of_type(event_payloads, "error") === []
 
     assert [user_event, assistant_event] = of_type(event_payloads, "item_completed")
 
@@ -608,7 +795,7 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
 
   defp matrix(ctx, pid, rows) do
     for method <- ["thread/list", "thread/search"],
-        kinds <- [["exec"], ["vscode"], ["exec", "vscode"]] do
+        kinds <- [[ctx.source], ["vscode"], [ctx.source, "vscode"]] do
       base =
         if method == "thread/list",
           do: %{"limit" => 100, "useStateDbOnly" => true},
@@ -760,7 +947,7 @@ defmodule SamgitaCodexDriver.NativeExecSourceValuesTest do
       queries = Enum.filter(outgoing, &(&1["method"] == method))
       assert length(queries) == 6
 
-      for kinds <- [["exec"], ["vscode"], ["exec", "vscode"]] do
+      for kinds <- [[ctx.source], ["vscode"], [ctx.source, "vscode"]] do
         assert Enum.count(queries, &(&1["params"]["sourceKinds"] == kinds)) == 2
       end
     end
