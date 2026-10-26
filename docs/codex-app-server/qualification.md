@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [native initial PTY dimensions](terminal-size-values-qualification.md)
+pass the final **48-file, 97/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**
+guard. Four exact independent command/process dimension owners become implemented:
+**4,953 implemented / 1,602 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Actual kernel31×101/37×113 measurements, whole stream/file oracles and normal
+exits0/7 distinguish initial size from defaults; original24×80/null and
+45×132/40×120 resize cases remain byte-identical. Eight archive-matching files,
+four nodes and final binding pass; other294 sources stay unchanged, with no
+new fixture or inference. Strict completeness exits **1**. Windows/macOS/remote,
+prohibited/broad/hosted, full-goal, A11, external/OS and release gates remain
+incomplete. No publication/deployment.
+
 The [explicit-null image-detail history inputs](image-detail-history-inputs-qualification.md)
 pass the final **48-file, 95/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**

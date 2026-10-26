@@ -24738,53 +24738,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/terminal-size-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CommandExecTerminalSize/properties/cols",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Independent CommandExecTerminalSize96/97 and ProcessTerminalSize297/298 functional owners. Real stock native command/exec initializes a child PTY at31rows/101cols; process/spawn independently initializes at37rows/113cols. Child os.get_terminal_size(0) observes each actual kernel size. Expected dimensions never reach child argv/env/stdin. Complete native stream/result-file oracles, exact delegated encoded exec/spawn/write requests and correlated normal exits0/7 establish effect, not response echo. No inference or app-server emulator.",
+        "Original command resize45x132/default24x80 and process resize40x120/null-default24x80 cases remain byte-identical, along with every original setup/helper and Python script. Added command compares actual child PID/handle/input/rows/cols in streamed RESULT and durable file; process compares actual READY and exact binary tail, stdout-only and one exit7. Each added case captures exactly two RPCs, requires idle/gap-free/no uncertain state, empty loaded threads and zero provider requests, then explicit child/native reaping.",
+        "Only four exact physical dimension properties become implemented; equal node hashes do not promote sibling method refs, optional-object/default/error fields or other profiles. Linux-x86_64-musl/stdio selected positive dimensions only; zero/negative/uint16 bounds, Windows/ConPTY/macOS/remote and complete terminal behavior remain unqualified. Other294 guarded sources unchanged, no new files/fixtures/dependencies, existing bounds/deadlines/owned cleanup retained. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows remain unrun; A11/external/full-goal/release remain incomplete. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandExecTerminalSize/properties/cols",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ec09e3d98b1d258b3488da72cf4f807ac9d24c2ce101333171844dcc94442aa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cols"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/terminal-size-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CommandExecTerminalSize/properties/rows",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Independent CommandExecTerminalSize96/97 and ProcessTerminalSize297/298 functional owners. Real stock native command/exec initializes a child PTY at31rows/101cols; process/spawn independently initializes at37rows/113cols. Child os.get_terminal_size(0) observes each actual kernel size. Expected dimensions never reach child argv/env/stdin. Complete native stream/result-file oracles, exact delegated encoded exec/spawn/write requests and correlated normal exits0/7 establish effect, not response echo. No inference or app-server emulator.",
+        "Original command resize45x132/default24x80 and process resize40x120/null-default24x80 cases remain byte-identical, along with every original setup/helper and Python script. Added command compares actual child PID/handle/input/rows/cols in streamed RESULT and durable file; process compares actual READY and exact binary tail, stdout-only and one exit7. Each added case captures exactly two RPCs, requires idle/gap-free/no uncertain state, empty loaded threads and zero provider requests, then explicit child/native reaping.",
+        "Only four exact physical dimension properties become implemented; equal node hashes do not promote sibling method refs, optional-object/default/error fields or other profiles. Linux-x86_64-musl/stdio selected positive dimensions only; zero/negative/uint16 bounds, Windows/ConPTY/macOS/remote and complete terminal behavior remain unqualified. Other294 guarded sources unchanged, no new files/fixtures/dependencies, existing bounds/deadlines/owned cleanup retained. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows remain unrun; A11/external/full-goal/release remain incomplete. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandExecTerminalSize/properties/rows",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "259942c0bbca4a372de95f6c4a02aff206112d477c93c79515a65c1b0cef2724",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rows"
     },
     {
@@ -30890,53 +30910,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/terminal-size-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ProcessTerminalSize/properties/cols",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Independent CommandExecTerminalSize96/97 and ProcessTerminalSize297/298 functional owners. Real stock native command/exec initializes a child PTY at31rows/101cols; process/spawn independently initializes at37rows/113cols. Child os.get_terminal_size(0) observes each actual kernel size. Expected dimensions never reach child argv/env/stdin. Complete native stream/result-file oracles, exact delegated encoded exec/spawn/write requests and correlated normal exits0/7 establish effect, not response echo. No inference or app-server emulator.",
+        "Original command resize45x132/default24x80 and process resize40x120/null-default24x80 cases remain byte-identical, along with every original setup/helper and Python script. Added command compares actual child PID/handle/input/rows/cols in streamed RESULT and durable file; process compares actual READY and exact binary tail, stdout-only and one exit7. Each added case captures exactly two RPCs, requires idle/gap-free/no uncertain state, empty loaded threads and zero provider requests, then explicit child/native reaping.",
+        "Only four exact physical dimension properties become implemented; equal node hashes do not promote sibling method refs, optional-object/default/error fields or other profiles. Linux-x86_64-musl/stdio selected positive dimensions only; zero/negative/uint16 bounds, Windows/ConPTY/macOS/remote and complete terminal behavior remain unqualified. Other294 guarded sources unchanged, no new files/fixtures/dependencies, existing bounds/deadlines/owned cleanup retained. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows remain unrun; A11/external/full-goal/release remain incomplete. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProcessTerminalSize/properties/cols",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ec09e3d98b1d258b3488da72cf4f807ac9d24c2ce101333171844dcc94442aa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cols"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/terminal-size-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ProcessTerminalSize/properties/rows",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Independent CommandExecTerminalSize96/97 and ProcessTerminalSize297/298 functional owners. Real stock native command/exec initializes a child PTY at31rows/101cols; process/spawn independently initializes at37rows/113cols. Child os.get_terminal_size(0) observes each actual kernel size. Expected dimensions never reach child argv/env/stdin. Complete native stream/result-file oracles, exact delegated encoded exec/spawn/write requests and correlated normal exits0/7 establish effect, not response echo. No inference or app-server emulator.",
+        "Original command resize45x132/default24x80 and process resize40x120/null-default24x80 cases remain byte-identical, along with every original setup/helper and Python script. Added command compares actual child PID/handle/input/rows/cols in streamed RESULT and durable file; process compares actual READY and exact binary tail, stdout-only and one exit7. Each added case captures exactly two RPCs, requires idle/gap-free/no uncertain state, empty loaded threads and zero provider requests, then explicit child/native reaping.",
+        "Only four exact physical dimension properties become implemented; equal node hashes do not promote sibling method refs, optional-object/default/error fields or other profiles. Linux-x86_64-musl/stdio selected positive dimensions only; zero/negative/uint16 bounds, Windows/ConPTY/macOS/remote and complete terminal behavior remain unqualified. Other294 guarded sources unchanged, no new files/fixtures/dependencies, existing bounds/deadlines/owned cleanup retained. Fixed yolo only; prohibited safety/auth/permission/approval tests and broad/hosted workflows remain unrun; A11/external/full-goal/release remain incomplete. Implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProcessTerminalSize/properties/rows",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "259942c0bbca4a372de95f6c4a02aff206112d477c93c79515a65c1b0cef2724",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rows"
     },
     {

@@ -202,6 +202,73 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     close(pid, native)
   end
 
+  test "nondefault initial PTY size reaches real process output before normal exit", ctx do
+    {pid, native} = start(ctx)
+    terminal = child(ctx, "pty-initial", pty_source(), [37, 113])
+
+    spawn_child(ctx, pid, terminal, %{
+      "tty" => true,
+      "size" => %{"rows" => 37, "cols" => 113}
+    })
+
+    events = ready(pid, terminal, [], %{"rows" => 37, "cols" => 113})
+
+    assert terminal.command === [
+             ctx.python,
+             "-I",
+             "-u",
+             terminal.script,
+             terminal.handle,
+             terminal.record
+           ]
+
+    # Dimensions are not child arguments or environment. The native streamed
+    # READY values are measured independently by os.get_terminal_size(0).
+    write(ctx, pid, terminal, "q", false)
+    events = collect(pid, &exited(&1, terminal.handle), events)
+    assert_exit(events, terminal, 7)
+
+    assert output(events, terminal.handle, "stdout") ===
+             terminal.ready <> <<"out", 0, 255, "err", 0, 254>>
+
+    assert output(events, terminal.handle, "stderr") == ""
+    assert Enum.all?(deltas(events, terminal.handle), &(&1["stream"] == "stdout"))
+    await_gone(terminal)
+    assert_retained(ctx, pid, [terminal])
+
+    assert [spawn_wire, write_wire] = Agent.get(ctx.capture, & &1)
+    spawn_id = Map.fetch!(spawn_wire, "id")
+    write_id = Map.fetch!(write_wire, "id")
+
+    assert spawn_wire === %{
+             "id" => spawn_id,
+             "method" => "process/spawn",
+             "params" => %{
+               "processHandle" => terminal.handle,
+               "command" => terminal.command,
+               "cwd" => terminal.cwd,
+               "timeoutMs" => nil,
+               "outputBytesCap" => nil,
+               "tty" => true,
+               "size" => %{"rows" => 37, "cols" => 113}
+             }
+           }
+
+    assert write_wire === %{
+             "id" => write_id,
+             "method" => "process/writeStdin",
+             "params" => %{
+               "processHandle" => terminal.handle,
+               "deltaBase64" => Base.encode64("q"),
+               "closeStdin" => false
+             }
+           }
+
+    close(pid, native)
+    identity = JSON.decode!(File.read!(terminal.record))
+    refute File.exists?("/proc/#{identity["pid"]}")
+  end
+
   defp child(ctx, handle, source, dimensions \\ []) do
     cwd = Path.join(ctx.fixture.workspace, handle <> "-cwd")
     File.mkdir!(cwd)

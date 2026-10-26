@@ -181,6 +181,84 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     refute File.exists?("/proc/#{native}")
   end
 
+  test "nondefault initial PTY size reaches real command output before normal exit", ctx do
+    config = Path.join(ctx.fixture.codex_home, "config.toml")
+    config_bytes = File.read!(config)
+    {pid, native} = start(ctx)
+    terminal = child(ctx, "pty", "owned-terminal")
+
+    terminal_wire =
+      exec_wire(terminal, %{"tty" => true, "size" => %{"rows" => 31, "cols" => 101}})
+
+    terminal_task = begin_exec(pid, terminal_wire)
+    events = ready(pid, terminal, [])
+    terminal_identity = identity(terminal)
+    assert terminal_identity["rows"] == 31
+    assert terminal_identity["cols"] == 101
+
+    assert terminal.command === [
+             ctx.python,
+             "-I",
+             "-u",
+             ctx.script,
+             "pty",
+             terminal.handle,
+             terminal.record,
+             terminal.result
+           ]
+
+    write_wire =
+      wire("command/exec/write", "write-owned-initial-terminal", %{
+        "processId" => terminal.handle,
+        "deltaBase64" => Base.encode64(@input),
+        "closeStdin" => false
+      })
+
+    assert rpc(pid, write_wire) == %{}
+
+    events =
+      collect(
+        pid,
+        &String.contains?(output(&1, terminal.handle, "stdout"), "RESULT:"),
+        events
+      )
+
+    assert_final(terminal_task, terminal_wire["id"], 0)
+    events = drain(pid, events)
+
+    # The child receives no dimensions in argv or stdin. Both observations below
+    # come from its os.get_terminal_size(0), not the request or expected values.
+    expected = %{
+      "handle" => terminal.handle,
+      "pid" => terminal_identity["pid"],
+      "rows" => 31,
+      "cols" => 101,
+      "inputBase64" => Base.encode64(@input)
+    }
+
+    assert JSON.decode!(File.read!(terminal.result)) === expected
+
+    assert ["READY:" <> terminal_handle, "RESULT:" <> result, ""] =
+             String.split(output(events, terminal.handle, "stdout"), "\n")
+
+    assert terminal_handle == terminal.handle
+    assert JSON.decode!(result) === expected
+    assert output(events, terminal.handle, "stderr") == ""
+    await_gone(terminal)
+
+    assert Agent.get(ctx.capture, & &1) === [terminal_wire, write_wire]
+    assert File.read!(ctx.script) === ctx.script_bytes
+    assert File.read!(config) === config_bytes
+    assert ModelFixture.requests(ctx.fixture) == []
+    assert File.read!(ctx.fixture.requests) == "[]"
+    assert call(pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+    assert Session.uncertain_operations(pid) == []
+    assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
+    assert :ok = Session.close(pid)
+    refute File.exists?("/proc/#{native}")
+    refute File.exists?("/proc/#{terminal_identity["pid"]}")
+  end
+
   defp child(ctx, mode, handle) do
     record = Path.join(ctx.root, handle <> "-identity.json")
     result = Path.join(ctx.root, handle <> "-result.json")

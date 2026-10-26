@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native initial PTY dimensions](terminal-size-values-qualification.md)
+pass the final **48-file, 97/0 twice** functional matrix, compile/format,
+strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**
+guard. Four exact independent command/process dimension owners become implemented:
+**4,953 implemented / 1,602 missing / 66 blocked** contracts, unchanged
+**462 implemented / 12 missing / 11 blocked** requirements and zero verified.
+Actual kernel31×101/37×113 measurements, whole stream/file oracles and normal
+exits0/7 distinguish initial size from defaults; original24×80/null and
+45×132/40×120 resize cases remain byte-identical. Eight archive-matching files,
+four nodes and final binding pass; other294 sources stay unchanged, with no
+new fixture or inference. Strict completeness exits **1**. Windows/macOS/remote,
+prohibited/broad/hosted, full-goal, A11, external/OS and release gates remain
+incomplete. No publication/deployment.
+
+Next qualify ordinary concise-summary356 and explicit nested effort-null602
+through independent three-turn native profiles: applied settings, exact provider
+reasoning, actual raw-bound history and omitted-followup persistence. Continue
+ConfigurationUpdate only with a genuine native producer and separately observed
+supplied-history serialization; do not equate raw controls with outer annotations.
+Fixed yolo and all verification restrictions remain. Prohibited/broad/hosted,
+A11, external/OS and full-goal gates stay incomplete.
+
+## Earlier checkpoints
+
 The [explicit-null image-detail history inputs](image-detail-history-inputs-qualification.md)
 pass the final **48-file, 95/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**,27 fixture ASTs and the **296-source**
@@ -35,15 +59,6 @@ files, two nodes and final binding pass; all prior294 sources remain unchanged.
 Strict completeness exits **1**. Native-null emission, real image retrieval/
 reasoning, prohibited/broad/hosted, full-goal, A11, external/OS and release gates
 remain incomplete. No publication/deployment.
-
-Next qualify initial PTY cols/rows96/97/297/298 through two distinct native
-APIs, actual child kernel measurements and normal exit. Preserve every original
-resize/default case/helper/script. Then continue ordinary reasoning-summary and
-explicit nested effort-null state transitions after pinned-source review. Fixed
-yolo and every verification restriction remain; prohibited/broad/hosted, A11,
-external/OS and full-goal gates stay incomplete.
-
-## Earlier checkpoints
 
 The [current LocalShellCall history inputs](local-shell-history-inputs-qualification.md)
 pass the final **47-file, 93/0 twice** functional matrix, compile/format,
