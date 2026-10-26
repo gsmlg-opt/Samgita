@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native creation snapshots](creation-snapshot-qualification.md) qualify fourteen
+exact live owners using distinct real local projects, legacy/paginated history,
+false Daybreak, independently pinned provenance and two actual first messages.
+No driver defect or cold-resume creation producer is claimed. Final **42 schema
+/121 ordinary driver twice**, outside consumer **1/0**, format/compile, strict
+Credo520, inventory and338-source guard pass; all337 prior sources/every pin stay
+unchanged. Contracts become **5,033 implemented /1,522 missing /66 blocked**;
+requirements stay **462 implemented /12 missing /11 blocked**, zero verified.
+Next reproduce the source-confirmed ThreadHistoryMode unit-object discrepancy
+on thread/start, preserve canonical outputs and prove real cold stored-mode
+retention; then qualify source-selected failed/running child collaboration
+lifecycles. Prohibited/broad/hosted, A11, legacy/external/OS/platform/full-goal
+gates remain incomplete.
+
 The [live failed dynamic-tool notification](failed-dynamic-tool-notification-qualification.md)
 qualifies exactly root physical owner2120 through an actual native failed item,
 preserved provider failure output and completed overall turn. No new driver defect

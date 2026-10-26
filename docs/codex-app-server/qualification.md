@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [native creation snapshots](creation-snapshot-qualification.md) qualify fourteen
+exact live owners through two independently configured local projects/threads,
+zero creation-time inference, full-root notices and two genuine first-message
+materializations. Final **42 schema /121 ordinary driver twice**, outside consumer
+**1/0**, format/compile, strict Credo520, inventory and338-source guard pass; all337
+prior sources and every pin remain unchanged. Contracts become **5,033 implemented
+/1,522 missing /66 blocked**, unchanged requirements and zero verified. No driver
+defect, sibling/cold-resume emission or full-goal acceptance is claimed. Prohibited/
+broad/hosted, A11, legacy/external/platform gates remain incomplete; no publication
+or deployment.
+
 The [live failed dynamic-tool notification](failed-dynamic-tool-notification-qualification.md)
 adds actual-native root-envelope evidence for exactly owner2120. Explicit false
 results preserve failure content, emit a failed tool item and complete the overall

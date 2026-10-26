@@ -96000,24 +96000,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only the scalar SessionSource arm with actual native vscode creation notices; other strings, custom/sub-agent objects and other emitters retain separate evidence requirements. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "60b8e7ad18cd9680af35fa7e06e10d4550ae6c2a6a414884de69eff96b6de138",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -96044,24 +96052,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only actual vscode, the independently source-pinned CLI default; no appServer/cli/exec/TUI or sub-agent source propagation. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "eba363ba4f6872c1581fc399e8114e208a9c0a15047671cd68ceeb9d57b0c839",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -97033,27 +97049,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/cliVersion",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only actual creation cliVersion 0.163.0 from the immutable pinned Linux musl binary; other binaries/platforms remain unqualified. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/cliVersion",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e139608b3734485778a0782ce1920aea977d4584429267b4a9cc8f29c03c933e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cliVersion"
     },
     {
@@ -97156,27 +97180,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/daybreakEnabled",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only explicitly requested false in both real creation snapshots and later materialized reads. True/null/omission and Daybreak execution are unqualified; runtime Daybreak stays disabled. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/daybreakEnabled",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "e6126e236cd682f3e2c66a41d391a04d805c1a1db413555c9f37b1d9ab5a18e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "daybreakEnabled"
     },
     {
@@ -97416,49 +97448,65 @@
     {
       "default": "legacy",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/historyMode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only independently requested legacy and paginated modes on separate native threads, retained through real first-message materialization; no default/omitted or broad history lifecycle inference. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/historyMode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "edae7bb6521dcc9122cc0a2ab4c7d0287eabee06bc4a6c90abd89deaf7d9c71c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "historyMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/historyMode/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only the historyMode reference traversed by actual legacy/paginated creation fields under the full root schema; no whole HistoryMode/sibling propagation. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "pointer": "/definitions/Thread/properties/historyMode/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "83cae1d20fe617b0b3765b0c23465359e2657af8795a99cf1ef78ab547eedb2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -97501,27 +97549,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only prescribed mock-model on both real creation notices and later reads; no null/omission/provider/model-catalog claim. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/model",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3f221e031fc5ed89fbd7339b88773c46fd63acf0d18c2cd6433981e606ca3d9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
@@ -97595,27 +97651,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/originator",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only fixed initialize client name owned_creation_snapshot without serviceName override, preserved in actual creation and materialized metadata; null/other originator routes unqualified. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/originator",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "139fbd8b5b1ad496c6f4ab2cedec23fdcb1546bf1069c53d23fd16829b722075",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "originator"
     },
     {
@@ -97655,79 +97719,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only nonempty distinct absolute native rollout paths under the owned CODEX_HOME, containing their native IDs and retained after first messages; creation does not promise the file already exists. Null/import/cold-resume paths unqualified. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/path",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b5b835c79d31bb675806b5ec07a021a769f01fc61e491c185c697e2025a60f87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/preview",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only empty genuine creation preview and later independently prescribed unique user markers after actual first-message materialization. The original collected notice stays empty; no broad truncation/Unicode preview contract. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/preview",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0bbe3abe79c437e144bf85b97dfc77b141d8090462d22b316cb6c51cb9667855",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "preview"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only two distinct real local project IDs obtained through public native project/create, prescribed before starts and retained after actual first messages; no null/omission or Samgita Project acceptance claim. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/projectId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "c3ae3eeb8bffc9a81fa6211ce2fde2a3c80652044e5e3f930b5aa19b704e030a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
@@ -97827,27 +97915,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/recencyAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only positive native creation recencyAt seconds equal to creation createdAt/updatedAt, bounded by host request/receipt times. No unchanged recency after execution, nullable or historical sorting claim. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/recencyAt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "fe11f3dd5c48e7a49414653fede335bb260d0122d370b3419fd7d04950a85508",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "recencyAt"
     },
     {
@@ -97984,49 +98080,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/source",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only actual vscode source independently derived from the immutable CLI default and retained through real materialization; no other source route. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/source",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f69649da595e609163a6e75cd285950778cc02819f3bfccac74bbef01e274d90",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-snapshot-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/source/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped actual thread/started creation family: two public local projects and two threads started before inference, independently prescribed project/history/false-Daybreak/model/client identity, actual full-root schema validation and lossless codec retention, then exactly two real fixture-backed turns and metadata reads. All337 prior executable sources, every pin and770 official exports unchanged; final42-schema/121-driver cases twice and outside consumer1/0 pass. Only the source reference traversed by actual vscode creation fields under the full root schema; no whole SessionSource/sibling propagation. No new driver defect, whole family/method promotion, cold-resume emission, external/OS/transport/platform/full-goal or prohibited/broad/hosted/A11 acceptance is established."
+      ],
       "pointer": "/definitions/Thread/properties/source/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "bb7f6162e3c3f64c5c64ed0c8e3a694f124a83acaa7d62713226a3738b3c3bea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
