@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [appServer source-artifact investigation](app-server-source-artifact-limit.md)
+adds source-only limitations for existing owner676: the selected combined CLI
+has no mcp-server entry and hardcodes app-server source VSCode. The real
+session-source selector belongs to a separate executable.18 whole immutable
+files and the exact schema graph match; positive production remains incomplete.
+No tests or states are promoted and no tests rerun. All308 current/committed
+sources still equal the latest57-file111/0-twice matrix below. Inventory passes;
+strict completeness exits **1**, counts unchanged and all broader gates open.
+
 The [genuine Review child source](native-review-source-qualification.md) passes
 the current **57-file,111/0 twice** functional matrix, compile/format, strict
 Credo on507 sources, outside consumer1/0,30 fixture ASTs plus the existing inline
@@ -38,11 +47,12 @@ exits **1**. Prohibited/broad/hosted, A11, unavailable legacy/external/OS/platfo
 and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent genuine source-producer work. Exact source investigation
-finds no mcp-server entry or session-source selector in this combined binary;
-positive appServer source stays incomplete, with the separate upstream binary
-distinction recorded in `/tmp/samgita-v337-candidate-report.md`. Ordinary TUI CLI
-source feasibility is under source-only investigation. No source finding is
-native acceptance; preserve fixed-yolo setup and the prohibited test boundary.
+keeps positive appServer source incomplete at the documented artifact boundary.
+Ordinary TUI CLI source feasibility is under source-only investigation in
+`/tmp/samgita-v338-candidate-report.md`; actual same-artifact Cli startup needs
+an owned PTY and meaningful native completion/normal exit. Review that report
+before a test-only harness draft. No source finding is native acceptance;
+preserve fixed-yolo setup and the prohibited test boundary.
 
 ## Earlier checkpoints
 

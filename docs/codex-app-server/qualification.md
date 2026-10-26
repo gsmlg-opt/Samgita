@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [appServer source-artifact investigation](app-server-source-artifact-limit.md)
+adds source-only limitations for existing owner676: the selected combined CLI
+has no mcp-server entry and hardcodes app-server source VSCode. The real
+session-source selector belongs to a separate executable.18 whole immutable
+files and the exact schema graph match; positive production remains incomplete.
+No tests or states are promoted and no tests rerun. All308 current/committed
+sources still equal the latest57-file111/0-twice matrix below. Inventory passes;
+strict completeness exits **1**, counts unchanged and all broader gates open.
+
 The [genuine Review child source](native-review-source-qualification.md) passes
 the current **57-file,111/0 twice** functional matrix, compile/format, strict
 Credo on507 sources, outside consumer1/0,30 fixture ASTs plus the existing inline
