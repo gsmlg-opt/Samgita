@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [live failed dynamic-tool notification](failed-dynamic-tool-notification-qualification.md)
+qualifies exactly root physical owner2120 through an actual native failed item,
+preserved provider failure output and completed overall turn. No new driver defect
+or persisted/sibling promotion is claimed. Final **42 schema /120 ordinary driver
+twice**, outside consumer **1/0**, format/compile, strict Credo519, inventory and
+337-source guard pass; all336 prior sources and every pin stay unchanged. Contracts
+become **5,019 implemented /1,536 missing /66 blocked**; requirements remain **462
+implemented /12 missing /11 blocked**, zero verified. Next investigate/qualify the
+source-selected native thread/started creation metadata family with independently
+prescribed inputs and actual native reads; do not assume the CLI source is appServer
+or that pre-message staged metadata is durable. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform/full-goal gates remain incomplete.
+
 The [Personality input repair](personality-input-qualification.md) adds source-
 supported objects on four request graphs with original wire values intact.
 Eleven expanded native cases prove fresh instructions, later inherited base,

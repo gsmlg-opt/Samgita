@@ -88103,24 +88103,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/failed-dynamic-tool-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/DynamicToolCallStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped live failed dynamic-tool item: actual pinned rust-v0.163.0 receives one synthetic tool result with success=false and independently prescribed UTF8 inputText, emits the exact failed item/completed root ServerNotification envelope, preserves IDs/arguments/content/success/duration/native timestamps and ordering, then carries exact failure output into the second actual provider request and completes the overall turn with fixed assistant text. Normal Session validation plus direct stable-root schema validation and lossless codec roundtrip use the actual received envelope. Exactly two inferences, bounded collection, retained fixture/config, empty workspace and owned process/provider cleanup pass. Final42-schema/120-driver cases twice, outside consumer1/0, format/compile, strict Credo519, inventory and337-source guard pass; all336 prior sources and every pin unchanged. Nine archive-matched source files and770 official exports bound. This qualifies only physical live owner2120 on Linux musl stdio; it does not promote sibling/persisted owners, every failure-content variant, RPC errors/cancellation, external/OS/transport profiles, full goal, prohibited/broad/hosted or A11. Existing implementation was already capable; this closes a specific missing evidence branch, not a newly demonstrated driver defect."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_failed_dynamic_tool_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

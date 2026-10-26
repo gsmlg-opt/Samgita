@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [live failed dynamic-tool notification](failed-dynamic-tool-notification-qualification.md)
+adds actual-native root-envelope evidence for exactly owner2120. Explicit false
+results preserve failure content, emit a failed tool item and complete the overall
+turn after two real fixture-backed inferences. Final **42 schema /120 ordinary
+driver twice**, outside consumer **1/0**, format/compile, strict Credo519, inventory
+and337-source guard pass; all336 prior sources and every pinned artifact remain
+unchanged. Contracts become **5,019 implemented /1,536 missing /66 blocked**,
+unchanged requirements and zero verified. No prior driver defect, sibling/persisted
+promotion or full-goal acceptance is claimed. Prohibited/broad/hosted, A11,
+legacy/external/platform gates stay incomplete; no publication or deployment.
+
 The [Personality input repair](personality-input-qualification.md) accepts three
 native unit-object values on four real request graphs. Eleven expanded native
 cases prove fresh instruction stripping, retained inherited instructions, idle
