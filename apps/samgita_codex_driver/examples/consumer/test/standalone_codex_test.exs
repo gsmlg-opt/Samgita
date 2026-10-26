@@ -163,6 +163,25 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for {method, base, path} <- [
+          {"thread/list", %{}, ["sortDirection"]},
+          {"thread/turns/list", %{"threadId" => "outside-owned-thread"}, ["sortDirection"]},
+          {"thread/items/list", %{"threadId" => "outside-owned-thread"}, ["sortDirection"]},
+          {"thread/resume", %{"threadId" => "outside-owned-thread", "initialTurnsPage" => %{}},
+           ["initialTurnsPage", "sortDirection"]},
+          {"project/list", %{"sortKey" => "position"}, ["sortDirection"]},
+          {"thread/search", %{"searchTerm" => "Outside owned direction"}, ["sortDirection"]}
+        ],
+        direction <- ["asc", "desc"],
+        payload <- [nil, %{}] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 method,
+                 put_in(base, path, %{direction => payload}),
+                 experimental: true
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 

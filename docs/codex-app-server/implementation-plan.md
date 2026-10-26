@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [direction input repair](sort-direction-input-qualification.md) accepts four
+native objects on six actual request paths, preserving original bytes and gates.
+Independent chronological/history/project oracles pass warm and unloaded cold
+reads. First cold resume explicitly asserts its single checkpoint, original
+SessionMeta creation restoration and bracketed update clock; subsequent resumes
+freeze every field. Final **67 schema /10 affected actual-binary cases twice**,
+outside consumer **1/0**, strict Credo531, inventory and357-source guard pass;
+all349 other prior sources, ten descriptors and770 exports remain unchanged.
+Three retained WebSocket overflow/replay functional cases pass at455834/987654.
+Counts remain **5,038 implemented /1,517 missing /66 blocked** contracts and
+**462 implemented /12 missing /11 blocked** requirements, zero verified. Next
+reproduce ProjectSortKey objects with independent positions, real recencies and
+key-dependent defaults. Final combined-source aggregate, prohibited/broad/hosted,
+A11, legacy/external/OS/platform and full-goal gates stay incomplete.
+
 The [list-sort input repair](list-sort-input-qualification.md) accepts eight
 native objects on standard thread/list without changing caller bytes or outputs.
 Independent native timestamps, public section moves and32 warm/cold lists pass.

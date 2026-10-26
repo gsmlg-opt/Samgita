@@ -83,6 +83,12 @@ handles standard `thread/list` and its four keys. Section-position ordering uses
 the native section branch and requires a concrete section filter. Public custom
 section creation and explicit moves supply an independent order; read-only
 native columns and unloaded cold queries verify it without editing stored state.
+The [direction correction](sort-direction-input-qualification.md) composes with
+those keys on exactly six input graphs, preserving method and nested-page gates.
+List/search runtime projections differ after restart; cold resume additionally
+persists one settings checkpoint and advances updated time. Qualification asserts
+those explicit native boundaries while preserving original histories and all
+subsequent snapshots. Neither a query nor a resume implicitly executes a turn.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

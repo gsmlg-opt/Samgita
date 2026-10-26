@@ -67,6 +67,37 @@ LIST_SORT_SCHEMAS = {
         "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
     },
 }
+DIRECTION_SEMANTICS = "source/sort-direction-input-semantics.json"
+PROJECT = "source/project.rs"
+PROJECT_SHA256 = "ae6a4e421a71db946f851ffd44c07dc1889cb4a307e28f18c7df955a4b20d9cf"
+DIRECTION_METHODS = ("project/list", "thread/items/list", "thread/list", "thread/resume",
+                     "thread/search", "thread/turns/list")
+DIRECTION_STANDARD_METHODS = ("thread/items/list", "thread/list", "thread/turns/list")
+DIRECTION_FIELDS = {
+    "ThreadListParams": ("ThreadListParams", "Optional sort direction; defaults to descending (newest first)."),
+    "ThreadTurnsListParams": ("ThreadTurnsListParams", "Optional turn pagination direction; defaults to descending."),
+    "ThreadItemsListParams": ("ThreadItemsListParams", "Optional item pagination direction; defaults to ascending."),
+    "ThreadResumeParams": ("ThreadResumeInitialTurnsPageParams", "Optional turn pagination direction; defaults to descending."),
+    "ProjectListParams": ("ProjectListParams", "Requires sortKey. Defaults to asc for position and desc for recencyAt."),
+    "ThreadSearchParams": ("ThreadSearchParams", "Optional sort direction; defaults to descending (newest first)."),
+}
+DIRECTION_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+        "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
+        "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+        "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
+        "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
+        "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+        "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
+        "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -580,6 +611,105 @@ def derive_list_sort(vendor):
     }
 
 
+def derive_direction(vendor):
+    sources = {THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256, PROJECT: PROJECT_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned sort direction input source changed: " + name)
+    thread = (vendor / THREAD).read_text()
+    project = (vendor / PROJECT).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "snake_case"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub enum SortDirection \{\n(.*?)\n\}', thread, re.S)
+    if not declaration or declaration[1] != '    Asc,\n    Desc,':
+        raise ValueError("Pinned SortDirection unit variants changed")
+    names = [name.lower() for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    for params, (owner, description) in DIRECTION_FIELDS.items():
+        rust = project if params == "ProjectListParams" else thread
+        body = re.search(r'pub struct ' + owner + r' \{\n(.*?)\n\}', rust, re.S)
+        field = (f'    /// {description}\n'
+                 '    #[ts(optional = nullable)]\n'
+                 '    pub sort_direction: Option<SortDirection>,')
+        if not body or field not in body[1]:
+            raise ValueError("Pinned sort direction field/default changed: " + owner)
+    resume_page = (
+        '    #[experimental("thread/resume.initialTurnsPage")]\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub initial_turns_page: Option<ThreadResumeInitialTurnsPageParams>,')
+    if resume_page not in thread or 'use super::SortDirection;' not in project:
+        raise ValueError("Pinned nested resume direction gate or project enum import changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    for variant, method, params in (
+            ("ThreadList", "thread/list", "ThreadListParams"),
+            ("ThreadTurnsList", "thread/turns/list", "ThreadTurnsListParams"),
+            ("ThreadItemsList", "thread/items/list", "ThreadItemsListParams"),
+            ("ThreadResume", "thread/resume", "ThreadResumeParams"),
+            ("ProjectList", "project/list", "ProjectListParams"),
+            ("ThreadSearch", "thread/search", "ThreadSearchParams")):
+        prefix = (f'    #[experimental("{method}")]\n'
+                  if method in ("project/list", "thread/search") else '    },\n')
+        method_declaration = prefix + f'    {variant} => "{method}" {{\n        params: v2::{params},'
+        if method_declaration not in common:
+            raise ValueError("Pinned sort direction request method gate changed: " + method)
+        if method in ("thread/list", "thread/resume") and (
+                method_declaration + '\n        inspect_params: true,' not in common):
+            raise ValueError("Pinned sort direction enclosing field inspection changed: " + method)
+    hashes = {}
+    for profile, schemas in DIRECTION_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned sort direction schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["SortDirection"] != {"type": "string", "enum": names}:
+                raise ValueError("Official canonical sort direction contract changed: " + profile + "/" + name)
+            if name == "ClientRequest.json":
+                expected_methods = DIRECTION_METHODS if profile == "experimental" else DIRECTION_STANDARD_METHODS
+                if request_methods(document, "SortDirection") != list(expected_methods):
+                    raise ValueError("SortDirection request input graph changed: " + profile)
+                fields = DIRECTION_FIELDS if profile == "experimental" else {
+                    key: DIRECTION_FIELDS[key] for key in
+                    ("ThreadListParams", "ThreadTurnsListParams", "ThreadItemsListParams")}
+                if profile == "stable" and (
+                        "initialTurnsPage" in document["definitions"]["ThreadResumeParams"]["properties"]):
+                    raise ValueError("Pinned resume initialTurnsPage stable exclusion changed")
+            else:
+                params = name.removeprefix("v2/").removesuffix(".json")
+                fields = {params: DIRECTION_FIELDS[params]}
+            for params, (owner, description) in fields.items():
+                definition = (document["definitions"][owner]
+                              if name == "ClientRequest.json" or owner != params else document)
+                if definition["properties"]["sortDirection"] != {
+                        "anyOf": [{"$ref": "#/definitions/SortDirection"}, {"type": "null"}],
+                        "description": description}:
+                    raise ValueError("Official sort direction field contract changed: " + profile + "/" + owner)
+                if params == "ThreadResumeParams":
+                    resume = (document["definitions"][params]
+                              if name == "ClientRequest.json" else document)
+                    if resume["properties"]["initialTurnsPage"] != {
+                            "anyOf": [{"$ref": "#/definitions/ThreadResumeInitialTurnsPageParams"}, {"type": "null"}],
+                            "description": "When present, include a `thread/turns/list` page in the resume response so clients can bootstrap recent turns without a second request."}:
+                        raise ValueError("Official nested resume page field contract changed")
+            if profile == "experimental":
+                hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(DIRECTION_METHODS),
+        "definition": "SortDirection",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary snake_case SortDirection unit enum accepts one-key asc/desc objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/list, thread/turns/list and thread/items/list reach it in stable requests; full requests additionally reach thread/search, project/list and thread/resume.initialTurnsPage.sortDirection. Preserve the complete canonical string schema, original caller values, enclosing constraints, outer null/omission, three standard methods, two experimental methods and the active enclosing initialTurnsPage field gate. Defaults and selected-key prerequisites remain native-owned, including project sortKey and section-position direction defaults. Accepted input does not itself execute a turn. Ordered results, bootstrap history, pagination and cold persistence require independent native evidence. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -625,7 +755,8 @@ def corrections(vendor):
             (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)),
             (START_SOURCE_SEMANTICS, derive_start_source(vendor)),
             (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)),
-            (LIST_SORT_SEMANTICS, derive_list_sort(vendor)))
+            (LIST_SORT_SEMANTICS, derive_list_sort(vendor)),
+            (DIRECTION_SEMANTICS, derive_direction(vendor)))
 
 
 def write(vendor):
