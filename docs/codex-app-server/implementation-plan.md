@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [list-sort input repair](list-sort-input-qualification.md) accepts eight
+native objects on standard thread/list without changing caller bytes or outputs.
+Independent native timestamps, public section moves and32 warm/cold lists pass.
+Final **62 schema /128 ordinary driver twice**, outside consumer **1/0**, strict
+Credo529, inventory and353-source guard pass. Root compilation/format/assets,
+forced Dialyzer, architecture scanners and local production assembly also pass;
+all346 other prior sources, nine descriptors and770 exports stay unchanged.
+Counts remain **5,038 implemented /1,517 missing /66 blocked** contracts and
+**462 implemented /12 missing /11 blocked** requirements, zero verified.
+Next reproduce SortDirection objects across its six native input graphs with
+independent history/project ordering. Pagination, universal updated/recency
+discrimination, prohibited/broad/hosted, A11, legacy/external/OS/platform and
+full-goal gates stay incomplete. No publication or deployment.
+
 The [search-sort input repair](search-sort-input-qualification.md) accepts six
 native objects on experimental thread/search without changing its gate or bytes.
 Independent native timestamp order,24warm/cold queries and retained histories pass.

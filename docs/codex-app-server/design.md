@@ -78,6 +78,11 @@ unit objects for its three timestamp keys. Native state provides an independent
 ordering oracle; these input forms neither execute a turn nor repair the pinned
 created-search cursor precision defect. Updated and recency clocks can coincide,
 so this fixture does not prove their distinction in every lifecycle.
+The [list-sort input correction](list-sort-input-qualification.md) separately
+handles standard `thread/list` and its four keys. Section-position ordering uses
+the native section branch and requires a concrete section filter. Public custom
+section creation and explicit moves supply an independent order; read-only
+native columns and unloaded cold queries verify it without editing stored state.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

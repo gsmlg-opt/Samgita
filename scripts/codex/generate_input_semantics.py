@@ -55,6 +55,18 @@ SEARCH_SORT_SCHEMAS = {
     "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
     "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
 }
+LIST_SORT_SEMANTICS = "source/thread-sort-key-input-semantics.json"
+LIST_SORT_METHODS = ("thread/list",)
+LIST_SORT_SCHEMAS = {
+    "stable": {
+        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+    },
+    "experimental": {
+        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+    },
+}
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
 DECODER_SHA256 = "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
 DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
@@ -500,6 +512,74 @@ def derive_search_sort(vendor):
     }
 
 
+def derive_list_sort(vendor):
+    sources = {THREAD: SOURCES[THREAD], COMMON: COMMON_SHA256}
+    for name, expected in sources.items():
+        if digest(vendor / name) != expected:
+            raise ValueError("Pinned thread list sort input source changed: " + name)
+    rust = (vendor / THREAD).read_text()
+    declaration = re.search(
+        r'#\[derive\(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, JsonSchema, TS\)\]\n'
+        r'#\[serde\(rename_all = "snake_case"\)\]\n'
+        r'#\[ts\(export_to = "v2/"\)\]\n'
+        r'pub enum ThreadSortKey \{\n(.*?)\n\}', rust, re.S)
+    if not declaration or declaration[1] != (
+            '    CreatedAt,\n    UpdatedAt,\n    RecencyAt,\n    SectionPosition,'):
+        raise ValueError("Pinned ThreadSortKey unit variants changed")
+    names = [re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
+             for name in re.findall(r'^    (\w+),$', declaration[1], re.M)]
+    field = (
+        '    /// Optional sort key; defaults to created_at.\n'
+        '    #[ts(optional = nullable)]\n'
+        '    pub sort_key: Option<ThreadSortKey>,')
+    if field not in rust:
+        raise ValueError("Pinned thread/list sortKey field declaration changed")
+    common = (vendor / COMMON).read_text()
+    if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
+            or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
+        raise ValueError("Pinned ClientRequest buffered input path changed")
+    method = (
+        '    },\n'
+        '    ThreadList => "thread/list" {\n'
+        '        params: v2::ThreadListParams,\n'
+        '        inspect_params: true,\n'
+        '        serialization: None,\n'
+        '        response: v2::ThreadListResponse,\n'
+        '    },')
+    if method not in common:
+        raise ValueError("Pinned thread/list standard method declaration changed")
+    hashes = {}
+    for profile, schemas in LIST_SORT_SCHEMAS.items():
+        for name, expected in schemas.items():
+            path = vendor / profile / name
+            if digest(path) != expected:
+                raise ValueError("Pinned thread list schema changed: " + profile + "/" + name)
+            document = json.loads(path.read_text())
+            if document["definitions"]["ThreadSortKey"] != {"type": "string", "enum": names}:
+                raise ValueError("Official canonical thread list sort contract changed: " + profile + "/" + name)
+            definition = document["definitions"]["ThreadListParams"] if name == "ClientRequest.json" else document
+            if definition["properties"]["sortKey"] != {
+                    "anyOf": [{"$ref": "#/definitions/ThreadSortKey"}, {"type": "null"}],
+                    "description": "Optional sort key; defaults to created_at."}:
+                raise ValueError("Official thread/list sortKey field contract changed: " + profile + "/" + name)
+            if name == "ClientRequest.json" and (
+                    request_methods(document, "ThreadSortKey") != list(LIST_SORT_METHODS)):
+                raise ValueError("ThreadSortKey request input graph changed: " + profile)
+            if profile == "experimental":
+                hashes[name] = expected
+    return {
+        "kind": "locally-derived-input-contract-not-official-export",
+        "upstream_commit": COMMIT,
+        "generator": "scripts/codex/generate_input_semantics.py",
+        "methods": list(LIST_SORT_METHODS),
+        "definition": "ThreadSortKey",
+        "input_object_branches": unit_object_branches(names),
+        "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
+        "schemas_sha256": hashes,
+        "semantics": "The ordinary snake_case ThreadSortKey unit enum accepts one-key created_at/updated_at/recency_at/section_position objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only standard thread/list reaches this input definition in both stable and full profiles. Preserve the complete canonical string schema, original caller values, enclosing constraints, outer null/omission and existing field gates. Native owns persisted timestamp/section ordering, section-filter prerequisites and cursor semantics; accepted input does not execute a turn. Ordering and pagination require independent native evidence. Output schemas remain canonical.",
+    }
+
+
 def buffered_decoder_sources(vendor):
     sources = {
         DECODER_RUST: DECODER_SHA256, DECODER_LICENSE: DECODER_LICENSE_SHA256,
@@ -544,7 +624,8 @@ def corrections(vendor):
             (PERSONALITY_SEMANTICS, derive_personality(vendor)),
             (HISTORY_MODE_SEMANTICS, derive_history_mode(vendor)),
             (START_SOURCE_SEMANTICS, derive_start_source(vendor)),
-            (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)))
+            (SEARCH_SORT_SEMANTICS, derive_search_sort(vendor)),
+            (LIST_SORT_SEMANTICS, derive_list_sort(vendor)))
 
 
 def write(vendor):

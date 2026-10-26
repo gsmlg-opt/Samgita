@@ -15,7 +15,8 @@ defmodule SamgitaProtocolCodex.Schema.Input do
                       "source/personality-input-semantics.json",
                       "source/history-mode-input-semantics.json",
                       "source/thread-start-source-input-semantics.json",
-                      "source/thread-search-sort-key-input-semantics.json"
+                      "source/thread-search-sort-key-input-semantics.json",
+                      "source/thread-sort-key-input-semantics.json"
                     ] do
                   path = Path.join(@root, relative)
                   @external_resource path
@@ -32,6 +33,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @history_mode Enum.find(@corrections, &(&1["definition"] == "ThreadHistoryMode"))
   @start_source Enum.find(@corrections, &(&1["definition"] == "ThreadStartSource"))
   @search_sort Enum.find(@corrections, &(&1["definition"] == "ThreadSearchSortKey"))
+  @list_sort Enum.find(@corrections, &(&1["definition"] == "ThreadSortKey"))
 
   for semantics <- @corrections do
     unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
@@ -100,6 +102,9 @@ defmodule SamgitaProtocolCodex.Schema.Input do
 
   def contract("ClientRequest.json", "thread/search", document),
     do: search_sort_input(document)
+
+  def contract("ClientRequest.json", "thread/list", document),
+    do: list_sort_input(document)
 
   def contract(_filename, _method, document), do: document
 
@@ -181,6 +186,14 @@ defmodule SamgitaProtocolCodex.Schema.Input do
       document,
       ["definitions", "ThreadSearchSortKey"],
       &%{"oneOf" => [&1 | @search_sort["input_object_branches"]]}
+    )
+  end
+
+  defp list_sort_input(document) do
+    update_in(
+      document,
+      ["definitions", "ThreadSortKey"],
+      &%{"oneOf" => [&1 | @list_sort["input_object_branches"]]}
     )
   end
 

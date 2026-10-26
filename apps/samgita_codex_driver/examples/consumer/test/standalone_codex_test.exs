@@ -152,6 +152,17 @@ defmodule StandaloneCodexTest do
                )
     end
 
+    for key <- ~w(created_at updated_at recency_at section_position),
+        payload <- [nil, %{}],
+        opts <- [[], [experimental: true]] do
+      assert :ok =
+               SamgitaProtocolCodex.Schema.validate_request(
+                 "thread/list",
+                 %{"sortKey" => %{key => payload}},
+                 opts
+               )
+    end
+
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 
