@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native partial-import profile](native-partial-import-qualification.md)
+adds real session creation and an originally detected owned source disappearing
+within one operation. ACK precedes separate progress and grouped completion;
+native history time/results and full imported history survive a cold process,
+with no retry/inference. Six prior cases stay unchanged. Initial **7/0**, final
+**7/0 twice**, compile/format, strict Credo543 and inventory pass;374 sources stay
+stable/all373 others unchanged. Only3967/3968 become scoped implemented:
+**5,044 implemented /1,511 missing /66 blocked** contracts; **462 implemented /12
+missing /11 blocked** requirements, zero verified. Prior unrelated checks retain
+source equivalence without rerun claims. Continue remaining reachable ordinary
+effects; prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal
+gates stay incomplete.
+
 The [marketplace partial-error profile](marketplace-partial-error-qualification.md)
 qualifies exact owners4343/4344 via a real local Git upgrade alongside a native
 missing-source error, then warm/cold no-op/error repeats with exact retained

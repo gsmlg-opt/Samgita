@@ -307,6 +307,207 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert_wire_inventory(ctx)
   end
 
+  test "a vanished detected session preserves a real imported thread and durable partial completion",
+       ctx do
+    missing = Path.join(Path.dirname(ctx.source), "vanished-session.jsonl")
+    held = missing <> ".held"
+    title = "Owned vanished transcript title"
+
+    second_records = [
+      foreign_record("user", ctx.fixture.workspace, DateTime.from_unix!(ctx.created - 20), title),
+      foreign_record(
+        "assistant",
+        ctx.fixture.workspace,
+        DateTime.from_unix!(ctx.updated - 20),
+        "Owned held transcript answer"
+      )
+    ]
+
+    second_bytes = Enum.map_join(second_records, "", &(JSON.encode!(&1) <> "\n"))
+    File.write!(missing, second_bytes, [:exclusive])
+    original_mtime = File.stat!(ctx.source, time: :posix).mtime
+    File.touch!(missing, original_mtime - 1)
+    assert File.stat!(missing, time: :posix).mtime < original_mtime
+    assert bounded_file(missing) === second_bytes
+    assert_retained(ctx)
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm.pid)
+    assert_unloaded(ctx, warm.pid)
+
+    detected =
+      call(ctx, warm.pid, "externalAgentConfig/detect", %{
+        "includeHome" => true,
+        "migrationSource" => "claude-code",
+        "maxSessionAgeDays" => 1,
+        "maxSessions" => 4
+      })
+
+    assert Map.fetch!(detected, "connectors") === []
+    assert [selected] = Map.fetch!(detected, "items")
+
+    expected_sessions = [
+      %{"path" => ctx.source, "cwd" => ctx.fixture.workspace, "title" => @prompt},
+      %{"path" => missing, "cwd" => ctx.fixture.workspace, "title" => title}
+    ]
+
+    assert_selected(Map.put(ctx, :expected_sessions, expected_sessions), selected)
+    # Only this new synthetic source moves, after genuine native detection.
+    # Preserve its complete bytes as a non-jsonl sibling rather than deleting it.
+    File.rename!(missing, held)
+    refute File.exists?(missing)
+    assert bounded_file(held) === second_bytes
+
+    ctx = %{
+      ctx
+      | inputs:
+          ctx.inputs
+          |> Map.put(held, second_bytes)
+          |> Map.put(ctx.fixture.requests, bounded_file(ctx.fixture.requests))
+    }
+
+    params = %{
+      "migrationSource" => "claude-code",
+      "providerId" => @attribution,
+      "migrationItems" => [selected]
+    }
+
+    started_at_ms = System.system_time(:millisecond)
+    {request_id, receipt} = request(ctx, warm.pid, "externalAgentConfig/import", params)
+    assert %{"importId" => id} = receipt
+    assert Map.keys(receipt) === ["importId"]
+    assert_uuid(id)
+    events = await_completion(warm.pid, id, [], now() + 10_000)
+    finished_at_ms = System.system_time(:millisecond)
+    assert byte_size(JSON.encode!(Enum.map(events, & &1.wire))) <= 1_048_576
+
+    relevant =
+      events
+      |> Enum.map(& &1.wire)
+      |> Enum.filter(
+        &(&1["method"] in [
+            "externalAgentConfig/import/progress",
+            "externalAgentConfig/import/completed"
+          ])
+      )
+
+    assert Enum.map(relevant, & &1["method"]) === [
+             "externalAgentConfig/import/progress",
+             "externalAgentConfig/import/progress",
+             "externalAgentConfig/import/completed"
+           ]
+
+    [validation, imported, completion] = relevant
+
+    failure = %{
+      "itemType" => "SESSIONS",
+      "cwd" => nil,
+      "source" => missing,
+      "errorType" => nil,
+      "subErrorType" => "session_not_detected",
+      "failureStage" => "session_missing",
+      "message" => "external agent session was not detected for import: #{missing}"
+    }
+
+    validation_result = %{type_result([]) | "failures" => [failure]}
+    assert [import_result] = imported["params"]["itemTypeResults"]
+    target = import_target(import_result, true)
+    expected_success = success(ctx, target)
+    expected_import = type_result([expected_success])
+    merged = %{expected_import | "failures" => [failure]}
+
+    for {notice, expected_result} <- [
+          {validation, validation_result},
+          {imported, expected_import},
+          {completion, merged}
+        ] do
+      timestamp = Map.fetch!(notice, "emittedAtMs")
+      assert is_integer(timestamp) and timestamp >= started_at_ms and timestamp <= finished_at_ms
+      assert notice["params"] === %{"importId" => id, "itemTypeResults" => [expected_result]}
+    end
+
+    assert validation["emittedAtMs"] <= imported["emittedAtMs"]
+    assert imported["emittedAtMs"] <= completion["emittedAtMs"]
+    assert_receipt_before_notifications(ctx, request_id, id, 3)
+    history = call(ctx, warm.pid, "externalAgentConfig/import/readHistories", nil)
+    assert %{"connectors" => [], "data" => [record]} = history
+    completed_at = Map.fetch!(record, "completedAtMs")
+
+    assert is_integer(completed_at) and completed_at >= started_at_ms and
+             completed_at <= finished_at_ms
+
+    assert history === %{
+             "connectors" => [],
+             "data" => [
+               %{
+                 "importId" => id,
+                 "providerId" => @attribution,
+                 "completedAtMs" => completed_at,
+                 "successes" => [expected_success],
+                 "failures" => [failure]
+               }
+             ]
+           }
+
+    stored = assert_native_history(ctx, warm.pid, target)
+    assert byte_size(stored.bytes) <= 1_048_576
+    assert_unloaded(ctx, warm.pid)
+    assert_idle(ctx, warm.pid)
+    assert_retained(ctx, stored)
+    refute File.exists?(missing)
+    close(warm, warm_native)
+    assert_retained(ctx, stored)
+
+    cold = start(ctx)
+    cold_native = native_id(ctx, cold.pid)
+    refute cold_native == warm_native
+    assert_unloaded(ctx, cold.pid)
+    # Cold public reads establish durability without another import or resume.
+    assert call(ctx, cold.pid, "externalAgentConfig/import/readHistories", nil) === history
+    assert_native_history(ctx, cold.pid, target, stored)
+    assert_unloaded(ctx, cold.pid)
+    assert_idle(ctx, cold.pid)
+    assert_retained(ctx, stored)
+    refute File.exists?(missing)
+    close(cold, cold_native)
+    assert_retained(ctx, stored)
+    for {_path, bytes} <- ctx.inputs, do: assert(byte_size(bytes) <= 1_048_576)
+    assert_partial_import_inventory(ctx, request_id, id)
+  end
+
+  defp assert_partial_import_inventory(ctx, request_id, id) do
+    records = capture(ctx)
+    outgoing = Enum.filter(records, &(&1.direction == :out))
+    assert length(outgoing) == 18
+    assert length(outgoing) <= 24
+    assert Enum.all?(outgoing, &(byte_size(&1.encoded) <= 4096))
+
+    assert Enum.frequencies_by(outgoing, & &1.wire["method"]) === %{
+             "initialize" => 2,
+             "initialized" => 2,
+             "server/diagnostics" => 2,
+             "thread/loaded/list" => 4,
+             "externalAgentConfig/detect" => 1,
+             "externalAgentConfig/import" => 1,
+             "externalAgentConfig/import/readHistories" => 2,
+             "thread/list" => 2,
+             "thread/read" => 2
+           }
+
+    notices =
+      Enum.filter(records, fn record ->
+        record.direction == :in and
+          record.wire["method"] in [
+            "externalAgentConfig/import/progress",
+            "externalAgentConfig/import/completed"
+          ]
+      end)
+
+    assert length(notices) == 3
+    assert Enum.all?(notices, &(&1.wire["params"]["importId"] === id))
+    assert_receipt_before_notifications(ctx, request_id, id, 3)
+    for record <- records, do: assert(JSON.decode!(record.encoded) === record.wire)
+  end
+
   defp subagent_context(ctx) do
     source = Path.join(ctx.fixture.home, ".claude/agents")
     target = Path.join(ctx.fixture.codex_home, "agents")

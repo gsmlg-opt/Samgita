@@ -131,6 +131,10 @@ The [marketplace partial-error profile](marketplace-partial-error-qualification.
 retains per-entry failures inside a successful native upgrade response. Real
 local Git activation and warm/cold no-ops distinguish request completion from
 success of every selected marketplace; it adds no remote plugin integration.
+The [partial session import profile](native-partial-import-qualification.md)
+distinguishes the operation UUID response, separate progress and durably completed
+grouped results. A real imported session and ordinary vanished-source failure
+remain together in exact public history across a native restart.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

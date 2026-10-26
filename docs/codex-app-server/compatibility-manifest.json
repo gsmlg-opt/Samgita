@@ -1825,14 +1825,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportParams"
@@ -1863,7 +1865,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -1875,14 +1878,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import/readHistories",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "params": {
         "type": "null"
@@ -1913,7 +1918,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11319,14 +11325,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:externalAgentConfig/import/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportCompletedNotification"
@@ -11348,7 +11356,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11360,14 +11369,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:externalAgentConfig/import/progress",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportProgressNotification"
@@ -11389,7 +11400,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16657,14 +16669,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "prerequisites": [
         "initialized"
@@ -16681,7 +16695,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16694,14 +16709,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import/readHistories",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "prerequisites": [
         "initialized"
@@ -16718,7 +16735,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
       "transport_coverage": [
@@ -144163,21 +144181,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/completedAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Positive timestamp/order asserted directly only in externally recorded history case. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Positive timestamp/order asserted directly only in externally recorded history case. Other variants and full implementation qualification remain incomplete.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/completedAtMs",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -144185,31 +144205,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "completedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-partial-import-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/failures",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Mixed native import failure persistence; record-only fixture is not import execution. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Mixed native import failure persistence; record-only fixture is not import execution. Other variants and full implementation qualification remain incomplete.",
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/failures",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "dd7bd4b4730bdc088a51295c9496efb1e6f92ce6122647df5cf9e98fdb58e9f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -144217,10 +144242,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failures"
     },
     {

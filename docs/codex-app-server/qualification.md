@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [native partial-import profile](native-partial-import-qualification.md)
+adds same-operation real session success/ordinary missing-source failure and
+durable completion, preserving exact public history/native data across restart.
+Initial7/0 and final7/0 twice pass with strict checks and374 stable sources; the
+six prior cases and373 other sources remain unchanged. Only3967/3968 gain scoped
+implemented evidence, with no full-compatibility or prohibited-gate closure.
+
 The [marketplace partial-error profile](marketplace-partial-error-qualification.md)
 adds exact populated native name/message errors alongside a real local Git
 success, retaining installed state through warm/cold no-op repeats. Initial1/0,
