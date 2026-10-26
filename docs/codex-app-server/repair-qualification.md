@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
+passes the affected four-file **7/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Native request cwd fallback
+and embedded precedence preserve processing, completed-source deduplication and
+cold history with zero inference. Exact owner 595 becomes scoped implemented;
+contracts are **5,000 implemented / 1,555 missing / 66 blocked**, requirements
+unchanged and zero verified. All 309 unrelated sources and process cleanup stay
+unchanged. Inventory passes; strict completeness exits **1**. Prohibited/broad/
+hosted, A11 and full-goal/release gates remain incomplete.
+
 The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
 passes the final **31-file, 57/0 twice** functional matrix, strict/static checks,
 outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.

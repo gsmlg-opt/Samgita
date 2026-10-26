@@ -203,6 +203,100 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert Map.fetch!(detected, "connectors") === []
     assert [selected] = Map.fetch!(detected, "items")
     assert_selected(ctx, selected)
+    assert_import_journey(ctx, warm, warm_native, selected)
+  end
+
+  test "Cursor session without embedded cwd imports into the supplied existing cwd", ctx do
+    assert_cursor_import(ctx, :fallback)
+  end
+
+  test "Cursor session embedded cwd takes precedence over the supplied existing cwd", ctx do
+    assert_cursor_import(ctx, :embedded)
+  end
+
+  defp assert_cursor_import(ctx, mode) do
+    ctx = cursor_context(ctx, mode)
+    assert_retained(ctx)
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm.pid)
+    assert_unloaded(ctx, warm.pid)
+
+    detected =
+      call(ctx, warm.pid, "externalAgentConfig/detect", %{
+        "includeHome" => true,
+        "migrationSource" => "cursor",
+        "maxSessionAgeDays" => 1,
+        "maxSessions" => 4
+      })
+
+    assert Map.fetch!(detected, "connectors") === []
+    assert [selected] = Map.fetch!(detected, "items")
+    assert_selected(ctx, selected)
+    assert [session] = selected["details"]["sessions"]
+    refute session["cwd"] == ctx.requested_cwd
+    refute ctx.requested_cwd == ctx.fixture.workspace
+    refute ctx.expected_cwd == ctx.fixture.workspace
+
+    # Actual discovery is checked above. For this import operation, supply an
+    # existing owned fallback distinct from both discovery and native launch.
+    selected =
+      put_in(selected, ["details", "sessions"], [%{session | "cwd" => ctx.requested_cwd}])
+
+    assert_import_journey(ctx, warm, warm_native, selected)
+  end
+
+  defp cursor_context(ctx, mode) do
+    requested = Path.join(ctx.root, "cursor-requested-cwd")
+    embedded = Path.join(ctx.root, "cursor-embedded-cwd")
+    File.mkdir!(requested)
+    File.mkdir!(embedded)
+
+    source =
+      Path.join(ctx.fixture.home, ".cursor/projects/empty-window/agent-transcripts/session.jsonl")
+
+    File.mkdir_p!(Path.dirname(source))
+
+    user = %{
+      "role" => "user",
+      "timestamp" => DateTime.to_iso8601(DateTime.from_unix!(ctx.created)),
+      "message" => %{
+        "content" =>
+          "<timestamp>Owned source context</timestamp>\n<user_query>\n#{@prompt}\n</user_query>"
+      }
+    }
+
+    assistant = %{
+      "role" => "assistant",
+      "timestamp" => DateTime.to_iso8601(DateTime.from_unix!(ctx.updated)),
+      "message" => %{"content" => @answer}
+    }
+
+    records =
+      case mode do
+        :fallback -> [user, assistant]
+        :embedded -> Enum.map([user, assistant], &Map.put(&1, "cwd", embedded))
+      end
+
+    assert ctx.updated == ctx.created + 10
+    for record <- records, do: assert(Map.has_key?(record, "cwd") == (mode == :embedded))
+    bytes = Enum.map_join(records, "", &(JSON.encode!(&1) <> "\n"))
+    File.write!(source, bytes, [:exclusive])
+
+    Map.merge(ctx, %{
+      source: source,
+      source_records: records,
+      source_bytes: bytes,
+      migration_source: "cursor",
+      source_agent_dir: ".cursor",
+      requested_cwd: requested,
+      detected_cwd: if(mode == :embedded, do: embedded, else: ctx.fixture.home),
+      expected_cwd: if(mode == :embedded, do: embedded, else: requested),
+      retained_dirs: [ctx.fixture.workspace, requested, embedded],
+      inputs: Map.put(ctx.inputs, ctx.source, ctx.source_bytes)
+    })
+  end
+
+  defp assert_import_journey(ctx, warm, warm_native, selected) do
     first = import_source(ctx, warm.pid, selected, true)
     expected_success = success(ctx, first.target)
     assert first.completed === completed(first.id, [expected_success])
@@ -260,12 +354,16 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert Map.fetch!(selected, "cwd") === nil
 
     assert Map.fetch!(selected, "description") ===
-             "Migrate recent sessions from #{Path.join(ctx.fixture.home, ".claude/projects")}"
+             "Migrate recent sessions from #{Path.join([ctx.fixture.home, Map.get(ctx, :source_agent_dir, ".claude"), "projects"])}"
 
     details = Map.fetch!(selected, "details")
 
     assert Map.fetch!(details, "sessions") === [
-             %{"path" => ctx.source, "cwd" => ctx.fixture.workspace, "title" => @prompt}
+             %{
+               "path" => ctx.source,
+               "cwd" => Map.get(ctx, :detected_cwd, ctx.fixture.workspace),
+               "title" => @prompt
+             }
            ]
 
     for key <- ~w(commands hooks mcpServers plugins skills subagents),
@@ -276,7 +374,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
 
   defp import_source(ctx, pid, selected, expect_target) do
     params = %{
-      "migrationSource" => "claude-code",
+      "migrationSource" => Map.get(ctx, :migration_source, "claude-code"),
       "providerId" => @attribution,
       "migrationItems" => [selected]
     }
@@ -386,7 +484,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
   defp success(ctx, target) do
     %{
       "itemType" => "SESSIONS",
-      "cwd" => ctx.fixture.workspace,
+      "cwd" => expected_cwd(ctx),
       "source" => ctx.source,
       "target" => target,
       "title" => @prompt
@@ -425,7 +523,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
       "id" => id,
       "sessionId" => id,
       "source" => "vscode",
-      "cwd" => ctx.fixture.workspace,
+      "cwd" => expected_cwd(ctx),
       "modelProvider" => "fixture",
       # The importer patches metadata.title, without writing the separate
       # legacy name index. Its import history title is asserted independently.
@@ -451,7 +549,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert Map.take(read, ~w(id source cwd modelProvider path historyMode cliVersion)) === %{
              "id" => id,
              "source" => "vscode",
-             "cwd" => ctx.fixture.workspace,
+             "cwd" => expected_cwd(ctx),
              "modelProvider" => "fixture",
              "path" => path,
              "historyMode" => "legacy",
@@ -516,7 +614,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
              %{
                "id" => id,
                "session_id" => id,
-               "cwd" => ctx.fixture.workspace,
+               "cwd" => expected_cwd(ctx),
                "source" => "vscode",
                "model_provider" => "fixture",
                "cli_version" => "0.163.0",
@@ -683,9 +781,14 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
     assert jsonl(ctx.source_bytes) === ctx.source_records
     for {path, bytes} <- ctx.inputs, do: assert(bounded_file(path) === bytes)
     assert requests(ctx) === []
-    assert File.ls!(ctx.fixture.workspace) === []
+
+    for directory <- Map.get(ctx, :retained_dirs, [ctx.fixture.workspace]),
+        do: assert(File.ls!(directory) === [])
+
     if stored, do: assert(bounded_file(stored.path) === stored.bytes)
   end
+
+  defp expected_cwd(ctx), do: Map.get(ctx, :expected_cwd, ctx.fixture.workspace)
 
   defp requests(ctx) do
     result = ctx.fixture.requests |> bounded_file() |> JSON.decode!()

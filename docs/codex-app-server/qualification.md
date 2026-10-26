@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
+passes the final affected four-file **7/0 twice** functional matrix, static
+checks, outside consumer **1/0** and the 310-source guard. Actual import
+distinguishes requested cwd fallback from embedded cwd precedence, retaining
+full processing, deduplication and cold-history assertions with zero inference.
+Twenty-six whole files and exact physical owner 595 match the immutable pin.
+Contracts become **5,000 implemented / 1,555 missing / 66 blocked**; requirements
+stay **462 implemented / 12 missing / 11 blocked**, zero verified. All 309
+unrelated prior sources and process cleanup remain unchanged. Prohibited/broad/
+hosted checks, A11, legacy/external/OS/platform and full-goal/release gates stay
+incomplete. No publication or deployment occurs.
+
 The [actual native session import](native-session-import-success-qualification.md)
 passes the affected four-file **5/0 twice** matrix, static checks, outside
 consumer1/0 and310 guarded sources. Real detection, receipt/progress/completion,

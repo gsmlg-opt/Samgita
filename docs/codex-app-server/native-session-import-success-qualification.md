@@ -58,8 +58,9 @@ uses `StoredThread.name` at `thread_processor.rs:6443`.
 The corrected oracle requires exact null name while retaining separate title,
 full metadata, timestamp, source/history and cold-equality assertions. It does
 not rename the thread, normalize the response or remove the field. Claude cwd/title
-come from the transcript. Request cwd fallback, title-setting semantics, Cursor,
-changed-source append and general title/name consistency stay separately incomplete.
+come from the transcript. The subsequent Cursor section qualifies request cwd
+fallback and embedded precedence separately. Title-setting semantics,
+changed-source append and general title/name consistency stay incomplete.
 
 ## Physical ownership and checks
 
@@ -107,3 +108,64 @@ authentication, authorization and approval tests/audits, mixed suites and hosted
 workflows remain unrun. A11, unavailable legacy/external/platform/OS success,
 full compatibility and release remain incomplete. No publication, deployment,
 production migration or real Claude/provider integration is certified.
+
+## Cursor request cwd and embedded precedence
+
+Two additional actual-native cases distinguish requested cwd from native launch,
+discovery and source metadata. Each creates an inert Cursor-format JSONL at
+private `HOME/.cursor/projects/empty-window/agent-transcripts/session.jsonl`.
+Both records carry explicit UTC timestamps exactly ten seconds apart. The
+user record contains a supported context wrapper and `<user_query>`; imported
+raw/public text must match the independently expected unwrapped prompt. This
+is synthetic foreign-format input, not proof of a real Cursor producer.
+
+| Input | Real detection | Requested cwd | Persisted import cwd |
+| --- | --- | --- | --- |
+| No embedded cwd | Owned HOME, through native `empty-window` semantics | Separate existing owned directory | Requested directory |
+| Explicit embedded cwd | Embedded existing owned directory | The same separate requested directory | Embedded directory |
+
+The import request changes only the selected session's cwd after checking real
+detection. Both cases reuse the original complete import journey: ordered
+receipt/progress/completion, full success and durable history, one actual Legacy
+thread, exact raw canonical messages and public items, source chronology,
+completed-source deduplication and cold native reads. The original Claude
+case retains its assertions. All three cwd directories remain empty, source
+and configuration bytes remain unchanged, and model requests stay zero. No
+native history or database record is handcrafted, and no title setter is claimed.
+
+The actual import schema graph independently resolves only physical owner
+**595**, `ClientRequest.json#/definitions/SessionMigration/properties/cwd`,
+node SHA256 `bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7`.
+It becomes scoped **implemented**, with no sibling or verified promotion.
+Twenty-six whole files match the immutable archive. In addition to the prior
+importer/storage evidence, they bind Cursor discovery, `MigrationFallback`,
+record parsing/unwrapping and embedded-before-fallback selection in
+`external-agent-migration/src/`.
+
+Baseline: `0e913725e39e198b84ea5eb6e29053cfd031e58b`. The three owning cases
+pass **3/0** initially. The final affected four-file block passes **7/0 twice**,
+seeds `501432` and `987654`, in 28.379s and 28.479s. Scoped format,
+warnings-as-errors compile, strict Credo on 508 sources, outside actual-binary
+consumer **1/0** and retained relay/inline Exec AST checks pass. The 310-source
+guard is stable; all 309 unrelated prior sources, including production driver,
+protocol and process cleanup, remain byte-identical. No runtime test failed,
+deadline increased, assertion removed or test skipped.
+
+Commands/results: `/tmp/samgita-v342-run.py` and
+`/tmp/samgita-v342-functional-checks/final/`; source/final bindings:
+`/tmp/samgita-v342-source.py` and `/tmp/samgita-v342-bind.py`.
+
+| Artifact | SHA256 |
+| --- | --- |
+| Functional results | `62a5264f6ab27a531b071e2761f64bbe63500b3c50b677ee7356ae58b9600df6` |
+| Source guard | `a9aa1cd03676585469818c5de92404100e3ac5332cde037072afd0838be01090` |
+| Whole source/schema comparisons | `2fdde562fd066401dac8090d3b2467148c595b90ed63552e8676a54174004b90` |
+
+Inventory consistency passes; strict completeness remains exit **1**. Contracts
+are **5,000 implemented / 1,555 missing / 66 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Fixed YOLO is
+ordinary setup only. The user's prohibited tests/audits, original mixed import
+suite, broad suites and hosted workflows remain unrun. A11, unreachable legacy
+paths, unavailable external/platform/OS success, full compatibility and release
+remain incomplete. No package publication, deployment, production migration or
+real Cursor/provider integration is established.

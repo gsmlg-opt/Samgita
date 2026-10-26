@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [Cursor cwd continuation](native-session-import-success-qualification.md#cursor-request-cwd-and-embedded-precedence)
+passes the affected four-file **7/0 twice** functional matrix, static checks,
+outside consumer **1/0** and the 310-source guard. Actual request cwd fallback
+and embedded precedence persist through completed-source deduplication and cold
+history, with zero inference. Twenty-six immutable files and exact owner 595
+are checked; all 309 unrelated sources and production cleanup stay unchanged.
+Contracts are **5,000 implemented / 1,555 missing / 66 blocked**; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. This
+qualifies one field and does not complete import or broader gates.
+
 The [actual native session import](native-session-import-success-qualification.md)
 passes a separate success-only profile and the affected four-file5/0-twice
 matrix, static checks and outside consumer1/0. Actual processing/persistence,
@@ -66,13 +76,13 @@ and full-goal/release gates remain incomplete. No publication/deployment.
 
 Continue independent ordinary compatibility work. Exact source investigation
 keeps positive appServer source incomplete at the documented artifact boundary.
-Cursor request-cwd fallback is the next ordinary gap: distinguish absent
-embedded cwd from an explicit embedded cwd using owned inert foreign input,
-actual native import, deduplication and cold persistence. Keep Claude embedded
-metadata semantics separate; request title is not a verified setter. The mixed
-existing import suite contains prohibited cases; extend only the reviewed
-success-only profile. Source findings alone remain unaccepted. Preserve
-fixed-yolo setup, the prohibited test boundary and all remaining full-goal gates.
+The next ordinary gap is session detection age/count behavior: use owned inert
+transcripts with independently controlled file mtimes, then distinguish actual
+native limits and order before importing a selected source. Request title is
+not a verified setter. The mixed existing import suite contains prohibited
+cases; extend only the reviewed success-only profile. Source findings alone
+remain unaccepted. Preserve fixed-YOLO setup, the prohibited test boundary and
+all remaining full-goal gates.
 
 ## Earlier checkpoints
 
