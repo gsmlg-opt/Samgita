@@ -118,6 +118,13 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     ]
   }
 
+  @custom_script Path.expand("../../../scripts/codex/supplied_custom_history_fixture.py", __DIR__)
+  @custom_marker "Owned genuine supplied-history custom patch 163"
+  @custom_followup "Owned continuation consumes completed custom patch evidence 163"
+  @custom_answer "Owned custom patch completed λ🙂"
+  @custom_followup_answer "Owned imported custom patch evidence consumed λ🙂"
+  @custom_patch "*** Begin Patch\n*** Update File: owned-notice.txt\n@@\n-owned before\n+owned after λ🙂\n*** End Patch\n"
+
   setup tags do
     binary = System.get_env("CODEX_BINARY")
 
@@ -129,16 +136,12 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     # Select the existing normal provider fixture even if a previous profile has
     # configured an alternate script. Restore the environment immediately.
     previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
-    selected_script = if tags[:search_history], do: @search_script, else: @script
+    selected_script = history_script(tags)
     System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", selected_script)
 
     ctx =
       try do
-        cond do
-          tags[:search_history] -> search_fixture(binary)
-          tags[:dynamic_history] -> dynamic_fixture(binary)
-          true -> TurnFixture.setup(tags)
-        end
+        history_fixture(binary, tags)
       after
         if previous,
           do: System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", previous),
@@ -150,8 +153,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
       "supports_image_detail_original" => true
     }
 
-    model =
-      if tags[:search_history], do: Map.put(model, "supports_search_tool", true), else: model
+    model = history_model(model, tags)
 
     TurnFixture.configure_model(ctx, model)
 
@@ -175,12 +177,7 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     ]
 
     unchanged_files =
-      if tags[:search_history] do
-        unchanged_files ++
-          Enum.map([@search_script, @exposure_script], &{&1, File.read!(&1)})
-      else
-        unchanged_files
-      end
+      unchanged_files ++ Enum.map(history_source_paths(tags), &{&1, File.read!(&1)})
 
     Map.put(ctx, :unchanged_files, unchanged_files)
   end
@@ -567,6 +564,351 @@ defmodule SamgitaCodexDriver.NativeSuppliedHistoryInputsTest do
     assert File.read!(source_path) === source_bytes
     assert_unchanged(ctx)
   end
+
+  @tag custom_history: true
+  test "unstable native import consumes genuine custom patch history without repeating its effect",
+       ctx do
+    target = Path.join(ctx.fixture.workspace, "owned-notice.txt")
+    File.write!(target, "owned before\n")
+    source = start(ctx)
+    source_process = native_process(source)
+
+    source_id =
+      call(source, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "historyMode" => "legacy",
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]["id"]
+
+    assert is_binary(source_id) and byte_size(source_id) > 0
+    began = System.system_time(:microsecond) / 1_000_000
+    source_turn = custom_turn(source, source_id, @custom_marker)
+    events = collect(source, source_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(events, source_id, source_turn)
+    assert_custom_answer(events, source_turn, @custom_answer)
+
+    assert [%{"item" => %{"type" => "fileChange", "status" => "completed"}}] =
+             custom_file_changes(events, "item/completed")
+
+    assert length(custom_file_changes(events, "item/started")) == 1
+    assert Enum.filter(events, &(&1.kind == :server_request)) == []
+    source_path = Map.fetch!(read_thread(source, source_id), "path")
+    ended = System.system_time(:microsecond) / 1_000_000
+    assert [initial, completed] = requests(ctx)
+    assert_custom_provider(completed, false, began, ended)
+    assert File.read!(target) === "owned after λ🙂\n"
+    effect_inode = File.stat!(target).inode
+    [effect_snapshot] = custom_effect_snapshots(ctx)
+    assert effect_snapshot["inode"] == effect_inode
+    assert_idle(source)
+    assert :ok = Session.close(source)
+    assert_gone(source_process)
+
+    {source_bytes, payloads} = rollout(ctx, source_path)
+    history = captured_custom_history(payloads)
+    assert_custom_payloads(history, source_turn, began, ended)
+    assert length(Enum.uniq(Enum.map(history, &Map.fetch!(&1, "id")))) == 4
+    cold = start(ctx)
+    cold_process = native_process(cold)
+    refute cold_process == source_process
+    assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    imported =
+      call(cold, "thread/resume", %{
+        "threadId" => source_id,
+        "history" => history,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "approvalPolicy" => "never",
+        "sandbox" => "danger-full-access"
+      })["thread"]
+
+    imported_id = Map.fetch!(imported, "id")
+    assert is_binary(imported_id) and imported_id != "" and imported_id != source_id
+    assert Map.fetch!(imported, "preview") == @custom_marker
+    assert Map.fetch!(imported, "status") === %{"type" => "idle"}
+    imported_path = Map.fetch!(read_thread(cold, imported_id), "path")
+    refute imported_path == source_path
+    assert_custom_import(ctx, imported_path, history)
+    assert {:ok, import_events} = Session.drain(cold, 256)
+    assert Session.status(cold).buffered_events == 0
+    assert_custom_no_work(import_events)
+    assert requests(ctx) === [initial, completed]
+    assert custom_effect_snapshots(ctx) === [effect_snapshot]
+    assert_custom_retained(ctx, target, effect_inode, source_path, source_bytes)
+
+    followup_turn = custom_turn(cold, imported_id, @custom_followup)
+    followup = collect(cold, followup_turn, [], System.monotonic_time(:millisecond) + 20_000)
+    assert_turn_completed(followup, imported_id, followup_turn)
+    assert_custom_answer(followup, followup_turn, @custom_followup_answer)
+    assert_custom_no_work(followup)
+    assert Map.fetch!(read_thread(cold, imported_id), "id") == imported_id
+    assert [^initial, ^completed, continuation] = requests(ctx)
+    assert_custom_provider(continuation, true, began, ended)
+    assert custom_effect_snapshots(ctx) === [effect_snapshot, effect_snapshot]
+    assert_custom_import(ctx, imported_path, history)
+    assert_custom_retained(ctx, target, effect_inode, source_path, source_bytes)
+    assert_idle(cold)
+    assert :ok = Session.close(cold)
+    assert_gone(cold_process)
+    assert_custom_retained(ctx, target, effect_inode, source_path, source_bytes)
+    assert requests(ctx) === [initial, completed, continuation]
+  end
+
+  defp custom_fixture(binary) do
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-supplied-custom-#{Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    fixture = ModelFixture.start(root, "custom_history")
+    File.write!(fixture.requests, "[]")
+    on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+    %{binary: binary, fixture: fixture, root: root}
+  end
+
+  defp custom_turn(pid, thread, text) do
+    turn =
+      call(pid, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => text, "text_elements" => []}]
+      })["turn"]["id"]
+
+    assert is_binary(turn) and byte_size(turn) > 0
+    turn
+  end
+
+  defp custom_file_changes(events, method) do
+    events
+    |> Enum.filter(&(&1.wire["method"] == method))
+    |> Enum.map(&Map.fetch!(&1.wire, "params"))
+    |> Enum.filter(&(&1["item"]["type"] == "fileChange"))
+  end
+
+  defp assert_custom_no_work(events) do
+    assert custom_file_changes(events, "item/started") == []
+    assert custom_file_changes(events, "item/completed") == []
+    assert Enum.filter(events, &(&1.kind == :server_request)) == []
+  end
+
+  defp assert_custom_answer(events, turn, text) do
+    answers =
+      for event <- events,
+          event.wire["method"] == "item/completed",
+          params = event.wire["params"],
+          params["turnId"] == turn,
+          params["item"]["type"] == "agentMessage",
+          do: params["item"]["text"]
+
+    assert answers === [text]
+  end
+
+  defp custom_effect_snapshots(ctx) do
+    path = Path.join(ctx.root, "custom-effect-snapshots.json")
+    assert File.stat!(path).size <= 4_096
+    JSON.decode!(File.read!(path))
+  end
+
+  defp assert_custom_retained(ctx, target, inode, source_path, source_bytes) do
+    assert File.read!(target) === "owned after λ🙂\n"
+    assert File.stat!(target).inode == inode
+    assert File.read!(source_path) === source_bytes
+    assert_unchanged(ctx)
+  end
+
+  defp captured_custom_history(payloads) do
+    selected = Enum.filter(payloads, &custom_history_item?/1)
+
+    assert [
+             %{"role" => "user"},
+             %{"type" => "custom_tool_call"},
+             %{"type" => "custom_tool_call_output"},
+             %{"role" => "assistant"}
+           ] = selected
+
+    selected
+  end
+
+  defp custom_history_item?(%{"type" => "message", "role" => "user", "content" => content}),
+    do: content === [%{"type" => "input_text", "text" => @custom_marker}]
+
+  defp custom_history_item?(%{"type" => "message", "id" => "owned-custom-source-answer"}),
+    do: true
+
+  defp custom_history_item?(%{"type" => kind, "call_id" => "owned-patch-call"})
+       when kind in ["custom_tool_call", "custom_tool_call_output"],
+       do: true
+
+  defp custom_history_item?(_), do: false
+
+  defp assert_custom_payloads([user, invocation, output, assistant], turn, began, ended) do
+    user_id = Map.fetch!(user, "id")
+    assert_custom_native_id(user_id, "msg")
+    created = custom_created(user, began, ended)
+
+    assert user === %{
+             "type" => "message",
+             "id" => user_id,
+             "role" => "user",
+             "content" => [%{"type" => "input_text", "text" => @custom_marker}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => created,
+               "content_item_kinds" => ["user.text"]
+             }
+           }
+
+    assert invocation ===
+             Map.put(custom_call(), "internal_chat_message_metadata_passthrough", %{
+               "turn_id" => turn
+             })
+
+    assert_custom_output(output, turn, began, ended)
+
+    assert assistant === %{
+             "type" => "message",
+             "id" => "owned-custom-source-answer",
+             "role" => "assistant",
+             "content" => [%{"type" => "output_text", "text" => @custom_answer}],
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "content_item_kinds" => ["unknown"]
+             }
+           }
+  end
+
+  defp custom_call do
+    %{
+      "type" => "custom_tool_call",
+      "id" => "owned-patch-item",
+      "call_id" => "owned-patch-call",
+      "name" => "apply_patch",
+      "input" => @custom_patch
+    }
+  end
+
+  defp custom_created(item, began, ended) do
+    created =
+      Map.fetch!(Map.fetch!(item, "internal_chat_message_metadata_passthrough"), "create_time")
+
+    assert is_number(created) and created >= began and created <= ended
+    created
+  end
+
+  defp assert_custom_native_id(id, prefix) do
+    assert is_binary(id)
+
+    pattern =
+      "\\A" <> prefix <> "_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\z"
+
+    assert Regex.match?(Regex.compile!(pattern), id)
+  end
+
+  defp assert_custom_output(output, turn, began, ended) do
+    id = Map.fetch!(output, "id")
+    assert_custom_native_id(id, "ctco")
+    created = custom_created(output, began, ended)
+    text = Map.fetch!(output, "output")
+    assert_custom_output_text(text, began, ended)
+
+    assert output === %{
+             "type" => "custom_tool_call_output",
+             "id" => id,
+             "call_id" => "owned-patch-call",
+             "output" => text,
+             "internal_chat_message_metadata_passthrough" => %{
+               "turn_id" => turn,
+               "create_time" => created
+             }
+           }
+  end
+
+  defp assert_custom_output_text(text, began, ended) do
+    assert is_binary(text)
+
+    assert [_, duration] =
+             Regex.run(
+               ~r/\AExit code: 0\nWall time: ([0-9]+(?:\.[0-9]+)?) seconds\nOutput:\nSuccess\. Updated the following files:\nM owned-notice\.txt\n\z/u,
+               text
+             )
+
+    assert {seconds, ""} = Float.parse(duration)
+    assert seconds >= 0 and seconds <= ended - began + 0.1
+  end
+
+  defp assert_custom_import(ctx, path, history) do
+    {_bytes, payloads} = rollout(ctx, path)
+    assert captured_custom_history(payloads) === history
+    ids = Enum.map(history, &Map.fetch!(&1, "id"))
+    assert Enum.filter(payloads, &(&1["id"] in ids)) === history
+  end
+
+  defp assert_custom_provider(request, followup?, began, ended) do
+    input = Map.fetch!(request, "input")
+
+    assert Enum.filter(input, &(&1["type"] == "custom_tool_call")) === [
+             Map.delete(custom_call(), "id")
+           ]
+
+    assert [output] = Enum.filter(input, &(&1["type"] == "custom_tool_call_output"))
+    assert_custom_native_id(Map.fetch!(output, "id"), "ctco")
+    text = Map.fetch!(output, "output")
+    assert_custom_output_text(text, began, ended)
+
+    assert output === %{
+             "type" => "custom_tool_call_output",
+             "id" => output["id"],
+             "call_id" => "owned-patch-call",
+             "output" => text
+           }
+
+    assert_custom_provider_message(input, "user", @custom_marker)
+
+    if followup? do
+      assert_custom_provider_message(input, "user", @custom_followup)
+      assert_custom_provider_message(input, "assistant", @custom_answer)
+      metadata = JSON.decode!(request["client_metadata"]["x-codex-turn-metadata"])
+      assert Map.fetch!(metadata, "history_initialization") == "supplied_history"
+    end
+  end
+
+  defp assert_custom_provider_message(input, role, text) do
+    type = if role == "user", do: "input_text", else: "output_text"
+
+    assert Enum.count(
+             input,
+             &(&1["role"] == role and
+                 &1["content"] === [%{"type" => type, "text" => text}])
+           ) == 1
+  end
+
+  defp history_script(%{custom_history: true}), do: @custom_script
+  defp history_script(%{search_history: true}), do: @search_script
+  defp history_script(_), do: @script
+
+  defp history_fixture(binary, %{custom_history: true}), do: custom_fixture(binary)
+  defp history_fixture(binary, %{search_history: true}), do: search_fixture(binary)
+  defp history_fixture(binary, %{dynamic_history: true}), do: dynamic_fixture(binary)
+  defp history_fixture(_binary, tags), do: TurnFixture.setup(tags)
+
+  defp history_model(model, %{custom_history: true}),
+    do: Map.put(model, "apply_patch_tool_type", "freeform")
+
+  defp history_model(model, %{search_history: true}),
+    do: Map.put(model, "supports_search_tool", true)
+
+  defp history_model(model, _), do: model
+
+  defp history_source_paths(%{custom_history: true}), do: [@custom_script]
+  defp history_source_paths(%{search_history: true}), do: [@search_script, @exposure_script]
+  defp history_source_paths(_), do: []
 
   defp search_fixture(binary) do
     root =

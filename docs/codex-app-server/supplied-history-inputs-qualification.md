@@ -297,3 +297,77 @@ requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
 Prohibited security/permission tests, broad/hosted workflows, A11, unavailable
 external/OS profiles, historical/unreachable paths, the full goal and release
 gates remain incomplete. No publication or deployment.
+
+## Custom tool history
+
+The fourth case adds exactly owners517/518/528/529: non-null raw CustomToolCall
+and CustomToolCallOutput metadata input. A new Responses-only fixture asks the
+real native freeform `apply_patch` tool to update an owned disposable file from
+literal before bytes to literal Unicode after bytes. The fixture reads that
+file; only Codex applies the patch. Exact started/completed fileChange counts,
+literal raw call/output contents and one completed source answer are required.
+
+The source is closed and reaped before capturing its four complete native
+user/call/output/assistant payloads. A distinct cold native imports those maps
+unchanged, preserving original IDs, turn IDs and host-bounded creation times.
+One followup consumes completed evidence only. Inference remains **2 → 2 → 3**;
+import/followup emit no fileChange or server request. File content/inode and
+provider-observed nanosecond mtime/ctime/hash snapshots remain identical, as do
+original source rollout bytes, configuration and provider sources.
+
+Native output has exact success framing and trailing newline, with only its
+numeric wall duration bounded independently by host turn elapsed time plus
+the formatter's rounding precision. No arbitrary substring/output echo replaces
+that oracle. Generated user/output IDs have UUIDv7 `msg_`/`ctco_` forms; original
+provider IDs remain literal in durable history. Explicit-null owners519/530,
+encrypted content, namespace/status alternatives and stable import remain open.
+
+Fifteen complete producer files match the immutable archive. Genuine execution
+is rooted in `core/src/tools/router.rs:295–305`,
+`core/src/tools/handlers/apply_patch.rs:319–364` and
+`core/src/tools/context.rs:317–333,579–598`. Formatting is in
+`core/src/tools/mod.rs:89–113` and `apply-patch/src/lib.rs:826–840`;
+`core/src/session/mod.rs:3472–3484,3520–3552` supplies metadata/IDs.
+
+The initial full owning run fails **4/1**: the patch really executes and the
+provider records its second request, but its oracle wrongly requires the
+original non-prefixed call ID in the model request copy. Two diagnostic owning
+runs retain the failure; a single-case diagnostic is **1/1, 3 excluded**, not
+acceptance. The captured pure provider validator reproduces the exact assertion.
+`core/src/client.rs:1092–1095` clears non-prefixed IDs in request copies, using
+`protocol/src/response_item_id.rs:36–39`; it does not modify durable records.
+Non-OpenAI metadata is independently cleared at `client.rs:1007–1009`.
+The corrected provider oracle requires exact ID omission for the call and source
+assistant while durable-map assertions still require both original IDs.
+The corrected owning run passes **4/0**, seed501432. Temporary diagnostics are
+removed; no runtime, timeout, assertion gate or cleanup behavior is weakened.
+Original failure/diagnostic logs remain `/tmp/samgita-v306-history*-501432.log`;
+the synthetic snapshot has SHA256
+`01062d3b82a3bcc55b5826629ad44edb1cec5e06d2036e6e051e7b3a9de2af32`.
+
+`/tmp/samgita-v306-run.py` retains exact environment/commands. Its final
+**41-file matrix passes 79/0 twice**, seeds501432/987654, in
+133.370/135.225 seconds. Scoped format, warnings-as-errors compile, strict
+Credo on491 sources, outside actual-binary consumer **1/0**, nineteen fixture
+ASTs and the **281-source** guard pass. The preceding three case bodies remain
+byte-identical. Final test SHA256:
+`be269285b2bc6f559fdd844755a6147fb1b0dc74669fd371a23caa9d42e857ff`;
+provider SHA256:
+`d0fb130fb2e16df6d0055cab9b3b897131e760979e837b5d75a12b77f6d8b402`.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Results | `6e6e2009991d8653d70a2ed11a0beb047ad29369829554e1ef0f8f9f43d31891` |
+| Source guard | `0ffda8e2f810ba4e434481f754fc16e80ca9cc878532ead21c71c5c17df0eacb` |
+| Pinned files and six exact nodes | `471a1a738e59caa6a6b6519fdb95423abb061c714021c17bdcfd84efd833b75c` |
+| Existing case preservation | `bc16bbd8c4a6f78f52b23b100a6549ff480331eca20b984e5a9459a322074dd0` |
+| Resulting manifest | `095ebea92009356225ef23f742e4385573d6fda8db504639d7b5e16983ec6eef` |
+
+Unique whole-record patches and final binding prove exactly four promotions;
+null alternatives, prior owners, schema identities and requirements stay intact.
+Inventory consistency passes; strict completeness exits **1**. Contracts become
+**4,897 implemented / 1,658 missing / 66 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Prohibited
+security/permission tests, broad/hosted workflows, full-goal, A11,
+historical/unreachable and external/OS profiles and release gates remain
+incomplete. No publication, deployment or production migration occurs.

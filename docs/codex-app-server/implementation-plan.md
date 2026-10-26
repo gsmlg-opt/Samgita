@@ -21,6 +21,32 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [custom tool-history unit](supplied-history-inputs-qualification.md#custom-tool-history)
+passes the final **41-file, 79/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, nineteen fixture ASTs and the **281-source** guard.
+Four exact metadata owners become implemented: **4,897 implemented / 1,658
+missing / 66 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. One genuine native patch, exact
+raw maps and unchanged file stat/hash facts retain inference **2 → 2 → 3** and
+no repeated work. Pinned request-copy ID clearing corrects the failed fixture
+oracle; whole durable IDs and all prior assertions remain. Three old case bodies
+stay byte-identical. Inventory/final binding pass; strict completeness exits **1**.
+
+Continue genuine compact-turn steering rejection as supplemental native RPC
+error.data evidence for existing owner1818 and turn/steer. It cannot promote
+blocked notification2076–2078 or queue-response5778–5780: their physical wire
+locations differ. Require actual held-compaction readiness, an independent whole
+error literal, no rejected-input consumption, intentional interruption, late
+output exclusion and cold continuation. Then qualify explicit nullable history
+inputs separately from unchanged-map imports: genuine source records with only
+declared client fields deliberately set null, and exact source-backed native
+omission on persistence. Do not call modified input an original native emission.
+Retain fixed yolo and every verification restriction. Prohibited/broad/hosted,
+full-goal, A11, historical/unreachable, unavailable external/OS and release gates
+remain incomplete.
+
+## Earlier checkpoints
+
 The [client tool-search history unit](supplied-history-inputs-qualification.md#client-tool-search-history)
 passes the final **41-file, 78/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, eighteen fixture ASTs and the **280-source** guard.
@@ -42,8 +68,6 @@ identity and no repeated execution. The provider emits Responses only; do not
 run the older output-notice namespace wrapper. Retain fixed yolo and every
 verification restriction. Prohibited/broad/hosted, full-goal, A11,
 historical/unreachable, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [pinned notification-error producer review](native-error-producer-limitations.md)
 records seven source-backed blocked owners, no acceptance promotion:
