@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [complete MCP startup profile](mcp-startup-envelope-qualification.md)
+checks full original starting/ready envelopes for two named held dependencies,
+preserving all existing inventories, bounds and checked cleanup. Final combined
+**4/0**, **51 ordinary cases twice**, outside consumer **1/0**, nine checks and
+414 stable sources pass. Only 2967–2970 gain evidence: **5,242 implemented /
+1,313 missing / 66 blocked**, unchanged requirements and zero verified. Continue
+native paginated thread-revert notification/readback; prohibited/full-goal gates
+remain incomplete.
+
 The [native timeline ordinal profile](realtime-timeline-ordinal-qualification.md)
 binds two complete original read responses to actual canonical rollout ordinals
 and independent full payloads. Initial 4/0 then strict-Credo failure is retained;

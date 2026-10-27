@@ -10,6 +10,8 @@ defmodule SamgitaCodexDriver.NativeMcpStartupNoticeTest do
     TurnFixture
   }
 
+  alias SamgitaProtocolCodex.{Schema, Wire}
+
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
@@ -136,6 +138,9 @@ defmodule SamgitaCodexDriver.NativeMcpStartupNoticeTest do
                  "nextCursor" => nil
                }
 
+        generation = Session.status(session.pid).generation
+        starting_lower = System.system_time(:millisecond)
+
         started =
           call(profile, session.pid, "thread/start", %{
             "model" => "mock-model",
@@ -200,7 +205,14 @@ defmodule SamgitaCodexDriver.NativeMcpStartupNoticeTest do
         assert raw_notices(profile) === [starting]
         assert_pending_journal(profile, init_id)
         assert_retained(profile)
+        starting_upper = System.system_time(:millisecond)
 
+        starting_originals =
+          assert_startup_envelopes(profile, generation, events, [
+            {starting, starting_lower, starting_upper}
+          ])
+
+        ready_lower = System.system_time(:millisecond)
         release!(profile)
 
         await_journal(
@@ -221,15 +233,27 @@ defmodule SamgitaCodexDriver.NativeMcpStartupNoticeTest do
         assert_peer_completed(profile, init_id)
         assert_retained(profile)
         assert_inventory(profile, events)
+        ready_upper = System.system_time(:millisecond)
+
+        originals =
+          assert_startup_envelopes(profile, generation, events, [
+            {starting, starting_lower, starting_upper},
+            {ready, ready_lower, ready_upper}
+          ])
+
+        assert Enum.take(originals, 1) === starting_originals
 
         assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
                  Session.status(session.pid)
 
+        assert Session.status(session.pid).generation === generation
         assert Session.uncertain_operations(session.pid) === []
         assert Session.interaction_outcomes(session.pid) === []
+        assert startup_originals(profile) === originals
         close(session, profile)
         close_provider(profile.fixture)
         assert_retained(profile)
+        assert startup_originals(profile) === originals
         %{thread: thread, native: session.native, child: child, root: profile.root}
       end
 
@@ -429,6 +453,47 @@ defmodule SamgitaCodexDriver.NativeMcpStartupNoticeTest do
         %{direction: :in, wire: %{"method" => @method, "params" => params}} <- capture(profile),
         do: params
       )
+
+  defp startup_originals(profile),
+    do:
+      for(
+        %{direction: :in, wire: %{"method" => @method}} = frame <- capture(profile),
+        do: frame
+      )
+
+  defp assert_startup_envelopes(profile, generation, events, prescribed) do
+    originals = startup_originals(profile)
+    selected = Enum.filter(events, &(&1.wire["method"] == @method))
+    assert length(originals) === length(prescribed)
+    assert length(selected) === length(prescribed)
+    assert Enum.map(originals, & &1.wire) === Enum.map(selected, & &1.wire)
+    sequences = Enum.map(selected, & &1.sequence)
+    assert sequences === Enum.sort(Enum.uniq(sequences))
+    schema = notification_schema()
+
+    for {original, event, {params, lower, upper}} <- Enum.zip([originals, selected, prescribed]) do
+      emitted = Map.fetch!(event.wire, "emittedAtMs")
+      assert is_integer(emitted) and lower <= emitted and emitted <= upper
+      assert event.kind === :notification and event.generation === generation
+      expected = %{"method" => @method, "params" => params, "emittedAtMs" => emitted}
+      assert event.wire === expected
+      assert original.wire === expected
+      assert JSON.decode!(original.encoded) === expected
+      assert {:ok, preserved} = Wire.decode(original.encoded, max_depth: 32)
+      assert preserved === expected
+      assert :ok = Schema.validate(schema, original.wire, max_depth: 32)
+    end
+
+    originals
+  end
+
+  defp notification_schema do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> File.read!()
+    |> JSON.decode!()
+  end
 
   defp notices(events),
     do: for(%{wire: %{"method" => @method, "params" => params}} <- events, do: params)

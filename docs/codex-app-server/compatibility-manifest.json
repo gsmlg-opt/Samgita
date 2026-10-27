@@ -114844,98 +114844,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-startup-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/45",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V440 selected complete native mcpServer/startupStatus/updated envelopes. Existing two differently named fresh local MCP peers remain held at initialize until explicit release. Exact starting then ready full original/projected/direct JSON/Wire envelopes retain prescribed thread/name/status/explicit null diagnostics,bracketed per-stage native emission times,known notification kind,generation and unique ordered sequences. Both original envelopes validate canonical experimental ServerNotification;selected capture remains immutable through cleanup. Existing RPC/MCP inventories,zero model inference,frozen inputs,all deadlines/caps and checked child/native/provider cleanup stay exact. Combined final owning4/0,51ordinary cases twice,outside consumer1/0,nine checks and414stable sources pass. Six whole MCP producer files/four exact nodes archive/export-match. Only2967-2970 gain scoped implemented evidence,zero verified. Failed/cancelled/threadless/reused-client/remote/tool-execution/reconnect/OS profiles remain unqualified;no alias/reference-wide transfer. Combined source modifies only two tests;412prior paths stay exact. No security/permission tests or audits,broad suites or hosted workflows ran. A11,unreachable legacy,external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/45",
       "schema": "ServerNotification.json",
       "schema_sha256": "be18e58ed574051182fcfdd1b7eb5de6e0cdfdd77f8395bef6942c10fe06e303",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_startup_notice_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-startup-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/45/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V440 selected complete native mcpServer/startupStatus/updated envelopes. Existing two differently named fresh local MCP peers remain held at initialize until explicit release. Exact starting then ready full original/projected/direct JSON/Wire envelopes retain prescribed thread/name/status/explicit null diagnostics,bracketed per-stage native emission times,known notification kind,generation and unique ordered sequences. Both original envelopes validate canonical experimental ServerNotification;selected capture remains immutable through cleanup. Existing RPC/MCP inventories,zero model inference,frozen inputs,all deadlines/caps and checked child/native/provider cleanup stay exact. Combined final owning4/0,51ordinary cases twice,outside consumer1/0,nine checks and414stable sources pass. Six whole MCP producer files/four exact nodes archive/export-match. Only2967-2970 gain scoped implemented evidence,zero verified. Failed/cancelled/threadless/reused-client/remote/tool-execution/reconnect/OS profiles remain unqualified;no alias/reference-wide transfer. Combined source modifies only two tests;412prior paths stay exact. No security/permission tests or audits,broad suites or hosted workflows ran. A11,unreachable legacy,external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/45/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "a5e0518b2256238093e2f28db5f5290f712b280d780a0feb6b89c2d693b1d84d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_startup_notice_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-startup-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/45/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V440 selected complete native mcpServer/startupStatus/updated envelopes. Existing two differently named fresh local MCP peers remain held at initialize until explicit release. Exact starting then ready full original/projected/direct JSON/Wire envelopes retain prescribed thread/name/status/explicit null diagnostics,bracketed per-stage native emission times,known notification kind,generation and unique ordered sequences. Both original envelopes validate canonical experimental ServerNotification;selected capture remains immutable through cleanup. Existing RPC/MCP inventories,zero model inference,frozen inputs,all deadlines/caps and checked child/native/provider cleanup stay exact. Combined final owning4/0,51ordinary cases twice,outside consumer1/0,nine checks and414stable sources pass. Six whole MCP producer files/four exact nodes archive/export-match. Only2967-2970 gain scoped implemented evidence,zero verified. Failed/cancelled/threadless/reused-client/remote/tool-execution/reconnect/OS profiles remain unqualified;no alias/reference-wide transfer. Combined source modifies only two tests;412prior paths stay exact. No security/permission tests or audits,broad suites or hosted workflows ran. A11,unreachable legacy,external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/45/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "896e77cc278d314115f4b050d9e66ce92a68d22dd5bc04e7c9cea33624783faf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_startup_notice_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-startup-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/45/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V440 selected complete native mcpServer/startupStatus/updated envelopes. Existing two differently named fresh local MCP peers remain held at initialize until explicit release. Exact starting then ready full original/projected/direct JSON/Wire envelopes retain prescribed thread/name/status/explicit null diagnostics,bracketed per-stage native emission times,known notification kind,generation and unique ordered sequences. Both original envelopes validate canonical experimental ServerNotification;selected capture remains immutable through cleanup. Existing RPC/MCP inventories,zero model inference,frozen inputs,all deadlines/caps and checked child/native/provider cleanup stay exact. Combined final owning4/0,51ordinary cases twice,outside consumer1/0,nine checks and414stable sources pass. Six whole MCP producer files/four exact nodes archive/export-match. Only2967-2970 gain scoped implemented evidence,zero verified. Failed/cancelled/threadless/reused-client/remote/tool-execution/reconnect/OS profiles remain unqualified;no alias/reference-wide transfer. Combined source modifies only two tests;412prior paths stay exact. No security/permission tests or audits,broad suites or hosted workflows ran. A11,unreachable legacy,external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/45/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5cf6a40c78f974850f4eec5b42dcd9f6392d37d2accb818d17b20163c127fa63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_startup_notice_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

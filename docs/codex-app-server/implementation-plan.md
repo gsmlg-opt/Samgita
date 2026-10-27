@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [complete MCP startup envelopes](mcp-startup-envelope-qualification.md)
+retain the existing two-name held-initialize/ready flow with full original
+native maps, stage-specific timing, canonical schema, generation/order and
+unchanged capture through cleanup. Final combined **4/0**, **51 ordinary cases
+twice**, outside consumer **1/0**, nine checks and 414 stable sources pass.
+Six MCP producer files/four nodes match the pin. Only 2967–2970 gain evidence:
+**5,242 implemented / 1,313 missing / 66 blocked**, unchanged requirements and
+zero verified. Continue genuine paginated thread-revert notification/readback;
+prohibited/full-goal gates remain incomplete.
+
 The [canonical realtime timeline](realtime-timeline-ordinal-qualification.md)
 checks complete original responses against genuine native rollout ordinals and
 independently prescribed item payloads, preserving all existing flows. Initial
