@@ -21,6 +21,13 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     empty_clears: {[@plugin], %{"disabledPluginIds" => []}, 1},
     present_disables: {[], %{"disabledPluginIds" => [@plugin]}, 0}
   }
+  @settings_snapshots %{
+    enabled_omitted: [[@plugin], []],
+    disabled_omitted: [[@plugin]],
+    null_preserves: [[@plugin]],
+    empty_clears: [[@plugin], []],
+    present_disables: [[@plugin], [], [@plugin]]
+  }
 
   # Bounded test-only capture of the actual successfully sent synthetic request.
   # Native replies pass through unchanged. Initialization/credentials are excluded.
@@ -33,9 +40,10 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     @impl true
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
+      inbound = Keyword.fetch!(opts, :inbound)
 
-      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
-           do: {:ok, Map.put(state, :capture, capture)}
+      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :inbound])),
+           do: {:ok, Map.merge(state, %{capture: capture, inbound: inbound})}
     end
 
     @impl true
@@ -61,7 +69,42 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case Enum.reduce_while(events, :ok, &record_inbound(&1, &2, next.inbound)) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp record_inbound({:message, encoded}, :ok, inbound) do
+      if JSON.decode!(encoded)["method"] == "thread/settings/updated" do
+        case Agent.get_and_update(inbound, &append_inbound(&1, encoded)) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      else
+        {:cont, :ok}
+      end
+    end
+
+    defp record_inbound(_event, :ok, _inbound), do: {:cont, :ok}
+
+    defp append_inbound(ledger, encoded) do
+      size = byte_size(encoded)
+
+      if length(ledger.records) < 8 and size <= 65_536 and ledger.bytes + size <= 262_144 do
+        {:ok, %{ledger | records: ledger.records ++ [encoded], bytes: ledger.bytes + size}}
+      else
+        {{:error, Error.new(:test_capture_overflow)}, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -151,7 +194,13 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     configure_model(ctx, %{})
     ctx = prepare_plugin(ctx)
     capture = start_supervised!({Agent, fn -> [] end})
-    Map.put(ctx, :capture, capture)
+
+    inbound =
+      start_supervised!(
+        Supervisor.child_spec({Agent, fn -> %{records: [], bytes: 0} end}, id: :settings_inbound)
+      )
+
+    Map.merge(ctx, %{capture: capture, inbound: inbound})
   end
 
   @tag scenario: :enabled_omitted
@@ -181,9 +230,11 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     installed_skill = install_plugin(ctx, pid)
     files = snapshot([ctx.marketplace, ctx.manifest, ctx.skill, installed_skill])
     config_bytes = File.read!(Path.join(ctx.fixture.codex_home, "config.toml"))
+    generation = Session.status(pid).generation
+    lower = System.system_time(:millisecond)
     thread = new_thread(ctx, pid)
     assert ModelFixture.requests(ctx.fixture) == []
-    apply_baseline(pid, thread, baseline)
+    baseline_events = apply_baseline(pid, thread, baseline)
     assert ModelFixture.requests(ctx.fixture) == []
 
     first = input(ctx, "FIRST")
@@ -191,7 +242,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     assert_provider(ctx, [first], [expected_count])
     assert_settings(first_events, thread, extra, expected_count)
     followup = input(ctx, "FOLLOWUP")
-    complete(ctx, pid, thread, followup, %{}, 1)
+    followup_events = complete(ctx, pid, thread, followup, %{}, 1)
     assert_provider(ctx, [first, followup], [expected_count, expected_count * 2])
 
     expected_list = if expected_count == 1, do: [], else: [@plugin]
@@ -203,11 +254,18 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     assert Agent.get(ctx.capture, &length/1) == 2
     assert snapshot(Map.keys(files)) === files
     assert File.read!(Path.join(ctx.fixture.codex_home, "config.toml")) === config_bytes
-    assert_idle(pid)
+    trailing = assert_idle(pid)
     assert :ok = Session.close(pid)
+    upper = System.system_time(:millisecond)
     refute File.exists?("/proc/#{native}")
     assert snapshot(Map.keys(files)) === files
     assert_provider(ctx, [first, followup], [expected_count, expected_count * 2])
+
+    assert_settings_envelopes(
+      ctx,
+      baseline_events ++ first_events ++ followup_events ++ trailing,
+      %{thread: thread, generation: generation, lower: lower, upper: upper}
+    )
   end
 
   defp start_fixture(root, script) do
@@ -264,6 +322,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
             {CaptureStdio,
              [
                capture: ctx.capture,
+               inbound: ctx.inbound,
                executable: ctx.binary,
                args: [
                  "-c",
@@ -362,8 +421,8 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
   defp apply_baseline(pid, thread, baseline) do
     # A fresh thread already has []; equal snapshots emit no settings notice.
     # Establish each transition through an actual change and its exact notice.
-    if baseline == [], do: update_settings(pid, thread, [@plugin])
-    update_settings(pid, thread, baseline)
+    initial = if baseline == [], do: update_settings(pid, thread, [@plugin]), else: []
+    initial ++ update_settings(pid, thread, baseline)
   end
 
   defp update_settings(pid, thread, baseline) do
@@ -376,6 +435,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     settings = notification(events, "thread/settings/updated", &(&1["threadId"] == thread))
     assert settings["threadSettings"]["disabledPluginIds"] === baseline
     assert_functional_events(events)
+    events
   end
 
   defp await_settings(pid, thread, events, deadline) do
@@ -468,6 +528,37 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     end
   end
 
+  defp assert_settings_envelopes(ctx, events, scope) do
+    selected = Enum.filter(events, &(&1.wire["method"] == "thread/settings/updated"))
+    expected = Map.fetch!(@settings_snapshots, ctx.scenario)
+
+    assert Enum.map(selected, &get_in(&1.wire, ["params", "threadSettings", "disabledPluginIds"])) ===
+             expected
+
+    originals = Agent.get(ctx.inbound, & &1.records)
+    assert length(originals) === length(expected)
+    assert Enum.map(originals, &JSON.decode!/1) === Enum.map(selected, & &1.wire)
+    sequences = Enum.map(selected, & &1.sequence)
+    assert Enum.all?(sequences, &(is_integer(&1) and &1 > 0))
+    assert sequences === Enum.sort(Enum.uniq(sequences))
+
+    for event <- selected do
+      emitted = Map.fetch!(event.wire, "emittedAtMs")
+      assert is_integer(emitted) and scope.lower <= emitted and emitted <= scope.upper
+      assert event.kind === :notification and event.generation === scope.generation
+      params = Map.fetch!(event.wire, "params")
+      assert Enum.sort(Map.keys(params)) === ~w(threadId threadSettings)
+      assert Map.fetch!(params, "threadId") === scope.thread
+      assert is_map(Map.fetch!(params, "threadSettings"))
+
+      assert event.wire === %{
+               "method" => "thread/settings/updated",
+               "params" => params,
+               "emittedAtMs" => emitted
+             }
+    end
+  end
+
   defp input(ctx, suffix),
     do: [
       %{"type" => "text", "text" => "OWNED_#{ctx.scenario}_#{suffix}", "text_elements" => []},
@@ -529,6 +620,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     assert Session.uncertain_operations(pid) == []
     assert {:ok, events} = Session.drain(pid)
     assert_functional_events(events)
+    events
   end
 
   defp snapshot(paths),

@@ -15,6 +15,22 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [settings/hook/skills envelopes](ordinary-configuration-events-qualification.md)
+and [Project/read-state envelopes](ordinary-domain-events-qualification.md)
+add exact original native frames, per-request causation, independent committed
+effects and cold state preservation. Initial read-state **1/1** from a documented
+deprecated hydration request and the first matrix's generated-asset source drift
+remain recorded. The single supported request-flag correction and exact
+Bun 1.1.42/1.3.13 bundle reproduction change no assertion, bound, guard or
+production code. Final focused cases pass; the combined **76 ordinary cases
+pass twice**, three selected WebSocket cases pass at three seeds, outside
+consumer **1/0**, all fourteen reviewed steps and 1,663 unchanged source hashes
+pass. Only nineteen exact missing notification nodes gain scoped evidence:
+**5,329 implemented / 1,180 missing / 112 blocked**, unchanged requirements and
+zero verified. No prohibited tests/audits or hosted workflows run. Continue
+remaining ordinary field/lifecycle evidence; full compatibility, A11, unavailable
+emitters/external profiles and release gates remain incomplete.
+
 The [initial thread plugin-list result](turn-start-settings-qualification.md)
 directly requires present `[]` before settings or turns, with retained native
 plugin/context/retention effects. The owning test only gains fixed process YOLO.

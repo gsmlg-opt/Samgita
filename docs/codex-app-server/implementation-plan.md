@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary configuration-event](ordinary-configuration-events-qualification.md)
+and [Project/read-state event](ordinary-domain-events-qualification.md) units
+qualify nineteen exact outer/method/params nodes with original native bytes,
+causal request/reply intervals, actual committed effects and cold preservation.
+The first hydration-warning failure and generated-asset source-guard failure
+remain recorded; pinned source/toolchain diagnosis preserves every assertion,
+deadline and guard. Final **76/0** at both fixed seeds, three selected WebSocket
+cases at three seeds, outside consumer **1/0**, all fourteen reviewed checks and
+1,663 exact before/after hashes pass. Counts: **5,329 implemented / 1,180 missing
+/ 112 blocked** contracts, unchanged requirements and zero verified. No prohibited
+or hosted checks run. Continue remaining ordinary field/lifecycle evidence;
+full-goal/A11/upstream-unreachable/external/OS/release gates remain incomplete.
+
 The [initial thread plugin-list output](turn-start-settings-qualification.md)
 binds exact owner 6362 to the present empty native result in the retained
 five-case plugin selection/retention profile. Only fixed process YOLO literals

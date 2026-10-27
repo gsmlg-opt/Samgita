@@ -111487,24 +111487,38 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-domain-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/16",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A no-provider/no-turn actual native lifecycle persists an empty thread through name/set, imports it with two notices, repeats the durable key without notices, updates name/roots/metadata with one notice, repeats an unchanged update without notices, deletes with two notices, and cold-reads the surviving thread/history with no Project. Exactly five complete selected incoming original frames equal driver envelopes in order, with independently prescribed IDs/changeTypes/null membership, before-response request intervals, bounded native timestamps, generation and positive ordered sequences. Native read/list state and immutable history/config/workspace bytes establish committed effects and preservation.",
+        "Only this exact physical outer ServerNotification node gains scoped implemented evidence. Eight complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is setup only. No nested alias, field/default/variant, complete method/schema, platform database recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/16",
       "schema": "ServerNotification.json",
       "schema_sha256": "39a7a4652bb78952cd9c81a855213b050df84302fb07853b3e5a13f576c9b599",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:139",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:456",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:468",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:493",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:555",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:574"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -111613,24 +111627,38 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-domain-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/17",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A no-provider/no-turn actual native lifecycle persists an empty thread through name/set, imports it with two notices, repeats the durable key without notices, updates name/roots/metadata with one notice, repeats an unchanged update without notices, deletes with two notices, and cold-reads the surviving thread/history with no Project. Exactly five complete selected incoming original frames equal driver envelopes in order, with independently prescribed IDs/changeTypes/null membership, before-response request intervals, bounded native timestamps, generation and positive ordered sequences. Native read/list state and immutable history/config/workspace bytes establish committed effects and preservation.",
+        "Only this exact physical outer ServerNotification node gains scoped implemented evidence. Eight complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is setup only. No nested alias, field/default/variant, complete method/schema, platform database recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/17",
       "schema": "ServerNotification.json",
       "schema_sha256": "717215504533e0a1a2058dc6bbd4e4b76af0cce903c91b2b44703fc282b26d2d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:139",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:456",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:468",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:493",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:555",
+          "apps/samgita_codex_driver/test/native_project_notification_envelope_test.exs:574"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -112119,98 +112147,150 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/20",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Five genuine local-plugin selection cases retain native install/context hints and second-turn effects, while separate bounded incoming original settings frames match all consumed notices and literal per-scenario lists, including baseline changes, turn overrides and final drain. Whole outer envelope, known thread, timestamp bounds, current generation and positive unique ordered sequences are asserted after owned close.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/20",
       "schema": "ServerNotification.json",
       "schema_sha256": "46484acd2793d8ce252c8290858a1d297e20461c265d5aa41573a8d90762aaa8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:531",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:535",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:540",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:545",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:554"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/20/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Five genuine local-plugin selection cases retain native install/context hints and second-turn effects, while separate bounded incoming original settings frames match all consumed notices and literal per-scenario lists, including baseline changes, turn overrides and final drain. Whole outer envelope, known thread, timestamp bounds, current generation and positive unique ordered sequences are asserted after owned close.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/20/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0f00e3d7be89ce447dfebef87910936fff0e10845da3790cc5ab53a4f754f0d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:531",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:535",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:540",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:545",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:554"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/20/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Five genuine local-plugin selection cases retain native install/context hints and second-turn effects, while separate bounded incoming original settings frames match all consumed notices and literal per-scenario lists, including baseline changes, turn overrides and final drain. Whole outer envelope, known thread, timestamp bounds, current generation and positive unique ordered sequences are asserted after owned close.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/20/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a36721bdd9f144b09a289f9835cd13cedf1278b79c5da37015f41e91501b5b12",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:531",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:535",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:540",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:545",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:554"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/20/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Five genuine local-plugin selection cases retain native install/context hints and second-turn effects, while separate bounded incoming original settings frames match all consumed notices and literal per-scenario lists, including baseline changes, turn overrides and final drain. Whole outer envelope, known thread, timestamp bounds, current generation and positive unique ordered sequences are asserted after owned close.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/20/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "26e05b0553ff1fe98241a2b9408e7b7bfecc65b527c63aca47c7dbb51ccd8388",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:531",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:535",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:540",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:545",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:554"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -112477,98 +112557,146 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/23",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/23",
       "schema": "ServerNotification.json",
       "schema_sha256": "aba89a4ee5f80d0b394767e239fabb10f391d70a945a20686517b60eec26b791",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/23/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/23/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2b48b68f193b2301dc3f7bc64d6ff91999599bfec06ecc2296fa0e56fe5d616e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/23/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/23/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "cb3ed0af987069b6b0503e5ac585a384927973ff5a2e468056782399160313d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/23/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/23/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "ecbc0f28af08e79e3e90f6e3d89a90de801d47ec21ac1614b824d439f9487d93",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -112701,98 +112829,146 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/25",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/25",
       "schema": "ServerNotification.json",
       "schema_sha256": "ef5487e3f620d493169be7dd9f5c3730a694c1556be6630e062575db8cee8f28",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/25/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/25/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2eec9ab2dae933832d6b46bf6bb31b94f03ae91cd9a8efc582778edd5a367e07",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/25/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/25/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "cdaba0ebf7a610e6e8666bb1a14ce8b7e38f8d9be4ca5c443d16959114f6686c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/25/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Unchanged ordinary Interrupt profile uses the real held-provider cancellation and one actual exclusive hook record. Literal ordered turn-start/hook-start/hook-completed/interrupted completion, full independently prescribed hook summaries and bounded times match original incoming frames and driver events; owned hook/provider/native processes are reaped. Fresh final reviewed ordinary runs include this owning test.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/25/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "7d28cf2e5c6cfee7447d59d2f94757bddff0e25f55804f57b3f81c91743aac95",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:245",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:289",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:332",
+          "apps/samgita_codex_driver/test/native_interrupt_hook_test.exs:453"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -113289,24 +113465,37 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-domain-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A no-provider/no-turn actual native lifecycle materializes an empty durable thread, reads the current revision, applies positive unread and read updates, checks exact response/read-state equality and notification bodies against independent operation intent and native revisions, then confirms a distinct cold process retains the final state/history. Complete original incoming envelopes match consumed events with bounded times, generation and ordered positive sequences; successful request IDs and before-response causation are preserved. No stale-revision, security or permission cases run.",
+        "Only this exact physical outer ServerNotification node gains scoped implemented evidence. Eight complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is setup only. No nested alias, field/default/variant, complete method/schema, platform database recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "573b2a6ad13c6f93db87dd02369ad8f09dd45c146e2666275a54a1f48c8fde8a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_notification_envelope_test.exs:164",
+          "apps/samgita_codex_driver/test/native_read_state_notification_envelope_test.exs:409",
+          "apps/samgita_codex_driver/test/native_read_state_notification_envelope_test.exs:425",
+          "apps/samgita_codex_driver/test/native_read_state_notification_envelope_test.exs:493",
+          "apps/samgita_codex_driver/test/native_read_state_notification_envelope_test.exs:517"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -120216,98 +120405,154 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/9",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "New no-provider/no-thread native skills root lifecycle independently requires control U, A addition, B duplicate replacement without A, clearing to U, B restoration and distinct cold U. Exactly four empty-param skills notices are captured before Session decode, each strictly between its setter request and correlated native reply, with literal whole envelopes, bounded times, generation and positive ordered sequences. Full ordinary skill projections and unchanged input bytes supply effects.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/9",
       "schema": "ServerNotification.json",
       "schema_sha256": "3e7dbec7f7168f5df81eb0b51585df0d50b619361dd6771d59529bbb8fcbfe05",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:146",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:346",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:350",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:354",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:374",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:384"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/9/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "New no-provider/no-thread native skills root lifecycle independently requires control U, A addition, B duplicate replacement without A, clearing to U, B restoration and distinct cold U. Exactly four empty-param skills notices are captured before Session decode, each strictly between its setter request and correlated native reply, with literal whole envelopes, bounded times, generation and positive ordered sequences. Full ordinary skill projections and unchanged input bytes supply effects.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/9/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "87019c85fc24ff9b9bb8b0808d180b6eca47db5ec316d1b3939dca4ea40bb24a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:146",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:346",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:350",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:354",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:374",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:384"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/9/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "New no-provider/no-thread native skills root lifecycle independently requires control U, A addition, B duplicate replacement without A, clearing to U, B restoration and distinct cold U. Exactly four empty-param skills notices are captured before Session decode, each strictly between its setter request and correlated native reply, with literal whole envelopes, bounded times, generation and positive ordered sequences. Full ordinary skill projections and unchanged input bytes supply effects.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/9/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "29bae504c35718e91fd3a81ddd05de8abb4e5a030c1e90ab79f7e7db33e5524f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:146",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:346",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:350",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:354",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:374",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:384"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-configuration-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/9/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "New no-provider/no-thread native skills root lifecycle independently requires control U, A addition, B duplicate replacement without A, clearing to U, B restoration and distinct cold U. Exactly four empty-param skills notices are captured before Session decode, each strictly between its setter request and correlated native reply, with literal whole envelopes, bounded times, generation and positive ordered sequences. Full ordinary skill projections and unchanged input bytes supply effects.",
+        "Only this exact physical ServerNotification envelope/method/params-reference node gains scoped evidence. Fourteen complete source files and every separately bound node match the official immutable pin in both exports. Native binary supplies all protocol frames; synthetic local dependencies do not manufacture app-server success. Fixed YOLO/positive hook setup is fixture configuration only, with no security/permission/approval/credential tests. No nested policy/permission/setting alias, alternate hook, filesystem-watcher emitter, transport/OS/backend/external/full-method/full-goal or release credit. All prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/9/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f03fe46ce2d661af95add3cdbf7be6c6fed0cde08a1c5aad49ef4b29dadb937a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:146",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:346",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:350",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:354",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:374",
+          "apps/samgita_codex_driver/test/native_skills_changed_envelope_test.exs:384"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

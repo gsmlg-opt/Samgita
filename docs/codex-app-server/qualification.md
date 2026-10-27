@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The latest [functional-only notification qualification](ordinary-domain-events-qualification.md)
+passes **76 ordinary real-binary cases twice**, selected WebSocket checks at
+three seeds, an isolated outside consumer and all fourteen reviewed steps, with
+1,663 unchanged source hashes. Nineteen precise settings/hook/skills/Project/
+read-state nodes gain scoped evidence; initial failures and their diagnosed
+corrections remain recorded. This uses fixed YOLO and runs no security or
+permission tests, audit, broad suite or hosted workflow. All full-compatibility,
+A11, unavailable producer/external/platform and release gates remain incomplete.
+
 The [native ended-outcome index](realtime-ended-index-qualification.md) binds
 one exact notification enum to already passing complete original native closure
 evidence. No new execution/source change;V43549ordinary cases twice and all414
