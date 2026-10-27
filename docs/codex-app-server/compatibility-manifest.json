@@ -133250,15 +133250,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/packaged-defaults-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V449 source-proven config/read producer limitation at immutable rust-v0.163.0: sole production response constructor unconditionally excludes PackagedDefaults from origins and includeLayers collections before variant-preserving conversion. Sole processor only augments nested config.features;typed payload/outgoing/external/in-process serializers do not reconstruct metadata. Embedded and explicit-file loaders really create this variant,but every successful read filters it. Whole5259Rust-file reference/constructor/cfg review and16whole-file archive hashes bind the chain;five exact nodes export/hash-match. No setting,cwd,includeLayers or ordinary transport produces this metadata under the unchanged pin. Needs an upstream-supported emitter or explicit immutable-target/contract decision;no local workaround/mock/native success invented. State blocked,not implemented/verified;planned tests and schema unchanged,verified tests/transport empty.417prior guarded sources and9successful logs remain exact;no new runtime/test. Security/permission checks,audits,broad/hosted/release gates remain unrun;full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "081019e6b870ca50271f543c398ec7a5c6f26685a728d6241013139c26cfbeb2",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -133273,18 +133277,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/packaged-defaults-producer-limitations.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/0/properties/file",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V449 source-proven config/read producer limitation at immutable rust-v0.163.0: sole production response constructor unconditionally excludes PackagedDefaults from origins and includeLayers collections before variant-preserving conversion. Sole processor only augments nested config.features;typed payload/outgoing/external/in-process serializers do not reconstruct metadata. Embedded and explicit-file loaders really create this variant,but every successful read filters it. Whole5259Rust-file reference/constructor/cfg review and16whole-file archive hashes bind the chain;five exact nodes export/hash-match. No setting,cwd,includeLayers or ordinary transport produces this metadata under the unchanged pin. Needs an upstream-supported emitter or explicit immutable-target/contract decision;no local workaround/mock/native success invented. State blocked,not implemented/verified;planned tests and schema unchanged,verified tests/transport empty.417prior guarded sources and9successful logs remain exact;no new runtime/test. Security/permission checks,audits,broad/hosted/release gates remain unrun;full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayerSource/oneOf/0/properties/file",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "17985e2482ebd79bf8c0710e964af31ba4e1c04fedc44a9fbe1b9cb6c81369c8",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -133298,15 +133306,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/packaged-defaults-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/0/properties/file/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V449 source-proven config/read producer limitation at immutable rust-v0.163.0: sole production response constructor unconditionally excludes PackagedDefaults from origins and includeLayers collections before variant-preserving conversion. Sole processor only augments nested config.features;typed payload/outgoing/external/in-process serializers do not reconstruct metadata. Embedded and explicit-file loaders really create this variant,but every successful read filters it. Whole5259Rust-file reference/constructor/cfg review and16whole-file archive hashes bind the chain;five exact nodes export/hash-match. No setting,cwd,includeLayers or ordinary transport produces this metadata under the unchanged pin. Needs an upstream-supported emitter or explicit immutable-target/contract decision;no local workaround/mock/native success invented. State blocked,not implemented/verified;planned tests and schema unchanged,verified tests/transport empty.417prior guarded sources and9successful logs remain exact;no new runtime/test. Security/permission checks,audits,broad/hosted/release gates remain unrun;full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/0/properties/file/allOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -133321,18 +133333,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/packaged-defaults-producer-limitations.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V449 source-proven config/read producer limitation at immutable rust-v0.163.0: sole production response constructor unconditionally excludes PackagedDefaults from origins and includeLayers collections before variant-preserving conversion. Sole processor only augments nested config.features;typed payload/outgoing/external/in-process serializers do not reconstruct metadata. Embedded and explicit-file loaders really create this variant,but every successful read filters it. Whole5259Rust-file reference/constructor/cfg review and16whole-file archive hashes bind the chain;five exact nodes export/hash-match. No setting,cwd,includeLayers or ordinary transport produces this metadata under the unchanged pin. Needs an upstream-supported emitter or explicit immutable-target/contract decision;no local workaround/mock/native success invented. State blocked,not implemented/verified;planned tests and schema unchanged,verified tests/transport empty.417prior guarded sources and9successful logs remain exact;no new runtime/test. Security/permission checks,audits,broad/hosted/release gates remain unrun;full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayerSource/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "17f284d61c1de4b9e16a91a916981f138f66720754d2053fe142c2adba1759aa",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -133346,15 +133362,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/packaged-defaults-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V449 source-proven config/read producer limitation at immutable rust-v0.163.0: sole production response constructor unconditionally excludes PackagedDefaults from origins and includeLayers collections before variant-preserving conversion. Sole processor only augments nested config.features;typed payload/outgoing/external/in-process serializers do not reconstruct metadata. Embedded and explicit-file loaders really create this variant,but every successful read filters it. Whole5259Rust-file reference/constructor/cfg review and16whole-file archive hashes bind the chain;five exact nodes export/hash-match. No setting,cwd,includeLayers or ordinary transport produces this metadata under the unchanged pin. Needs an upstream-supported emitter or explicit immutable-target/contract decision;no local workaround/mock/native success invented. State blocked,not implemented/verified;planned tests and schema unchanged,verified tests/transport empty.417prior guarded sources and9successful logs remain exact;no new runtime/test. Security/permission checks,audits,broad/hosted/release gates remain unrun;full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/0/properties/type/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "40ca354a4c74d5f47403095268c8adda2238d29b29bdcb4e3cdafbf1a799eae8",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

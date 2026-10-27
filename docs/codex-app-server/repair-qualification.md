@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [PackagedDefaults boundary](packaged-defaults-producer-limitations.md) proves
+the pinned config/read output filters this source from origins and layers.
+All 5,259 Rust files, 16 key files and five nodes match their pins. Only
+3581–3585 become source-blocked with no passing-test/transport credit:
+**5,263 implemented / 1,281 missing / 77 blocked**, unchanged requirements and
+zero verified. All 417 prior tested sources/nine logs remain exact; no new test
+runs. Continue ordinary filesystem IDs; prohibited/full-goal gates stay open.
+
 The [original shell-request profile](shell-request-envelope-qualification.md)
 preserves actual effects, deltas, lifecycle and cold history while checking
 complete original requests and typed submission correlation. Focused **1/0**,

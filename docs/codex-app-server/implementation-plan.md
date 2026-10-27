@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [PackagedDefaults producer boundary](packaged-defaults-producer-limitations.md)
+binds the sole config/read constructor's two unconditional exclusions and its
+conversion/processor/serialization routes to the official source. All 5,259
+Rust files and 16 key files match; five exact nodes match their canonical export.
+Only 3581–3585 become source-blocked, with empty test/transport credit:
+**5,263 implemented / 1,281 missing / 77 blocked**, unchanged requirements and
+zero verified. All 417 V447 source hashes/nine logs remain exact; no new runtime
+test runs. Continue ordinary filesystem IDs; unavailable emission and prohibited/
+full-goal gates remain incomplete.
+
 The [original shell-request envelopes](shell-request-envelope-qualification.md)
 retain exact string/integer IDs, encoded requests and full submission responses
 on the existing actual-effect/output/cold-history journey. Focused **1/0**,
