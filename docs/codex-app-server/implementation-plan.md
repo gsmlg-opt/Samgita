@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary V3 streamed-delegation profile](ordinary-realtime-streamed-delegation-qualification.md)
+requires actual head delivery before the provider releases tail/completion,
+exact two Unicode delta envelopes and native item identity, full result and
+six-row warm/cold history. The initial strict-Credo complexity failure and
+separate adjacent-owner evidence-link correction remain documented. Final
+**53 files / 100 ordinary cases twice**, selected WebSocket seeds, outside
+consumer **1/0**, all fourteen reviewed checks and 1,668 identical guarded
+source hashes pass. Forty-five complete producer files bind only already
+implemented requirement230 and owners3313–3316/5957; counts stay **5,451
+implemented / 1,054 missing / 116 blocked**, unchanged requirements and zero
+verified. Continue source-reviewed ordinary compaction and root SessionEnd
+hook lifecycles; scratch code remains unrun. Prohibited/hosted, A11, unavailable
+emitters/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary V3 output-branch profile](ordinary-realtime-output-branches-qualification.md)
 adds three actual native cases: filler=true forwarding, original null prefix
 with bare session output and response-items=false with exactly one targeted

@@ -11690,14 +11690,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:item/agentMessage/delta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "params": {
         "$ref": "#/definitions/AgentMessageDeltaNotification"
@@ -11719,7 +11721,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [
@@ -126607,14 +126610,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AgentMessageDeltaNotification.json#/properties/delta",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "nullable": false,
       "pointer": "/properties/delta",
@@ -126629,7 +126634,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [
@@ -126641,14 +126647,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AgentMessageDeltaNotification.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
@@ -126663,7 +126671,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [
@@ -126675,14 +126684,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AgentMessageDeltaNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -126697,7 +126708,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [
@@ -126709,14 +126721,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AgentMessageDeltaNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_positive: Five exact Unicode fragments, matching identity/order and independent thread routing. Installed assertion lines 430,434,446,449. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -126731,7 +126745,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [
@@ -212788,7 +212803,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/ordinary-realtime-delegation-qualification.md",
-        "docs/codex-app-server/ordinary-realtime-output-branches-qualification.md"
+        "docs/codex-app-server/ordinary-realtime-output-branches-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-streamed-delegation-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -212796,7 +212812,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. This earlier profile qualifies only its stated values; later per-branch evidence supplements it. No whole-method completeness.",
-        "V491 Explicit codexResponsesAsItems:false keeps the same nonempty prefix in its original start RPC but produces exactly one delegation.context.append targeted to owned-handoff-1 with bare assistant text and commentary; no session.context.append or completion ACK. One finite output_item.done supplies complete short initial_text: timed/final drains share the item lock and sent_bytes, suppressing duplicate completion output. This does not qualify SSE delta streaming, arbitrary chunking, truncation or multiple items. Each independent case requires one real native backing turn without client turn/start, original enriched handoff/input/body/native IDs and correlated wire, two completed items/three provider SSE/six canonical timeline rows, loaded full-history barrier, repeated warm/cold equality, requested-stop EOF and unchanged owned cleanup/bounds. Fixed YOLO fixture; other values/defaults/nulls, streamed deltas, multiple/steered delegations, other backends/versions/transports, remote media or full compatibility remain unverified. Already implemented owner; no count increase or verified promotion."
+        "V491 Explicit codexResponsesAsItems:false keeps the same nonempty prefix in its original start RPC but produces exactly one delegation.context.append targeted to owned-handoff-1 with bare assistant text and commentary; no session.context.append or completion ACK. One finite output_item.done supplies complete short initial_text: timed/final drains share the item lock and sent_bytes, suppressing duplicate completion output. This V491 completion-only profile does not qualify SSE delta streaming; V492 separately adds one bounded two-chunk case. Arbitrary chunking, truncation and multiple items remain unverified. Each independent case requires one real native backing turn without client turn/start, original enriched handoff/input/body/native IDs and correlated wire, two completed items/three provider SSE/six canonical timeline rows, loaded full-history barrier, repeated warm/cold equality, requested-stop EOF and unchanged owned cleanup/bounds. Fixed YOLO fixture; other values/defaults/nulls, other streamed deltas, multiple/steered delegations, other backends/versions/transports, remote media or full compatibility remain unverified. Already implemented owner; no count increase or verified promotion.",
+        "V492 genuine native V3 realtime delegation with response-items=false emits exact head and tail delegation.context.append records for owned-handoff-1. The provider withholds its tail and final item until actual WebSocket head receipt; exactly six literal SSE events in two captured/parsed segments make completion-only forwarding insufficient. Original native assistant start has the fixed same ID and empty text; exactly two original delta envelopes preserve actual thread/turn/item IDs, literal Unicode chunks and ordering, followed by the literal full completed item. Original encoded capture/Wire/schema, real enriched input/body/native metadata, one backing turn/no client turn/start, two completed items/six canonical rows, loaded full-history barrier, repeated warm/cold equality/no delta replay, requested EOF and unchanged owned cleanup/caps/timers are required. Selected short plain-text chunks only; no truncation, arbitrary/long/multibyte-boundary chunking, markup/plan/BEM streaming, multiple or steered delegations, interruption/reconnect, other providers/versions/transports/platforms or real remote media/full compatibility. Existing implemented owner gains scoped branch evidence only, without count/state promotion."
       ],
       "nullable": true,
       "pointer": "/properties/codexResponsesAsItems",

@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary V3 streamed-delegation profile](ordinary-realtime-streamed-delegation-qualification.md)
+requires real head forwarding before final provider bytes, original native
+Unicode delta/item envelopes and exact full warm/cold history. The first
+strict-Credo failure and later adjacent-owner link correction are preserved;
+final **100 ordinary cases twice**, selected WebSocket seeds, outside consumer
+**1/0**, all fourteen reviewed steps and 1,668 identical source hashes pass.
+Forty-five complete immutable producers bind scoped evidence without state/count
+promotion. Counts remain **5,451 implemented / 1,054 missing / 116 blocked**
+contracts, unchanged requirements and zero verified. Continue ordinary
+PreCompact/PostCompact and root-replacement SessionEnd hook lifecycles.
+Prohibited/hosted, A11, unavailable emitter/external/OS/full-goal and release
+gates remain incomplete.
+
 The [native V2 realtime literal index](native-realtime-v2-index-qualification.md)
 binds only experimental 5933 to existing original native request/started notice
 and exact independent V2 dependency effects. Initial stable-file binding

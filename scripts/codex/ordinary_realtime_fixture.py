@@ -116,7 +116,16 @@ DELEGATION_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
 DELEGATION_SCENARIOS = ("delegation", "delegation-status", "delegation-bem", "delegation-thinking", "delegation-null",
                         "delegation-null-transport", "delegation-null-version", "delegation-null-voice",
-                        "delegation-ack-filler", "delegation-null-prefix", "delegation-handoff-append")
+                        "delegation-ack-filler", "delegation-null-prefix", "delegation-handoff-append",
+                        "delegation-streamed")
+STREAM_HEAD = "Owned streamed head λ"
+STREAM_TAIL = " + owned streamed tail 🙂"
+STREAM_ANSWER = "Owned streamed head λ + owned streamed tail 🙂"
+STREAM_OUTPUTS = [
+    {"type": "delegation.context.append", "delegation_item_id": "owned-handoff-1",
+     "channel": "commentary", "content": [{"type": "input_text", "text": text}]}
+    for text in (STREAM_HEAD, STREAM_TAIL)
+]
 PREFIXLESS_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned bounded assistant result 🙂"}]}
 HANDOFF_APPEND_OUTPUT = {"type": "delegation.context.append", "delegation_item_id": "owned-handoff-1",
@@ -138,6 +147,8 @@ QUIET_STATUS = {"type": "delegation.context.append", "delegation_item_id": "owne
 
 
 def delegation_outputs(scenario):
+    if scenario == "delegation-streamed":
+        return STREAM_OUTPUTS
     if scenario == "delegation-null-prefix":
         return [PREFIXLESS_OUTPUT]
     if scenario == "delegation-handoff-append":
@@ -416,6 +427,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     fixture.save_locked()
                 if fixture.scenario == "delegation-status" and message == QUIET_STATUS:
                     fixture.release.set()
+                if fixture.scenario == "delegation-streamed" and message == STREAM_OUTPUTS[0]:
+                    fixture.release.set()
                 continue
             if fixture.scenario == "ingress" and message.get("type") != "session.update":
                 with fixture.lock:
@@ -527,6 +540,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
 
     def delegation_response(self, fixture, fields, deadline):
         status = fixture.scenario == "delegation-status"
+        streamed = fixture.scenario == "delegation-streamed"
         size = int(fields.get("content-length", "0"))
         assert 0 < size <= MAX_FRAME, "Owned delegation request body bound"
         raw = self.read_exact(size, fixture, deadline)
@@ -552,6 +566,21 @@ class PeerHandler(socketserver.BaseRequestHandler):
         ]
         if status:
             events.insert(1, {"type": "response.output_item.done", "item": QUIET_REASONING})
+        if streamed:
+            events = [
+                {"type": "response.created", "response": {"id": "owned-v492-stream-response"}},
+                {"type": "response.output_item.added", "item": {
+                    "type": "message", "role": "assistant", "id": "owned-v492-stream-message",
+                    "content": []}},
+                {"type": "response.output_text.delta", "delta": STREAM_HEAD},
+                {"type": "response.output_text.delta", "delta": STREAM_TAIL},
+                {"type": "response.output_item.done", "item": {
+                    "type": "message", "role": "assistant", "id": "owned-v492-stream-message",
+                    "content": [{"type": "output_text", "text": STREAM_ANSWER}]}},
+                {"type": "response.completed", "response": {"id": "owned-v492-stream-response", "usage": {
+                    "input_tokens": 0, "input_tokens_details": None,
+                    "output_tokens": 0, "output_tokens_details": None, "total_tokens": 0}}},
+            ]
         if fixture.scenario == "delegation-bem":
             events[1:2] = [
                 {"type": "response.output_item.done", "item": {
@@ -582,6 +611,29 @@ class PeerHandler(socketserver.BaseRequestHandler):
         assert len(body) <= MAX_FRAME
         header = (b"HTTP/1.1 200 OK\r\nContent-Type: text/event-stream\r\n"
             + f"Content-Length: {len(body)}\r\n".encode() + b"Connection: close\r\n\r\n")
+        if streamed:
+            prefix = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
+                             for event in events[:3]).encode()
+            suffix = body[len(prefix):]
+            assert prefix + suffix == body and suffix
+            with fixture.lock:
+                entry = fixture.state["delegationResponses"][0]
+                entry["sseSegmentsBase64"] = [base64.b64encode(segment).decode()
+                                               for segment in (prefix, suffix)]
+                entry["streamHeadBarrier"] = False
+                fixture.save_locked()
+            self.request.sendall(header + prefix)
+            # The provider final item remains unsent until actual native head
+            # output traverses the WebSocket. Existing close releases this wait.
+            remaining = deadline - time.monotonic()
+            assert remaining > 0 and fixture.release.wait(remaining), "Owned stream head deadline"
+            assert not fixture.stopping.is_set(), "Owned stream head peer stopping"
+            with fixture.lock:
+                assert fixture.state["delegationOutput"] == [STREAM_OUTPUTS[0]]
+                entry["streamHeadBarrier"] = True
+                fixture.save_locked()
+            self.request.sendall(suffix)
+            return
         if not status:
             self.request.sendall(header + body)
             return
