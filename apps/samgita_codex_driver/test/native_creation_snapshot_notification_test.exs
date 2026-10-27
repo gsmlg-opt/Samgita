@@ -30,12 +30,9 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
 
     @impl true
     def send(state, encoded) do
-      frames = Agent.get(state.capture, & &1)
-
-      if length(frames) < 32 and byte_size(encoded) <= 4096 and
-           Enum.reduce(frames, byte_size(encoded), &(byte_size(&1.encoded) + &2)) <= 131_072 do
+      if room?(state, encoded) do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [%{encoded: encoded, wire: JSON.decode!(encoded)}]))
+          record(next, :outgoing, encoded, JSON.decode!(encoded))
           {:ok, next}
         end
       else
@@ -44,7 +41,54 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case capture_started(events, next) do
+            :ok -> {:ok, events, next}
+            :overflow -> {:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow), next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp capture_started(events, state) do
+      Enum.reduce_while(events, :ok, fn
+        {:message, encoded}, :ok ->
+          capture_started_frame(state, encoded, JSON.decode!(encoded))
+
+        _, :ok ->
+          {:cont, :ok}
+      end)
+    end
+
+    defp capture_started_frame(state, encoded, %{"method" => "thread/started"} = wire) do
+      if room?(state, encoded) do
+        record(state, :incoming, encoded, wire)
+        {:cont, :ok}
+      else
+        {:halt, :overflow}
+      end
+    end
+
+    defp capture_started_frame(_state, _encoded, _wire), do: {:cont, :ok}
+
+    defp room?(state, encoded) do
+      frames = Agent.get(state.capture, & &1)
+
+      length(frames) < 32 and byte_size(encoded) <= 4096 and
+        Enum.reduce(frames, byte_size(encoded), &(byte_size(&1.encoded) + &2)) <= 131_072
+    end
+
+    defp record(state, direction, encoded, wire) do
+      Agent.update(
+        state.capture,
+        &(&1 ++ [%{direction: direction, encoded: encoded, wire: wire}])
+      )
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -146,12 +190,20 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
           "daybreakEnabled" => false
         }
 
+        before_ms = System.system_time(:millisecond)
         before = System.system_time(:second)
         response = request(ctx, pid, "thread/start", params)
         after_time = System.system_time(:second)
         id = response["thread"]["id"]
         assert is_binary(id) and byte_size(id) > 0
-        Map.merge(row, %{id: id, response: response["thread"], before: before, after: after_time})
+
+        Map.merge(row, %{
+          id: id,
+          response: response["thread"],
+          before: before,
+          after: after_time,
+          before_ms: before_ms
+        })
       end
 
     assert length(Enum.uniq_by(rows, & &1.id)) == 2
@@ -175,13 +227,27 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
            )
 
     schema = notification_schema()
+    notice_upper_ms = System.system_time(:millisecond)
+    assert %{phase: :ready, gap: nil, generation: generation} = Session.status(pid)
 
     rows =
       for row <- rows do
         [event] = notices(events, "thread/started", row.id)
         snapshot = event.wire["params"]["thread"]
         assert snapshot === row.response
-        assert_creation(ctx, row, snapshot)
+        expected = assert_creation(ctx, row, snapshot)
+        assert event.kind == :notification and event.generation == generation
+        emitted_at = Map.fetch!(event.wire, "emittedAtMs")
+
+        assert is_integer(emitted_at) and emitted_at >= row.before_ms and
+                 emitted_at <= notice_upper_ms
+
+        assert event.wire === %{
+                 "method" => "thread/started",
+                 "params" => %{"thread" => expected},
+                 "emittedAtMs" => emitted_at
+               }
+
         assert :ok = Schema.validate(schema, event.wire, max_depth: 32)
         assert {:ok, encoded} = Wire.encode(event.wire, max_depth: 32)
         assert {:ok, preserved} = Wire.decode(encoded, max_depth: 32)
@@ -189,6 +255,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
         Map.merge(row, %{snapshot: snapshot, event: event, event_bytes: encoded})
       end
 
+    original_started = assert_original_started(ctx, rows)
     assert length(Enum.uniq_by(rows, & &1.snapshot["path"])) == 2
     assert ModelFixture.requests(ctx.fixture) == []
     assert_ready(pid)
@@ -256,7 +323,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
     for row <- finished, do: assert(metadata(ctx, pid, row) === row.saved)
     assert length(Enum.filter(events, &(&1.wire["method"] == "turn/completed"))) == 2
     assert length(ModelFixture.requests(ctx.fixture)) == 2
-    frames = Agent.get(ctx.capture, & &1)
+    frames = captured(ctx, :outgoing)
     assert Enum.count(frames, &(&1.wire["method"] == "project/create")) == 2
     assert Enum.count(frames, &(&1.wire["method"] == "thread/start")) == 2
     assert Enum.count(frames, &(&1.wire["method"] == "turn/start")) == 2
@@ -267,10 +334,17 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
     assert :ok = StdioSessionFixture.close(pid, connection)
     refute File.exists?("/proc/#{native}")
     assert File.read!(ctx.fixture.requests) === journal
+    assert assert_original_started(ctx, rows) === original_started
   end
 
   defp assert_creation(ctx, row, snapshot) do
     assert snapshot["id"] == row.id
+
+    assert Regex.match?(
+             ~r/\A[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/,
+             row.id
+           )
+
     assert Map.fetch!(snapshot, "source") === "vscode"
     assert Map.fetch!(snapshot, "cliVersion") === "0.163.0"
     assert Map.fetch!(snapshot, "daybreakEnabled") === false
@@ -289,7 +363,80 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
     assert String.starts_with?(path, ctx.fixture.codex_home <> "/")
     assert String.contains?(Path.basename(path), row.id)
     refute File.exists?(path)
+
+    assert [_, year, month, day, file_date, clock, path_id] =
+             Regex.run(
+               ~r"\Asessions/([0-9]{4})/([0-9]{2})/([0-9]{2})/rollout-([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}-[0-9]{2}-[0-9]{2})-([0-9a-f-]{36})\.jsonl\z",
+               Path.relative_to(path, ctx.fixture.codex_home)
+             )
+
+    assert file_date === Enum.join([year, month, day], "-")
+    assert path_id === row.id
+
+    assert {:ok, path_at, 0} =
+             DateTime.from_iso8601(file_date <> "T" <> String.replace(clock, "-", ":") <> "Z")
+
+    path_seconds = DateTime.to_unix(path_at)
+    assert path_seconds >= row.before and path_seconds <= row.after
+
+    expected = %{
+      "id" => row.id,
+      "sessionId" => row.id,
+      "environments" => [
+        %{"environmentId" => "local", "cwd" => row.cwd, "runtimeWorkspaceRoots" => [row.cwd]}
+      ],
+      "extra" => nil,
+      "forkedFromId" => nil,
+      "parentThreadId" => nil,
+      "section" => nil,
+      "sectionEnteredAt" => nil,
+      "reasoningEffort" => nil,
+      "threadSource" => nil,
+      "agentNickname" => nil,
+      "agentRole" => nil,
+      "gitInfo" => nil,
+      "name" => nil,
+      "preview" => "",
+      "turns" => [],
+      "ephemeral" => false,
+      "daybreakEnabled" => false,
+      "projectId" => row.project,
+      "historyMode" => row.history,
+      "cwd" => row.cwd,
+      "modelProvider" => "fixture",
+      "model" => "mock-model",
+      "cliVersion" => "0.163.0",
+      "originator" => @client,
+      "source" => "vscode",
+      "canAcceptDirectInput" => true,
+      "status" => %{"type" => "idle"},
+      "createdAt" => now,
+      "updatedAt" => now,
+      "recencyAt" => now,
+      "path" => path
+    }
+
+    assert map_size(expected) == 32
+    assert snapshot === expected
+    expected
   end
+
+  defp assert_original_started(ctx, rows) do
+    frames = captured(ctx, :incoming)
+    assert length(frames) == 2
+
+    assert Enum.map(frames, & &1.wire) ===
+             Enum.map(Enum.sort_by(rows, & &1.event.sequence), & &1.event.wire)
+
+    for frame <- frames do
+      assert JSON.decode!(frame.encoded) === frame.wire
+    end
+
+    frames
+  end
+
+  defp captured(ctx, direction),
+    do: Agent.get(ctx.capture, &Enum.filter(&1, fn frame -> frame.direction == direction end))
 
   defp metadata(ctx, pid, row) do
     saved =
@@ -366,12 +513,12 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
 
   defp request(ctx, pid, method, params) do
     id = "owned-creation-#{System.unique_integer([:positive, :monotonic])}"
-    before = length(Agent.get(ctx.capture, & &1))
+    before = length(captured(ctx, :outgoing))
 
     assert {:ok, %{"id" => ^id, "result" => result}} =
              Session.request(pid, method, params, id: id)
 
-    frames = Agent.get(ctx.capture, & &1)
+    frames = captured(ctx, :outgoing)
     assert length(frames) == before + 1
     frame = List.last(frames)
     assert frame.wire === %{"id" => id, "method" => method, "params" => params}
@@ -451,7 +598,8 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
                "PATH" => fixture.bin <> ":/usr/bin:/bin",
                "CODEX_DISABLE_REMOTE_CONTROL" => "1",
                "NO_COLOR" => "1",
-               "RUST_LOG" => "off"
+               "RUST_LOG" => "off",
+               "TZ" => "UTC"
              }
            ]}
       )

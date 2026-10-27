@@ -109760,24 +109760,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-started-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V414 scoped actual-native complete ordinary thread/started creation snapshot. Existing one direct fixed-YOLO case creates two distinct native projects/threads and legacy/paginated modes before any inference. Complete independent32-key Thread oracle uses prescribed model/provider/cwd/project/history/defaults/nulls and exact local environment/idle maps; only correlated opaque IDs and separately constrained UUIDv7,host-bracketed equal creation/update/recency times and strict UTC-owned rollout path are dynamic. Full method/params/emittedAtMs wrapper,current kind/generation/schema and original selected incoming frames before Session decode match exact oracle. Original two-record sequence inventory remains unchanged after two later actual local provider turns,readbacks and explicit native shutdown; no raw response-order claim. Existing provider markers/request counts2,perthread metadata/persistence,codec/preview immutability,frozen configuration/files and checked cleanup remain. No new scenario,process/provider/RPC/deadline/limit:combined32records/4KiB/128KiB,60scase and old bounded polling unchanged;owned native TZ=UTC only. Initial regex-delimiter syntax and capture nesting/Credo failures corrected without assertion/bound changes. Focused1/0 and reviewed38ordinary cases twice,syntax/format/compile/strictCredo pass;404sources stable,403other prior paths unchanged. Eighteen whole source files and exact2811 archive-match. Only2811 gains implemented evidence;three sibling bindings remain unchanged. No referenced children/aliases,other emitters,nullable/source/environment/status variants,OS/transports,remote/full verified acceptance follows. Prior changed owning-source runs remain historical. Prohibited security/permission/authentication/approval tests/audits,broad/hosted,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "53ded95ac9b4c6e545ac3d30ffe1339e19548df25e1927454c370c7d19d15723",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

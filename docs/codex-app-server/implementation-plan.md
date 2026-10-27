@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [complete creation unit](thread-started-envelope-qualification.md)
+qualifies only root2811 through an independent32-field Thread oracle and
+original two-frame ingress inventory in the existing direct fixed-YOLO case.
+Both later real turns, metadata/history and checked cleanup remain. Initial
+regex/Credo issues are corrected without assertion/bound changes. Focused
+**1/0** and final **38ordinary cases twice**, syntax/strict checks and404stable
+sources pass;403other prior paths stay unchanged and18whole upstream files
+match the pin. Only that root becomes scoped implemented:
+**5,157 implemented /1,398 missing /66 blocked**, unchanged requirements and zero
+verified. Continue real ordinary fileChange/patchUpdated/diff payloads;
+prohibited/full-goal gates stay incomplete.
+
 The [ordinary warning unit](unsupported-tier-warning-qualification.md)
 qualifies only3055–3058 through two existing direct fixed-YOLO scenarios.
 Independent exact warning text/current thread, original full ingress, clock and

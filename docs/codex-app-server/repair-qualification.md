@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [complete creation profile](thread-started-envelope-qualification.md)
+binds real thread/started against an independent32-field Thread oracle and
+original two-frame ingress, retaining both later native turns/persistence and
+checked cleanup. Initial regex/Credo issues are corrected without changed
+assertions/bounds. Focused **1/0** and final **38ordinary cases twice**, syntax/
+strict checks and404stable-source guard pass;403other prior paths stay unchanged
+and18whole upstream files match the pin. Only root2811 becomes scoped
+implemented: **5,157 implemented /1,398 missing /66 blocked**, unchanged
+requirements and zero verified. Continue real ordinary fileChange/patchUpdated/
+diff payloads; prohibited/full-goal gates remain incomplete.
+
 The [ordinary warning profile](unsupported-tier-warning-qualification.md)
 binds complete original native unsupported-tier notices to independent literal
 text/current thread, clock/turn ordering and actual provider-request tier
