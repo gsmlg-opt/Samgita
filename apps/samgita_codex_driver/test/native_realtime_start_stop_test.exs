@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "2d8561e0bb67b561ba7490f35e3b665cb100fa6e962939dfc35bff1cb41b24a0"
+  @script_sha "adc0b577fadacbc3a9191ec497cbcb731e91b89233a933742378ba168e850828"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1554,6 +1554,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp unexpected_notice_methods(%{scenario: "instructions"}),
     do: ~w(error warning thread/realtime/error)
 
+  defp unexpected_notice_methods(%{scenario: "delegation"}),
+    do: ~w(error warning thread/realtime/error)
+
   defp unexpected_notice_methods(_profile),
     do:
       ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
@@ -1615,7 +1618,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "ingress",
            "speech",
            "initial-items",
-           "instructions"
+           "instructions",
+           "delegation"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -1646,6 +1650,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp selected_methods(%{scenario: "transcript"}), do: @selected ++ @transcript_methods
   defp selected_methods(%{scenario: "service-error"}), do: @selected ++ [@realtime_error]
   defp selected_methods(%{scenario: "item-audio"}), do: @selected ++ [@item_added, @audio_delta]
+  defp selected_methods(%{scenario: "delegation"}), do: @selected ++ [@item_added]
   defp selected_methods(_profile), do: @selected
 
   defp peer_startup(port, buffer, deadline) do
@@ -3113,6 +3118,406 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            }
   end
 
+  @delegation_input "<realtime_delegation>\n  <input>Owned bounded request λ</input>\n  <transcript_delta>user: Owned bounded request λ</transcript_delta>\n</realtime_delegation>"
+  @delegation_answer "Owned bounded assistant result 🙂"
+  @delegation_session "owned-v485-delegation-session"
+  @delegation_output %{
+    "type" => "session.context.append",
+    "channel" => "commentary",
+    "content" => [
+      %{
+        "type" => "input_text",
+        "text" => "Owned delegate result λ\n\nOwned bounded assistant result 🙂"
+      }
+    ]
+  }
+
+  @tag realtime_scenario: "delegation"
+  test "native V3 delegation starts one backing turn and returns its prefixed commentary without client turn start",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+    lower = System.system_time(:millisecond)
+
+    thread =
+      instruction_call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+
+    assert instruction_call(profile, pid, "thread/realtime/start", %{
+             "threadId" => thread,
+             "version" => "v3",
+             "outputModality" => "audio",
+             "voice" => "cove",
+             "transport" => %{"type" => "websocket"},
+             "realtimeSessionId" => @delegation_session,
+             "includeStartupContext" => false,
+             "flushTranscriptTailOnSessionEnd" => false,
+             "clientManagedHandoffs" => false,
+             "codexResponsesAsItems" => true,
+             "codexResponseItemPrefix" => "Owned delegate result λ",
+             "codexResponseHandoffMode" => "commentary",
+             "prompt" => @prompt
+           }) === %{}
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        length(notices(events, "turn/completed")) == 1 and
+          length(notices(events, @item_added)) == 1 and
+          read_peer(profile)["delegationOutput"] == [@delegation_output]
+      end)
+
+    row = delegation_row(profile, thread, events)
+    assert instruction_call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1 and read_peer(profile)["activeConnections"] == 0
+      end)
+
+    assert delegation_row(profile, thread, events) === row
+    peer = delegation_provider(profile, thread, row)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    {realtime, selected, originals} = delegation_lifecycle(profile, thread, events, lower)
+
+    # Loaded full history is the native persist/project barrier, not metadata read.
+    persisted =
+      instruction_call(profile, pid, "thread/read", %{
+        "threadId" => thread,
+        "includeTurns" => true
+      })["thread"]
+
+    assert [turn] = persisted["turns"]
+
+    assert Map.take(turn, ~w(id status error items)) === %{
+             "id" => row.id,
+             "status" => "completed",
+             "error" => nil,
+             "items" => row.items
+           }
+
+    {metadata, turns} = instruction_history(profile, pid, thread, [row])
+    path = metadata["path"]
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = instruction_call(profile, pid, "thread/timeline/list", query)
+    rollout = delegation_timeline(path, thread, row, realtime, timeline)
+    assert instruction_history(profile, pid, thread, [row]) === {metadata, turns}
+    assert instruction_call(profile, pid, "thread/timeline/list", query) === timeline
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert delegation_row(profile, thread, events) === row
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/")) ===
+             selected
+
+    assert delegation_provider(profile, thread, row) === peer
+    assert_inputs(ctx)
+    assert_ready(profile, pid)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/stop thread/read thread/read thread/turns/list thread/timeline/list thread/read thread/turns/list thread/timeline/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :delegation_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+
+    for _ <- 1..2 do
+      assert instruction_history(cold_profile, cold.pid, thread, [row]) === {metadata, turns}
+      assert instruction_call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    end
+
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+
+    refute Enum.any?(cold_events, fn event ->
+             String.starts_with?(event.wire["method"], "thread/realtime/") or
+               event.wire["method"] in ~w(turn/started turn/completed item/started item/completed)
+           end)
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/read thread/turns/list thread/timeline/list thread/read thread/turns/list thread/timeline/list)
+
+    assert_ready(cold_profile, cold.pid)
+    assert Agent.get(profile.capture, & &1) === warm
+    assert assert_originals(profile, selected) === originals
+    assert File.read!(path) === rollout
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+    assert File.read!(path) === rollout
+    assert_inputs(ctx)
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+  end
+
+  defp delegation_row(profile, thread, events) do
+    [started] = notices(events, "turn/started")
+    [completed] = notices(events, "turn/completed")
+    [handoff] = notices(events, @item_added)
+    turn = completed.wire["params"]["turn"]["id"]
+    assert is_binary(turn) and turn != ""
+    assert started.wire["params"]["threadId"] === thread
+    assert started.wire["params"]["turn"]["id"] === turn
+
+    assert %{
+             "threadId" => ^thread,
+             "turn" => %{"id" => ^turn, "status" => "completed", "error" => nil}
+           } = completed.wire["params"]
+
+    assert handoff.wire["params"] === %{
+             "threadId" => thread,
+             "item" => %{
+               "type" => "handoff_request",
+               "handoff_id" => "owned-handoff-1",
+               "item_id" => "owned-handoff-1",
+               "input_transcript" => "Owned bounded request λ",
+               "active_transcript" => [
+                 %{"role" => "user", "text" => "Owned bounded request λ"}
+               ]
+             }
+           }
+
+    relevant = notices(events, "item/completed")
+    assert [user, assistant] = items = Enum.map(relevant, & &1.wire["params"]["item"])
+
+    assert %{
+             "type" => "userMessage",
+             "content" => [
+               %{"type" => "text", "text" => @delegation_input, "text_elements" => []}
+             ]
+           } = user
+
+    assert %{"type" => "agentMessage", "text" => @delegation_answer} = assistant
+    assert is_binary(user["id"]) and user["id"] != ""
+    assert is_binary(assistant["id"]) and assistant["id"] != "" and assistant["id"] != user["id"]
+
+    for event <- relevant do
+      assert event.wire["params"]["threadId"] === thread
+      assert event.wire["params"]["turnId"] === turn
+    end
+
+    for event <- [started, completed, handoff] ++ relevant do
+      [original] =
+        Enum.filter(capture(profile), &(&1.direction == :in and &1.wire === event.wire))
+
+      assert JSON.decode!(original.encoded) === event.wire
+      assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 32)
+      assert decoded === event.wire
+
+      assert :ok =
+               Schema.validate_notification(
+                 :server_notification,
+                 event.wire["method"],
+                 event.wire["params"],
+                 experimental: true,
+                 max_depth: 32
+               )
+    end
+
+    %{id: turn, items: items}
+  end
+
+  defp delegation_provider(profile, thread, row) do
+    state = read_peer(profile)
+    assert is_integer(state["frameCount"]) and state["frameCount"] in 4..32
+    assert [entry] = state["delegationResponses"]
+
+    assert state === %{
+             "paths" => ["/v1/live?model=#{@model}"],
+             "messages" => [
+               %{
+                 "type" => "session.update",
+                 "session" => %{
+                   "instructions" => @prompt,
+                   "audio" => %{"output" => %{"voice" => "cove"}},
+                   "delegation" => %{"type" => "client"}
+                 }
+               }
+             ],
+             "sent" => [
+               %{
+                 "type" => "session.started",
+                 "session" => %{"id" => "owned-v485-peer-session", "instructions" => @prompt}
+               },
+               %{
+                 "type" => "delegation.created",
+                 "item" => %{
+                   "type" => "delegation",
+                   "target" => "client",
+                   "id" => "owned-handoff-1",
+                   "content" => [%{"type" => "input_text", "text" => "Owned bounded request λ"}]
+                 }
+               }
+             ],
+             "frameCount" => state["frameCount"],
+             "responsesRequests" => 1,
+             "delegationResponses" => [entry],
+             "delegationOutput" => [@delegation_output],
+             "transportEofCount" => 1,
+             "activeConnections" => 0,
+             "requestCount" => 2,
+             "controls" => [],
+             "otherHttp" => [],
+             "errors" => []
+           }
+
+    raw = Base.decode64!(entry["bodyBase64"])
+    assert byte_size(raw) in 1..65_536 and byte_size(raw) === entry["bodyBytes"]
+    assert hash(raw) === entry["bodySha256"]
+    body = JSON.decode!(raw)
+    assert body["model"] === "mock-model" and body["input"] === entry["input"]
+
+    assert JSON.decode!(body["client_metadata"]["x-codex-turn-metadata"]) ===
+             entry["turnMetadata"]
+
+    assert Map.take(entry["turnMetadata"], ~w(thread_id turn_id)) === %{
+             "thread_id" => thread,
+             "turn_id" => row.id
+           }
+
+    user_texts =
+      for item <- body["input"],
+          item["role"] == "user",
+          part <- Map.get(item, "content", []),
+          part["type"] == "input_text",
+          do: part["text"]
+
+    assert Enum.count(user_texts, &(&1 === @delegation_input)) === 1
+
+    assert Enum.map(entry["events"], & &1["type"]) ===
+             ~w(response.created response.output_item.done response.completed)
+
+    assert Enum.at(entry["events"], 1)["item"]["content"] === [
+             %{"type" => "output_text", "text" => @delegation_answer}
+           ]
+
+    state
+  end
+
+  defp delegation_lifecycle(profile, thread, events, lower) do
+    [started_notice, closed_notice] = notices(events, @item_completed)
+
+    items =
+      Enum.map([started_notice, closed_notice], fn notice ->
+        item = notice.wire["params"]["item"]
+        assert_uuid(item["id"])
+        item
+      end)
+
+    [started, closed] = items
+    refute started["id"] === closed["id"]
+
+    assert started === %{
+             "id" => started["id"],
+             "type" => "realtimeSessionStarted",
+             "realtimeSessionId" => @delegation_session
+           }
+
+    assert closed === %{
+             "id" => closed["id"],
+             "type" => "realtimeSessionClosed",
+             "realtimeSessionId" => @delegation_session,
+             "outcome" => "ended"
+           }
+
+    lifecycle = Enum.filter(events, &(&1.wire["method"] in @selected))
+
+    assert_selected(
+      profile,
+      lifecycle,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started}},
+        {@item_completed, %{"threadId" => thread, "item" => started}},
+        {@started,
+         %{"threadId" => thread, "realtimeSessionId" => @delegation_session, "version" => "v3"}},
+        {@item_started, %{"threadId" => thread, "item" => closed}},
+        {@item_completed, %{"threadId" => thread, "item" => closed}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      lower,
+      System.system_time(:millisecond)
+    )
+
+    # Handoff routing and its notice are concurrent with backing-turn events.
+    selected = Enum.filter(events, &(&1.wire["method"] in selected_methods(profile)))
+    assert length(selected) === 7
+    originals = assert_originals(profile, selected)
+    {items, selected, originals}
+  end
+
+  defp delegation_timeline(path, thread, row, realtime, page) do
+    assert File.regular?(path) and File.stat!(path).size <= 1_048_576
+    bytes = File.read!(path)
+    assert byte_size(bytes) in 1..1_048_576 and String.ends_with?(bytes, "\n")
+    lines = String.split(bytes, "\n", trim: true)
+    assert length(lines) <= 2_048 and Enum.all?(lines, &(byte_size(&1) <= 65_536))
+    records = Enum.map(lines, &JSON.decode!/1)
+    raw_realtime = Enum.filter(records, &(&1["type"] == "realtime_item"))
+    [started, closed] = realtime
+
+    assert Enum.map(raw_realtime, & &1["payload"]) === [
+             %{
+               "id" => started["id"],
+               "realtime_session_id" => @delegation_session,
+               "type" => "realtime_session_started"
+             },
+             %{
+               "id" => closed["id"],
+               "realtime_session_id" => @delegation_session,
+               "type" => "realtime_session_closed",
+               "outcome" => "ended"
+             }
+           ]
+
+    data = page["data"]
+    assert page["nextCursor"] === nil and page["activeRealtimeSessionAtPageStart"] === nil
+
+    assert Enum.map(data, & &1["type"]) ===
+             ~w(realtime turnStarted item item turnCompleted realtime)
+
+    positions = Enum.map(data, & &1["position"])
+    assert Enum.all?(positions, &(is_integer(&1) and &1 >= 0))
+    assert positions === Enum.sort(Enum.uniq(positions))
+
+    for {index, raw, expected} <- Enum.zip([[0, 5], raw_realtime, realtime]) do
+      assert Enum.at(data, index) === %{
+               "type" => "realtime",
+               "position" => raw["ordinal"],
+               "item" => expected
+             }
+    end
+
+    instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+    bytes
+  end
+
   defp instruction_call(profile, pid, method, params) do
     result = call(profile, pid, method, params)
     assert_speech_exchange(profile, method, params, result)
@@ -3299,7 +3704,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
         "limit" => 100
       })
 
-    assert page["nextCursor"] === nil and length(page["data"]) === 2
+    assert page["nextCursor"] === nil and length(page["data"]) === length(rows)
 
     for {turn, row} <- Enum.zip(page["data"], rows) do
       assert turn["id"] === row.id and turn["status"] === "completed" and turn["error"] === nil

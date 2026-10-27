@@ -25076,24 +25076,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/CodexResponseHandoffMode/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "3749b9078d69aa9b28979f4bc3baaf83dd61b700d22b7bddb90926948c2bc780",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -211865,24 +211873,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/CodexResponseHandoffMode/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "3749b9078d69aa9b28979f4bc3baaf83dd61b700d22b7bddb90926948c2bc780",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212532,27 +212548,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/clientManagedHandoffs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/clientManagedHandoffs",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "133d037774da2048660cf02e9f64a9eed760c01b1e4a1ad8de53d0fd984ce234",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "clientManagedHandoffs"
     },
     {
@@ -212584,49 +212608,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseHandoffMode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/codexResponseHandoffMode",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "d108844d7e71dc5eaa794443951bdb44d1616e03e082e3b5a3ba29f4a4590476",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "codexResponseHandoffMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseHandoffMode/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "pointer": "/properties/codexResponseHandoffMode/anyOf/0",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "0cc73392cead8519ca67c1534a30989f19c7c6fb8a067bf22b6f5ba419f80dae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -212654,53 +212694,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseItemPrefix",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/codexResponseItemPrefix",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "ff18f6e237799bbf7bb69cb4dec80affd102b0546c33b805fdb9e352109bdddb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "codexResponseItemPrefix"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponsesAsItems",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/codexResponsesAsItems",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "0a96924ba76c2a4d8c797b3d8067fb2ae975be6eb37c8bdee6e54ad266ab8081",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "codexResponsesAsItems"
     },
     {
