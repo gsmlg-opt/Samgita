@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [V1 child search case](v1-child-search-qualification.md) proves an actual
+spawned child's explicit null path through warm and first-cold native searches,
+with six model requests, exact source/history and checked cleanup. Both initial
+casing/cursor oracle failures remain recorded with their pinned source causes.
+Final **87schema/153ordinary driver tests twice**, outside consumer **1/0**,
+strict checks and384-source guard pass; all383 other previous sources stay
+unchanged. Only6116 becomes scoped implemented: **5,068 implemented /1,487
+missing /66 blocked**, unchanged requirements and zero verified. Prohibited,
+broad and hosted gates stay unrun; no full-goal or release acceptance follows.
+
 The [pinned projection boundaries](native-projection-boundaries.md) record
 source-only evidence for three still-missing owners: selective dynamic
 inProgress5352 and nonnull search fields6164/6133. Eight complete sources match

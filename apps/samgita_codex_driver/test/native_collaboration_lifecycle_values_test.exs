@@ -41,7 +41,8 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
            "thread/start",
            "turn/start",
            "thread/items/read",
-           "thread/loaded/list"
+           "thread/loaded/list",
+           "thread/search"
          ] do
         capture(state, encoded, wire)
       else
@@ -52,13 +53,16 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
     defp capture(state, encoded, wire) do
       if length(Agent.get(state.capture, & &1)) < 32 and byte_size(encoded) <= 4096 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [wire]))
+          Agent.update(state.capture, &(&1 ++ [entry(encoded, wire)]))
           {:ok, next}
         end
       else
         {:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow), state}
       end
     end
+
+    defp entry(encoded, %{"method" => "thread/search"} = wire), do: {encoded, wire}
+    defp entry(_encoded, wire), do: wire
 
     @impl true
     def handle_info(message, state), do: Stdio.handle_info(message, state)
@@ -170,6 +174,213 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
     native = native_id(pid)
     assert :ok = Session.close(pid)
     refute File.exists?("/proc/#{native}")
+  end
+
+  test "native V1 child search preserves an explicit null agent path across a cold process",
+       ctx do
+    assert hash(File.read!(@script)) ==
+             "3b0631a4b79df452b7e228a07d2a9c1ef56b7160dc52bc43665933f04c67bdef"
+
+    rg = System.find_executable("rg")
+    assert is_binary(rg) and File.regular?(rg), "BLOCKED_ENV: ripgrep required"
+    File.ln_s!(rg, Path.join(ctx.fixture.bin, "rg"))
+    config = Path.join(ctx.fixture.codex_home, "config.toml")
+
+    File.write!(
+      config,
+      "remote_plugin = false\nmemories = false\n" <>
+        "\n[memories]\ngenerate_memories = false\nuse_memories = false\n" <>
+        "\n[analytics]\nenabled = false\n" <>
+        ~s(\n[otel]\nexporter = "none"\ntrace_exporter = "none"\nmetrics_exporter = "none"\n),
+      [:append]
+    )
+
+    originals = Map.put(ctx.originals, config, snapshot(config))
+    warm = start(ctx)
+    warm_native = native_id(warm)
+
+    root =
+      request(ctx, warm, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "historyMode" => "paginated",
+        "ephemeral" => false
+      })["thread"]["id"]
+
+    assert is_binary(root) and root != ""
+    first = run_phase(ctx, warm, root, 1)
+    requests = ModelFixture.requests(ctx.fixture)
+    assert length(requests) == 6
+    child = tool_result(requests, "owned-collab-spawn")["agent_id"]
+    assert is_binary(child) and child != "" and child != root
+    assert Enum.frequencies_by(requests, &metadata(&1)["thread_id"]) == %{root => 5, child => 1}
+    assert loaded(ctx, warm) == [root]
+
+    expected =
+      items(root, child, [
+        {"owned-collab-spawn", "spawnAgent", @first, "mock-model", "low", nil},
+        {"owned-collab-wait-first", "wait", nil, nil, nil, @first_done},
+        {"owned-collab-close-first", "closeAgent", nil, nil, nil, @first_done},
+        {"owned-collab-wait-closed", "wait", nil, nil, nil, :not_found}
+      ])
+
+    assert_terminal_items(ctx, warm, root, first, expected)
+
+    root_history =
+      search_history(warm, root, "OWNED_COLLAB_ROOT_1", "Owned collaboration root 1 done")
+
+    child_history = search_history(warm, child, @first, @first_done)
+    assert [%{"id" => turn}] = Map.fetch!(root_history, "turns")
+    assert turn == first.id
+    source = Map.fetch!(child_history, "source")
+    assert_null_path(source, root)
+    lines = child_history["path"] |> snapshot() |> String.split("\n", trim: true)
+    assert length(lines) <= 256
+
+    metadata =
+      for line <- lines,
+          row = JSON.decode!(line),
+          row["type"] == "session_meta",
+          do: row["payload"]
+
+    assert [child_meta] = metadata
+    assert Map.fetch!(child_meta, "id") == child
+    canonical_source = Map.fetch!(child_meta, "source")
+    assert ["subagent"] == Map.keys(canonical_source)
+    assert_null_spawn(Map.fetch!(canonical_source["subagent"], "thread_spawn"), root)
+    saved = [root_history, child_history]
+
+    retained =
+      saved
+      |> Map.new(&{Map.fetch!(&1, "path"), snapshot(Map.fetch!(&1, "path"))})
+      |> Map.merge(originals)
+      |> Map.put(ctx.fixture.requests, snapshot(ctx.fixture.requests))
+
+    assert_search_child(ctx, warm, root, child_history, source)
+    assert loaded(ctx, warm) == [root]
+    assert_search_retained(ctx, warm, retained)
+    close_owned(warm, warm_native)
+
+    cold = start(ctx)
+    cold_native = native_id(cold)
+    refute cold_native == warm_native
+    assert loaded(ctx, cold) == []
+    # First cold content read is native search; no resume or imported history.
+    assert_search_child(ctx, cold, root, child_history, source)
+    assert loaded(ctx, cold) == []
+
+    for original <- saved do
+      actual = native_read(cold, Map.fetch!(original, "id"))
+      assert Map.fetch!(actual, "path") == Map.fetch!(original, "path")
+      assert Map.fetch!(actual, "turns") === Map.fetch!(original, "turns")
+      assert Map.fetch!(actual, "source") === Map.fetch!(original, "source")
+    end
+
+    assert loaded(ctx, cold) == []
+    assert_search_retained(ctx, cold, retained)
+    close_owned(cold, cold_native)
+    for {path, bytes} <- retained, do: assert(snapshot(path) === bytes)
+    frames = Agent.get(ctx.capture, & &1)
+    assert length(frames) == 10
+    queries = for {_bytes, wire} <- frames, do: wire
+
+    assert Enum.map(queries, &Map.take(&1, ["method", "params"])) ==
+             List.duplicate(%{"method" => "thread/search", "params" => child_search_params()}, 2)
+  end
+
+  defp search_history(pid, id, input, answer) do
+    thread = native_read(pid, id)
+    assert Map.fetch!(thread, "id") == id
+    assert Map.fetch!(thread, "historyMode") == "paginated"
+    assert [%{"status" => "completed", "error" => nil, "items" => entries}] = thread["turns"]
+
+    assert [%{"content" => [%{"type" => "text", "text" => ^input, "text_elements" => []}]}] =
+             Enum.filter(entries, &(&1["type"] == "userMessage"))
+
+    assert [%{"text" => ^answer}] = Enum.filter(entries, &(&1["type"] == "agentMessage"))
+    assert File.lstat!(Map.fetch!(thread, "path")).type == :regular
+    thread
+  end
+
+  defp assert_null_path(source, root) do
+    assert ["subAgent"] == Map.keys(source)
+    assert ["thread_spawn"] == Map.keys(Map.fetch!(source, "subAgent"))
+    assert_null_spawn(source["subAgent"]["thread_spawn"], root)
+  end
+
+  defp assert_null_spawn(spawn, root) do
+    assert Map.fetch!(spawn, "parent_thread_id") == root
+    assert Map.fetch!(spawn, "depth") == 1
+    assert Map.fetch!(spawn, "agent_path") == nil
+  end
+
+  defp assert_search_child(ctx, pid, root, saved, expected_source) do
+    assert %{"data" => [row], "nextCursor" => nil, "backwardsCursor" => backwards} =
+             request(ctx, pid, "thread/search", child_search_params())
+
+    # Native default descending search always emits an anchor-minus-1ms reverse
+    # cursor. Derive it from the separate prior full-history observation.
+    expected_cursor =
+      (Map.fetch!(saved, "createdAt") * 1000 - 1)
+      |> DateTime.from_unix!(:millisecond)
+      |> DateTime.to_iso8601()
+
+    assert backwards == expected_cursor
+    thread = Map.fetch!(row, "thread")
+    assert Map.fetch!(thread, "id") == saved["id"]
+    assert Map.fetch!(row, "snippet") == @first
+    assert Map.fetch!(thread, "preview") == @first
+    assert Map.fetch!(thread, "path") == saved["path"]
+    assert Map.fetch!(thread, "historyMode") == "paginated"
+    assert Map.fetch!(thread, "source") === expected_source
+    assert_null_path(Map.fetch!(thread, "source"), root)
+    assert Map.fetch!(thread, "status") == %{"type" => "notLoaded"}
+    assert Map.fetch!(thread, "turns") == []
+  end
+
+  defp child_search_params do
+    %{"searchTerm" => @first, "limit" => 100, "sourceKinds" => ["subAgentThreadSpawn"]}
+  end
+
+  defp assert_search_retained(ctx, pid, retained) do
+    for {path, bytes} <- retained, do: assert(snapshot(path) === bytes)
+    assert length(ModelFixture.requests(ctx.fixture)) == 6
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert Session.uncertain_operations(pid) == []
+    assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
+    assert {:ok, events} = Session.drain(pid)
+    assert length(events) <= 128
+    assert byte_size(:erlang.term_to_binary(events)) <= 1_048_576
+    refute Enum.any?(events, &(&1.kind == :server_request or &1.wire["method"] == "error"))
+  end
+
+  defp native_read(pid, id) do
+    request_id = "owned-null-path-read-#{System.unique_integer([:positive, :monotonic])}"
+
+    assert {:ok, %{"id" => ^request_id, "result" => %{"thread" => thread}} = response} =
+             Session.request(pid, "thread/read", %{"threadId" => id, "includeTurns" => true},
+               id: request_id,
+               timeout_ms: 5_000
+             )
+
+    assert byte_size(JSON.encode!(response)) <= 65_536
+    thread
+  end
+
+  defp close_owned(pid, native) do
+    %{connection: connection} = :sys.get_state(pid)
+    assert :ok = Session.close(pid)
+    assert :atomics.get(connection.owner.completion, 1) == 1
+    assert Port.info(connection.port) == nil
+    refute File.exists?("/proc/#{native}")
+  end
+
+  defp snapshot(path) do
+    assert File.stat!(path).size <= 1_048_576
+    bytes = File.read!(path)
+    assert byte_size(bytes) <= 1_048_576
+    bytes
   end
 
   defp run_phase(ctx, pid, root, phase) do
@@ -368,6 +579,22 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
         assert notice["turn"]["status"] == "completed"
         events
     end
+  end
+
+  defp request(ctx, pid, "thread/search", params) do
+    before = length(Agent.get(ctx.capture, & &1))
+    id = "owned-null-path-search-#{System.unique_integer([:positive, :monotonic])}"
+    wire = %{"id" => id, "method" => "thread/search", "params" => params}
+
+    assert {:ok, %{"id" => ^id, "result" => result} = response} =
+             Session.request_native(pid, wire, timeout_ms: 5_000)
+
+    assert byte_size(JSON.encode!(response)) <= 65_536
+    assert [{bytes, actual}] = Agent.get(ctx.capture, &Enum.drop(&1, before))
+    assert actual === wire
+    assert JSON.decode!(bytes) === wire
+    assert bytes === JSON.encode!(wire)
+    result
   end
 
   defp request(ctx, pid, method, params) when method in @captured_methods do
