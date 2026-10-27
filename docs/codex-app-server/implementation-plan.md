@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [goal/queue notification unit](goal-queue-notification-envelopes-qualification.md)
+qualifies only roots 2823/2831/2835; nine implemented siblings remain unchanged.
+Direct fixed-YOLO threads prove complete paused goal state/get/clear with zero
+inference and one real idle-queue execution with independent provider metadata.
+Original full frames/order, exact client inventories and checked cleanup remain;
+queue cohorts imply no fixed count or receipt ordering. Focused **2/0** and final
+**35 ordinary cases twice**, syntax/strict checks and 401-source guard pass;
+all 399 prior paths stay unchanged and ten upstream files match the pin. Only
+these three become scoped implemented: **5,136 implemented /1,419 missing
+/66 blocked**, unchanged requirements and zero verified. Continue ordinary
+reasoning/checklist envelopes and normal lifecycle roots; prohibited/full-goal
+gates remain incomplete.
+
 The [fuzzy-notification unit](fuzzy-notification-envelopes-qualification.md)
 qualifies exact3071–3074/3079–3082 through two cold owned roots, the official
 full `abe` ranking, independent file omission and original complete-frame order.

@@ -110140,24 +110140,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-queue-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/12",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V405 scoped ordinary actual-native complete goal updated/cleared and queue changed envelopes. New two-case module directly creates threads inheriting fixedYOLO,without old TurnFixture.thread/finish helpers. Paused goal has independent complete literal objective/budget100 then changed objective/null budget,zero tokens/time and native createdAt/updatedAt in host-second bounds;public get/set/clear agree,preserved createdAt and original full updated/clear frames follow their native receipts. Zero inference on goal path. Separate queue path adds one literal client/text item,observes its actual started/completed turn,public empty queue and exactly one local provider request with matching input/thread/turn/queue-trigger metadata. Nonempty full queue-notice cohort binds ordered original incoming JSON before Session decode,known thread ID,current generation and host-bracketed emittedAtMs. Cohort cutoff is completed turn plus empty-readback/drain,not total notice count/loss proof or queue receipt-order promise. Actual10goal/5queue RPC inventories and exact original pairs,256records/events,256KiBframe/4MiB,5sRPC/goal,20squeue/60scase,frozen inputs/workspace and checked native/provider/Port cleanup remain. Focused2/0 then final35/0 ordinary twice;four Python syntax checks,format/compile/strictCredo and401stable source guard pass,all399prior bytes unchanged;existing queued provider newly guarded without modification. Ten upstream files/three stable exact nodes match pin. Nine already implemented siblings unchanged;no active goals/provenance/security/permission variants,aliases,other transports/OS/backend/full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/12",
       "schema": "ServerNotification.json",
       "schema_sha256": "8cee440d0923c0462137832b30eec85809459e136f9307389537eeed38fbf384",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -110362,24 +110370,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-queue-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/14",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V405 scoped ordinary actual-native complete goal updated/cleared and queue changed envelopes. New two-case module directly creates threads inheriting fixedYOLO,without old TurnFixture.thread/finish helpers. Paused goal has independent complete literal objective/budget100 then changed objective/null budget,zero tokens/time and native createdAt/updatedAt in host-second bounds;public get/set/clear agree,preserved createdAt and original full updated/clear frames follow their native receipts. Zero inference on goal path. Separate queue path adds one literal client/text item,observes its actual started/completed turn,public empty queue and exactly one local provider request with matching input/thread/turn/queue-trigger metadata. Nonempty full queue-notice cohort binds ordered original incoming JSON before Session decode,known thread ID,current generation and host-bracketed emittedAtMs. Cohort cutoff is completed turn plus empty-readback/drain,not total notice count/loss proof or queue receipt-order promise. Actual10goal/5queue RPC inventories and exact original pairs,256records/events,256KiBframe/4MiB,5sRPC/goal,20squeue/60scase,frozen inputs/workspace and checked native/provider/Port cleanup remain. Focused2/0 then final35/0 ordinary twice;four Python syntax checks,format/compile/strictCredo and401stable source guard pass,all399prior bytes unchanged;existing queued provider newly guarded without modification. Ten upstream files/three stable exact nodes match pin. Nine already implemented siblings unchanged;no active goals/provenance/security/permission variants,aliases,other transports/OS/backend/full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/14",
       "schema": "ServerNotification.json",
       "schema_sha256": "dca88a6c508c18527d40729a1d9eaa5cdfe58859f64220f5d0f081902658ec5a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -110488,24 +110504,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-queue-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/15",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V405 scoped ordinary actual-native complete goal updated/cleared and queue changed envelopes. New two-case module directly creates threads inheriting fixedYOLO,without old TurnFixture.thread/finish helpers. Paused goal has independent complete literal objective/budget100 then changed objective/null budget,zero tokens/time and native createdAt/updatedAt in host-second bounds;public get/set/clear agree,preserved createdAt and original full updated/clear frames follow their native receipts. Zero inference on goal path. Separate queue path adds one literal client/text item,observes its actual started/completed turn,public empty queue and exactly one local provider request with matching input/thread/turn/queue-trigger metadata. Nonempty full queue-notice cohort binds ordered original incoming JSON before Session decode,known thread ID,current generation and host-bracketed emittedAtMs. Cohort cutoff is completed turn plus empty-readback/drain,not total notice count/loss proof or queue receipt-order promise. Actual10goal/5queue RPC inventories and exact original pairs,256records/events,256KiBframe/4MiB,5sRPC/goal,20squeue/60scase,frozen inputs/workspace and checked native/provider/Port cleanup remain. Focused2/0 then final35/0 ordinary twice;four Python syntax checks,format/compile/strictCredo and401stable source guard pass,all399prior bytes unchanged;existing queued provider newly guarded without modification. Ten upstream files/three stable exact nodes match pin. Nine already implemented siblings unchanged;no active goals/provenance/security/permission variants,aliases,other transports/OS/backend/full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/15",
       "schema": "ServerNotification.json",
       "schema_sha256": "814f3635700dcd7b531f21f2922d94f9f6d9bc94c0da174e69aaf504148e783f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary goal/queue profile](goal-queue-notification-envelopes-qualification.md)
+uses direct fixed-YOLO threads, full independent paused-goal/get/clear maps and
+one real queued execution with matching provider metadata/public empty queue.
+Original frame order, native timestamps, exact client inventories and checked
+cleanup remain. Goal receipt ordering is explicit; queue notice counts/order
+remain bounded cohort evidence. Focused **2/0** and final **35 ordinary cases
+twice**, strict checks and 401-source guard pass; all 399 prior paths remain
+unchanged and ten upstream files match the pin. Only roots 2823/2831/2835 become
+scoped implemented: **5,136 implemented /1,419 missing /66 blocked**, unchanged
+requirements and zero verified. Continue reasoning/checklist envelopes and
+ordinary lifecycle roots; all prohibited/full-goal gates remain incomplete.
+
 The [fuzzy-notification profile](fuzzy-notification-envelopes-qualification.md)
 proves complete native ranked/empty/idle frames through two cold roots, an
 independent official ranking and deliberate file omission. Original ingress
