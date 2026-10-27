@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [fuzzy start/update ID correction](fuzzy-session-request-ids-qualification.md)
+binds only 1139/1149 from unchanged original-frame and independent scanner/query
+evidence. Both V450 **58/0** runs enable it; 417 functional sources/nine logs and
+825 static sources/four logs stay exact. No new test runs. Counts: **5,274
+implemented / 1,267 missing / 80 blocked**, unchanged requirements and zero
+verified. Stop/causal-clear remain unqualified. Continue process input/output
+evidence; prohibited/full-goal gates stay incomplete.
+
 ### Permitted static checkpoint after V453
 
 At exact `main` `041fa85deb4c1213f134e347a5a7dd7a5110118a`, four reviewed

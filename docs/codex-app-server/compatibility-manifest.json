@@ -57947,27 +57947,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-session-request-ids-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/169/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V454 evidence-index correction for two independently supported physical fuzzy sessionStart/sessionUpdate id references,unique-string profile. Existing unchanged native_fuzzy_notification_envelope_test independently chooses string IDs,captures original outgoing/incoming bytes/maps,requires exact sent envelope/encoded bytes and matching response ID/keys. Start really registers the selected root/scanner,then first nonempty abe update yields independently golden-ranked3-versus2 rows on two owned trees,establishing root association and applied query beyond empty ACKs. Eleven native/oracle files,2exact nodes and parent identities archive/export-match. All417V450tested sources/9logs and825static-source hashes/4logs exact;both58ordinary selections enable this file. No new runtime/test/source change. Only1139/1149 gain scoped implemented evidence;zero verified,no same-hash alias credit. Scanner-idle completion/late empty snapshots do not prove causal clear or stop;no stop171,legacy fuzzy,int64/concurrent/reused/reconnect/other OS/transports/full lifecycle claim. Existing caps/source controls/owned cleanup remain. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/169/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -58281,27 +58289,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-session-request-ids-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/170/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V454 evidence-index correction for two independently supported physical fuzzy sessionStart/sessionUpdate id references,unique-string profile. Existing unchanged native_fuzzy_notification_envelope_test independently chooses string IDs,captures original outgoing/incoming bytes/maps,requires exact sent envelope/encoded bytes and matching response ID/keys. Start really registers the selected root/scanner,then first nonempty abe update yields independently golden-ranked3-versus2 rows on two owned trees,establishing root association and applied query beyond empty ACKs. Eleven native/oracle files,2exact nodes and parent identities archive/export-match. All417V450tested sources/9logs and825static-source hashes/4logs exact;both58ordinary selections enable this file. No new runtime/test/source change. Only1139/1149 gain scoped implemented evidence;zero verified,no same-hash alias credit. Scanner-idle completion/late empty snapshots do not prove causal clear or stop;no stop171,legacy fuzzy,int64/concurrent/reused/reconnect/other OS/transports/full lifecycle claim. Existing caps/source controls/owned cleanup remain. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/170/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {

@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [fuzzy-session ID correction](fuzzy-session-request-ids-qualification.md)
+binds 1139/1149 independently to existing original-frame/scanner-root/query-result
+oracles. The unchanged file is enabled in both V450 **58/0** runs; all 417
+functional sources/nine logs and 825 static sources/four logs remain exact.
+Eleven native files/two nodes/parent identities match the pin; no new test runs.
+Counts: **5,274 implemented / 1,267 missing / 80 blocked**, unchanged requirements
+and zero verified. Stop/causal-clear remain unqualified. Continue ordinary
+process input/output evidence; prohibited/full-goal gates remain incomplete.
+
 The [permitted static checkpoint after V453](repair-qualification.md#permitted-static-checkpoint-after-v453)
 passes umbrella warning-free compile, root format, forced Dialyzer and assets
 build at `041fa85`, with all 825 source/configuration/lock/style hashes unchanged.
