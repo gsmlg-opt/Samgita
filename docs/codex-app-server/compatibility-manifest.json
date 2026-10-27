@@ -110417,24 +110417,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/11",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V442 complete genuine native thread/attachment/updated envelope for committed create,remove,recreate lifecycle. Test-local original ingress captures exact independent method/params and bracketed emittedAtMs,canonical export,direct JSON/Wire,generation,correlation and response-before-notice order. Duplicate add retains original payload/UUIDv7/Unix-second createdAt;duplicate removal stays empty. Two repeated list/owner-list barriers after each stage retain exactly created(A),deleted(A),created(B);a distinct cold owned process retains replacement membership while unloaded and adds no inference or attachment notice. One frozen local model request,30 warm/9 cold outgoing frames,bounds,config/workspace guards and confirmed existing owner/Port/PID cleanup remain. Exact absence covers the finite observed pre-close barriers,not shutdown-tail bytes discarded by existing Owner.await_exit or unbounded future traffic. Focused1/0,55reviewed ordinary cases twice,outside consumer1/0,nine checks and415stable sources;414prior paths exact. Six native producer/store files/one exact node archive/export-match. Only2819 gains scoped implemented evidence,zero verified;multi-client/concurrent writes,fork-copy,pagination,remote/OS/transports and broader lifecycle stay unqualified. No mocked producer or legacy success substituted. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/11",
       "schema": "ServerNotification.json",
       "schema_sha256": "1f31c7967b8a2de4aa0387663993a96739ec2cbe3215072234541ff40e92f9fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

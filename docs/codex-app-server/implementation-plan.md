@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native attachment lifecycle](attachment-envelope-qualification.md) checks
+whole original create/delete/recreate notices, duplicate mutation retention,
+response ordering and exact warm/cold durable membership. Focused **1/0**,
+**55 ordinary cases twice**, outside consumer **1/0**, nine checks and 415 stable
+sources pass; all 414 prior paths remain exact. Six source files/one canonical
+node match the pin. Only 2819 gains evidence: **5,247 implemented / 1,308 missing
+/ 66 blocked**, unchanged requirements and zero verified. Exact notice absence
+covers observed pre-close barriers, not shutdown-tail bytes. Continue explicit
+null local-plugin scope; prohibited/full-goal gates remain incomplete.
+
 The [permitted static checkpoint](repair-qualification.md#permitted-static-checkpoint-after-v441)
 passes umbrella warning-free compile, root format, forced Dialyzer and assets
 build at `e724960`, with all 822 source/configuration/lock/style hashes unchanged.

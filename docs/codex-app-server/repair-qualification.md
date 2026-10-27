@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native attachment lifecycle](attachment-envelope-qualification.md) checks
+committed create/delete/recreate, retained duplicate operations, full original
+notice/response ordering and repeated warm/cold membership. Focused **1/0**,
+**55 ordinary cases twice**, outside consumer **1/0**, nine checks and 415 stable
+sources pass. Only 2819 gains evidence: **5,247 implemented / 1,308 missing /
+66 blocked**, unchanged requirements and zero verified. Existing shutdown
+cleanup remains; finite pre-close observations do not claim shutdown-tail
+capture. Continue explicit null local-plugin scope; prohibited/full-goal gates
+remain incomplete.
+
 ### Permitted static checkpoint after V441
 
 At exact `main` `e724960572b3c674334630b8839fde5d68b3847b`, four reviewed
