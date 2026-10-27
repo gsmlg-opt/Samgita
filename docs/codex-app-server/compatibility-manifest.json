@@ -97802,49 +97802,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-git-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/gitInfo",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V430 scoped actual-native persistent-fork GitInfo wrapper/nonnull branch only. Before native launch an exclusively owned temporary Git repo independently fixes its commit SHA, branch and absent origin. Fixed-YOLO public parent creation/name/read then one public persistent fork produce complete independent 32-field native response and thread/started snapshot with exact GitInfo, lineage, stored defaults, generated ID/path and measured times. Original pre-Session ingress/correlation/order, parent direct-start null, actual warm stored metadata, unchanged parent bytes/Git tree, idle provider journals and checked native/provider/Git-command owner/PID/Port cleanup all pass. One fixture setup mismatch was source-diagnosed and repaired by predeclaring ordinary project configuration before freezing; no trust/policy assertion or variant. Focused1/0, 46reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;412sources stable,411prior unchanged. Twelve whole sources and two canonical nodes archive/export-match. Only2436/2437 gain scoped implemented evidence,zero verified;no new field children/remote Git/inference/other transports. Prohibited security/auth/credential/permission/approval tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/gitInfo",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b49ab934d16b24d8affa7ed8019241a73407c357759c2cd9246b867c8bbd0f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_git_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "gitInfo"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-git-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/gitInfo/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V430 scoped actual-native persistent-fork GitInfo wrapper/nonnull branch only. Before native launch an exclusively owned temporary Git repo independently fixes its commit SHA, branch and absent origin. Fixed-YOLO public parent creation/name/read then one public persistent fork produce complete independent 32-field native response and thread/started snapshot with exact GitInfo, lineage, stored defaults, generated ID/path and measured times. Original pre-Session ingress/correlation/order, parent direct-start null, actual warm stored metadata, unchanged parent bytes/Git tree, idle provider journals and checked native/provider/Git-command owner/PID/Port cleanup all pass. One fixture setup mismatch was source-diagnosed and repaired by predeclaring ordinary project configuration before freezing; no trust/policy assertion or variant. Focused1/0, 46reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;412sources stable,411prior unchanged. Twelve whole sources and two canonical nodes archive/export-match. Only2436/2437 gain scoped implemented evidence,zero verified;no new field children/remote Git/inference/other transports. Prohibited security/auth/credential/permission/approval tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/Thread/properties/gitInfo/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "2fd69e87d805d4623fc602f564bbfbad310cfe5530246d69573f3ac7c41c8916",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_git_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

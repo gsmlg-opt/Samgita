@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [persistent-fork Git profile](fork-git-notification-qualification.md) adds
+genuine populated creation-notification metadata from an independently observed
+owned Git repository. Focused1/0 and46reviewed ordinary cases at both seeds pass
+with strict checks and412stable source hashes,all411prior unchanged. Only2436/
+2437 gain implemented evidence;full compatibility and prohibited/hosted gates
+remain incomplete.
+
 The [ordinary direct MCP profile](mcp-request-metadata-qualification.md) adds
 complete original nested/optional inputs and actual backend/results, preserving
 a source-corrected initial progress-token oracle failure and cold counter reset.

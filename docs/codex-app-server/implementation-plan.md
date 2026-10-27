@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [persistent-fork Git notification](fork-git-notification-qualification.md)
+qualifies only2436/2437 through independent prelaunch Git facts and a complete
+original32-field native fork response/notification, with actual stored metadata,
+unchanged parent/Git inputs and zero inference. A source-diagnosed fixture setup
+mismatch is corrected without changing bounds/assertions. Focused **1/0**,
+**46ordinary cases twice**,strict checks and412stable sources pass;all411prior
+paths stay exact. Twelve whole sources/two canonical nodes match the pin.
+Contracts: **5,199 implemented /1,356 missing /66 blocked**;requirements and zero
+verified unchanged. Continue genuine realtime start/stop;prohibited/full-goal
+gates remain incomplete.
+
 The [ordinary root Interrupt Hook unit](ordinary-interrupt-hook-qualification.md)
 qualifies only2210 through a genuine stock-native cancellation,one exact owned
 sync handler and complete original Hook pair/interrupted terminal oracles.
