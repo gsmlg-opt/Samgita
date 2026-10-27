@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit local featured-ID unit](ordinary-local-plugin-featured-ids-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, including **68 files / 129
+actual-native cases twice**, three selected WebSocket seeds, outside consumer
+**1/0**, static/build checks and **1,687** identical guarded hashes. Exactly
+one new presence/value assertion retains all original oracles and bounds.
+Only owner4644 gains scoped implemented evidence: **5,496 implemented /
+995 missing / 130 blocked** contracts, unchanged requirements, zero verified.
+Continue the source-reviewed existing transcript-role index, then the local
+workspace-search discriminator. Prohibited/hosted, A11, unavailable
+emitter/external/OS, full compatibility and release gates remain open.
+
 The [realtime thread-identity index](ordinary-realtime-thread-identity-index.md)
 reuses exact original received-frame coverage in the unchanged first ordinary
 realtime case from the passed **68-file / 129-case** two-seed matrix. Distinct

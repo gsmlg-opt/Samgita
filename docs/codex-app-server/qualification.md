@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [explicit local featured-ID unit](ordinary-local-plugin-featured-ids-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **68 files / 129 actual-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0** and
+static/build checks with **1,687** identical guarded hashes. One independent
+presence/value assertion closes the consistent-omission gap for the original
+warm/cold local replies; every earlier oracle and bound stays exact. Only
+owner4644 gains scoped implemented evidence: **5,496 implemented / 995 missing /
+130 blocked** contracts, unchanged requirements and zero verified. Continue
+the source-reviewed existing transcript-role index and local workspace-search
+discriminator. Prohibited/hosted, A11, unavailable emitter/external/OS, full
+compatibility and release gates remain incomplete. Nothing is published or
+deployed.
+
 The [realtime thread-identity index](ordinary-realtime-thread-identity-index.md)
 binds two exact fields to the unchanged first native lifecycle case in the
 passed **68-file / 129-case** two-seed matrix. All **1,686** other guarded

@@ -269,6 +269,7 @@ defmodule SamgitaCodexDriver.NativeLocalPluginFilterValuesTest do
         "forceRefetch" => false
       })
 
+    assert Map.fetch!(listed, "featuredPluginIds") === []
     assert Map.fetch!(listed, "marketplaceLoadErrors") === []
     assert [marketplace] = Map.fetch!(listed, "marketplaces")
 

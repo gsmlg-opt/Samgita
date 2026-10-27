@@ -169896,27 +169896,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-local-plugin-featured-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/PluginListResponse.json#/properties/featuredPluginIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V523 actual-native explicit empty local featuredPluginIds output. One independent Map.fetch!(listed, featuredPluginIds) === [] assertion closes a consistent-omission/wrong-value gap within the existing authored seven-plugin local marketplace matrix for both warm and distinct cold natives. All original full response bytes/maps and unique-string correlation, complete warm/cold equality, catalog/source-scope/input-retention/no-inference and confirmed cleanup remain required. Exact single-insertion reconstruction retains every original byte; no new case, provider, method/call, helper, deadline, capture cap or runtime code. Pinned non-curated local producer directly returns Vec::new(), with unskipped serde serialization; schema default alone cannot supply presence evidence. This physical output field/local empty branch only; no nonempty string item, remote recommendation/ranking, absent-field/default interoperability, alias, other transport/OS, whole-method or verified credit. Prohibited tests/audits/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/featuredPluginIds",
       "required": false,
       "schema": "v2/PluginListResponse.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs:227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "featuredPluginIds"
     },
     {
