@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native revert-notice profile](thread-revert-envelope-qualification.md)
+preserves the actual retained-prefix mutation/read/reconnect behavior and both
+rejection controls, checking complete original native envelopes and no duplicate
+delivery or inference. Focused **3/0**, **54 ordinary cases twice**, outside
+consumer **1/0**, nine checks and 414 stable sources pass. Only 3119–3122 gain
+evidence: **5,246 implemented / 1,309 missing / 66 blocked**, unchanged
+requirements and zero verified. Continue the next bounded ordinary lifecycle;
+prohibited/full-goal gates remain incomplete.
+
 The [complete MCP startup profile](mcp-startup-envelope-qualification.md)
 checks full original starting/ready envelopes for two named held dependencies,
 preserving all existing inventories, bounds and checked cleanup. Final combined

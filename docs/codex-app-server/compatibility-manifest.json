@@ -119018,98 +119018,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/8",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V441 selected complete native thread/reverted envelope from genuine paginated two-turn history mutation. A bounded test-local selected original JSONL ledger before Session decode agrees with exact independently prescribed full native envelope,original generation,host-bracketed native emission time,direct JSON/Wire decode and canonical experimental schema. Missing target and unsupported history modes leave both event/capture empty. Retained first-turn text/answer,cursor/page/full history,unchanged workspace sentinel,exactly two model requests and explicit native reconnect/resume retain their original assertions;selected original capture stays exact through reconnect/cleanup with no duplicate notice or inference. Local wrapper on_exit delegates to the unchanged StdioSessionFixture.close,retaining owned-process cleanup;no shared helper or production change. Focused3/0,54reviewed ordinary cases twice,outside consumer1/0,nine checks and414stable sources;413prior paths exact,one modified profile. Five whole native producer/store files/four exact nodes archive/export-match. Only3119-3122 gain scoped implemented evidence,zero verified;concurrent/active-turn/CAS/fork/compression,remote/OS/transports and broader lifecycle remain unqualified. No mocked producer or legacy success is substituted. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/8",
       "schema": "ServerNotification.json",
       "schema_sha256": "0f385115e14bf23abb08c887519932f0fe153ef5ea63bf01e007637527d8c011",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/8/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V441 selected complete native thread/reverted envelope from genuine paginated two-turn history mutation. A bounded test-local selected original JSONL ledger before Session decode agrees with exact independently prescribed full native envelope,original generation,host-bracketed native emission time,direct JSON/Wire decode and canonical experimental schema. Missing target and unsupported history modes leave both event/capture empty. Retained first-turn text/answer,cursor/page/full history,unchanged workspace sentinel,exactly two model requests and explicit native reconnect/resume retain their original assertions;selected original capture stays exact through reconnect/cleanup with no duplicate notice or inference. Local wrapper on_exit delegates to the unchanged StdioSessionFixture.close,retaining owned-process cleanup;no shared helper or production change. Focused3/0,54reviewed ordinary cases twice,outside consumer1/0,nine checks and414stable sources;413prior paths exact,one modified profile. Five whole native producer/store files/four exact nodes archive/export-match. Only3119-3122 gain scoped implemented evidence,zero verified;concurrent/active-turn/CAS/fork/compression,remote/OS/transports and broader lifecycle remain unqualified. No mocked producer or legacy success is substituted. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "11a1dfa02f070ad4e973b0ea86b8e69271c9dceee32dda65a60ea80ca1cc42a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/8/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V441 selected complete native thread/reverted envelope from genuine paginated two-turn history mutation. A bounded test-local selected original JSONL ledger before Session decode agrees with exact independently prescribed full native envelope,original generation,host-bracketed native emission time,direct JSON/Wire decode and canonical experimental schema. Missing target and unsupported history modes leave both event/capture empty. Retained first-turn text/answer,cursor/page/full history,unchanged workspace sentinel,exactly two model requests and explicit native reconnect/resume retain their original assertions;selected original capture stays exact through reconnect/cleanup with no duplicate notice or inference. Local wrapper on_exit delegates to the unchanged StdioSessionFixture.close,retaining owned-process cleanup;no shared helper or production change. Focused3/0,54reviewed ordinary cases twice,outside consumer1/0,nine checks and414stable sources;413prior paths exact,one modified profile. Five whole native producer/store files/four exact nodes archive/export-match. Only3119-3122 gain scoped implemented evidence,zero verified;concurrent/active-turn/CAS/fork/compression,remote/OS/transports and broader lifecycle remain unqualified. No mocked producer or legacy success is substituted. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/8/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3e5d99d16e5a7de89c5d43c3d9b195e3c22877294d104781bd9149120b5b1754",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/8/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V441 selected complete native thread/reverted envelope from genuine paginated two-turn history mutation. A bounded test-local selected original JSONL ledger before Session decode agrees with exact independently prescribed full native envelope,original generation,host-bracketed native emission time,direct JSON/Wire decode and canonical experimental schema. Missing target and unsupported history modes leave both event/capture empty. Retained first-turn text/answer,cursor/page/full history,unchanged workspace sentinel,exactly two model requests and explicit native reconnect/resume retain their original assertions;selected original capture stays exact through reconnect/cleanup with no duplicate notice or inference. Local wrapper on_exit delegates to the unchanged StdioSessionFixture.close,retaining owned-process cleanup;no shared helper or production change. Focused3/0,54reviewed ordinary cases twice,outside consumer1/0,nine checks and414stable sources;413prior paths exact,one modified profile. Five whole native producer/store files/four exact nodes archive/export-match. Only3119-3122 gain scoped implemented evidence,zero verified;concurrent/active-turn/CAS/fork/compression,remote/OS/transports and broader lifecycle remain unqualified. No mocked producer or legacy success is substituted. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4a86501cf0051b0637242f38455f6dfe67c0c0bc1fad086e20213ebd1b76deb0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

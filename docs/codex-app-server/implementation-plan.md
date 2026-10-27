@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original native thread-revert profile](thread-revert-envelope-qualification.md)
+keeps genuine two-turn mutation, retained-prefix cursor/history, unchanged
+workspace and explicit reconnect/no-replay controls, adding complete original
+notice ingress and canonical validation. Focused **3/0**, **54 ordinary cases
+twice**, outside consumer **1/0**, nine checks and 414 stable sources pass.
+Five producer/store files/four nodes match the pin. Only 3119–3122 gain evidence:
+**5,246 implemented / 1,309 missing / 66 blocked**, unchanged requirements and
+zero verified. Continue the next bounded ordinary native lifecycle;
+prohibited/full-goal gates remain incomplete.
+
 The [complete MCP startup envelopes](mcp-startup-envelope-qualification.md)
 retain the existing two-name held-initialize/ready flow with full original
 native maps, stage-specific timing, canonical schema, generation/order and
