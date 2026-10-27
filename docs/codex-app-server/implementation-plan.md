@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [realtime thread-identity index](ordinary-realtime-thread-identity-index.md)
+reuses exact original received-frame coverage in the unchanged first ordinary
+realtime case from the passed **68-file / 129-case** two-seed matrix. Distinct
+emitter/schema proofs, **1,686** identical other guarded sources, every
+unchanged command and fresh inventory consistency bind precisely 5878/5880.
+Contracts: **5,495 implemented / 996 missing / 130 blocked**; requirements
+unchanged; zero verified. No tests, cases, providers, limits or runtime change.
+Continue the reviewed scratch local-plugin `featuredPluginIds: []` assertion;
+it has not run and earns no state credit. Prohibited/hosted, A11, unavailable
+emitter/external/OS, full-goal and release gates remain open.
+
 The [local environment cwd unit](ordinary-local-environment-info-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, including **68 files / 129 actual-native
 cases twice**, selected WebSocket cases at three seeds, outside consumer

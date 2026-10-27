@@ -210757,27 +210757,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-thread-identity-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeItemCompletedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V521/V522 existing-native evidence index for physical completed-notification threadId only. The unchanged first ordinary realtime lifecycle case independently obtains and UUID-checks thread/start identity, then requires both actual original completed params maps to contain that exact ID for native session-started and requested-close items. Complete envelope equality, required-string aggregate schema validation, original raw incoming bytes/JSON/Wire decoding, ordering/generation/timestamp brackets, persisted timeline, finite local backend/no-inference and owned cleanup remain asserted. Distinct canonical HistoryItemCompleted production path and public emitter are archive-verified; this is no shared primitive-hash or sibling inference. Existing case is included in the final68file129case two-seed matrix. No new test/scenario/method/provider/call/bound/runtime behavior; metadata binding must preserve all executable hashes and command plan. No arbitrary IDs, transcript/item variants, other transports/OS, real remote realtime service, full method/verified promotion or A11 qualification. Prohibited tests/audits/broad/hosted and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadRealtimeItemCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -210817,27 +210825,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-thread-identity-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeItemStartedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V521/V522 existing-native evidence index for physical started-notification threadId only. The unchanged first ordinary realtime lifecycle case independently obtains and UUID-checks thread/start identity, then requires both actual original started params maps to contain that exact ID for native session-started and requested-close items. Complete envelope equality, required-string aggregate schema validation, original raw incoming bytes/JSON/Wire decoding, ordering/generation/timestamp brackets, persisted timeline, finite local backend/no-inference and owned cleanup remain asserted. Distinct canonical HistoryItemStarted production path and public emitter are archive-verified; this is no shared primitive-hash or sibling inference. Existing case is included in the final68file129case two-seed matrix. No new test/scenario/method/provider/call/bound/runtime behavior; metadata binding must preserve all executable hashes and command plan. No arbitrary IDs, transcript/item variants, other transports/OS, real remote realtime service, full method/verified promotion or A11 qualification. Prohibited tests/audits/broad/hosted and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadRealtimeItemStartedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {

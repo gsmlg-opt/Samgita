@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [realtime thread-identity index](ordinary-realtime-thread-identity-index.md)
+binds two exact fields to the unchanged first native lifecycle case in the
+passed **68-file / 129-case** two-seed matrix. All **1,686** other guarded
+sources and every command remain identical; fresh inventory consistency and
+the metadata binding pass. Distinct started/completed producers, standalone
+schemas and original-frame UUID associations justify two scoped implemented
+owners without redundant tests. Contracts: **5,495 implemented / 996 missing /
+130 blocked**; unchanged requirements and zero verified. The reviewed local
+plugin-list empty-featured-ID assertion is next, still scratch-only and
+unexecuted. Prohibited/hosted, A11, emitter/external/OS, full compatibility and
+release gates remain incomplete. Nothing is published or deployed.
+
 The [local environment metadata unit](ordinary-local-environment-info-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**: **68 files / 129 actual-native cases at both
 seeds**, three selected neutral WebSocket seeds, outside consumer **1/0** and
