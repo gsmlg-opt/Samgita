@@ -30,9 +30,11 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     @impl true
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
+      incoming = Keyword.fetch!(opts, :incoming_capture)
+      transport_opts = Keyword.drop(opts, [:capture, :incoming_capture])
 
-      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
-           do: {:ok, Map.put(state, :capture, capture)}
+      with {:ok, state} <- Stdio.open(transport_opts),
+           do: {:ok, Map.merge(state, %{capture: capture, incoming_capture: incoming})}
     end
 
     @impl true
@@ -57,7 +59,51 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case capture_incoming(next, events) do
+            :ok -> {:ok, events, next}
+            {:error, error} -> {:error, error, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp capture_incoming(state, events) do
+      Enum.reduce_while(events, :ok, fn event, :ok ->
+        case capture_incoming_event(state, event) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      end)
+    end
+
+    defp capture_incoming_event(state, {:message, encoded}) do
+      case JSON.decode(encoded) do
+        {:ok, %{"method" => "item/tool/requestUserInput"} = wire} ->
+          Agent.get_and_update(state.incoming_capture, &append_incoming(&1, encoded, wire))
+
+        _ ->
+          :ok
+      end
+    end
+
+    defp capture_incoming_event(_state, _event), do: :ok
+
+    defp append_incoming(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if length(ledger.frames) < 32 and size <= 65_536 and
+           ledger.bytes + size <= 1_048_576 do
+        {:ok, %{frames: ledger.frames ++ [{encoded, wire}], bytes: ledger.bytes + size}}
+      else
+        {{:error, SamgitaProtocolCodex.Error.new(:test_incoming_capture_overflow)}, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -119,7 +165,15 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
         &{&1, snapshot(&1)}
       )
 
-    Map.merge(ctx, %{inputs: inputs, capture: start_supervised!({Agent, fn -> [] end})})
+    Map.merge(ctx, %{
+      inputs: inputs,
+      capture: start_supervised!({Agent, fn -> [] end}),
+      incoming_capture:
+        start_supervised!(%{
+          id: :incoming_capture,
+          start: {Agent, :start_link, [fn -> %{frames: [], bytes: 0} end]}
+        })
+    })
   end
 
   test "native search exposes a held ordinary input request then clears it and stays unloaded after restart",
@@ -170,6 +224,12 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
 
     [request] = Enum.filter(held, &(&1.wire["method"] == "item/tool/requestUserInput"))
     assert request.kind == :server_request
+    incoming = Agent.get(ctx.incoming_capture, & &1)
+    assert %{frames: [{original, wire}], bytes: size} = incoming
+    assert size == byte_size(original)
+    assert wire === request.wire
+    assert Map.fetch!(wire, "id") === Map.fetch!(request.wire, "id")
+    assert JSON.decode!(original) === request.wire
     params = Map.fetch!(request.wire, "params")
 
     assert Map.take(params, ~w(threadId turnId itemId isBlocking autoResolutionMs)) == %{
@@ -259,6 +319,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     queries = for {_bytes, %{"method" => "thread/search"} = wire} <- frames, do: wire
     assert length(Enum.uniq_by(queries, & &1["id"])) == 4
     assert Enum.map(queries, & &1["params"]) == List.duplicate(search_params(), 4)
+    assert Agent.get(ctx.incoming_capture, & &1) === incoming
   end
 
   defp assert_provider(ctx, thread, [first, second]) do
@@ -445,6 +506,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
                  {CaptureStdio,
                   [
                     capture: ctx.capture,
+                    incoming_capture: ctx.incoming_capture,
                     executable: ctx.binary,
                     args:
                       NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),

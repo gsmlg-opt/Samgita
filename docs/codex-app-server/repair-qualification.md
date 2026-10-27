@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [original incoming-frame follow-up](ordinary-incoming-frame-qualification.md)
+adds bounded original question-request and direct MCP-result frames before
+Session decoding. Complete frame/native-ID equality supplements the independent
+literal/causal oracles; outgoing captures, all eight backend calls, histories and
+owned cleanup remain asserted. Final **6ordinary cases twice**, strict checks
+and389-source guard pass; only the two named modules change and387 others retain
+their bytes. The older154-case results for these edited modules remain historical.
+Only3155/4403 gain evidence; counts remain **5,083 implemented /1,472 missing
+/66 blocked**, unchanged requirements and zero verified. JSONL delimiter/OS-chunk
+preservation is not claimed. Continue reachable ordinary producer/effect gaps;
+prohibited/full-goal gates remain incomplete.
+
 The [question text/MCP result binding](ordinary-question-result-owners.md)
 adds two exact decoded-value owners from already executed positive native
 scenarios. Prior154/0-twice logs and current389-source hashes bind unchanged
@@ -24,7 +36,8 @@ No new runtime result or stronger encoding claim is inferred. Only3155/4403
 become scoped implemented: **5,083 implemented /1,472 missing /66 blocked**,
 unchanged requirements and zero verified. All prohibited/full-goal gates remain
 incomplete. The attempted read-state after-turn candidate is an already
-documented boundary; next strengthen the two ordinary incoming-frame captures.
+documented boundary; V394 above supplies that checkpoint's next incoming-frame
+capture step with fresh final-source results.
 
 The [skills omission boundary](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)
 records upstream evidence for two still-missing explicit-null owners5092/5097.

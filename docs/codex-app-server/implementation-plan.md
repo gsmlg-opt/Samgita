@@ -21,18 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original incoming-frame unit](ordinary-incoming-frame-qualification.md)
+retains real question-request and MCP-result JSON bytes before Session decoding,
+with distinct bounded ledgers and unchanged outgoing captures/causal oracles.
+Fresh **6ordinary cases twice**, format/compile/strict Credo and the389-source
+guard pass. Exactly those two modules differ from V390; all387 other sources
+remain unchanged. Earlier154-case runs for the edited modules remain historical,
+not final-source reuse. Only3155/4403 gain evidence, keeping **5,083 implemented
+/1,472 missing /66 blocked** contracts, unchanged requirements and zero verified.
+The earlier incoming-byte limitation is superseded for these two captures;
+JSONL delimiters and OS chunks are not covered. Continue reachable ordinary
+native producer/effect gaps. Prohibited/broad/hosted, A11, unavailable producers
+and external/OS/platform/full-goal/release gates remain incomplete.
+
 The [ordinary question/result binding](ordinary-question-result-owners.md)
 indexes exact native question text3155 and direct MCP result metadata4403.
 Independent literals and causal question reply/result or eight backend calls
-already pass in the prior154/0-twice matrix; both owning sources remain byte
-identical in the current389-file guard. Nine complete upstream files match the
+already passed in the prior154/0-twice matrix; both owning sources were byte
+identical in that checkpoint's389-file guard. Nine complete upstream files match the
 pin. No new runtime or original incoming-frame byte claim is made. Only those
 two owners become scoped implemented: **5,083 implemented /1,472 missing /66
 blocked** contracts, unchanged requirements and zero verified. The attempted
 read-state after-turn candidate5850–5853 is already a documented source boundary
 in read-state-update-success-limitation.md; no new runtime work follows from it.
-Next strengthen original incoming-frame capture in these two ordinary owning
-tests, preserving decoded-value and causal-result oracles. Prohibited/broad/hosted, A11,
+V394 above completes that checkpoint's next original incoming-frame capture step,
+preserving decoded-value and causal-result oracles. Prohibited/broad/hosted, A11,
 unavailable producers and full-goal/release gates remain incomplete.
 
 The [pinned projection boundaries](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)

@@ -38,9 +38,10 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     @impl true
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
+      incoming_capture = Keyword.fetch!(opts, :incoming_capture)
 
-      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
-           do: {:ok, Map.put(state, :capture, capture)}
+      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :incoming_capture])),
+           do: {:ok, Map.merge(state, %{capture: capture, incoming_capture: incoming_capture})}
     end
 
     @impl true
@@ -66,7 +67,53 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case capture_incoming(next, events) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp capture_incoming(state, events) do
+      Enum.reduce_while(events, :ok, fn event, :ok ->
+        case capture_incoming_event(state, event) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      end)
+    end
+
+    defp capture_incoming_event(state, {:message, encoded}) do
+      case JSON.decode(encoded) do
+        {:ok, %{"id" => _} = wire} ->
+          if Map.has_key?(wire, "method"),
+            do: :ok,
+            else:
+              Agent.get_and_update(state.incoming_capture, &append_incoming(&1, encoded, wire))
+
+        _ ->
+          :ok
+      end
+    end
+
+    defp capture_incoming_event(_state, _event), do: :ok
+
+    defp append_incoming(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if length(ledger.frames) < 32 and size <= 65_536 and ledger.bytes + size <= 1_048_576 do
+        {:ok, %{frames: ledger.frames ++ [{encoded, wire}], bytes: ledger.bytes + size}}
+      else
+        {{:error, SamgitaProtocolCodex.Error.new(:test_incoming_capture_overflow)}, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -132,7 +179,11 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
       config: config,
       journal: journal,
       inputs: inputs,
-      capture: start_supervised!({Agent, fn -> [] end})
+      capture: start_supervised!({Agent, fn -> [] end}),
+      incoming_capture:
+        start_supervised!(
+          Supervisor.child_spec({Agent, fn -> %{frames: [], bytes: 0} end}, id: :incoming_capture)
+        )
     })
   end
 
@@ -271,6 +322,7 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
                  {CaptureStdio,
                   [
                     capture: ctx.capture,
+                    incoming_capture: ctx.incoming_capture,
                     executable: ctx.binary,
                     args: args,
                     cwd: ctx.fixture.workspace,
@@ -314,6 +366,10 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     assert actual === wire
     assert JSON.decode!(bytes) === wire
     assert bytes === JSON.encode!(wire)
+    incoming = Agent.get(ctx.incoming_capture, & &1.frames)
+    assert [{raw, raw_wire}] = Enum.filter(incoming, fn {_raw, frame} -> frame["id"] == id end)
+    assert raw_wire === response
+    assert JSON.decode!(raw) === response
     result
   end
 

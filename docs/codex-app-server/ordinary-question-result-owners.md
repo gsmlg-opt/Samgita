@@ -48,22 +48,29 @@ authentication or permission profile is needed. Existing
 [request-metadata qualification](mcp-request-metadata-qualification.md) retains
 the scenario; its request-field evidence does not itself qualify this result.
 
-## Execution continuity and byte-evidence limit
+## V392 execution continuity and historical byte-evidence limit
 
-Both exact owning modules appear in the previously executed V384 final2 driver
+At this V392 checkpoint, both exact owning modules appeared in the V384 final2 driver
 commands at seeds **501432/987654**, each **154/0**, with no exclusions. Their
-current hashes match the original before/after guard and the current **389**
+then-current hashes matched the original before/after guard and the **389**
 source guard. Those old results are reused with exact source identity; no new
 154-case, aggregate or outside-consumer run is claimed.
 
-The modules retain original outgoing bytes and independently assert complete
-decoded incoming request/response values. They **do not retain original incoming
+At that checkpoint the modules retained original outgoing bytes and independently
+asserted complete decoded incoming request/response values. They **did not retain original incoming
 JSON frame bytes**. Re-encoding the decoded maps does not add that evidence.
 This binding qualifies the named decoded string/object values and their native
 causal paths, without claiming original inbound encoding coverage. The MCP
 result's omitted/null/empty alternatives and other question strings/profiles
 remain unqualified by these assertions. No alias or surrounding family inherits
 acceptance.
+
+[V394](ordinary-incoming-frame-qualification.md) subsequently adds bounded
+original incoming-frame captures to both modules and executes fresh **6/0**
+functional blocks at both seeds. That later source has its own exact-source
+guard; the earlier154-case results remain historical. The byte limitation above
+describes V392, not the current capture implementation. Neither checkpoint
+qualifies OS stream chunks or JSONL delimiter preservation.
 
 Inventory consistency passes. Only **3155/4403** gain scoped implemented
 evidence: contracts become **5,083 implemented /1,472 missing /66 blocked**;
