@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [typed native initialization lifecycle](initialize-typed-correlation-qualification.md)
+checks 0/Unicode/2^53+1 handshake IDs, concurrent typed reads and three explicit
+clean connection generations, preserving instance/gap and owned cleanup.
+Initial focused1/0 then strict-Credo nesting failure is retained; extracting
+unchanged capture logic preserves every bound/assertion. Final focused **1/0**,
+**57 ordinary cases twice**, outside consumer **1/0**, nine checks and 417 stable
+sources pass. Five native files/five nodes match the pin. Only 740–744 gain
+evidence: **5,258 implemented / 1,291 missing / 72 blocked**, unchanged
+requirements and zero verified. No native reorder/stale-frame or new async API
+claim. Continue the existing shell-request envelope; prohibited/full-goal gates
+remain incomplete.
+
 The [native pending/timeout observation](environment-observation-qualification.md)
 adds one no-send passive peer and exact original native status results, positive
 EOF, bounded failure publication and repeated cached failure without a second

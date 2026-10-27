@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [typed initialization/reconnect profile](initialize-typed-correlation-qualification.md)
+retains exact original 0/Unicode/large integer IDs, simultaneous read correlation,
+three owned connection generations and the existing reconnect gap. Initial
+focused1/0 then strict-Credo nesting failure is preserved; unchanged logic was
+extracted. Final focused **1/0**, **57 ordinary cases twice**, outside consumer
+**1/0**, nine checks and 417 stable sources pass. Only 740–744 gain evidence:
+**5,258 implemented / 1,291 missing / 72 blocked**, unchanged requirements and
+zero verified. Continue the existing shell-request envelope; native reorder,
+stale frames and prohibited/full-goal gates remain unqualified.
+
 The [native pending/timeout profile](environment-observation-qualification.md)
 checks two exact pending results, positive native EOF, complete cached timeout
 and repeated status observation through final live-listener barriers. Focused

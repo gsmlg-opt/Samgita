@@ -45796,124 +45796,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialize-typed-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V446 original native initialize envelopes use integer0,Unicode string and integer2^53+1 on three explicit clean stdio generations of one Session. Complete original request/reply JSON and direct Wire equality,hash-pinned canonical ClientRequest,exact result key/path/platform and fixed userAgent prefix/suffix preserve typed correlation. Each generation queues integer7/string7 read aliases before resume;both actual sends precede either consumed native response and each caller receives its exact independent full result;no native reply reordering is claimed. Settled reconnect preserves instance,advances generation,retains previous explicit_reconnect gap,closes the owned old native/Port and sends no automatic request before explicit initialize. Read IDs reused only per generation/Port;exact inventory15RPCpairs/3initialized notices inside32per-direction/1MiB bounds. Zero provider/rollout/workspace effects,source snapshots and existing owned cleanup remain. Initial focused1/0 then strict-Credo depth3/max2 failure is retained;extracting unchanged append body preserves assertions/deadlines/bounds. Final focused1/0,57reviewed ordinary cases twice,outside consumer1/0,nine checks and417stable sources;416prior paths exact. Five native files/five nodes archive/export-match. Only740-744 gain scoped implemented evidence,zero verified;selected initialize params/metadata do not qualify all referenced capabilities/userAgent values or RequestId copies. Async queue calls exercise existing internal request handling,not a new public async API. No real stale-frame,ambiguous disconnect,active cancellation,external/OS/transports/platform or full-goal claim. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/release gates incomplete."
+      ],
       "pointer": "/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "228229cbc1708eacb4f8098153720ca2379faff3cbf4392a24805bee07e36c2f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_request_ids_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialize-typed-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/0/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V446 original native initialize envelopes use integer0,Unicode string and integer2^53+1 on three explicit clean stdio generations of one Session. Complete original request/reply JSON and direct Wire equality,hash-pinned canonical ClientRequest,exact result key/path/platform and fixed userAgent prefix/suffix preserve typed correlation. Each generation queues integer7/string7 read aliases before resume;both actual sends precede either consumed native response and each caller receives its exact independent full result;no native reply reordering is claimed. Settled reconnect preserves instance,advances generation,retains previous explicit_reconnect gap,closes the owned old native/Port and sends no automatic request before explicit initialize. Read IDs reused only per generation/Port;exact inventory15RPCpairs/3initialized notices inside32per-direction/1MiB bounds. Zero provider/rollout/workspace effects,source snapshots and existing owned cleanup remain. Initial focused1/0 then strict-Credo depth3/max2 failure is retained;extracting unchanged append body preserves assertions/deadlines/bounds. Final focused1/0,57reviewed ordinary cases twice,outside consumer1/0,nine checks and417stable sources;416prior paths exact. Five native files/five nodes archive/export-match. Only740-744 gain scoped implemented evidence,zero verified;selected initialize params/metadata do not qualify all referenced capabilities/userAgent values or RequestId copies. Async queue calls exercise existing internal request handling,not a new public async API. No real stale-frame,ambiguous disconnect,active cancellation,external/OS/transports/platform or full-goal claim. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/release gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_request_ids_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialize-typed-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V446 original native initialize envelopes use integer0,Unicode string and integer2^53+1 on three explicit clean stdio generations of one Session. Complete original request/reply JSON and direct Wire equality,hash-pinned canonical ClientRequest,exact result key/path/platform and fixed userAgent prefix/suffix preserve typed correlation. Each generation queues integer7/string7 read aliases before resume;both actual sends precede either consumed native response and each caller receives its exact independent full result;no native reply reordering is claimed. Settled reconnect preserves instance,advances generation,retains previous explicit_reconnect gap,closes the owned old native/Port and sends no automatic request before explicit initialize. Read IDs reused only per generation/Port;exact inventory15RPCpairs/3initialized notices inside32per-direction/1MiB bounds. Zero provider/rollout/workspace effects,source snapshots and existing owned cleanup remain. Initial focused1/0 then strict-Credo depth3/max2 failure is retained;extracting unchanged append body preserves assertions/deadlines/bounds. Final focused1/0,57reviewed ordinary cases twice,outside consumer1/0,nine checks and417stable sources;416prior paths exact. Five native files/five nodes archive/export-match. Only740-744 gain scoped implemented evidence,zero verified;selected initialize params/metadata do not qualify all referenced capabilities/userAgent values or RequestId copies. Async queue calls exercise existing internal request handling,not a new public async API. No real stale-frame,ambiguous disconnect,active cancellation,external/OS/transports/platform or full-goal claim. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/release gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f33d77eec612d9e1ba8150fa4160b163cbc29e38ae931e43d24ed94bdac8784e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_request_ids_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialize-typed-correlation-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V446 original native initialize envelopes use integer0,Unicode string and integer2^53+1 on three explicit clean stdio generations of one Session. Complete original request/reply JSON and direct Wire equality,hash-pinned canonical ClientRequest,exact result key/path/platform and fixed userAgent prefix/suffix preserve typed correlation. Each generation queues integer7/string7 read aliases before resume;both actual sends precede either consumed native response and each caller receives its exact independent full result;no native reply reordering is claimed. Settled reconnect preserves instance,advances generation,retains previous explicit_reconnect gap,closes the owned old native/Port and sends no automatic request before explicit initialize. Read IDs reused only per generation/Port;exact inventory15RPCpairs/3initialized notices inside32per-direction/1MiB bounds. Zero provider/rollout/workspace effects,source snapshots and existing owned cleanup remain. Initial focused1/0 then strict-Credo depth3/max2 failure is retained;extracting unchanged append body preserves assertions/deadlines/bounds. Final focused1/0,57reviewed ordinary cases twice,outside consumer1/0,nine checks and417stable sources;416prior paths exact. Five native files/five nodes archive/export-match. Only740-744 gain scoped implemented evidence,zero verified;selected initialize params/metadata do not qualify all referenced capabilities/userAgent values or RequestId copies. Async queue calls exercise existing internal request handling,not a new public async API. No real stale-frame,ambiguous disconnect,active cancellation,external/OS/transports/platform or full-goal claim. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/release gates incomplete."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4089b3e0215cee9ee008853556027db9f3f55f2c922191850ad1beaa0f85a77a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_request_ids_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialize-typed-correlation-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/0/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V446 original native initialize envelopes use integer0,Unicode string and integer2^53+1 on three explicit clean stdio generations of one Session. Complete original request/reply JSON and direct Wire equality,hash-pinned canonical ClientRequest,exact result key/path/platform and fixed userAgent prefix/suffix preserve typed correlation. Each generation queues integer7/string7 read aliases before resume;both actual sends precede either consumed native response and each caller receives its exact independent full result;no native reply reordering is claimed. Settled reconnect preserves instance,advances generation,retains previous explicit_reconnect gap,closes the owned old native/Port and sends no automatic request before explicit initialize. Read IDs reused only per generation/Port;exact inventory15RPCpairs/3initialized notices inside32per-direction/1MiB bounds. Zero provider/rollout/workspace effects,source snapshots and existing owned cleanup remain. Initial focused1/0 then strict-Credo depth3/max2 failure is retained;extracting unchanged append body preserves assertions/deadlines/bounds. Final focused1/0,57reviewed ordinary cases twice,outside consumer1/0,nine checks and417stable sources;416prior paths exact. Five native files/five nodes archive/export-match. Only740-744 gain scoped implemented evidence,zero verified;selected initialize params/metadata do not qualify all referenced capabilities/userAgent values or RequestId copies. Async queue calls exercise existing internal request handling,not a new public async API. No real stale-frame,ambiguous disconnect,active cancellation,external/OS/transports/platform or full-goal claim. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/release gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f9280c07770b00afb8c28bcfec40b18933a309cee77490154db756a083bfec2b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_request_ids_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
