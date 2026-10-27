@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original shell-request envelopes](shell-request-envelope-qualification.md)
+retain exact string/integer IDs, encoded requests and full submission responses
+on the existing actual-effect/output/cold-history journey. Focused **1/0**,
+**57 ordinary cases twice**, outside consumer **1/0**, nine checks and 417 stable
+sources pass. Only 1273–1277 gain scoped evidence: **5,263 implemented / 1,286
+missing / 72 blocked**, unchanged requirements and zero verified. Submission
+remains separate from completion. Continue pinned config metadata limitations
+and ordinary file paths; prohibited/full-goal gates remain incomplete.
+
 The [typed native initialization lifecycle](initialize-typed-correlation-qualification.md)
 checks 0/Unicode/2^53+1 handshake IDs, concurrent typed reads and three explicit
 clean connection generations, preserving instance/gap and owned cleanup.

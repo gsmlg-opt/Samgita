@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [original shell-request profile](shell-request-envelope-qualification.md)
+preserves actual effects, deltas, lifecycle and cold history while checking
+complete original requests and typed submission correlation. Focused **1/0**,
+**57 ordinary cases twice**, outside consumer **1/0**, nine checks and 417 stable
+sources pass. Only 1273–1277 gain evidence: **5,263 implemented / 1,286 missing /
+72 blocked**, unchanged requirements and zero verified. Continue source-bound
+config metadata limitations and ordinary file paths; prohibited/full-goal gates
+remain incomplete.
+
 The [typed initialization/reconnect profile](initialize-typed-correlation-qualification.md)
 retains exact original 0/Unicode/large integer IDs, simultaneous read correlation,
 three owned connection generations and the existing reconnect gap. Initial

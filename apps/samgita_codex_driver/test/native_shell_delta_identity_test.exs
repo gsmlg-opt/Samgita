@@ -16,6 +16,8 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @request_schema_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+  @request_ids ["owned-v447-shell-alpha", 447_002]
   @effects "owned-shell-effects.log"
   @delta_method "item/commandExecution/outputDelta"
 
@@ -47,7 +49,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     defp capture(state, encoded, wire) do
       if length(Agent.get(state.capture, & &1)) < 16 and byte_size(encoded) <= 4096 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [wire]))
+          Agent.update(state.capture, &(&1 ++ [%{encoded: encoded, wire: wire}]))
           {:ok, next}
         end
       else
@@ -152,14 +154,17 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
             "printf '%s\\n' '#{effect}' >> #{@effects}"
 
         params = %{"threadId" => thread, "command" => command, "timeoutMs" => 5_000}
+        id = Enum.at(@request_ids, index - 1)
+        expected_request = %{"id" => id, "method" => "thread/shellCommand", "params" => params}
         before = length(Agent.get(ctx.capture, & &1))
         before_inbound = length(inbound(ctx))
         generation = Session.status(pid).generation
         lower = System.system_time(:millisecond)
-        assert call(pid, "thread/shellCommand", params) === %{}
+        assert {:ok, response} = Session.request(pid, "thread/shellCommand", params, id: id)
+        assert response === %{"id" => id, "result" => %{}}
         captured = Agent.get(ctx.capture, & &1)
         assert length(captured) == before + 1
-        assert %{"method" => "thread/shellCommand", "params" => ^params} = List.last(captured)
+        assert_shell_request(List.last(captured), expected_request)
         events = collect(pid, [], deadline(20_000))
         upper = System.system_time(:millisecond)
         record = assert_shell(events, thread, output, ctx.fixture.workspace)
@@ -187,9 +192,13 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
     assert length(Enum.uniq(Enum.map(records, & &1.turn))) == 2
     assert length(Enum.uniq(Enum.map(records, & &1.item["id"]))) == 2
+    original_requests = Agent.get(ctx.capture, & &1)
+    assert length(original_requests) === 2
+    assert Enum.map(original_requests, & &1.wire["id"]) === @request_ids
     original_deltas = inbound(ctx)
     saved = history(pid, thread)
     assert_history(saved, records)
+    assert Agent.get(ctx.capture, & &1) === original_requests
     assert inbound(ctx) === original_deltas
     expected_effects = "owned-shell-effect-alpha\nowned-shell-effect-beta\n"
     assert_owned_state(ctx, pid, effects, expected_effects, config, config_bytes)
@@ -198,6 +207,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     assert is_integer(original)
     assert :ok = Session.close(pid)
     refute File.exists?("/proc/#{original}")
+    assert Agent.get(ctx.capture, & &1) === original_requests
     assert inbound(ctx) === original_deltas
     cold = start(ctx)
     replacement = call(cold, "server/diagnostics", %{})["process"]["id"]
@@ -206,11 +216,33 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     assert history(cold, thread) === saved
     assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
     assert length(Agent.get(ctx.capture, & &1)) == 2
+    assert Agent.get(ctx.capture, & &1) === original_requests
     assert inbound(ctx) === original_deltas
     assert_owned_state(ctx, cold, effects, expected_effects, config, config_bytes)
     assert :ok = Session.close(cold)
     refute File.exists?("/proc/#{replacement}")
+    assert Agent.get(ctx.capture, & &1) === original_requests
     assert inbound(ctx) === original_deltas
+  end
+
+  defp assert_shell_request(original, expected) do
+    assert original.wire === expected
+    assert original.encoded === JSON.encode!(expected)
+    assert JSON.decode!(original.encoded) === expected
+    assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 32)
+    assert decoded === expected
+    assert :ok = Schema.validate(request_schema(), original.wire, max_depth: 32)
+  end
+
+  defp request_schema do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> File.read!()
+
+    assert Base.encode16(:crypto.hash(:sha256, bytes), case: :lower) === @request_schema_sha
+    JSON.decode!(bytes)
   end
 
   defp assert_delta_envelopes(ctx, events, record, %{
