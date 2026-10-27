@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary realtime transcript](ordinary-realtime-transcript-qualification.md)
+qualifies seven physical owners with an explicit functional readiness release,
+13complete original native envelopes and repeated independent three-row timeline.
+Streamed durable text and revised flat done stay distinct;the original six-notice
+default remains intact. Focused **2/0**, **49ordinary cases twice**,strict checks
+and414stable sources pass;412prior paths stay exact,two files change. Thirteen
+whole sources/seven nodes match the pin. Contracts:
+**5,225 implemented /1,330 missing /66 blocked**;requirements and zero verified
+unchanged. Continue original dynamic-tool item ingress;prohibited/full-goal gates
+stay incomplete.
+
 The [original shell-output envelopes](shell-output-envelope-qualification.md)
 qualify only2935–2938 by extending the existing ordinary two-command test with
 bounded original incoming capture,complete independent maps/times and literal

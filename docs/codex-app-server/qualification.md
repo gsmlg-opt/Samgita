@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [ordinary realtime transcript](ordinary-realtime-transcript-qualification.md)
+preserves native streamed/done semantics through13original notices and real
+timeline persistence with a functional release barrier. Focused2/0,49ordinary
+cases twice and strict checks pass with414stable sources/412prior unchanged.
+Only seven physical owners gain scoped implemented evidence;original default
+behavior and all prohibited/hosted/full-goal gaps remain explicit.
+
 The [original shell-output profile](shell-output-envelope-qualification.md)
 adds complete independent incoming delta envelopes while retaining two actual
 commands,effects and cold history. Focused1/0,48ordinary cases twice and strict

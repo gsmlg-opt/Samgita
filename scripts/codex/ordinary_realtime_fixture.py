@@ -23,6 +23,11 @@ MODEL = "owned-v432-realtime-model"
 PROMPT = "Owned local realtime start"
 ACK = {"type": "session.updated", "session": {
     "id": "owned-v432-peer-session", "instructions": PROMPT}}
+TRANSCRIPT = [
+    {"type": "response.output_text.delta", "delta": "Owned realtime λ "},
+    {"type": "response.output_text.delta", "delta": "draft."},
+    {"type": "response.output_text.done", "text": "Owned realtime λ revised final."},
+]
 MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
@@ -98,6 +103,25 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 name, value = line.split(":", 1)
                 fields[name.lower()] = value.strip()
 
+        if (fixture.scenario == "transcript" and method == "POST"
+                and path == "/fixture/transcript"):
+            assert fields.get("content-length") == "0"
+            with fixture.lock:
+                assert fixture.state["paths"] == [f"/v1/realtime?model={MODEL}"]
+                assert len(fixture.state["messages"]) == 1
+                assert fixture.state["sent"] == [ACK]
+                assert fixture.state["activeConnections"] == 1
+                assert fixture.state["controls"] == []
+                fixture.state["controls"].append({
+                    "method": "POST", "path": "/fixture/transcript", "bodyBytes": 0})
+                fixture.save_locked()
+            body = b'{"released":true}'
+            self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+                + f"Content-Length: {len(body)}\r\n".encode()
+                + b"Connection: close\r\n\r\n" + body)
+            fixture.release.set()
+            return
+
         if method != "GET" or path != f"/v1/realtime?model={MODEL}":
             with fixture.lock:
                 if method == "POST" and path == "/v1/responses":
@@ -168,6 +192,21 @@ class PeerHandler(socketserver.BaseRequestHandler):
             with fixture.lock:
                 fixture.state["sent"].append(ACK)
                 fixture.save_locked()
+            if fixture.scenario == "transcript":
+                while not fixture.release.is_set():
+                    if fixture.stopping.is_set():
+                        return
+                    remaining = deadline - time.monotonic()
+                    assert remaining > 0, "Owned transcript release deadline"
+                    fixture.release.wait(min(0.2, remaining))
+                if fixture.stopping.is_set():
+                    return
+                for entry in TRANSCRIPT:
+                    self.send_frame(fixture, 1,
+                        json.dumps(entry, ensure_ascii=False, separators=(",", ":")).encode())
+                    with fixture.lock:
+                        fixture.state["sent"].append(entry)
+                        fixture.save_locked()
 
     def send_frame(self, fixture, opcode, payload):
         assert len(payload) <= MAX_FRAME
@@ -217,15 +256,17 @@ class PeerServer(socketserver.TCPServer):
 
 
 class OrdinaryRealtimePeer:
-    def __init__(self, root):
+    def __init__(self, root, scenario="start-stop"):
         self.root = root
+        self.scenario = scenario
         self.lock = threading.Lock()
         self.stopping = threading.Event()
+        self.release = threading.Event()
         self.sockets = set()
         self.handlers = set()
         self.state = {"paths": [], "messages": [], "sent": [], "frameCount": 0,
                       "responsesRequests": 0, "otherHttp": [],
-                      "activeConnections": 0, "requestCount": 0, "errors": []}
+                      "activeConnections": 0, "requestCount": 0, "controls": [], "errors": []}
         self.server = PeerServer(("127.0.0.1", 0), PeerHandler)
         self.server.fixture = self
         self.thread = threading.Thread(
@@ -310,6 +351,7 @@ stream_max_retries = 0
 
     def close(self):
         self.stopping.set()
+        self.release.set()
         # Close sockets before joining bounded handlers. The second slot lets an
         # unintended Responses request be observed while the WS is still open.
         with self.lock:
@@ -356,8 +398,10 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    root = parser.parse_args().root.resolve(strict=True)
-    peer = OrdinaryRealtimePeer(root)
+    parser.add_argument("--scenario", choices=["start-stop", "transcript"], default="start-stop")
+    args = parser.parse_args()
+    root = args.root.resolve(strict=True)
+    peer = OrdinaryRealtimePeer(root, args.scenario)
     signal.signal(signal.SIGTERM, terminate)
     try:
         peer.config()
