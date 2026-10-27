@@ -15,6 +15,23 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+### Permitted static checkpoint after V453
+
+At exact `main` `041fa85deb4c1213f134e347a5a7dd7a5110118a`, four reviewed
+commands pass without running tests or audits: `mix compile --warnings-as-errors`,
+`mix format --check-formatted`, `mix dialyzer --force-check` and `mix assets.build`.
+All 825 source/configuration/lock/style files stay exact. Elixir 1.18.5/OTP 27,
+`MIX_ENV=test` and `ERL_FLAGS='+S 2:2'` are the same verified environment used by
+the functional checks. Runner `/tmp/samgita-functional-static-v453.py`;
+results `/tmp/samgita-functional-static-v453/results.json`, SHA256
+`7f912d99645dfb4fa7123c6fc5937e77cb685f1872ac390022c63712cc97c84f`;
+source guard SHA256
+`4755297766629303e0dcbb36d0a99c97461a62a66c0b0d68e4e3b1c017b96c4b`.
+This adds no compatibility verification state. Final broad, security/permission,
+audit, hosted, assembly/publication and platform gates remain incomplete.
+No tag, publication or deployment occurs. Continue the existing ordinary
+fuzzy-search evidence review. The following records retain prior stage counts.
+
 The [plugin-search ID correction](plugin-search-request-id-qualification.md)
 binds only 1464 to unchanged original-frame/string-ID/local-catalog assertions
 enabled in both V450 **58/0** runs. All 417 sources/nine logs remain exact;

@@ -21,6 +21,13 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [permitted static checkpoint after V453](repair-qualification.md#permitted-static-checkpoint-after-v453)
+passes umbrella warning-free compile, root format, forced Dialyzer and assets
+build at `041fa85`, with all 825 source/configuration/lock/style hashes unchanged.
+It runs no tests or audits and leaves all prohibited/full-goal gates incomplete.
+Continue the existing ordinary fuzzy-search evidence review; ledger states are
+unchanged.
+
 The [plugin-search string-ID correction](plugin-search-request-id-qualification.md)
 binds only 1464 to existing original-frame/correlated local-catalog searches,
 already enabled in both V450 **58/0** ordinary runs. All 417 sources/nine logs
