@@ -416,6 +416,12 @@ separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 
+Uninstalled npm plugin sources can be local catalog descriptors without package
+materialization. The [npm metadata profile](plugin-npm-metadata-qualification.md)
+observes actual normalization and optional null serialization through current
+marketplace bytes. Such inventory evidence establishes no npm download,
+installation, registry availability or execution compatibility.
+
 Native plugin inventory may return valid marketplaces and load errors together.
 The [partial-inventory profile](plugin-installed-errors-qualification.md) checks
 that discovered malformed source paths/messages survive alongside explicit valid

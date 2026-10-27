@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [npm descriptor profile](plugin-npm-metadata-qualification.md) qualifies
+real normalization, optional removal/nulls and current-source/cold restoration
+without installation. Final **87 protocol /148 reviewed ordinary driver at both
+seeds**, outside consumer **1/0**, strict checks and380 stable sources pass; all379
+prior sources stay exact. Only4602–4607 become scoped implemented. Root/assembly
+evidence retains source equivalence; prohibited/broad/hosted and full-goal gates
+remain incomplete.
+
 The [installed-plugin partial inventory](plugin-installed-errors-qualification.md)
 preserves a real valid suggested plugin beside exact malformed-source errors,
 then proves repair/restoration/cold discovery. Initial1/0, focused2/0 twice and

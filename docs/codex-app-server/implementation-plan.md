@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [npm descriptor profile](plugin-npm-metadata-qualification.md) qualifies
+exact4602–4607 via real local suggestion discovery, trimmed populated source
+fields, changed-package/explicit-null reload and restored cold identity. No npm
+installation, registry request or model turn occurs. Initial1/0 and final **87
+schema /148 reviewed ordinary driver twice**, outside consumer **1/0**, strict
+checks and380 stable sources pass; all379 prior sources remain exact. Contracts
+become **5,056 implemented /1,499 missing /66 blocked**; requirements remain
+**462 implemented /12 missing /11 blocked**, zero verified. Continue the sourced
+optional skill-metadata and ordinary direct-MCP recipes. Prohibited/broad/hosted,
+A11, legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [installed-plugin partial inventory](plugin-installed-errors-qualification.md)
 qualifies exact4526/4527 through real malformed marketplace diagnostics while a
 valid explicit suggestion survives. Repeated reads, valid-empty repair, exact

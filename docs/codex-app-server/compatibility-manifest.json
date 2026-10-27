@@ -3764,7 +3764,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/plugin-installed-errors-qualification.md"
+        "docs/codex-app-server/plugin-installed-errors-qualification.md",
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/installed",
@@ -3772,7 +3773,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "params": {
         "$ref": "#/definitions/PluginInstalledParams"
@@ -3804,7 +3806,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs",
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18123,7 +18126,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/plugin-installed-errors-qualification.md"
+        "docs/codex-app-server/plugin-installed-errors-qualification.md",
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/installed",
@@ -18131,7 +18135,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "prerequisites": [
         "initialized"
@@ -18149,7 +18154,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs",
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -162251,7 +162257,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/plugin-installed-errors-qualification.md"
+        "docs/codex-app-server/plugin-installed-errors-qualification.md",
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -162259,7 +162266,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/properties/installSuggestionPluginNames",
@@ -162275,7 +162283,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs",
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -164693,150 +164702,198 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/2",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "c8a72832579befbf71f27e8fc4cb251072957f7ee1b084954a788a05947a5c1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2/properties/package",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/package",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "package"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2/properties/registry",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/registry",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "fe0080db5ba2eb655c7bbdb8dc77160b135fceaa0893bc37d13e7a65da4ef229",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "registry"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "1e84d25e8f1228c7e3a33160b55dbc6112fd34a69282393f675849f2de9a8989",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/2/properties/type/enum/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "ffcac5bd2c4140b25c435e58e2ba4584a0f1c7363e4113aaa30f5534059aa01e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/2/properties/version",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/version",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "7cff19297c0e749f29bbe74b2db291b8f873e32f458a9e4a1a6bc1a610d99a0d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "version"
     },
     {
@@ -165797,7 +165854,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -165805,7 +165863,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "ID/name/remote source/version/policies; cold synthetic installed snapshot separately proves true installed/enabled and nonempty localVersion. Shared canonical definitions do not prove installed/search methods executed."
+        "ID/name/remote source/version/policies; cold synthetic installed snapshot separately proves true installed/enabled and nonempty localVersion. Shared canonical definitions do not prove installed/search methods executed.",
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/source",
@@ -165820,7 +165879,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
         ]
       },
       "transport_coverage": [
