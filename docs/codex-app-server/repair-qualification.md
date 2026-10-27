@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [skills omission boundary](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)
+records upstream evidence for two still-missing explicit-null owners5092/5097.
+Their actual typed producer preserves None then omits keys; schema fixtures or
+mock peers cannot supply native emission evidence. Sixteen complete sources and
+both canonical nodes match the pin. No test is run or promoted; all389 executable
+sources retain the previous four-case/two-seed evidence. Requirements/contracts
+and zero-verified totals stay unchanged. All prohibited/full-goal gates stay open.
+
 The [positive plugin-search scope case](plugin-search-scope-qualification.md)
 uses actual local global/personal producers, prescribed ranks, removed/restored
 manifests and a fresh native process. Eighteen searches and24 exact correlated

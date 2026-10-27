@@ -181005,11 +181005,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/dependencies/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. No test/native/transport/state promotion is attached; this owner remains missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred."
+      ],
       "pointer": "/definitions/SkillMetadata/properties/dependencies/anyOf/1",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -181160,11 +181164,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/interface/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. No test/native/transport/state promotion is attached; this owner remains missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred."
+      ],
       "pointer": "/definitions/SkillMetadata/properties/interface/anyOf/1",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",

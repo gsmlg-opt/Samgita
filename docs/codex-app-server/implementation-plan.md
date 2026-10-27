@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [pinned projection boundaries](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)
+now include exact skills/list null owners5092/5097. Native optional loading,
+Option-preserving conversion and skip-on-None serialization omit absent fields;
+removal/reload/cold checks cannot qualify explicit null. Sixteen whole sources
+match the immutable archive and both nodes match their canonical hashes.
+This source-only unit changes no executable/test/state/count/transport claim;
+both owners stay missing. The four-case/two-seed result retains all389 source
+bytes. Continue ordinary reachable candidates, excluding these known boundaries.
+Prohibited/broad/hosted, A11, unavailable producers and full-goal gates stay open.
+
 The [positive local plugin-search scope profile](plugin-search-scope-qualification.md)
 proves distinct global/personal and omitted-union results from two inert local
 catalogs. Held/restored manifests change exactly their own result set; a fresh
