@@ -150,8 +150,12 @@ The original request, prepared durable record and provider projection are
 separate oracles: native adds content annotations and can remove internal
 metadata before model submission. The driver preserves original wire values;
 native normalization belongs to Codex and cannot silently redefine neutral
-project-event acceptance. Active queue/cancellation qualification remains
-separate, and ambiguous mutations never become automatic retries.
+project-event acceptance. The [active queue profile](ordinary-active-injected-history-qualification.md)
+uses a real held tool callback to distinguish volatile ACK from FIFO consumption
+and interrupted-queue cleanup, including preservation of original history through
+cold resume. Local callback write remains sent-unconfirmed despite later terminal
+effects. Other failure/item/transport variants remain separate, and ambiguous
+mutations never become automatic retries.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

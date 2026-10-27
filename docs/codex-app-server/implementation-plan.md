@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary active injection unit](ordinary-active-injected-history-qualification.md)
+passes focused **2/0 at both fixed seeds** and strict Credo across595 files.
+The genuine held tool callback brackets volatile ACKs; explicit reply produces
+FIFO durable/provider context, while interruption/cold resume preserves complete
+earlier user/call rows without resurrecting the queue. Local callback response
+stays sent-unconfirmed. The unchanged capture assertions are extracted after
+one recorded complexity failure; no bound or runtime behavior changes. Exactly
+the existing five owners gain supplemental evidence, with counts unchanged.
+The reviewed selection now names63 files/123 cases; final combined-source
+qualification remains pending alongside the next historical call/output-pair
+injection profile. No prohibited or hosted check runs; all broader gates remain.
+
 The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)
 passes **62 files / 121 actual-native cases twice**, three selected WebSocket
 seeds, outside consumer **1/0** and all fourteen reviewed checks. All1,681

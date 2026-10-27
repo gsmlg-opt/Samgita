@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary active injection unit](ordinary-active-injected-history-qualification.md)
+passes focused **2/0 twice** and strict Credo across595 sources. Real callback
+bracketing proves ACK/consumption differences, FIFO records and interrupted-only
+queue removal while retaining complete original history across cold resume.
+The capture-helper complexity failure and unchanged-assertion extraction remain
+recorded. Counts stay5,482 implemented/1,009 missing/130 blocked contracts,
+unchanged requirements and zero verified. The reviewed ordinary selection gains
+two cases; combined-source qualification follows the next historical call/output
+pair. Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility
+and release remain incomplete.
+
 The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)
 passes **62 files / 121 actual-native cases twice**, selected WebSocket seeds,
 outside consumer **1/0** and all fourteen reviewed checks. All1,681 guarded
