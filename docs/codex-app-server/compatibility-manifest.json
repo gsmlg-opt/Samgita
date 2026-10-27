@@ -88631,21 +88631,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/native-import-title-index-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_or_null_only native evidence: Actual imports return null; nonnull title is external record-only metadata. Other variants and full implementation qualification remain incomplete."
+        "Historical import-lifecycle evidence observed selected null/record-only metadata. Its generalized nonnull-title limitation is superseded for genuine native session import by V433;that historical evidence remains retained.",
+        "V433 evidence-index-only actual-native session-import title. The unchanged reviewed ordinary native_session_import_success_test.exs prescribes source title Owned imported history lambda before native launch and imports an owned foreign transcript through public detect/import. Complete independent success/progress/completion and warm/cold durable history retain that nonnull source title,including when the caller supplies a different advisory title. Native thread identity joins actual imported rollout/read evidence;no title is copied from output. Completed-source repeat and separate cold process preserve original stored history with zero model requests and no ambiguous replay. This binding reuses V430 final46reviewed ordinary cases twice/eight check logs and all412source hashes without executable changes or a new run. Twelve whole upstream sources and this canonical node archive/export-match. Only2125 becomes scoped implemented,zero verified;null-only historical evidence does not qualify other title sources,transports,OS or failures-array2126. Forbidden tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/title",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "22d483720693f9854320a677de0fec59965144f665726c1d8bde77dd42c3e0aa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -88653,10 +88655,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {

@@ -1,5 +1,11 @@
 # Codex compatibility qualification
 
+The [genuine import-title index](native-import-title-index-qualification.md)
+corrects one stale missing owner using already passing actual import effects,
+independent complete source-title oracles and cold durable history. No new
+execution/source change;V43046/0twice and412hashes remain exact. Only2125 gains
+scoped implemented evidence;all broader gates remain incomplete.
+
 The [persistent-fork Git profile](fork-git-notification-qualification.md) adds
 genuine populated creation-notification metadata from an independently observed
 owned Git repository. Focused1/0 and46reviewed ordinary cases at both seeds pass

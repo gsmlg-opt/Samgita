@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [genuine import-title index](native-import-title-index-qualification.md)
+binds only2125 to the unchanged ordinary native import profile's independent
+source title,full success/progress/completion and warm/cold persisted history.
+It corrects the stale record-only generalization while retaining historical
+evidence. No executable change/new run;V430 **46ordinary cases twice**,eight
+check logs and all412source hashes remain exact. Twelve whole sources/one node
+match the pin. Contracts: **5,200 implemented /1,355 missing /66 blocked**;
+requirements and zero verified unchanged. Continue real realtime start/stop;
+prohibited/full-goal gates stay incomplete.
+
 The [persistent-fork Git notification](fork-git-notification-qualification.md)
 qualifies only2436/2437 through independent prelaunch Git facts and a complete
 original32-field native fork response/notification, with actual stored metadata,
