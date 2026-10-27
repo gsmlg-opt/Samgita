@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary root Interrupt Hook unit](ordinary-interrupt-hook-qualification.md)
+qualifies only2210 through a genuine stock-native cancellation,one exact owned
+sync handler and complete original Hook pair/interrupted terminal oracles.
+The sole model request stays held;no provider completion/app-server frame is
+synthesized. Focused **1/0**, **45ordinary cases twice**,strict checks and411
+stable source hashes pass;ten whole sources/one canonical node match the pin.
+Contracts: **5,197 implemented /1,358 missing /66 blocked**;requirements and
+zero verified unchanged. Continue the zero-inference public persistent-fork
+Git notification profile;prohibited/full-goal gates remain incomplete.
+
 The [local environment status unit](local-environment-status-qualification.md)
 adds four original full status exchanges before/after the existing thread-local
 resource-absence failure. Local remains ready;an unconfigured ID remains unknown

@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary Interrupt Hook profile](ordinary-interrupt-hook-qualification.md)
+checks the full original native Hook pair plus interrupted terminal from one
+root cancellation and one owned sync handler. Provider inference stays held;
+only positive fixture setup is configured,no permission behavior is tested.
+Focused **1/0**, **45ordinary cases twice**,strict checks and411stable sources
+pass;ten whole sources/one node match the pin. Only2210 gains evidence:
+**5,197 implemented /1,358 missing /66 blocked**,unchanged requirements and
+zero verified. Continue the ordinary persistent-fork Git notification profile;
+prohibited/full-goal gates remain incomplete.
+
 The [local environment status profile](local-environment-status-qualification.md)
 checks exact ready/unknown full native status responses before/after the selected
 thread's resource-absence failure. Four scoped owners3912/3913/3918/3919 gain
