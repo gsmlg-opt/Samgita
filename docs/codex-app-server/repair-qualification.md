@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [filesystem/deprecation profile](filesystem-and-deprecation-envelopes-qualification.md)
+proves real native file notices/unwatch fences and a real paginated-read legacy
+producer using complete original wrappers, independent file effects and explicit
+incoming-ledger growth. Missing kernel notices cannot become optional success.
+Focused **2/0** and final **38ordinary cases twice**, syntax/strict checks and
+404stable-source guard pass;402other prior paths stay unchanged and10whole
+upstream files match the pin. Only root3007 and3063–3066 become scoped
+implemented: **5,152 implemented /1,403 missing /66 blocked**, unchanged
+requirements and zero verified. Continue ordinary unsupported-service-tier
+warnings; all prohibited/full-goal gates remain incomplete.
+
 The [ordinary usage/resolution profile](usage-resolution-envelopes-qualification.md)
 proves distinct nonzero native sampling/cumulative counters and actual ordinary
 input resolution using original raw wrappers, independent provider results and

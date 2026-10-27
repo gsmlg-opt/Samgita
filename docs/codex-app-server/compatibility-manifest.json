@@ -115509,24 +115509,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-and-deprecation-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/54",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V411/V412 scoped actual-native ordinary filesystem/deprecation envelopes. New one-case direct fixed-YOLO FS module starts one owned native process and zero threads/providers/model turns/commands. Two existing Unicode files with literal watch IDs and independent actual host writes/readbacks require real native full fs/changed frames;positive liveB control follows completed unwatchA. Original response fences bound every A/B notice;retired final mutations plus fixed500msquiet,final diagnostics,strict empty unwatch results,all7unique original RPC pairs and final collected raw equality remain. Duplicates allowed only exact bounded maps,not one notice/write.5srequired notices never become optional success despite official OS-unreliability/noop-fallback source. Existing input-wait module performs same three paginated includeTurns reads;actual native perread deprecation follows successful hydration before response. Literal summary/detailsnull/full wrappers,perread host clocks/current session generation/schema and immediate response-barrier drain match exact original appends. Raw selected ledger grows1notice,2heldrequest,3resolution,4warmread,5coldread with original request/resolution tuples and byte accounting preserved. No read-response bytes captured;existing5outbound search/reply frames are selected inventory only. Actual provideranswer/count3,outcome/digest,persisted two-turn history,unloaded cold state and checked native/owner/PID/Port cleanup remain. FS128frames/events,64KiB/2MiB,5sRPC/notices,500msquiet/60scase;old input-wait bounds/resources unchanged. Focused2/0 and final38/0ordinary twice,six Python syntax checks,format/compile/strictCredo and404stable-source guard pass,402other prior bytes unchanged. Ten whole upstream files/five exact stable nodes archive-match. Only3007/3063-3066 promoted,three implemented FS siblings unchanged;prior changed owning-source runs stay historical. No other legacy cause/nonnull details,filesystem/OS/transport/backend variant,global loss/backpressure/replay promise or full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/54",
       "schema": "ServerNotification.json",
       "schema_sha256": "c29c89746fbf456f5526b3d0ffb2191b42d7087facbc436c88a0618bfe7af609",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -117023,98 +117031,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-and-deprecation-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/67",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V411/V412 scoped actual-native ordinary filesystem/deprecation envelopes. New one-case direct fixed-YOLO FS module starts one owned native process and zero threads/providers/model turns/commands. Two existing Unicode files with literal watch IDs and independent actual host writes/readbacks require real native full fs/changed frames;positive liveB control follows completed unwatchA. Original response fences bound every A/B notice;retired final mutations plus fixed500msquiet,final diagnostics,strict empty unwatch results,all7unique original RPC pairs and final collected raw equality remain. Duplicates allowed only exact bounded maps,not one notice/write.5srequired notices never become optional success despite official OS-unreliability/noop-fallback source. Existing input-wait module performs same three paginated includeTurns reads;actual native perread deprecation follows successful hydration before response. Literal summary/detailsnull/full wrappers,perread host clocks/current session generation/schema and immediate response-barrier drain match exact original appends. Raw selected ledger grows1notice,2heldrequest,3resolution,4warmread,5coldread with original request/resolution tuples and byte accounting preserved. No read-response bytes captured;existing5outbound search/reply frames are selected inventory only. Actual provideranswer/count3,outcome/digest,persisted two-turn history,unloaded cold state and checked native/owner/PID/Port cleanup remain. FS128frames/events,64KiB/2MiB,5sRPC/notices,500msquiet/60scase;old input-wait bounds/resources unchanged. Focused2/0 and final38/0ordinary twice,six Python syntax checks,format/compile/strictCredo and404stable-source guard pass,402other prior bytes unchanged. Ten whole upstream files/five exact stable nodes archive-match. Only3007/3063-3066 promoted,three implemented FS siblings unchanged;prior changed owning-source runs stay historical. No other legacy cause/nonnull details,filesystem/OS/transport/backend variant,global loss/backpressure/replay promise or full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/67",
       "schema": "ServerNotification.json",
       "schema_sha256": "39dbd0461946cd8daefe938dc55380ac7746500787baf94eaf5724ac15cbfd44",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-and-deprecation-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/67/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V411/V412 scoped actual-native ordinary filesystem/deprecation envelopes. New one-case direct fixed-YOLO FS module starts one owned native process and zero threads/providers/model turns/commands. Two existing Unicode files with literal watch IDs and independent actual host writes/readbacks require real native full fs/changed frames;positive liveB control follows completed unwatchA. Original response fences bound every A/B notice;retired final mutations plus fixed500msquiet,final diagnostics,strict empty unwatch results,all7unique original RPC pairs and final collected raw equality remain. Duplicates allowed only exact bounded maps,not one notice/write.5srequired notices never become optional success despite official OS-unreliability/noop-fallback source. Existing input-wait module performs same three paginated includeTurns reads;actual native perread deprecation follows successful hydration before response. Literal summary/detailsnull/full wrappers,perread host clocks/current session generation/schema and immediate response-barrier drain match exact original appends. Raw selected ledger grows1notice,2heldrequest,3resolution,4warmread,5coldread with original request/resolution tuples and byte accounting preserved. No read-response bytes captured;existing5outbound search/reply frames are selected inventory only. Actual provideranswer/count3,outcome/digest,persisted two-turn history,unloaded cold state and checked native/owner/PID/Port cleanup remain. FS128frames/events,64KiB/2MiB,5sRPC/notices,500msquiet/60scase;old input-wait bounds/resources unchanged. Focused2/0 and final38/0ordinary twice,six Python syntax checks,format/compile/strictCredo and404stable-source guard pass,402other prior bytes unchanged. Ten whole upstream files/five exact stable nodes archive-match. Only3007/3063-3066 promoted,three implemented FS siblings unchanged;prior changed owning-source runs stay historical. No other legacy cause/nonnull details,filesystem/OS/transport/backend variant,global loss/backpressure/replay promise or full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/67/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e0e4196cdf87a4de788e08d9a42736651c89b6be0326623d08d0dcb96b164ba6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-and-deprecation-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/67/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V411/V412 scoped actual-native ordinary filesystem/deprecation envelopes. New one-case direct fixed-YOLO FS module starts one owned native process and zero threads/providers/model turns/commands. Two existing Unicode files with literal watch IDs and independent actual host writes/readbacks require real native full fs/changed frames;positive liveB control follows completed unwatchA. Original response fences bound every A/B notice;retired final mutations plus fixed500msquiet,final diagnostics,strict empty unwatch results,all7unique original RPC pairs and final collected raw equality remain. Duplicates allowed only exact bounded maps,not one notice/write.5srequired notices never become optional success despite official OS-unreliability/noop-fallback source. Existing input-wait module performs same three paginated includeTurns reads;actual native perread deprecation follows successful hydration before response. Literal summary/detailsnull/full wrappers,perread host clocks/current session generation/schema and immediate response-barrier drain match exact original appends. Raw selected ledger grows1notice,2heldrequest,3resolution,4warmread,5coldread with original request/resolution tuples and byte accounting preserved. No read-response bytes captured;existing5outbound search/reply frames are selected inventory only. Actual provideranswer/count3,outcome/digest,persisted two-turn history,unloaded cold state and checked native/owner/PID/Port cleanup remain. FS128frames/events,64KiB/2MiB,5sRPC/notices,500msquiet/60scase;old input-wait bounds/resources unchanged. Focused2/0 and final38/0ordinary twice,six Python syntax checks,format/compile/strictCredo and404stable-source guard pass,402other prior bytes unchanged. Ten whole upstream files/five exact stable nodes archive-match. Only3007/3063-3066 promoted,three implemented FS siblings unchanged;prior changed owning-source runs stay historical. No other legacy cause/nonnull details,filesystem/OS/transport/backend variant,global loss/backpressure/replay promise or full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/67/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "108a845cf1f1799bca69f81c4a96ed8bc73af846a856a97caeaed3beb8644dde",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-and-deprecation-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/67/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V411/V412 scoped actual-native ordinary filesystem/deprecation envelopes. New one-case direct fixed-YOLO FS module starts one owned native process and zero threads/providers/model turns/commands. Two existing Unicode files with literal watch IDs and independent actual host writes/readbacks require real native full fs/changed frames;positive liveB control follows completed unwatchA. Original response fences bound every A/B notice;retired final mutations plus fixed500msquiet,final diagnostics,strict empty unwatch results,all7unique original RPC pairs and final collected raw equality remain. Duplicates allowed only exact bounded maps,not one notice/write.5srequired notices never become optional success despite official OS-unreliability/noop-fallback source. Existing input-wait module performs same three paginated includeTurns reads;actual native perread deprecation follows successful hydration before response. Literal summary/detailsnull/full wrappers,perread host clocks/current session generation/schema and immediate response-barrier drain match exact original appends. Raw selected ledger grows1notice,2heldrequest,3resolution,4warmread,5coldread with original request/resolution tuples and byte accounting preserved. No read-response bytes captured;existing5outbound search/reply frames are selected inventory only. Actual provideranswer/count3,outcome/digest,persisted two-turn history,unloaded cold state and checked native/owner/PID/Port cleanup remain. FS128frames/events,64KiB/2MiB,5sRPC/notices,500msquiet/60scase;old input-wait bounds/resources unchanged. Focused2/0 and final38/0ordinary twice,six Python syntax checks,format/compile/strictCredo and404stable-source guard pass,402other prior bytes unchanged. Ten whole upstream files/five exact stable nodes archive-match. Only3007/3063-3066 promoted,three implemented FS siblings unchanged;prior changed owning-source runs stay historical. No other legacy cause/nonnull details,filesystem/OS/transport/backend variant,global loss/backpressure/replay promise or full verified acceptance. Prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/67/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "7e72ab0b04d6502d8534ff8f0688022449753937a43a91ef83707833f9c35f9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

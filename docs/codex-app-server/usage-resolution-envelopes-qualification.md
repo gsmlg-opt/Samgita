@@ -1,5 +1,10 @@
 # Ordinary usage and request-resolution envelopes
 
+The later [filesystem/deprecation unit](filesystem-and-deprecation-envelopes-qualification.md)
+extends the input-wait capture with real legacy notices and provides fresh
+final-source functional checks. Exact source-bound results below remain
+historical for their recorded bytes.
+
 Combined V409/V410 starts from `main`
 `1b349ac2b9df9c569216d113bc63254b51e7df30`. Only full roots **2863/2955** are in
 scope; six implemented method/literal/params siblings stay unchanged. Existing

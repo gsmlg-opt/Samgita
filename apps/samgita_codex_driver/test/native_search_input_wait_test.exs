@@ -21,6 +21,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
   @warm_done "Owned searchable warmup done"
   @choice_done "Owned ordinary choice One complete"
   @answers %{"answers" => %{"fixture" => %{"answers" => ["One"]}}}
+  @read_summary "Full-history hydration is deprecated for paginated threads; omit `includeTurns` or set it to `false`, then page with `thread/turns/list` and `thread/items/list`."
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -84,7 +85,11 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     defp capture_incoming_event(state, {:message, encoded}) do
       case JSON.decode(encoded) do
         {:ok, %{"method" => method} = wire}
-        when method in ["item/tool/requestUserInput", "serverRequest/resolved"] ->
+        when method in [
+               "item/tool/requestUserInput",
+               "serverRequest/resolved",
+               "deprecationNotice"
+             ] ->
           Agent.get_and_update(state.incoming_capture, &append_incoming(&1, encoded, wire))
 
         _ ->
@@ -194,7 +199,9 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     first = turn(warm.pid, thread, @warmup, %{})
     first_events = collect(warm.pid, [], &finished?(&1, thread, first), deadline(20_000))
     assert_answer(first_events, thread, first, @warm_done)
-    initial = read(warm.pid, thread)
+    initial = read(ctx, warm.pid, thread)
+    initial_incoming = Agent.get(ctx.incoming_capture, & &1)
+    assert %{frames: [initial_notice]} = initial_incoming
     assert_history(initial, [{first, @warmup, @warm_done}])
     path = Map.fetch!(initial, "path")
     assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
@@ -226,8 +233,8 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     [request] = Enum.filter(held, &(&1.wire["method"] == "item/tool/requestUserInput"))
     assert request.kind == :server_request
     incoming = Agent.get(ctx.incoming_capture, & &1)
-    assert %{frames: [{original, wire}], bytes: size} = incoming
-    assert size == byte_size(original)
+    assert %{frames: [^initial_notice, {original, wire}], bytes: size} = incoming
+    assert size == initial_incoming.bytes + byte_size(original)
     assert wire === request.wire
     assert Map.fetch!(wire, "id") === Map.fetch!(request.wire, "id")
     assert JSON.decode!(original) === request.wire
@@ -295,7 +302,9 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     assert %{interactions: 0} = Session.status(warm.pid)
     assert_provider(ctx, thread, [first, second])
     search(ctx, warm.pid, initial, %{"type" => "idle"})
-    final = read(warm.pid, thread)
+    assert Agent.get(ctx.incoming_capture, & &1) === resolved_incoming
+    final = read(ctx, warm.pid, thread)
+    warm_incoming = Agent.get(ctx.incoming_capture, & &1)
     assert_history(final, [{first, @warmup, @warm_done}, {second, @question, @choice_done}])
     assert hd(Map.fetch!(final, "turns")) === hd(Map.fetch!(initial, "turns"))
     final_file = snapshot(path)
@@ -309,14 +318,17 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
 
     assert_retained(ctx, warm.pid, retained)
     close(warm)
-    assert Agent.get(ctx.incoming_capture, & &1) === resolved_incoming
+    assert Agent.get(ctx.incoming_capture, & &1) === warm_incoming
 
     cold = start(ctx)
     refute cold.native == warm.native
     assert_unloaded(cold.pid)
     search(ctx, cold.pid, initial, %{"type" => "notLoaded"})
     assert_unloaded(cold.pid)
-    restored = read(cold.pid, thread)
+    assert Agent.get(ctx.incoming_capture, & &1) === warm_incoming
+    restored = read(ctx, cold.pid, thread)
+    final_incoming = Agent.get(ctx.incoming_capture, & &1)
+    assert length(final_incoming.frames) === 5
     assert Map.fetch!(restored, "turns") === Map.fetch!(final, "turns")
     assert Map.fetch!(restored, "path") == path
     assert_unloaded(cold.pid)
@@ -329,7 +341,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     queries = for {_bytes, %{"method" => "thread/search"} = wire} <- frames, do: wire
     assert length(Enum.uniq_by(queries, & &1["id"])) == 4
     assert Enum.map(queries, & &1["params"]) == List.duplicate(search_params(), 4)
-    assert Agent.get(ctx.incoming_capture, & &1) === resolved_incoming
+    assert Agent.get(ctx.incoming_capture, & &1) === final_incoming
   end
 
   defp assert_resolution(ctx, events, request, incoming, {lower, upper, generation}) do
@@ -369,9 +381,9 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
   end
 
   defp assert_resolution_ingress(ctx, incoming, resolution) do
-    [original_request] = incoming.frames
+    [original_notice, original_request] = incoming.frames
     ledger = Agent.get(ctx.incoming_capture, & &1)
-    assert %{frames: [^original_request, {encoded, wire}], bytes: size} = ledger
+    assert %{frames: [^original_notice, ^original_request, {encoded, wire}], bytes: size} = ledger
     assert size === incoming.bytes + byte_size(encoded)
     assert wire === resolution.wire
     assert JSON.decode!(encoded) === resolution.wire
@@ -540,8 +552,60 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
   defp assert_unloaded(pid),
     do: assert(call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil})
 
-  defp read(pid, thread),
-    do: call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+  defp read(ctx, pid, thread) do
+    incoming = Agent.get(ctx.incoming_capture, & &1)
+    generation = Session.status(pid).generation
+    lower = System.system_time(:millisecond)
+    result = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+    upper = System.system_time(:millisecond)
+    assert result["id"] === thread and result["historyMode"] === "paginated"
+    assert Session.status(pid).generation === generation
+    assert_read_notice(ctx, pid, incoming, {lower, upper, generation})
+    result
+  end
+
+  defp assert_read_notice(ctx, pid, incoming, {lower, upper, generation}) do
+    # Native queues this notice before returning the successful read response.
+    assert {:ok, events} = Session.drain(pid)
+    assert length(events) <= 128
+    assert byte_size(:erlang.term_to_binary(events)) <= 1_048_576
+
+    refute Enum.any?(
+             events,
+             &(&1.kind in [:server_request, :unsupported_server_request] or
+                 &1.wire["method"] == "error")
+           )
+
+    [notice] = Enum.filter(events, &(&1.wire["method"] == "deprecationNotice"))
+    emitted_at = Map.fetch!(notice.wire, "emittedAtMs")
+    assert is_integer(emitted_at) and lower <= emitted_at and emitted_at <= upper
+    assert notice.kind === :notification and notice.generation === generation
+
+    assert notice.wire === %{
+             "method" => "deprecationNotice",
+             "params" => %{"summary" => @read_summary, "details" => nil},
+             "emittedAtMs" => emitted_at
+           }
+
+    schema =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+      |> File.read!()
+      |> JSON.decode!()
+
+    assert :ok = SamgitaProtocolCodex.Schema.validate(schema, notice.wire, max_depth: 32)
+    assert_read_notice_ingress(ctx, incoming, notice)
+  end
+
+  defp assert_read_notice_ingress(ctx, incoming, notice) do
+    ledger = Agent.get(ctx.incoming_capture, & &1)
+    assert [{encoded, wire}] = Enum.drop(ledger.frames, length(incoming.frames))
+    assert ledger.frames === incoming.frames ++ [{encoded, wire}]
+    assert ledger.bytes === incoming.bytes + byte_size(encoded)
+    assert wire === notice.wire
+    assert JSON.decode!(encoded) === notice.wire
+  end
 
   defp call(pid, method, params) do
     id = "owned-input-wait-#{System.unique_integer([:positive, :monotonic])}"

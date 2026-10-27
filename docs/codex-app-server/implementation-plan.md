@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [filesystem/deprecation unit](filesystem-and-deprecation-envelopes-qualification.md)
+qualifies only root3007 and3063–3066, preserving three implemented FS siblings.
+Actual host writes trigger complete native file notices, live control delivery
+and original unwatch fences; no optional kernel-event success is accepted. Three
+existing paginated reads supply real legacy deprecation frames, exact five-record
+incoming growth and preserved request/resolution/history controls. Focused **2/0**
+and final **38ordinary cases twice**, syntax/strict checks and404stable sources
+pass;402other prior paths stay unchanged and10whole upstream files match the pin.
+Only these five become scoped implemented: **5,152 implemented /1,403 missing
+/66 blocked**, unchanged requirements and zero verified. Continue ordinary
+unsupported-service-tier warning envelopes; prohibited/full-goal gates stay open.
+
 The [usage/resolution unit](usage-resolution-envelopes-qualification.md)
 qualifies only roots2863/2955, preserving six implemented siblings. Distinct
 nonzero provider reports discriminate six native counters and accumulated totals;
