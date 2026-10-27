@@ -146480,21 +146480,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/retained-output-qualification.md"
+        "docs/codex-app-server/retained-output-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/delta",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/delta",
       "required": true,
       "schema": "v2/FileChangeOutputDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -146514,21 +146516,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/retained-output-qualification.md"
+        "docs/codex-app-server/retained-output-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/FileChangeOutputDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -146548,21 +146552,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/retained-output-qualification.md"
+        "docs/codex-app-server/retained-output-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/FileChangeOutputDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -146582,21 +146588,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/retained-output-qualification.md"
+        "docs/codex-app-server/retained-output-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/FileChangeOutputDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -203316,7 +203324,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -203324,14 +203333,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/result",
       "required": true,
       "schema": "v2/ThreadPredictionUpdatedNotification.json",
       "schema_sha256": "6fc082ff199df67e1bb01fab77f9105a7c104e2ad6b7e7554ce6da08c09ed6c2",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -203350,7 +203360,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -203358,14 +203369,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/sourceTurnId",
       "required": true,
       "schema": "v2/ThreadPredictionUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -203384,7 +203396,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/retained-notification-producer-limitations.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -203392,14 +203405,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "V457 source-proven unavailable native producer at immutable rust-v0.163.0. FileChangeOutputDelta definition explicitly says server no longer emits this notification;retained declaration/media/TUI consumers have no constructor/send path. ThreadPredictionRequest dispatcher unconditionally returns method_not_found not implemented yet;prediction updated type/wire/media/TUI references have no producer. All5259Rust files and5key files archive-match,whole-source references retained,and7exact physical nodes match canonical export. Existing scripted file-change codec/handler and prediction-negative test/transport evidence are preserved with their prior limitations,never promoted to native success;no new runtime/test/transport credit. Actual patchUpdated/diff or prediction-style fork paths cannot qualify these notices. Native success remains blocked pending an explicit immutable-target/evidence-contract decision or supported upstream producer,without schema deletion/local workaround/mock acceptance.850V456sources/13logs stay exact;no new test run. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadPredictionUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

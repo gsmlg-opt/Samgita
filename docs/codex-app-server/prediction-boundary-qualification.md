@@ -1,5 +1,9 @@
 # Advertised prediction contract without an upstream implementation
 
+The later [V457 source binding](retained-notification-producer-limitations.md)
+marks the three physical prediction-updated fields blocked, preserving the
+historical negative/synthetic evidence below. Native success remains incomplete.
+
 The immutable target advertises `thread/prediction/request` and
 `thread/prediction/updated`, but its production dispatcher explicitly returns
 method-not-found for the request. Its source contains no prediction-notification

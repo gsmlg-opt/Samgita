@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [retained notification producer boundary](retained-notification-producer-limitations.md)
+formally blocks only 3996–3999/5725–5727, preserving prior synthetic/negative
+evidence. Explicit native non-emission/unimplemented paths, all 5,259 Rust files,
+five key files and seven exact nodes match the immutable pin. All 850 V456 source
+hashes/13 successful logs stay exact; no new tests run. Counts: **5,277
+implemented / 1,257 missing / 87 blocked**, unchanged requirements and zero
+verified. Continue ordinary native request/event evidence; prohibited/full-goal
+gates remain incomplete.
+
 The [original command request-byte profile](command-request-id-qualification.md)
 retains the existing real child/output/exit journey and adds exact successful-send
 bytes against its independent fixed-ID request. Focused **1/0**, **58 ordinary

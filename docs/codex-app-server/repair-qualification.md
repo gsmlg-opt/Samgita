@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [retained notification field blockers](retained-notification-producer-limitations.md)
+add exact immutable producer evidence to seven fields while preserving their
+prior synthetic/negative tests and transports. All 5,259 Rust files/five key
+files/seven nodes match the pin; all 850 V456 source hashes/13 logs remain exact.
+No new tests run. Counts: **5,277 implemented / 1,257 missing / 87 blocked**,
+unchanged requirements and zero verified. Continue ordinary native request/event
+evidence; prohibited/full-goal gates remain incomplete.
+
 The [original command request bytes](command-request-id-qualification.md) add
 one bounded raw-byte witness to the same actual child/output/exit case. Focused
 **1/0**, **58 ordinary cases twice**, outside consumer **1/0** and all 13 reviewed

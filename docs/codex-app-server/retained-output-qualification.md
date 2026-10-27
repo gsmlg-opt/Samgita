@@ -1,5 +1,9 @@
 # Retained, non-emitting file-change output notification
 
+The later [V457 field binding](retained-notification-producer-limitations.md)
+also marks its four physical field contracts blocked, preserving the historical
+synthetic evidence below. The earlier counts/status wording records that stage.
+
 `item/fileChange/outputDelta` remains an advertised wire contract in immutable
 Codex `rust-v0.163.0`, source `83086188ae0614bd882818ff1aa23f3194962012`, but
 its defining source explicitly says the server no longer emits it. The required
