@@ -247,6 +247,7 @@ defmodule SamgitaCodexDriver.NativeResumeCollaborationResultTest do
       assert Map.fetch!(applied, "path") === path
       assert_quiet(ctx, pid, journal)
       response = call(ctx, pid, "thread/resume", %{"threadId" => thread, "excludeTurns" => true})
+      assert Map.fetch!(response, "multiAgentMode") === "explicitRequestOnly"
       assert Map.fetch!(response, "collaborationMode") === expected
       assert Map.fetch!(response, "model") == "mock-model"
       assert Map.fetch!(response, "modelProvider") == "fixture"

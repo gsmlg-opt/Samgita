@@ -177,7 +177,9 @@ defmodule SamgitaCodexDriver.NativeSearchCreatorRootsTest do
   end
 
   defp complete(ctx, pid, creator, roots, label, count) do
-    thread = call(ctx, pid, "thread/start", thread_params(ctx, roots, label))["thread"]
+    result = call(ctx, pid, "thread/start", thread_params(ctx, roots, label))
+    assert Map.fetch!(result, "runtimeWorkspaceRoots") === roots
+    thread = result["thread"]
     id = Map.fetch!(thread, "id")
     assert is_binary(id) and id != ""
     text = label <> " " <> @needle

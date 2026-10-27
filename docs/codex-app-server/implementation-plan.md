@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary plugin/thread results](native-plugin-and-thread-results-qualification.md)
+qualify exact4783/6039/6371: source-controlled A/B/null dark-logo discovery,
+four literal deprecated resume-mode results and two direct ordered start-root
+vectors. Full interface/history, causal source controls, original plugin/resume
+frames and checked owned cleanup remain. Roots results have decoded native
+evidence only, not original incoming bytes. Final **11ordinary cases twice**,
+strict checks and393-source guard pass;390 prior paths remain unchanged and13
+whole upstream files match the pin. Only those three become scoped implemented:
+**5,090 implemented /1,465 missing /66 blocked**, unchanged requirements and
+zero verified. Continue reachable ordinary source/result gaps. Prohibited/broad/
+hosted, A11, unavailable producers and external/OS/platform/full-goal/release
+gates remain incomplete.
+
 The [hook configuration-error profile](hook-config-error-recovery-qualification.md)
 qualifies exact4148/4149 through ten real catalog calls, two independently
 prescribed missing-provider messages and exact ordered cwd paths. Restoring

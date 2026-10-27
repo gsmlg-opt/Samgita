@@ -170616,24 +170616,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginInterface/properties/logoDark/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V397 scoped actual-native evidence: Actual inert uninstalled local plugin/search returns independently prescribed absolute dark-a/dark-b paths, declaration omission gives null, exact A bytes restore A, held/restored marketplace gives empty/A and a distinct cold native repeats A. Complete19-field interface and identity/source projection,14searches/22unique original correlated RPC pairs,zero models/threads/install/execution, 32frames/direction,4096out/65536in,1MiB total,events256/1MiB,snapshots1MiB, 5sRPC/60scase,original inputs/source trees and checked owned cleanup remain. Original incoming JSON precedes Session decode after JSONL delimiter removal. Only this nonnull physical branch is bound; no alias/null/asset-renderer promotion. Final11reviewed ordinary cases pass11/0 twice,strict checks pass and393guarded sources stay stable; exactly two prior modules change,390prior paths unchanged. Thirteen whole upstream files and exact nodes match the immutable pin. Other variants/transports/OS/backends and full verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/logoDark/anyOf/0",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -211762,24 +211770,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/multiAgentMode/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V397 scoped actual-native evidence: Four actual loaded native resume results directly require the prescribed literal explicitRequestOnly while independent Plan/Default collaboration objects change. Two distinct processes/real prerequisite turns,complete retained histories,30original correlated raw RPC pairs,frozen post-warmup model journals and all existing deadlines/buffers/owned cleanup remain. No extra RPC/inference; this deprecated result constant does not prove active delegation/custom mode/cold resume or permission behavior. Only this physical allOf branch is bound. Final11reviewed ordinary cases pass11/0 twice,strict checks pass and393guarded sources stay stable; exactly two prior modules change,390prior paths unchanged. Thirteen whole upstream files and exact nodes match the immutable pin. Other variants/transports/OS/backends and full verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/properties/multiAgentMode/allOf/0",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_collaboration_result_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -222351,27 +222367,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/runtimeWorkspaceRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V397 scoped actual-native evidence: Two actual native thread/start results require exact independently prescribed ordered roots [second,first] and [only] before extracting thread data. Existing real turns,creator/history/search/project/cold-resume oracles and all bounds/owned cleanup remain. No extra RPC/inference. Existing outgoing original bytes and ID-correlated decoded results are retained; original incoming bytes are NOT captured here and decoded re-encoding is not ingress-byte proof. Only this top-level output field is bound,not projected aliases/default/empty variants. Final11reviewed ordinary cases pass11/0 twice,strict checks pass and393guarded sources stay stable; exactly two prior modules change,390prior paths unchanged. Thirteen whole upstream files and exact nodes match the immutable pin. Other variants/transports/OS/backends and full verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "ba86702639f6660cea485d96e1e2940928beae2937ccf8e2531398ef570f6853",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_creator_roots_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {

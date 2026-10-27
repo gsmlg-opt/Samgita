@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary plugin/thread result unit](native-plugin-and-thread-results-qualification.md)
+proves dark-logo source replacement/removal/restoration and cold discovery,
+four direct resume-mode literals and two ordered start-root results. Independent
+oracles, complete interface/history and all bounds/cleanup remain. Original
+incoming bytes exist for plugin/resume; the roots module retains decoded
+native results only. Final **11ordinary cases twice**, strict checks and393-source
+guard pass;390 prior paths remain unchanged and13 whole upstream sources match
+the pin. Only4783/6039/6371 become scoped implemented: **5,090 implemented
+/1,465 missing /66 blocked**, unchanged requirements and zero verified. Earlier
+results for the two edited modules remain historical. Continue reachable ordinary
+gaps; prohibited/full-goal gates stay incomplete.
+
 The [native hook error/recovery case](hook-config-error-recovery-qualification.md)
 proves exact current error message/requested-cwd fields for two invalid ordinary
 provider selections and complete same-process normal-result recovery after
