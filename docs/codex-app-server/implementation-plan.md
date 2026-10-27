@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [creation metadata index unit](creation-metadata-index-qualification.md)
+binds seven already-observed selected values from the unchanged independent
+32-field creation oracle/original ingress. Existing V421 **43ordinary cases
+twice** includes the exact owner;all408current source paths match its successful
+guard, with no new runtime run. Five whole sources/seven nodes match the pin.
+Only2422/2423/2430/2434/2438/2456/2457 become scoped implemented:
+**5,177 implemented /1,378 missing /66 blocked**, unchanged requirements and zero
+verified. Populated references/nullable wrappers/permission-adjacent fields stay
+unqualified. Continue the separately bounded actual TurnError inner-null case;
+prohibited/full-goal gates remain incomplete.
+
 The [native assistant-phase unit](native-assistant-phases-qualification.md)
 qualifies only2577 through complete independent native maps and real Responses
 commentary/partial_answer/final_answer inputs. One added isolated reasoning case

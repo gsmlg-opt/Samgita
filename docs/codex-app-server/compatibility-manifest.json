@@ -97285,53 +97285,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/agentNickname",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/agentNickname",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "031b4aeef5fca5225d3e4fd2ac8a7578b2315094a3f1ea715414bdb3f571c8e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentNickname"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/agentRole",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/agentRole",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "bcb2e14ace0dcb9c58e008c0aed3c066fea33807b3e73f7851cf365664c35b31",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentRole"
     },
     {
@@ -97528,27 +97544,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/environments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Exact one-element local environment array with complete environmentId local,cwd and runtimeWorkspaceRoots[cwd],independently prescribed owned cwd. No null/empty/multiple/remote/default or connection-health behavior. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/environments",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "eb818655725112c45dc6537bd5cc4909e14d48ac1e489746e68fbe14a2f3713b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environments"
     },
     {
@@ -97635,24 +97659,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/extra/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/Thread/properties/extra/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -97739,24 +97771,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/gitInfo/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/Thread/properties/gitInfo/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -98310,50 +98350,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/section/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/Thread/properties/section/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/creation-metadata-index-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/sectionEnteredAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V425 scoped evidence-index update,no executable change or new runtime run. Current reviewed actual-native complete32field thread/started owner already independently prescribes both ordinary root-thread creation snapshots,complete outer wrappers and original pre-Session ingress,with zero model requests at creation. Metadata expectation is literal,not copied from native response. Explicit present-key null only. No nonnull string/integer/extra/Git/section object,default/omission/history/subagent metadata behavior. agentRole here is descriptive saved source metadata,not project authorization. Source-prescribed builder/Option serializers and complete3field ThreadEnvironment match5whole archive files/7canonical nodes. Existing V421 final43/0twice matrix includes exact unchanged owner;all408guarded sources match current0759db0 bytes,so runtime evidence has source equivalence. Original2projects/2threads/2later assistant model calls,32methods/raw4KiB frames/128KiB cap,256events/1MiB,20sawait/60scase,config/provider/workspace retention and owned cleanup stay unchanged. Only2422/2423/2430/2434/2438/2456/2457 promoted;already-implemented siblings and complete nullable wrappers/nonnull references stay unchanged. canAcceptDirectInput excluded. No other producer/alias/OS/transport/external/platform/full verified acceptance. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/sectionEnteredAt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "29dbcc7c8df6ce8c53499899dee25d3c002765669b7a763025d4f06b08ba71ff",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sectionEnteredAt"
     },
     {

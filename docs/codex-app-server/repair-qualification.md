@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [creation metadata index profile](creation-metadata-index-qualification.md)
+binds seven selected values already checked by the complete independent native
+creation oracle/raw ingress. Exact unchanged owner remains in both passing V421
+**43ordinary-case** runs;all408current source paths match, with no new runtime
+run. Five whole sources/seven nodes match the pin. Only seven become scoped
+implemented: **5,177 implemented /1,378 missing /66 blocked**, unchanged
+requirements and zero verified. Unobserved nullable unions/references remain
+missing. Continue the separately bounded actual TurnError inner-null case;
+prohibited/full-goal gates stay incomplete.
+
 The [native assistant-phase profile](native-assistant-phases-qualification.md)
 requires all three actual nonnull values in complete independent native maps/
 provider journals. One new isolated partial-answer case preserves per-profile
