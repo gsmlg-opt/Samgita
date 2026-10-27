@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [real file-change unit](file-change-envelopes-qualification.md)
+qualifies only2316/2618/2883/2951 through one direct fixed-YOLO native patch,
+actual/control bytes, independent full diff and original complete native maps.
+Initial count1 fails; pinned tool plus two sampling-completion producers justify
+three exact repeated snapshots, all checked with lifecycle order. Focused
+**1/0** and final **39ordinary cases twice**, syntax/strict checks and406stable
+sources pass;all404prior bytes stay unchanged and17whole sources match the pin.
+Only four become scoped implemented: **5,161 implemented /1,394 missing
+/66 blocked**, unchanged requirements and zero verified. Deprecated outputDelta
+stays blocked. Continue ordinary controlled child-resume/persisted status;
+prohibited/full-goal gates remain incomplete.
+
 The [complete creation unit](thread-started-envelope-qualification.md)
 qualifies only root2811 through an independent32-field Thread oracle and
 original two-frame ingress inventory in the existing direct fixed-YOLO case.

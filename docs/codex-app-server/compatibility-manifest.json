@@ -94113,24 +94113,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V415 scoped actual-native ordinary Add/fileChange/patchUpdated/turnDiff payloads. New direct fixed-YOLO case and finite local model SSE fixture execute one real freeform apply_patch with two literal Unicode argument fragments and exactly2actual Responses requests. Complete independent Add kind and canonical started/completed FileChange items prescribe absolute owned path and exact new bytes; streamed preview preserves relative path with only independently allowed empty/full or full cohorts. Three distinct complete identical turn/diff wrappers are required:tool completion plus both normal model response completions after draining tool futures. Cached tracker persists across sampling responses. Full independent new-file diff uses literal headers/hunk and standard blob SHA1 over known19UTF8bytes,never actual native output. Exact original ingress,kind/current generation/schema/clock brackets,strict lifecycle and assistant-between-response-diffs order remain. Actual added regular-file bytes,unchanged control/exact workspace,matching real custom tool output,duration/ctco_UUIDv7,provider SSE journals,2requests/5native methods and checked owner/PID/Port cleanup are asserted after completion/shutdown. Initial new-test count1 assumption failed1/1;exact pinned extra producer justified count3/full maps,not deduplication or relaxed checks. Original128messages/2MiB,1MiBrequests/64KiBSSE/8events,5sRPC/20sturn/60scase preserved. Focused1/0 and final39ordinary cases twice,7Python syntax/format/compile/strictCredo pass;406sources stable,all404prior source bytes unchanged. Seventeen whole sources/four canonical owners archive-match. Only2316/2618/2883/2951 gain implemented evidence,siblings unchanged. No update/delete/move/failure/cancellation,other emitters/aliases/OS/transports/external/full verified acceptance. Deprecated fileChange/outputDelta remains source-proven unavailable,never simulated as native success. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "2b35cd83717e50c4dff0e581e79238198b4ad2429b88b2c832c1a167fed68815",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_change_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -103660,24 +103668,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V415 scoped actual-native ordinary Add/fileChange/patchUpdated/turnDiff payloads. New direct fixed-YOLO case and finite local model SSE fixture execute one real freeform apply_patch with two literal Unicode argument fragments and exactly2actual Responses requests. Complete independent Add kind and canonical started/completed FileChange items prescribe absolute owned path and exact new bytes; streamed preview preserves relative path with only independently allowed empty/full or full cohorts. Three distinct complete identical turn/diff wrappers are required:tool completion plus both normal model response completions after draining tool futures. Cached tracker persists across sampling responses. Full independent new-file diff uses literal headers/hunk and standard blob SHA1 over known19UTF8bytes,never actual native output. Exact original ingress,kind/current generation/schema/clock brackets,strict lifecycle and assistant-between-response-diffs order remain. Actual added regular-file bytes,unchanged control/exact workspace,matching real custom tool output,duration/ctco_UUIDv7,provider SSE journals,2requests/5native methods and checked owner/PID/Port cleanup are asserted after completion/shutdown. Initial new-test count1 assumption failed1/1;exact pinned extra producer justified count3/full maps,not deduplication or relaxed checks. Original128messages/2MiB,1MiBrequests/64KiBSSE/8events,5sRPC/20sturn/60scase preserved. Focused1/0 and final39ordinary cases twice,7Python syntax/format/compile/strictCredo pass;406sources stable,all404prior source bytes unchanged. Seventeen whole sources/four canonical owners archive-match. Only2316/2618/2883/2951 gain implemented evidence,siblings unchanged. No update/delete/move/failure/cancellation,other emitters/aliases/OS/transports/external/full verified acceptance. Deprecated fileChange/outputDelta remains source-proven unavailable,never simulated as native success. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/7",
       "schema": "ServerNotification.json",
       "schema_sha256": "dc813afcd08e24239ae6997fab35612b4b6a52ef63764db66619cbddbe455b0f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_change_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -111956,24 +111972,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/26",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V415 scoped actual-native ordinary Add/fileChange/patchUpdated/turnDiff payloads. New direct fixed-YOLO case and finite local model SSE fixture execute one real freeform apply_patch with two literal Unicode argument fragments and exactly2actual Responses requests. Complete independent Add kind and canonical started/completed FileChange items prescribe absolute owned path and exact new bytes; streamed preview preserves relative path with only independently allowed empty/full or full cohorts. Three distinct complete identical turn/diff wrappers are required:tool completion plus both normal model response completions after draining tool futures. Cached tracker persists across sampling responses. Full independent new-file diff uses literal headers/hunk and standard blob SHA1 over known19UTF8bytes,never actual native output. Exact original ingress,kind/current generation/schema/clock brackets,strict lifecycle and assistant-between-response-diffs order remain. Actual added regular-file bytes,unchanged control/exact workspace,matching real custom tool output,duration/ctco_UUIDv7,provider SSE journals,2requests/5native methods and checked owner/PID/Port cleanup are asserted after completion/shutdown. Initial new-test count1 assumption failed1/1;exact pinned extra producer justified count3/full maps,not deduplication or relaxed checks. Original128messages/2MiB,1MiBrequests/64KiBSSE/8events,5sRPC/20sturn/60scase preserved. Focused1/0 and final39ordinary cases twice,7Python syntax/format/compile/strictCredo pass;406sources stable,all404prior source bytes unchanged. Seventeen whole sources/four canonical owners archive-match. Only2316/2618/2883/2951 gain implemented evidence,siblings unchanged. No update/delete/move/failure/cancellation,other emitters/aliases/OS/transports/external/full verified acceptance. Deprecated fileChange/outputDelta remains source-proven unavailable,never simulated as native success. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/26",
       "schema": "ServerNotification.json",
       "schema_sha256": "d89f8373a8919524b4c651b50be8bf9962761cc4e08e84b6a07e89f143c02250",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_change_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -113949,24 +113973,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/41",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V415 scoped actual-native ordinary Add/fileChange/patchUpdated/turnDiff payloads. New direct fixed-YOLO case and finite local model SSE fixture execute one real freeform apply_patch with two literal Unicode argument fragments and exactly2actual Responses requests. Complete independent Add kind and canonical started/completed FileChange items prescribe absolute owned path and exact new bytes; streamed preview preserves relative path with only independently allowed empty/full or full cohorts. Three distinct complete identical turn/diff wrappers are required:tool completion plus both normal model response completions after draining tool futures. Cached tracker persists across sampling responses. Full independent new-file diff uses literal headers/hunk and standard blob SHA1 over known19UTF8bytes,never actual native output. Exact original ingress,kind/current generation/schema/clock brackets,strict lifecycle and assistant-between-response-diffs order remain. Actual added regular-file bytes,unchanged control/exact workspace,matching real custom tool output,duration/ctco_UUIDv7,provider SSE journals,2requests/5native methods and checked owner/PID/Port cleanup are asserted after completion/shutdown. Initial new-test count1 assumption failed1/1;exact pinned extra producer justified count3/full maps,not deduplication or relaxed checks. Original128messages/2MiB,1MiBrequests/64KiBSSE/8events,5sRPC/20sturn/60scase preserved. Focused1/0 and final39ordinary cases twice,7Python syntax/format/compile/strictCredo pass;406sources stable,all404prior source bytes unchanged. Seventeen whole sources/four canonical owners archive-match. Only2316/2618/2883/2951 gain implemented evidence,siblings unchanged. No update/delete/move/failure/cancellation,other emitters/aliases/OS/transports/external/full verified acceptance. Deprecated fileChange/outputDelta remains source-proven unavailable,never simulated as native success. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/41",
       "schema": "ServerNotification.json",
       "schema_sha256": "2aaf1221e23692b4e4fc37c7633fdd0e0e49098dd5a12c389f5e514179c91220",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_change_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

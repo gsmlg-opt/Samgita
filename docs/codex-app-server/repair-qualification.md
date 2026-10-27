@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [real file-change profile](file-change-envelopes-qualification.md)
+requires actual native Add effects/control bytes, independent complete maps/
+diff and all original lifecycle frames. First-run count1 failure is corrected
+from pinned tool/sampling producers to three exact snapshots, preserving count/
+content/order, limits and checked cleanup. Focused **1/0** and final
+**39ordinary cases twice**, syntax/strict checks and406stable-source guard pass;
+all404prior bytes stay unchanged and17whole sources match the pin. Only
+2316/2618/2883/2951 become scoped implemented: **5,161 implemented /1,394 missing
+/66 blocked**, unchanged requirements and zero verified. Deprecated outputDelta
+stays source-proven unavailable. Continue controlled ordinary child-resume
+status; prohibited/full-goal gates remain incomplete.
+
 The [complete creation profile](thread-started-envelope-qualification.md)
 binds real thread/started against an independent32-field Thread oracle and
 original two-frame ingress, retaining both later native turns/persistence and
