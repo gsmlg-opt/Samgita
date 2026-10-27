@@ -15,6 +15,13 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [plugin-search ID correction](plugin-search-request-id-qualification.md)
+binds only 1464 to unchanged original-frame/string-ID/local-catalog assertions
+enabled in both V450 **58/0** runs. All 417 sources/nine logs remain exact;
+no new test runs. Counts: **5,272 implemented / 1,269 missing / 80 blocked**,
+unchanged requirements and zero verified. Continue permitted static checks and
+the next ordinary gap; prohibited/full-goal gates stay incomplete.
+
 The [fork request-ID correction](fork-request-id-qualification.md) adds only
 1554 from the existing unchanged native original-frame/durable-child journey,
 enabled in both V450 **58/0** runs. All 417 sources/nine logs remain exact; no

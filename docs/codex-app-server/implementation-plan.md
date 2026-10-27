@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [plugin-search string-ID correction](plugin-search-request-id-qualification.md)
+binds only 1464 to existing original-frame/correlated local-catalog searches,
+already enabled in both V450 **58/0** ordinary runs. All 417 sources/nine logs
+remain exact; eight native files/one node match the pin; no new test runs.
+Counts: **5,272 implemented / 1,269 missing / 80 blocked**, unchanged requirements
+and zero verified. No integer/all-result/sibling credit. Continue permitted
+aggregate static checks and the next ordinary gap; prohibited/full-goal gates
+remain incomplete.
+
 The [fork string-ID evidence correction](fork-request-id-qualification.md)
 binds only 1554 to existing unchanged original-frame/native-child/Git readback
 assertions, already enabled in both V450 **58/0** ordinary runs. All 417 guarded
