@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [V502–V505 integrated functional record](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
+passes all fourteen reviewed checks: **61 files / 117 actual-native cases at
+both seeds**, three selected WebSocket seeds, outside consumer **1/0** and all
+permitted static/build checks. All 1,680 guarded sources remain unchanged;
+123 whole producer/reference files bind installed-plugin Hook, Unicode warning,
+partial import and real typed-ID MCP control/effects. Exactly ten owners gain
+implemented evidence; eleven prediction-notification owners become blocked
+by the complete stock-source proof. Four selected public collaboration values
+stay missing. Contracts: **5,475 implemented / 1,016 missing / 130 blocked**;
+requirements: **462 implemented / 12 missing / 11 blocked**, zero verified.
+Next: integrate and run the independently reviewed fuzzy one-shot and real
+populated-session stop/cold-recovery cases, then continue ordinary reachable
+behavior beyond request IDs. Their scratch source is not runtime evidence.
+Prohibited/hosted, A11, external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
 passes **60 files / 112 actual-native cases at both seeds**, outside consumer
 **1/0**, three selected WebSocket seeds and all fourteen reviewed checks with

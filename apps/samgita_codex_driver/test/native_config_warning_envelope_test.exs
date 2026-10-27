@@ -12,6 +12,12 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
   @model "owned-config-warning-model"
   @summary "Ignoring invalid `otel.span_attributes` config: configured span attribute key must not be empty"
   @params %{"summary" => @summary, "details" => nil}
+  @location_config """
+  # Owned inert scalar diagnostic only.
+  # Unicode prefix λ🙂 keeps byte offsets distinct from source positions.
+  model_context_window = "λ🙂"
+  """
+  @location_value ~s("λ🙂")
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -115,6 +121,17 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
 
   test "native startup warning preserves the valid local catalog across reads and a fresh process",
        ctx do
+    exercise_warning(ctx, @params)
+  end
+
+  test "native typed config warning preserves its Unicode source range and finite defaults",
+       ctx do
+    profile = configure_location(ctx.profile)
+    params = location_params(profile)
+    exercise_warning(%{ctx | profile: profile, frozen: frozen_files(profile)}, params)
+  end
+
+  defp exercise_warning(ctx, expected_params) do
     deadline = now() + 20_000
 
     observations =
@@ -133,7 +150,7 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
         events = collect(profile, native.pid, [], min(deadline, now() + 5_000))
         upper = System.system_time(:millisecond)
         assert [event] = events
-        expected = assert_warning(profile, event, native.lower, upper)
+        expected = assert_warning(profile, event, native.lower, upper, expected_params)
         original = assert_original_warning(profile, expected)
         assert_initialization_cause(profile, native.initialize_id, original)
 
@@ -169,16 +186,22 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
 
     assert [first, second] = observations
     refute first.os_pid === second.os_pid
-    assert first.params === @params and second.params === @params
+    assert first.params === expected_params and second.params === expected_params
     assert first.models === second.models
   end
 
-  defp assert_warning(profile, event, lower, upper) do
+  defp assert_warning(profile, event, lower, upper, expected_params) do
     emitted = Map.fetch!(event.wire, "emittedAtMs")
     assert is_integer(emitted) and lower <= emitted and emitted <= upper
     assert event.kind === :notification and event.generation === profile.generation
     assert is_integer(event.sequence) and event.sequence > 0
-    expected = %{"method" => "configWarning", "params" => @params, "emittedAtMs" => emitted}
+
+    expected = %{
+      "method" => "configWarning",
+      "params" => expected_params,
+      "emittedAtMs" => emitted
+    }
+
     assert event.wire === expected
     assert :ok = Schema.validate(schema("ServerNotification.json"), expected, max_depth: 32)
     expected
@@ -334,6 +357,74 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
     """)
   end
 
+  # The pinned fallback ignores the user file but reapplies CLI overrides.
+  # Keep every finite local startup setting in argv for this ordinary type error.
+  defp configure_location(profile) do
+    catalog = Path.join(profile.root, "codex/models.json")
+
+    overrides = [
+      {"model", @model},
+      {"model_provider", "fixture"},
+      {"model_catalog_json", catalog},
+      {"check_for_update_on_startup", false},
+      {"allow_login_shell", false},
+      {"web_search", "disabled"},
+      {"chatgpt_base_url", "http://127.0.0.1:9"},
+      {"openai_base_url", "http://127.0.0.1:9/v1"},
+      {"analytics.enabled", false},
+      {"feedback.enabled", false},
+      {"otel.exporter", "none"},
+      {"otel.trace_exporter", "none"},
+      {"otel.metrics_exporter", "none"},
+      {"memories.generate_memories", false},
+      {"memories.use_memories", false},
+      {"features.apps", false},
+      {"features.remote_plugin", false},
+      {"features.remote_models", false},
+      {"features.remote_control", false},
+      {"features.shell_snapshot", false},
+      {"features.memories", false},
+      {"features.hooks", false},
+      {"model_providers.fixture.name", "Owned local static catalog"},
+      {"model_providers.fixture.base_url", "http://127.0.0.1:9/v1"},
+      {"model_providers.fixture.wire_api", "responses"},
+      {"model_providers.fixture.requires_openai_auth", false},
+      {"model_providers.fixture.supports_websockets", false},
+      {"model_providers.fixture.request_max_retries", 0},
+      {"model_providers.fixture.stream_max_retries", 0}
+    ]
+
+    args =
+      Enum.flat_map(overrides, fn {key, value} -> ["-c", key <> "=" <> JSON.encode!(value)] end)
+
+    File.write!(Path.join(profile.root, "codex/config.toml"), @location_config)
+    Map.put(profile, :fallback_overrides, args)
+  end
+
+  defp location_params(profile) do
+    path = Path.join(profile.root, "codex/config.toml")
+    assert File.read!(path) === @location_config
+    assert [prefix, "\n"] = String.split(@location_config, @location_value)
+    lines = String.split(prefix, "\n")
+    line = length(lines)
+    column = scalar_count(List.last(lines)) + 1
+    end_column = column + scalar_count(@location_value) - 1
+    assert {line, column, end_column} === {3, 24, 27}
+    refute byte_size(@location_value) === scalar_count(@location_value)
+
+    %{
+      "summary" => "Invalid configuration; using defaults.",
+      "details" => path <> ~s(:3:24: invalid type: string "λ🙂", expected i64),
+      "path" => path,
+      "range" => %{
+        "start" => %{"line" => line, "column" => column},
+        "end" => %{"line" => line, "column" => end_column}
+      }
+    }
+  end
+
+  defp scalar_count(value), do: value |> String.to_charlist() |> length()
+
   defp expected_model,
     do: %{
       "id" => @model,
@@ -369,7 +460,10 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
                     capture: profile.capture,
                     executable: profile.binary,
                     args:
-                      NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
+                      NativeLaunchFixture.ordinary_args(
+                        Map.get(profile, :fallback_overrides, []) ++
+                          ["app-server", "--listen", "stdio://"]
+                      ),
                     cwd: profile.workspace,
                     inherit_env: [],
                     env: environment(profile),

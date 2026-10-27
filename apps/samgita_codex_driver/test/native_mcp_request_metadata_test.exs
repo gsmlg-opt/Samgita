@@ -10,6 +10,8 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     TurnFixture
   }
 
+  alias SamgitaProtocolCodex.{Schema, Wire}
+
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
@@ -40,15 +42,30 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
       capture = Keyword.fetch!(opts, :capture)
       incoming_capture = Keyword.fetch!(opts, :incoming_capture)
 
-      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :incoming_capture])),
-           do: {:ok, Map.merge(state, %{capture: capture, incoming_capture: incoming_capture})}
+      initialization = Keyword.fetch!(opts, :capture_initialization)
+
+      with {:ok, state} <-
+             Stdio.open(
+               Keyword.drop(opts, [:capture, :incoming_capture, :capture_initialization])
+             ),
+           do:
+             {:ok,
+              Map.merge(state, %{
+                capture: capture,
+                incoming_capture: incoming_capture,
+                capture_initialization: initialization
+              })}
     end
 
     @impl true
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] in ~w(server/diagnostics thread/loaded/list thread/start mcpServer/tool/call) do
+      selected =
+        wire["method"] in ~w(server/diagnostics thread/loaded/list thread/start mcpServer/tool/call config/mcpServer/reload mcpServerStatus/list)
+
+      if selected or
+           (state.capture_initialization and wire["method"] in ~w(initialize initialized)) do
         capture(state, encoded, wire)
       else
         Stdio.send(state, encoded)
@@ -222,6 +239,212 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     assert_wire_inventory(ctx, warm_thread, cold_thread)
   end
 
+  test "native unchanged MCP reload and selected status retain typed IDs and one live peer",
+       ctx do
+    ctx = Map.put(ctx, :capture_initialization, true)
+    deadline = now() + 20_000
+    session = start(ctx)
+    native = native_id(ctx, session.pid)
+    assert_idle(ctx, session.pid, [])
+    thread = start_thread(ctx, session.pid)
+    assert_echo(ctx, session.pid, thread)
+    assert_reload_journal(ctx, thread, 0, 1)
+    peers = owned_peers(ctx, native)
+    assert length(peers) === 1
+
+    pairs = [
+      {-504_930, -504_935},
+      {504_930, 504_935},
+      {"owned-reload-λ🙂", "owned-status-雪🙂"}
+    ]
+
+    for {{reload_id, status_id}, index} <- Enum.with_index(pairs, 1) do
+      before = snapshot(ctx.journal)
+      assert call(ctx, session.pid, "config/mcpServer/reload", :omit, reload_id) === %{}
+      assert snapshot(ctx.journal) === before
+
+      # This selected live status waits for dirty-runtime refresh. The reload
+      # ACK alone cannot prove that the published connection is ready.
+      status = call(ctx, session.pid, "mcpServerStatus/list", status_params(thread), status_id)
+      assert_selected_status(status)
+      assert_reload_journal(ctx, thread, index, 1)
+      assert Enum.sort(owned_peers(ctx, native)) === Enum.sort(peers)
+      assert_inputs(ctx)
+      assert_ready(ctx, session.pid)
+      assert now() <= deadline
+    end
+
+    assert_echo(ctx, session.pid, thread)
+    assert_reload_journal(ctx, thread, 3, 2)
+    assert_idle(ctx, session.pid, [thread])
+    assert Enum.sort(owned_peers(ctx, native)) === Enum.sort(peers)
+    assert_reload_inventory(ctx, thread, pairs)
+    final_journal = snapshot(ctx.journal)
+    final_capture = Agent.get(ctx.capture, & &1)
+    final_incoming = Agent.get(ctx.incoming_capture, & &1)
+    close(session, native, peers)
+    assert snapshot(ctx.journal) === final_journal
+    assert Agent.get(ctx.capture, & &1) === final_capture
+    assert Agent.get(ctx.incoming_capture, & &1) === final_incoming
+    assert_inputs(ctx)
+    assert now() <= deadline
+  end
+
+  defp assert_echo(ctx, pid, thread) do
+    assert call(
+             ctx,
+             pid,
+             "mcpServer/tool/call",
+             tool_params(thread, %{"arguments" => @arguments})
+           ) ===
+             %{
+               "content" => [
+                 %{
+                   "type" => "text",
+                   "text" => "Synthetic direct MCP result\n",
+                   "_meta" => %{"fixture" => "content-preserved"}
+                 }
+               ],
+               "structuredContent" => %{"arguments" => @arguments, "threadId" => thread},
+               "isError" => false,
+               "_meta" => %{"fixture" => %{"preserved" => true}}
+             }
+  end
+
+  defp status_params(thread),
+    do: %{"threadId" => thread, "serverName" => "fixture", "detail" => "full", "limit" => 1}
+
+  defp assert_selected_status(status) do
+    assert %{"data" => [server], "nextCursor" => nil} = status
+    assert server["name"] === "fixture"
+    assert server["runtimeStatus"] === "connected"
+
+    assert Map.take(server["serverInfo"], ~w(name version)) === %{
+             "name" => "synthetic-direct",
+             "version" => "1"
+           }
+
+    assert Map.keys(server["tools"]) === ["echo"]
+
+    assert Map.take(server["tools"]["echo"], ~w(name description inputSchema)) === %{
+             "name" => "echo",
+             "description" => "Synthetic echo only",
+             "inputSchema" => %{"type" => "object", "properties" => %{}}
+           }
+
+    assert server["resources"] === [
+             %{
+               "uri" => "fixture://contents",
+               "name" => "Synthetic resource",
+               "mimeType" => "text/plain"
+             }
+           ]
+
+    assert server["resourceTemplates"] === []
+    assert server["toolsError"] === nil
+  end
+
+  defp assert_reload_journal(ctx, thread, statuses, calls) do
+    rows = journal(ctx)
+
+    expected = %{
+      "initialize" => 1,
+      "notifications/initialized" => 1,
+      "tools/list" => 1,
+      "tools/call" => calls
+    }
+
+    expected =
+      if statuses == 0,
+        do: expected,
+        else:
+          Map.merge(expected, %{
+            "resources/list" => statuses,
+            "resources/templates/list" => statuses
+          })
+
+    assert Enum.frequencies_by(rows, & &1["method"]) === expected
+
+    assert [%{"params" => %{"protocolVersion" => "2025-06-18"}}] =
+             Enum.filter(rows, &(&1["method"] === "initialize"))
+
+    requests = Enum.filter(rows, &Map.has_key?(&1, "id"))
+    ids = Enum.map(requests, & &1["id"])
+    assert Enum.all?(ids, &(is_integer(&1) and &1 >= 0))
+    assert length(Enum.uniq(ids)) === length(ids)
+
+    token_requests = Enum.reject(requests, &(&1["method"] === "initialize"))
+    tokens = Enum.map(token_requests, &get_in(&1, ["params", "_meta", "progressToken"]))
+    assert Enum.sort(tokens) === Enum.to_list(0..(statuses * 2 + calls))
+
+    assert [list] = Enum.filter(rows, &(&1["method"] === "tools/list"))
+    assert list["params"] === %{"_meta" => %{"progressToken" => 0}}
+
+    actual_calls = for %{"method" => "tools/call", "params" => params} <- rows, do: params
+    expected_calls = for token <- Enum.take([1, 8], calls), do: reload_echo_params(thread, token)
+    assert actual_calls === expected_calls
+
+    resources = Enum.filter(rows, &(&1["method"] in ~w(resources/list resources/templates/list)))
+
+    for request <- resources do
+      token = get_in(request, ["params", "_meta", "progressToken"])
+      assert request["params"] === %{"_meta" => %{"progressToken" => token}}
+    end
+
+    expected_resource_tokens =
+      if statuses == 0, do: [], else: Enum.to_list(2..(statuses * 2 + 1))
+
+    assert resources
+           |> Enum.map(&get_in(&1, ["params", "_meta", "progressToken"]))
+           |> Enum.sort() === expected_resource_tokens
+  end
+
+  defp reload_echo_params(thread, token),
+    do: %{
+      "name" => "echo",
+      "arguments" => @arguments,
+      "_meta" => %{"threadId" => thread, "progressToken" => token}
+    }
+
+  defp assert_reload_inventory(ctx, thread, pairs) do
+    frames = Agent.get(ctx.capture, & &1)
+    assert length(frames) === 14
+    assert [{_, initialize}, {_, %{"method" => "initialized"}} | _] = frames
+    assert initialize["method"] === "initialize"
+    assert is_binary(initialize["id"])
+
+    assert Enum.map(frames, fn {_, wire} -> wire["method"] end) ===
+             ~w(initialize initialized server/diagnostics thread/loaded/list thread/start mcpServer/tool/call config/mcpServer/reload mcpServerStatus/list config/mcpServer/reload mcpServerStatus/list config/mcpServer/reload mcpServerStatus/list mcpServer/tool/call thread/loaded/list)
+
+    requests = Enum.reject(frames, fn {_, wire} -> wire["method"] === "initialized" end)
+    assert length(Enum.uniq_by(requests, fn {_, wire} -> wire["id"] end)) === 13
+    incoming = Agent.get(ctx.incoming_capture, & &1.frames)
+    assert length(incoming) === 13
+
+    for {_, request} <- requests do
+      assert [{bytes, response}] =
+               Enum.filter(incoming, fn {_, wire} -> wire["id"] === request["id"] end)
+
+      assert JSON.decode!(bytes) === response
+      assert Enum.sort(Map.keys(response)) === ["id", "result"]
+    end
+
+    selected =
+      Enum.filter(frames, fn {_, wire} ->
+        wire["method"] in ~w(config/mcpServer/reload mcpServerStatus/list)
+      end)
+
+    expected =
+      Enum.flat_map(pairs, fn {reload, status} ->
+        [
+          %{"id" => reload, "method" => "config/mcpServer/reload"},
+          %{"id" => status, "method" => "mcpServerStatus/list", "params" => status_params(thread)}
+        ]
+      end)
+
+    assert Enum.map(selected, fn {_, wire} -> wire end) === expected
+  end
+
   defp start_thread(ctx, pid) do
     # Inherit fixed launch defaults; do not use TurnFixture.thread overrides.
     response = call(ctx, pid, "thread/start", thread_params(ctx))
@@ -242,7 +465,13 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
 
   defp assert_calls(ctx, pid, thread, previous) do
     for {{extra, arguments}, index} <- Enum.with_index(@cases, 1) do
-      assert call(ctx, pid, "mcpServer/tool/call", tool_params(thread, extra)) === %{
+      assert call(
+               ctx,
+               pid,
+               "mcpServer/tool/call",
+               tool_params(thread, extra),
+               tool_id(previous, index)
+             ) === %{
                "content" => [
                  %{
                    "type" => "text",
@@ -270,6 +499,17 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
       assert lists === List.duplicate(%{"_meta" => %{"progressToken" => 0}}, starts)
       assert_inputs(ctx)
       assert_ready(ctx, pid)
+    end
+  end
+
+  defp tool_id(previous, index) do
+    generation = if previous == [], do: 1, else: 2
+
+    case index do
+      1 -> -955_000 - generation
+      2 -> 955_000 + generation
+      3 -> "owned-tool-λ🙂-#{generation}"
+      4 -> nil
     end
   end
 
@@ -323,6 +563,7 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
                   [
                     capture: ctx.capture,
                     incoming_capture: ctx.incoming_capture,
+                    capture_initialization: Map.get(ctx, :capture_initialization, false),
                     executable: ctx.binary,
                     args: args,
                     cwd: ctx.fixture.workspace,
@@ -353,10 +594,11 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     %{pid: pid, connection: connection}
   end
 
-  defp call(ctx, pid, method, params) do
+  defp call(ctx, pid, method, params, id \\ nil) do
     before = length(Agent.get(ctx.capture, & &1))
-    id = "owned-mcp-request-metadata-#{System.unique_integer([:positive, :monotonic])}"
-    wire = %{"id" => id, "method" => method, "params" => params}
+    id = id || "owned-mcp-request-metadata-#{System.unique_integer([:positive, :monotonic])}"
+    wire = %{"id" => id, "method" => method}
+    wire = if params === :omit, do: wire, else: Map.put(wire, "params", params)
 
     assert {:ok, %{"id" => ^id, "result" => result} = response} =
              Session.request_native(pid, wire, timeout_ms: 5_000)
@@ -370,6 +612,16 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     assert [{raw, raw_wire}] = Enum.filter(incoming, fn {_raw, frame} -> frame["id"] == id end)
     assert raw_wire === response
     assert JSON.decode!(raw) === response
+    assert {:ok, decoded_request} = Wire.decode(bytes, max_depth: 32)
+    assert decoded_request === wire
+    assert {:ok, decoded_response} = Wire.decode(raw, max_depth: 32)
+    assert decoded_response === response
+    assert Enum.sort(Map.keys(response)) === ["id", "result"]
+
+    if method in ~w(config/mcpServer/reload mcpServerStatus/list mcpServer/tool/call) do
+      assert :ok = Schema.validate(request_schema(), wire, max_depth: 32)
+    end
+
     result
   end
 
@@ -490,6 +742,16 @@ defmodule SamgitaCodexDriver.NativeMcpRequestMetadataTest do
     assert Enum.map(frames, fn {_bytes, wire} -> {wire["method"], wire["params"]} end) ===
              expected
   end
+
+  defp request_schema do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+    |> File.read!()
+    |> JSON.decode!()
+  end
+
+  defp now, do: System.monotonic_time(:millisecond)
 
   defp snapshot(path) do
     assert File.stat!(path).size <= 1_048_576

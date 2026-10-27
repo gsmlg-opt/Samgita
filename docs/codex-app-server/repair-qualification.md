@@ -15,6 +15,21 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [installed-plugin Hook, Unicode warning and MCP control-ID unit](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
+passes **61 files / 117 actual-native cases twice**, three selected WebSocket
+seeds including the original `455834`, outside consumer **1/0** and all fourteen
+reviewed static/build checks. All 1,680 guarded source hashes stay unchanged.
+Complete original frames, genuine peer/command/stream effects and 123 whole
+archive-equal producer/reference files bind ten scoped implemented owners.
+Eleven prediction-notification owners become source-proven blocked; four
+collaboration values retain missing status. Counts: **5,475 implemented / 1,016
+missing / 130 blocked contracts**, unchanged requirements and zero verified.
+The source-binding helper's Cargo.lock indexing correction is recorded;
+it changed no runtime test. Next: the reviewed ordinary fuzzy populated-stop
+and cold-recovery cases, followed by remaining reachable functional behavior.
+No prohibited/hosted check runs; A11, unavailable stock emitters, external/OS,
+complete compatibility and release remain incomplete.
+
 The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
 adds a genuine local stdio post observer and preserves all native wire/effect/
 continuation/cleanup oracles. Its first matrix stops at7/14 with a catalog

@@ -52208,27 +52208,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-control-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/131/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Three actual unchanged-config reload requests preserve negative/positive integer and Unicode original IDs with params omitted, exact outgoing bytes/native ACK/Wire/schema and one matching response. Separate selected live status, singleton peer PID/journal continuity and actual pre/post echo prove ready behavior beyond ACK without duplicate execution or inference. Only this physical request ID; other reload semantics/aliases/full profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/131/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -52362,27 +52370,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-control-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/132/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Three actual threadId+serverName Full status requests preserve negative/positive integer and Unicode original IDs, exact native responses and authored connected server/tool/resource projection. Singleton peer, concurrent resource/template cardinality and token set, actual pre/post echo and complete original frames/cleanup qualify this physical request ID only. AuthStatus remains opaque; no security/permission or whole-status/alias credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/132/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -52848,27 +52864,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-control-ids-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/135/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Three independently fresh genuine native event streams stop with negative integer/positive integer/Unicode original IDs. Full actual activation/event envelopes, exact stop wire/ACK, remote EOF/finished cancellation, unchanged persisted history, no late replay and complete owned cleanup remain; no absent-subscription no-op substitutes. Only this physical stop-request ID, no shared/response alias or full stream qualification."
+      ],
       "nullable": false,
       "pointer": "/oneOf/135/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -53006,27 +53030,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-control-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/136/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The retained complete four-shape warm/cold actual native MCP echo journey uses disjoint negative/positive integer and Unicode original tool-call IDs plus generated string. Exact outgoing/native incoming bytes, typed ID, Wire/schema, authored full result/metadata, original1..4peer token oracles, no model/replay, frozen inputs and actual cleanup all remain. Only this physical direct-tool request ID, no inherited aliases/whole-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/136/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -88706,13 +88738,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/5",
       "schema": "ServerNotification.json",
@@ -88732,13 +88766,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/6",
       "schema": "ServerNotification.json",
@@ -88758,13 +88794,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/7",
       "schema": "ServerNotification.json",
@@ -88784,13 +88822,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/8",
       "schema": "ServerNotification.json",
@@ -89693,21 +89733,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-warning-range-and-import-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportTypeResult/properties/failures",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Selected native_failure_only native evidence: Mixed request emits config/session failure arrays alongside real instructions success; no affected branch success. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Mixed request emits config/session failure arrays alongside real instructions success; no affected branch success. Other variants and full implementation qualification remain incomplete.",
+        "Additional ordinary native partial-import success/failure: actual detection sees two sanitized sessions; one source moves intact to a non-jsonl sibling, the other genuinely imports. Exact session_not_detected/session_missing failure is required in validation progress and combined completion alongside real imported-thread success; receipt order, original IDs/times, durable combined history and imported records survive checked close and a cold process. Only this physical notification failures container gains scoped implemented evidence; other import branches/aliases and full compatibility remain unverified."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportTypeResult/properties/failures",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "dd7bd4b4730bdc088a51295c9496efb1e6f92ce6122647df5cf9e98fdb58e9f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -89715,10 +89757,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failures"
     },
     {
@@ -93620,24 +93665,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-hook-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookSource/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual installed local plugin synchronous PostToolUse execution emits both original complete native Hook notices with exact plugin source/cache path/run ID, independently checked real command/file/stdout/PIDs, two turns/three provider requests, frozen source/cache/config and owned cleanup. No catalog/history alias, project/managed/remote/async/executor source or full plugin compatibility claim."
+      ],
       "pointer": "/definitions/HookSource/enum/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "4f63c83e2bb43c041b0ce8ee2f0c8fe5b78660903c654548e64eb70382882080",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -98373,105 +98426,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-warning-range-and-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TextPosition/properties/column",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native scalar config type error supplies independently authored one-based Unicode-scalar column24/start and27/inclusive-end, distinct from byte offsets. Complete original configWarning path/details/range and exact local fallback catalog persist across two real processes; original range-absent case and all bounds remain. Only this physical column field, no alias/wrapper or full diagnostic matrix."
+      ],
       "nullable": false,
       "pointer": "/definitions/TextPosition/properties/column",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "3d30c7622cc9e31e7ccba87b10d18fe25d0ab16d4cf2f9a9d44c692ba42d839c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "column"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-warning-range-and-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TextPosition/properties/line",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native scalar config type error supplies independently authored source line3 in both full start/end positions. Original complete warning bytes/path/details, finite CLI-retained fallback catalog and unchanged invalid file survive two real processes. Only this physical line field; no alias/wrapper or full diagnostic matrix."
+      ],
       "nullable": false,
       "pointer": "/definitions/TextPosition/properties/line",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "624617ddc3b10867364356ac3c4e523d4177834b26358a742029670875dbb41c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "line"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-warning-range-and-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TextRange/properties/end",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual native configWarning contains complete inclusive end position line3,column27 from an independent literal Unicode source oracle (value byte span136..144 differs from scalar positions). Exact full original warning and cold local fallback behavior remain; only this physical end-position owner, no aliases or full range matrix."
+      ],
       "nullable": false,
       "pointer": "/definitions/TextRange/properties/end",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5a6157b95d33980aac9c90cd366bccab84c7b1dca9083c7cda9ca8eb9ca000b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "end"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-warning-range-and-import-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TextRange/properties/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual native configWarning contains complete start position line3,column24 from an independent literal Unicode source oracle. Exact full original warning, invalid source bytes and two-process local fallback catalog remain; only this physical start-position owner, no aliases or full range matrix."
+      ],
       "nullable": false,
       "pointer": "/definitions/TextRange/properties/start",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5a6157b95d33980aac9c90cd366bccab84c7b1dca9083c7cda9ca8eb9ca000b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "start"
     },
     {
@@ -106345,19 +106430,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d3af7ac58e93d885619f256ab44003ba3cc07c8d423d2fadc17b92d376e6034e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106376,7 +106463,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -106384,14 +106472,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/text",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106410,7 +106499,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -106418,14 +106508,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b6387f895317b8cfe1f3d0e85341a904317c9db53ad9db7a8df53a7a2e1c547c",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106443,19 +106534,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106473,19 +106566,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "f3f7ae333c3e347354a73b0e58c48de9e1dc9b27cb99f3a07d31da98fe1cc193",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106504,7 +106599,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -106512,14 +106608,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2b79b084b43ef489bfcfb1e9141cb3e217996151ef5277959da726ea11bd6a2f",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -106537,19 +106634,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/prediction-boundary-qualification.md"
+        "docs/codex-app-server/prediction-boundary-qualification.md",
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "synthetic_contract_only",
-        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing.",
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
       ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -111790,15 +111889,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/13",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
+      ],
       "pointer": "/oneOf/13",
       "schema": "ServerNotification.json",
       "schema_sha256": "95e61d39d7bba3deb5c073ea9a5a34093a47fe4993f4a05e690952a9c6c0098d",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -111813,18 +111916,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/13/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/13/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "851f9d920184a74ea8c832723141b9b3651666c29a366114117db4731b385bde",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -111838,15 +111945,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/13/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
+      ],
       "pointer": "/oneOf/13/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b79b225b4ff48651042b7656822e1e435b85ee8e91f2eba2886d05f6d6208192",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -111861,18 +111972,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/13/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Scoped stock83086188 prediction-notification producer blocker: complete5259-file archive-equal Rust scan has18prediction references in7files, only declarations/consumers and unconditional message_processor1450-1453 unimplemented dispatcher. No prediction result/notification constructor or item/history/import mapping supplies generic outgoing, which requires a preconstructed typed value. Negative requests, codecs, client consumers or custom/synthetic producers cannot qualify stock native success. This exact physical notification owner remains required and blocked; no target waiver, request/history alias or verified credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/13/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6e8cb45c8cb6ef81f95819a23bed80e70edff7537d31f6e218f76fbdd13f3fb4",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

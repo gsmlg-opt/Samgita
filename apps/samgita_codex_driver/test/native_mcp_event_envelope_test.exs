@@ -4,7 +4,7 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
 
   alias SamgitaCodexDriver.{NativeLaunchFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
-  alias SamgitaProtocolCodex.Schema
+  alias SamgitaProtocolCodex.{Schema, Wire}
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
@@ -160,8 +160,18 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
     %{root: root, binary: Path.expand(binary), peer: peer, base_url: base_url, frozen: frozen}
   end
 
-  test "native MCP event envelopes follow actual activation, payload delivery and stop cancellation",
-       ctx do
+  for {label, stop_id} <- [
+        {"negative integer", -504_950},
+        {"positive integer", 504_950},
+        {"Unicode string", "owned-stop-λ🙂"}
+      ] do
+    @tag stop_id: stop_id
+    test "native MCP event envelopes retain #{label} stop ID through actual cancellation", ctx do
+      exercise_stream(ctx)
+    end
+  end
+
+  defp exercise_stream(ctx) do
     session = start_native(ctx)
     assert stream_notices(drain(session.pid)) === []
 
@@ -234,10 +244,17 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
     sent = wait_stream(ctx.peer, &(length(&1["stream"]["sent"]) === 2), now() + 5_000)
     assert_peer_notifications(sent, internal_id)
 
-    {stopped_result, _response, _request} =
-      call(session, "mcpServer/event/stream/stop", %{"subscriptionId" => @subscription})
+    {stopped_result, _response, stop_request} =
+      call(
+        session,
+        "mcpServer/event/stream/stop",
+        %{"subscriptionId" => @subscription},
+        ctx.stop_id
+      )
 
     assert stopped_result === %{}
+    assert stop_request["id"] === ctx.stop_id
+    assert :ok = Schema.validate(request_schema(), stop_request, max_depth: 32)
 
     stopped =
       wait_stream(
@@ -347,8 +364,8 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
       "_meta" => %{"source" => "owned-client"}
     }
 
-  defp call(session, method, params) do
-    wire = %{"id" => request_id(), "method" => method, "params" => params}
+  defp call(session, method, params, id \\ nil) do
+    wire = %{"id" => id || request_id(), "method" => method, "params" => params}
 
     assert {:ok, %{"result" => result} = response} =
              Session.request_native(session.pid, wire, timeout_ms: 5_000)
@@ -363,6 +380,10 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
     assert sent.direction === :out and received.direction === :in
     assert sent.wire === wire and sent.encoded === JSON.encode!(wire)
     assert received.wire === response and JSON.decode!(received.encoded) === response
+    assert {:ok, decoded_request} = Wire.decode(sent.encoded, max_depth: 32)
+    assert decoded_request === wire
+    assert {:ok, decoded_response} = Wire.decode(received.encoded, max_depth: 32)
+    assert decoded_response === response
     assert Enum.sort(Map.keys(response)) === ["id", "result"]
   end
 
@@ -577,6 +598,14 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
       Agent.get(session.capture, & &1.records)
       |> Enum.reverse()
       |> Enum.map(&Map.put(&1, :wire, JSON.decode!(&1.encoded)))
+
+  defp request_schema do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+    |> File.read!()
+    |> JSON.decode!()
+  end
 
   defp notification_schema do
     :samgita_protocol_codex

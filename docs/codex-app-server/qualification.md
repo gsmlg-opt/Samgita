@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [installed-plugin Hook, Unicode warning and MCP control-ID unit](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
+passes all **14 reviewed functional checks**, including **61 files / 117
+actual-native cases at both seeds**, three WebSocket seeds and outside consumer
+**1/0**, with 1,680 unchanged guarded sources. Complete native effects and
+123 archive-equal producer/reference files bind ten implemented physical owners;
+eleven prediction-notification owners become source-proven blocked. The
+[collaboration producer boundary](prediction-and-collaboration-source-boundaries.md)
+leaves its four selected values missing. Contracts are **5,475 implemented /
+1,016 missing / 130 blocked**; requirements remain **462 implemented / 12
+missing / 11 blocked**, zero verified. Continue the reviewed fuzzy query,
+populated-session stop and cold-recovery profile. Prohibited/hosted, A11,
+unavailable emitter/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
 passes **60 files / 112 actual-native cases at both seeds**, three selected
 WebSocket seeds, outside consumer **1/0** and all fourteen reviewed checks with
