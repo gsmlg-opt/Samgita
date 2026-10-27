@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [filesystem typed-ID journey](filesystem-typed-id-qualification.md)
+retains all 25 actual requests/effects and strengthens original-byte/typed-response
+correlation using aliases, Unicode and i64 boundaries. Focused **1/0**,
+**58 ordinary cases twice**, outside consumer **1/0**, nine checks and 417 stable
+sources pass. Only 1534/1539/1544/1564/1569/1574/1579 gain scoped evidence:
+**5,270 implemented / 1,274 missing / 77 blocked**, unchanged requirements and
+zero verified. No raw inbound/all-ID-alias claim. Continue the resource producer
+limit and existing fork evidence; prohibited/full-goal gates remain incomplete.
+
 The [PackagedDefaults producer boundary](packaged-defaults-producer-limitations.md)
 binds the sole config/read constructor's two unconditional exclusions and its
 conversion/processor/serialization routes to the official source. All 5,259

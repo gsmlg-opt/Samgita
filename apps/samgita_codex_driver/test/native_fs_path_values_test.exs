@@ -16,6 +16,19 @@ defmodule SamgitaCodexDriver.NativeFsPathValuesTest do
   @subject_bytes <<0, 255, 1, 195, 169, 10>>
   @control_bytes <<254, 0, 2, 10>>
   @watch_bytes "Owned native fs path notification λ"
+  @typed_request_ids %{
+    0 => {"fs/createDirectory", 0},
+    1 => {"fs/createDirectory", "0"},
+    2 => {"fs/writeFile", 7},
+    3 => {"fs/writeFile", "7"},
+    4 => {"fs/readFile", 9_007_199_254_740_993},
+    7 => {"fs/copy", -1},
+    11 => {"fs/watch", 9_223_372_036_854_775_807},
+    14 => {"fs/unwatch", -9_223_372_036_854_775_808},
+    15 => {"fs/remove", 42},
+    16 => {"fs/remove", "42"},
+    19 => {"fs/remove", "owned-fs-λ🙂"}
+  }
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -44,7 +57,7 @@ defmodule SamgitaCodexDriver.NativeFsPathValuesTest do
     defp capture(state, encoded, wire) do
       if length(Agent.get(state.capture, & &1)) < 32 and byte_size(encoded) <= 4096 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [wire]))
+          Agent.update(state.capture, &(&1 ++ [%{encoded: encoded, wire: wire}]))
           {:ok, next}
         end
       else
@@ -155,6 +168,8 @@ defmodule SamgitaCodexDriver.NativeFsPathValuesTest do
     assert_entries(ctx, pid, root, [])
 
     assert length(Agent.get(ctx.capture, & &1)) == 25
+    ids = Agent.get(ctx.capture, &Enum.map(&1, fn entry -> entry.wire["id"] end))
+    assert MapSet.size(MapSet.new(ids)) === 25
     assert File.read!(ctx.fixture.requests) == journal
     assert ModelFixture.requests(ctx.fixture) == []
     assert File.read!(ctx.config) == ctx.config_bytes
@@ -213,13 +228,30 @@ defmodule SamgitaCodexDriver.NativeFsPathValuesTest do
 
   defp request(ctx, pid, method, params) do
     before = length(Agent.get(ctx.capture, & &1))
-    id = "owned-fs-path-#{System.unique_integer([:positive, :monotonic])}"
+    id = request_id(before, method)
     expected = %{"id" => id, "method" => method, "params" => params}
 
-    assert {:ok, %{"id" => ^id, "result" => result}} = Session.request_native(pid, expected)
-    assert [wire] = Agent.get(ctx.capture, &Enum.drop(&1, before))
-    assert wire === expected
+    assert {:ok, %{"id" => ^id, "result" => result} = response} =
+             Session.request_native(pid, expected)
+
+    assert response["id"] === id
+    assert response === %{"id" => id, "result" => result}
+    assert [entry] = Agent.get(ctx.capture, &Enum.drop(&1, before))
+    assert entry.wire === expected
+    assert entry.encoded === JSON.encode!(expected)
+    assert JSON.decode!(entry.encoded) === expected
     result
+  end
+
+  defp request_id(index, method) do
+    case Map.fetch(@typed_request_ids, index) do
+      {:ok, {expected_method, id}} ->
+        assert method === expected_method
+        id
+
+      :error ->
+        "owned-fs-path-#{index}"
+    end
   end
 
   defp await_change(pid, watch_id, path, events, until) do
