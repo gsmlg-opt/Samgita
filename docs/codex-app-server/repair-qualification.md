@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native assistant-phase profile](native-assistant-phases-qualification.md)
+requires all three actual nonnull values in complete independent native maps/
+provider journals. One new isolated partial-answer case preserves per-profile
+requests1/1/2, all earlier reasoning/checklist/warning/usage/ingress assertions,
+bounds and cleanup. Focused **3/0**, **43ordinary cases twice**, syntax/strict
+checks and408stable-source guard pass;406other prior paths stay exact and nine
+whole sources/full enum match the pin. Only2577 becomes scoped implemented:
+**5,170 implemented /1,385 missing /66 blocked**, unchanged requirements and zero
+verified. Continue exact ordinary TurnError inner-null producer analysis;
+prohibited/full-goal gates remain incomplete.
+
 The [ordinary null-settings/stream profile](ordinary-null-settings-and-streams-qualification.md)
 adds only two Map.fetch! null assertions and binds unchanged complete native
 stdout/stderr scalar evidence to its two missing union alternatives. Original

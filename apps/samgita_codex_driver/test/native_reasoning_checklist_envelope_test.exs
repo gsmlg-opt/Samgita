@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/reasoning_checklist_envelope_fixture.py", __DIR__)
-  @script_sha "0bc7ef71755c8c2d80c5e8581c0861d948ce7b34cea0be3632c2aaecc2ba961e"
+  @script_sha "d42e156eb535595d63140870db8414f9cde90298c349d378a1d413dd2c2ba5ff"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_base_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @summary "item/reasoning/summaryTextDelta"
@@ -129,6 +129,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       binary: Path.expand(binary),
       python: python,
       scenario: tags.scenario,
+      answer_phase: tags.answer_phase,
       workspace: Path.join(root, "workspace"),
       capture: capture
     }
@@ -139,9 +140,19 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     %{profile: profile, provider: provider, session: session}
   end
 
-  @tag scenario: "reasoning"
+  @tag scenario: "reasoning", answer_phase: "commentary"
   test "whole native reasoning envelopes retain independent streamed indices text and item lifecycle",
        ctx do
+    qualify_reasoning(ctx, "commentary")
+  end
+
+  @tag scenario: "reasoning", answer_phase: "partial_answer"
+  test "whole native reasoning envelopes retain an independently prescribed partial answer phase",
+       ctx do
+    qualify_reasoning(ctx, "partial_answer")
+  end
+
+  defp qualify_reasoning(ctx, phase) do
     run = run_turn(ctx)
     assert_warning(ctx.profile, run)
     expected = reasoning_notices(run.thread, run.turn)
@@ -160,14 +171,22 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert List.last(selected).sequence < completed.sequence
     assert completed.sequence < run.finished.sequence
     assert_original_order(ctx.profile, [started] ++ selected ++ [completed, run.finished])
-    assert_answer(ctx.profile, run, "owned-reasoning-answer", "Synthetic reasoning finished")
+
+    assert_answer(
+      ctx.profile,
+      run,
+      "owned-reasoning-answer",
+      "Synthetic reasoning finished",
+      phase
+    )
+
     assert_provider(ctx.profile, run, 1)
-    assert read_json(ctx.profile, "provider-events.json") === [reasoning_provider_events()]
+    assert read_json(ctx.profile, "provider-events.json") === [reasoning_provider_events(phase)]
     assert_usage(ctx.profile, run, [{first_usage(), first_usage()}])
     finish(ctx, run)
   end
 
-  @tag scenario: "checklist"
+  @tag scenario: "checklist", answer_phase: "final_answer"
   test "whole native checklist envelope reflects actual default-mode update_plan and followup output",
        ctx do
     run = run_turn(ctx)
@@ -177,7 +196,15 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert updated.sequence < run.finished.sequence
     assert notices(run.events, "item/plan/delta") === []
     assert_original_order(ctx.profile, [updated, run.finished])
-    assert_answer(ctx.profile, run, "owned-checklist-answer", "Synthetic tool finished")
+
+    assert_answer(
+      ctx.profile,
+      run,
+      "owned-checklist-answer",
+      "Synthetic tool finished",
+      "final_answer"
+    )
+
     [first, second] = assert_provider(ctx.profile, run, 2)
     [tool] = Enum.filter(first["tools"], &(&1["name"] == "update_plan"))
     assert tool["type"] === "function"
@@ -214,7 +241,15 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert {:ok, transport} =
              Stdio.open(
                executable: profile.python,
-               args: [@script, "--root", profile.root, "--scenario", profile.scenario],
+               args: [
+                 @script,
+                 "--root",
+                 profile.root,
+                 "--scenario",
+                 profile.scenario,
+                 "--answer-phase",
+                 profile.answer_phase
+               ],
                cwd: profile.workspace,
                inherit_env: [],
                env: environment(profile),
@@ -546,7 +581,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     event
   end
 
-  defp assert_answer(profile, run, id, text) do
+  defp assert_answer(profile, run, id, text, phase) do
     [event] =
       Enum.filter(
         notices(run.events, "item/completed"),
@@ -557,7 +592,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       "type" => "agentMessage",
       "id" => id,
       "text" => text,
-      "phase" => nil,
+      "phase" => phase,
       "memoryCitation" => nil,
       "delivery" => nil,
       "questions" => nil
@@ -596,7 +631,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert byte_size(JSON.encode!(request)) <= 1_048_576
   end
 
-  defp reasoning_provider_events do
+  defp reasoning_provider_events(phase) do
     body = [
       %{
         "type" => "response.output_item.added",
@@ -624,7 +659,8 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       %{"type" => "response.output_item.done", "item" => provider_reasoning_item()},
       %{
         "type" => "response.output_item.done",
-        "item" => provider_message("owned-reasoning-answer", "Synthetic reasoning finished")
+        "item" =>
+          provider_message("owned-reasoning-answer", "Synthetic reasoning finished", phase)
       }
     ]
 
@@ -655,7 +691,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       "arguments" => @checklist_arguments
     }
 
-    final = provider_message("owned-checklist-answer", "Synthetic tool finished")
+    final = provider_message("owned-checklist-answer", "Synthetic tool finished", "final_answer")
 
     [
       provider_response(1, [%{"type" => "response.output_item.done", "item" => first}]),
@@ -663,11 +699,12 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     ]
   end
 
-  defp provider_message(id, text),
+  defp provider_message(id, text, phase),
     do: %{
       "type" => "message",
       "role" => "assistant",
       "id" => id,
+      "phase" => phase,
       "content" => [%{"type" => "output_text", "text" => text}]
     }
 

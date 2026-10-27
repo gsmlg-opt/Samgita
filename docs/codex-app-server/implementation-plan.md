@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native assistant-phase unit](native-assistant-phases-qualification.md)
+qualifies only2577 through complete independent native maps and real Responses
+commentary/partial_answer/final_answer inputs. One added isolated reasoning case
+retains all original per-profile requests1/1/2, limits, reasoning/checklist/
+warning/usage/raw-ingress and cleanup checks. Focused **3/0**, **43ordinary cases
+twice**, syntax/strict checks and408stable sources pass;406other prior paths
+stay exact and nine whole sources plus the complete referenced enum match
+the pin. Only one becomes scoped implemented:
+**5,170 implemented /1,385 missing /66 blocked**, unchanged requirements and zero
+verified. Mailbox/persistence/other transport semantics stay unqualified.
+Continue exact ordinary TurnError inner-null producer analysis; prohibited/
+full-goal gates remain incomplete.
+
 The [ordinary null-settings/stream unit](ordinary-null-settings-and-streams-qualification.md)
 qualifies only2726/2731 explicit nulls via two added Map.fetch! assertions in
 four actual settings updates, and2344/2346 scalar stream alternatives through

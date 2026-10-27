@@ -32,8 +32,9 @@ def write_json(path, value):
     temporary.replace(path)
 
 
-def message(identity, text):
+def message(identity, text, phase):
     return {"type": "message", "role": "assistant", "id": identity,
+            "phase": phase,
             "content": [{"type": "output_text", "text": text}]}
 
 
@@ -45,7 +46,7 @@ def reasoning_item():
                         for text in ["", "", "Synthetic raw α🙂"]]}
 
 
-def response_events(scenario, index):
+def response_events(scenario, index, answer_phase):
     identity = f"owned-envelope-response-{index}"
     if scenario == "reasoning":
         body = [
@@ -65,7 +66,7 @@ def response_events(scenario, index):
              "delta": "α🙂"},
             {"type": "response.output_item.done", "item": reasoning_item()},
             {"type": "response.output_item.done", "item": message(
-                "owned-reasoning-answer", "Synthetic reasoning finished")},
+                "owned-reasoning-answer", "Synthetic reasoning finished", answer_phase)},
         ]
     elif index == 1:
         body = [{"type": "response.output_item.done", "item": {
@@ -73,7 +74,7 @@ def response_events(scenario, index):
             "call_id": "owned-checklist-call", "arguments": CHECKLIST_ARGUMENTS}}]
     else:
         body = [{"type": "response.output_item.done", "item": message(
-            "owned-checklist-answer", "Synthetic tool finished")}]
+            "owned-checklist-answer", "Synthetic tool finished", answer_phase)}]
     usage = {
         "input_tokens": 7 if index == 1 else 13,
         "input_tokens_details": {"cached_tokens": 3 if index == 1 else 5,
@@ -137,9 +138,10 @@ class ProviderHandler(BaseHTTPRequestHandler):
 
 
 class EnvelopeProvider(ModelFixture):
-    def __init__(self, root, scenario):
+    def __init__(self, root, scenario, answer_phase):
         super().__init__(scenario, root / "workspace", root / "requests.json")
         self.root = root
+        self.answer_phase = answer_phase
         self.events = []
         self.server.RequestHandlerClass = ProviderHandler
         self.server.fixture = self
@@ -149,7 +151,7 @@ class EnvelopeProvider(ModelFixture):
     def respond(self, handler, request):
         index = len(self.requests) + 1
         assert_request(self.scenario, index, request)
-        events = response_events(self.scenario, index)
+        events = response_events(self.scenario, index, self.answer_phase)
         self.requests.append(request)
         self.events.append(events)
         write_json(self.requests_file, self.requests)
@@ -228,9 +230,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--scenario", required=True, choices=["reasoning", "checklist"])
+    parser.add_argument("--answer-phase", required=True,
+                        choices=["commentary", "partial_answer", "final_answer"])
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
-    fixture = EnvelopeProvider(root, args.scenario)
+    fixture = EnvelopeProvider(root, args.scenario, args.answer_phase)
     signal.signal(signal.SIGTERM, terminate)
     try:
         fixture.config(root / "codex")

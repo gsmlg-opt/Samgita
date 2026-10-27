@@ -102324,24 +102324,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-assistant-phases-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V421 scoped actual-native nonnull AgentMessage.phase reference. Three ordinary direct fixed-YOLO cases prescribe commentary/partial_answer/final_answer through required finite loopback model --answer-phase input and separate literal Elixir full-item/full-SSE expectations. Existing reasoning case remains commentary;new isolated partial_answer case reuses unchanged reasoning assertions;existing checklist followup is final_answer. Exactly1/1/2actual model requests and4RPCs plus initialized per profile,independent complete native maps/raw pre-Session ingress/schema/current generation/clock/order,reasoning indices/Unicode deltas/checklist tool output/warnings/usage/control bytes and owner/PID/Port cleanup remain. Provider manufactures only Responses SSE,never native events. No mailbox producer or false end_turn is added;source proves non-tool completion and unchanged request counts for this profile,not general phase interchangeability or mailbox behavior. All3literal values of exact owning MessagePhase reference are tested;null fallback remains in other current reviewed modules. Original128messages/2MiB,64KiB frames/SSE,1MiBrequests,5sRPC/startup/20sturn/60scase and finite fixture caps unchanged. Focused3/0 and43reviewed ordinary cases twice,9Python syntax/format/compile/strictCredo/inventory pass;408guarded sources stable,406other prior paths unchanged. Nine whole upstream files,canonical2577 ref and complete3-value referenced enum archive/export-match. Only2577 promoted;siblings/aliases/full ThreadItem/history/persistence/no-mailbox-excluded behavior/OS/transports/external/platform/full verified acceptance remain unqualified. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e78711cf8df4d5cddf4ec42479dbadba2d1eb3094cf2e39a6258e0f2f571891b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
