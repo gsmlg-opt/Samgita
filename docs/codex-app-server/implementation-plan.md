@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)
+adds original startup/correlation, exact ordered role/text backend effects and
+warm/cold start/closed-only history. Its initial **8/1** wrong graceful-close
+oracle is retained; the actual native stop caller chain drops the writer
+without invoking graceful close. The corrected live peer requires one EOF
+before teardown and explicitly zero application/WebSocket close frames.
+Focused **8/0**, **84 ordinary cases twice**, selected WebSocket seeds, outside
+consumer **1/0**, all fourteen reviewed checks and 1,668 identical source hashes
+pass. Only owners644/645 become scoped implemented: **5,417 implemented /
+1,088 missing / 116 blocked**, unchanged requirements and zero verified.
+Continue the reviewed ordinary marketplace/review request envelopes and genuine
+model-input effects of realtime start/end instructions. Native graceful close
+remains a documented limitation. Prohibited/hosted, A11, unavailable emitters/
+external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary realtime inputs and voices](ordinary-realtime-start-stop-qualification.md#current-builtin-voices-and-speech-qualification)
 require exact original correlated RPCs and independent backend effects, with
 start/closed-only warm/cold history and existing cleanup. The latest case adds
@@ -31,8 +46,8 @@ blank speech no-ops and one nonblank text-plus-response backend effect. Focused
 Six exact owners join V480's 36 scoped owners; thirteen additional
 [producer boundaries](native-projection-boundaries.md) stay missing. Counts:
 **5,415 implemented / 1,090 missing / 116 blocked**, unchanged requirements and
-zero verified. Next qualify V3 initialItems/configured version fallback with
-`/v1/live` and explicit session.close. Prohibited/hosted, A11, unavailable
+zero verified. The V3 qualification above establishes initialItems/configured
+version fallback and corrects the proposed explicit-close oracle. Prohibited/hosted, A11, unavailable
 emitters/external/OS/full-goal and release gates remain incomplete.
 
 The [existing native V2 realtime literal](native-realtime-v2-index-qualification.md)

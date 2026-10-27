@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)
+passes **84 ordinary real-binary cases at both seeds**, selected WebSocket
+cases at three seeds, outside consumer **1/0** and all fourteen reviewed checks,
+with 1,668 identical source hashes. The first focused **8/1** failure remains
+recorded: source proves requested stop drops the writer without calling graceful
+close. The live peer now requires one EOF before teardown and explicitly zero
+application/WebSocket close frames, preserving all original/history/cleanup
+assertions and bounds. Only initial-item role/text owners644/645 gain scoped
+implemented evidence: **5,417 implemented / 1,088 missing / 116 blocked**,
+unchanged requirements and zero verified. Native graceful shutdown is not
+claimed. Fixed YOLO is setup; prohibited/hosted, A11, unavailable/external/OS,
+full-goal and release gates remain incomplete.
+
 The [ordinary realtime inputs and voices](ordinary-realtime-start-stop-qualification.md#current-builtin-voices-and-speech-qualification)
 pass **83 ordinary real-binary cases at both seeds**, selected WebSocket cases
 at three seeds, outside consumer **1/0** and all fourteen reviewed checks,

@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "7f9fc34939093694b4a162411ac08aae4aa9dea8f3ce7d24e91b5c951d604b98"
+  @script_sha "2f85486f8281a45dfe0817d1b4d7f529c2a2329d39df7c2deb21f46bc09a1eb4"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1607,7 +1607,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "item-audio",
            "sdp",
            "ingress",
-           "speech"
+           "speech",
+           "initial-items"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -2644,6 +2645,299 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              "threadAlive" => false,
              "serverClosed" => true
            }
+  end
+
+  @tag realtime_scenario: "initial-items"
+  test "native configured V3 sends ordered initial items and requested stop drops backend without transcript history",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+
+    assert String.contains?(
+             ctx.frozen["codex/config.toml"],
+             "[realtime]\nversion = \"v3\"\ntype = \"conversational\"\n"
+           )
+
+    thread =
+      call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+    lower = System.system_time(:millisecond)
+
+    start_params = %{
+      "threadId" => thread,
+      "outputModality" => "audio",
+      "voice" => "cove",
+      "transport" => %{"type" => "websocket"},
+      "realtimeSessionId" => "owned-ordinary-initial-items-session",
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "delegationAckFiller" => false,
+      "prompt" => @prompt,
+      "initialItems" => [
+        %{"role" => "developer", "text" => "Owned initial developer λ\nkeep trailing space "},
+        %{"role" => "user", "text" => "Owned initial user 🙂\nsecond line"},
+        %{"role" => "assistant", "text" => "Owned initial assistant α\r\nfinal "}
+      ]
+    }
+
+    # Stock WebSocket startup falls back to [realtime].version. Original
+    # request bytes must omit version while the native started notice says v3.
+    refute Map.has_key?(start_params, "version")
+    assert call(profile, pid, "thread/realtime/start", start_params) === %{}
+
+    [start_request, start_response] =
+      start_originals =
+      assert_speech_exchange(profile, "thread/realtime/start", start_params, %{})
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @started)) == 1 and
+          length(notices(events, @item_completed)) == 1 and
+          read_peer(profile)["sent"] == [initial_peer_ack()]
+      end)
+
+    upper = System.system_time(:millisecond)
+    [first] = notices(events, @item_completed)
+    first_id = first.wire["params"]["item"]["id"]
+    assert_uuid(first_id)
+
+    started_item = %{
+      "id" => first_id,
+      "realtimeSessionId" => "owned-ordinary-initial-items-session",
+      "type" => "realtimeSessionStarted"
+    }
+
+    assert_selected(
+      profile,
+      events,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started_item}},
+        {@item_completed, %{"threadId" => thread, "item" => started_item}},
+        {@started,
+         %{
+           "threadId" => thread,
+           "realtimeSessionId" => "owned-ordinary-initial-items-session",
+           "version" => "v3"
+         }}
+      ],
+      lower,
+      upper
+    )
+
+    assert_initial_items_peer(profile, 1)
+
+    started_originals =
+      assert_originals(profile, Enum.filter(events, &(&1.wire["method"] in @selected)))
+
+    observed_boundary = Agent.get(profile.capture, & &1.count)
+    assert start_request.index < List.first(started_originals).index
+    assert start_response.index <= observed_boundary
+    assert List.last(started_originals).index <= observed_boundary
+    assert length(notices(events, @item_completed)) === 1
+    refute Enum.any?(events, &(&1.wire["method"] in @transcript_methods))
+    stop_lower = System.system_time(:millisecond)
+    stop_params = %{"threadId" => thread}
+    assert call(profile, pid, "thread/realtime/stop", stop_params) === %{}
+
+    [stop, stop_response] =
+      stop_originals =
+      assert_speech_exchange(profile, "thread/realtime/stop", stop_params, %{})
+
+    assert stop.index > observed_boundary
+    assert start_response.index < stop.index
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1
+      end)
+
+    stop_upper = System.system_time(:millisecond)
+    [^first, last] = notices(events, @item_completed)
+    last_id = last.wire["params"]["item"]["id"]
+    assert_uuid(last_id)
+    refute last_id === first_id
+
+    closed_item = %{
+      "id" => last_id,
+      "realtimeSessionId" => "owned-ordinary-initial-items-session",
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    selected = Enum.filter(events, &(&1.wire["method"] in @selected))
+    assert length(selected) === 6
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      [
+        {@item_started, %{"threadId" => thread, "item" => closed_item}},
+        {@item_completed, %{"threadId" => thread, "item" => closed_item}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      stop_lower,
+      stop_upper
+    )
+
+    originals = assert_originals(profile, selected)
+    assert Enum.take(originals, 3) === started_originals
+    assert stop.index < Enum.at(originals, 3).index
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+    rollout = File.read!(saved["path"])
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = call(profile, pid, "thread/timeline/list", query)
+    # Initial backend context alone creates no transcript or ordinary-turn facts.
+    assert_timeline(timeline, started_item, closed_item)
+    assert call(profile, pid, "thread/timeline/list", query) === timeline
+    assert_empty_ingress_turns(profile, pid, thread)
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert Enum.filter(events, &(&1.wire["method"] in @selected)) === selected
+    refute Enum.any?(events, &(&1.wire["method"] in @transcript_methods))
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/")) ===
+             selected
+
+    await_peer_closed(profile, min(deadline, now() + 5_000))
+    peer = assert_initial_items_peer(profile, 0)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_inputs(ctx)
+    assert_ready(profile, pid)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/stop thread/read thread/timeline/list thread/timeline/list thread/turns/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :initial_items_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert_empty_ingress_turns(cold_profile, cold.pid, thread)
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+    refute Enum.any?(cold_events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+    assert_ready(cold_profile, cold.pid)
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/timeline/list thread/timeline/list thread/turns/list)
+
+    assert Agent.get(profile.capture, & &1) === warm
+    lifecycle_ids = [start_request.wire["id"], stop.wire["id"]]
+
+    assert Enum.filter(capture(profile), &(&1.wire["id"] in lifecycle_ids)) ===
+             start_originals ++ stop_originals
+
+    assert stop_response.wire === %{"id" => stop.wire["id"], "result" => %{}}
+    assert assert_originals(profile, selected) === originals
+    assert File.read!(saved["path"]) === rollout
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+    assert File.read!(saved["path"]) === rollout
+    assert_inputs(ctx)
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+  end
+
+  defp initial_peer_ack do
+    %{
+      "type" => "session.started",
+      "session" => %{
+        "id" => "owned-initial-peer-session",
+        "instructions" => @prompt
+      }
+    }
+  end
+
+  defp assert_initial_items_peer(profile, active) do
+    state = read_peer(profile)
+    frame_count = Map.fetch!(state, "frameCount")
+    assert is_integer(frame_count) and frame_count >= 2 and frame_count <= 32
+
+    session = %{
+      "instructions" => @prompt,
+      "audio" => %{"output" => %{"voice" => "cove"}},
+      "delegation" => %{"type" => "client", "ack_filler" => false},
+      "initial_items" => [
+        %{
+          "type" => "message",
+          "role" => "developer",
+          "content" => [
+            %{"type" => "input_text", "text" => "Owned initial developer λ\nkeep trailing space "}
+          ]
+        },
+        %{
+          "type" => "message",
+          "role" => "user",
+          "content" => [
+            %{"type" => "input_text", "text" => "Owned initial user 🙂\nsecond line"}
+          ]
+        },
+        %{
+          "type" => "message",
+          "role" => "assistant",
+          "content" => [
+            %{"type" => "output_text", "text" => "Owned initial assistant α\r\nfinal "}
+          ]
+        }
+      ]
+    }
+
+    # The pinned requested-stop manager cancels its input task and drops the
+    # writer, without invoking its separate graceful-close method. EOF must be
+    # observed by the live peer before any fixture or native-process teardown.
+    assert state === %{
+             "paths" => ["/v1/live?model=#{@model}"],
+             "messages" => [%{"type" => "session.update", "session" => session}],
+             "sent" => [initial_peer_ack()],
+             "frameCount" => frame_count,
+             "responsesRequests" => 0,
+             "otherHttp" => [],
+             "activeConnections" => active,
+             "requestCount" => 1,
+             "controls" => [],
+             "errors" => [],
+             "sessionClose" => [],
+             "websocketCloseCount" => 0,
+             "transportEofCount" => if(active == 0, do: 1, else: 0)
+           }
+
+    state
   end
 
   defp assert_speech_exchange(profile, method, params, result) do

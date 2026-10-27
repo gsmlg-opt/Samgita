@@ -69,6 +69,21 @@ SPEECH = [
     }},
     {"type": "response.create"},
 ]
+INITIAL_ACK = {"type": "session.started", "session": {
+    "id": "owned-initial-peer-session", "instructions": PROMPT}}
+INITIAL_SESSION = {
+    "instructions": PROMPT,
+    "audio": {"output": {"voice": "cove"}},
+    "delegation": {"type": "client", "ack_filler": False},
+    "initial_items": [
+        {"type": "message", "role": "developer",
+         "content": [{"type": "input_text", "text": "Owned initial developer λ\nkeep trailing space "}]},
+        {"type": "message", "role": "user",
+         "content": [{"type": "input_text", "text": "Owned initial user 🙂\nsecond line"}]},
+        {"type": "message", "role": "assistant",
+         "content": [{"type": "output_text", "text": "Owned initial assistant α\r\nfinal "}]},
+    ],
+}
 SDP_OFFER = "v=0\r\ns=Owned ordinary offer λ\r\na=inactive\r\n"
 SDP_ANSWER = "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
 SDP_CALL_ID = "rtc_owned_ordinary_sdp"
@@ -220,6 +235,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
             return
 
         expected_path = (SDP_SIDEBAND_PATH if fixture.scenario == "sdp"
+                         else f"/v1/live?model={MODEL}" if fixture.scenario == "initial-items"
                          else f"/v1/realtime?model={MODEL}")
         if method != "GET" or path != expected_path:
             with fixture.lock:
@@ -256,6 +272,19 @@ class PeerHandler(socketserver.BaseRequestHandler):
         while not fixture.stopping.is_set():
             first = self.read_exact(2, fixture, deadline)
             if first is None:
+                if fixture.scenario == "initial-items":
+                    # Stock app-server requested stop drops the native writer;
+                    # it does not invoke RealtimeWebsocketWriter.close. Observe
+                    # EOF here, before fixture teardown can close any socket.
+                    assert not fixture.stopping.is_set()
+                    with fixture.lock:
+                        assert fixture.state["messages"] == [{"type": "session.update", "session": INITIAL_SESSION}]
+                        assert fixture.state["sent"] == [INITIAL_ACK]
+                        assert fixture.state["sessionClose"] == []
+                        assert fixture.state["websocketCloseCount"] == 0
+                        assert fixture.state["transportEofCount"] == 0
+                        fixture.state["transportEofCount"] = 1
+                        fixture.save_locked()
                 return
             assert first[0] & 0x80 and not first[0] & 0x70, "Owned unfragmented frame required"
             opcode = first[0] & 0x0F
@@ -274,6 +303,12 @@ class PeerHandler(socketserver.BaseRequestHandler):
             payload = bytes(value ^ mask[index % 4] for index, value in enumerate(payload))
             fixture.record_frame()
             if opcode == 8:
+                if fixture.scenario == "initial-items":
+                    with fixture.lock:
+                        assert fixture.state["sessionClose"] == [{"type": "session.close"}]
+                        assert fixture.state["websocketCloseCount"] == 0
+                        fixture.state["websocketCloseCount"] = 1
+                        fixture.save_locked()
                 self.send_frame(fixture, 8, payload)
                 return
             if opcode == 9:
@@ -303,9 +338,21 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     fixture.state["speech"].append(message)
                     fixture.save_locked()
                 continue
+            if fixture.scenario == "initial-items" and message.get("type") != "session.update":
+                with fixture.lock:
+                    assert message == {"type": "session.close"}
+                    assert fixture.state["messages"] == [{"type": "session.update", "session": INITIAL_SESSION}]
+                    assert fixture.state["sent"] == [INITIAL_ACK]
+                    assert fixture.state["sessionClose"] == []
+                    assert fixture.state["websocketCloseCount"] == 0
+                    fixture.state["sessionClose"].append(message)
+                    fixture.save_locked()
+                continue
             assert isinstance(message, dict) and message.get("type") == "session.update"
             if fixture.scenario == "sdp":
                 assert message == {"type": "session.update", "session": sdp_session()}
+            elif fixture.scenario == "initial-items":
+                assert message == {"type": "session.update", "session": INITIAL_SESSION}
             else:
                 assert message["session"]["type"] == "realtime"
                 assert message["session"]["instructions"] == PROMPT
@@ -317,9 +364,10 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 fixture.state["messages"].append(message)
                 assert len(fixture.state["messages"]) == 1, "Extra owned session.update"
                 fixture.save_locked()
-            self.send_frame(fixture, 1, json.dumps(ACK, separators=(",", ":")).encode())
+            ack = INITIAL_ACK if fixture.scenario == "initial-items" else ACK
+            self.send_frame(fixture, 1, json.dumps(ack, separators=(",", ":")).encode())
             with fixture.lock:
-                fixture.state["sent"].append(ACK)
+                fixture.state["sent"].append(ack)
                 fixture.save_locked()
             if fixture.scenario == "transcript":
                 while not fixture.release.is_set():
@@ -465,6 +513,10 @@ class OrdinaryRealtimePeer:
             self.state["ingress"] = []
         if scenario == "speech":
             self.state["speech"] = []
+        if scenario == "initial-items":
+            self.state["sessionClose"] = []
+            self.state["websocketCloseCount"] = 0
+            self.state["transportEofCount"] = 0
         self.server = PeerServer(("127.0.0.1", 0), PeerHandler)
         self.server.fixture = self
         self.thread = threading.Thread(
@@ -495,6 +547,8 @@ class OrdinaryRealtimePeer:
     def config(self):
         sdp_config = (f'experimental_realtime_webrtc_call_base_url = "{self.url}/v1"\n'
                       '[realtime]\ntype = "conversational"\n' if self.scenario == "sdp" else "")
+        initial_config = ('[realtime]\nversion = "v3"\ntype = "conversational"\n'
+                          if self.scenario == "initial-items" else "")
         catalog = self.root / "codex/models.json"
         write_json(catalog, {"models": [{
             "slug": "mock-model", "display_name": "Owned ordinary realtime fixture",
@@ -519,7 +573,7 @@ experimental_realtime_ws_base_url = "{self.url}/v1"
 experimental_realtime_ws_model = "{MODEL}"
 experimental_realtime_ws_backend_prompt = ""
 experimental_realtime_ws_startup_context = ""
-{sdp_config}[analytics]
+{sdp_config}{initial_config}[analytics]
 enabled = false
 [otel]
 exporter = "none"
@@ -598,7 +652,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

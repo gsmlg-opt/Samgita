@@ -329,6 +329,13 @@ The [builtin voices/speech case](ordinary-realtime-start-stop-qualification.md#c
 also observes thread-independent catalog results and explicitly uses their V2
 default. Blank speech is a no-op; nonblank speech sends `[BACKEND] ` text plus
 response.create. That request pair does not establish generated or audible audio.
+The [configured V3 initial-item case](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)
+preserves all three ordered role/text inputs in the actual `/v1/live` startup
+message. Stock requested stop cancels its input task and drops the backend
+connection; it does not call the separate graceful writer-close method. A
+native requested-close notification therefore does not promise `session.close`
+or a WebSocket close frame. The live peer observes EOF before fixture cleanup;
+warm/cold start/closed history is separate from backend shutdown semantics.
 The later local V1 multipart SDP/sideband profile qualifies that exchange only;
 neither profile establishes live ICE/DTLS, playback or external-provider success.
 Private collaborator analytics and preserved canonical imported history remain

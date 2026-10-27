@@ -1,5 +1,84 @@
 # Ordinary native realtime start and stop
 
+## Configured V3 initial items and requested-stop boundary
+
+V482 (2026-10-28) adds one actual-native ordinary case. The original startup
+request omits `version`; the frozen configuration selects V3. The native
+started notification reports `v3`, and the independent backend receives one
+connection at `/v1/live?model=owned-v432-realtime-model`. Its exact
+`session.update` preserves ordered developer, user and assistant initial items,
+their role-specific `input_text`/`output_text`, Unicode, LF, CRLF and trailing
+whitespace. The peer implements only the backend, never app-server responses.
+No model turn, transcription, handoff or generated media is involved.
+
+The first focused run was **8 tests / 1 failure**: startup and the initial-item
+mapping passed, but the proposed stop oracle incorrectly expected a
+`session.close` message and WebSocket close frame. The actual journal contained
+two frames, no error, no close messages and zero remaining connections. The
+original failed log is retained at
+`/tmp/samgita-v482-initial-items-focused/native-initial-items.log`, SHA256
+`9258039ea69df5db263d5a4ab4a1b32aed92cd753c1b3e59705512359b12bda7`.
+
+The complete pinned requested-stop chain explains that observation:
+
+1. `turn_processor.rs:1389–1405` submits `RealtimeConversationClose`;
+   `session/handlers.rs:553–555` dispatches it.
+2. `realtime_conversation.rs:2022–2057` detaches the conversation;
+   `:1270–1288` marks it inactive, cancels and awaits its input task.
+3. The input task exits at `:2147–2149`; its wrapper at `:2060–2075` only
+   flushes transcript state. Dropping its writer releases the last stream owner.
+4. `methods.rs:235–239` aborts the socket pump. The separate graceful
+   `RealtimeWebsocketWriter.close` at `:441–467` is **not called** by this path.
+
+The public stop contract at `v2/realtime.rs:350–362` promises no graceful backend
+frame sequence. Native requested closure and graceful backend shutdown therefore
+remain different outcomes. The corrected finite peer independently records
+exactly one empty-frame-boundary EOF while it is still running, before native
+or fixture teardown. Before stop it must show an active connection and zero
+EOFs; after stop it must show one EOF, no `session.close` and no WebSocket close
+frame. Partial frames still fail. Both close counters and the complete journal
+remain asserted; no alternative shutdown result, timeout increase, sleep or
+removed assertion substitutes for this evidence. Graceful backend shutdown
+remains a pinned native limitation, not a passing compatibility claim.
+
+Original correlated start/stop bytes, all six native lifecycle notifications,
+the requested reason/ended outcome, exact repeated warm/cold timeline, empty
+ordinary turns, immutable rollout/config/workspace and owned process/Port/socket/
+thread/listener cleanup remain required. Post-stop queries use the still-ready
+native session before its explicit shutdown. The corrected focused run passes
+**8/0** in 13.681 command seconds; its log SHA256 is
+`76964bc8a6d9cb55db415e4c5f58d45505efd900cadb2438ea9f061557ba6509`.
+
+Only physical owners **644/645** gain scoped implemented evidence for initial
+item `role` and `text`. The nine complete producer files match the unchanged
+archive binding, and both canonical nodes match the immutable native export.
+The source/test/failure binding is
+`/tmp/samgita-v482-initial-items-binding/source.json`, SHA256
+`e774c3fd4376650f9dcafe0bfcbaf02a9cf25978f6e170c4b7c86404b8a4a3ad`.
+An initial helper used compact JSON instead of the inventory's pretty canonical
+encoding and stopped before writing an artifact; correcting that helper changed
+no source, schema node or native assertion.
+
+Final **84 ordinary cases at both 501432/987654**, three selected WebSocket
+cases at each of 455834/501432/987654, outside consumer **1/0**, warning-strict
+compile, format, inventory consistency, strict Credo, forced Dialyzer and assets
+pass: all **14** reviewed steps and **1,668** identical before/after hashes.
+Exact commands and logs: `/tmp/samgita-ordinary-v482/`; `results.json` SHA256
+`22c4b1efa2472bb403fc9cbe68d452286a700ba687a81c8cdec0e2efd1219cf6`,
+`source.json` SHA256
+`60a4de2dabe32d4fb6245154ecc5fd7928319068a2373b4a511426c3e9a97d76`.
+Reviewed fingerprint:
+`60044dbdfb5057154ad2871166811c0afda6188d92f8fe50bf709cabe0e7b2c0`.
+Counts are
+**5,417 implemented / 1,088 missing / 116 blocked** contracts and unchanged
+**462 implemented / 12 missing / 11 blocked** requirements, zero verified.
+Fixed YOLO is setup only. Prohibited tests/audits, broad/hosted suites, A11,
+unavailable emitters/external/OS/full-goal and release gates remain incomplete.
+Rollback reverts this test/fixture/metadata unit without changing runtime code,
+platform data or histories. Continue ordinary native marketplace/review
+envelopes and substantive realtime instruction effects; startup alone cannot
+qualify instruction injection or handoff fields.
+
 ## Current builtin voices and speech qualification
 
 V481 (2026-10-28) extends the text/PCM profile below with one ordinary native
@@ -70,9 +149,9 @@ test or audit, broad suite or hosted workflow runs. Full compatibility, A11,
 unavailable emitters/external/OS and release gates remain incomplete; no
 publication, deployment, production migration or sibling edit. Rollback reverts
 this scoped test/fixture/metadata commit without changing platform data or
-production driver code. Continue the source-confirmed V3 initial-item profile:
-configured version fallback, `/v1/live`, exact initial messages and explicit
-session.close. These are not yet qualified by this V2 result.
+production driver code. V3 initial items and configured fallback are qualified
+separately above; that investigation corrects the proposed explicit
+`session.close` oracle using the actual requested-stop caller chain.
 
 ## Current text and PCM input qualification
 
