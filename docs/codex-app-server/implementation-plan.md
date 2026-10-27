@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [outer collaboration-mode null profile](turn-collaboration-null-qualification.md)
+adds one real-native causal four-turn case: custom Plan/medium, explicit outer
+null plus low effort, omission, then custom Default/medium. Summary-only native
+snapshot barriers and actual provider requests independently prove current
+mode/instruction retention and effort changes. Legacy readback IDs remain
+explicitly distinct from live IDs; initial oracle/lint failures are preserved.
+Final five-file **22/0 twice**, strict checks and387-source guard pass; all386
+prior sources remain unchanged, and39 complete sources match the pin. Only6513
+becomes scoped implemented: **5,077 implemented /1,478 missing /66 blocked**
+contracts, unchanged requirements and zero verified. Continue reachable ordinary
+field/default behavior; prohibited/broad/hosted, A11, unavailable producers and
+external/OS/platform/full-goal/release gates remain incomplete.
+
 The [positive search-source binding](search-source-owners-qualification.md)
 indexes seven exact standalone search input/output owners for genuine Cli,
 Exec, code-review and spawned-child producers. Existing captured positive

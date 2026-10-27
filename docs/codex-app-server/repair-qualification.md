@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [outer mode-null case](turn-collaboration-null-qualification.md) proves
+real Plan/custom-instruction retention while independent effort changes, with
+omitted-field and explicit Default controls over four actual turns. Applied
+summary-only native snapshots, four provider requests and exact raw maps/IDs
+are independent oracles. The legacy live/readback-ID failure is source-corrected
+with exact full maps and distinct identities; the helper-only lint correction
+retains every test-body byte. Final **22ordinary cases twice**, strict checks
+and387-source guard pass, with all386 prior sources unchanged and39 complete
+archive-matched sources. Only6513 becomes scoped implemented: **5,077 implemented
+/1,478 missing /66 blocked**, unchanged requirements and zero verified. The
+earlier154-case/consumer evidence is retained without fabricated rerun claims.
+Prohibited/broad/hosted, A11, unavailable producers and full-goal gates remain open.
+
 The [positive search-source evidence](search-source-owners-qualification.md)
 binds seven individually checked standalone export nodes to actual Cli/Exec,
 code-review and spawned-child search oracles. All386 sources equal the passing

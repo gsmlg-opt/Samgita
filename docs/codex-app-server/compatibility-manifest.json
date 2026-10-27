@@ -226902,24 +226902,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-collaboration-null-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnStartParams.json#/properties/collaborationMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native outer collaborationMode:null behavior only: four original-byte correlated turns select custom Plan/medium, present null plus independent low effort, omitted mode/effort and explicit custom Default/medium. Summary-only causal applied-settings events require the complete current mode/instructions/model/provider/effort map, independently corroborated by exact4 provider requests, native metadata/user text and latest collaboration instruction fragments. Native events preserve eight distinct live IDs and start/completion identity; legacy full-history maps use exactly source-derived item-1..item-8, retain all other fields and compare complete repeated reads. The initial invented live/history-ID equality failure and strict-Credo helper findings remain recorded. Capture helper extraction retains all setup/target/history/cleanup bytes, native frame selection, bounded atomic append/error and ordering. Final22 ordinary cases pass twice, format/compile/strict Credo552/inventory pass and387source guard stays equal/all386 prior sources unchanged;39whole immutable sources match. Exactly14 correlated RPC exchanges and all original time/event/frame/file bounds, stable config/catalog/helper/journal/rollout, empty workspace and checked native completion/Port/PID cleanup remain. Earlier87schema/154ordinary twice and consumer1/0 retain original unchanged-source evidence, without a fabricated new aggregate run. Only physical6513 gains scoped implemented evidence; no other field/endpoint/transport/backend/OS or verified promotion. Cold resume, other combinations, prohibited/broad/hosted checks, A11, missing upstream/legacy producers, external/platform and full-goal/release gates remain incomplete. No publication or deployment."
+      ],
       "pointer": "/properties/collaborationMode/anyOf/1",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_collaboration_null_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
