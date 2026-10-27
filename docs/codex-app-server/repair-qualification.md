@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [search creator/roots journey](search-creator-roots-qualification.md) adds
+one actual-native case: three independently named processes, two real histories,
+ten warm/mixed/cold searches, independent Project associations and explicit
+resume. Its source-backed checkpoint correction preserves the initial failures,
+full original history and exact two-call journal. Final **2ordinary cases twice**,
+strict checks and384-source guard pass; all383 prior sources stay unchanged.
+Only6145/6172 become scoped implemented: **5,067 implemented /1,488 missing /66
+blocked**, unchanged requirements and zero verified. Existing larger-matrix
+evidence is retained without rerun claims. No prohibited/broad/hosted check runs;
+unreachable producers, A11 and full-goal acceptance remain incomplete.
+
 The [search-sort input repair](search-sort-input-qualification.md) reproduces
 local rejection of six native unit objects and preserves the experimental method
 gate. Actual timestamp ordering and retained warm/cold histories pass under normal

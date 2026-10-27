@@ -7977,7 +7977,8 @@
         "docs/codex-app-server/query-uncertainty-qualification.md",
         "docs/codex-app-server/search-sort-input-qualification.md",
         "docs/codex-app-server/sort-direction-input-qualification.md",
-        "docs/codex-app-server/thread-source-kind-input-qualification.md"
+        "docs/codex-app-server/thread-source-kind-input-qualification.md",
+        "docs/codex-app-server/search-creator-roots-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/search",
@@ -7988,7 +7989,8 @@
         "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
         "Scoped ThreadSearchSortKey input repair: the ninth pinned supplement accepts exactly six created_at/updated_at/recency_at one-key objects with null/empty-map payload on experimental thread/search only. Original maps/bytes, complete canonical/null/omission contract, required query and method gate remain intact. Protocol red5/1fail and default native red1/1fail reproduce local rejection; a one-line temporary wire diagnostic proves native acceptance, while final retained coverage uses default validation. Two real threads/three explicit assistant turns and24warm/cold queries assert independently observed query-only native timestamp order, full rows/snippets, original RPC IDs and retained histories/journal with zero extra inference. Created order differs from updated/recency; the fixture does not universally distinguish UpdatedAt from RecencyAt. Eight complete archive-matched sources, all770 unchanged exports and eight unchanged descriptors bind the correction. Final57schema/126ordinary driver cases pass twice, consumer1/0 and strict checks pass with350stable sources. No pagination, physical owner/state/count promotion, unavailable profile, prohibited/broad/hosted gate or full compatibility/publication claim.",
         "Scoped SortDirection input correction on exactly six full request graphs: four asc/desc null-or-empty-map objects preserve original wire values, standard/full method and nested-page negotiation. Independent native chronology, real item identities/timing and public project moves prescribe all40 history and8 project ordered queries warm/cold;16cold reads precede resume with no extra inference. Exact runtime projections and the source-prescribed first-cold-resume checkpoint, original SessionMeta creation restoration and bracketed update clock are asserted; every other field and subsequent frozen state stays exact. Only one resume is initially unloaded. Capture45/48 and11/16, provider3/0, original bytes/history and owned cleanup retained. Final67schema and10affected actual-binary cases pass twice plus outsideconsumer1/0 and strict checks, with357stable sources and770unchanged exports. This does not promote physical owners/states or qualify cursor/legacy/other-backend breadth, prohibited/broad/hosted gates or full compatibility.",
-        "Scoped ThreadSourceKind input correction on exactly thread/list.sourceKinds[] and experimental thread/search.sourceKinds[]: twenty null-or-empty-map unit objects preserve literal arrays, original bytes, canonical schemas, outer missing/null/empty distinctions, explicit vscode rename and all existing gates. One genuine paginated vscode thread with one actual ordinary turn supplies original history/items/timing and source provenance; a distinct pinned cold process performs40 discovery queries before hydration. Both vscode forms select the known populated row; the eighteen other forms exclude it but cannot qualify positive producers or discrimination among those nine source kinds. Raw rollout/SessionMeta/config/catalog/provider journal and exact original full history are retained.42/48x4KiB captures,1 inference, owned cleanup and all deadlines/bounds remain intact. First strict-Credo list-predicate finding is corrected without weakening any assertion; failed logs remain separate. Final87schema/138reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly and370stable sources with770unchanged exports and14unchanged descriptors. No physical-owner/state promotion, richer defaults/relation/custom sources, mixed-OR/cursor/warm-object/all-platform breadth, prohibited/broad/hosted gate or full-compatibility claim."
+        "Scoped ThreadSourceKind input correction on exactly thread/list.sourceKinds[] and experimental thread/search.sourceKinds[]: twenty null-or-empty-map unit objects preserve literal arrays, original bytes, canonical schemas, outer missing/null/empty distinctions, explicit vscode rename and all existing gates. One genuine paginated vscode thread with one actual ordinary turn supplies original history/items/timing and source provenance; a distinct pinned cold process performs40 discovery queries before hydration. Both vscode forms select the known populated row; the eighteen other forms exclude it but cannot qualify positive producers or discrimination among those nine source kinds. Raw rollout/SessionMeta/config/catalog/provider journal and exact original full history are retained.42/48x4KiB captures,1 inference, owned cleanup and all deadlines/bounds remain intact. First strict-Credo list-predicate finding is corrected without weakening any assertion; failed logs remain separate. Final87schema/138reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly and370stable sources with770unchanged exports and14unchanged descriptors. No physical-owner/state promotion, richer defaults/relation/custom sources, mixed-OR/cursor/warm-object/all-platform breadth, prohibited/broad/hosted gate or full-compatibility claim.",
+        "Scoped real-native thread/search originator and ordered explicit runtime roots: three independently named fresh processes, two actual paginated histories and exactly two synthetic inference calls; ten broad/vscode-filtered warm/mixed/cold queries retain prescribed creator provenance independent of current client and two Project associations. Only loaded hits have exact explicit environments; cold search stays unloaded/null and explicit resume restores only A roots without relabeling A. Original full turns and SessionMeta stay exact. Initial red whole-file oracle and bounded diagnostic are retained; pinned unconditional cold-resume settings checkpoint is narrowly accounted as full original byte prefix plus exactly one native event with functional identity/model/provider/cwd/roots, then exact bytes retained. Strict nesting findings resolved by extracting identical runtime assertions, without changing gates/deadlines. Eighteen original sent frames/IDs/order, bounded sources/events/responses and checked native completion/Port/PID cleanup; final2ordinary cases twice, strict checks and384stable sources/all383prior unchanged,770exports/15descriptors exact. Only6145/6172 become scoped implemented. Prior larger functional/consumer/root evidence retains source equivalence without rerun claims. No whole-method/alias/other-null/transport/backend/OS promotion, protected test/audit, hosted workflow, publication or deployment; A11, unavailable external/platform profiles, unreachable producers and full-goal acceptance remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/ThreadSearchParams"
@@ -8026,7 +8028,8 @@
           "apps/samgita_protocol_codex/test/sort_direction_input_test.exs",
           "apps/samgita_codex_driver/test/native_sort_direction_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/thread_source_kind_input_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_source_kind_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_source_kind_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_search_creator_roots_test.exs"
         ]
       },
       "transport_coverage": [
@@ -21255,14 +21258,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/search-creator-roots-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/search",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Scoped real-native thread/search originator and ordered explicit runtime roots: three independently named fresh processes, two actual paginated histories and exactly two synthetic inference calls; ten broad/vscode-filtered warm/mixed/cold queries retain prescribed creator provenance independent of current client and two Project associations. Only loaded hits have exact explicit environments; cold search stays unloaded/null and explicit resume restores only A roots without relabeling A. Original full turns and SessionMeta stay exact. Initial red whole-file oracle and bounded diagnostic are retained; pinned unconditional cold-resume settings checkpoint is narrowly accounted as full original byte prefix plus exactly one native event with functional identity/model/provider/cwd/roots, then exact bytes retained. Strict nesting findings resolved by extracting identical runtime assertions, without changing gates/deadlines. Eighteen original sent frames/IDs/order, bounded sources/events/responses and checked native completion/Port/PID cleanup; final2ordinary cases twice, strict checks and384stable sources/all383prior unchanged,770exports/15descriptors exact. Only6145/6172 become scoped implemented. Prior larger functional/consumer/root evidence retains source equivalence without rerun claims. No whole-method/alias/other-null/transport/backend/OS promotion, protected test/audit, hosted workflow, publication or deployment; A11, unavailable external/platform profiles, unreachable producers and full-goal acceptance remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -21279,7 +21284,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_search_creator_roots_test.exs"
         ]
       },
       "transport_coverage": [
@@ -214915,27 +214921,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-creator-roots-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/originator",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped real-native thread/search originator and ordered explicit runtime roots: three independently named fresh processes, two actual paginated histories and exactly two synthetic inference calls; ten broad/vscode-filtered warm/mixed/cold queries retain prescribed creator provenance independent of current client and two Project associations. Only loaded hits have exact explicit environments; cold search stays unloaded/null and explicit resume restores only A roots without relabeling A. Original full turns and SessionMeta stay exact. Initial red whole-file oracle and bounded diagnostic are retained; pinned unconditional cold-resume settings checkpoint is narrowly accounted as full original byte prefix plus exactly one native event with functional identity/model/provider/cwd/roots, then exact bytes retained. Strict nesting findings resolved by extracting identical runtime assertions, without changing gates/deadlines. Eighteen original sent frames/IDs/order, bounded sources/events/responses and checked native completion/Port/PID cleanup; final2ordinary cases twice, strict checks and384stable sources/all383prior unchanged,770exports/15descriptors exact. Only6145/6172 become scoped implemented. Prior larger functional/consumer/root evidence retains source equivalence without rerun claims. No whole-method/alias/other-null/transport/backend/OS promotion, protected test/audit, hosted workflow, publication or deployment; A11, unavailable external/platform profiles, unreachable producers and full-goal acceptance remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/originator",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "139fbd8b5b1ad496c6f4ab2cedec23fdcb1546bf1069c53d23fd16829b722075",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_creator_roots_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "originator"
     },
     {
@@ -215755,27 +215769,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-creator-roots-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadEnvironment/properties/runtimeWorkspaceRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped real-native thread/search originator and ordered explicit runtime roots: three independently named fresh processes, two actual paginated histories and exactly two synthetic inference calls; ten broad/vscode-filtered warm/mixed/cold queries retain prescribed creator provenance independent of current client and two Project associations. Only loaded hits have exact explicit environments; cold search stays unloaded/null and explicit resume restores only A roots without relabeling A. Original full turns and SessionMeta stay exact. Initial red whole-file oracle and bounded diagnostic are retained; pinned unconditional cold-resume settings checkpoint is narrowly accounted as full original byte prefix plus exactly one native event with functional identity/model/provider/cwd/roots, then exact bytes retained. Strict nesting findings resolved by extracting identical runtime assertions, without changing gates/deadlines. Eighteen original sent frames/IDs/order, bounded sources/events/responses and checked native completion/Port/PID cleanup; final2ordinary cases twice, strict checks and384stable sources/all383prior unchanged,770exports/15descriptors exact. Only6145/6172 become scoped implemented. Prior larger functional/consumer/root evidence retains source equivalence without rerun claims. No whole-method/alias/other-null/transport/backend/OS promotion, protected test/audit, hosted workflow, publication or deployment; A11, unavailable external/platform profiles, unreachable producers and full-goal acceptance remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/runtimeWorkspaceRoots",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "5b284be489d611fb82881913c53cf6ab1aafb5eb1048aaa911e5289c9f75475f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_creator_roots_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
