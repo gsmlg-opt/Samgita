@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [existing native V2 realtime literal](native-realtime-v2-index-qualification.md)
+indexes only experimental canonical owner 5933 from the unchanged original
+request, native versioned started envelope and independent V2 backend effects.
+An initial binding helper's incorrect stable-file assumption is recorded;
+the source declaration and both stable absences now match. No runtime/code/
+fixture/scenario/count changes: V477 **81/0 twice**, fourteen reviewed checks
+and all original logs remain the evidence, with 1,667 other normalized guarded hashes
+exact. Counts: **5,373 implemented / 1,132 missing / 116 blocked**, unchanged
+requirements and zero verified. Continue owner 5483's completed WebSearch
+null-action/import-history producer closure and the MAv2 private analytics/
+public-item boundary. Prohibited/hosted, A11, unavailable external/OS/full-goal
+and release gates stay incomplete.
+
 The [ordinary startup-warning/V1 SDP envelopes](ordinary-startup-sdp-envelopes-qualification.md)
 add a nonfatal invalid inert-attribute warning with exact catalog preservation
 across fresh processes, and a genuine multipart call/sideband handshake with

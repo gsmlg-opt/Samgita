@@ -211418,24 +211418,39 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-realtime-v2-index-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/RealtimeConversationVersion/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exactly the existing explicit v2 input literal is indexed from unchanged actual-native V477 qualification: original correlated realtime start request, canonical ClientRequest validation, native started.version=v2, independently prescribed local realtime WS path/prompt/session.type=realtime/output_modalities=text, one native dependency request, no inference, exact original envelopes and warm timeline/owned shutdown. Pinned native source explicitly selects V2, maps it to RealtimeV2 and permits text output only for that version. The distinct ordinary V1 SDP case uses quicksilver instead.",
+        "Only experimental canonical owner 5933 in v2/ThreadRealtimeStartParams.json gains scoped implemented evidence; generated and vendored experimental values match, and both stable exports omit this type as required by the experimental method declaration. No code, fixture, scenario, command selection or test count changes. V477 all fourteen steps, 81 actual-native cases at two seeds and unchanged before/after guarded sources are retained; this is not new runtime evidence. No other version/default/null, V2 WebRTC, initial-item/handoff, application transport, real-media/backend/OS/platform or whole-method/requirement credit. Security/credential/auth/permission/approval tests, audits, broad/hosted/full-goal/A11/external/release gates remain incomplete."
+      ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "28450cb417f1e37e9e324652b742b41f536ffbef7849505e3f60cc7dcd9f8daa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:208",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:230",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:252",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1555"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

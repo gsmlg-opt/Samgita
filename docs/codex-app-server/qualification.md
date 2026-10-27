@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [native V2 literal index](native-realtime-v2-index-qualification.md) reuses
+unchanged V477 original native requests/notices and independent backend effects
+for exact experimental owner 5933 only. No new runtime or scenario credit;
+V477 **81/0 twice** and fourteen reviewed checks remain exact. Both stable
+exports correctly omit this experimental parameter type. All 1,667 other
+normalized guarded hashes are unchanged; only manifest/fingerprint metadata differs.
+Counts: **5,373 implemented / 1,132 missing / 116 blocked**, unchanged
+requirements and zero verified. Prohibited/hosted, A11, unavailable/external/
+full-goal and release gates remain incomplete.
+
 The latest [ordinary startup-warning/V1 SDP qualification](ordinary-startup-sdp-envelopes-qualification.md)
 passes **81 ordinary real-binary cases twice**, selected WebSocket cases at
 three seeds, outside consumer **1/0** and all fourteen reviewed checks, with

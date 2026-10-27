@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native V2 realtime literal index](native-realtime-v2-index-qualification.md)
+binds only experimental 5933 to existing original native request/started notice
+and exact independent V2 dependency effects. Initial stable-file binding
+assumption is corrected from the pinned experimental declaration; no code,
+fixture, runtime, scenario or test count changes. V477 **81 ordinary cases twice**,
+fourteen reviewed checks and original logs remain exact, as do all 1,667 other
+normalized guarded hashes. Counts: **5,373 implemented / 1,132 missing / 116 blocked**,
+unchanged requirements and zero verified. Continue completed WebSearch null
+action/import-history and MAv2 analytics/public-item producer closure, retaining
+missing status until proven. No prohibited/hosted test runs; A11, unavailable
+external/platform/full-goal and release gates remain incomplete.
+
 The [ordinary startup-warning/V1 SDP envelopes](ordinary-startup-sdp-envelopes-qualification.md)
 preserve original native frames, causation, exact local catalog/session/SDP
 oracles, finite traffic, warm/cold state and owned shutdown. The first SDP focus
