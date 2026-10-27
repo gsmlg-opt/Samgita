@@ -336,6 +336,12 @@ connection; it does not call the separate graceful writer-close method. A
 native requested-close notification therefore does not promise `session.close`
 or a WebSocket close frame. The live peer observes EOF before fixture cleanup;
 warm/cold start/closed history is separate from backend shutdown semantics.
+The [ordinary instruction-effects case](ordinary-realtime-instruction-effects-qualification.md)
+separately proves custom start/end developer fragments in actual native model
+requests. Requested stop establishes inactive context before the next explicit
+turn; prior start text remains in conversation history alongside the new end
+fragment. A loaded includeTurns read persists both completed turns before full
+warm/cold history queries. Startup ACKs alone establish none of these effects.
 The later local V1 multipart SDP/sideband profile qualifies that exchange only;
 neither profile establishes live ICE/DTLS, playback or external-provider success.
 Private collaborator analytics and preserved canonical imported history remain

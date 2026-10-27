@@ -212979,27 +212979,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-instruction-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/realtimeEndInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V484 explicit nonblank realtime start/end instructions reach genuine native V2 model inputs: one active turn has exactly the prescribed custom start developer fragment; one post-requested-stop turn retains it plus exactly the custom end fragment. Original correlated RPCs, independently captured raw Responses bodies/turn metadata, literal assistant results, loaded persistence barrier, canonical ten-row timeline and repeated warm/cold full two-turn history are required. Requested stop has peer-observed EOF before teardown; no duplicate inference. Fixed YOLO fixture only; no default/null/omission, alternate instruction values, handoff flag, other backend/version/transport or whole-method verification credit."
+      ],
       "nullable": true,
       "pointer": "/properties/realtimeEndInstructions",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "eccb0082b60f11fc823def08de3d014b1e860902f89ba7b7b0d3428aa2fcf51a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "realtimeEndInstructions"
     },
     {
@@ -213039,27 +213047,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-instruction-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/realtimeStartInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V484 explicit nonblank realtime start/end instructions reach genuine native V2 model inputs: one active turn has exactly the prescribed custom start developer fragment; one post-requested-stop turn retains it plus exactly the custom end fragment. Original correlated RPCs, independently captured raw Responses bodies/turn metadata, literal assistant results, loaded persistence barrier, canonical ten-row timeline and repeated warm/cold full two-turn history are required. Requested stop has peer-observed EOF before teardown; no duplicate inference. Fixed YOLO fixture only; no default/null/omission, alternate instruction values, handoff flag, other backend/version/transport or whole-method verification credit."
+      ],
       "nullable": true,
       "pointer": "/properties/realtimeStartInstructions",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "484bddec0a5fce907775f1ca66aa2e181b8fbe7ac5d806b791fd602a1e7efe3e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "realtimeStartInstructions"
     },
     {

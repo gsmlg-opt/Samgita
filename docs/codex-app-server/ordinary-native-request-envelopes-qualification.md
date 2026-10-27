@@ -51,7 +51,10 @@ source hashes unchanged during the runs. Logs, exact commands and guard:
 The source guard runs before this metadata update. The prior V482 fourteen-step
 matrix remains its exact recorded evidence; no 87-case combined run is claimed
 by these focused results. The reviewed runner now includes the three cases;
-its new selection is **53 files / 87 cases**.
+its new selection is **53 files / 87 cases**. The subsequent
+[instruction-effects qualification](ordinary-realtime-instruction-effects-qualification.md)
+includes these three cases in the final combined **88/0 at both seeds** with
+all fourteen reviewed checks; the 87-case checkpoint was not separately run.
 
 Only these fifteen manifest rows change: **5,432 implemented / 1,073 missing /
 116 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**

@@ -21,15 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary realtime instruction-effects profile](ordinary-realtime-instruction-effects-qualification.md)
+proves custom start/end fragments in two actual native model requests, original
+wire/provider lineage, a loaded persistence barrier and exact full ten-row/two-
+turn history through cold reads. Pre-execution source fixes retain separate raw/
+public representations; the initial Credo nesting failure is preserved and fixed
+by extracting unchanged method lists. Final **53 files / 88 ordinary cases
+twice**, selected WebSocket seeds, outside consumer **1/0**, all fourteen reviewed
+checks and 1,668 identical source hashes pass. Twenty-two complete source files
+bind only owners5966/5968: **5,434 implemented / 1,071 missing / 116 blocked**,
+unchanged requirements and zero verified. This combined run also qualifies the
+preceding three marketplace/review cases. Continue genuine V3 backend delegation
+to native backing turn and prefixed commentary output; its source-confirmed
+flags/enum/item notification do not yet have runtime evidence. Prohibited/hosted,
+A11, unavailable emitters/external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary marketplace/review envelope index](ordinary-native-request-envelopes-qualification.md)
 binds fifteen exact physical owners to three unchanged original-wire native
 cases and their real Git/review-child effects. Focused **3/0 at both seeds**,
 ten complete producer hashes, fifteen canonical nodes and 1,668 stable source
 hashes support scoped implemented evidence only: **5,432 implemented /
 1,073 missing / 116 blocked**, unchanged requirements and zero verified.
-The reviewed runner now selects53 files/87 cases; the combined87-case run is
-pending. Continue genuine realtime start/end instruction effects and final
-combined permitted checks. Prohibited/hosted, A11, unavailable/full-goal and
+The runner then selected53 files/87 cases; the88-case combined instruction run
+above includes them. Prohibited/hosted, A11, unavailable/full-goal and
 release gates remain incomplete.
 
 The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)

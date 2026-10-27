@@ -1,13 +1,26 @@
 # Codex compatibility qualification
 
+The [ordinary realtime instruction-effects profile](ordinary-realtime-instruction-effects-qualification.md)
+passes **53 files / 88 ordinary real-binary cases at both seeds**, selected
+WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
+reviewed checks, with 1,668 identical source hashes. Two actual provider inputs
+show exact custom start/end fragments; original native completed items, loaded
+persistence and the complete ten-row/two-turn history survive cold reads with
+no repeated inference. Initial Credo failure and source-review corrections
+remain recorded. Twenty-two whole source files bind only owners5966/5968:
+**5,434 implemented / 1,071 missing / 116 blocked**, unchanged requirements and
+zero verified. The combined run includes the three preceding marketplace/review
+cases. Prohibited/hosted, A11, external/OS/full-goal and release gates stay
+incomplete; V3 delegated output remains the next ordinary runtime gap.
+
 The [ordinary marketplace/review envelope index](ordinary-native-request-envelopes-qualification.md)
 adds fifteen precise request owners using three unchanged actual-native cases.
 Both focused seeds pass **3/0**, preserving real Git materialization/partial
 errors, genuine Review child persistence, original bytes and cold no-ops.
 Ten complete source files, fifteen canonical nodes and 1,668 stable runtime
 source hashes bind the evidence. Counts: **5,432 implemented / 1,073 missing /
-116 blocked**, unchanged requirements and zero verified. The combined53-file/
-87-case reviewed run remains pending. Fixed YOLO is setup; prohibited/hosted,
+116 blocked**, unchanged requirements and zero verified. The88-case combined
+instruction run above includes all three. Fixed YOLO is setup; prohibited/hosted,
 A11, external/full-goal and release gates remain incomplete.
 
 The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)

@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "2f85486f8281a45dfe0817d1b4d7f529c2a2329d39df7c2deb21f46bc09a1eb4"
+  @script_sha "2d8561e0bb67b561ba7490f35e3b665cb100fa6e962939dfc35bff1cb41b24a0"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1535,9 +1535,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
                  event.wire["method"] not in selected_methods(profile)
              end)
     else
-      refute Enum.any?(events, fn event ->
-               event.wire["method"] in ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
-             end)
+      forbidden = unexpected_notice_methods(profile)
+      refute Enum.any?(events, &(&1.wire["method"] in forbidden))
     end
 
     if profile.scenario == "start-stop" do
@@ -1551,6 +1550,13 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              end)
     end
   end
+
+  defp unexpected_notice_methods(%{scenario: "instructions"}),
+    do: ~w(error warning thread/realtime/error)
+
+  defp unexpected_notice_methods(_profile),
+    do:
+      ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
 
   defp assert_peer(profile, active) do
     state = read_peer(profile)
@@ -1608,7 +1614,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "sdp",
            "ingress",
            "speech",
-           "initial-items"
+           "initial-items",
+           "instructions"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -2872,6 +2879,519 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              "threadAlive" => false,
              "serverClosed" => true
            }
+  end
+
+  @instruction_users ["Owned active backing turn.", "Owned stopped backing turn."]
+  @instruction_answers ["Owned active assistant result.", "Owned stopped assistant result."]
+
+  @tag realtime_scenario: "instructions"
+  test "custom realtime mode instructions reach genuine active and stopped turns and survive cold history",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+    lower = System.system_time(:millisecond)
+
+    thread =
+      instruction_call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+
+    start_params = %{
+      "threadId" => thread,
+      "outputModality" => "text",
+      "version" => "v2",
+      "transport" => %{"type" => "websocket"},
+      "realtimeSessionId" => "owned-v484-instructions-session",
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => true,
+      "prompt" => @prompt,
+      "realtimeStartInstructions" => "Owned active context λ\nkeep trailing space ",
+      "realtimeEndInstructions" => "Owned stopped context 🙂\nkeep trailing space "
+    }
+
+    assert instruction_call(profile, pid, "thread/realtime/start", start_params) === %{}
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @started)) == 1 and peer_ready?(profile)
+      end)
+
+    {first, events} = instruction_turn(profile, pid, thread, 0, events, deadline)
+    instruction_provider(profile, thread, [first])
+    assert instruction_call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1 and read_peer(profile)["activeConnections"] == 0
+      end)
+
+    assert read_peer(profile)["transportEofCount"] === 1
+    {second, events} = instruction_turn(profile, pid, thread, 1, events, deadline)
+    refute first.id === second.id
+    rows = [first, second]
+    peer = instruction_provider(profile, thread, rows)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    [started_notice, closed_notice] = notices(events, @item_completed)
+    started_id = started_notice.wire["params"]["item"]["id"]
+    closed_id = closed_notice.wire["params"]["item"]["id"]
+    assert_uuid(started_id)
+    assert_uuid(closed_id)
+    refute started_id === closed_id
+
+    started = %{
+      "id" => started_id,
+      "realtimeSessionId" => "owned-v484-instructions-session",
+      "type" => "realtimeSessionStarted"
+    }
+
+    closed = %{
+      "id" => closed_id,
+      "realtimeSessionId" => "owned-v484-instructions-session",
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    selected = Enum.filter(events, &(&1.wire["method"] in @selected))
+
+    assert_selected(
+      profile,
+      selected,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started}},
+        {@item_completed, %{"threadId" => thread, "item" => started}},
+        {@started,
+         %{
+           "threadId" => thread,
+           "realtimeSessionId" => "owned-v484-instructions-session",
+           "version" => "v2"
+         }},
+        {@item_started, %{"threadId" => thread, "item" => closed}},
+        {@item_completed, %{"threadId" => thread, "item" => closed}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      lower,
+      System.system_time(:millisecond)
+    )
+
+    originals = assert_originals(profile, selected)
+    frames = capture(profile)
+
+    [start_request] =
+      Enum.filter(
+        frames,
+        &(&1.direction == :out and &1.wire["method"] == "thread/realtime/start")
+      )
+
+    [stop_request] =
+      Enum.filter(frames, &(&1.direction == :out and &1.wire["method"] == "thread/realtime/stop"))
+
+    [first_request, second_request] =
+      Enum.filter(frames, &(&1.direction == :out and &1.wire["method"] == "turn/start"))
+
+    [first_complete] =
+      Enum.filter(
+        frames,
+        &(&1.direction == :in and &1.wire["method"] == "turn/completed" and
+            &1.wire["params"]["turn"]["id"] == first.id)
+      )
+
+    assert start_request.index < Enum.at(originals, 2).index
+    assert Enum.at(originals, 2).index < first_request.index
+
+    assert first_request.index < first_complete.index and
+             first_complete.index < stop_request.index
+
+    assert stop_request.index < Enum.at(originals, 3).index
+    assert List.last(originals).index < second_request.index
+    # Loaded includeTurns:true explicitly persists/projects paginated history.
+    # Later metadata-only reads do not provide this writer barrier.
+    persisted =
+      instruction_call(profile, pid, "thread/read", %{
+        "threadId" => thread,
+        "includeTurns" => true
+      })["thread"]
+
+    assert length(persisted["turns"]) === 2
+
+    for {turn, row} <- Enum.zip(persisted["turns"], rows) do
+      assert Map.take(turn, ~w(id status error items)) === %{
+               "id" => row.id,
+               "status" => "completed",
+               "error" => nil,
+               "items" => row.items
+             }
+    end
+
+    {metadata, turns} = instruction_history(profile, pid, thread, rows)
+    path = metadata["path"]
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = instruction_call(profile, pid, "thread/timeline/list", query)
+    rollout = instruction_timeline(profile, path, thread, rows, [started, closed], timeline)
+    assert instruction_history(profile, pid, thread, rows) === {metadata, turns}
+    assert instruction_call(profile, pid, "thread/timeline/list", query) === timeline
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+
+    for method <- ~w(turn/started turn/completed) do
+      assert Enum.map(notices(events, method), & &1.wire["params"]["turn"]["id"]) === [
+               first.id,
+               second.id
+             ]
+    end
+
+    assert Enum.map(notices(events, "item/completed"), & &1.wire["params"]["item"]) ===
+             first.items ++ second.items
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/")) ===
+             selected
+
+    assert instruction_provider(profile, thread, rows) === peer
+    assert_inputs(ctx)
+    assert_ready(profile, pid)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start turn/start thread/realtime/stop turn/start thread/read thread/read thread/turns/list thread/timeline/list thread/read thread/turns/list thread/timeline/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :instructions_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+
+    for _ <- 1..2 do
+      assert instruction_history(cold_profile, cold.pid, thread, rows) === {metadata, turns}
+      assert instruction_call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    end
+
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+
+    refute Enum.any?(cold_events, fn event ->
+             String.starts_with?(event.wire["method"], "thread/realtime/") or
+               event.wire["method"] in ~w(turn/started turn/completed item/started item/completed)
+           end)
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/read thread/turns/list thread/timeline/list thread/read thread/turns/list thread/timeline/list)
+
+    assert_ready(cold_profile, cold.pid)
+    assert Agent.get(profile.capture, & &1) === warm
+    assert assert_originals(profile, selected) === originals
+    assert File.read!(path) === rollout
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+    assert File.read!(path) === rollout
+    assert_inputs(ctx)
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+  end
+
+  defp instruction_call(profile, pid, method, params) do
+    result = call(profile, pid, method, params)
+    assert_speech_exchange(profile, method, params, result)
+    # Uses the existing pinned source-derived output correction for timeline
+    # boundary fields; official JSON exports remain untouched.
+    assert :ok =
+             Schema.validate_result(:server_response, method, result,
+               experimental: true,
+               max_depth: 32
+             )
+
+    result
+  end
+
+  defp instruction_turn(profile, pid, thread, index, events, deadline) do
+    marker = Enum.at(@instruction_users, index)
+    answer = Enum.at(@instruction_answers, index)
+
+    turn =
+      instruction_call(profile, pid, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => marker}]
+      })["turn"]["id"]
+
+    assert is_binary(turn) and turn != ""
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        Enum.any?(notices(events, "turn/completed"), &(&1.wire["params"]["turn"]["id"] == turn))
+      end)
+
+    [completion] =
+      Enum.filter(notices(events, "turn/completed"), &(&1.wire["params"]["turn"]["id"] == turn))
+
+    assert %{
+             "threadId" => ^thread,
+             "turn" => %{"id" => ^turn, "status" => "completed", "error" => nil}
+           } = completion.wire["params"]
+
+    relevant =
+      Enum.filter(events, fn event ->
+        params = event.wire["params"]
+
+        event.wire["method"] == "item/completed" and params["threadId"] == thread and
+          params["turnId"] == turn
+      end)
+
+    assert [user, assistant] = items = Enum.map(relevant, & &1.wire["params"]["item"])
+
+    assert %{
+             "type" => "userMessage",
+             "content" => [%{"type" => "text", "text" => ^marker, "text_elements" => []}]
+           } = user
+
+    assert %{"type" => "agentMessage", "text" => ^answer} = assistant
+    assert is_binary(user["id"]) and user["id"] != ""
+    assert is_binary(assistant["id"]) and assistant["id"] != "" and assistant["id"] != user["id"]
+
+    for event <- relevant ++ [completion] do
+      [original] =
+        Enum.filter(capture(profile), &(&1.direction == :in and &1.wire === event.wire))
+
+      assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 32)
+      assert decoded === event.wire
+
+      assert :ok =
+               Schema.validate_notification(
+                 :server_notification,
+                 event.wire["method"],
+                 event.wire["params"],
+                 experimental: true,
+                 max_depth: 32
+               )
+    end
+
+    {%{id: turn, items: items}, events}
+  end
+
+  defp instruction_provider(profile, thread, rows) do
+    state = read_peer(profile)
+    count = length(rows)
+    assert state["paths"] === ["/v1/realtime?model=#{@model}"]
+    assert [message] = state["messages"]
+    assert message["type"] === "session.update" and message["session"]["type"] === "realtime"
+
+    assert message["session"]["instructions"] === @prompt and
+             message["session"]["output_modalities"] === ["text"]
+
+    assert state["sent"] === [@peer_ack] and state["controls"] === []
+    assert state["requestCount"] === count + 1 and state["responsesRequests"] === count
+    assert state["activeConnections"] === 2 - count and state["transportEofCount"] === count - 1
+    assert state["otherHttp"] === [] and state["errors"] === []
+    assert is_integer(state["frameCount"]) and state["frameCount"] in 2..32
+    responses = state["instructionResponses"]
+    assert length(responses) === count
+
+    for {entry, row, index} <- Enum.zip([responses, rows, Enum.to_list(1..count)]) do
+      instruction_provider_input(entry, row, thread, index)
+    end
+
+    state
+  end
+
+  defp instruction_provider_input(entry, row, thread, index) do
+    assert entry["index"] === index and entry["activeConnections"] === 2 - index
+    raw = Base.decode64!(entry["bodyBase64"])
+    assert byte_size(raw) in 1..65_536 and byte_size(raw) === entry["bodyBytes"]
+    assert hash(raw) === entry["bodySha256"]
+    body = JSON.decode!(raw)
+    assert body["model"] === "mock-model" and body["input"] === entry["input"]
+
+    assert JSON.decode!(body["client_metadata"]["x-codex-turn-metadata"]) ===
+             entry["turnMetadata"]
+
+    assert Map.take(entry["turnMetadata"], ~w(thread_id turn_id)) === %{
+             "thread_id" => thread,
+             "turn_id" => row.id
+           }
+
+    contents =
+      for item <- body["input"],
+          part <- Map.get(item, "content", []),
+          do: {item["role"], part["type"], part["text"]}
+
+    developer = for {"developer", "input_text", text} <- contents, do: text
+
+    assert Enum.count(
+             developer,
+             &(&1 ===
+                 "<realtime_conversation>\nOwned active context λ\nkeep trailing space \n</realtime_conversation>")
+           ) === 1
+
+    assert Enum.count(
+             developer,
+             &(&1 ===
+                 "<realtime_conversation>\nOwned stopped context 🙂\nkeep trailing space \n</realtime_conversation>")
+           ) === index - 1
+
+    instruction_content_counts(contents, @instruction_users, "user", "input_text", index)
+
+    instruction_content_counts(
+      contents,
+      @instruction_answers,
+      "assistant",
+      "output_text",
+      index - 1
+    )
+
+    assert Enum.map(entry["events"], & &1["type"]) ===
+             ~w(response.created response.output_item.done response.completed)
+
+    assert Enum.at(entry["events"], 1)["item"]["content"] === [
+             %{"type" => "output_text", "text" => Enum.at(@instruction_answers, index - 1)}
+           ]
+  end
+
+  defp instruction_content_counts(contents, texts, role, kind, count) do
+    for {text, index} <- Enum.with_index(texts) do
+      assert Enum.count(contents, &(&1 === {role, kind, text})) ===
+               if(index < count, do: 1, else: 0)
+    end
+  end
+
+  defp instruction_history(profile, pid, thread, rows) do
+    metadata =
+      instruction_call(profile, pid, "thread/read", %{
+        "threadId" => thread,
+        "includeTurns" => false
+      })["thread"]
+
+    assert metadata["id"] === thread and metadata["historyMode"] === "paginated" and
+             metadata["turns"] === []
+
+    assert String.starts_with?(
+             Path.expand(metadata["path"]),
+             Path.join(profile.root, "codex") <> "/"
+           )
+
+    page =
+      instruction_call(profile, pid, "thread/turns/list", %{
+        "threadId" => thread,
+        "itemsView" => "full",
+        "sortDirection" => "asc",
+        "limit" => 100
+      })
+
+    assert page["nextCursor"] === nil and length(page["data"]) === 2
+
+    for {turn, row} <- Enum.zip(page["data"], rows) do
+      assert turn["id"] === row.id and turn["status"] === "completed" and turn["error"] === nil
+      assert turn["itemsView"] === "full" and turn["items"] === row.items
+    end
+
+    {Map.take(metadata, ~w(id path historyMode turns)), page}
+  end
+
+  defp instruction_timeline(profile, path, thread, rows, realtime, page) do
+    assert File.regular?(path) and File.stat!(path).size <= 1_048_576
+    bytes = File.read!(path)
+    assert byte_size(bytes) in 1..1_048_576 and String.ends_with?(bytes, "\n")
+    lines = String.split(bytes, "\n", trim: true)
+    assert length(lines) <= 2_048 and Enum.all?(lines, &(byte_size(&1) <= 65_536))
+    records = Enum.map(lines, &JSON.decode!/1)
+    raw_realtime = Enum.filter(records, &(&1["type"] == "realtime_item"))
+    [started, closed] = realtime
+
+    assert Enum.map(raw_realtime, & &1["payload"]) === [
+             %{
+               "id" => started["id"],
+               "realtime_session_id" => "owned-v484-instructions-session",
+               "type" => "realtime_session_started"
+             },
+             %{
+               "id" => closed["id"],
+               "realtime_session_id" => "owned-v484-instructions-session",
+               "type" => "realtime_session_closed",
+               "outcome" => "ended"
+             }
+           ]
+
+    data = page["data"]
+    assert page["nextCursor"] === nil and page["activeRealtimeSessionAtPageStart"] === nil
+
+    assert Enum.map(data, & &1["type"]) ===
+             ~w(realtime turnStarted item item turnCompleted realtime turnStarted item item turnCompleted)
+
+    positions = Enum.map(data, & &1["position"])
+    assert Enum.all?(positions, &(is_integer(&1) and &1 >= 0))
+    assert positions === Enum.sort(Enum.uniq(positions))
+
+    for {index, raw, expected} <- Enum.zip([[0, 5], raw_realtime, realtime]) do
+      assert Enum.at(data, index) === %{
+               "type" => "realtime",
+               "position" => raw["ordinal"],
+               "item" => expected
+             }
+    end
+
+    for {row, index} <- Enum.zip(rows, [1, 6]) do
+      instruction_timeline_turn(records, Enum.slice(data, index, 4), thread, row)
+    end
+
+    assert read_peer(profile)["responsesRequests"] === 2
+    bytes
+  end
+
+  defp instruction_timeline_turn(records, entries, thread, row) do
+    identities = [nil, hd(row.items)["id"], List.last(row.items)["id"], nil]
+
+    for {kind, entry, item_id} <-
+          Enum.zip([
+            ~w(task_started item_completed item_completed task_complete),
+            entries,
+            identities
+          ]) do
+      raw = instruction_record(records, kind, row.id, item_id)
+      assert entry["position"] === raw["ordinal"] and entry["turnId"] === row.id
+      if kind == "item_completed", do: assert(raw["payload"]["thread_id"] === thread)
+
+      if kind in ~w(task_started task_complete),
+        do: assert(entry["startedAt"] === raw["payload"]["started_at"])
+    end
+
+    assert Enum.at(entries, 1)["item"] === hd(row.items)
+    assert Enum.at(entries, 2)["item"] === List.last(row.items)
+    assert List.last(entries)["status"] === "completed" and List.last(entries)["error"] === nil
+  end
+
+  defp instruction_record(records, kind, turn, item_id) do
+    assert [raw] =
+             Enum.filter(records, fn record ->
+               payload = record["payload"]
+
+               record["type"] == "event_msg" and payload["type"] == kind and
+                 payload["turn_id"] == turn and
+                 (is_nil(item_id) or payload["item"]["id"] == item_id)
+             end)
+
+    raw
   end
 
   defp initial_peer_ack do

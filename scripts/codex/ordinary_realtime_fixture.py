@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Finite loopback WebSocket peer for an ordinary native realtime start/stop.
 
-Only functional paths and WebSocket messages enter the journal. This peer never
-implements app-server requests, produces model output, or journals HTTP headers.
+Only functional paths, bounded fixture model bodies and WebSocket messages enter
+the journal. This peer never implements app-server requests or journals headers.
+Only the instructions scenario serves exactly two assistant-only model outputs.
 """
 import argparse
 import base64
@@ -93,6 +94,14 @@ MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
 MAX_HEADERS = 8192
+INSTRUCTIONS_START = "Owned active context λ\nkeep trailing space "
+INSTRUCTIONS_END = "Owned stopped context 🙂\nkeep trailing space "
+INSTRUCTIONS_USERS = ["Owned active backing turn.", "Owned stopped backing turn."]
+INSTRUCTIONS_ANSWERS = ["Owned active assistant result.", "Owned stopped assistant result."]
+INSTRUCTIONS_FRAGMENTS = [
+    f"<realtime_conversation>\n{INSTRUCTIONS_START}\n</realtime_conversation>",
+    f"<realtime_conversation>\n{INSTRUCTIONS_END}\n</realtime_conversation>",
+]
 
 
 def write_json(path, value):
@@ -172,6 +181,11 @@ class PeerHandler(socketserver.BaseRequestHandler):
             if line:
                 name, value = line.split(":", 1)
                 fields[name.lower()] = value.strip()
+
+        if (fixture.scenario == "instructions" and method == "POST"
+                and path == "/v1/responses"):
+            self.instructions_response(fixture, fields, deadline)
+            return
 
         if fixture.scenario == "sdp" and method == "POST" and path == SDP_CALL_PATH:
             self.create_sdp_call(fixture, fields, deadline)
@@ -272,6 +286,14 @@ class PeerHandler(socketserver.BaseRequestHandler):
         while not fixture.stopping.is_set():
             first = self.read_exact(2, fixture, deadline)
             if first is None:
+                if fixture.scenario == "instructions":
+                    # Observe native requested-stop EOF before fixture teardown.
+                    assert not fixture.stopping.is_set()
+                    with fixture.lock:
+                        assert fixture.state["responsesRequests"] == 1
+                        assert fixture.state["transportEofCount"] == 0
+                        fixture.state["transportEofCount"] = 1
+                        fixture.save_locked()
                 if fixture.scenario == "initial-items":
                     # Stock app-server requested stop drops the native writer;
                     # it does not invoke RealtimeWebsocketWriter.close. Observe
@@ -417,6 +439,70 @@ class PeerHandler(socketserver.BaseRequestHandler):
                         fixture.state["sent"].append(entry)
                         fixture.save_locked()
 
+    def instructions_response(self, fixture, fields, deadline):
+        size = int(fields.get("content-length", "0"))
+        assert 0 < size <= MAX_FRAME, "Owned instruction request body bound"
+        raw = self.read_exact(size, fixture, deadline)
+        assert raw is not None and len(raw) == size
+        request = json.loads(raw)
+        assert request["model"] == "mock-model"
+        assert isinstance(request["input"], list) and len(request["input"]) <= 64
+        # Test only the realtime fragments and inert fixture conversation, not
+        # unrelated native developer context carried in the same model input.
+        texts = [(item.get("role"), content.get("type"), content.get("text"))
+                 for item in request["input"]
+                 for content in item.get("content", [])]
+        developer = [text for role, kind, text in texts
+                     if role == "developer" and kind == "input_text"]
+        users = [text for role, kind, text in texts
+                 if role == "user" and kind == "input_text"]
+        assistants = [text for role, kind, text in texts
+                      if role == "assistant" and kind == "output_text"]
+        metadata = json.loads(request["client_metadata"]["x-codex-turn-metadata"])
+        assert isinstance(metadata["thread_id"], str) and metadata["thread_id"]
+        assert isinstance(metadata["turn_id"], str) and metadata["turn_id"]
+        with fixture.lock:
+            index = fixture.state["responsesRequests"]
+            assert index < 2, "Extra owned instruction Responses request"
+            assert fixture.state["paths"] == [f"/v1/realtime?model={MODEL}"]
+            assert len(fixture.state["messages"]) == 1
+            assert fixture.state["sent"] == [ACK]
+            assert fixture.state["activeConnections"] == (1 if index == 0 else 0)
+            assert fixture.state["transportEofCount"] == index
+            assert developer.count(INSTRUCTIONS_FRAGMENTS[0]) == 1
+            assert developer.count(INSTRUCTIONS_FRAGMENTS[1]) == index
+            assert users.count(INSTRUCTIONS_USERS[0]) == 1
+            assert users.count(INSTRUCTIONS_USERS[1]) == index
+            assert assistants.count(INSTRUCTIONS_ANSWERS[0]) == index
+            assert assistants.count(INSTRUCTIONS_ANSWERS[1]) == 0
+            fixture.state["responsesRequests"] += 1
+            identity = f"owned-instructions-response-{index + 1}"
+            item = {"type": "message", "role": "assistant",
+                    "id": f"owned-instructions-message-{index + 1}",
+                    "content": [{"type": "output_text", "text": INSTRUCTIONS_ANSWERS[index]}]}
+            events = [
+                {"type": "response.created", "response": {"id": identity}},
+                {"type": "response.output_item.done", "item": item},
+                {"type": "response.completed", "response": {"id": identity, "usage": {
+                    "input_tokens": 0, "input_tokens_details": None,
+                    "output_tokens": 0, "output_tokens_details": None, "total_tokens": 0,
+                }}},
+            ]
+            fixture.state["instructionResponses"].append({
+                "index": index + 1, "bodyBytes": size,
+                "bodyBase64": base64.b64encode(raw).decode(),
+                "bodySha256": hashlib.sha256(raw).hexdigest(),
+                "input": request["input"], "turnMetadata": metadata,
+                "activeConnections": fixture.state["activeConnections"],
+                "events": events})
+            fixture.save_locked()
+        body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
+                       for event in events).encode()
+        assert len(body) <= MAX_FRAME
+        self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: text/event-stream\r\n"
+            + f"Content-Length: {len(body)}\r\n".encode()
+            + b"Connection: close\r\n\r\n" + body)
+
     def create_sdp_call(self, fixture, fields, deadline):
         size = int(fields.get("content-length", "0"))
         assert 0 < size <= 16384, "Owned call body bound"
@@ -513,6 +599,9 @@ class OrdinaryRealtimePeer:
             self.state["ingress"] = []
         if scenario == "speech":
             self.state["speech"] = []
+        if scenario == "instructions":
+            self.state["instructionResponses"] = []
+            self.state["transportEofCount"] = 0
         if scenario == "initial-items":
             self.state["sessionClose"] = []
             self.state["websocketCloseCount"] = 0
@@ -652,7 +741,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
