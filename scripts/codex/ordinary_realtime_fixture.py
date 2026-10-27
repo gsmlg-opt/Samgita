@@ -114,7 +114,17 @@ DELEGATION_ACK = {"type": "session.started", "session": {
     "id": "owned-v485-peer-session", "instructions": PROMPT}}
 DELEGATION_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
-DELEGATION_SCENARIOS = ("delegation", "delegation-status")
+DELEGATION_SCENARIOS = ("delegation", "delegation-status", "delegation-bem", "delegation-thinking", "delegation-null")
+THINKING_OUTPUT = {"type": "session.context.append", "content": [
+    {"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
+BEM_PROGRESS = "[OWNED_PROGRESS]Owned bounded progress λ"
+BEM_FINAL = "[FINAL]Owned bounded final 🙂"
+BEM_OUTPUTS = [
+    {"type": "session.context.append", "channel": "commentary",
+     "content": [{"type": "input_text", "text": BEM_PROGRESS}]},
+    {"type": "session.context.append", "channel": "speakable",
+     "content": [{"type": "input_text", "text": BEM_FINAL}]},
+]
 QUIET_REASONING = {"type": "reasoning", "id": "owned-v486-public-summary",
     "summary": [{"type": "summary_text", "text": "  Owned quiet progress λ  "}], "content": []}
 QUIET_STATUS = {"type": "delegation.context.append", "delegation_item_id": "owned-handoff-1",
@@ -122,6 +132,10 @@ QUIET_STATUS = {"type": "delegation.context.append", "delegation_item_id": "owne
 
 
 def delegation_outputs(scenario):
+    if scenario in ("delegation-thinking", "delegation-null"):
+        return [THINKING_OUTPUT]
+    if scenario == "delegation-bem":
+        return BEM_OUTPUTS
     return ([QUIET_STATUS, DELEGATION_OUTPUT] if scenario == "delegation-status"
             else [DELEGATION_OUTPUT])
 
@@ -521,6 +535,17 @@ class PeerHandler(socketserver.BaseRequestHandler):
         ]
         if status:
             events.insert(1, {"type": "response.output_item.done", "item": QUIET_REASONING})
+        if fixture.scenario == "delegation-bem":
+            events[1:2] = [
+                {"type": "response.output_item.done", "item": {
+                    "type": "message", "role": "assistant", "id": identity,
+                    "content": [{"type": "output_text", "text": text}]}
+                }
+                for identity, text in [
+                    ("owned-v487-progress-message", BEM_PROGRESS),
+                    ("owned-v487-final-message", BEM_FINAL),
+                ]
+            ]
         with fixture.lock:
             assert fixture.state["responsesRequests"] == 0
             assert fixture.state["activeConnections"] == 1

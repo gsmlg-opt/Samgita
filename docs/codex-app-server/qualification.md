@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary V3 mode-routing profile](ordinary-realtime-mode-routing-qualification.md)
+passes **53 files / 93 ordinary real-binary cases at both seeds**, selected
+WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
+reviewed checks, with 1,668 identical guarded source hashes. Genuine backing
+turns produce custom BEM commentary/literal final output and exact no-channel
+Thinking/null output, preserving full seven/six-row histories through cold
+reads. Explicit-null RPCs keep their original keys. Final-tag recognition and
+explicit-vs-default Thinking distinction receive no credit. Thirty-seven whole
+producer hashes bind six precise owners: **5,448 implemented / 1,057 missing /
+116 blocked**, unchanged requirements and zero verified. Continue independent
+explicit-null transport/version/voice startup branches. Prohibited/hosted, A11,
+unavailable emitters/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary V3 public-summary relay](ordinary-realtime-summary-relay-qualification.md)
 passes **53 files / 90 ordinary real-binary cases at both seeds**, selected
 WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
@@ -8,7 +21,8 @@ receipt releases the provider's final SSE suffix within the existing deadline;
 native summary whitespace, real IDs, three items and all seven canonical
 timeline rows survive cold reads without inference. Thirty-six complete source
 files bind only owner5950: **5,442 implemented / 1,063 missing / 116 blocked**,
-unchanged requirements and zero verified. Continue custom BEM channel prefixes.
+unchanged requirements and zero verified. The later mode-routing profile above
+separately qualifies selected BEM/Thinking/null values.
 Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal and release
 gates stay incomplete.
 

@@ -25054,24 +25054,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/CodexResponseHandoffMode/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V488 explicit thinking literal in original native V3 start RPC and exact backend session.context.append with channel entirely absent. Same original prefix/result as V485 commentary positive control; one genuine delegated backing turn, two completed native items and full six-row canonical warm/cold history. Thinking intentionally equals omitted/null after upstream normalization, so no explicit-vs-default recognition, null/default/omitted-path or remote-provider channel semantics credit. Original correlated RPC/body/native IDs, exactly one model request, requested-stop EOF, exact no-client-turn/start request lists, snapshots and existing cleanup/bounds are required. Fixed YOLO fixture only; other maps/prefixes/phases/flags, nullable/default branches, streaming/chunking, repeated/steered handoffs, other providers/versions/transports or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "33754c47d2572a9f8be17388b8b8f20362d3ff2f808aa180e03540605e659c38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -25106,24 +25114,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/CodexResponseHandoffMode/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V487 explicit bemTags and selected commentary prefix map {commentary:[OWNED_PROGRESS-tag]} in a genuine V3 delegated backing turn. Two actual provider assistant items preserve fixed native IDs/text and produce exact commentary then speakable session.context.append records; full three-item/seven-row canonical history survives warm/cold reads. Only custom commentary recognition has a distinguishing effect; literal FINAL speakable output is indistinguishable from fallback, so no default-final-prefix recognition credit. Original correlated RPC/body/native IDs, exactly one model request, requested-stop EOF, exact no-client-turn/start request lists, snapshots and existing cleanup/bounds are required. Fixed YOLO fixture only; other maps/prefixes/phases/flags, nullable/default branches, streaming/chunking, repeated/steered handoffs, other providers/versions/transports or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "dd3ad50789a0db8d24391e03867124b2fd26613ac3a1332f5f388080b4c078bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -211851,24 +211867,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/CodexResponseHandoffMode/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V488 explicit thinking literal in original native V3 start RPC and exact backend session.context.append with channel entirely absent. Same original prefix/result as V485 commentary positive control; one genuine delegated backing turn, two completed native items and full six-row canonical warm/cold history. Thinking intentionally equals omitted/null after upstream normalization, so no explicit-vs-default recognition, null/default/omitted-path or remote-provider channel semantics credit. Original correlated RPC/body/native IDs, exactly one model request, requested-stop EOF, exact no-client-turn/start request lists, snapshots and existing cleanup/bounds are required. Fixed YOLO fixture only; other maps/prefixes/phases/flags, nullable/default branches, streaming/chunking, repeated/steered handoffs, other providers/versions/transports or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/0",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "33754c47d2572a9f8be17388b8b8f20362d3ff2f808aa180e03540605e659c38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -211903,24 +211927,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/CodexResponseHandoffMode/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V487 explicit bemTags and selected commentary prefix map {commentary:[OWNED_PROGRESS-tag]} in a genuine V3 delegated backing turn. Two actual provider assistant items preserve fixed native IDs/text and produce exact commentary then speakable session.context.append records; full three-item/seven-row canonical history survives warm/cold reads. Only custom commentary recognition has a distinguishing effect; literal FINAL speakable output is indistinguishable from fallback, so no default-final-prefix recognition credit. Original correlated RPC/body/native IDs, exactly one model request, requested-stop EOF, exact no-client-turn/start request lists, snapshots and existing cleanup/bounds are required. Fixed YOLO fixture only; other maps/prefixes/phases/flags, nullable/default branches, streaming/chunking, repeated/steered handoffs, other providers/versions/transports or whole-method completeness remain unverified."
+      ],
       "pointer": "/definitions/CodexResponseHandoffMode/enum/2",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "dd3ad50789a0db8d24391e03867124b2fd26613ac3a1332f5f388080b4c078bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212590,27 +212622,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseHandoffChannelPrefixes",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V487 explicit bemTags and selected commentary prefix map {commentary:[OWNED_PROGRESS-tag]} in a genuine V3 delegated backing turn. Two actual provider assistant items preserve fixed native IDs/text and produce exact commentary then speakable session.context.append records; full three-item/seven-row canonical history survives warm/cold reads. Only custom commentary recognition has a distinguishing effect; literal FINAL speakable output is indistinguishable from fallback, so no default-final-prefix recognition credit. Original correlated RPC/body/native IDs, exactly one model request, requested-stop EOF, exact no-client-turn/start request lists, snapshots and existing cleanup/bounds are required. Fixed YOLO fixture only; other maps/prefixes/phases/flags, nullable/default branches, streaming/chunking, repeated/steered handoffs, other providers/versions/transports or whole-method completeness remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/codexResponseHandoffChannelPrefixes",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "39b6ad9bb0b891d708155421923e5356dd72c1b74dc8fe9ebac7ac9787815f6a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "codexResponseHandoffChannelPrefixes"
     },
     {
@@ -212679,24 +212719,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mode-routing-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseHandoffMode/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V489 actual JSON null for codexResponseHandoffMode remains present in the original correlated native V3 start RPC. Pinned Option normalization selects Thinking and yields an exact backend session.context.append without channel through one genuine delegated backing turn; original body/native IDs, two completed items/full six-row canonical warm/cold history, requested EOF, exact no-client-turn/start RPC lists and owned cleanup/bounds are required. Only explicit-null normalization receives scoped evidence; no omission/default recognition, other nullable fields, streamed output, repeated handoffs, other providers/versions/transports or whole-method completeness. Fixed YOLO ordinary fixture only."
+      ],
       "pointer": "/properties/codexResponseHandoffMode/anyOf/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

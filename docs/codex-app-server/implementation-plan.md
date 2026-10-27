@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary V3 mode-routing profile](ordinary-realtime-mode-routing-qualification.md)
+qualifies six exact BEM/Thinking/custom-prefix/explicit-null owners through three
+independent genuine native delegated turns. Exact original RPCs/provider IDs,
+no-channel or commentary/speakable wire and full six/seven-row canonical history
+survive cold reads. Draft default-final recognition was removed; explicit
+Thinking/null equality earns no omitted/default recognition credit. Focused
+**13/0 then 14/0**, final **53 files / 93 ordinary cases twice**, selected
+WebSocket seeds, outside consumer **1/0**, all fourteen reviewed checks and
+1,668 identical guarded source hashes pass. Thirty-seven complete producers
+bind **5,448 implemented / 1,057 missing / 116 blocked**, unchanged requirements
+and zero verified. Next scoped work is explicit-null transport/version/voice
+startup branches (owners5972/5975/5978); pinned source confirms reachable
+WebSocket/configured V3/cove behavior but runtime remains unrun. Prohibited/
+hosted, A11, unavailable emitters/external/OS/full-goal and release gates remain
+incomplete.
+
 The [ordinary V3 public-summary relay](ordinary-realtime-summary-relay-qualification.md)
 qualifies explicit `backendReasoningStatus=true` through a genuine native
 delegation and public reasoning item. Actual quiet WS status releases final SSE
@@ -30,8 +46,8 @@ IDs survive warm/cold reads with no replay. Focused **11/0**, final **53 files /
 90 ordinary cases twice**, selected WebSocket seeds, outside consumer **1/0**,
 all fourteen reviewed checks and 1,668 identical guarded source hashes pass.
 Thirty-six complete producers bind only owner5950: **5,442 implemented / 1,063
-missing / 116 blocked**, unchanged requirements and zero verified. Continue
-custom BEM channel-prefix routing. Prohibited/hosted, A11, unavailable emitters/
+missing / 116 blocked**, unchanged requirements and zero verified. The later
+mode-routing profile above separately qualifies selected values. Prohibited/hosted, A11, unavailable emitters/
 external/OS/full-goal and release gates remain incomplete.
 
 The [ordinary V3 delegation profile](ordinary-realtime-delegation-qualification.md)

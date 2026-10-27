@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "f30e079705f54542c0e97b189ea552161a76c148f56a7cfb11bd03800c39d075"
+  @script_sha "e167f70052a093435abcf87b96e814e0a0a761dee2bc32e2d2114170ad196f65"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1560,6 +1560,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp unexpected_notice_methods(%{scenario: "delegation-status"}),
     do: ~w(error warning thread/realtime/error)
 
+  defp unexpected_notice_methods(%{scenario: "delegation-bem"}),
+    do: ~w(error warning thread/realtime/error)
+
+  defp unexpected_notice_methods(%{scenario: "delegation-thinking"}),
+    do: ~w(error warning thread/realtime/error)
+
+  defp unexpected_notice_methods(%{scenario: "delegation-null"}),
+    do: ~w(error warning thread/realtime/error)
+
   defp unexpected_notice_methods(_profile),
     do:
       ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
@@ -1623,7 +1632,10 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "initial-items",
            "instructions",
            "delegation",
-           "delegation-status"
+           "delegation-status",
+           "delegation-bem",
+           "delegation-thinking",
+           "delegation-null"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -1656,6 +1668,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp selected_methods(%{scenario: "item-audio"}), do: @selected ++ [@item_added, @audio_delta]
   defp selected_methods(%{scenario: "delegation"}), do: @selected ++ [@item_added]
   defp selected_methods(%{scenario: "delegation-status"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-bem"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-thinking"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-null"}), do: @selected ++ [@item_added]
   defp selected_methods(_profile), do: @selected
 
   defp peer_startup(port, buffer, deadline) do
@@ -3125,6 +3140,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   @delegation_input "<realtime_delegation>\n  <input>Owned bounded request λ</input>\n  <transcript_delta>user: Owned bounded request λ</transcript_delta>\n</realtime_delegation>"
   @delegation_answer "Owned bounded assistant result 🙂"
+  @delegation_bem_progress "[OWNED_PROGRESS]Owned bounded progress λ"
+  @delegation_bem_final "[FINAL]Owned bounded final 🙂"
   @delegation_session "owned-v485-delegation-session"
   @delegation_output %{
     "type" => "session.context.append",
@@ -3145,6 +3162,24 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   @tag realtime_scenario: "delegation-status"
   test "native V3 relays a real backing turn public summary before its completed assistant result",
+       ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-bem"
+  test "native V3 routes custom BEM commentary and preserves literal final output from two real backing items",
+       ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-thinking"
+  test "native explicit thinking mode returns its original backing result without a channel field",
+       ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-null"
+  test "native explicit null handoff mode retains its original null and normalizes to the thinking wire",
        ctx do
     delegation_journey(ctx)
   end
@@ -3182,10 +3217,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
       "prompt" => @prompt
     }
 
-    start_params =
-      if delegation_status?(profile),
-        do: Map.put(start_params, "backendReasoningStatus", true),
-        else: start_params
+    start_params = delegation_start_params(profile, start_params)
 
     assert instruction_call(profile, pid, "thread/realtime/start", start_params) === %{}
 
@@ -3337,7 +3369,12 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              ]
            } = user
 
-    assert %{"type" => "agentMessage", "text" => @delegation_answer} = assistant
+    if profile.scenario == "delegation-bem" do
+      assert %{"type" => "agentMessage", "text" => @delegation_bem_final} = assistant
+    else
+      assert %{"type" => "agentMessage", "text" => @delegation_answer} = assistant
+    end
+
     assert is_binary(user["id"]) and user["id"] != ""
     assert is_binary(assistant["id"]) and assistant["id"] != "" and assistant["id"] != user["id"]
 
@@ -3439,13 +3476,34 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
     delegation_summary_evidence(profile, entry)
 
+    delegation_provider_assistants(profile, entry)
+
+    state
+  end
+
+  defp delegation_provider_assistants(%{scenario: "delegation-bem"}, entry) do
+    assert Enum.map(Enum.slice(entry["events"], 1, 2), & &1["item"]) === [
+             %{
+               "type" => "message",
+               "role" => "assistant",
+               "id" => "owned-v487-progress-message",
+               "content" => [%{"type" => "output_text", "text" => @delegation_bem_progress}]
+             },
+             %{
+               "type" => "message",
+               "role" => "assistant",
+               "id" => "owned-v487-final-message",
+               "content" => [%{"type" => "output_text", "text" => @delegation_bem_final}]
+             }
+           ]
+  end
+
+  defp delegation_provider_assistants(profile, entry) do
     assistant_index = if delegation_status?(profile), do: 2, else: 1
 
     assert Enum.at(entry["events"], assistant_index)["item"]["content"] === [
              %{"type" => "output_text", "text" => @delegation_answer}
            ]
-
-    state
   end
 
   defp delegation_lifecycle(profile, thread, events, lower) do
@@ -3533,7 +3591,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert Enum.all?(positions, &(is_integer(&1) and &1 >= 0))
     assert positions === Enum.sort(Enum.uniq(positions))
 
-    last_index = if delegation_status?(profile), do: 6, else: 5
+    last_index =
+      if profile.scenario in ["delegation-status", "delegation-bem"], do: 6, else: 5
 
     for {index, raw, expected} <- Enum.zip([[0, last_index], raw_realtime, realtime]) do
       assert Enum.at(data, index) === %{
@@ -3549,8 +3608,46 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   defp delegation_status?(%{scenario: "delegation-status"}), do: true
   defp delegation_status?(%{scenario: "delegation"}), do: false
+  defp delegation_status?(%{scenario: "delegation-bem"}), do: false
+  defp delegation_status?(%{scenario: "delegation-thinking"}), do: false
+  defp delegation_status?(%{scenario: "delegation-null"}), do: false
+
+  defp delegation_start_params(%{scenario: "delegation"}, params), do: params
+
+  defp delegation_start_params(%{scenario: "delegation-status"}, params),
+    do: Map.put(params, "backendReasoningStatus", true)
+
+  defp delegation_start_params(%{scenario: "delegation-thinking"}, params),
+    do: Map.put(params, "codexResponseHandoffMode", "thinking")
+
+  defp delegation_start_params(%{scenario: "delegation-null"}, params),
+    do: Map.put(params, "codexResponseHandoffMode", nil)
+
+  defp delegation_start_params(%{scenario: "delegation-bem"}, params) do
+    params
+    |> Map.delete("codexResponseItemPrefix")
+    |> Map.put("codexResponseHandoffMode", "bemTags")
+    |> Map.put("codexResponseHandoffChannelPrefixes", %{"commentary" => ["[OWNED_PROGRESS]"]})
+  end
 
   defp delegation_outputs(%{scenario: "delegation"}), do: [@delegation_output]
+
+  defp delegation_outputs(%{scenario: "delegation-null"}),
+    do: delegation_outputs(%{scenario: "delegation-thinking"})
+
+  defp delegation_outputs(%{scenario: "delegation-thinking"}) do
+    [
+      %{
+        "type" => "session.context.append",
+        "content" => [
+          %{
+            "type" => "input_text",
+            "text" => "Owned delegate result λ\n\nOwned bounded assistant result 🙂"
+          }
+        ]
+      }
+    ]
+  end
 
   defp delegation_outputs(%{scenario: "delegation-status"}) do
     [
@@ -3564,7 +3661,39 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     ]
   end
 
+  defp delegation_outputs(%{scenario: "delegation-bem"}) do
+    [
+      %{
+        "type" => "session.context.append",
+        "channel" => "commentary",
+        "content" => [%{"type" => "input_text", "text" => @delegation_bem_progress}]
+      },
+      %{
+        "type" => "session.context.append",
+        "channel" => "speakable",
+        "content" => [%{"type" => "input_text", "text" => @delegation_bem_final}]
+      }
+    ]
+  end
+
   defp delegation_items(%{scenario: "delegation"}, [user, assistant]), do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-thinking"}, [user, assistant]),
+    do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-null"}, [user, assistant]),
+    do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-bem"}, [user, progress, final]) do
+    assert %{"type" => "agentMessage", "text" => @delegation_bem_progress} = progress
+    assert %{"type" => "agentMessage", "text" => @delegation_bem_final} = final
+    assert progress["id"] === "owned-v487-progress-message"
+    assert final["id"] === "owned-v487-final-message"
+    ids = Enum.map([user, progress, final], & &1["id"])
+    assert Enum.all?(ids, &(is_binary(&1) and &1 != ""))
+    assert Enum.uniq(ids) === ids
+    {user, final}
+  end
 
   defp delegation_items(%{scenario: "delegation-status"}, [user, reasoning, assistant]) do
     assert reasoning === %{
@@ -3582,11 +3711,24 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_event_types(%{scenario: "delegation"}),
     do: ~w(response.created response.output_item.done response.completed)
 
+  defp delegation_event_types(%{scenario: "delegation-thinking"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
+  defp delegation_event_types(%{scenario: "delegation-null"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
   defp delegation_event_types(%{scenario: "delegation-status"}),
     do:
       ~w(response.created response.output_item.done response.output_item.done response.completed)
 
+  defp delegation_event_types(%{scenario: "delegation-bem"}),
+    do:
+      ~w(response.created response.output_item.done response.output_item.done response.completed)
+
   defp delegation_summary_evidence(%{scenario: "delegation"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-bem"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-thinking"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-null"}, _entry), do: :ok
 
   defp delegation_summary_evidence(%{scenario: "delegation-status"}, entry) do
     assert Enum.at(entry["events"], 1)["item"] === %{
@@ -3615,10 +3757,25 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_timeline_types(%{scenario: "delegation"}),
     do: ~w(realtime turnStarted item item turnCompleted realtime)
 
+  defp delegation_timeline_types(%{scenario: "delegation-thinking"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
+  defp delegation_timeline_types(%{scenario: "delegation-null"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
   defp delegation_timeline_types(%{scenario: "delegation-status"}),
     do: ~w(realtime turnStarted item item item turnCompleted realtime)
 
+  defp delegation_timeline_types(%{scenario: "delegation-bem"}),
+    do: ~w(realtime turnStarted item item item turnCompleted realtime)
+
   defp delegation_timeline_turn(%{scenario: "delegation"}, records, data, thread, row),
+    do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(%{scenario: "delegation-thinking"}, records, data, thread, row),
+    do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(%{scenario: "delegation-null"}, records, data, thread, row),
     do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
 
   defp delegation_timeline_turn(%{scenario: "delegation-status"}, records, data, thread, row) do
@@ -3646,6 +3803,26 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              "position" => raw["ordinal"],
              "turnId" => row.id,
              "item" => reasoning_item
+           }
+  end
+
+  defp delegation_timeline_turn(%{scenario: "delegation-bem"}, records, data, thread, row) do
+    [started, user, progress, final, completed] = Enum.slice(data, 1, 5)
+    [user_item, progress_item, final_item] = row.items
+
+    instruction_timeline_turn(records, [started, user, final, completed], thread, %{
+      row
+      | items: [user_item, final_item]
+    })
+
+    raw = instruction_record(records, "item_completed", row.id, progress_item["id"])
+    assert raw["payload"]["thread_id"] === thread
+
+    assert progress === %{
+             "type" => "item",
+             "position" => raw["ordinal"],
+             "turnId" => row.id,
+             "item" => progress_item
            }
   end
 
