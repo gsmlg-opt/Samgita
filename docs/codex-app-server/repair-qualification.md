@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary realtime/MCP event envelopes](ordinary-realtime-mcp-envelopes-qualification.md)
+add genuine native item/audio and HTTP/SSE stream activation/event/stop behavior,
+retain all three existing realtime cases, and index an unchanged roots field.
+Initial dev-format cache and missing peer-environment setup failures remain
+recorded; no assertion/bound or production code changes. Final focused **4/0**
+and **1/0**, **78 ordinary cases twice**, selected WebSocket cases at three
+seeds, outside consumer **1/0**, all fourteen reviewed checks and 1,665 stable
+sources pass. Only 31 exact owners gain scoped evidence: **5,360 implemented /
+1,149 missing / 112 blocked**, unchanged requirements and zero verified.
+Continue ordinary terminal-interaction evidence and exact legacy file-output
+non-emission mapping. No prohibited or hosted check runs; A11, SDP, upstream/
+external/full-goal and release gates remain incomplete.
+
 The [settings/hook/skills envelopes](ordinary-configuration-events-qualification.md)
 and [Project/read-state envelopes](ordinary-domain-events-qualification.md)
 add exact original native frames, per-request causation, independent committed

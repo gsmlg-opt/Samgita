@@ -99475,27 +99475,39 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadEnvironment/properties/runtimeWorkspaceRoots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "The unchanged ordinary creation-snapshot case independently requires the complete original thread/started projection with environments [{environmentId: local, cwd: row.cwd, runtimeWorkspaceRoots: [row.cwd]}], exact 32-field snapshot equality and full original incoming equality. Only the runtimeWorkspaceRoots array owner is indexed; no sibling setting or nested item/variant gains credit. The final reviewed functional matrix reruns this case at both fixed seeds.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/runtimeWorkspaceRoots",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5b284be489d611fb82881913c53cf6ab1aafb5eb1048aaa911e5289c9f75475f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs:143",
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs:340",
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs:386",
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs:424"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
@@ -115623,98 +115635,154 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/46",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One no-turn actual-native case opens the host-owned Apps MCP HTTP/SSE route against an ordinary loopback dependency. A real pending stream is explicitly released; active notification precedes its correlated native start reply, followed by an independently prescribed nested Unicode event. Externally selected subscription ID remains distinct from native internal MCP request ID. Exactly two complete original notices, nine unique correlated RPCs, native timestamp bounds, generation and sequence order are checked. Empty stop ACK plus actual peer EOF/handler completion prove cancellation without a second stream; native read/loaded queries establish a drain barrier. Unchanged empty-thread history/nonsecret inputs and checked owned native/peer PID/Port/listener/thread cleanup remain mandatory. Fixed synthetic account data is inert positive setup, never read, frozen, asserted or captured.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/46",
       "schema": "ServerNotification.json",
       "schema_sha256": "6de4c2da6cbae1e00f1132152b9343436062bbbccb590a44b3b3820047dc772c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:163",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:398",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:432",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:464",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:564",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:589"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/46/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One no-turn actual-native case opens the host-owned Apps MCP HTTP/SSE route against an ordinary loopback dependency. A real pending stream is explicitly released; active notification precedes its correlated native start reply, followed by an independently prescribed nested Unicode event. Externally selected subscription ID remains distinct from native internal MCP request ID. Exactly two complete original notices, nine unique correlated RPCs, native timestamp bounds, generation and sequence order are checked. Empty stop ACK plus actual peer EOF/handler completion prove cancellation without a second stream; native read/loaded queries establish a drain barrier. Unchanged empty-thread history/nonsecret inputs and checked owned native/peer PID/Port/listener/thread cleanup remain mandatory. Fixed synthetic account data is inert positive setup, never read, frozen, asserted or captured.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/46/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0b89046c150f0dab1ddd052e0da978282f276db138b10368b738dae1027500e5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:163",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:398",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:432",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:464",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:564",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:589"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/46/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One no-turn actual-native case opens the host-owned Apps MCP HTTP/SSE route against an ordinary loopback dependency. A real pending stream is explicitly released; active notification precedes its correlated native start reply, followed by an independently prescribed nested Unicode event. Externally selected subscription ID remains distinct from native internal MCP request ID. Exactly two complete original notices, nine unique correlated RPCs, native timestamp bounds, generation and sequence order are checked. Empty stop ACK plus actual peer EOF/handler completion prove cancellation without a second stream; native read/loaded queries establish a drain barrier. Unchanged empty-thread history/nonsecret inputs and checked owned native/peer PID/Port/listener/thread cleanup remain mandatory. Fixed synthetic account data is inert positive setup, never read, frozen, asserted or captured.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/46/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a53d417f7024ad821e1f16c728e2763c3b4e2b552bba71665b304b82112c768c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:163",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:398",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:432",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:464",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:564",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:589"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/46/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One no-turn actual-native case opens the host-owned Apps MCP HTTP/SSE route against an ordinary loopback dependency. A real pending stream is explicitly released; active notification precedes its correlated native start reply, followed by an independently prescribed nested Unicode event. Externally selected subscription ID remains distinct from native internal MCP request ID. Exactly two complete original notices, nine unique correlated RPCs, native timestamp bounds, generation and sequence order are checked. Empty stop ACK plus actual peer EOF/handler completion prove cancellation without a second stream; native read/loaded queries establish a drain barrier. Unchanged empty-thread history/nonsecret inputs and checked owned native/peer PID/Port/listener/thread cleanup remain mandatory. Fixed synthetic account data is inert positive setup, never read, frozen, asserted or captured.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/46/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "95708f00c48b71aecb6f75baeac142d2a68da966513c9d8c980c0dd0751552d9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:163",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:398",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:432",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:464",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:564",
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs:589"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -118821,24 +118889,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/71",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/71",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1469bfd87d27fe4c368ceb248054a8fc8008e78c4946440e10a04d4a99f2d2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -118908,145 +118993,247 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/71/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/71/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "deafb18aee39b011487b36bc56950c710c9f93bf9eedc025b6921d715a2c1903",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/72",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/72",
       "schema": "ServerNotification.json",
       "schema_sha256": "aa3da1234e4ec61d86b0d30165ce5d60f82ad7d1a829cb05356ffd9509db84b4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/72/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/72/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "91b386b03be2f629b494aac581b66e6f545509b3fa6e4a83287a4e21a9875d1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/72/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/72/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e37ccef19f59217a413dd982694d89b398435e5cc4774ec1b167321965aa140b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/72/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/72/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2dc00d4c3ec11c102ea0ee33c28972ca7a8a1067ea4be31c6805abe8d10217d5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/73",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/73",
       "schema": "ServerNotification.json",
       "schema_sha256": "c846ef028b48abf72e704022f60c7ba5836a671efb59c944c5e988c6b8c0056d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -119116,145 +119303,247 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/73/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/73/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "a97bd02e0d3b772be95576e904bd3f14b95a5fbd7c4176307d8210b8e09e319e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/74",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/74",
       "schema": "ServerNotification.json",
       "schema_sha256": "b2225ea683ca9627181549281cf5e38c0faf5c743c9ef47eb79d5de4e8b87371",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/74/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/74/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b452b220414694c926f3e3f63a03b9659a4d17a9c2a582f69d620e8dbaf4b710",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/74/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/74/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a7ebda2cecb54e870147a030a33b770e057f5ea751b480031c3dde83b8c9394f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/74/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/74/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8133e0d67061edbcba3555841e04c5924334ceb3002032ec682f99080d89b527",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/75",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/75",
       "schema": "ServerNotification.json",
       "schema_sha256": "7d6a27dd111f74ea6906b98f076dd54a9eb51d730005854948ee4cf0cd00770b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -119324,315 +119613,536 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/75/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/75/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "cf5ff0a18769af39acb9247ca37952cf65f29b2cc1b247f7666da05c1bd07b45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/76",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/76",
       "schema": "ServerNotification.json",
       "schema_sha256": "094b81587eb1825772ffd825f7cd1442de5d7e511d9a5db7c4e40e718cf78eb9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/76/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/76/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "ca05ba77944f37cb64e6aeb5845302741ac9930b5af2417b1f25bb3b7f89fb98",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/76/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/76/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "cb1372ad6de1566324730774f66882e7944fe38d53e23d2779dacc2f7563a365",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/76/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/76/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b73aaf755eb3c225d3a289d28e2802b5fb1a6772976baa5ecef74a02abd757d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/77",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/77",
       "schema": "ServerNotification.json",
       "schema_sha256": "b82c580c14476c7702912bfba66dbc3c568f0734c64a97340c62e443c79e8ba7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/77/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/77/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f8d1d0a566f4f0bacc852672e9ea062c909bdce17fd407746351e2a6810744da",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/77/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/77/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0f2a8d8da2be3596ebd50af5d69f8b66254047263e7a67378d59e89e49abbb2c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/77/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/77/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "13ded811339871db3bc55187a7f7207adadcefc0f7676d68325e61e504bacefd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/78",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/78",
       "schema": "ServerNotification.json",
       "schema_sha256": "476356f3765b4df051329c99784c383faa7e85db0efd72a3a5fbdfd38f8ddb51",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/78/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/78/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "d223c56242d72402abc463f597e70ad370b19903ce4722057d0421a074fa2398",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/78/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/78/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "992fae8e44b66a45b45d52354eb3788236928136000d1ca263d17b2778bd3222",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/78/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Four actual-native cases retain ordinary start/stop, streamed transcript and service-error behavior and add a released item/audio case. Complete original notifications equal independent envelopes with bounded native timestamps, current generation and ordered unique sequences. New literal backend item and nondefault 16kHz stereo PCM bytes, four signed samples, sample count and item identity are independently required. Release occurs after actual start ACK/readiness and before payload delivery; stop precedes exactly one requested closure. Native read is a persistence barrier, exact timeline and two rollout rows prove item/audio do not invent history effects. Frozen nonsecret inputs, bounded peer journal and checked owner/Port/native-PID/socket/thread shutdown remain required.",
+        "Only this exact physical ServerNotification node gains scoped implemented evidence. Twenty complete producer/protocol sources and both generated/vendored schema exports match the immutable official pin. All app-server messages come from stock Codex; no scripted peer substitutes for native behavior. Fixed YOLO is launch setup only. No unlisted nested alias/default/variant, complete method/schema, SDP/sideband path, real external backend, database recovery, other transport/OS, security/permission/approval/credential behavior, full-goal or release credit. All prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/78/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "fbe43050da04ca43d0729a5046f415c670b51b83cfb572084e21eebc75baaa56",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:191",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:612",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:821",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1045",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1130",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1454",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1781"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

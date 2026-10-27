@@ -1,6 +1,16 @@
 # Codex compatibility qualification
 
-The latest [functional-only notification qualification](ordinary-domain-events-qualification.md)
+The latest [ordinary realtime/MCP qualification](ordinary-realtime-mcp-envelopes-qualification.md)
+passes **78 ordinary real-binary cases twice**, selected WebSocket checks at
+three seeds, an isolated outside consumer and all fourteen reviewed steps with
+1,665 unchanged source hashes. Thirty-one exact owners gain scoped evidence,
+including actual item/PCM forwarding and MCP activation/event/stop. Initial
+setup failures remain recorded. Fixed YOLO remains setup; no security or
+permission tests/audits, broad suite or hosted workflow run. Complete
+compatibility, A11, unavailable emitters/external/platform and release gates
+remain incomplete.
+
+The [functional-only Project/read-state qualification](ordinary-domain-events-qualification.md)
 passes **76 ordinary real-binary cases twice**, selected WebSocket checks at
 three seeds, an isolated outside consumer and all fourteen reviewed steps, with
 1,663 unchanged source hashes. Nineteen precise settings/hook/skills/Project/

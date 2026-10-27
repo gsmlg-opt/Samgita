@@ -35,6 +35,15 @@ SERVICE_ERROR = {
         "message": "Owned local realtime service unavailable λ", "param": None,
     },
 }
+ITEM_AUDIO = [
+    {"type": "conversation.item.added", "item": {
+        "id": "owned-item-audio-backend-item", "type": "message", "role": "user",
+        "content": [{"type": "input_text", "text": "Owned inert realtime item λ"}],
+    }},
+    {"type": "response.output_audio.delta", "delta": "AADoAxj8/38=",
+     "sample_rate": 16000, "channels": 2, "samples_per_channel": 2,
+     "item_id": "owned-item-audio-output-item"},
+]
 MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
@@ -148,6 +157,25 @@ class PeerHandler(socketserver.BaseRequestHandler):
             fixture.release.set()
             return
 
+        if (fixture.scenario == "item-audio" and method == "POST"
+                and path == "/fixture/item-audio"):
+            assert fields.get("content-length") == "0"
+            with fixture.lock:
+                assert fixture.state["paths"] == [f"/v1/realtime?model={MODEL}"]
+                assert len(fixture.state["messages"]) == 1
+                assert fixture.state["sent"] == [ACK]
+                assert fixture.state["activeConnections"] == 1
+                assert fixture.state["controls"] == []
+                fixture.state["controls"].append({
+                    "method": "POST", "path": "/fixture/item-audio", "bodyBytes": 0})
+                fixture.save_locked()
+            body = b'{"released":true}'
+            self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+                + f"Content-Length: {len(body)}\r\n".encode()
+                + b"Connection: close\r\n\r\n" + body)
+            fixture.release.set()
+            return
+
         if method != "GET" or path != f"/v1/realtime?model={MODEL}":
             with fixture.lock:
                 if method == "POST" and path == "/v1/responses":
@@ -209,7 +237,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
             assert isinstance(message, dict) and message.get("type") == "session.update"
             assert message["session"]["type"] == "realtime"
             assert message["session"]["instructions"] == PROMPT
-            assert message["session"]["output_modalities"] == ["text"]
+            expected_modality = "audio" if fixture.scenario == "item-audio" else "text"
+            assert message["session"]["output_modalities"] == [expected_modality]
             with fixture.lock:
                 fixture.state["messages"].append(message)
                 assert len(fixture.state["messages"]) == 1, "Extra owned session.update"
@@ -249,6 +278,22 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 with fixture.lock:
                     fixture.state["sent"].append(SERVICE_ERROR)
                     fixture.save_locked()
+
+            if fixture.scenario == "item-audio":
+                while not fixture.release.is_set():
+                    if fixture.stopping.is_set():
+                        return
+                    remaining = deadline - time.monotonic()
+                    assert remaining > 0, "Owned item-audio release deadline"
+                    fixture.release.wait(min(0.2, remaining))
+                if fixture.stopping.is_set():
+                    return
+                for entry in ITEM_AUDIO:
+                    self.send_frame(fixture, 1,
+                        json.dumps(entry, ensure_ascii=False, separators=(",", ":")).encode())
+                    with fixture.lock:
+                        fixture.state["sent"].append(entry)
+                        fixture.save_locked()
 
     def send_frame(self, fixture, opcode, payload):
         assert len(payload) <= MAX_FRAME
@@ -440,7 +485,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

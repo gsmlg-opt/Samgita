@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary realtime media/MCP event envelopes](ordinary-realtime-mcp-envelopes-qualification.md)
+retain three real-native realtime cases, add literal item/PCM and actual Apps
+MCP HTTP/SSE activation/event/stop cases, and narrowly index an existing roots
+field. Initial dev-format cache and MCP setup failures remain recorded; only
+the required isolated peer environment entry changes. Focused **4/0** and
+**1/0**, **78 ordinary cases twice**, selected WebSocket cases at three seeds,
+outside consumer **1/0**, all fourteen reviewed steps and 1,665 stable source
+hashes pass. Exactly 31 physical nodes gain scoped evidence: **5,360 implemented
+/ 1,149 missing / 112 blocked**, unchanged requirements and zero verified.
+Continue genuine ordinary terminal-interaction qualification and source-bound
+legacy file-output non-emission mapping. Prohibited/hosted, A11, SDP, unavailable
+emitters/external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary configuration-event](ordinary-configuration-events-qualification.md)
 and [Project/read-state event](ordinary-domain-events-qualification.md) units
 qualify nineteen exact outer/method/params nodes with original native bytes,
