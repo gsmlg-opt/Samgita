@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [installed-plugin partial inventory](plugin-installed-errors-qualification.md)
+preserves a real valid suggested plugin beside exact malformed-source errors,
+then proves repair/restoration/cold discovery. Initial1/0, focused2/0 twice and
+strict checks pass with379 stable sources/all378 prior unchanged. Exactly4526/
+4527 become scoped implemented; full compatibility and prohibited/hosted gates
+remain incomplete.
+
 The [plugin hook declaration profile](plugin-hook-declarations-qualification.md)
 adds actual populated metadata, independent source/event/group/handler ordering,
 content reload/removal/restoration and cold repeat. Initial1/0, focused1/0 twice

@@ -416,6 +416,12 @@ separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 
+Native plugin inventory may return valid marketplaces and load errors together.
+The [partial-inventory profile](plugin-installed-errors-qualification.md) checks
+that discovered malformed source paths/messages survive alongside explicit valid
+suggestions, with current-file repair/restoration and cold discovery. An empty
+error list or another endpoint's configuration error cannot qualify this branch.
+
 Local plugin hook declarations and executable hook events have distinct native
 producers. The [declaration profile](plugin-hook-declarations-qualification.md)
 qualifies only metadata source/event/group/handler keys and current-file reload

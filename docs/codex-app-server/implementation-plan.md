@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [installed-plugin partial inventory](plugin-installed-errors-qualification.md)
+qualifies exact4526/4527 through real malformed marketplace diagnostics while a
+valid explicit suggestion survives. Repeated reads, valid-empty repair, exact
+restoration and a distinct cold process retain independently prescribed results.
+Initial1/0, focused **2/0 twice**, compile/format, strict Credo546 and inventory
+pass with379 stable sources/all378 prior unchanged. Contracts become **5,050
+implemented /1,505 missing /66 blocked**; requirements remain **462 implemented
+/12 missing /11 blocked**, zero verified. Continue reachable ordinary groups;
+prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal gates remain
+incomplete.
+
 The [plugin hook declaration profile](plugin-hook-declarations-qualification.md)
 qualifies exact4681/4682 through five independently prescribed native metadata
 maps, source/event/group/handler ordering, changed/held/restored sources and a
