@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary question/result binding](ordinary-question-result-owners.md)
+indexes exact native question text3155 and direct MCP result metadata4403.
+Independent literals and causal question reply/result or eight backend calls
+already pass in the prior154/0-twice matrix; both owning sources remain byte
+identical in the current389-file guard. Nine complete upstream files match the
+pin. No new runtime or original incoming-frame byte claim is made. Only those
+two owners become scoped implemented: **5,083 implemented /1,472 missing /66
+blocked** contracts, unchanged requirements and zero verified. The attempted
+read-state after-turn candidate5850–5853 is already a documented source boundary
+in read-state-update-success-limitation.md; no new runtime work follows from it.
+Next strengthen original incoming-frame capture in these two ordinary owning
+tests, preserving decoded-value and causal-result oracles. Prohibited/broad/hosted, A11,
+unavailable producers and full-goal/release gates remain incomplete.
+
 The [pinned projection boundaries](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)
 now include exact skills/list null owners5092/5097. Native optional loading,
 Option-preserving conversion and skip-on-None serialization omit absent fields;

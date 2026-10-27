@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [question text/MCP result binding](ordinary-question-result-owners.md)
+adds two exact decoded-value owners from already executed positive native
+scenarios. Prior154/0-twice logs and current389-source hashes bind unchanged
+question/result oracles and genuine dependency calls;9 whole files match the
+pin. Original incoming JSON bytes are explicitly absent from those captures.
+No new runtime result or stronger encoding claim is inferred. Only3155/4403
+become scoped implemented: **5,083 implemented /1,472 missing /66 blocked**,
+unchanged requirements and zero verified. All prohibited/full-goal gates remain
+incomplete. The attempted read-state after-turn candidate is an already
+documented boundary; next strengthen the two ordinary incoming-frame captures.
+
 The [skills omission boundary](native-projection-boundaries.md#skills-list-omits-absent-optional-metadata)
 records upstream evidence for two still-missing explicit-null owners5092/5097.
 Their actual typed producer preserves None then omits keys; schema fixtures or

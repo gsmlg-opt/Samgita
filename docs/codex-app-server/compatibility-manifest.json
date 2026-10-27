@@ -119131,27 +119131,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-question-result-owners.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/definitions/ToolRequestUserInputQuestion/properties/question",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped existing actual-native decoded-value evidence only: Exact native question text Choose fixture input is independently prescribed by a local model dependency and asserted in the actual server request; real opaque-handle/native-ID reply, resolution, turn completion and final provider function output establish causal use. The unchanged owning module is explicitly in the earlier154/0 driver runs at both seeds, and its exact bytes remain bound by the current389-source guard. Nine complete upstream sources match the immutable archive and this physical node matches its canonical hash. No new runtime test is claimed. Existing capture retains exact outgoing original bytes and decoded incoming maps; original incoming JSON bytes are not retained or reconstructed as evidence. No alias, sibling, whole family, broader value/default/null/omission profile, transport, OS, backend or fully verified promotion follows. Prohibited/broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ToolRequestUserInputQuestion/properties/question",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "question"
     },
     {
@@ -158461,27 +158469,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-question-result-owners.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallResponse.json#/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped existing actual-native decoded-value evidence only: Exact native top-level result _meta fixture.preserved=true is independently prescribed by a genuine local stdio MCP backend and asserted in complete actual app-server results for eight calls across warm/cold processes, with independently observed backend params and IDs. The unchanged owning module is explicitly in the earlier154/0 driver runs at both seeds, and its exact bytes remain bound by the current389-source guard. Nine complete upstream sources match the immutable archive and this physical node matches its canonical hash. No new runtime test is claimed. Existing capture retains exact outgoing original bytes and decoded incoming maps; original incoming JSON bytes are not retained or reconstructed as evidence. No alias, sibling, whole family, broader value/default/null/omission profile, transport, OS, backend or fully verified promotion follows. Prohibited/broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/_meta",
       "required": false,
       "schema": "v2/McpServerToolCallResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
