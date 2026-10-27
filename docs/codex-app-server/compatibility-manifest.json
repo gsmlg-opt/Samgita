@@ -217150,24 +217150,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-generic-subagent-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V527 actual-native generic subAgent search across genuine Review and ThreadSpawn producers, preserving independent IDs/content/source/provenance and warm/cold state. Review includes the real matching child and excludes a matching same-active-state VSCode control; archived ThreadSpawn provides a distinct positive child, but its active parent absence alone is not a source discriminator. Together they reject single-subtype substitution and unfiltered discovery. Original Review raw request/reply capture remains; ThreadSpawn adds bounded original-frame Stdio capture (1024records,262144bytes/frame,8MiB total) and exact unique-string generic exchanges without changing native transport semantics or existing specialized first-cold search, provider behavior, deadlines, event caps, history/config snapshots or cleanup. Eighteen complete producers match official archive and pinned binary regenerates exact experimental schema. Only physical6077 with these two subtypes on owned local Linux-musl/stdio. Other four missing source-kind owners retain missing; clientInfo does not select appServer; no alias, full subtype/transport/OS/backend/default/whole-method or verified credit. Prohibited/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/4",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "bd480700782209b2a1866a02d4f46f7f0eaafc14d2d98d34745d34a43c85996a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs:179",
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs:140"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

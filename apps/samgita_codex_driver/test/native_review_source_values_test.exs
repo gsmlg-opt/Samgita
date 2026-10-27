@@ -615,13 +615,20 @@ defmodule SamgitaCodexDriver.NativeReviewSourceValuesTest do
 
   defp matrix(ctx, pid, rows) do
     for method <- ["thread/list", "thread/search"],
-        kinds <- [["subAgentReview"], ["vscode"], ["subAgentReview", "vscode"]] do
+        kinds <-
+          [["subAgentReview"], ["vscode"], ["subAgentReview", "vscode"]] ++
+            if(method == "thread/search", do: [["subAgent"]], else: []) do
       base =
         if method == "thread/list",
           do: %{"limit" => 100, "useStateDbOnly" => true},
           else: %{"limit" => 100, "searchTerm" => @needle}
 
-      expected = Enum.filter(rows, &(source_kind(&1.source) in kinds))
+      expected =
+        Enum.filter(rows, fn row ->
+          source_kind(row.source) in kinds or
+            ("subAgent" in kinds and row.source == @review_source)
+        end)
+
       result = call(ctx, pid, method, Map.put(base, "sourceKinds", kinds))
       data = Map.fetch!(result, "data")
       threads = if method == "thread/search", do: Enum.map(data, & &1["thread"]), else: data
@@ -804,9 +811,13 @@ defmodule SamgitaCodexDriver.NativeReviewSourceValuesTest do
 
     for method <- ["thread/list", "thread/search"] do
       queries = Enum.filter(outgoing, &(&1["method"] == method))
-      assert length(queries) == 6
+      assert length(queries) == if(method == "thread/search", do: 8, else: 6)
 
-      for kinds <- [["subAgentReview"], ["vscode"], ["subAgentReview", "vscode"]] do
+      filters =
+        [["subAgentReview"], ["vscode"], ["subAgentReview", "vscode"]] ++
+          if(method == "thread/search", do: [["subAgent"]], else: [])
+
+      for kinds <- filters do
         assert Enum.count(queries, &(&1["params"]["sourceKinds"] == kinds)) == 2
       end
     end

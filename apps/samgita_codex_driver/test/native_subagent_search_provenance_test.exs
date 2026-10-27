@@ -10,8 +10,6 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
     TurnFixture
   }
 
-  alias SamgitaCodexDriver.Transport.Stdio
-
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/subagent_search_provenance_fixture.py", __DIR__)
@@ -22,6 +20,85 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
   @child_path "/root/search_child"
   @child_answer @child_marker <> " done"
   @root_answer "Owned source provenance root done"
+
+  defmodule CaptureStdio do
+    @moduledoc false
+    @behaviour SamgitaCodexDriver.Transport
+    alias SamgitaCodexDriver.Transport.Stdio
+    alias SamgitaProtocolCodex.Error
+
+    @impl true
+    def open(opts) do
+      capture = Keyword.fetch!(opts, :capture)
+
+      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
+           do: {:ok, Map.put(state, :capture, capture)}
+    end
+
+    @impl true
+    def send(state, encoded) do
+      case Stdio.send(state, encoded) do
+        {:ok, next} ->
+          case record(next, :out, encoded) do
+            :ok -> {:ok, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    @impl true
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case record_events(next, events) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp record_events(state, events) do
+      Enum.reduce_while(events, :ok, fn event, :ok ->
+        case record_event(state, event) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      end)
+    end
+
+    defp record_event(state, {:message, encoded}), do: record(state, :in, encoded)
+    defp record_event(_state, _event), do: :ok
+
+    defp record(state, direction, encoded) do
+      Agent.get_and_update(state.capture, fn ledger ->
+        size = byte_size(encoded)
+
+        if ledger.count < 1024 and size <= 262_144 and ledger.bytes + size <= 8_388_608 do
+          entry = %{direction: direction, encoded: encoded, wire: JSON.decode!(encoded)}
+
+          {:ok,
+           %{
+             count: ledger.count + 1,
+             bytes: ledger.bytes + size,
+             records: [entry | ledger.records]
+           }}
+        else
+          {{:error, Error.new(:test_capture_overflow)}, ledger}
+        end
+      end)
+    end
+
+    @impl true
+    def close(state), do: Stdio.close(state)
+    @impl true
+    def metadata(state), do: Stdio.metadata(state)
+  end
 
   setup tags do
     previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
@@ -56,7 +133,8 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
         {path, snapshot(path)}
       end)
 
-    Map.put(ctx, :inputs, inputs)
+    capture = start_supervised!({Agent, fn -> %{count: 0, bytes: 0, records: []} end})
+    Map.merge(ctx, %{inputs: inputs, capture: capture})
   end
 
   test "native child provenance survives archived source-filtered search and first cold search",
@@ -163,6 +241,7 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
     retained = Map.put(retained, archived_path, child_bytes)
 
     assert_child_search(warm, root, child_id, archived_path, expected_source)
+    assert_generic_child_search(ctx, warm, root, child_id, archived_path, expected_source)
     assert_active_child_search_empty(warm)
     assert_interactive_search(warm, root, child_id)
     assert_retained(ctx, warm, retained)
@@ -175,12 +254,14 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
 
     # First cold content read is search, without resume or history hydration.
     assert_child_search(cold, root, child_id, archived_path, expected_source)
+    assert_generic_child_search(ctx, cold, root, child_id, archived_path, expected_source)
     assert_active_child_search_empty(cold)
     assert_interactive_search(cold, root, child_id)
     assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
     assert assert_history(cold, child_id, @child_answer)["turns"] === child_saved["turns"]
     assert assert_history(cold, root, @root_answer)["turns"] === root_saved["turns"]
     assert_retained(ctx, cold, retained)
+    assert_generic_search_inventory(ctx)
     close(cold, cold_native)
     for {path, bytes} <- retained, do: assert(snapshot(path) === bytes)
   end
@@ -208,6 +289,22 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
                "limit" => 100
              })
 
+    assert_child_search_row(row, root, child, path, expected_source)
+  end
+
+  defp assert_generic_child_search(ctx, pid, root, child, path, expected_source) do
+    assert %{"data" => [row], "nextCursor" => nil} =
+             call_captured(ctx, pid, "thread/search", %{
+               "searchTerm" => @needle,
+               "sourceKinds" => ["subAgent"],
+               "archived" => true,
+               "limit" => 100
+             })
+
+    assert_child_search_row(row, root, child, path, expected_source)
+  end
+
+  defp assert_child_search_row(row, root, child, path, expected_source) do
     assert String.contains?(Map.fetch!(row, "snippet"), @child_marker)
     thread = Map.fetch!(row, "thread")
     assert Map.fetch!(thread, "id") == child
@@ -314,6 +411,36 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
     result
   end
 
+  defp assert_generic_search_inventory(ctx) do
+    records = Agent.get(ctx.capture, &Enum.reverse(&1.records))
+
+    selected =
+      Enum.filter(records, fn record ->
+        record.direction == :out and record.wire["method"] == "thread/search" and
+          record.wire["params"]["sourceKinds"] == ["subAgent"]
+      end)
+
+    assert length(selected) == 2
+    assert length(Enum.uniq_by(selected, & &1.wire["id"])) == 2
+    for record <- records, do: assert(JSON.decode!(record.encoded) === record.wire)
+  end
+
+  defp call_captured(ctx, pid, method, params) do
+    id = "owned-generic-subagent-#{System.unique_integer([:positive, :monotonic])}"
+    wire = %{"id" => id, "method" => method, "params" => params}
+
+    assert {:ok, %{"id" => ^id, "result" => result} = response} =
+             Session.request_native(pid, wire, timeout_ms: 5_000)
+
+    records = Agent.get(ctx.capture, &Enum.reverse(&1.records))
+    assert [sent, received] = Enum.filter(records, &(&1.wire["id"] == id))
+    assert sent.direction == :out and received.direction == :in
+    assert sent.wire === wire and received.wire === response
+    assert JSON.decode!(sent.encoded) === wire
+    assert JSON.decode!(received.encoded) === response
+    result
+  end
+
   defp observed(ctx), do: Path.join(ctx.root, "provenance-observed.json")
 
   defp snapshot(path) do
@@ -341,8 +468,9 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
     {:ok, pid} =
       Session.start_link(
         transport:
-          {Stdio,
+          {CaptureStdio,
            [
+             capture: ctx.capture,
              executable: ctx.binary,
              args:
                NativeLaunchFixture.ordinary_args([

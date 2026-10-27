@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [two-producer generic-subAgent search unit](ordinary-generic-subagent-search-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**: **69 files / 130 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,687** identical guarded hashes. Real Review and ThreadSpawn inclusion,
+same-active-state VSCode exclusion, cold persisted content and complete original
+exchanges bind only owner6077. New capture bounds preserve every prior oracle.
+Contracts: **5,499 implemented / 992 missing / 130 blocked**; requirements
+unchanged, zero verified. The other four source kinds stay missing. Continue
+the source-reviewed ordinary environment helper; its scratch startup corrections
+and listener barrier are not runtime evidence. Prohibited/hosted, A11,
+unavailable emitter/external/OS, full compatibility and release gates remain
+incomplete. Nothing is published or deployed.
+
 The [local workspace-search discriminator](ordinary-workspace-plugin-search-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**: **68 files / 129 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks
