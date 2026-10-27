@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [background-terminal metric boundary](background-terminal-resource-limitations.md)
+proves the sole native API mapper hardcodes None and pagination/serialization
+preserve explicit null. All 5,259 Rust files, twelve key files and three nodes
+match the pin. Only 5169/5172/5174 become nonnull-source-blocked, preserving old
+null-only test/transport evidence: **5,270 implemented / 1,271 missing / 80
+blocked**, unchanged requirements and zero verified. All 417 V450 sources/nine
+logs remain exact; no new runtime test runs. Continue existing fork evidence;
+prohibited/full-goal gates remain incomplete.
+
 The [filesystem typed-ID journey](filesystem-typed-id-qualification.md)
 retains all 25 actual requests/effects and strengthens original-byte/typed-response
 correlation using aliases, Unicode and i64 boundaries. Focused **1/0**,

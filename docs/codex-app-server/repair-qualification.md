@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [background-terminal resource limit](background-terminal-resource-limitations.md)
+binds the native None assignments and full source/serialization chain. Only
+5169/5172/5174 become blocked for unavailable nonnull measurements; historical
+null-only test/transport evidence stays exact. Counts: **5,270 implemented /
+1,271 missing / 80 blocked**, unchanged requirements and zero verified. All
+417 V450 sources/nine logs remain exact; no new test runs. Continue existing
+fork evidence; prohibited/full-goal gates stay incomplete.
+
 The [filesystem typed-ID profile](filesystem-typed-id-qualification.md) checks
 original request bytes and strict returned IDs across the existing 25 actual
 operations, preserving every effect/oracle/bound and cleanup. Focused **1/0**,

@@ -184991,21 +184991,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/background-terminal-resource-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/cpuPercent",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing.",
+        "V451 source-proven nonnull resource limitation at immutable rust-v0.163.0: core BackgroundTerminalInfo/list_processes provides only item_id/process_id/command/cwd;sole API item constructor explicitly assigns os_pid,cpu_percent,rss_kb None. Paginator clones these records;derived Option serialization yields explicit null through typed dispatch/payload/external/in-process routes,with no cfg/production alternative. Whole5259Rust-file reference/constructor/cfg review,12whole files and3exact nodes archive/export-match. Existing real-native null_only evidence/tests/transport are preserved as historical partial evidence;no new passing test/transport credit,complete field remains blocked because number arms have no producer. No polling,fixture PID,other API metadata or mock can qualify these exact native metrics. Needs upstream-supported measurement/data-to-wire implementation or explicit immutable-target/contract decision;no local workaround or scope waiver.417tested sources/9logs remain exact;no new runtime/test. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/cpuPercent",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "34993fc9dda2f9fc8bf9053ede359d444c24f015df09769d6f12e6fa978d31ac",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -185095,21 +185097,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/background-terminal-resource-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/osPid",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing.",
+        "V451 source-proven nonnull resource limitation at immutable rust-v0.163.0: core BackgroundTerminalInfo/list_processes provides only item_id/process_id/command/cwd;sole API item constructor explicitly assigns os_pid,cpu_percent,rss_kb None. Paginator clones these records;derived Option serialization yields explicit null through typed dispatch/payload/external/in-process routes,with no cfg/production alternative. Whole5259Rust-file reference/constructor/cfg review,12whole files and3exact nodes archive/export-match. Existing real-native null_only evidence/tests/transport are preserved as historical partial evidence;no new passing test/transport credit,complete field remains blocked because number arms have no producer. No polling,fixture PID,other API metadata or mock can qualify these exact native metrics. Needs upstream-supported measurement/data-to-wire implementation or explicit immutable-target/contract decision;no local workaround or scope waiver.417tested sources/9logs remain exact;no new runtime/test. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/osPid",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -185164,21 +185168,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/background-terminal-resource-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/rssKb",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing.",
+        "V451 source-proven nonnull resource limitation at immutable rust-v0.163.0: core BackgroundTerminalInfo/list_processes provides only item_id/process_id/command/cwd;sole API item constructor explicitly assigns os_pid,cpu_percent,rss_kb None. Paginator clones these records;derived Option serialization yields explicit null through typed dispatch/payload/external/in-process routes,with no cfg/production alternative. Whole5259Rust-file reference/constructor/cfg review,12whole files and3exact nodes archive/export-match. Existing real-native null_only evidence/tests/transport are preserved as historical partial evidence;no new passing test/transport credit,complete field remains blocked because number arms have no producer. No polling,fixture PID,other API metadata or mock can qualify these exact native metrics. Needs upstream-supported measurement/data-to-wire implementation or explicit immutable-target/contract decision;no local workaround or scope waiver.417tested sources/9logs remain exact;no new runtime/test. Security/permission checks/audits,broad/hosted/release and full-goal/A11/legacy/external/platform gates remain incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/rssKb",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "8f759d27691871647f729a7988d8638fcadd6eb4c42b76dcaadb49e493060583",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
