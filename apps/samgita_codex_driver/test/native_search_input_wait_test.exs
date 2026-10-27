@@ -83,7 +83,8 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
 
     defp capture_incoming_event(state, {:message, encoded}) do
       case JSON.decode(encoded) do
-        {:ok, %{"method" => "item/tool/requestUserInput"} = wire} ->
+        {:ok, %{"method" => method} = wire}
+        when method in ["item/tool/requestUserInput", "serverRequest/resolved"] ->
           Agent.get_and_update(state.incoming_capture, &append_incoming(&1, encoded, wire))
 
         _ ->
@@ -258,6 +259,8 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     assert %{interactions: 1} = Session.status(warm.pid)
     assert length(ModelFixture.requests(ctx.fixture)) == 2
     before = length(Agent.get(ctx.capture, & &1))
+    generation = Session.status(warm.pid).generation
+    lower = System.system_time(:millisecond)
     assert :ok = Session.respond(warm.pid, request.handle, {:ok, @answers})
     reply = %{"id" => Map.fetch!(request.wire, "id"), "result" => @answers}
     assert [{bytes, actual}] = Agent.get(ctx.capture, &Enum.drop(&1, before))
@@ -270,6 +273,12 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
         &(finished?(&1, thread, second) and resolved?(&1, thread, reply["id"])),
         deadline(20_000)
       )
+
+    upper = System.system_time(:millisecond)
+    assert Session.status(warm.pid).generation === generation
+
+    resolved_incoming =
+      assert_resolution(ctx, complete, request, incoming, {lower, upper, generation})
 
     assert_answer(complete, thread, second, @choice_done)
 
@@ -300,6 +309,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
 
     assert_retained(ctx, warm.pid, retained)
     close(warm)
+    assert Agent.get(ctx.incoming_capture, & &1) === resolved_incoming
 
     cold = start(ctx)
     refute cold.native == warm.native
@@ -319,7 +329,53 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     queries = for {_bytes, %{"method" => "thread/search"} = wire} <- frames, do: wire
     assert length(Enum.uniq_by(queries, & &1["id"])) == 4
     assert Enum.map(queries, & &1["params"]) == List.duplicate(search_params(), 4)
-    assert Agent.get(ctx.incoming_capture, & &1) === incoming
+    assert Agent.get(ctx.incoming_capture, & &1) === resolved_incoming
+  end
+
+  defp assert_resolution(ctx, events, request, incoming, {lower, upper, generation}) do
+    [resolution] = Enum.filter(events, &(&1.wire["method"] == "serverRequest/resolved"))
+    thread = request.wire["params"]["threadId"]
+    turn = request.wire["params"]["turnId"]
+    request_id = Map.fetch!(request.wire, "id")
+    assert is_integer(request_id)
+    emitted_at = Map.fetch!(resolution.wire, "emittedAtMs")
+    assert is_integer(emitted_at) and lower <= emitted_at and emitted_at <= upper
+    assert resolution.kind === :notification and resolution.generation === generation
+
+    assert resolution.wire === %{
+             "method" => "serverRequest/resolved",
+             "params" => %{"threadId" => thread, "requestId" => request_id},
+             "emittedAtMs" => emitted_at
+           }
+
+    schema =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+      |> File.read!()
+      |> JSON.decode!()
+
+    assert :ok = SamgitaProtocolCodex.Schema.validate(schema, resolution.wire, max_depth: 32)
+
+    [completed] =
+      Enum.filter(events, fn event ->
+        event.wire["method"] == "turn/completed" and
+          event.wire["params"]["threadId"] === thread and
+          event.wire["params"]["turn"]["id"] === turn
+      end)
+
+    assert request.sequence < resolution.sequence and resolution.sequence < completed.sequence
+    assert_resolution_ingress(ctx, incoming, resolution)
+  end
+
+  defp assert_resolution_ingress(ctx, incoming, resolution) do
+    [original_request] = incoming.frames
+    ledger = Agent.get(ctx.incoming_capture, & &1)
+    assert %{frames: [^original_request, {encoded, wire}], bytes: size} = ledger
+    assert size === incoming.bytes + byte_size(encoded)
+    assert wire === resolution.wire
+    assert JSON.decode!(encoded) === resolution.wire
+    ledger
   end
 
   defp assert_provider(ctx, thread, [first, second]) do

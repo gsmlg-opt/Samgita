@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [usage/resolution unit](usage-resolution-envelopes-qualification.md)
+qualifies only roots2863/2955, preserving six implemented siblings. Distinct
+nonzero provider reports discriminate six native counters and accumulated totals;
+real ordinary user input supplies original request/reply/resolution and completed
+answer/persisted history across existing warm/cold sessions. Complete raw wrappers,
+clock bounds, exact inventories and checked cleanup remain. Focused **3/0** and
+final **37ordinary cases twice**, syntax/strict checks and403stable sources pass;
+400other prior paths stay unchanged and41whole upstream files match the pin.
+Only these two become scoped implemented: **5,147 implemented /1,408 missing
+/66 blocked**, unchanged requirements and zero verified. Prior owning-source
+runs stay historical. Continue real filesystem notification envelopes, requiring
+actual kernel events; prohibited/full-goal gates remain incomplete.
+
 The [ordinary lifecycle unit](ordinary-lifecycle-envelopes-qualification.md)
 qualifies only roots2855/2867/2875/2891/2911, preserving fifteen implemented
 siblings. Two existing direct fixed-YOLO modules add complete normal status,

@@ -74,10 +74,16 @@ def response_events(scenario, index):
     else:
         body = [{"type": "response.output_item.done", "item": message(
             "owned-checklist-answer", "Synthetic tool finished")}]
+    usage = {
+        "input_tokens": 7 if index == 1 else 13,
+        "input_tokens_details": {"cached_tokens": 3 if index == 1 else 5,
+                                 "cache_write_tokens": 1 if index == 1 else 4},
+        "output_tokens": 11 if index == 1 else 17,
+        "output_tokens_details": {"reasoning_tokens": 2 if index == 1 else 7},
+        "total_tokens": 18 if index == 1 else 30,
+    }
     result = [{"type": "response.created", "response": {"id": identity}}, *body,
-              {"type": "response.completed", "response": {"id": identity, "usage": {
-                  "input_tokens": 0, "input_tokens_details": None, "output_tokens": 0,
-                  "output_tokens_details": None, "total_tokens": 0}}}]
+              {"type": "response.completed", "response": {"id": identity, "usage": usage}}]
     assert len(result) <= 64
     return result
 

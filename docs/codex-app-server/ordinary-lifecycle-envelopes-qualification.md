@@ -1,5 +1,10 @@
 # Ordinary item, status and turn envelopes
 
+The later [usage/resolution unit](usage-resolution-envelopes-qualification.md)
+changes the reasoning/checklist module and provider, adding fresh final-source
+functional checks. The exact source-bound runs below remain historical for
+their recorded bytes.
+
 This combined V407/V408 unit starts from `main`
 `1573523382341ea91c49469af900d32b2904d9d2`. It strengthens two existing ordinary
 modules without another fixture, scenario, RPC, model request, process, deadline

@@ -111366,24 +111366,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/usage-resolution-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/21",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V409/V410 scoped ordinary actual-native usage/resolution full envelopes. Existing fixed-YOLO direct-stdio cases retain all calls,resources,bounds and causal oracles. Provider reports distinct literal input/cached/cacheWrite/output/reasoning/total counters7/3/1/11/2/18 then13/5/4/17/7/30. Independent six-field native maps require first last=total,second last=second/total=20/8/5/28/9/48,explicit null modelContextWindow and exact1/2usage notices before completion. These are synthetic reported counts,not measured tokenization/billing. Complete provider SSE journals and actual Plan updated followup preserve independent effects. Separate real ordinary request_user_input response yields full serverRequest/resolved using original native integer ID/thread,independently bounded emittedAtMs,current generation and request<resolution<completed order. Original held request singleton is retained,then exactly original request plus original resolution with complete encoded-byte accounting;full selected ledger remains exact after checked warm/cold shutdown. Original answer bytes/digest,resolution_observed outcome,actual third provider request/final answer,persisted two-turn history,unloaded cold state and checked owned cleanup stay. Full target wrappers bind original ingress before Session decoding and schema validation. No new scenarios/processes/RPCs/provider requests or cap/deadline changes. Focused3/0 and final37/0ordinary twice;six Python syntax checks,format/compile/strictCredo and403stable-source guard pass,400other prior bytes unchanged. Forty-one complete upstream files/two exact stable nodes match pin. Only2863/2955 promoted,six already implemented siblings unchanged;prior owning-source runs remain historical. No alias/every usage/window/request variant,other backend/OS/transport,reconnect or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/21",
       "schema": "ServerNotification.json",
       "schema_sha256": "3c34b9e20ea4f4ee45fd556f482b561a1cb8045534dbe3e57272670d4a99a378",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -114059,24 +114067,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/usage-resolution-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/42",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V409/V410 scoped ordinary actual-native usage/resolution full envelopes. Existing fixed-YOLO direct-stdio cases retain all calls,resources,bounds and causal oracles. Provider reports distinct literal input/cached/cacheWrite/output/reasoning/total counters7/3/1/11/2/18 then13/5/4/17/7/30. Independent six-field native maps require first last=total,second last=second/total=20/8/5/28/9/48,explicit null modelContextWindow and exact1/2usage notices before completion. These are synthetic reported counts,not measured tokenization/billing. Complete provider SSE journals and actual Plan updated followup preserve independent effects. Separate real ordinary request_user_input response yields full serverRequest/resolved using original native integer ID/thread,independently bounded emittedAtMs,current generation and request<resolution<completed order. Original held request singleton is retained,then exactly original request plus original resolution with complete encoded-byte accounting;full selected ledger remains exact after checked warm/cold shutdown. Original answer bytes/digest,resolution_observed outcome,actual third provider request/final answer,persisted two-turn history,unloaded cold state and checked owned cleanup stay. Full target wrappers bind original ingress before Session decoding and schema validation. No new scenarios/processes/RPCs/provider requests or cap/deadline changes. Focused3/0 and final37/0ordinary twice;six Python syntax checks,format/compile/strictCredo and403stable-source guard pass,400other prior bytes unchanged. Forty-one complete upstream files/two exact stable nodes match pin. Only2863/2955 promoted,six already implemented siblings unchanged;prior owning-source runs remain historical. No alias/every usage/window/request variant,other backend/OS/transport,reconnect or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/42",
       "schema": "ServerNotification.json",
       "schema_sha256": "292260201780095bdca9a51844750eecf808fb6f0ff2a719cb64e261239e223b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

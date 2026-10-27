@@ -46,8 +46,8 @@ prescribed complete method/params/emittedAtMs map, with notification kind,
 current generation, schema validation and an independent host-clock bracket.
 The raw selected stream equals the driver stream in order. Raw item lifecycle
 and terminal records are checked as an ordered subsequence; final post-shutdown
-capture cannot hide late target duplicates. Every RPC has a fresh ID and exact
-original request/response pair. Client methods are exactly initialize,
+comparison also checks any later target frames retained by capture. Every RPC
+has a fresh ID and exact original request/response pair. Client methods are exactly initialize,
 initialized, diagnostics, thread/start and turn/start. Provider request bodies
 independently identify the actual thread/turn. No clock uniqueness, durable
 sequence, reconnect/replay or cancellation guarantee follows.

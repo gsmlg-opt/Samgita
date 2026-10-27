@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary usage/resolution profile](usage-resolution-envelopes-qualification.md)
+proves distinct nonzero native sampling/cumulative counters and actual ordinary
+input resolution using original raw wrappers, independent provider results and
+retained warm/cold history. Existing calls/resources/deadlines/checked cleanup
+remain. Focused **3/0** and final **37ordinary cases twice**, syntax/strict checks
+and403stable-source guard pass;400other prior paths stay unchanged and41whole
+upstream files match the pin. Only roots2863/2955 become scoped implemented:
+**5,147 implemented /1,408 missing /66 blocked**, unchanged requirements and zero
+verified. Prior owning-source runs stay historical. Continue real filesystem
+notification envelopes with mandatory actual events; all prohibited/full-goal
+gates remain incomplete.
+
 The [ordinary lifecycle profile](ordinary-lifecycle-envelopes-qualification.md)
 binds complete normal active/idle, nine-field started/completed Turn and literal
 reasoning/assistant item wrappers to original native frames and independent

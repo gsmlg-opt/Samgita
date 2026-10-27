@@ -10,13 +10,14 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/reasoning_checklist_envelope_fixture.py", __DIR__)
-  @script_sha "9f4f818939a6409b31b8180524cbfd353b9aff8afe1a3e8a4ee42b8c2aa08ecc"
+  @script_sha "0bc7ef71755c8c2d80c5e8581c0861d948ce7b34cea0be3632c2aaecc2ba961e"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_base_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @summary "item/reasoning/summaryTextDelta"
   @part "item/reasoning/summaryPartAdded"
   @raw "item/reasoning/textDelta"
   @checklist "turn/plan/updated"
+  @usage "thread/tokenUsage/updated"
   @reasoning_methods [@summary, @part, @raw]
   @checklist_arguments ~s({"explanation":"Synthetic checklist λ🙂","plan":[{"step":"Owned completed step","status":"completed"},{"step":"Owned current step","status":"in_progress"},{"step":"Owned pending step","status":"pending"}]})
 
@@ -159,6 +160,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert_answer(ctx.profile, run, "owned-reasoning-answer", "Synthetic reasoning finished")
     assert_provider(ctx.profile, run, 1)
     assert read_json(ctx.profile, "provider-events.json") === [reasoning_provider_events()]
+    assert_usage(ctx.profile, run, [{first_usage(), first_usage()}])
     finish(ctx, run)
   end
 
@@ -195,6 +197,12 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
              }
 
     assert read_json(ctx.profile, "provider-events.json") === checklist_provider_events()
+
+    assert_usage(ctx.profile, run, [
+      {first_usage(), first_usage()},
+      {second_usage(), accumulated_usage()}
+    ])
+
     finish(ctx, run)
   end
 
@@ -414,6 +422,55 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     }
   end
 
+  defp first_usage do
+    %{
+      "inputTokens" => 7,
+      "cachedInputTokens" => 3,
+      "cacheWriteInputTokens" => 1,
+      "outputTokens" => 11,
+      "reasoningOutputTokens" => 2,
+      "totalTokens" => 18
+    }
+  end
+
+  defp second_usage do
+    %{
+      "inputTokens" => 13,
+      "cachedInputTokens" => 5,
+      "cacheWriteInputTokens" => 4,
+      "outputTokens" => 17,
+      "reasoningOutputTokens" => 7,
+      "totalTokens" => 30
+    }
+  end
+
+  defp accumulated_usage do
+    %{
+      "inputTokens" => 20,
+      "cachedInputTokens" => 8,
+      "cacheWriteInputTokens" => 5,
+      "outputTokens" => 28,
+      "reasoningOutputTokens" => 9,
+      "totalTokens" => 48
+    }
+  end
+
+  defp assert_usage(profile, run, usages) do
+    expected =
+      for {last, total} <- usages do
+        {@usage,
+         %{
+           "threadId" => run.thread,
+           "turnId" => run.turn,
+           "tokenUsage" => %{"last" => last, "total" => total, "modelContextWindow" => nil}
+         }}
+      end
+
+    selected = assert_notices(profile, run, [@usage], expected)
+    assert Enum.all?(selected, &(&1.sequence < run.finished.sequence))
+    assert_original_order(profile, selected ++ [run.finished])
+  end
+
   defp assert_notices(profile, run, methods, expected) do
     selected = Enum.filter(run.events, &(&1.wire["method"] in methods))
     assert length(selected) === length(expected)
@@ -597,16 +654,33 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   defp provider_response(index, body) do
     id = "owned-envelope-response-#{index}"
 
-    usage = %{
-      "input_tokens" => 0,
-      "input_tokens_details" => nil,
-      "output_tokens" => 0,
-      "output_tokens_details" => nil,
-      "total_tokens" => 0
-    }
-
     [%{"type" => "response.created", "response" => %{"id" => id}} | body] ++
-      [%{"type" => "response.completed", "response" => %{"id" => id, "usage" => usage}}]
+      [
+        %{
+          "type" => "response.completed",
+          "response" => %{"id" => id, "usage" => provider_usage(index)}
+        }
+      ]
+  end
+
+  defp provider_usage(1) do
+    %{
+      "input_tokens" => 7,
+      "input_tokens_details" => %{"cached_tokens" => 3, "cache_write_tokens" => 1},
+      "output_tokens" => 11,
+      "output_tokens_details" => %{"reasoning_tokens" => 2},
+      "total_tokens" => 18
+    }
+  end
+
+  defp provider_usage(2) do
+    %{
+      "input_tokens" => 13,
+      "input_tokens_details" => %{"cached_tokens" => 5, "cache_write_tokens" => 4},
+      "output_tokens" => 17,
+      "output_tokens_details" => %{"reasoning_tokens" => 7},
+      "total_tokens" => 30
+    }
   end
 
   defp read_json(profile, name) do
@@ -645,7 +719,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
 
   defp assert_final_ingress(profile, run) do
     methods = if profile.scenario == "reasoning", do: @reasoning_methods, else: [@checklist]
-    methods = methods ++ ~w(item/started item/completed)
+    methods = methods ++ [@usage] ++ ~w(item/started item/completed)
 
     originals =
       for record <- capture(profile),
