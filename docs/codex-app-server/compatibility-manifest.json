@@ -127062,24 +127062,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-catalogue-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V462 ordinary native builtin catalogue profile only. Four actual list calls across two distinct checked-owned native processes require independently literal complete ordered Plan/Default rows,exact complete response wrappers,original sent/received bytes and8fixed unique IDs;static config/empty workspace unchanged. No thread/turn/model/config mutation/backend fixture/synthetic response. Closed native producer uses Plan Some(Some(Medium)) and Default outerNone;both production managers/thread manager/catalog/protocol copy retain value. Raw null overlaps innerNull3386,but source-assisted evidence nominates only3387;blocked mode/model and all siblings unchanged. Focused1/0,60reviewed ordinary cases twice,outsideconsumer1/0,13checks,852stable sources with851prior unchanged;11native files/one node archive/export-match.64frame/8KiB out/64KiB in/512KiB capture,32event/128KiB Session,5s RPC/60s case and checked native/owner/Port cleanup unchanged. Only3387 gains scoped implemented evidence,zero verified;no innerNone/configurable presets/all-family/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/1",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_catalogue_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

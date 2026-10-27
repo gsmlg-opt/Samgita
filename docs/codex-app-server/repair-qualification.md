@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary collaboration catalogue profile](collaboration-catalogue-qualification.md)
+checks exact full original responses across warm/cold native processes with
+unchanged static inputs. Only source-assisted outer-None node 3387 gains evidence.
+Focused **1/0**, **60 ordinary cases twice**, outside consumer **1/0**, all 13
+checks and 852 stable sources pass; 851 prior sources remain unchanged. Counts:
+**5,288 implemented / 1,239 missing / 94 blocked**, unchanged requirements and
+zero verified. Continue retained compaction field blockers; prohibited/full-goal
+gates remain incomplete.
+
 The [installed local-plugin metadata profile](hook-plugin-metadata-qualification.md)
 proves populated provenance through real install, repeated warm/cold catalog and
 uninstall, with original frames and checked owned cleanup. Initial fixture **1/1**

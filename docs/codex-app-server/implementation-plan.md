@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native collaboration catalogue profile](collaboration-catalogue-qualification.md)
+requires full original Plan/Default rows across warm/cold actual-native reads.
+Source distinguishes Default outer None, so only 3387 gains evidence; inner-null
+and blocked mode/model variants stay unchanged. Focused **1/0**, **60 ordinary
+cases twice**, outside consumer **1/0** and all 13 checks pass; all 852 guarded
+sources stay exact, 851 prior unchanged. Eleven native files/one node match the
+pin. Counts: **5,288 implemented / 1,239 missing / 94 blocked**, unchanged
+requirements and zero verified. Continue V463 retained compaction field blockers;
+prohibited/full-goal gates remain incomplete.
+
 The [native installed-plugin hook metadata journey](hook-plugin-metadata-qualification.md)
 adds actual install/warm/cold/uninstall provenance and bounded original RPC frames
 without executing a hook. Initial **1/1** exposed the authored PreCompact context
