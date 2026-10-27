@@ -15,6 +15,30 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+### Permitted static checkpoint after V441
+
+At exact `main` `e724960572b3c674334630b8839fde5d68b3847b`, four reviewed
+commands pass without running tests or audits:
+
+| Command | Result |
+| --- | --- |
+| `mix compile --warnings-as-errors` | pass |
+| `mix format --check-formatted` | pass |
+| `mix dialyzer --force-check` | pass, zero errors/skips/unnecessary skips |
+| `mix assets.build` | pass |
+
+The runner uses Elixir 1.18.5/OTP 27 and serializes Mix commands. All 822 tracked
+source/configuration/lock/style files in its before/after guard remain exact.
+Commands/log hashes: `/tmp/samgita-functional-static-e724960/results.json`,
+SHA256 `f0945438fa83555c129c049b67a28ec940dfbd2330fd785f8aee584b4eced2f9`.
+Guard: `/tmp/samgita-functional-static-e724960/source.json`, SHA256
+`c7abde2533cd90bc66080ed21d6b7342753d41e615a8c7df6ad58b867f677d01`.
+The separate V441 native and outside-consumer evidence below remains **54/0
+twice + 1/0**. These static passes do not run or replace prohibited security/
+permission tests, audits, broad suites or hosted workflows. They do not close
+A11, legacy/external/platform/full-compatibility or release gates. No release,
+publication, production migration or deployment occurs.
+
 The [native revert-notice profile](thread-revert-envelope-qualification.md)
 preserves the actual retained-prefix mutation/read/reconnect behavior and both
 rejection controls, checking complete original native envelopes and no duplicate

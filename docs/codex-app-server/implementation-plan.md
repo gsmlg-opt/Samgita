@@ -21,6 +21,12 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [permitted static checkpoint](repair-qualification.md#permitted-static-checkpoint-after-v441)
+passes umbrella warning-free compile, root format, forced Dialyzer and assets
+build at `e724960`, with all 822 source/configuration/lock/style hashes unchanged.
+It runs no tests or audits and leaves all prohibited/full-goal gates incomplete.
+Continue the next bounded native lifecycle; ledger states are unchanged.
+
 The [original native thread-revert profile](thread-revert-envelope-qualification.md)
 keeps genuine two-turn mutation, retained-prefix cursor/history, unchanged
 workspace and explicit reconnect/no-replay controls, adding complete original
