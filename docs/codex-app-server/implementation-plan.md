@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [hook configuration-error profile](hook-config-error-recovery-qualification.md)
+qualifies exact4148/4149 through ten real catalog calls, two independently
+prescribed missing-provider messages and exact ordered cwd paths. Restoring
+original configuration bytes restores complete normal results on the same
+process; no thread or inference starts. Fourteen original correlated RPC pairs,
+immutable inputs and all bounds/owned cleanup remain required. Final **9ordinary
+cases twice**, strict checks and392-source guard pass; all391 prior sources
+remain unchanged and10 complete upstream files match the pin. Only4148/4149
+become scoped implemented: **5,087 implemented /1,468 missing /66 blocked**,
+unchanged requirements and zero verified. Continue reachable ordinary native
+gaps; prohibited/broad/hosted, A11, unavailable producers and external/OS/platform/
+full-goal/release gates remain incomplete.
+
 The [native context settings unit](native-context-settings-qualification.md)
 qualifies exact resume collaboration branch6027 and turn runtime roots6536.
 Plan/Default objects survive four actual resumes across two distinct processes;

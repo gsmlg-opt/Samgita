@@ -150260,21 +150260,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/hook-config-error-recovery-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookErrorInfo/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete.",
+        "V396 scoped actual-native hooks/list message evidence: after valid initialization only the owned global model_provider selection changes to literal missing-provider-a then missing-provider-b. Exact complete catalog entries for workspace/Unicode-other/workspace preserve ordered duplicate cwds, empty hooks/warnings and one error with independently prescribed Model provider `<literal name>` not found message and each requested cwd as path. Each invalid phase is queried twice and exact original-byte restoration returns complete independent normal entries twice on the same process. Fourteen unique original raw RPC pairs include ten catalog calls; result errors are not confused with JSON-RPC errors. Zero model requests/loaded threads/execution, frozen inputs/journal, per-phase and exit restoration,16frames/direction,4096out/65536in bytes,1MiB combined,events256/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Incoming JSON precedes Session decode but excludes JSONL delimiters/OS chunks. Final nine reviewed ordinary cases pass9/0 at both seeds, no exclusions; format/compile/strict Credo pass,392 guarded sources stay stable and all391 prior sources unchanged. Ten whole upstream files match the immutable archive and each physical node independently matches. Only these two named fields gain scoped implemented evidence; no alias/family/other error/cold recovery/hook execution/transport/OS/backend or fully verified promotion follows. Prohibited security/permission tests/audits, broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/definitions/HookErrorInfo/properties/message",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -150282,31 +150284,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_hook_config_error_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/hook-config-error-recovery-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookErrorInfo/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete.",
+        "V396 scoped actual-native hooks/list requested-cwd path evidence: after valid initialization only the owned global model_provider selection changes to literal missing-provider-a then missing-provider-b. Exact complete catalog entries for workspace/Unicode-other/workspace preserve ordered duplicate cwds, empty hooks/warnings and one error with independently prescribed Model provider `<literal name>` not found message and each requested cwd as path. Each invalid phase is queried twice and exact original-byte restoration returns complete independent normal entries twice on the same process. Fourteen unique original raw RPC pairs include ten catalog calls; result errors are not confused with JSON-RPC errors. Zero model requests/loaded threads/execution, frozen inputs/journal, per-phase and exit restoration,16frames/direction,4096out/65536in bytes,1MiB combined,events256/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Incoming JSON precedes Session decode but excludes JSONL delimiters/OS chunks. Final nine reviewed ordinary cases pass9/0 at both seeds, no exclusions; format/compile/strict Credo pass,392 guarded sources stay stable and all391 prior sources unchanged. Ten whole upstream files match the immutable archive and each physical node independently matches. Only these two named fields gain scoped implemented evidence; no alias/family/other error/cold recovery/hook execution/transport/OS/backend or fully verified promotion follows. Prohibited security/permission tests/audits, broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/definitions/HookErrorInfo/properties/path",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -150314,10 +150321,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_hook_config_error_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {

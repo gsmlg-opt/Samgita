@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native hook error/recovery case](hook-config-error-recovery-qualification.md)
+proves exact current error message/requested-cwd fields for two invalid ordinary
+provider selections and complete same-process normal-result recovery after
+original-byte restoration. All ten catalog calls,14 raw RPC pairs, zero model/
+thread execution and bounded owned cleanup remain asserted. Final **9ordinary
+cases twice**, strict checks and392-source guard pass; all391 previous sources
+remain unchanged and10 whole upstream files match the immutable archive.
+Only4148/4149 become scoped implemented: **5,087 implemented /1,468 missing
+/66 blocked**, unchanged requirements and zero verified. No hook execution,
+broader error or external acceptance follows. Continue reachable ordinary
+native producer/effect gaps; prohibited/full-goal gates remain incomplete.
+
 The [native context settings profile](native-context-settings-qualification.md)
 adds two independently prescribed ordinary paths: complete Plan/Default resume
 objects and four turn-root replacement/retention/clearing cases. Actual native
