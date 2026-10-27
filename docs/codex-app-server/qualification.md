@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [original shell-output profile](shell-output-envelope-qualification.md)
+adds complete independent incoming delta envelopes while retaining two actual
+commands,effects and cold history. Focused1/0,48ordinary cases twice and strict
+checks pass with414stable sources/413prior unchanged. Only2935–2938 gain scoped
+implemented evidence;the legacy no-emitter boundary and all broader gates stay
+incomplete.
+
 The [ordinary realtime start/stop profile](ordinary-realtime-start-stop-qualification.md)
 adds a genuine local V2 WebSocket lifecycle and independently checked native
 notifications plus persisted timeline. Focused1/0,47ordinary cases twice and

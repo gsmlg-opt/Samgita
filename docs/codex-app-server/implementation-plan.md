@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original shell-output envelopes](shell-output-envelope-qualification.md)
+qualify only2935–2938 by extending the existing ordinary two-command test with
+bounded original incoming capture,complete independent maps/times and literal
+byte consumption across native chunks. Original effects/lifecycle/cold history/
+cleanup remain. Focused **1/0**, **48ordinary cases twice**,strict checks and
+414stable sources pass;413prior paths stay exact,one test changes. Eleven whole
+sources/four nodes match the pin;upstream explicitly has no legacy fileChange
+delta emitter. Contracts: **5,218 implemented /1,337 missing /66 blocked**;
+requirements and zero verified unchanged. Continue ordinary realtime transcript;
+prohibited/full-goal gates remain incomplete.
+
 The [ordinary realtime start/stop](ordinary-realtime-start-stop-qualification.md)
 qualifies14physical owners through a genuine local WebSocket/V2 connection,
 exact native six-notice lifecycle and two repeated durable timeline rows.

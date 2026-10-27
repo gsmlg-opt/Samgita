@@ -10,12 +10,14 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     TurnFixture
   }
 
+  alias SamgitaProtocolCodex.{Schema, Wire}
   import TurnFixture, only: [call: 3]
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @effects "owned-shell-effects.log"
+  @delta_method "item/commandExecution/outputDelta"
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -25,9 +27,10 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     @impl true
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
+      inbound = Keyword.fetch!(opts, :inbound)
 
-      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
-           do: {:ok, Map.put(state, :capture, capture)}
+      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :inbound])),
+           do: {:ok, Map.merge(state, %{capture: capture, inbound: inbound})}
     end
 
     @impl true
@@ -53,7 +56,52 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case Enum.reduce_while(events, :ok, &capture_inbound(&1, &2, next.inbound)) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    # Preserve matching native JSONL before Session decoding or projection.
+    defp capture_inbound({:message, encoded}, :ok, inbound) do
+      wire = JSON.decode!(encoded)
+
+      if wire["method"] == "item/commandExecution/outputDelta" do
+        case Agent.get_and_update(inbound, &append_inbound(&1, encoded, wire)) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      else
+        {:cont, :ok}
+      end
+    end
+
+    defp capture_inbound(_event, :ok, _inbound), do: {:cont, :ok}
+
+    defp append_inbound(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if ledger.count < 256 and size <= 4096 and ledger.bytes + size <= 1_048_576 do
+        record = %{encoded: encoded, wire: wire, ordinal: ledger.count + 1}
+
+        {:ok,
+         %{
+           count: ledger.count + 1,
+           bytes: ledger.bytes + size,
+           records: [record | ledger.records]
+         }}
+      else
+        {{:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow)}, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -68,7 +116,15 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
     TurnFixture.configure_model(ctx, %{})
     capture = start_supervised!({Agent, fn -> [] end})
-    Map.put(ctx, :capture, capture)
+
+    inbound =
+      start_supervised!(
+        Supervisor.child_spec({Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :native_shell_inbound
+        )
+      )
+
+    Map.merge(ctx, %{capture: capture, inbound: inbound})
   end
 
   test "native shell deltas bind distinct turns and cold history never repeats effects", ctx do
@@ -97,12 +153,27 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
         params = %{"threadId" => thread, "command" => command, "timeoutMs" => 5_000}
         before = length(Agent.get(ctx.capture, & &1))
+        before_inbound = length(inbound(ctx))
+        generation = Session.status(pid).generation
+        lower = System.system_time(:millisecond)
         assert call(pid, "thread/shellCommand", params) === %{}
         captured = Agent.get(ctx.capture, & &1)
         assert length(captured) == before + 1
         assert %{"method" => "thread/shellCommand", "params" => ^params} = List.last(captured)
         events = collect(pid, [], deadline(20_000))
+        upper = System.system_time(:millisecond)
         record = assert_shell(events, thread, output, ctx.fixture.workspace)
+
+        assert_delta_envelopes(ctx, events, record, %{
+          thread: thread,
+          output: output,
+          generation: generation,
+          lower: lower,
+          upper: upper,
+          before_inbound: before_inbound
+        })
+
+        assert Session.status(pid).generation === generation
 
         expected_effects =
           ["alpha", "beta"]
@@ -116,8 +187,10 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
     assert length(Enum.uniq(Enum.map(records, & &1.turn))) == 2
     assert length(Enum.uniq(Enum.map(records, & &1.item["id"]))) == 2
+    original_deltas = inbound(ctx)
     saved = history(pid, thread)
     assert_history(saved, records)
+    assert inbound(ctx) === original_deltas
     expected_effects = "owned-shell-effect-alpha\nowned-shell-effect-beta\n"
     assert_owned_state(ctx, pid, effects, expected_effects, config, config_bytes)
 
@@ -125,6 +198,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     assert is_integer(original)
     assert :ok = Session.close(pid)
     refute File.exists?("/proc/#{original}")
+    assert inbound(ctx) === original_deltas
     cold = start(ctx)
     replacement = call(cold, "server/diagnostics", %{})["process"]["id"]
     assert is_integer(replacement) and replacement != original
@@ -132,9 +206,75 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     assert history(cold, thread) === saved
     assert call(cold, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
     assert length(Agent.get(ctx.capture, & &1)) == 2
+    assert inbound(ctx) === original_deltas
     assert_owned_state(ctx, cold, effects, expected_effects, config, config_bytes)
     assert :ok = Session.close(cold)
     refute File.exists?("/proc/#{replacement}")
+    assert inbound(ctx) === original_deltas
+  end
+
+  defp assert_delta_envelopes(ctx, events, record, %{
+         thread: thread,
+         output: output,
+         generation: generation,
+         lower: lower,
+         upper: upper,
+         before_inbound: before_inbound
+       }) do
+    projected = Enum.filter(events, &(&1.wire["method"] == @delta_method))
+    originals = Enum.drop(inbound(ctx), before_inbound)
+    assert length(originals) === length(projected) and originals != []
+    assert Enum.map(originals, & &1.wire) === Enum.map(projected, & &1.wire)
+    sequences = Enum.map(projected, & &1.sequence)
+    assert sequences === Enum.sort(Enum.uniq(sequences))
+
+    assert Enum.map(originals, & &1.ordinal) ===
+             Enum.to_list((before_inbound + 1)..(before_inbound + length(originals)))
+
+    consumed =
+      Enum.reduce(Enum.zip(originals, projected), 0, fn {original, event}, offset ->
+        actual_chunk = Map.fetch!(event.wire["params"], "delta")
+        assert is_binary(actual_chunk) and byte_size(actual_chunk) > 0
+        size = byte_size(actual_chunk)
+        assert offset + size <= byte_size(output)
+        # Chunk boundaries are native scheduling facts. Expected bytes come
+        # only from the independently prescribed stdout literal, in order.
+        expected_chunk = binary_part(output, offset, size)
+        emitted = Map.fetch!(event.wire, "emittedAtMs")
+        assert is_integer(emitted) and lower <= emitted and emitted <= upper
+        assert event.kind === :notification and event.generation === generation
+
+        expected = %{
+          "method" => @delta_method,
+          "params" => %{
+            "threadId" => thread,
+            "turnId" => record.turn,
+            "itemId" => record.item["id"],
+            "delta" => expected_chunk
+          },
+          "emittedAtMs" => emitted
+        }
+
+        assert event.wire === expected
+        assert original.wire === expected
+        assert JSON.decode!(original.encoded) === expected
+        assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 32)
+        assert decoded === expected
+        assert :ok = Schema.validate(notification_schema(), expected, max_depth: 32)
+        offset + size
+      end)
+
+    assert consumed === byte_size(output)
+  end
+
+  defp inbound(ctx), do: Agent.get(ctx.inbound, &Enum.reverse(&1.records))
+
+  defp notification_schema do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> File.read!()
+    |> JSON.decode!()
   end
 
   defp assert_shell(events, thread, output, cwd) do
@@ -250,6 +390,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
           {CaptureStdio,
            [
              capture: ctx.capture,
+             inbound: ctx.inbound,
              executable: ctx.binary,
              args:
                NativeLaunchFixture.ordinary_args([

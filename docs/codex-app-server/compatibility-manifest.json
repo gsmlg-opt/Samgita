@@ -113872,98 +113872,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shell-output-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/38",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V434 scoped actual-native ordinary shell outputDelta complete original envelopes. The existing fixed-YOLO two-command zero-inference journey gains a separate bounded matching raw incoming ledger before Session decoding;complete native method/params/emittedAtMs maps bind independently observed thread/turn/item identities and current generation. Expected delta bytes come only from monotonically consumed prescribed stdout literals using native chunk lengths;full raw/decode/schema/order and host timestamp brackets pass without assuming OS chunk boundaries. Original outgoing request counts,leaf/join/lifecycle assertions,exact two effect lines,cold native paginated history,zero provider requests,unchanged config/inputs and checked cleanup remain. Raw ledger stays exact across warm reads/shutdown and separate cold reads/shutdown,not fabricated replay. Original20scollector/60scase,256events/1MiB,5sshell timeout remain;new raw ledger256records/4096bytes each/1MiB fails overflow. Focused1/0,48reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,413prior unchanged,one test changed. Eleven whole sources and four canonical nodes archive/export-match. Only2935-2938 become scoped implemented,zero verified. No legacy fileChange delta mock producer,LLM-generated commands,binary/lossy output,stream replay,other OS/transports or broad family qualification. Prohibited tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/oneOf/38",
       "schema": "ServerNotification.json",
       "schema_sha256": "e5d146bbdcc5c6fa5cfcd3c54be6dba241473438ab958a05bd464581e7252007",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shell-output-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/38/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V434 scoped actual-native ordinary shell outputDelta complete original envelopes. The existing fixed-YOLO two-command zero-inference journey gains a separate bounded matching raw incoming ledger before Session decoding;complete native method/params/emittedAtMs maps bind independently observed thread/turn/item identities and current generation. Expected delta bytes come only from monotonically consumed prescribed stdout literals using native chunk lengths;full raw/decode/schema/order and host timestamp brackets pass without assuming OS chunk boundaries. Original outgoing request counts,leaf/join/lifecycle assertions,exact two effect lines,cold native paginated history,zero provider requests,unchanged config/inputs and checked cleanup remain. Raw ledger stays exact across warm reads/shutdown and separate cold reads/shutdown,not fabricated replay. Original20scollector/60scase,256events/1MiB,5sshell timeout remain;new raw ledger256records/4096bytes each/1MiB fails overflow. Focused1/0,48reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,413prior unchanged,one test changed. Eleven whole sources and four canonical nodes archive/export-match. Only2935-2938 become scoped implemented,zero verified. No legacy fileChange delta mock producer,LLM-generated commands,binary/lossy output,stream replay,other OS/transports or broad family qualification. Prohibited tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/38/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "32cc271b01776f6ee06d2f2b9b2846a1d76be9699844a1b50a71093df97c79c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shell-output-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/38/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V434 scoped actual-native ordinary shell outputDelta complete original envelopes. The existing fixed-YOLO two-command zero-inference journey gains a separate bounded matching raw incoming ledger before Session decoding;complete native method/params/emittedAtMs maps bind independently observed thread/turn/item identities and current generation. Expected delta bytes come only from monotonically consumed prescribed stdout literals using native chunk lengths;full raw/decode/schema/order and host timestamp brackets pass without assuming OS chunk boundaries. Original outgoing request counts,leaf/join/lifecycle assertions,exact two effect lines,cold native paginated history,zero provider requests,unchanged config/inputs and checked cleanup remain. Raw ledger stays exact across warm reads/shutdown and separate cold reads/shutdown,not fabricated replay. Original20scollector/60scase,256events/1MiB,5sshell timeout remain;new raw ledger256records/4096bytes each/1MiB fails overflow. Focused1/0,48reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,413prior unchanged,one test changed. Eleven whole sources and four canonical nodes archive/export-match. Only2935-2938 become scoped implemented,zero verified. No legacy fileChange delta mock producer,LLM-generated commands,binary/lossy output,stream replay,other OS/transports or broad family qualification. Prohibited tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/oneOf/38/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "2f1e42930b879a38a73085fd33bf917a0329b330182abd4d4fe12de3cc7aa6d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shell-output-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/38/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V434 scoped actual-native ordinary shell outputDelta complete original envelopes. The existing fixed-YOLO two-command zero-inference journey gains a separate bounded matching raw incoming ledger before Session decoding;complete native method/params/emittedAtMs maps bind independently observed thread/turn/item identities and current generation. Expected delta bytes come only from monotonically consumed prescribed stdout literals using native chunk lengths;full raw/decode/schema/order and host timestamp brackets pass without assuming OS chunk boundaries. Original outgoing request counts,leaf/join/lifecycle assertions,exact two effect lines,cold native paginated history,zero provider requests,unchanged config/inputs and checked cleanup remain. Raw ledger stays exact across warm reads/shutdown and separate cold reads/shutdown,not fabricated replay. Original20scollector/60scase,256events/1MiB,5sshell timeout remain;new raw ledger256records/4096bytes each/1MiB fails overflow. Focused1/0,48reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,413prior unchanged,one test changed. Eleven whole sources and four canonical nodes archive/export-match. Only2935-2938 become scoped implemented,zero verified. No legacy fileChange delta mock producer,LLM-generated commands,binary/lossy output,stream replay,other OS/transports or broad family qualification. Prohibited tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/38/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "25a8e8bcab410127dbd0b3c60a4102243ca577006a4248a088b1a812f3d54696",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
