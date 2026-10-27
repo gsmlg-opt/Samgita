@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native timeline ordinal profile](realtime-timeline-ordinal-qualification.md)
+binds two complete original read responses to actual canonical rollout ordinals
+and independent full payloads. Initial 4/0 then strict-Credo failure is retained;
+helper extraction changes no assertion. Final **4/0**, **51 ordinary cases
+twice**, outside consumer **1/0**, nine checks and 414 stable sources pass.
+Only 6422/6423 gain evidence: **5,238 implemented / 1,317 missing / 66 blocked**,
+unchanged requirements and zero verified. Continue complete MCP startup
+envelopes; prohibited/full-goal gates remain incomplete.
+
 The [ordinary realtime service-error profile](realtime-service-error-qualification.md)
 requires one actual backend error,seven complete original native notices and
 the same two persisted failed-session facts across repeated warm/cold reads.

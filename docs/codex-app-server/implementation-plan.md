@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [canonical realtime timeline](realtime-timeline-ordinal-qualification.md)
+checks complete original responses against genuine native rollout ordinals and
+independently prescribed item payloads, preserving all existing flows. Initial
+functional 4/0 then strict-Credo complexity failure is retained; helper extraction
+preserves every assertion. Final **4/0**, **51 ordinary cases twice**, outside
+consumer **1/0**, nine checks and 414 stable sources pass. Only 6422/6423 gain
+evidence: **5,238 implemented / 1,317 missing / 66 blocked**, unchanged
+requirements and zero verified. Continue the separately scoped MCP startup
+envelopes; prohibited/full-goal gates remain incomplete.
+
 The [ordinary realtime service-error](realtime-service-error-qualification.md)
 adds one explicitly released backend failure and seven complete original native
 notices,with failed closure and repeated warm/distinct-process cold history.

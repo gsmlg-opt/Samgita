@@ -502,12 +502,58 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
     assert saved["id"] === thread and saved["historyMode"] === "paginated"
     assert File.regular?(saved["path"])
+
+    rollout =
+      assert_transcript_rollout(
+        profile,
+        saved["path"],
+        [
+          %{
+            "id" => a,
+            "realtime_session_id" => @transcript_session,
+            "type" => "realtime_session_started"
+          },
+          %{
+            "id" => t,
+            "realtime_session_id" => @transcript_session,
+            "type" => "transcript_segment",
+            "role" => "assistant",
+            "text" => @streamed_text
+          },
+          %{
+            "id" => b,
+            "realtime_session_id" => @transcript_session,
+            "type" => "realtime_session_closed",
+            "outcome" => "ended"
+          }
+        ],
+        [
+          {lower, started_upper},
+          {transcript_lower, transcript_upper},
+          {stop_lower, stopped_upper}
+        ]
+      )
+
+    expected_timeline = %{
+      "data" =>
+        Enum.zip_with(rollout.ordinals, [first_item, transcript, last_item], fn ordinal, item ->
+          %{"type" => "realtime", "position" => ordinal, "item" => item}
+        end),
+      "nextCursor" => nil,
+      "activeRealtimeSessionAtPageStart" => nil
+    }
+
     timeline = call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})
     assert_transcript_timeline(timeline, [first_item, transcript, last_item])
+    assert timeline === expected_timeline
+    assert_original_timeline_responses(profile, thread, expected_timeline, 1)
     refute Enum.any?(timeline["data"], &(get_in(&1, ["item", "text"]) in ["", @done_text]))
 
     assert call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100}) ===
              timeline
+
+    assert_original_timeline_responses(profile, thread, expected_timeline, 2)
+    assert_rollout_snapshot(rollout)
 
     assert {:ok, fresh} = Session.drain(pid, 128)
     events = events ++ fresh
@@ -538,6 +584,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            }
 
     assert assert_originals(profile, selected) === originals
+    assert_rollout_snapshot(rollout)
   end
 
   @tag realtime_scenario: "service-error"
@@ -831,6 +878,86 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              state["frameCount"] <= 32
 
     state
+  end
+
+  defp assert_transcript_rollout(profile, path, expected_payloads, brackets) do
+    assert is_binary(path)
+    path = Path.expand(path)
+    assert String.starts_with?(path, Path.join(profile.root, "codex") <> "/")
+    assert File.regular?(path)
+    assert File.stat!(path).size <= 1_048_576
+    bytes = File.read!(path)
+    assert byte_size(bytes) > 0 and byte_size(bytes) <= 1_048_576
+    assert String.ends_with?(bytes, "\n")
+    lines = bytes |> binary_part(0, byte_size(bytes) - 1) |> String.split("\n")
+    assert length(lines) <= 2_048
+    records = Enum.map(lines, &JSON.decode!/1)
+    realtime = Enum.filter(records, &(&1["type"] == "realtime_item"))
+    assert length(realtime) === 3
+    assert Enum.map(realtime, & &1["payload"]) === expected_payloads
+
+    for {record, bracket} <- Enum.zip(realtime, brackets) do
+      assert_rollout_record(record, bracket)
+    end
+
+    ordinals = Enum.map(realtime, &Map.fetch!(&1, "ordinal"))
+    assert [a, t, b] = ordinals
+    assert is_integer(a) and is_integer(t) and is_integer(b) and 0 <= a and a < t and t < b
+    %{path: path, bytes: bytes, sha256: hash(bytes), ordinals: ordinals}
+  end
+
+  defp assert_rollout_record(record, {lower, upper}) do
+    assert Enum.sort(Map.keys(record)) === ["ordinal", "payload", "timestamp", "type"]
+    assert record["type"] === "realtime_item"
+    assert {:ok, timestamp, 0} = DateTime.from_iso8601(record["timestamp"])
+    millis = DateTime.to_unix(timestamp, :millisecond)
+    assert millis > 0 and lower <= millis and millis <= upper
+  end
+
+  defp assert_original_timeline_responses(profile, thread, expected, count) do
+    frames = capture(profile)
+
+    requests =
+      Enum.filter(
+        frames,
+        &(&1.direction == :out and &1.wire["method"] == "thread/timeline/list")
+      )
+
+    assert length(requests) === count
+    ids = Enum.map(requests, & &1.wire["id"])
+    assert length(Enum.uniq(ids)) === count
+
+    for sent <- requests do
+      id = sent.wire["id"]
+
+      assert sent.wire === %{
+               "id" => id,
+               "method" => "thread/timeline/list",
+               "params" => %{"threadId" => thread, "limit" => 100}
+             }
+
+      assert [^sent, received] = Enum.filter(frames, &(&1.wire["id"] == id))
+      assert received.direction === :in and sent.index < received.index
+      envelope = %{"id" => id, "result" => expected}
+      assert received.wire === envelope
+      assert JSON.decode!(received.encoded) === envelope
+      assert {:ok, decoded} = Wire.decode(received.encoded, max_depth: 32)
+      assert decoded === envelope
+
+      assert :ok =
+               Schema.validate(
+                 schema("v2/ThreadTimelineListResponse.json"),
+                 received.wire["result"],
+                 max_depth: 32
+               )
+    end
+  end
+
+  defp assert_rollout_snapshot(rollout) do
+    assert File.stat!(rollout.path).size === byte_size(rollout.bytes)
+    bytes = File.read!(rollout.path)
+    assert bytes === rollout.bytes
+    assert hash(bytes) === rollout.sha256
   end
 
   defp assert_transcript_timeline(page, items) do
