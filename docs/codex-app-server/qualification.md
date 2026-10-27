@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [Git marketplace selection profile](marketplace-git-selection-qualification.md)
+adds real nondefault branch/sparse-checkout effects and warm/cold native
+persistence. Initial1/0, focused2/0 twice, retained fixture lifecycle1/0 and
+strict checks pass with377 stable sources/all374 prior unchanged. The helper
+shutdown gap has retained red/green evidence. Exactly4331/4333 become scoped
+implemented; full compatibility and prohibited/hosted gates stay incomplete.
+
 The [native partial-import profile](native-partial-import-qualification.md)
 adds same-operation real session success/ordinary missing-source failure and
 durable completion, preserving exact public history/native data across restart.

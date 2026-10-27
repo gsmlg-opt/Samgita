@@ -2943,14 +2943,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:marketplace/add",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "params": {
         "$ref": "#/definitions/MarketplaceAddParams"
@@ -2981,7 +2983,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17501,14 +17504,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:marketplace/add",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "prerequisites": [
         "initialized"
@@ -17525,7 +17530,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -155938,21 +155944,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/refName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": true,
       "pointer": "/properties/refName",
       "required": false,
       "schema": "v2/MarketplaceAddParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -155960,24 +155968,29 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "refName"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/source",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/properties/source",
@@ -155992,7 +156005,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -156004,21 +156018,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/sparsePaths",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": true,
       "pointer": "/properties/sparsePaths",
       "required": false,
       "schema": "v2/MarketplaceAddParams.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -156026,24 +156042,29 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sparsePaths"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/alreadyAdded",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/properties/alreadyAdded",
@@ -156058,7 +156079,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -156070,14 +156092,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/installedRoot",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/properties/installedRoot",
@@ -156092,7 +156116,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [
@@ -156104,14 +156129,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/marketplace-git-selection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/marketplaceName",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Scoped actual-native marketplace Git ref-only/sparse materialization: an owned loopback real Git HTTP backend serves a real two-commit repository whose default main remains B while fixture-selected points to A. Actual marketplace/add with explicit refName and two sparsePaths checks known A revision/manifest/selected files and absence of the independently tracked deep decoy, exact native persisted source/ref/sparse declaration and response. Explicit warm and distinct cold duplicate adds preserve exact source/installed/config state with alreadyAdded true. No fake Git/Codex response, file URL substitution, thread/inference/plugin execution or real external service. Original byte/correlation capture, bounded HTTP journal/backend work and owned cleanup remain enforced. Initial1/0, final 2ordinary native cases twice, fixture interrupted-close regression and strict checks pass with377stable sources and all374prior unchanged,770exports/15descriptors unchanged. Exactly4331/4333 gain scoped implemented evidence; source/three result owners gain supplemental evidence. No verified/whole-method/remote-provider promotion, object-download saving, nonsparse/control/all-Git-error/concurrency/transport/OS breadth, prohibited/broad/hosted gate or full compatibility/publication/deployment claim."
       ],
       "nullable": false,
       "pointer": "/properties/marketplaceName",
@@ -156126,7 +156153,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
         ]
       },
       "transport_coverage": [

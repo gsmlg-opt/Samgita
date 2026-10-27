@@ -135,6 +135,10 @@ The [partial session import profile](native-partial-import-qualification.md)
 distinguishes the operation UUID response, separate progress and durably completed
 grouped results. A real imported session and ordinary vanished-source failure
 remain together in exact public history across a native restart.
+The [Git marketplace selection profile](marketplace-git-selection-qualification.md)
+uses real loopback Git HTTP data to qualify nondefault branch and sparse working
+tree effects plus native config/duplicate persistence. Its source peer is a test
+fixture; this does not establish a real remote repository integration.
 
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,

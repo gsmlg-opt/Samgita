@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [Git marketplace selection profile](marketplace-git-selection-qualification.md)
+qualifies exact4331/4333 through real HTTP Git refs/objects, independently known
+branch A while source main=B, sparse exclusion of a tracked nested file and
+native config persistence. Warm/cold identical adds retain the checkout/journal
+without new HTTP work. Initial1/0, focused **2/0 twice**, retained interrupted-
+connection lifecycle1/0, syntax/compile/format, strict Credo544 and inventory pass;
+377 sources stay stable/all374 prior unchanged. The helper's initial shutdown
+gap has retained red/green diagnostics and a permanent functional regression.
+Contracts become **5,046 implemented /1,509 missing /66 blocked**; requirements
+remain **462 implemented /12 missing /11 blocked**, zero verified. No object-
+transfer saving or external-provider claim. Continue reachable ordinary groups;
+prohibited/broad/hosted, A11, legacy/external/OS/platform and full-goal gates stay
+incomplete.
+
 The [native partial-import profile](native-partial-import-qualification.md)
 adds real session creation and an originally detected owned source disappearing
 within one operation. ACK precedes separate progress and grouped completion;
