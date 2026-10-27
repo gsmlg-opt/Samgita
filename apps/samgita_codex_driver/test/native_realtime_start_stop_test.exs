@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "262ca1e1762659386acc0ad9c493355f2fb1a7b22873b473c298827451def7e7"
+  @script_sha "24ad33ddebd667ebcfd0d88cc353a22ad484781187739d33086eac866ac2534b"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1601,7 +1601,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     args = [@script, "--root", profile.root]
 
     args =
-      if profile.scenario in ["transcript", "service-error", "item-audio", "sdp"],
+      if profile.scenario in ["transcript", "service-error", "item-audio", "sdp", "ingress"],
         do: args ++ ["--scenario", profile.scenario],
         else: args
 
@@ -2102,4 +2102,314 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
         "output" => %{"voice" => "cove"}
       }
     }
+
+  @tag realtime_scenario: "ingress"
+  test "native realtime text roles and audio reach the peer once without creating transcript history",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+
+    thread =
+      call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+    lower = System.system_time(:millisecond)
+
+    assert call(profile, pid, "thread/realtime/start", %{
+             "threadId" => thread,
+             "version" => "v2",
+             "outputModality" => "text",
+             "transport" => %{"type" => "websocket"},
+             "realtimeSessionId" => "owned-ordinary-ingress-session",
+             "includeStartupContext" => false,
+             "flushTranscriptTailOnSessionEnd" => false,
+             "clientManagedHandoffs" => true,
+             "prompt" => @prompt
+           }) === %{}
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @started)) == 1 and
+          length(notices(events, @item_completed)) == 1 and peer_ready?(profile)
+      end)
+
+    upper = System.system_time(:millisecond)
+    [first] = notices(events, @item_completed)
+    first_id = first.wire["params"]["item"]["id"]
+    assert_uuid(first_id)
+
+    started_item = %{
+      "id" => first_id,
+      "realtimeSessionId" => "owned-ordinary-ingress-session",
+      "type" => "realtimeSessionStarted"
+    }
+
+    assert_selected(
+      profile,
+      events,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started_item}},
+        {@item_completed, %{"threadId" => thread, "item" => started_item}},
+        {@started,
+         %{
+           "threadId" => thread,
+           "realtimeSessionId" => "owned-ordinary-ingress-session",
+           "version" => "v2"
+         }}
+      ],
+      lower,
+      upper
+    )
+
+    assert_ingress_peer(profile, 1, 0)
+
+    started_originals =
+      assert_originals(profile, Enum.filter(events, &(&1.wire["method"] in @selected)))
+
+    before_append = Agent.get(profile.capture, & &1.count)
+    assert List.last(started_originals).index <= before_append
+
+    {events, append_originals, observed_boundary} =
+      ingress_inputs(thread)
+      |> Enum.with_index(1)
+      |> Enum.reduce({events, [], before_append}, fn {{method, params}, count},
+                                                     {events, originals, boundary} ->
+        # RPC acknowledgement means queued input. The independently observed
+        # backend frame is required before the next input or requested stop.
+        assert call(profile, pid, method, params) === %{}
+        frames = capture(profile)
+
+        [request] =
+          Enum.filter(frames, &(&1.direction == :out and &1.index > boundary))
+
+        id = request.wire["id"]
+        assert request.wire === %{"id" => id, "method" => method, "params" => params}
+        assert request.encoded === JSON.encode!(request.wire)
+        assert :ok = Schema.validate(schema("ClientRequest.json"), request.wire, max_depth: 32)
+        assert {:ok, decoded} = Wire.decode(request.encoded, max_depth: 32)
+        assert decoded === request.wire
+        [^request, response] = Enum.filter(frames, &(&1.wire["id"] == id))
+        assert response.direction === :in and request.index < response.index
+        assert response.wire === %{"id" => id, "result" => %{}}
+        assert JSON.decode!(response.encoded) === response.wire
+        assert {:ok, ack} = Wire.decode(response.encoded, max_depth: 32)
+        assert ack === response.wire
+
+        events =
+          collect(profile, pid, events, min(deadline, now() + 5_000), fn _events ->
+            length(read_peer(profile)["ingress"]) == count
+          end)
+
+        assert_ingress_peer(profile, 1, count)
+        next_boundary = Agent.get(profile.capture, & &1.count)
+        assert response.index <= next_boundary
+        {events, originals ++ [request, response], next_boundary}
+      end)
+
+    assert length(append_originals) === 8
+    assert length(notices(events, @item_completed)) === 1
+    refute Enum.any?(events, &(&1.wire["method"] in @transcript_methods))
+    stop_lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    [stop] =
+      Enum.filter(capture(profile), &(&1.direction == :out and &1.index > observed_boundary))
+
+    assert stop.wire["method"] === "thread/realtime/stop"
+    assert List.last(append_originals).index < stop.index
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1
+      end)
+
+    stop_upper = System.system_time(:millisecond)
+    [^first, last] = notices(events, @item_completed)
+    last_id = last.wire["params"]["item"]["id"]
+    assert_uuid(last_id)
+    refute last_id === first_id
+
+    closed_item = %{
+      "id" => last_id,
+      "realtimeSessionId" => "owned-ordinary-ingress-session",
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    selected = Enum.filter(events, &(&1.wire["method"] in @selected))
+    assert length(selected) === 6
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      [
+        {@item_started, %{"threadId" => thread, "item" => closed_item}},
+        {@item_completed, %{"threadId" => thread, "item" => closed_item}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      stop_lower,
+      stop_upper
+    )
+
+    originals = assert_originals(profile, selected)
+    assert Enum.take(originals, 3) === started_originals
+    assert stop.index < Enum.at(originals, 3).index
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+    rollout = File.read!(saved["path"])
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = call(profile, pid, "thread/timeline/list", query)
+    # Inputs alone do not create canonical transcript or ordinary-turn facts.
+    assert_timeline(timeline, started_item, closed_item)
+    assert call(profile, pid, "thread/timeline/list", query) === timeline
+    assert_empty_ingress_turns(profile, pid, thread)
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert Enum.filter(events, &(&1.wire["method"] in @selected)) === selected
+    refute Enum.any?(events, &(&1.wire["method"] in @transcript_methods))
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/")) ===
+             selected
+
+    await_peer_closed(profile, min(deadline, now() + 5_000))
+    peer = assert_ingress_peer(profile, 0, 4)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_inputs(ctx)
+    assert_ready(profile, pid)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/appendText thread/realtime/appendText thread/realtime/appendText thread/realtime/appendAudio thread/realtime/stop thread/read thread/timeline/list thread/timeline/list thread/turns/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :ingress_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert_empty_ingress_turns(cold_profile, cold.pid, thread)
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+    refute Enum.any?(cold_events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+    assert_ready(cold_profile, cold.pid)
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/timeline/list thread/timeline/list thread/turns/list)
+
+    assert Agent.get(profile.capture, & &1) === warm
+    assert assert_originals(profile, selected) === originals
+    assert File.read!(saved["path"]) === rollout
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+    assert File.read!(saved["path"]) === rollout
+    assert_inputs(ctx)
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+  end
+
+  defp ingress_inputs(thread) do
+    texts = [
+      {"developer", "Owned developer input λ\nkeep whitespace "},
+      {"user", "Owned user input 🙂\nsecond line"},
+      {"assistant", "Owned assistant input α\r\nfinal "}
+    ]
+
+    Enum.map(texts, fn {role, text} ->
+      {"thread/realtime/appendText", %{"threadId" => thread, "role" => role, "text" => text}}
+    end) ++
+      [
+        {"thread/realtime/appendAudio",
+         %{
+           "threadId" => thread,
+           "audio" => %{
+             "data" => "AADoAxj8/38=",
+             "sampleRate" => 24_000,
+             "numChannels" => 2,
+             "samplesPerChannel" => 2,
+             "itemId" => "owned-ordinary-ingress-audio"
+           }
+         }}
+      ]
+  end
+
+  defp assert_ingress_peer(profile, active, count) do
+    state = assert_peer(profile, active)
+
+    expected = [
+      %{
+        "type" => "conversation.item.create",
+        "item" => %{
+          "type" => "message",
+          "role" => "developer",
+          "content" => [
+            %{"type" => "input_text", "text" => "Owned developer input λ\nkeep whitespace "}
+          ]
+        }
+      },
+      %{
+        "type" => "conversation.item.create",
+        "item" => %{
+          "type" => "message",
+          "role" => "user",
+          "content" => [
+            %{"type" => "input_text", "text" => "[USER] Owned user input 🙂\nsecond line"}
+          ]
+        }
+      },
+      %{
+        "type" => "conversation.item.create",
+        "item" => %{
+          "type" => "message",
+          "role" => "assistant",
+          "content" => [
+            %{"type" => "output_text", "text" => "Owned assistant input α\r\nfinal "}
+          ]
+        }
+      },
+      %{"type" => "input_audio_buffer.append", "audio" => "AADoAxj8/38="}
+    ]
+
+    assert state["ingress"] === Enum.take(expected, count)
+    state
+  end
+
+  defp assert_empty_ingress_turns(profile, pid, thread) do
+    assert call(profile, pid, "thread/turns/list", %{"threadId" => thread}) === %{
+             "data" => [],
+             "nextCursor" => nil,
+             "backwardsCursor" => nil
+           }
+  end
 end

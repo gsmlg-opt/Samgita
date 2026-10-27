@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary text/PCM input profile](ordinary-realtime-start-stop-qualification.md#current-text-and-pcm-input-qualification)
+requires original correlated app-server requests plus independently observed
+backend effects before each next input/stop. Exact role transformations, user
+prefix, whitespace/Unicode/CRLF, request-side audio metadata and data-only V2
+backend semantics retain start/closed-only warm/cold history and owned cleanup.
+Focused **6/0**, **82 ordinary cases twice**, selected WebSocket seeds, outside
+consumer **1/0**, all fourteen reviewed checks and 1,668 identical source hashes
+pass. Exactly 36 physical owners gain scoped evidence; thirteen additional
+[producer boundaries](native-projection-boundaries.md) stay missing, without
+mock or imported-history acceptance. Counts: **5,409 implemented / 1,096 missing
+/ 116 blocked**, unchanged requirements and zero verified. Next qualify builtin
+voices and genuine appendSpeech's text-plus-response backend effect. Prohibited/
+hosted, A11, unavailable emitters/external/OS/full-goal and release gates remain
+incomplete.
+
 The [existing native V2 realtime literal](native-realtime-v2-index-qualification.md)
 indexes only experimental canonical owner 5933 from the unchanged original
 request, native versioned started envelope and independent V2 backend effects.

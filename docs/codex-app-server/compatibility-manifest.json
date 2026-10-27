@@ -26237,68 +26237,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ConversationTextRole/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "pointer": "/definitions/ConversationTextRole/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ConversationTextRole/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "pointer": "/definitions/ConversationTextRole/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "9cd4f7e885f358471d57f2ed097f44e622d7efda65fd8a8287324bdc36a8bbec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ConversationTextRole/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "pointer": "/definitions/ConversationTextRole/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "b9f33d63d2896cec87523f3926ae6403081a4f8d1626635fdff5e1edce987a0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -32033,24 +32057,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/RealtimeConversationVersion/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "28450cb417f1e37e9e324652b742b41f536ffbef7849505e3f60cc7dcd9f8daa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -32085,46 +32117,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/RealtimeOutputModality/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/definitions/RealtimeOutputModality/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "dac9dd2e99a85b7f6a955288a0863b81f38fab9efd9011816937ff5b00742fd1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/RealtimeOutputModality/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/definitions/RealtimeOutputModality/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "f910475ea26bb1f151ebdaac60d2c0641962f8bc6ba71fb84b84f9c1a340fd08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42898,131 +42946,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeAudioChunk/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeAudioChunk/properties/data",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeAudioChunk/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadRealtimeAudioChunk/properties/itemId",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeAudioChunk/properties/numChannels",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeAudioChunk/properties/numChannels",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b067c0091a983df3c770712d6831dd9b6f5710386d5009e6406f81dca3588c85",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "numChannels"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeAudioChunk/properties/sampleRate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeAudioChunk/properties/sampleRate",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sampleRate"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeAudioChunk/properties/samplesPerChannel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadRealtimeAudioChunk/properties/samplesPerChannel",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "samplesPerChannel"
     },
     {
@@ -43173,98 +43261,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "f41ae30024aa6f74db7992910b076f7d2c1a70fa3ffaab87dbc6378fe3ce5bbd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "28d99795345447d095fb128611b3a8bd43846bc9dae2f08a62beec404990949b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sdp"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "68ca2b499057ff289c3ac17611a2772d61e179e9b41e10faf43e7c43fa45155a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "3c54162f6076d5a9329e8ef32e6fff4f5b5af71c1167a09c0b6faa0618a3890f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -46868,24 +46988,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/102",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/oneOf/102",
       "schema": "ClientRequest.json",
       "schema_sha256": "69eee6a7927ffb6328475d1076f6bda0f09597192a784fbe695e01d057fdaaec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -46991,75 +47119,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/102/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/102/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "81f81801c910b3e30741d9d8aff09995cd542a9b8208e5f1883da4feb3212a2c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/103",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "pointer": "/oneOf/103",
       "schema": "ClientRequest.json",
       "schema_sha256": "4558bc8cd5f6300848541bcd8bcf365f90ebc862263bf38a0e551dc2e08f7e72",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/103/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/103/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -47131,75 +47283,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/103/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/103/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "802c52993da4c0f89a04fd01fe16a506c7deefed3a7cf08146f151ba469b3a7a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/104",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "pointer": "/oneOf/104",
       "schema": "ClientRequest.json",
       "schema_sha256": "b58d247d317daeed84eea63d48aac73704e87d8c5cf00808b5c9b5a679c0e26d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/104/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/104/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -47271,27 +47447,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/104/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 genuine native input-only V2 session: exact original correlated appendText requests for developer/user/assistant and appendAudio with metadata; exact independent backend role/content transformations, user prefix, Unicode/whitespace/CRLF and PCM data observed once before each subsequent input/stop. Sample metadata/itemId remain request-side at this pin; ACK is not processing completion. Warm/cold timeline contains start/closed only and no turns. No transcription/playback, saturation, arbitrary audio, other backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/104/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e77faaa0628c9368d5e7649dae9f482de59f6ada35c1a3f517c03f229768e196",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -47438,24 +47622,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/106",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/oneOf/106",
       "schema": "ClientRequest.json",
       "schema_sha256": "02082d5c79c6fc60ab39b50bedb893774911798bc538b5eeb7a4242b5d833e66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -47561,49 +47753,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/106/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/106/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2514bf795f0f43dec6acce3e1a78a79f9b01b5fed609055a3f91f0ca8786fded",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/107",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original native request/response and independently checked backend/lifecycle/timeline effects for V2/V1-SDP start, requested stop and persisted timeline. Each canonical owner is separately bound; no sibling, alternate ID, default/null, backend, media or transport inheritance."
+      ],
       "pointer": "/oneOf/107",
       "schema": "ClientRequest.json",
       "schema_sha256": "44d89c1377f8a10b8d4307ddf32d61d6d1ac8ec61b82fcef05aaa2eb818fbdd8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -48160,124 +48368,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/110",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original model/list request/response, literal string correlation ID and independently prescribed static catalog preserved across two reads in each of two fresh native processes. Outer physical owners only; no other RequestId alternative or broader method/parameter credit."
+      ],
       "pointer": "/oneOf/110",
       "schema": "ClientRequest.json",
       "schema_sha256": "dc4e8da3b5e73bd4adc8538dbd806eceb84c60e7308b50b7306196feb8e21205",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/110/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original model/list request/response, literal string correlation ID and independently prescribed static catalog preserved across two reads in each of two fresh native processes. Outer physical owners only; no other RequestId alternative or broader method/parameter credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/110/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/110/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original model/list request/response, literal string correlation ID and independently prescribed static catalog preserved across two reads in each of two fresh native processes. Outer physical owners only; no other RequestId alternative or broader method/parameter credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/110/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "29ad991cfba44ee67a763612080b2287accc9dcd8c9a9b3b87efc938a00141f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/110/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original model/list request/response, literal string correlation ID and independently prescribed static catalog preserved across two reads in each of two fresh native processes. Outer physical owners only; no other RequestId alternative or broader method/parameter credit."
+      ],
       "pointer": "/oneOf/110/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8a8426bdea5e7dea4cfc9d8d81d664a338e4a0432d25d65386bd808bb623821d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/110/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original model/list request/response, literal string correlation ID and independently prescribed static catalog preserved across two reads in each of two fresh native processes. Outer physical owners only; no other RequestId alternative or broader method/parameter credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/110/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d38a05660064bf8c4776ec1e3c769e7313302ccfb7ce66828a8e27600a894f0d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -52276,124 +52524,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/134",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original mcpServer/event/stream/start request/response, literal string correlation ID, real MCP subscription activation, released exact event and stop/EOF. Outer physical owners only; no other RequestId alternative, backend or transport credit."
+      ],
       "pointer": "/oneOf/134",
       "schema": "ClientRequest.json",
       "schema_sha256": "99bebe266e2a622647bca552c51e669bb82835565a748ba326b5b9dd21c1a826",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/134/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original mcpServer/event/stream/start request/response, literal string correlation ID, real MCP subscription activation, released exact event and stop/EOF. Outer physical owners only; no other RequestId alternative, backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/134/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/134/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original mcpServer/event/stream/start request/response, literal string correlation ID, real MCP subscription activation, released exact event and stop/EOF. Outer physical owners only; no other RequestId alternative, backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/134/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "186f2a03e1140e1e2e24cbd0ca69ce17be5576b4f8d05482f5241186fc0da55a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/134/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original mcpServer/event/stream/start request/response, literal string correlation ID, real MCP subscription activation, released exact event and stop/EOF. Outer physical owners only; no other RequestId alternative, backend or transport credit."
+      ],
       "pointer": "/oneOf/134/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "30d60359374be3f4d99e674e18fe5718d39c4641f2a9fe1873adc4afd2337185",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-mcp-envelopes-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/134/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V480 exact original mcpServer/event/stream/start request/response, literal string correlation ID, real MCP subscription activation, released exact event and stop/EOF. Outer physical owners only; no other RequestId alternative, backend or transport credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/134/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d792d0c37787c955e6914877f8931dbe5081e51c7550e40f267a6dfd029e95d3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_event_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -88166,11 +88454,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "9916bb0f7351bc425eca697f58a5805904e02d0ccaede970b92353eeb45014a3",
@@ -88188,11 +88480,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/6",
       "schema": "ServerNotification.json",
       "schema_sha256": "1e7854479794151729aed2edaa22329fa60cad17e1b6e870ed7e732530422dbd",
@@ -88210,11 +88506,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/7",
       "schema": "ServerNotification.json",
       "schema_sha256": "5c34ea5f6bb1b26be913639fda2d25ebdc21104839ccdd940b71a28cb1f4a5fc",
@@ -88232,11 +88532,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/8",
       "schema": "ServerNotification.json",
       "schema_sha256": "8e52c26d20fb4bb19f9241da1e8e5a9326650895b7e725ac2f83eaa4c862b516",
@@ -88346,11 +88650,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentToolCallStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "f855378058a19fb7ebeb43188cc3fb801b899123d893631a2f807044e2c7e437",
@@ -88582,11 +88890,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CommandExecutionSource/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: exhaustive immutable Rust source search finds no stock production assignment of UnifiedExecInteraction. Real stdin emits TerminalInteraction with the original execution identity; launches and terminal watchers retain UnifiedExecStartup. Canonical/raw/legacy history may preserve supplied source values; no global decoder prohibition or native-success evidence. Remains missing."
+      ],
       "pointer": "/definitions/CommandExecutionSource/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "090538ad2d27bff66e3e640f03d8bd7bec5245da0a2a082e868d3b86e1cdfd03",
@@ -190883,11 +191195,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/5",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "9916bb0f7351bc425eca697f58a5805904e02d0ccaede970b92353eeb45014a3",
@@ -190905,11 +191221,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/6",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "1e7854479794151729aed2edaa22329fa60cad17e1b6e870ed7e732530422dbd",
@@ -190927,11 +191247,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/7",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "5c34ea5f6bb1b26be913639fda2d25ebdc21104839ccdd940b71a28cb1f4a5fc",
@@ -190949,11 +191273,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/8",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8e52c26d20fb4bb19f9241da1e8e5a9326650895b7e725ac2f83eaa4c862b516",
@@ -191060,11 +191388,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentToolCallStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/3",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f855378058a19fb7ebeb43188cc3fb801b899123d893631a2f807044e2c7e437",
@@ -191882,11 +192214,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionSource/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: exhaustive immutable Rust source search finds no stock production assignment of UnifiedExecInteraction. Real stdin emits TerminalInteraction with the original execution identity; launches and terminal watchers retain UnifiedExecStartup. Canonical/raw/legacy history may preserve supplied source values; no global decoder prohibition or native-success evidence. Remains missing."
+      ],
       "pointer": "/definitions/CommandExecutionSource/enum/3",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "090538ad2d27bff66e3e640f03d8bd7bec5245da0a2a082e868d3b86e1cdfd03",
@@ -196749,11 +197085,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/action/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V479 source-bound limitation: hosted missing action becomes nonnull Other; standalone null is start-only, excluded from selective persistence. Resume.history accepts ResponseItems and ordinary exporters supply Message records, not completed display items. Canonical/raw rollouts can preserve supplied null ItemCompleted, so no global impossibility is claimed. No stock-generated completed-null native evidence; remains missing."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",

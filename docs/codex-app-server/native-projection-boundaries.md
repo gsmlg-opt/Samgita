@@ -1,8 +1,10 @@
 # Pinned native projection boundaries
 
-These eight physical schema owners remain incomplete. The two explicit-null
+The original eight physical schema owners remain incomplete. The two explicit-null
 skill owners and two nonnull search owners are **blocked** by the stock pinned
 implementation; the four selective tool-status owners remain **missing**.
+Thirteen further WebSearch, collaboration and command-source owners below also
+remain **missing** after tracing their public producers and history inputs.
 Source evidence explains the native producer boundaries; it is not a native
 success test or completion of the compatibility goal.
 
@@ -159,7 +161,96 @@ owners are now source-bound **blocked**, with their earlier missing annotations
 retained as history. No runtime test, native-positive result or transport credit
 is added. This is not an upstream-defect assertion or exhaustion of ordinary work.
 
+## Completed WebSearch null is different from its live start
+
+Selective owner **5483** requires `action:null` in a completed, persisted search.
+The hosted [response mapper][search-response] replaces absent action with the
+nonnull core `Other` variant; the [public converter][search-item] wraps that
+core action in `Some`. The standalone [search handler][search-tool] emits null
+only for its start, then a completed extension with `Some(command_action)`.
+Its error/cancellation paths do not synthesize a null-action completion.
+[Extension emission][extension-emitter] forwards starts and completions separately.
+
+The legacy full-history builder can show null from WebSearchBegin, but that
+event and ItemStarted are [excluded from persisted history][persistence].
+The selective projector consumes only ItemCompleted. [Legacy migration][legacy-search]
+converts WebSearchEnd with its nonnull core action; it cannot promote the begin.
+`thread/resume.history` accepts ResponseItems, not arbitrary display items.
+The [resume mapper][resume-history] wraps those as ResponseItem records, and
+the [full-history response handler][response-history] does not convert supplied
+search responses into completed display items. The external
+[session exporter][session-export] normalizes conversation text to Message
+ResponseItems, rather than preserving arbitrary WebSearch display records.
+
+This closes the reviewed ordinary producers, not the raw-history input space.
+The extension representation permits absent action, and the rollout decoder
+accepts canonical ItemCompleted values. Canonicalization preserves those values;
+`thread/resume.path` can select a caller-supplied rollout. Such input could test
+native decoding and projection, but cannot prove a stock-generated completed
+null search. Owner **5483** stays missing, with no runtime or transport credit.
+
+## Private collaborator analytics is not a public tool item
+
+Owners **2094–2097 / 5303–5306** require public `collabAgentToolCall` values
+`sendMessage`, `followupTask`, `interruptAgent` and `listAgents`; owners
+**2101 / 5310** require that item's `interrupted` status. The explicit
+[analytics helper][private-collab] says it records private analytics without
+another public tool item. All four V2 handlers use that helper. An unfinished
+drop retains Interrupted; finished calls record Completed/Failed. Analytics
+separately synthesizes an InProgress start. These values pass through
+`AnalyticsFact::Notification` to the analytics queue, not the app-server outgoing
+channel. A notification-shaped internal analytics value is not a wire emission.
+
+The real public [message/followup effects][collab-message] and
+[interruption effect][collab-interrupt] use `SubAgentActivity`. List returns
+ordinary tool output. V2 wait emits Wait with InProgress/Completed; V1 handlers
+emit only the older five tool names and terminal Completed/Failed call status.
+The [legacy conversion][collab-legacy] explicitly returns no legacy event for
+the four newer tool names. TurnAborted changes turn status, not a collaboration
+item's status. Existing native subagent activity/interruption tests cannot
+qualify these distinct enum owners.
+
+The [public converter][collab-converter] does support all four tools and
+Interrupted. A genuine canonical event would survive public event forwarding,
+full history and selective ItemCompleted projection. Supplied canonical rollouts
+can retain those values, so a global impossibility or decoder limitation would
+be incorrect. Public `resume.history`/item injection accept ResponseItem rather
+than TurnItem; a fabricated model function call is also a different record.
+All ten owners stay missing; no mock, analytics capture or manufactured history
+receives native-production credit.
+
+## Unified stdin interaction retains the original command item
+
+Owners **2109 / 5335** require CommandExecutionSource `unifiedExecInteraction`.
+The source enum and [public enum conversion][command-source] retain the value.
+An exact-symbol search across all 5,259 archive-matched Rust sources finds
+declarations, analytics/TUI consumers and synthetic tests, but no stock core
+production assignment. The [launch path][unified-start] and both
+[success/failure watchers][unified-end] assign UnifiedExecStartup.
+
+The actual [stdin path][stdin-event] instead emits TerminalInteraction carrying
+the original execution call/process IDs. It does not start a second command
+item with another source. The real
+[ordinary terminal qualification](ordinary-terminal-interaction-qualification.md)
+already proves this notification and original warm/cold execution history.
+Legacy command conversion copies any supplied source and canonicalization
+preserves supplied ItemCompleted records, so raw/custom history remains an
+input caveat here too. Both owners stay missing. Enum support and synthetic TUI
+tests do not establish a genuine producer.
+
 ## Source identity and verification limits
+
+The V479 producer follow-up archive-matches all **5,259** Rust files, including
+all **40** complete sources linked here, and independently checks the thirteen
+newly annotated owners against their exact experimental canonical nodes.
+Binding `/tmp/samgita-v479-producer-boundaries/source.json`, SHA256
+`076a05454140fedec888827c200854f1c56db6f1f327993c8d5a8b3867d5a147`,
+also records every UnifiedExecInteraction symbol location. Only scoped source
+limitations/evidence are added to those thirteen missing rows: states, tests
+and transport coverage stay unchanged. No native process or test runs for this
+source investigation; it grants no native-success, alternate-transport or full
+compatibility credit. The earlier source reviews and totals below remain
+historical checkpoint evidence.
 
 Fresh whole-file hashes below match the sources used for this review. Paths
 are relative to the immutable commit's `codex-rs/` directory.
@@ -276,3 +367,20 @@ updated reviewed fingerprint
 [store-config]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/config/mod.rs#L612-L618
 [search-store-api]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/store.rs#L457-L466
 [thread-wire]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs#L201-L215
+[search-response]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/event_mapping.rs#L228-L238
+[search-item]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/item.rs#L992-L1005
+[search-tool]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/ext/web-search/src/tool.rs#L135-L192
+[extension-emitter]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/extension_tools.rs#L136-L178
+[legacy-search]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/rollout_migration/legacy_event.rs#L206-L215
+[resume-history]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L4789-L4803
+[response-history]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/thread_history.rs#L479-L504
+[session-export]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/external-agent-migration/src/sessions/export.rs#L44-L190
+[private-collab]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/analytics.rs#L10-L62
+[collab-message]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/message_tool.rs#L86-L100
+[collab-interrupt]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/interrupt_agent.rs#L62-L75
+[collab-legacy]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/protocol/src/legacy_events.rs#L270-L337
+[collab-converter]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/item.rs#L1229-L1259
+[command-source]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/item.rs#L1117-L1126
+[unified-start]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/unified_exec/process_manager.rs#L586-L594
+[unified-end]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/unified_exec/async_watcher.rs#L330-L441
+[stdin-event]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/unified_exec/process_manager.rs#L1119-L1134

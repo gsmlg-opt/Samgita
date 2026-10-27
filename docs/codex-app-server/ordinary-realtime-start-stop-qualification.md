@@ -1,5 +1,90 @@
 # Ordinary native realtime start and stop
 
+## Current text and PCM input qualification
+
+V480 (2026-10-28) adds one ordinary actual-native case to the existing five-case
+module. The official binary/source pin below is unchanged. Fixed YOLO settings
+are launch setup, with no policy or permission assertions. The finite local
+peer implements only the realtime backend; Codex itself handles every
+app-server request and emits the original notifications.
+
+After native V2 start and independently observed peer readiness, three public
+`appendText` requests send developer, user and assistant text, followed by one
+`appendAudio` request. Each complete outgoing envelope and original correlated
+empty response is retained and validated. The next input or requested stop
+cannot begin until the peer journal contains the exact independently prescribed
+backend effect. This distinguishes submission ACK from actual input delivery
+and detects extra, reordered or duplicated backend frames.
+
+The developer and user messages use `input_text`; only the user text gains the
+literal `[USER] ` prefix. Assistant text uses `output_text`. Unicode, trailing
+whitespace, LF and CRLF remain exact. PCM base64 data arrives in exactly one
+`input_audio_buffer.append`. Sample rate, channel count, sample count and item ID
+are accepted and retained in the original app-server request; the pinned V2
+writer deliberately sends only audio data to the backend. This does not prove
+resampling, playback, transcription or generated audio.
+
+The peer produces no transcript or model output. The complete selected native
+lifecycle remains the six start/close notifications. Repeated warm and cold
+timeline reads contain exactly the original start and ended facts, while the
+ordinary turn list stays empty. The rollout, peer journal, workspace and frozen
+inputs remain byte-identical across the cold reads and checked owned cleanup.
+Original capture/frame limits, twenty-second journey deadline, individual
+five-second bounds and sixty-second case timeout are unchanged.
+
+Scoped implementation evidence is attached to **36** independently hash-bound
+physical owners, rather than inherited by equal-hash siblings:
+
+| ClientRequest owners | Qualified scope |
+| --- | --- |
+| 127–129, 639–643, 770/771/774, 775/776/779 | Three text roles, audio input metadata and exact append request envelopes |
+| 303, 305/306, 649–652, 765/769, 785/789, 790 | Existing literal V2, text/audio selections, local V1 SDP transport, start/stop and persisted timeline request envelopes |
+| 810–814 | Existing original `model/list` request and independent static catalog preserved across two reads in each of two fresh processes |
+| 944–948 | Existing original MCP event-stream start request, actual subscription activation, released event and stop/EOF |
+
+The last two rows reuse the unchanged substantive native catalog/MCP tests,
+both rerun in this matrix. String request IDs do not qualify unobserved ID
+alternatives. No whole method, parameter union, transport or deployment profile
+inherits complete verification. The separate
+[producer investigation](native-projection-boundaries.md) annotates thirteen
+other owners while retaining their missing state, empty tests and empty
+transport coverage; private analytics and supplied history provide no substitute
+for native production evidence.
+
+Producer references include `turn_processor.rs:1309–1360`,
+`realtime_conversation.rs:858–908,1648–1653,2292–2301,2740–2749`,
+`methods_v2.rs:39–64`, `methods.rs:345–370` and
+`realtime_history.rs:128–149`, all at the immutable source revision below.
+The seven complete producer sources and all 36 canonical nodes are bound by
+`/tmp/samgita-v480-realtime-inputs-binding/source.json`, SHA256
+`c68381f8c4f7b9d0bb51cb8dc0f172029324d2424e6ccd1fe7fbfc1a88b5a91b`.
+Its parent binding archive-matches all 5,259 Rust sources.
+
+Focused native **6/0** passes. The final reviewed matrix passes **82 ordinary
+cases at each of seeds 501432/987654**, the same three selected WebSocket cases
+at each of 455834/501432/987654, the isolated outside consumer **1/0**, compile
+with warnings as errors, format, inventory consistency, strict Credo, forced
+Dialyzer and assets. All **14** steps pass, with **1,668** identical before/after
+source hashes. Exact commands/logs: `/tmp/samgita-ordinary-v480/`;
+`results.json` SHA256
+`adaf6a45167a991fa398f15ee76acea95bab7d736ac0c5d40af5ab3a9e54d5b8`,
+`source.json` SHA256
+`13af708d9e3ccf2326b8dd6bc51c3d57bff283fc4172245520235354ed42576d`.
+Reviewed fingerprint:
+`d4a0e0c1eb29e82b9ff946d2fd346fc401bbd45ddf5b06388b630100fc2838a0`.
+
+Counts are **5,409 implemented / 1,096 missing / 116 blocked** contracts and
+unchanged **462 implemented / 12 missing / 11 blocked** requirements, zero
+verified. No security, authentication, authorization, credential, permission or
+approval test/audit, broad suite or hosted workflow runs. Both retained
+Plug.Crypto locks remain 2.2.1; no audit is rerun. A11, unavailable emitters,
+external/OS success, full compatibility and release gates remain incomplete.
+No publication, deployment, production migration or sibling-service edit.
+Continue the source-confirmed builtin voice catalog and ordinary appendSpeech
+two-frame backend effect; no live media success may be inferred.
+
+## Initial start/stop checkpoint
+
 V432 is delivered after the V433 evidence-only unit on `main`
 `9d0a096c3cd76c37afbebc7d6655bb997223b6bd`. Its actual execution base is
 `2ed7731284ad05380de24db9c4acb5a04365da77`; all414final executable-source

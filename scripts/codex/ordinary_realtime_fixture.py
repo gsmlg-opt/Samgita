@@ -46,6 +46,21 @@ ITEM_AUDIO = [
      "sample_rate": 16000, "channels": 2, "samples_per_channel": 2,
      "item_id": "owned-item-audio-output-item"},
 ]
+INGRESS = [
+    {"type": "conversation.item.create", "item": {
+        "type": "message", "role": "developer",
+        "content": [{"type": "input_text", "text": "Owned developer input λ\nkeep whitespace "}],
+    }},
+    {"type": "conversation.item.create", "item": {
+        "type": "message", "role": "user",
+        "content": [{"type": "input_text", "text": "[USER] Owned user input 🙂\nsecond line"}],
+    }},
+    {"type": "conversation.item.create", "item": {
+        "type": "message", "role": "assistant",
+        "content": [{"type": "output_text", "text": "Owned assistant input α\r\nfinal "}],
+    }},
+    {"type": "input_audio_buffer.append", "audio": "AADoAxj8/38="},
+]
 SDP_OFFER = "v=0\r\ns=Owned ordinary offer λ\r\na=inactive\r\n"
 SDP_ANSWER = "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
 SDP_CALL_ID = "rtc_owned_ordinary_sdp"
@@ -260,6 +275,16 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 continue
             assert opcode == 1, "Unexpected owned realtime frame opcode"
             message = json.loads(payload.decode("utf-8"))
+            if fixture.scenario == "ingress" and message.get("type") != "session.update":
+                with fixture.lock:
+                    assert len(fixture.state["messages"]) == 1
+                    assert fixture.state["sent"] == [ACK]
+                    index = len(fixture.state["ingress"])
+                    assert index < len(INGRESS), "Extra owned realtime ingress message"
+                    assert message == INGRESS[index], "Unexpected owned realtime ingress message"
+                    fixture.state["ingress"].append(message)
+                    fixture.save_locked()
+                continue
             assert isinstance(message, dict) and message.get("type") == "session.update"
             if fixture.scenario == "sdp":
                 assert message == {"type": "session.update", "session": sdp_session()}
@@ -416,6 +441,8 @@ class OrdinaryRealtimePeer:
                       "activeConnections": 0, "requestCount": 0, "controls": [], "errors": []}
         if scenario == "sdp":
             self.state["calls"] = []
+        if scenario == "ingress":
+            self.state["ingress"] = []
         self.server = PeerServer(("127.0.0.1", 0), PeerHandler)
         self.server.fixture = self
         self.thread = threading.Thread(
@@ -549,7 +576,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

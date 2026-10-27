@@ -319,6 +319,17 @@ configured prompts override request prompts. This evidence does not qualify
 V1/V3, WebRTC/existing-call success, handoffs, delegated model execution or real
 audio/backends; see [realtime lifecycle](realtime-lifecycle-qualification.md).
 
+The subsequent [ordinary realtime input profile](ordinary-realtime-start-stop-qualification.md#current-text-and-pcm-input-qualification)
+checks genuine V2 text/PCM delivery against an independent local backend. Empty
+append results acknowledge submitted operations; an observed backend message is
+a separate boundary. User text gains `[USER] `; assistant text uses output_text.
+V2 audio forwards base64 data and omits sample metadata/item ID on its backend
+wire. Input submission alone creates no transcript or ordinary turn history.
+The later local V1 multipart SDP/sideband profile qualifies that exchange only;
+neither profile establishes live ICE/DTLS, playback or external-provider success.
+Private collaborator analytics and preserved canonical imported history remain
+distinct from [stock public producers](native-projection-boundaries.md).
+
 The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
 `gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.
 Their separate supplement uses the same executable's experimental TypeScript

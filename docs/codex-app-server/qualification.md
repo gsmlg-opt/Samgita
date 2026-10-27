@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary text/PCM input qualification](ordinary-realtime-start-stop-qualification.md#current-text-and-pcm-input-qualification)
+passes **82 ordinary real-binary cases at both seeds**, selected WebSocket
+cases at three seeds, outside consumer **1/0** and all fourteen reviewed checks,
+with 1,668 identical source hashes. Exact original RPCs and independent backend
+observation prove role/content transformations and PCM delivery separately from
+ACKs; warm/cold history remains start/closed-only, without generated media.
+Thirty-six exact physical owners gain scoped evidence; thirteen separately
+[source-bound producer limitations](native-projection-boundaries.md) remain
+missing. Counts: **5,409 implemented / 1,096 missing / 116 blocked**, unchanged
+requirements and zero verified. Fixed YOLO is setup. No prohibited test/audit,
+broad suite or hosted workflow runs. Full compatibility, A11, external/platform
+and release gates remain incomplete.
+
 The [native V2 literal index](native-realtime-v2-index-qualification.md) reuses
 unchanged V477 original native requests/notices and independent backend effects
 for exact experimental owner 5933 only. No new runtime or scenario credit;
