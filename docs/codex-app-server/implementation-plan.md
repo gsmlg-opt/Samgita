@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary environment connection unit](ordinary-environment-connection-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **70 files / 131 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,689** identical guarded hashes. Its first combined run stops at two
+Credo findings; the exact test-only refactor and failed evidence are retained.
+Only owners2847/2851 gain scoped credit: **5,501 implemented / 990 missing /
+130 blocked** contracts; requirements unchanged, zero verified. Next: integrate
+the independently reviewed ordinary User transcript and read-only configured
+provider capability cases, then qualify final combined source. Their scratch
+drafts remain unrun. Prohibited/hosted, A11, unavailable emitter/external/OS,
+full-goal and release gates remain open.
+
 The [two-producer generic-subAgent search unit](ordinary-generic-subagent-search-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **69 files / 130 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

@@ -112725,24 +112725,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-connection-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/18",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V528 actual-native full original thread/environment/connected envelope through a transparent JSONL fixture relay, real pinned app-server/exec-server and opaque held/cut byte proxy. Complete authored method/attached-thread/environment identity plus original timestamp is JSON/Wire/schema checked with exact counts/order/generation/capture IDs; detached control gets neither event. Connected is independently paired with executor cwd info and ready status; stop/reap and definitive socket cut yield native disconnected status. deferred_executor=true is a declared fixture-only prerequisite; successful attached thread/start synchronously subscribes the pinned watch before release, with Connected observed before stop, no sleep barrier. Explicit owned subprocess/socket/thread/capture/control bounds and actual cleanup completion; finite rejecting sink count0 and metadata-only issued inventory, no turns or model success. Initial absolute CODEX_HOME and deferred-executor findings fixed statically before first native run, preserving guard/deadlines. Only this physical root branch on owned local Linux-musl/stdio; no descendant/alias, all internal executor RPC, remote-service/security/permission/othertransport/OS or whole-environment/verified credit. Legacy mixed helpers not imported or run; prohibited/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/18",
       "schema": "ServerNotification.json",
       "schema_sha256": "7f7295a6ef3bd788d20d15bdc0cf33363011bbc7edcf7d2a619632d50a58d52d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_connection_envelope_test.exs:54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -112851,24 +112859,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-connection-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/19",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V528 actual-native full original thread/environment/disconnected envelope through a transparent JSONL fixture relay, real pinned app-server/exec-server and opaque held/cut byte proxy. Complete authored method/attached-thread/environment identity plus original timestamp is JSON/Wire/schema checked with exact counts/order/generation/capture IDs; detached control gets neither event. Connected is independently paired with executor cwd info and ready status; stop/reap and definitive socket cut yield native disconnected status. deferred_executor=true is a declared fixture-only prerequisite; successful attached thread/start synchronously subscribes the pinned watch before release, with Connected observed before stop, no sleep barrier. Explicit owned subprocess/socket/thread/capture/control bounds and actual cleanup completion; finite rejecting sink count0 and metadata-only issued inventory, no turns or model success. Initial absolute CODEX_HOME and deferred-executor findings fixed statically before first native run, preserving guard/deadlines. Only this physical root branch on owned local Linux-musl/stdio; no descendant/alias, all internal executor RPC, remote-service/security/permission/othertransport/OS or whole-environment/verified credit. Legacy mixed helpers not imported or run; prohibited/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/19",
       "schema": "ServerNotification.json",
       "schema_sha256": "493f75c910119347210c559f18f958f60e55c82c524192cc1a784795af9e7f36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_connection_envelope_test.exs:54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
