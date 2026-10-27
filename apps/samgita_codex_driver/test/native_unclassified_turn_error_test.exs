@@ -134,6 +134,7 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
        ctx do
     profile = ctx.profile
     pid = ctx.session.pid
+    assert_environment_status(profile, pid)
 
     thread =
       call(profile, pid, "thread/start", %{
@@ -187,6 +188,7 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
     assert Enum.map(events, & &1.sequence) === Enum.sort(Enum.map(events, & &1.sequence))
     assert length(Enum.uniq_by(events, & &1.sequence)) === length(events)
     assert_originals(profile, [started, failure, finished])
+    assert_environment_status(profile, pid)
 
     assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
              Session.status(pid)
@@ -202,7 +204,22 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
     outgoing = for record <- capture(profile), record.direction == :out, do: record.wire["method"]
 
     assert outgoing ===
-             ~w(initialize initialized server/diagnostics thread/start thread/shellCommand)
+             ~w(initialize initialized server/diagnostics environment/status environment/status thread/start thread/shellCommand environment/status environment/status)
+  end
+
+  defp assert_environment_status(profile, pid) do
+    for {environment, expected} <- [
+          {"local", %{"status" => "ready"}},
+          {"owned-v431-unconfigured",
+           %{
+             "status" => "unknown",
+             "error" => "unknown environment id `owned-v431-unconfigured`"
+           }}
+        ] do
+      result = call(profile, pid, "environment/status", %{"environmentId" => environment})
+      assert result === expected
+      assert :ok = Schema.validate(schema("v2/EnvironmentStatusResponse.json"), result)
+    end
   end
 
   defp assert_lifecycle(profile, started, finished, thread, turn, error, lower, upper) do
@@ -266,7 +283,7 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
     assert is_integer(emitted_at) and lower <= emitted_at and emitted_at <= upper
     assert event.kind === :notification and event.generation === profile.generation
     assert event.wire === %{"method" => method, "params" => params, "emittedAtMs" => emitted_at}
-    assert :ok = Schema.validate(notification_schema(), event.wire, max_depth: 32)
+    assert :ok = Schema.validate(schema("ServerNotification.json"), event.wire, max_depth: 32)
   end
 
   defp collect(pid, thread, events, deadline) do
@@ -460,10 +477,10 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
 
   defp notices(events, method), do: Enum.filter(events, &(&1.wire["method"] == method))
 
-  defp notification_schema do
+  defp schema(relative) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/0.163.0/experimental/" <> relative)
     |> File.read!()
     |> JSON.decode!()
   end

@@ -143137,46 +143137,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-environment-status-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V431 scoped actual-native local ready and unconfigured unknown status. Exactly two status queries before and after the existing empty-selected-environment standalone shell failure compare independent full results:local ready omits error;owned-v431-unconfigured returns unknown and the exact diagnostic. All four original correlated RPC exchanges and canonical response schemas are checked. Existing full nonnull unclassified TurnError,failed lifecycle,zero inference/command effects,frozen inputs and checked owner/PID/Port cleanup remain. This distinguishes global manager availability from thread environment selection;no remote executor,connection recovery,health/permission/authorization policy or extra execution is tested. Only3912/3913/3918/3919 gain evidence;pending/disconnected and other physical owners remain unchanged. Initial/final focused1/0 and final45reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;411sources stable,408prior unchanged,one modified owning test and two separately owned Hook files. Four whole upstream files/four canonical nodes archive/export-match. Only scoped implemented,zero verified;forbidden security/auth/credential/permission/approval tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "0c75a3abbea63053af9e6513d01c7b7c096e92acae34d22e123340a7e7e505f7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_unclassified_turn_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-environment-status-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V431 scoped actual-native local ready and unconfigured unknown status. Exactly two status queries before and after the existing empty-selected-environment standalone shell failure compare independent full results:local ready omits error;owned-v431-unconfigured returns unknown and the exact diagnostic. All four original correlated RPC exchanges and canonical response schemas are checked. Existing full nonnull unclassified TurnError,failed lifecycle,zero inference/command effects,frozen inputs and checked owner/PID/Port cleanup remain. This distinguishes global manager availability from thread environment selection;no remote executor,connection recovery,health/permission/authorization policy or extra execution is tested. Only3912/3913/3918/3919 gain evidence;pending/disconnected and other physical owners remain unchanged. Initial/final focused1/0 and final45reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;411sources stable,408prior unchanged,one modified owning test and two separately owned Hook files. Four whole upstream files/four canonical nodes archive/export-match. Only scoped implemented,zero verified;forbidden security/auth/credential/permission/approval tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/0/enum/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "ac8a678ef912430809ab85a0f09486cde4bdea72aa47580f7d1740c7bdb2de14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_unclassified_turn_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -143269,46 +143285,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-environment-status-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V431 scoped actual-native local ready and unconfigured unknown status. Exactly two status queries before and after the existing empty-selected-environment standalone shell failure compare independent full results:local ready omits error;owned-v431-unconfigured returns unknown and the exact diagnostic. All four original correlated RPC exchanges and canonical response schemas are checked. Existing full nonnull unclassified TurnError,failed lifecycle,zero inference/command effects,frozen inputs and checked owner/PID/Port cleanup remain. This distinguishes global manager availability from thread environment selection;no remote executor,connection recovery,health/permission/authorization policy or extra execution is tested. Only3912/3913/3918/3919 gain evidence;pending/disconnected and other physical owners remain unchanged. Initial/final focused1/0 and final45reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;411sources stable,408prior unchanged,one modified owning test and two separately owned Hook files. Four whole upstream files/four canonical nodes archive/export-match. Only scoped implemented,zero verified;forbidden security/auth/credential/permission/approval tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/3",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "5d56a478c9b293d8e77f39748afae51495a0fa767f20d24e70be6cfe27069468",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_unclassified_turn_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-environment-status-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/3/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V431 scoped actual-native local ready and unconfigured unknown status. Exactly two status queries before and after the existing empty-selected-environment standalone shell failure compare independent full results:local ready omits error;owned-v431-unconfigured returns unknown and the exact diagnostic. All four original correlated RPC exchanges and canonical response schemas are checked. Existing full nonnull unclassified TurnError,failed lifecycle,zero inference/command effects,frozen inputs and checked owner/PID/Port cleanup remain. This distinguishes global manager availability from thread environment selection;no remote executor,connection recovery,health/permission/authorization policy or extra execution is tested. Only3912/3913/3918/3919 gain evidence;pending/disconnected and other physical owners remain unchanged. Initial/final focused1/0 and final45reviewed ordinary cases twice,10Python syntax,format/compile/strictCredo/inventory pass;411sources stable,408prior unchanged,one modified owning test and two separately owned Hook files. Four whole upstream files/four canonical nodes archive/export-match. Only scoped implemented,zero verified;forbidden security/auth/credential/permission/approval tests/audits,broad/hosted,A11,unreachable/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/3/enum/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_unclassified_turn_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

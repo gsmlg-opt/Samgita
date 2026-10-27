@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [local environment status unit](local-environment-status-qualification.md)
+adds four original full status exchanges before/after the existing thread-local
+resource-absence failure. Local remains ready;an unconfigured ID remains unknown
+with the exact diagnostic. Only3912/3913/3918/3919 gain implemented evidence.
+Focused **1/0**,final **45ordinary cases twice**,strict checks and411stable
+sources pass;408prior paths stay exact,one test changes and two separately owned
+Hook files are new. Four whole sources/four canonical nodes match the pin.
+Contracts: **5,196 implemented /1,359 missing /66 blocked**;requirements and
+zero verified unchanged. Continue ordinary root Interrupt Hook binding;
+prohibited/full-goal gates remain incomplete.
+
 The [reported-import input index](import-history-input-index-qualification.md)
 binds only154–159/161–168 to the unchanged ordinary native recordHistory
 case. Full original request bytes and independent complete warm/cold stored
