@@ -1,5 +1,10 @@
 # Actual native foreign-session import
 
+V403 adds [full import-notification ingress evidence](import-notification-envelopes-qualification.md)
+to the inert-subagent path in this owning module. Historical runs below retain
+their source scope; the new32-case matrix explicitly selects all seven current
+ordinary cases at both seeds with prior assertions and bounds unchanged.
+
 A separate success-only profile now imports an owned synthetic foreign-format
 transcript through the real pinned Codex app-server. It proves actual native
 session creation, completed-source deduplication and cold persistence. This

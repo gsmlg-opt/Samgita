@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [real import-notification unit](import-notification-envelopes-qualification.md)
+qualifies exact2999–3006 by binding original native ingress to independent full
+progress/completion maps for actual two-file SUBAGENTS import and known-complete
+empty repeat. Files, public/cold histories, zero execution and checked cleanup
+remain asserted; the receipt precedes notices but follows synchronous file
+effects. Final **32ordinary cases twice**, syntax/strict checks and398-source
+guard pass;397 prior paths remain unchanged and10 whole upstream files match
+the pin. Only these eight become scoped implemented: **5,125 implemented
+/1,430 missing /66 blocked**, unchanged requirements and zero verified. Continue
+ordinary fuzzy notification envelopes; prohibited/full-goal gates stay open.
+
 The [process-notification unit](process-notification-envelopes-qualification.md)
 qualifies complete exact2927/2931 through two cold null/cap0 profiles, held
 binary stdin, a live no-effect barrier, explicit EOF and independent actual-write

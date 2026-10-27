@@ -115165,194 +115165,258 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/52",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/52",
       "schema": "ServerNotification.json",
       "schema_sha256": "78201a308e4028b667ec3b9379447650e7af1d0de551c6166d54e5923a806757",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/52/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/52/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "65c52c7d66291fceacff2e4f67e27628197e59bea8cbc6f79379fd3a25c67de6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/52/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/52/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c267fb9ef49252089e010b6fe1aea68fd48e31d550aa751f013d3619f7fa5337",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/52/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/52/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "677460f20060d1713682234bbff179bb862143dd022ccebe49626ccf0acb8f7a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/53",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/53",
       "schema": "ServerNotification.json",
       "schema_sha256": "23645e84a33a5436d007bd3e2d632e155b45a4335c6ab32dd0b5898cc133e415",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/53/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/53/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6b6b0304fd4e1bbd58f32017093660d99e6db501f2ac3d6588833c0a48edd66d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/53/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/53/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "337e58054fa5ae50618ff7499eae819dad3c638c81d15215386e58d083b7ca8b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/53/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V403 scoped ordinary actual-native import progress/completed envelopes: retained seven-case real file/session/subagent import module adds25assertion lines only in the inert-subagent path. Complete independent full maps for two-file nonempty success and known-complete repeated empty success now bind directly to original incoming JSON retained before Session decode,with notification kind,current generation,ordered unique sequences,actual native UUID/importId and bounded emittedAtMs. Independent rewritten TOML reads,unchanged inputs/config/provider,zero imported-agent execution/inference/threads/rollouts,public durable histories/cold restart and checked native/provider cleanup remain. Receipt-before-notices is producer-backed FIFO; synchronous imported files exist before receipt and notification alone is not durable history evidence. Existing60s cases/5sRPC/10s events,256raw/events,256KiBframe/4MiB aggregate bounds unchanged. Final32reviewed ordinary cases pass32/0 twice;syntax/format/compile/strict Credo and398stable source guard pass,397prior bytes unchanged with one intentional owning-test change. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected SUBAGENTS nonempty/empty wrapper profiles,not other import variants/aliases/transports/OS/backend/full verified acceptance. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/53/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b672c1ecb5c02d4264b54b685469b35b4b44ceb919b6e5045f09c8a883809bdd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

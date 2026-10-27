@@ -632,6 +632,31 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
              }
            ]
 
+    import_events = Enum.filter(events, &(&1.wire in relevant))
+    assert length(import_events) === 2
+    assert Enum.all?(import_events, &(&1.kind === :notification))
+
+    assert Enum.uniq(Enum.map(import_events, & &1.generation)) ===
+             [Session.status(pid).generation]
+
+    sequences = Enum.map(import_events, & &1.sequence)
+    assert Enum.sort(sequences) === sequences
+    assert Enum.uniq(sequences) === sequences
+    assert Enum.map(import_events, & &1.wire) === relevant
+
+    # Bind the complete independently asserted frames above to original native
+    # ingress, not a re-encoding of the driver's observed notification maps.
+    original =
+      for %{direction: :in, encoded: encoded, wire: wire} <- capture(ctx),
+          wire["params"]["importId"] == id,
+          wire["method"] in [
+            "externalAgentConfig/import/progress",
+            "externalAgentConfig/import/completed"
+          ],
+          do: JSON.decode!(encoded)
+
+    assert original === relevant
+
     assert_receipt_before_notifications(ctx, request_id, id, 2)
     assert_retained(ctx)
     %{id: id, bytes: bytes}

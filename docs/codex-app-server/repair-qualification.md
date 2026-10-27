@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [actual import-notification profile](import-notification-envelopes-qualification.md)
+adds25 assertions linking original incoming frames to complete independently
+expected progress/completion maps. Actual two-file conversion, known-complete
+empty repeat, full public/cold persistence, zero execution and checked cleanup
+remain. Final **32ordinary cases twice**, syntax/strict checks and398-source
+guard pass;397 prior paths stay unchanged and10 whole upstream files match the
+pin. Only2999–3006 become scoped implemented: **5,125 implemented /1,430 missing
+/66 blocked**, unchanged requirements and zero verified. Receipt-before-notice
+does not mean receipt-before-file-effects. Continue ordinary fuzzy notification
+envelopes; all prohibited/full-goal gates remain incomplete.
+
 The [process-notification envelope profile](process-notification-envelopes-qualification.md)
 proves two cold null/cap0 executions, accepted binary input, no-effect barrier,
 explicit EOF, independent actual writes and complete original output/exit frames.
