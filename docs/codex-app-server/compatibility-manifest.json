@@ -212751,14 +212751,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-output-branches-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponseItemPrefix",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. This earlier profile qualifies only its stated values; later per-branch evidence supplements it. No whole-method completeness.",
+        "V491 Explicit codexResponseItemPrefix:null remains present in the original correlated V3 start RPC. With response-items=true the actual session.context.append contains only the original assistant text, omitting the V485 prefix and separator. Native items/history retain the unmodified assistant text; no omitted/empty-prefix recognition credit. Each independent case requires one real native backing turn without client turn/start, original enriched handoff/input/body/native IDs and correlated wire, two completed items/three provider SSE/six canonical timeline rows, loaded full-history barrier, repeated warm/cold equality, requested-stop EOF and unchanged owned cleanup/bounds. Fixed YOLO fixture; other values/defaults/nulls, streamed deltas, multiple/steered delegations, other backends/versions/transports, remote media or full compatibility remain unverified. Already implemented owner; no count increase or verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/codexResponseItemPrefix",
@@ -212785,14 +212787,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md"
+        "docs/codex-app-server/ordinary-realtime-delegation-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-output-branches-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/codexResponsesAsItems",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. Fixed YOLO fixture only; other flag values/defaults/nulls, modes, prefixes, repeated/steered handoffs, streaming, backend/version/transport or whole-method completeness remain unverified."
+        "V485 exact explicit clientManagedHandoffs=false, codexResponsesAsItems=true, nonempty custom prefix and commentary handoff mode in genuine configured V3 delegation. A real backend delegation starts one native backing turn without client turn/start; original enriched handoff transcript, exact wrapped provider input and native thread/turn metadata, one literal prefixed commentary context append, requested-stop EOF, canonical six-row timeline and repeated warm/cold full one-turn history are required. This earlier profile qualifies only its stated values; later per-branch evidence supplements it. No whole-method completeness.",
+        "V491 Explicit codexResponsesAsItems:false keeps the same nonempty prefix in its original start RPC but produces exactly one delegation.context.append targeted to owned-handoff-1 with bare assistant text and commentary; no session.context.append or completion ACK. One finite output_item.done supplies complete short initial_text: timed/final drains share the item lock and sent_bytes, suppressing duplicate completion output. This does not qualify SSE delta streaming, arbitrary chunking, truncation or multiple items. Each independent case requires one real native backing turn without client turn/start, original enriched handoff/input/body/native IDs and correlated wire, two completed items/three provider SSE/six canonical timeline rows, loaded full-history barrier, repeated warm/cold equality, requested-stop EOF and unchanged owned cleanup/bounds. Fixed YOLO fixture; other values/defaults/nulls, streamed deltas, multiple/steered delegations, other backends/versions/transports, remote media or full compatibility remain unverified. Already implemented owner; no count increase or verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/codexResponsesAsItems",
@@ -212819,7 +212823,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-realtime-output-branches-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -212827,7 +212832,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Earlier unsupported-settings rejection is supplemented by this scoped positive native case; no verified promotion.",
-        "actual_native_local_synthetic_backend: Explicit false reaches the genuine V3 dependency session.update as ack_filler:false with ordered initial user/assistant items; strict independent frame comparison plus audio/transcript exchange and requested stop. Test100-124,141-147; fixture305-323. Full11/0 both seeds. True/null/other versions and actual backend filler/handoff/media/OS/A11 acceptance remain unqualified; no alias or whole-method credit."
+        "actual_native_local_synthetic_backend: Explicit false reaches the genuine V3 dependency session.update as ack_filler:false with ordered initial user/assistant items; strict independent frame comparison plus audio/transcript exchange and requested stop. Test100-124,141-147; fixture305-323. Full11/0 both seeds. V491 separately supplements true forwarding. Null/other versions and actual backend filler/media/OS/A11 acceptance remain unqualified; no alias or whole-method credit.",
+        "V491 Explicit delegationAckFiller:true reaches the exact actual V3 session.update as delegation {type:client,ack_filler:true}; one genuine native delegated turn retains the unchanged V485 prefixed commentary result. Only literal backend-wire forwarding is qualified, not actual remote filler/audio behavior. Each independent case requires one real native backing turn without client turn/start, original enriched handoff/input/body/native IDs and correlated wire, two completed items/three provider SSE/six canonical timeline rows, loaded full-history barrier, repeated warm/cold equality, requested-stop EOF and unchanged owned cleanup/bounds. Fixed YOLO fixture; other values/defaults/nulls, streamed deltas, multiple/steered delegations, other backends/versions/transports, remote media or full compatibility remain unverified. Already implemented owner; no count increase or verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/delegationAckFiller",
@@ -212843,7 +212849,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs:100-124,141-147"
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs:100-124,141-147",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
         ]
       },
       "transport_coverage": [

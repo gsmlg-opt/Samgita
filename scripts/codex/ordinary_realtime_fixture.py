@@ -115,7 +115,12 @@ DELEGATION_ACK = {"type": "session.started", "session": {
 DELEGATION_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
 DELEGATION_SCENARIOS = ("delegation", "delegation-status", "delegation-bem", "delegation-thinking", "delegation-null",
-                        "delegation-null-transport", "delegation-null-version", "delegation-null-voice")
+                        "delegation-null-transport", "delegation-null-version", "delegation-null-voice",
+                        "delegation-ack-filler", "delegation-null-prefix", "delegation-handoff-append")
+PREFIXLESS_OUTPUT = {"type": "session.context.append", "channel": "commentary",
+    "content": [{"type": "input_text", "text": "Owned bounded assistant result 🙂"}]}
+HANDOFF_APPEND_OUTPUT = {"type": "delegation.context.append", "delegation_item_id": "owned-handoff-1",
+    "channel": "commentary", "content": [{"type": "input_text", "text": "Owned bounded assistant result 🙂"}]}
 THINKING_OUTPUT = {"type": "session.context.append", "content": [
     {"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
 BEM_PROGRESS = "[OWNED_PROGRESS]Owned bounded progress λ"
@@ -133,12 +138,23 @@ QUIET_STATUS = {"type": "delegation.context.append", "delegation_item_id": "owne
 
 
 def delegation_outputs(scenario):
+    if scenario == "delegation-null-prefix":
+        return [PREFIXLESS_OUTPUT]
+    if scenario == "delegation-handoff-append":
+        return [HANDOFF_APPEND_OUTPUT]
     if scenario in ("delegation-thinking", "delegation-null"):
         return [THINKING_OUTPUT]
     if scenario == "delegation-bem":
         return BEM_OUTPUTS
     return ([QUIET_STATUS, DELEGATION_OUTPUT] if scenario == "delegation-status"
             else [DELEGATION_OUTPUT])
+
+
+def delegation_session(scenario):
+    if scenario == "delegation-ack-filler":
+        return {"instructions": PROMPT, "audio": {"output": {"voice": "cove"}},
+                "delegation": {"type": "client", "ack_filler": True}}
+    return DELEGATION_SESSION
 
 
 def write_json(path, value):
@@ -437,7 +453,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
             elif fixture.scenario == "initial-items":
                 assert message == {"type": "session.update", "session": INITIAL_SESSION}
             elif fixture.scenario in DELEGATION_SCENARIOS:
-                assert message == {"type": "session.update", "session": DELEGATION_SESSION}
+                assert message == {"type": "session.update", "session": delegation_session(fixture.scenario)}
             else:
                 assert message["session"]["type"] == "realtime"
                 assert message["session"]["instructions"] == PROMPT
@@ -551,7 +567,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
             assert fixture.state["responsesRequests"] == 0
             assert fixture.state["activeConnections"] == 1
             assert fixture.state["paths"] == [f"/v1/live?model={MODEL}"]
-            assert fixture.state["messages"] == [{"type": "session.update", "session": DELEGATION_SESSION}]
+            assert fixture.state["messages"] == [{"type": "session.update", "session": delegation_session(fixture.scenario)}]
             # The provider can race the WebSocket sender's post-send journal.
             # Its original wrapped input independently proves delegation receipt.
             assert fixture.state["sent"][:1] == [DELEGATION_ACK]

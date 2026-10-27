@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary V3 output-branch profile](ordinary-realtime-output-branches-qualification.md)
+passes **53 files / 99 ordinary real-binary cases at both seeds**, selected
+WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
+reviewed checks, with 1,668 identical guarded source hashes. Actual filler=true,
+null-prefix and response-items=false cases preserve native input/body/IDs and
+full six-row histories. The false branch requires exactly one targeted bare
+handoff append without changing production timers or any bounds. Thirty-nine
+complete producers bind three already implemented owners; counts remain **5,451
+implemented / 1,054 missing / 116 blocked**, unchanged requirements and zero
+verified. Continue genuine two-chunk forwarding with a positive actual-head
+receipt barrier. Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal
+and release gates remain incomplete.
+
 The [ordinary V3 startup-null profile](ordinary-realtime-startup-null-qualification.md)
 passes **53 files / 96 ordinary real-binary cases at both seeds**, selected
 WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
@@ -9,8 +22,8 @@ native delegated turns and complete six-row cold histories. Frozen config and
 original request capture qualify only selected null acceptance, with no omitted
 or broader default recognition credit. Thirty-nine complete source files bind
 exactly three owners: **5,451 implemented / 1,054 missing / 116 blocked**,
-unchanged requirements and zero verified. Continue selected filler/prefix/output
-branches on already implemented owners. Prohibited/hosted, A11, unavailable
+unchanged requirements and zero verified. The later output-branch profile above
+supplements selected filler/prefix/output branches. Prohibited/hosted, A11, unavailable
 emitters/external/OS/full-goal and release gates remain incomplete.
 
 The [ordinary V3 mode-routing profile](ordinary-realtime-mode-routing-qualification.md)

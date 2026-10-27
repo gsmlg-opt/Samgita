@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "f3e04ad4468b9174ee6f976175e550fac74952386b0a666013846016d2b3ae1c"
+  @script_sha "6e13f16506a1564a5a39d7edd73f553ced16625a5124a15052f115455e641d5e"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1578,6 +1578,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp unexpected_notice_methods(%{scenario: "delegation-null-voice"}),
     do: ~w(error warning thread/realtime/error)
 
+  defp unexpected_notice_methods(%{scenario: "delegation-ack-filler"}),
+    do: ~w(error warning thread/realtime/error)
+
+  defp unexpected_notice_methods(%{scenario: "delegation-null-prefix"}),
+    do: ~w(error warning thread/realtime/error)
+
+  defp unexpected_notice_methods(%{scenario: "delegation-handoff-append"}),
+    do: ~w(error warning thread/realtime/error)
+
   defp unexpected_notice_methods(_profile),
     do:
       ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
@@ -1647,7 +1656,10 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "delegation-null",
            "delegation-null-transport",
            "delegation-null-version",
-           "delegation-null-voice"
+           "delegation-null-voice",
+           "delegation-ack-filler",
+           "delegation-null-prefix",
+           "delegation-handoff-append"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -1686,6 +1698,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp selected_methods(%{scenario: "delegation-null-transport"}), do: @selected ++ [@item_added]
   defp selected_methods(%{scenario: "delegation-null-version"}), do: @selected ++ [@item_added]
   defp selected_methods(%{scenario: "delegation-null-voice"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-ack-filler"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-null-prefix"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-handoff-append"}), do: @selected ++ [@item_added]
   defp selected_methods(_profile), do: @selected
 
   defp peer_startup(port, buffer, deadline) do
@@ -3229,6 +3244,23 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     delegation_journey(ctx)
   end
 
+  @tag realtime_scenario: "delegation-ack-filler"
+  test "native V3 forwards explicit filler true and retains one delegated backing result", ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-null-prefix"
+  test "native explicit null item prefix retains its original null and forwards the bare backing result",
+       ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-handoff-append"
+  test "native explicit response items false sends one handoff append and leaves the item prefix unused",
+       ctx do
+    delegation_journey(ctx)
+  end
+
   defp delegation_journey(ctx) do
     profile = ctx.profile
     pid = ctx.session.pid
@@ -3449,6 +3481,11 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     %{id: turn, items: items}
   end
 
+  defp delegation_peer_delegation(%{scenario: "delegation-ack-filler"}),
+    do: %{"type" => "client", "ack_filler" => true}
+
+  defp delegation_peer_delegation(_profile), do: %{"type" => "client"}
+
   defp delegation_provider(profile, thread, row) do
     state = read_peer(profile)
     assert is_integer(state["frameCount"]) and state["frameCount"] in 4..32
@@ -3462,7 +3499,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
                  "session" => %{
                    "instructions" => @prompt,
                    "audio" => %{"output" => %{"voice" => "cove"}},
-                   "delegation" => %{"type" => "client"}
+                   "delegation" => delegation_peer_delegation(profile)
                  }
                }
              ],
@@ -3659,6 +3696,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_status?(%{scenario: "delegation-null-transport"}), do: false
   defp delegation_status?(%{scenario: "delegation-null-version"}), do: false
   defp delegation_status?(%{scenario: "delegation-null-voice"}), do: false
+  defp delegation_status?(%{scenario: "delegation-ack-filler"}), do: false
+  defp delegation_status?(%{scenario: "delegation-null-prefix"}), do: false
+  defp delegation_status?(%{scenario: "delegation-handoff-append"}), do: false
 
   defp delegation_start_params(%{scenario: "delegation"}, params), do: params
 
@@ -3680,6 +3720,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_start_params(%{scenario: "delegation-null-voice"}, params),
     do: Map.put(params, "voice", nil)
 
+  defp delegation_start_params(%{scenario: "delegation-ack-filler"}, params),
+    do: Map.put(params, "delegationAckFiller", true)
+
+  defp delegation_start_params(%{scenario: "delegation-null-prefix"}, params),
+    do: Map.put(params, "codexResponseItemPrefix", nil)
+
+  defp delegation_start_params(%{scenario: "delegation-handoff-append"}, params),
+    do: Map.put(params, "codexResponsesAsItems", false)
+
   defp delegation_start_params(%{scenario: "delegation-bem"}, params) do
     params
     |> Map.delete("codexResponseItemPrefix")
@@ -3691,6 +3740,28 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_outputs(%{scenario: "delegation-null-transport"}), do: [@delegation_output]
   defp delegation_outputs(%{scenario: "delegation-null-version"}), do: [@delegation_output]
   defp delegation_outputs(%{scenario: "delegation-null-voice"}), do: [@delegation_output]
+  defp delegation_outputs(%{scenario: "delegation-ack-filler"}), do: [@delegation_output]
+
+  defp delegation_outputs(%{scenario: "delegation-null-prefix"}) do
+    [
+      %{
+        "type" => "session.context.append",
+        "channel" => "commentary",
+        "content" => [%{"type" => "input_text", "text" => "Owned bounded assistant result 🙂"}]
+      }
+    ]
+  end
+
+  defp delegation_outputs(%{scenario: "delegation-handoff-append"}) do
+    [
+      %{
+        "type" => "delegation.context.append",
+        "delegation_item_id" => "owned-handoff-1",
+        "channel" => "commentary",
+        "content" => [%{"type" => "input_text", "text" => "Owned bounded assistant result 🙂"}]
+      }
+    ]
+  end
 
   defp delegation_outputs(%{scenario: "delegation-null"}),
     do: delegation_outputs(%{scenario: "delegation-thinking"})
@@ -3738,6 +3809,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   defp delegation_items(%{scenario: "delegation"}, [user, assistant]), do: {user, assistant}
 
+  defp delegation_items(%{scenario: "delegation-ack-filler"}, [user, assistant]),
+    do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-null-prefix"}, [user, assistant]),
+    do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-handoff-append"}, [user, assistant]),
+    do: {user, assistant}
+
   defp delegation_items(%{scenario: "delegation-thinking"}, [user, assistant]),
     do: {user, assistant}
 
@@ -3780,6 +3860,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_event_types(%{scenario: "delegation"}),
     do: ~w(response.created response.output_item.done response.completed)
 
+  defp delegation_event_types(%{scenario: "delegation-ack-filler"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
+  defp delegation_event_types(%{scenario: "delegation-null-prefix"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
+  defp delegation_event_types(%{scenario: "delegation-handoff-append"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
   defp delegation_event_types(%{scenario: "delegation-thinking"}),
     do: ~w(response.created response.output_item.done response.completed)
 
@@ -3810,6 +3899,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_summary_evidence(%{scenario: "delegation-null-transport"}, _entry), do: :ok
   defp delegation_summary_evidence(%{scenario: "delegation-null-version"}, _entry), do: :ok
   defp delegation_summary_evidence(%{scenario: "delegation-null-voice"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-ack-filler"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-null-prefix"}, _entry), do: :ok
+  defp delegation_summary_evidence(%{scenario: "delegation-handoff-append"}, _entry), do: :ok
 
   defp delegation_summary_evidence(%{scenario: "delegation-status"}, entry) do
     assert Enum.at(entry["events"], 1)["item"] === %{
@@ -3838,6 +3930,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp delegation_timeline_types(%{scenario: "delegation"}),
     do: ~w(realtime turnStarted item item turnCompleted realtime)
 
+  defp delegation_timeline_types(%{scenario: "delegation-ack-filler"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
+  defp delegation_timeline_types(%{scenario: "delegation-null-prefix"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
+  defp delegation_timeline_types(%{scenario: "delegation-handoff-append"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
   defp delegation_timeline_types(%{scenario: "delegation-thinking"}),
     do: ~w(realtime turnStarted item item turnCompleted realtime)
 
@@ -3861,6 +3962,27 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   defp delegation_timeline_turn(%{scenario: "delegation"}, records, data, thread, row),
     do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(%{scenario: "delegation-ack-filler"}, records, data, thread, row),
+    do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(
+         %{scenario: "delegation-null-prefix"},
+         records,
+         data,
+         thread,
+         row
+       ),
+       do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(
+         %{scenario: "delegation-handoff-append"},
+         records,
+         data,
+         thread,
+         row
+       ),
+       do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
 
   defp delegation_timeline_turn(%{scenario: "delegation-thinking"}, records, data, thread, row),
     do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)

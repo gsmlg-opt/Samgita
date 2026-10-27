@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary V3 output-branch profile](ordinary-realtime-output-branches-qualification.md)
+adds three actual native cases: filler=true forwarding, original null prefix
+with bare session output and response-items=false with exactly one targeted
+handoff append. The complete short-result drain proof preserves all caps and
+timers. Original wire/IDs and full six-row warm/cold histories remain. Focused
+**20/0**, final **53 files / 99 ordinary cases twice**, selected WebSocket seeds,
+outside consumer **1/0**, all fourteen reviewed checks and 1,668 identical
+guarded source hashes pass. Thirty-nine complete producers bind only already
+implemented owners5958/5956/5957; counts remain **5,451 implemented / 1,054 missing
+/ 116 blocked**, unchanged requirements and zero verified. Next scoped unit is
+genuine two-chunk realtime forwarding with a positive actual-head receipt barrier
+before provider completion; source is reviewed, runtime unrun. Prohibited/hosted,
+A11, unavailable emitters/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary V3 startup-null profile](ordinary-realtime-startup-null-qualification.md)
 qualifies exactly transport/version/voice null owners5972/5975/5978 through three
 independent native delegated turns. Original null keys remain on wire; frozen
@@ -30,9 +44,8 @@ six-row warm/cold histories are required. Focused **17/0**, final **53 files /
 all fourteen reviewed checks and 1,668 identical guarded source hashes pass.
 Thirty-nine complete producers bind **5,451 implemented / 1,054 missing / 116
 blocked**, unchanged requirements and zero verified. No omission/default
-recognition credit. Next scoped unit adds selected delegation filler=true,
-null-prefix and response-items=false behavior to already implemented owners
-5958/5956/5957 without count increases; source is reviewed, runtime unrun.
+recognition credit. The later output-branch profile above adds selected behavior
+to already implemented filler/prefix/response-item owners without count increases.
 Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal and release
 gates remain incomplete.
 
