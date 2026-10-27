@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [stock search projection boundary](native-projection-boundaries.md) now
+closes both Local/InMemory store paths and derived response serialization.
+All 5,259 Rust files/15 key sources and exact nonnull nodes 6133/6164 match the
+official pin; only those two owners become blocked. No runtime tests or
+native-success credit. Counts: **5,302 implemented / 1,207 missing / 112 blocked**,
+unchanged requirements and zero verified. Continue reachable ordinary behavior;
+prohibited, external and full-goal/release gates remain incomplete.
+
 The [complete session-flags origin object](config-override-metadata-qualification.md)
 binds exact owner 3611 to the unchanged three-case actual-native configuration
 profile, independently prescribed CLI hash, displaced persisted edit and cold

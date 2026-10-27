@@ -1,9 +1,10 @@
 # Pinned native projection boundaries
 
 These eight physical schema owners remain incomplete. The two explicit-null
-skill owners are **blocked** by typed serialization; the other six remain
-**missing**. Source evidence explains the ordinary native producer boundaries;
-it is not a native success test or completion of the compatibility goal.
+skill owners and two nonnull search owners are **blocked** by the stock pinned
+implementation; the four selective tool-status owners remain **missing**.
+Source evidence explains the native producer boundaries; it is not a native
+success test or completion of the compatibility goal.
 
 Target: official Codex `rust-v0.163.0`, immutable source commit
 `83086188ae0614bd882818ff1aa23f3194962012`, executable SHA256
@@ -107,8 +108,27 @@ The complete [loaded enrichment:38–90][enrichment] changes status, current
 settings and subagent direct-input metadata; [current settings:620–633][settings]
 changes model, effort and environments. Neither restores thread_source nor
 extra. Thus changing the actual creation source or loading a matching local
-thread cannot supply these two nonnull search branches at this pin. This is a
-closed local producer chain, not a claim about every possible external store.
+thread cannot supply these two nonnull search branches at this pin.
+
+The stock process-scoped store is constructed at
+[`message_processor.rs:302–305`][store-construction]. Configuration permits only
+[Local/InMemory:612–618,2569–2574][store-config]; the existing
+[store constructor:464–519][store-selection] implements exactly those choices.
+The complete InMemory implementation has no `search_threads` override and
+inherits [Unsupported:457–466][search-store-api]. The handler maps that error to
+method-not-found; it does not fall back to live threads or local search. Thus
+InMemory supplies no alternate successful nonnull projection. Custom stores
+are not selectable in this stock binary. A custom store could carry attribution
+through the shared converter, but the same constructor still sets extra None.
+
+The wire type [derives serialization:201–215,277][thread-wire]. The response
+pipeline passes the typed result unchanged; ordinary transport and in-process
+serialization cannot inject either field. This closes the stock producer chain,
+not every possible custom protocol implementation. Native creation/read can
+preserve attribution elsewhere; this boundary applies specifically to search.
+Exact owners **6133/6164** now become **blocked**, retaining the earlier missing
+annotation as history. No fixture, mock, rewritten result, native-positive test
+or transport credit is added.
 
 [Native search creator/roots qualification](search-creator-roots-qualification.md)
 establishes separate owners 6145 and 6172. Its native null controls do not
@@ -178,9 +198,9 @@ and the three tool-status variants. Binding
 `/tmp/samgita-v468-projection-binding/source.json`, SHA256
 `28115218243bc39b0b503dbcdc88f0c2c18c69d0bacd0a6686dea8f988fcfe7b`.
 
-Only **5092/5097** change from missing to blocked. **5307/5336/5406** gain scoped
+At V468 only **5092/5097** changed from missing to blocked. **5307/5336/5406** gained scoped
 source annotations while staying missing; their tests/transports remain empty.
-The other three table owners are unchanged. No test runs, synthetic acceptance
+The other three table owners were unchanged. No test runs, synthetic acceptance
 or native-positive credit is added. Full compatibility, external integration,
 A11, publication and deployment remain incomplete.
 
@@ -192,11 +212,33 @@ SHA256 `0d984950bc2c8b6f6803b5d133ae8859986bcb35b9a7f268d2512fed05db14df`;
 inventory log SHA256
 `f79f570470b5dab788feeb4482724064a24f7b8f0aa621f2d4e12dec5aca126c`.
 
-Counts: **5,301 implemented / 1,210 missing / 110 blocked** contracts;
+V468 counts: **5,301 implemented / 1,210 missing / 110 blocked** contracts;
 **462 implemented / 12 missing / 11 blocked** requirements, zero verified.
 No prohibited security/permission check, audit or hosted workflow runs. Continue
 reviewing existing ordinary configuration metadata evidence for its exact schema
 owner before adding a duplicate fixture or granting compatibility credit.
+
+The current V470 search follow-up archive-matches **all 5,259 Rust files**,
+binds **15 key complete sources** and both exact experimental search nodes.
+Stable ThreadSearchResponse is absent. Binding
+`/tmp/samgita-v470-search-binding/source.json`, SHA256
+`35249e75dca982450f8755f2ccf3859930b740b8dbc43c7011822cb1118c5c5c`.
+Only **6133/6164** change from missing to blocked; all tests and transport
+coverage remain unchanged. Counts: **5,302 implemented / 1,207 missing /
+112 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements, zero verified. The preceding config-origin object qualification
+accounts for the one implemented contract since V468. This source-only follow-up
+does not rerun runtime checks or grant native-success acceptance. Continue
+ordinary method/behavior evidence; unavailable/prohibited/external/full-goal,
+A11 and release gates remain incomplete. No publication or deployment.
+
+All 14 V469 result logs retain their exact hashes and the command-plan digest
+is unchanged. Among 1,660 guarded sources only manifest metadata differs; the
+runner's normalized logic remains exact. Inventory consistency passes.
+Qualification `/tmp/samgita-v470-search-binding/qualification.json`, SHA256
+`069f651987748f3fc831ff5fa828d1cb2af493639b23cd61cee842c3dc153996`;
+updated reviewed fingerprint
+`7627bd20261254e25cba1b2fb3f16a3d5c7c2744138a80a3fba49811dc0fe46b`.
 
 [selective]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L3622-L3669
 [local-read]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/thread_history/read.rs#L163-L204
@@ -230,3 +272,7 @@ owner before adding a duplicate fixture or granting compatibility credit.
 [resume-input]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L354-L362
 [resume-events]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/event_mapping.rs#L181-L264
 [canonicalizer]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/rollout_migration/canonicalizer.rs#L231-L240
+[store-construction]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L302-L305
+[store-config]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/config/mod.rs#L612-L618
+[search-store-api]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/store.rs#L457-L466
+[thread-wire]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs#L201-L215

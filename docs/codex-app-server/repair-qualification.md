@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [stock search projection source boundary](native-projection-boundaries.md)
+closes Local and InMemory store selection and unchanged typed serialization.
+All 5,259 Rust files/15 complete sources and both exact nodes match the pin.
+Only 6133/6164 become blocked, with no runtime tests or native-success credit.
+Counts: **5,302 implemented / 1,207 missing / 112 blocked**, unchanged requirements
+and zero verified. Continue reachable ordinary behavior; prohibited, external,
+full-goal and release gates remain incomplete.
+
 The [complete session-flags origin object](config-override-metadata-qualification.md)
 qualifies only canonical 3611 through the unchanged native configuration profile,
 independent CLI-layer hash and cold persisted value/origin. Focused **3/0**,

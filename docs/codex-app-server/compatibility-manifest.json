@@ -216607,12 +216607,13 @@
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/extra/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. Still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores."
+        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. At the earlier Local-only source checkpoint this owner was still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores.",
+        "Current stock rust-v0.163.0 source-bound classification is blocked for this exact nonnull search alternative. The process-scoped configured store is Local or InMemory only: Local always projects thread_source None and the response constructor always sets extra None; InMemory inherits Unsupported for thread/search without fallback. Loaded enrichment and derived typed serialization do not insert either field. All 5,259 Rust files/15 key sources and both exact experimental nodes match the immutable official pin. Custom stores are not selectable in the stock binary; this is not universal protocol impossibility, an upstream-defect assertion, native-positive evidence or acceptance. No tests/transport credit; full-goal and prohibited gates remain incomplete."
       ],
       "pointer": "/definitions/Thread/properties/extra/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "ccb2f08e899f41dc991c541d024607dbe30c42e92938b8052a800f55c802d27b",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -217614,12 +217615,13 @@
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/threadSource/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. Still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores."
+        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. At the earlier Local-only source checkpoint this owner was still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores.",
+        "Current stock rust-v0.163.0 source-bound classification is blocked for this exact nonnull search alternative. The process-scoped configured store is Local or InMemory only: Local always projects thread_source None and the response constructor always sets extra None; InMemory inherits Unsupported for thread/search without fallback. Loaded enrichment and derived typed serialization do not insert either field. All 5,259 Rust files/15 key sources and both exact experimental nodes match the immutable official pin. Custom stores are not selectable in the stock binary; this is not universal protocol impossibility, an upstream-defect assertion, native-positive evidence or acceptance. No tests/transport credit; full-goal and prohibited gates remain incomplete."
       ],
       "pointer": "/definitions/Thread/properties/threadSource/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "186c1e929ceb3118c193027ef1728332690182745ad70bfc7f2f2bd476f6b835",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
