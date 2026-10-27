@@ -221539,27 +221539,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-service-name-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/serviceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native serviceName provenance: six separately marked persistent threads in one process cover omitted, trimmed mixed-case codex_work_desktop, CHATGPT_CCA, unknown Unicode, explicit null and omitted again. Literal native creation response/notification originators precede inference; exactly six real local model requests and complete histories retain independent identity. Different-client cold full reads retain originators and all saved fields except three source-defined runtime fields and source-specific updatedAt. The latter is independently read from actual owned upstream SQLite milliseconds; complete metadata rows, raw files/hash/mtime and repeated full responses stay stable. An initial cross-second warm/cold timestamp failure is retained; a passing mtime-only draft was rejected as source-unproven and replaced without dropping timestamp assertions or extending bounds. Exactly49 raw correlated RPC pairs, finite buffers/time bounds, unchanged inputs and checked owned process cleanup remain. Final2 ordinary cases pass twice, static checks and388-source guard pass with all387 prior sources unchanged;28 whole upstream sources match the pin. Other recognized service names, empty strings, inherited/resume provenance, sibling nodes, other deployments and fully verified status remain unqualified. Prohibited/broad/hosted checks, A11, absent upstream producers, external/platform and full-goal/release gates stay incomplete. No publication or deployment."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceName",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_service_name_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceName"
     },
     {

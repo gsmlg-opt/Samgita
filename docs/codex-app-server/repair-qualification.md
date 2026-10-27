@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [serviceName provenance case](thread-service-name-qualification.md) proves
+six original-byte creation/default cases with six native marked turns, exact
+provenance/history and different-client cold readback. Its initial cross-second
+timestamp failure remains recorded; a passing but source-unproven mtime draft
+is replaced by independent real native SQLite observations. Full maps, timestamps,
+raw-file invariants and all original bounds remain required. Final **2ordinary
+cases twice**, strict checks and388-source guard pass, with all387 prior sources
+unchanged and28 complete archive-matched files. Only6347 gains scoped implemented
+evidence: **5,078 implemented /1,477 missing /66 blocked**, unchanged requirements
+and zero verified. Earlier larger/consumer results retain original source
+equivalence. Prohibited/broad/hosted, A11, unavailable producers and complete-goal
+gates stay open. Positive local plugin-search scope is the next ordinary unit.
+
 The [outer mode-null case](turn-collaboration-null-qualification.md) proves
 real Plan/custom-instruction retention while independent effort changes, with
 omitted-field and explicit Default controls over four actual turns. Applied

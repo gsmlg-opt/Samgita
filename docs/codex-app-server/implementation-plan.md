@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [thread serviceName profile](thread-service-name-qualification.md) qualifies
+trimmed/case-normalized known names and unknown/null/omitted fallbacks across
+six real persistent threads. Literal creation provenance, six independent model
+requests, retained complete histories and different-client cold reads prevent
+cross-thread/default-client relabeling. The initial cross-second timestamp
+failure and unaccepted mtime-only draft remain visible; actual native SQLite
+rows provide the final independent timestamp oracle. Final **2/0 twice**, strict
+checks and388-source guard pass; all387 prior sources stay unchanged and28 whole
+upstream files match the pin. Only6347 becomes scoped implemented: **5,078
+implemented /1,477 missing /66 blocked** contracts, unchanged requirements and
+zero verified. Next: positive ordinary local plugin-search global/personal
+discrimination. Prohibited/broad/hosted, A11, unavailable producers and external/
+OS/platform/full-goal/release gates remain incomplete.
+
 The [outer collaboration-mode null profile](turn-collaboration-null-qualification.md)
 adds one real-native causal four-turn case: custom Plan/medium, explicit outer
 null plus low effort, omission, then custom Default/medium. Summary-only native
