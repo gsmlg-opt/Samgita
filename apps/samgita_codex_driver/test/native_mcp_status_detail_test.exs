@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @peer Path.expand("support/native_mcp_status_catalog_fixture.py", __DIR__)
-  @peer_sha "bc363da3756359be7eeb9b03024c3921e92b7545cdbd9cb3ced9dc5b6d6edb50"
+  @peer_sha "0993a305c8ab0749af7bf8a397fd743799b0757c4374b03ea71087db5feaa9f5"
   @projection %{
     "name" => "owned_detail",
     "resources" => [
@@ -109,7 +109,7 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
     def metadata(state), do: Stdio.metadata(state)
   end
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -130,6 +130,11 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
     for directory <- ~w(home codex workspace tmp), do: File.mkdir!(Path.join(root, directory))
     journal = Path.join(root, "catalog.jsonl")
     File.write!(journal, "", [:exclusive])
+    pause_after_final_reply = Map.get(tags, :pause_after_final_reply, false)
+
+    args =
+      ["-B", @peer, "--journal", journal] ++
+        if(pause_after_final_reply, do: ["--pause-after-final-reply"], else: [])
 
     config = """
     check_for_update_on_startup = false
@@ -152,7 +157,7 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
     mcp_2026_07_28 = false
     [mcp_servers.owned_detail]
     command = #{JSON.encode!(python)}
-    args = #{JSON.encode!(["-B", @peer, "--journal", journal])}
+    args = #{JSON.encode!(args)}
     startup_timeout_sec = 10
     tool_timeout_sec = 10
     """
@@ -168,12 +173,23 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
       journal: journal,
       config_path: path,
       config: config,
+      pause_after_final_reply: pause_after_final_reply,
       capture: capture
     }
   end
 
   test "native MCP status omitted null and full detail each discover nonempty resource catalogs",
        ctx do
+    run_catalog_journey(ctx)
+  end
+
+  @tag pause_after_final_reply: true
+  test "native eager catalog teardown preserves replies prepared before a configured final-flush pause",
+       ctx do
+    run_catalog_journey(ctx)
+  end
+
+  defp run_catalog_journey(ctx) do
     session = start(ctx)
 
     # Pinned v2/mcp.rs detail:Option plus mcp_processor.rs:394 defaults both
@@ -294,7 +310,7 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
   end
 
   defp await_catalogs(ctx, count, deadline) do
-    replies = Enum.filter(journal(ctx), &(&1["event"] === "reply"))
+    replies = Enum.filter(journal(ctx), &(&1["event"] === "reply_prepared"))
 
     cond do
       length(replies) === count * 4 ->
@@ -318,9 +334,10 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
     assert length(Enum.uniq_by(starts, & &1["pid"])) === count
 
     for start <- starts do
+      assert start["pause_after_final_reply"] === ctx.pause_after_final_reply
       owned = Enum.filter(rows, &(&1["pid"] === start["pid"]))
       requests = Enum.filter(owned, &(&1["event"] === "request"))
-      replies = Enum.filter(owned, &(&1["event"] === "reply"))
+      replies = Enum.filter(owned, &(&1["event"] === "reply_prepared"))
 
       assert Enum.sort(Enum.map(requests, & &1["request"]["method"])) ===
                ["initialize", "resources/list", "resources/templates/list", "tools/list"]
@@ -331,6 +348,10 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
       for request <- requests do
         assert [reply] = Enum.filter(replies, &(&1["reply"]["id"] === request["request"]["id"]))
         assert reply["method"] === request["request"]["method"]
+        assert JSON.decode!(reply["encoded"]) === reply["reply"]
+        assert byte_size(reply["encoded"]) <= 65_536
+        assert Enum.sort(Map.keys(reply["reply"])) === ["id", "jsonrpc", "result"]
+        assert reply["reply"]["jsonrpc"] === "2.0"
         assert Map.has_key?(reply["reply"], "result")
       end
 

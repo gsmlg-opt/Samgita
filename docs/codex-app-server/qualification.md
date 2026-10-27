@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
+passes **60 files / 112 actual-native cases at both seeds**, three selected
+WebSocket seeds, outside consumer **1/0** and all fourteen reviewed checks with
+1,678 unchanged sources. The first matrix's retained catalog failure is
+deterministically reproduced and corrected by prepared-before-exposure journal
+ordering; complete native consumption and original cleanup remain required.
+Sixteen whole producers bind exact MCP owner2222; unsupported Prompt/Agent
+notification owners2223/2224 are source-proven blocked. Contracts: **5,465
+implemented / 1,037 missing / 119 blocked**, unchanged requirements and zero
+verified. Prohibited/hosted, A11, unavailable emitter/external/OS/full-goal and
+release gates remain incomplete.
+
 The [ordinary PostToolUse failure/async boundary](ordinary-hook-failure-and-async-boundary.md)
 passes **59 files / 110 actual-native cases at both seeds**, selected WebSocket
 seeds, outside consumer **1/0** and all fourteen reviewed checks with1,676

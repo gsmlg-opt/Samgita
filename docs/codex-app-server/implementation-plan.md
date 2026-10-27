@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
+passes **60 files / 112 actual-native cases at both seeds**, outside consumer
+**1/0**, three selected WebSocket seeds and all fourteen reviewed checks with
+1,678 unchanged guarded sources. The retained catalog race is diagnosed with
+a deterministic red result and corrected by prepared-before-exposure intent
+journaling plus unchanged complete native consumption proof. Sixteen whole
+producers bind exact MCP owner2222; unsupported Prompt/Agent notification
+owners2223/2224 become blocked. Contracts: **5,465 implemented / 1,037 missing /
+119 blocked**, unchanged requirements and zero verified. Next: source-reviewed
+installed-plugin Hook source and exact Unicode config-warning ranges, then
+ordinary MCP request IDs; no runtime success is inferred for those drafts.
+Prohibited/hosted, A11, unavailable emitter/external/OS/full-goal and release
+gates stay incomplete.
+
 The [ordinary PostToolUse failure/async boundary](ordinary-hook-failure-and-async-boundary.md)
 passes **59 files / 110 native cases at both seeds**, outside consumer **1/0**,
 three selected WebSocket seeds and all fourteen reviewed static/build checks,

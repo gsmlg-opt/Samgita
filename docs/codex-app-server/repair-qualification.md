@@ -15,6 +15,22 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary synchronous MCP Hook/catalog teardown unit](ordinary-mcp-hook-qualification.md)
+adds a genuine local stdio post observer and preserves all native wire/effect/
+continuation/cleanup oracles. Its first matrix stops at7/14 with a catalog
+post-flush journal race, independently reproduced with complete native response,
+four requests/three recorded replies and an exited peer. Prepared-before-exposure
+plus original consumption proof and a configured self-pause regression fix the
+fixture without changing deadlines or stock behavior. Final **60 files / 112
+native cases twice**, three WebSocket seeds, outside consumer **1/0** and all
+fourteen reviewed checks pass with1,678 unchanged sources. Sixteen complete
+producers bind one new implemented owner and two unsupported Prompt/Agent
+blocked owners: **5,465 implemented / 1,037 missing / 119 blocked contracts**,
+unchanged requirements and zero verified. Continue the source-reviewed installed
+plugin Hook and Unicode configuration-warning range profiles; their runtime is
+still unverified. Prohibited/hosted, A11, unavailable emitter/external/OS/full-goal
+and release gates remain incomplete.
+
 The [ordinary PostToolUse failure/async boundary](ordinary-hook-failure-and-async-boundary.md)
 retains original success and adds actual exit7 failed/error observation after
 the independently verified successful command. Final **59 files / 110 native

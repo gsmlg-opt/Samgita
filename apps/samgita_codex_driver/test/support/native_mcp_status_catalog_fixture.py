@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import signal
 import stat
 import sys
 
@@ -32,13 +33,15 @@ RESULTS = {
 
 
 class Peer:
-    def __init__(self, journal):
+    def __init__(self, journal, pause_after_final_reply):
         if not stat.S_ISREG(journal.lstat().st_mode):
             raise ValueError("Expected precreated journal")
         self.journal = journal
         self.initialized = False
         self.notified = False
-        self.record({"event": "started"})
+        self.pause_after_final_reply = pause_after_final_reply
+        self.reply_count = 0
+        self.record({"event": "started", "pause_after_final_reply": pause_after_final_reply})
 
     def record(self, row):
         row = {**row, "pid": os.getpid()}
@@ -81,15 +84,26 @@ class Peer:
         encoded = (json.dumps(reply, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
         if len(encoded) > MAX_FRAME_BYTES:
             raise ValueError("Reply frame bound exceeded")
+        # The eager native owner may terminate this peer immediately after it
+        # receives the final reply. Commit intent before making bytes visible;
+        # the independently asserted native response proves actual consumption.
+        self.record({"event": "reply_prepared", "method": method,
+                     "reply": reply, "encoded": encoded.decode()})
+        self.reply_count += 1
         sys.stdout.buffer.write(encoded)
         sys.stdout.buffer.flush()
-        self.record({"event": "reply", "method": method, "reply": reply})
+        if self.pause_after_final_reply and self.reply_count == 4:
+            # Deterministically hold the old post-flush journal window. Only
+            # this owned process stops; native eager-owner teardown must reap it.
+            os.kill(os.getpid(), signal.SIGSTOP)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--journal", type=Path, required=True)
-    peer = Peer(parser.parse_args().journal)
+    parser.add_argument("--pause-after-final-reply", action="store_true")
+    args = parser.parse_args()
+    peer = Peer(args.journal, args.pause_after_final_reply)
     try:
         while True:
             line = sys.stdin.buffer.readline(MAX_FRAME_BYTES + 1)

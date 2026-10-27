@@ -92388,37 +92388,49 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-hook-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookHandlerType/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One actual stock Codex synchronous local stdio PostToolUse MCP observer after one successful finite command. Complete original hook/mcpTool envelopes and thread/turn/use IDs, nine independently prescribed native MCP arguments, raw MCP request/reply correlation, actual stdout/file/PID effects, three provider requests, next-turn continuation, bounded journals and confirmed owned cleanup. No remote/executor/async/error/reconnect or catalog/alias propagation; full contract remains unverified."
+      ],
       "pointer": "/definitions/HookHandlerType/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "2b75cd62129859a6f23744c7e0d31ae054d280facd28d8f5505157072afc1e41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-hook-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookHandlerType/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned83086188 hooks/src/engine/discovery.rs:637-646 explicitly reports prompt hooks unsupported and skips construction. ConfiguredHandlerKind contains only Command/McpTool and the exhaustive dispatcher runs only those alternatives. Whole5259-file archive-equal Rust reference scan contains only declarations/config-display mappings/synthetic tests and the explicit skip, with no Prompt executable producer. Configuration/catalog aliases do not qualify this physical ServerNotification alternative. No mock or upstream alteration substitutes for a native emission; required full-goal acceptance remains incomplete."
+      ],
       "pointer": "/definitions/HookHandlerType/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "60b5693ef09527a4bcf56d65322b1fa843bbda2534ddbf928150ee3267d52e97",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -92432,15 +92444,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-hook-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookHandlerType/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned83086188 hooks/src/engine/discovery.rs:647-656 explicitly reports agent hooks unsupported and skips construction. ConfiguredHandlerKind contains only Command/McpTool and the exhaustive dispatcher runs only those alternatives. Whole5259-file archive-equal Rust reference scan contains only declarations/config-display mappings/synthetic tests and the explicit skip, with no Agent executable producer. Configuration/catalog aliases do not qualify this physical ServerNotification alternative. No mock or upstream alteration substitutes for a native emission; required full-goal acceptance remains incomplete."
+      ],
       "pointer": "/definitions/HookHandlerType/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "6cf85bf41d9570deed965109eed6c05c9512f6d79e321c70f3f3d900c8d06c74",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
