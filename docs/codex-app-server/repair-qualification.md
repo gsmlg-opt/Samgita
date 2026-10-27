@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [original command request bytes](command-request-id-qualification.md) add
+one bounded raw-byte witness to the same actual child/output/exit case. Focused
+**1/0**, **58 ordinary cases twice**, outside consumer **1/0** and all 13 reviewed
+commands, including four aggregate static checks, pass. All 850 guarded paths
+stay exact; only the owning test differs from prior sources. Only 1044 gains
+evidence: **5,277 implemented / 1,264 missing / 80 blocked**, unchanged
+requirements and zero verified. Continue retained notification producer limits
+and ordinary native IDs; prohibited/full-goal gates remain incomplete.
+
 The [process request-ID correction](process-request-ids-qualification.md) binds
 only 1064/1069 to unchanged original-frame and real child input/EOF/output/exit
 assertions, enabled in both V450 **58/0** runs. All 417 functional sources/nine

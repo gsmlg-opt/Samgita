@@ -60,7 +60,8 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
 
     defp record_outgoing(state, encoded) do
       Agent.update(state.capture, fn ledger ->
-        %{ledger | outgoing: ledger.outgoing ++ [JSON.decode!(encoded)]}
+        entry = %{encoded: encoded, wire: JSON.decode!(encoded)}
+        %{ledger | outgoing: ledger.outgoing ++ [entry]}
       end)
     end
 
@@ -217,13 +218,16 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
 
     # No thread or inference request is issued: this is a native process API
     # operation without a model provider or synthetic app-server frames.
-    captured = Agent.get(ctx.capture, & &1.outgoing)
+    outgoing = Agent.get(ctx.capture, & &1.outgoing)
+    captured = Enum.map(outgoing, & &1.wire)
     assert Agent.get(ctx.capture, & &1.incoming) === original
 
     assert Enum.map(captured, & &1["method"]) ==
              ~w(initialize initialized server/diagnostics command/exec thread/loaded/list)
 
     assert Enum.filter(captured, &(&1["method"] == "command/exec")) === [request]
+    assert [command] = Enum.filter(outgoing, &(&1.wire["method"] == "command/exec"))
+    assert command.encoded === JSON.encode!(request)
     assert Session.uncertain_operations(pid) == []
     assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
     assert :ok = Session.close(pid)

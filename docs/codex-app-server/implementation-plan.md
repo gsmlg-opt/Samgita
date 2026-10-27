@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original command request-byte profile](command-request-id-qualification.md)
+retains the existing real child/output/exit journey and adds exact successful-send
+bytes against its independent fixed-ID request. Focused **1/0**, **58 ordinary
+cases twice**, outside consumer **1/0** and all 13 reviewed commands, including
+four aggregate static checks, pass. All 850 guarded sources stay exact; 849 prior
+paths are unchanged. Only 1044 gains scoped evidence: **5,277 implemented /
+1,264 missing / 80 blocked**, unchanged requirements and zero verified.
+Continue retained notification producer limits and ordinary native IDs;
+prohibited/full-goal gates remain incomplete.
+
 The [process spawn/stdin ID correction](process-request-ids-qualification.md)
 binds only 1064/1069 to unchanged original-frame/real-child stdin/EOF/output/exit
 evidence, already enabled in both V450 **58/0** runs. All 417 functional

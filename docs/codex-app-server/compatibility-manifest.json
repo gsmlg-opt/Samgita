@@ -54870,27 +54870,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-request-id-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/151/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V456 strengthens only original outgoing-byte retention on existing native command/exec output/exit journey. Independently fixed string ID and complete request equal original successful-send bytes/map;exact typed returned ID and complete exit7 result remain. Actual owned Python PID,independently prescribed binary stdout/stderr,per-pipe labels/base64,emittedAtMs brackets,unique ordered event sequences,generation,joined-worker response barrier,empty final drain and loaded threads,no uncertainty and checked native/child cleanup remain. No added command/scenario/deadline/production/helper/fixture change.16x8192B outgoing capture now retains bounded original bytes;existing16/8192B incoming and event bounds,5s command/10s request/30s test unchanged. Focused1/0,58reviewed ordinary cases twice,outsideconsumer1/0,13commands including four aggregate static checks,850stable source hashes with849prior unchanged. Six native files and exact node/parent match archive/export. Only1044 gains scoped implemented evidence,zero verified. No original inbound response-wrapper,numeric/all-ID/alias/reorder/concurrent/reconnect/cancel/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/unavailable legacy/external/platform gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/151/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
