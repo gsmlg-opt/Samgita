@@ -173223,24 +173223,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-workspace-plugin-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchParams.json#/definitions/PluginSearchScope/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V525 actual-native local-only workspace scope discrimination. Two new complete correlated original workspace exchanges follow independently positive global AND personal search matrices in the same warm and distinct cold native processes; both require full {data:[],nextCursor:null}. This detects substitution of either ordinary local scope, unlike previous personal-positive/global-empty/workspace-empty control. Pinned processor explicitly skips local enumeration for Workspace and its local predicate returns false. All original held/restored source, ranked content/identity, raw bytes, warm/cold, no-inference and confirmed cleanup assertions remain; exact exchange inventory increases30to32 without changing capture32, deadlines, providers, helpers, case count or runtime. Only this physical enum and local exclusion branch. Enabled remote workspace discovery, external services, other aliases/default/activation/transports/OS and whole-method/verified credit remain unqualified. Prohibited/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/1",
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "29cdac370427a3c5a1e0ade781009bee8e496747497648a3414f42193e6534dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs:181"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

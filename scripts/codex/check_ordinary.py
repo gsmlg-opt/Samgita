@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "b7b2bdbc4785589904c41b6fce0c72f92c909045e914d873dc5ae4a243d1f38f"
+REVIEWED_SOURCE_SHA256 = "f39705149b2628d3e63c57f34376b62d7aa7328f5b783539efd2f4c229c04bd3"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs

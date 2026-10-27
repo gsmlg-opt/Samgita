@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [local workspace-search discriminator](ordinary-workspace-plugin-search-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**: **68 files / 129 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,687** identical guarded hashes. Original workspace replies now follow
+independently positive global and personal catalogs in warm and cold natives;
+capture32, all earlier oracles and deadlines remain exact. Only local owner4745
+gains implemented evidence: **5,498 implemented / 993 missing / 130 blocked**
+contracts, unchanged requirements, zero verified. Remote workspace success
+remains unverified. Continue the two-producer generic-subAgent draft, then
+the separately scoped ordinary environment helper; no mixed authentication
+fixture may run. Prohibited/hosted, A11, unavailable emitter/external/OS, full
+compatibility and release gates remain incomplete. Nothing is published or
+deployed.
+
 The [existing assistant transcript-role index](ordinary-realtime-assistant-role-index.md)
 binds the original typed started/completed oracle in the unchanged V523
 **68-file / 129-case** two-seed selection. All **1,686** other guarded sources,

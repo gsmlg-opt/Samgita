@@ -181,6 +181,20 @@ defmodule SamgitaCodexDriver.NativePluginSearchScopeTest do
   test "local global and personal discovery follows held and restored source catalogs", ctx do
     warm = start(ctx)
     original = matrix(ctx, warm.pid, true, true)
+
+    # The same live catalog has independently checked nonempty global and
+    # personal results. Workspace excludes both local sources.
+    workspace_params = %{
+      "searchTerm" => @query,
+      "scope" => "workspace",
+      "cwds" => [ctx.global.root, ctx.personal.root]
+    }
+
+    assert call(ctx, warm.pid, "plugin/search", workspace_params) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+
     assert_sources(ctx)
 
     with_held(ctx, ctx.global, fn -> matrix(ctx, warm.pid, false, true) end)
@@ -196,6 +210,12 @@ defmodule SamgitaCodexDriver.NativePluginSearchScopeTest do
     cold = start(ctx)
     assert cold.native != warm.native
     assert matrix(ctx, cold.pid, true, true) === original
+
+    assert call(ctx, cold.pid, "plugin/search", workspace_params) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+
     assert_retained(ctx, cold.pid)
     close(cold)
     assert_sources(ctx)
@@ -441,14 +461,14 @@ defmodule SamgitaCodexDriver.NativePluginSearchScopeTest do
 
     expected =
       ["initialize", "server/diagnostics"] ++
-        List.duplicate("plugin/search", 20) ++
+        List.duplicate("plugin/search", 21) ++
         ["thread/loaded/list", "initialize", "server/diagnostics"] ++
-        List.duplicate("plugin/search", 4) ++ ["thread/loaded/list"]
+        List.duplicate("plugin/search", 5) ++ ["thread/loaded/list"]
 
     assert Enum.map(ledger.out, & &1.wire["method"]) === expected
-    assert length(ledger.in) == 30
+    assert length(ledger.in) == 32
     ids = Enum.map(ledger.out, & &1.wire["id"])
-    assert length(Enum.uniq(ids)) == 30
+    assert length(Enum.uniq(ids)) == 32
     assert MapSet.new(Enum.map(ledger.in, & &1.wire["id"])) == MapSet.new(ids)
   end
 
