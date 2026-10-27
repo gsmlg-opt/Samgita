@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary null-settings/stream profile](ordinary-null-settings-and-streams-qualification.md)
+adds only two Map.fetch! null assertions and binds unchanged complete native
+stdout/stderr scalar evidence to its two missing union alternatives. Original
+calls/effects/history, bounds and cleanup remain. Focused **1/0** and final
+**42ordinary cases twice**, syntax/strict checks and408stable-source guard pass;
+407other prior paths stay exact and ten whole sources match the pin. Only
+2344/2346/2726/2731 become scoped implemented: **5,169 implemented /1,386 missing
+/66 blocked**, unchanged requirements and zero verified. Continue actual nonnull
+AgentMessage phases; prohibited/full-goal gates remain incomplete.
+
 The [interrupted-child close profile](interrupted-child-close-qualification.md)
 requires actual child HTTP/native readiness and both genuine interrupt
 observations before releasing real close_agent. Independent complete live maps,

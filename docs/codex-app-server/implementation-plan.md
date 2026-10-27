@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary null-settings/stream unit](ordinary-null-settings-and-streams-qualification.md)
+qualifies only2726/2731 explicit nulls via two added Map.fetch! assertions in
+four actual settings updates, and2344/2346 scalar stream alternatives through
+unchanged complete native-map/independent OS-byte evidence. All original requests,
+effects/history, limits and cleanup remain. Focused **1/0**, **42ordinary cases
+twice**, syntax/strict checks and408stable sources pass;407other prior paths
+stay exact and ten whole sources match the pin. Only four become scoped
+implemented: **5,169 implemented /1,386 missing /66 blocked**, unchanged
+requirements and zero verified. No whole settings-root or raw settings-notice
+claim. Continue actual nonnull AgentMessage phases; prohibited/full-goal gates
+remain incomplete.
+
 The [interrupted-child close unit](interrupted-child-close-qualification.md)
 qualifies only2084/5293 through real child HTTP/native readiness, public
 interruption ACK plus matched interrupted completion, then explicit release

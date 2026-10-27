@@ -392,6 +392,8 @@ defmodule SamgitaCodexDriver.NativeResumeCollaborationResultTest do
         assert Map.fetch!(settings, "model") == "mock-model"
         assert Map.fetch!(settings, "modelProvider") == "fixture"
         assert Map.fetch!(settings, "cwd") == ctx.fixture.workspace
+        assert Map.fetch!(settings, "personality") === nil
+        assert Map.fetch!(settings, "summary") === nil
 
       [] ->
         remaining = until - System.monotonic_time(:millisecond)
