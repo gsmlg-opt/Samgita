@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native pending/timeout observation](environment-observation-qualification.md)
+adds one no-send passive peer and exact original native status results, positive
+EOF, bounded failure publication and repeated cached failure without a second
+observed connection. Zero model work, bounds and checked owned cleanup remain.
+Focused **1/0**, **56 ordinary cases twice**, outside consumer **1/0**, nine
+checks and 416 stable sources pass; 415 prior paths remain exact. Six source
+files/five nodes match the pin. Only 3914–3917/3922 gain evidence: **5,253
+implemented / 1,296 missing / 72 blocked**, unchanged requirements and zero
+verified. No successful executor/recovery is claimed. Continue ordinary typed
+initialization/correlation; prohibited/full-goal gates remain incomplete.
+
 The [Prompt/Agent hook metadata boundary](hook-metadata-producer-limitations.md)
 proves the pinned native list path cannot emit either variant: one response
 builder, one exhaustive converter and a closed two-variant internal enum;

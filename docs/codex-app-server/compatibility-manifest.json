@@ -143554,90 +143554,122 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-observation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V444 genuine native environment observation: eager registration to one no-send passive loopback peer yields two exact pending responses,positive native timeout socket EOF,then source-prescribed full disconnected error and three identical repeated status responses. The peer records exactly accepted/held/EOF through final live-listener barriers;no second connection is observed. Each full original request/reply preserves correlation,JSON/Wire/schema and initialized instance/generation;read-only failure-publication collector has16query/5000ms bounds,does not retry the sole add. Loaded threads,model journal and workspace remain empty;config/catalog/script bytes,128frame/2MiB capture,peer framing/journal/lifetime bounds and existing owner/Port/PID/socket cleanup stay checked. The5000ms native timeout is the deliberate scenario input,not a raised failure deadline. Focused1/0,56reviewed ordinary cases twice,outside consumer1/0,nine checks and416stable sources;415prior paths exact. Six native producer/client/protocol files andfive exact nodes archive/export-match. Only3914-3917/3922 gain scoped implemented evidence,zero verified;allOf credit covers observed pending/disconnected,not every status branch. No successful executor,recovery/reconnect,selected-thread notices,cloud/Noise,registration persistence,multi-client or other OS/transport/platform is qualified. Finite pre-close ingress/connection observations do not cover shutdown-tail bytes or unbounded future traffic. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/1",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "4fc1895131a43fca21bbe4631c0323d89ac53ca9de8373b6a3a03f74bd617e6e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_observation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-observation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/1/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V444 genuine native environment observation: eager registration to one no-send passive loopback peer yields two exact pending responses,positive native timeout socket EOF,then source-prescribed full disconnected error and three identical repeated status responses. The peer records exactly accepted/held/EOF through final live-listener barriers;no second connection is observed. Each full original request/reply preserves correlation,JSON/Wire/schema and initialized instance/generation;read-only failure-publication collector has16query/5000ms bounds,does not retry the sole add. Loaded threads,model journal and workspace remain empty;config/catalog/script bytes,128frame/2MiB capture,peer framing/journal/lifetime bounds and existing owner/Port/PID/socket cleanup stay checked. The5000ms native timeout is the deliberate scenario input,not a raised failure deadline. Focused1/0,56reviewed ordinary cases twice,outside consumer1/0,nine checks and416stable sources;415prior paths exact. Six native producer/client/protocol files andfive exact nodes archive/export-match. Only3914-3917/3922 gain scoped implemented evidence,zero verified;allOf credit covers observed pending/disconnected,not every status branch. No successful executor,recovery/reconnect,selected-thread notices,cloud/Noise,registration persistence,multi-client or other OS/transport/platform is qualified. Finite pre-close ingress/connection observations do not cover shutdown-tail bytes or unbounded future traffic. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/1/enum/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "6006c8517af64611108324ddb24ea0332b6a2114b53e75acf4bf55ae285d66ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_observation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-observation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V444 genuine native environment observation: eager registration to one no-send passive loopback peer yields two exact pending responses,positive native timeout socket EOF,then source-prescribed full disconnected error and three identical repeated status responses. The peer records exactly accepted/held/EOF through final live-listener barriers;no second connection is observed. Each full original request/reply preserves correlation,JSON/Wire/schema and initialized instance/generation;read-only failure-publication collector has16query/5000ms bounds,does not retry the sole add. Loaded threads,model journal and workspace remain empty;config/catalog/script bytes,128frame/2MiB capture,peer framing/journal/lifetime bounds and existing owner/Port/PID/socket cleanup stay checked. The5000ms native timeout is the deliberate scenario input,not a raised failure deadline. Focused1/0,56reviewed ordinary cases twice,outside consumer1/0,nine checks and416stable sources;415prior paths exact. Six native producer/client/protocol files andfive exact nodes archive/export-match. Only3914-3917/3922 gain scoped implemented evidence,zero verified;allOf credit covers observed pending/disconnected,not every status branch. No successful executor,recovery/reconnect,selected-thread notices,cloud/Noise,registration persistence,multi-client or other OS/transport/platform is qualified. Finite pre-close ingress/connection observations do not cover shutdown-tail bytes or unbounded future traffic. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/2",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "0bb42768e34e956d796c3f1c473fc05450f320232fc5f4fd42f6d85795996186",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_observation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-observation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/definitions/EnvironmentStatusKind/oneOf/2/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V444 genuine native environment observation: eager registration to one no-send passive loopback peer yields two exact pending responses,positive native timeout socket EOF,then source-prescribed full disconnected error and three identical repeated status responses. The peer records exactly accepted/held/EOF through final live-listener barriers;no second connection is observed. Each full original request/reply preserves correlation,JSON/Wire/schema and initialized instance/generation;read-only failure-publication collector has16query/5000ms bounds,does not retry the sole add. Loaded threads,model journal and workspace remain empty;config/catalog/script bytes,128frame/2MiB capture,peer framing/journal/lifetime bounds and existing owner/Port/PID/socket cleanup stay checked. The5000ms native timeout is the deliberate scenario input,not a raised failure deadline. Focused1/0,56reviewed ordinary cases twice,outside consumer1/0,nine checks and416stable sources;415prior paths exact. Six native producer/client/protocol files andfive exact nodes archive/export-match. Only3914-3917/3922 gain scoped implemented evidence,zero verified;allOf credit covers observed pending/disconnected,not every status branch. No successful executor,recovery/reconnect,selected-thread notices,cloud/Noise,registration persistence,multi-client or other OS/transport/platform is qualified. Finite pre-close ingress/connection observations do not cover shutdown-tail bytes or unbounded future traffic. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/EnvironmentStatusKind/oneOf/2/enum/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "ba4c16dfac2cf0e80877196e81280478b8341a7f4ca35af77b5b31d4913f6d45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_observation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -143772,24 +143804,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-observation-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentStatusResponse.json#/properties/status/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V444 genuine native environment observation: eager registration to one no-send passive loopback peer yields two exact pending responses,positive native timeout socket EOF,then source-prescribed full disconnected error and three identical repeated status responses. The peer records exactly accepted/held/EOF through final live-listener barriers;no second connection is observed. Each full original request/reply preserves correlation,JSON/Wire/schema and initialized instance/generation;read-only failure-publication collector has16query/5000ms bounds,does not retry the sole add. Loaded threads,model journal and workspace remain empty;config/catalog/script bytes,128frame/2MiB capture,peer framing/journal/lifetime bounds and existing owner/Port/PID/socket cleanup stay checked. The5000ms native timeout is the deliberate scenario input,not a raised failure deadline. Focused1/0,56reviewed ordinary cases twice,outside consumer1/0,nine checks and416stable sources;415prior paths exact. Six native producer/client/protocol files andfive exact nodes archive/export-match. Only3914-3917/3922 gain scoped implemented evidence,zero verified;allOf credit covers observed pending/disconnected,not every status branch. No successful executor,recovery/reconnect,selected-thread notices,cloud/Noise,registration persistence,multi-client or other OS/transport/platform is qualified. Finite pre-close ingress/connection observations do not cover shutdown-tail bytes or unbounded future traffic. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/properties/status/allOf/0",
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "c72c845596aeff9a1b76b7677694caed28fc946dd4a2424a36172a9ce9e50174",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_observation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {

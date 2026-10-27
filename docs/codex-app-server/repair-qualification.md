@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native pending/timeout profile](environment-observation-qualification.md)
+checks two exact pending results, positive native EOF, complete cached timeout
+and repeated status observation through final live-listener barriers. Focused
+**1/0**, **56 ordinary cases twice**, outside consumer **1/0**, nine checks and
+416 stable sources pass; no model/executor work runs. Only 3914–3917/3922 gain
+evidence: **5,253 implemented / 1,296 missing / 72 blocked**, unchanged
+requirements and zero verified. Successful executor/recovery stays unqualified.
+Continue ordinary typed initialization/correlation; prohibited/full-goal gates
+remain incomplete.
+
 The [Prompt/Agent hook metadata boundary](hook-metadata-producer-limitations.md)
 binds the sole response/converter/closed-list type and all discovery inputs to
 the immutable archive. All 5,259 Rust files and 19 key files match; only six
