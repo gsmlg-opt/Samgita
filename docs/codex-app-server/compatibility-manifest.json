@@ -92036,46 +92036,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-compaction-session-hooks-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V493 ordinary manual remote-v2 compaction: actual native PreCompact started/completed precede contextCompaction. Independent exclusive successful command record retains genuine session/turn/cwd/model/manual trigger and exited PID. Provider request2 requires pre present/post absent; continuation request3 requires both hooks, original seed/followup and exact installed checkpoint. Exact full original wire/schema/correlation/timestamps/order, three inference requests, four notices, query/drain and unchanged owned cleanup/caps. Positive fixed YOLO fixture only; no permission/decision/trust/auth/approval test. Other hook events/faults/OS/transports/full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/HookEventName/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "a80e1ad184cde66fda0044a29e7e8e830429f5beba1242612654290a6d07b899",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compact_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-compaction-session-hooks-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V493 ordinary manual remote-v2 compaction: actual native PostCompact started/completed follow committed history and contextCompaction completion, before turn completion. Independent exclusive successful command record retains genuine session/turn/cwd/model/manual trigger and exited PID. Third provider request proves both hooks and installed checkpoint in native continuation history. Exact original wire/schema/IDs/correlation/timestamps/order, three requests/four hook notices, query/drain and unchanged owned cleanup/caps. Fixed YOLO setup only; no permission/decision/trust/auth/approval checks. Other hook events/faults/OS/transports/full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/HookEventName/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "798281f43eb5d6d71c9e1a8fa9f3ac61e3f620b613d041a6cdb7c784819a5fa3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compact_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -92110,24 +92126,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-compaction-session-hooks-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V494 genuine root runtime replacement via one thread/revert: exact original SessionEnd started/completed pair is drained before its correlated revert response. Independent native hook process record has actual session/cwd/reason other and exited PID; native stdin lacks turn_id while public wire preserves a distinct internal auto-compact-N turnId. Two completed ordinary turns, retained first history IDs and removed second, successful replacement continuation with first/followup input only, three model requests and no additional hook at query/drain. Final cleanup retains any separate second invocation with unchanged first record; no delivered cleanup pair or whole-process graceful-hook claim. Fixed YOLO, unchanged bounded owned cleanup; no policy/permission/auth/approval checks. Other shutdown routes/faults/OS/transports and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/HookEventName/enum/6",
       "schema": "ServerNotification.json",
       "schema_sha256": "df07f9d6c72046456b4a94331c9628811e511648d78a85c546b9b15025551a30",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_session_end_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {

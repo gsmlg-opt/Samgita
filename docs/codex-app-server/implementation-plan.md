@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary compaction/root SessionEnd unit](ordinary-compaction-session-hooks-qualification.md)
+adds genuine pre/post compaction and fully drained replacement-shutdown pairs,
+independent command/PID records, installed checkpoint consumption and preserved
+revert history/continuation. The first **102-case** selection passes both seeds
+but stops at strict Credo; the test-only helper extraction then passes **2/0**
+and full strict Credo without changing assertions or limits. Only owners
+2212/2213/2215 gain scoped implemented evidence: **5,454 implemented / 1,051
+missing / 116 blocked**, unchanged requirements and zero verified. Final
+combined-source checks follow with the source-reviewed child/tool hook unit;
+they remain required, not passed by this checkpoint. Prohibited/hosted, A11,
+unavailable emitters/external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary V3 streamed-delegation profile](ordinary-realtime-streamed-delegation-qualification.md)
 requires actual head delivery before the provider releases tail/completion,
 exact two Unicode delta envelopes and native item identity, full result and

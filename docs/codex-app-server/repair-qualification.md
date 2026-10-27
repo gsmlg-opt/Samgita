@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary compaction/root SessionEnd unit](ordinary-compaction-session-hooks-qualification.md)
+requires actual native pairs, independent hook processes, installed checkpoint
+consumption and preserved reverted history. Initial **102 ordinary cases twice**
+pass, then strict Credo stops the matrix at12/14. Unchanged assertions extracted
+into smaller helpers pass focused **2/0** and strict Credo. Three exact owners
+become scoped implemented: **5,454 implemented / 1,051 missing / 116 blocked**
+contracts, unchanged requirements and zero verified. Final combined-source
+checks follow with the ordinary child/tool hook unit; they are still pending.
+No prohibited or hosted check runs; A11, unreachable emitters/external/OS,
+full-goal and release gates remain incomplete.
+
 The [ordinary V3 streamed-delegation profile](ordinary-realtime-streamed-delegation-qualification.md)
 requires real head forwarding before final provider bytes, original native
 Unicode delta/item envelopes and exact full warm/cold history. The first
