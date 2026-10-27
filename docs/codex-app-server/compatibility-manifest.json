@@ -114711,98 +114711,154 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-terminal-interaction-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/39",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One finite actual-native fixed-YOLO case executes an owned raw-TTY stdin reader, discovers its real native session ID from backend tool output, and releases one literal nonempty Unicode write_stdin. The complete original terminalInteraction envelope is independently prescribed from original exec item, current thread/turn, native process ID and literal input, preserving bounded native time, generation, sequence and original bytes. Source-backed per-process lock orders start < interaction < completion. Actual byte journal, exact output/exit, live-to-empty terminal listing, repeated warm/cold persisted command reads, finite three-exchange backend and exact RPC inventories plus frozen nonsecret inputs/owned native/peer/reader PID/Port/socket/thread cleanup remain required. Native terminal API metric fields are explicitly null, while actual reader PID is observed independently; original tool command and shell-argv item display are checked separately.",
+        "Only this exact physical outer/method/literal/params-reference ServerNotification node gains scoped implemented evidence. Fourteen complete producer/projection sources match the full official 5,259-file Rust binding; both generated/vendored schema exports match the node. All app-server frames come from stock Codex, never a scripted app-server peer. Fixed YOLO is setup. No whole method/schema, other stdin/TTY variants, legacy file-output emitter, database/platform recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. Prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/39",
       "schema": "ServerNotification.json",
       "schema_sha256": "eed996f0181816908273474b4ed2d8732cc1018fefafd13dfc1f6b3be42b4b2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:138",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:213",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:406",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:423",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:433",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:773"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-terminal-interaction-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/39/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One finite actual-native fixed-YOLO case executes an owned raw-TTY stdin reader, discovers its real native session ID from backend tool output, and releases one literal nonempty Unicode write_stdin. The complete original terminalInteraction envelope is independently prescribed from original exec item, current thread/turn, native process ID and literal input, preserving bounded native time, generation, sequence and original bytes. Source-backed per-process lock orders start < interaction < completion. Actual byte journal, exact output/exit, live-to-empty terminal listing, repeated warm/cold persisted command reads, finite three-exchange backend and exact RPC inventories plus frozen nonsecret inputs/owned native/peer/reader PID/Port/socket/thread cleanup remain required. Native terminal API metric fields are explicitly null, while actual reader PID is observed independently; original tool command and shell-argv item display are checked separately.",
+        "Only this exact physical outer/method/literal/params-reference ServerNotification node gains scoped implemented evidence. Fourteen complete producer/projection sources match the full official 5,259-file Rust binding; both generated/vendored schema exports match the node. All app-server frames come from stock Codex, never a scripted app-server peer. Fixed YOLO is setup. No whole method/schema, other stdin/TTY variants, legacy file-output emitter, database/platform recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. Prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/39/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b0213a262092f6b4c6d15690bf7685d67345bdf2cdeadc1718081a1db987495e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:138",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:213",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:406",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:423",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:433",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:773"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-terminal-interaction-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/39/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One finite actual-native fixed-YOLO case executes an owned raw-TTY stdin reader, discovers its real native session ID from backend tool output, and releases one literal nonempty Unicode write_stdin. The complete original terminalInteraction envelope is independently prescribed from original exec item, current thread/turn, native process ID and literal input, preserving bounded native time, generation, sequence and original bytes. Source-backed per-process lock orders start < interaction < completion. Actual byte journal, exact output/exit, live-to-empty terminal listing, repeated warm/cold persisted command reads, finite three-exchange backend and exact RPC inventories plus frozen nonsecret inputs/owned native/peer/reader PID/Port/socket/thread cleanup remain required. Native terminal API metric fields are explicitly null, while actual reader PID is observed independently; original tool command and shell-argv item display are checked separately.",
+        "Only this exact physical outer/method/literal/params-reference ServerNotification node gains scoped implemented evidence. Fourteen complete producer/projection sources match the full official 5,259-file Rust binding; both generated/vendored schema exports match the node. All app-server frames come from stock Codex, never a scripted app-server peer. Fixed YOLO is setup. No whole method/schema, other stdin/TTY variants, legacy file-output emitter, database/platform recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. Prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "pointer": "/oneOf/39/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "426aa983784be4986d43c7fa51832424cd9abf1de9bb8e9187a6d3ea8dcfbdf3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:138",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:213",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:406",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:423",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:433",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:773"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-terminal-interaction-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/39/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One finite actual-native fixed-YOLO case executes an owned raw-TTY stdin reader, discovers its real native session ID from backend tool output, and releases one literal nonempty Unicode write_stdin. The complete original terminalInteraction envelope is independently prescribed from original exec item, current thread/turn, native process ID and literal input, preserving bounded native time, generation, sequence and original bytes. Source-backed per-process lock orders start < interaction < completion. Actual byte journal, exact output/exit, live-to-empty terminal listing, repeated warm/cold persisted command reads, finite three-exchange backend and exact RPC inventories plus frozen nonsecret inputs/owned native/peer/reader PID/Port/socket/thread cleanup remain required. Native terminal API metric fields are explicitly null, while actual reader PID is observed independently; original tool command and shell-argv item display are checked separately.",
+        "Only this exact physical outer/method/literal/params-reference ServerNotification node gains scoped implemented evidence. Fourteen complete producer/projection sources match the full official 5,259-file Rust binding; both generated/vendored schema exports match the node. All app-server frames come from stock Codex, never a scripted app-server peer. Fixed YOLO is setup. No whole method/schema, other stdin/TTY variants, legacy file-output emitter, database/platform recovery, other transport/OS/backend, security/permission/approval/credential behavior, external/full-goal or release credit. Prohibited/broad/hosted/A11/upstream-unreachable/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/39/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e52717e8ed8919c025a81ada49b57c66c7cfa60026a6747d5110adb9e84511c0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:138",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:213",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:406",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:423",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:433",
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs:773"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -114935,15 +114991,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-file-output-boundary.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/40",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Immutable official rust-v0.163.0 source explicitly declares this apply_patch textual notification deprecated and no longer emitted (v2/item.rs:1517-1524). All 5,259 Rust files match the official source archive; exhaustive symbol/wire search has exactly six declaration, media-classification, test-client inventory and TUI-consumer locations, with no stock production constructor. PatchApplyUpdated instead maps to the separate current FileChangePatchUpdated notification at event_mapping.rs:422-428.",
+        "Only this exact physical legacy ServerNotification node is source-blocked. Both generated/vendored stable and experimental schema hashes match the pinned node. Retained codec/schema and synthetic peer behavior are not native-success acceptance; no tests or transport coverage are added, no upstream binary is changed and no requirement is removed. A supported separately qualified producer or an explicit accepted scope decision is required. Full compatibility, unavailable external/platform success and prohibited security/permission/approval/credential/hosted/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/40",
       "schema": "ServerNotification.json",
       "schema_sha256": "dc03e0a54680aa4280a7554c803ee2b3980c77054f8c836f7b66b555deb8a288",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -114958,18 +115019,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-file-output-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/40/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Immutable official rust-v0.163.0 source explicitly declares this apply_patch textual notification deprecated and no longer emitted (v2/item.rs:1517-1524). All 5,259 Rust files match the official source archive; exhaustive symbol/wire search has exactly six declaration, media-classification, test-client inventory and TUI-consumer locations, with no stock production constructor. PatchApplyUpdated instead maps to the separate current FileChangePatchUpdated notification at event_mapping.rs:422-428.",
+        "Only this exact physical legacy ServerNotification node is source-blocked. Both generated/vendored stable and experimental schema hashes match the pinned node. Retained codec/schema and synthetic peer behavior are not native-success acceptance; no tests or transport coverage are added, no upstream binary is changed and no requirement is removed. A supported separately qualified producer or an explicit accepted scope decision is required. Full compatibility, unavailable external/platform success and prohibited security/permission/approval/credential/hosted/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/40/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "897b6b8d343fb9709583f8fc1e83f3edcb921716a4b769c251b2a32019ef1a94",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -114983,15 +115049,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-file-output-boundary.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/40/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Immutable official rust-v0.163.0 source explicitly declares this apply_patch textual notification deprecated and no longer emitted (v2/item.rs:1517-1524). All 5,259 Rust files match the official source archive; exhaustive symbol/wire search has exactly six declaration, media-classification, test-client inventory and TUI-consumer locations, with no stock production constructor. PatchApplyUpdated instead maps to the separate current FileChangePatchUpdated notification at event_mapping.rs:422-428.",
+        "Only this exact physical legacy ServerNotification node is source-blocked. Both generated/vendored stable and experimental schema hashes match the pinned node. Retained codec/schema and synthetic peer behavior are not native-success acceptance; no tests or transport coverage are added, no upstream binary is changed and no requirement is removed. A supported separately qualified producer or an explicit accepted scope decision is required. Full compatibility, unavailable external/platform success and prohibited security/permission/approval/credential/hosted/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/40/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "21113d1265608df516d6aa09b23add4722809c5dc9ad926418b690a0c77fb729",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -115006,18 +115077,23 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-file-output-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/40/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Immutable official rust-v0.163.0 source explicitly declares this apply_patch textual notification deprecated and no longer emitted (v2/item.rs:1517-1524). All 5,259 Rust files match the official source archive; exhaustive symbol/wire search has exactly six declaration, media-classification, test-client inventory and TUI-consumer locations, with no stock production constructor. PatchApplyUpdated instead maps to the separate current FileChangePatchUpdated notification at event_mapping.rs:422-428.",
+        "Only this exact physical legacy ServerNotification node is source-blocked. Both generated/vendored stable and experimental schema hashes match the pinned node. Retained codec/schema and synthetic peer behavior are not native-success acceptance; no tests or transport coverage are added, no upstream binary is changed and no requirement is removed. A supported separately qualified producer or an explicit accepted scope decision is required. Full compatibility, unavailable external/platform success and prohibited security/permission/approval/credential/hosted/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/40/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4c58701be5daf061927ac364551d90fde1fd043fb1e9a9230e274b8896480b0d",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

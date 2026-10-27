@@ -15,6 +15,23 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary terminal-interaction envelope](ordinary-terminal-interaction-qualification.md)
+uses actual native exec/stdin, one release boundary, independent reader byte/
+PID/output/exit effects and warm/cold history. Two corrected source-invalid
+projection assumptions and the initial strict-Credo failure remain recorded;
+no assertion, bound, gate or production code is weakened. Refactored focused
+**1/0**, **79 ordinary cases twice**, selected WebSocket cases at three seeds,
+outside consumer **1/0**, all fourteen reviewed steps and 1,667 stable source
+hashes pass. Only four exact owners gain scoped evidence. Another
+[four legacy file-output owners](legacy-file-output-boundary.md) become blocked:
+official source says no longer emitted, and all 5,259 Rust files/six references
+confirm there is no stock constructor. No mock or altered upstream is counted.
+Counts: **5,364 implemented / 1,141 missing / 116 blocked**, unchanged
+requirements and zero verified. Continue ordinary startup `configWarning`
+original-envelope/catalog-preservation evidence. No prohibited or hosted
+checks run; A11, unavailable legacy/external/platform/full-goal and release
+gates stay incomplete.
+
 The [ordinary realtime/MCP event envelopes](ordinary-realtime-mcp-envelopes-qualification.md)
 add genuine native item/audio and HTTP/SSE stream activation/event/stop behavior,
 retain all three existing realtime cases, and index an unchanged roots field.

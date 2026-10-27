@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The latest [ordinary terminal-interaction qualification](ordinary-terminal-interaction-qualification.md)
+passes **79 ordinary real-binary cases twice**, three selected WebSocket cases
+at three seeds, outside consumer **1/0** and all fourteen reviewed checks, with
+1,667 identical before/after source hashes. A real raw-TTY reader, exact stdin,
+original native frame and warm/cold history qualify four precise owners.
+Initial projection failures and the repaired strict-Credo failure are retained.
+[Four legacy file-output owners](legacy-file-output-boundary.md) remain blocked
+by official no-emitter evidence, without mock acceptance credit. Counts are
+**5,364 implemented / 1,141 missing / 116 blocked** contracts and unchanged
+**462 implemented / 12 missing / 11 blocked** requirements, zero verified.
+Fixed YOLO remains setup; no prohibited test/audit or hosted workflow runs.
+Full compatibility, A11, external/platform and release gates stay incomplete.
+
 The latest [ordinary realtime/MCP qualification](ordinary-realtime-mcp-envelopes-qualification.md)
 passes **78 ordinary real-binary cases twice**, selected WebSocket checks at
 three seeds, an isolated outside consumer and all fourteen reviewed steps with

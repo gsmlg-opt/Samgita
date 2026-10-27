@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary terminal-interaction envelope](ordinary-terminal-interaction-qualification.md)
+uses the stock native stdin tool, a real owned raw-TTY reader, an explicit
+release boundary, exact Unicode bytes and persisted warm/cold command history.
+Two source-invalid projection assumptions and the first matrix's strict-Credo
+failure remain recorded; corrected projections/helper extraction preserve all
+assertions and bounds. Final focused **1/0**, **79 ordinary cases twice**, three
+selected WebSocket cases at three seeds, outside consumer **1/0**, all fourteen
+reviewed checks and 1,667 identical source hashes pass. Four physical owners
+gain scoped evidence; [four legacy file-output owners](legacy-file-output-boundary.md)
+are blocked by explicit official non-emission documentation and exhaustive
+5,259-file source evidence, with no synthetic native credit. Counts: **5,364
+implemented / 1,141 missing / 116 blocked**, unchanged requirements and zero
+verified. Continue source-bound, ordinary startup `configWarning` original
+envelope/catalog-preservation qualification. Prohibited/hosted, A11, unavailable
+emitters/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary realtime media/MCP event envelopes](ordinary-realtime-mcp-envelopes-qualification.md)
 retain three real-native realtime cases, add literal item/PCM and actual Apps
 MCP HTTP/SSE activation/event/stop cases, and narrowly index an existing roots
