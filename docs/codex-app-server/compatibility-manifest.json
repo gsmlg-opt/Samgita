@@ -172038,324 +172038,428 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/1",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "987c3fc89a97317c79dde462acdb30f13c8d8e5d9da31fec83d947d2a5f64492",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/path",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/refName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/refName",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "refName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/sha",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/sha",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sha"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "eec489482a63d574f104fb4759971c70dfacc8e7dfea8b27986a418f588ec2b5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/1/properties/type/enum/0",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "36f30d444fd3be40b54f75e246869520a96a1be71ad00a8e647a7c1764fcaeea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/1/properties/url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/url",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/2",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "c8a72832579befbf71f27e8fc4cb251072957f7ee1b084954a788a05947a5c1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2/properties/package",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/package",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "package"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2/properties/registry",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/registry",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "fe0080db5ba2eb655c7bbdb8dc77160b135fceaa0893bc37d13e7a65da4ef229",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "registry"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "1e84d25e8f1228c7e3a33160b55dbc6112fd34a69282393f675849f2de9a8989",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/2/properties/type/enum/0",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "ffcac5bd2c4140b25c435e58e2ba4584a0f1c7363e4113aaa30f5534059aa01e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSource/oneOf/2/properties/version",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Actual plugin/search on two inert uninstalled local marketplace descriptors returns independently prescribed full Git and npm source maps. Whitespace-bearing A fields normalize to known literals; B changes URL/package and omitted options become explicit nulls; exact A bytes restore A. Held catalog gives exact empty replies, restoration and a distinct cold native repeat A. Twenty-four searches/32unique original raw RPC pairs bind full native maps before Session decode after JSONL delimiter removal. Bounds32 frames/direction,4096out/65536in,1MiB combined,events256/1MiB,tree16paths/1MiB,snapshots1MiB,5sRPC/60scase and checked owner/Port/PID cleanup remain. Inputs/journal stay exact,no threads/inference/clone/npm/install/activation/materialized assets. This physical source node alone gains evidence; no installed/read aliases,source materialization,registry/backend or remote success follows. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/2/properties/version",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "7cff19297c0e749f29bbe74b2db291b8f873e32f458a9e4a1a6bc1a610d99a0d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_sources_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "version"
     },
     {
@@ -222250,24 +222354,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-sources-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/multiAgentMode/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V398 scoped actual-native evidence: Fresh nine ordinary multiAgentMode cases directly require literal explicitRequestOnly in thirteen actual native start results while legacy inputs are ignored. Existing fixed YOLO startup,independent instructions/settings/history and17local assistant calls remain. Actual ID-correlated decoded results are observed; this module does NOT retain original incoming response bytes or original outgoing byte ledgers. No active delegation/custom response-mode/permission behavior or equal-hash alias promotion follows. Source and positive historical V384 evidence preexist; this run supplies fresh current selection. Final21reviewed ordinary cases pass21/0 twice;format/compile/strict Credo and394source guard pass,all393prior source bytes unchanged. Eleven whole upstream files and14exact physical nodes match the immutable pin. Other variants/transports/OS/backends and fully verified acceptance remain open. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/properties/multiAgentMode/allOf/0",
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {

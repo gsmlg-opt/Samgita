@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [plugin search-source unit](plugin-search-sources-qualification.md) qualifies
+exact4826–4838 through complete independent Git/npm maps, changed and omitted
+options, exact-byte restoration, held-catalog empty controls and cold rereads.
+All32 original correlated pairs/24searches, zero execution and owned cleanup
+remain. A fresh nine-case ordinary mode module binds exact6367 through decoded
+start results without a raw-byte claim. Final **21ordinary cases twice**,
+strict checks and394-source guard pass; all393 prior sources remain unchanged
+and11 whole upstream files match the pin. Only these14 become scoped
+implemented: **5,104 implemented /1,451 missing /66 blocked**, unchanged
+requirements and zero verified. Continue ordinary reported-import-history
+metadata; no actual import is implied by that API. Prohibited/broad/hosted, A11,
+unavailable producers and external/OS/platform/full-goal/release gates stay open.
+
 The [ordinary plugin/thread results](native-plugin-and-thread-results-qualification.md)
 qualify exact4783/6039/6371: source-controlled A/B/null dark-logo discovery,
 four literal deprecated resume-mode results and two direct ordered start-root

@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [plugin search-source profile](plugin-search-sources-qualification.md) proves
+complete Git/npm descriptor maps across declaration changes/null options,
+source removal/restoration and a distinct cold native. All32 original RPC pairs,
+24searches and zero execution remain asserted. Fresh ordinary mode selection
+also binds the direct start-mode constant6367 without original-frame evidence.
+Final **21ordinary cases twice**, strict checks and394-source guard pass;
+all393 prior sources retain their bytes and11 whole upstream files match the
+pin. Only4826–4838/6367 become scoped implemented: **5,104 implemented
+/1,451 missing /66 blocked**, unchanged requirements and zero verified. No
+clone/npm/materialization/registry/backend success follows. Continue ordinary
+reported-history persistence; prohibited/full-goal gates remain incomplete.
+
 The [ordinary plugin/thread result unit](native-plugin-and-thread-results-qualification.md)
 proves dark-logo source replacement/removal/restoration and cold discovery,
 four direct resume-mode literals and two ordered start-root results. Independent
