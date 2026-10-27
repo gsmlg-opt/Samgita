@@ -134512,24 +134512,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Fresh real immutable-native execution of the unchanged three-case configuration metadata file directly asserts the complete sessionFlags object in config/read.origins for an owned desktop key, with an independently hashed CLI-layer version. Requested user light persists while effective warm CLI dark wins; a cold process without desktop overrides exposes the same saved light bytes and exact user origin. Only the concrete ConfigReadResponse source variant owner3611 gains scoped evidence; earlier leaf owners remain unchanged.",
+        "Fixed YOLO values participate only as fixture launch configuration in the stock layer-version digest; no permission/security/approval/credential behavior is tested. No thread/turn or model request occurs. No raw-original-frame, other config-source/alias/field/transport/OS, full method, full compatibility or release claim. Prohibited/broad/hosted/A11/external gates remain incomplete. The ordinary runner clears CODEX_MODEL_FIXTURE_SCRIPT so its children use the reviewed committed fixture; the override was absent during this shell qualification."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/6",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fc664991962e61fe97ce41a5bfadea7f71bd92f0bf511a04ff3053d27577fcd6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:47",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:55",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:60",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:65",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:72",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:76",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:84",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:185",
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:204"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

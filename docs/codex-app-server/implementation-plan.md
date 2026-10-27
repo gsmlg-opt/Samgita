@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [complete session-flags origin object](config-override-metadata-qualification.md)
+binds exact owner 3611 to the unchanged three-case actual-native configuration
+profile, independently prescribed CLI hash, displaced persisted edit and cold
+effective value/origin. Focused **3/0**, **67 ordinary cases twice**, three
+selected WebSocket cases at each of three seeds, outside consumer **1/0**, all
+14 reviewed checks and 1,660 unchanged guarded sources pass. Counts: **5,302
+implemented / 1,209 missing / 110 blocked**, unchanged requirements and zero
+verified. Continue exact source-bound search projection alternatives; prohibited,
+external and full-goal/release gates remain incomplete.
+
 The [native projection source audit](native-projection-boundaries.md) binds
 42 key files/all 5,259 Rust files and five exact nodes to the official pin.
 Only skill outer-null owners 5092/5097 become blocked; selective tool statuses

@@ -1,5 +1,73 @@
 # Native displaced configuration writes
 
+## Complete ordinary session-flags origin object
+
+This follow-up binds only canonical **3611**,
+`schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/6`,
+to the unchanged three-case native configuration file. The complete literal
+`config/read.origins["desktop.appearanceTheme"].name` must equal
+`{"type":"sessionFlags"}`, with its independently prescribed CLI-layer hash.
+The lower-priority user `light` edit persists while warm CLI `dark` wins; a cold
+process without the desktop overrides exposes the same saved bytes as `light`
+and the exact user-file origin. The existing equal-value/delete and ordered
+batch cases preserve their actual native effects. No duplicate fixture is added.
+
+Earlier leaf-owner qualification below did not grant the enclosing source
+variant. This follow-up independently binds that entire unit-object node in
+both stable and experimental exports, not another alias or method. Eight full
+producer/config sources match the official pinned archive. CLI layer creation
+is `config/src/loader/mod.rs:423`; `config/src/state.rs:132,555` constructs layer
+versions/origins; `config/src/fingerprint.rs:54` hashes sorted compact JSON;
+`app-server/src/config_layer.rs:28` maps SessionFlags; and
+`app-server/src/config_manager_service.rs:151-168` returns the actual origins.
+Source/node binding `/tmp/samgita-v469-binding/source.json`, SHA256
+`9aefadf6259cc33b3205d599512574e2f89286f6a82cfc737a0bd827dcf5a449`.
+The immutable source/executable pin is unchanged from the records below.
+
+The current user restriction review covers all three test bodies and their
+executed helper paths. They create no thread/turn and require zero model
+requests. Fixed YOLO parameters are launch setup only; they participate in the
+stock version digest without testing any permission decision or enforcement.
+Unused shared fixture scenarios receive no execution or acceptance credit.
+`CODEX_MODEL_FIXTURE_SCRIPT` was absent in this shell. The ordinary runner now
+removes that optional override from child environments, keeping its reviewed
+committed fixture selected; no global environment/helper/test behavior changes.
+
+Focused native command from the driver package passes **3/0**, seed `501432`:
+
+```sh
+mix test test/native_config_override_metadata_test.exs --warnings-as-errors --seed 501432
+```
+
+Unchanged test SHA256
+`997837bc9da59b4beb661556d3b0bffdc52180d4bd29ad522765f5d9c8bc3174`;
+log `/tmp/samgita-v469-owning-501432.log`, SHA256
+`3c2d0609cbb240ae05baf41988841fede894656a78d7079d84f9bd46c7875539`.
+The ordinary selection now names 43 files/67 cases. Final combined source passes
+**67/0** at each seed `501432`/`987654` (110.336/110.839 seconds), all three
+selected WebSocket cases at each seed `455834`/`501432`/`987654`, and the isolated
+outside consumer **1/0**. All **14** reviewed steps pass, including inventory,
+warning-free driver/umbrella compilation, scoped/root formatting, strict Credo,
+forced Dialyzer and assets. Assets retains the unrelated configured Bun 1.3.13 /
+installed 1.1.42 warning with exit zero. No gate is weakened. All **1,660** guarded
+source hashes remain identical throughout the checks, with reviewed normalized
+fingerprint `7dec070021a232a757d4e9ff2c92e3d242b2aeba24b1d3737851d96a6bb98849`.
+
+Final command/log evidence is `/tmp/samgita-ordinary-v469/`; results/source
+SHA256 `651da14251a5193fd76c6c368b5b81315d8ff2129bcc91fef04ad6c74ef7b741` /
+`eec53d1714ce27d038746b4d285d5ecb85d2e4fbfa9c62e836ed086a05bde934`;
+command-plan SHA256
+`93a6bc90dd9cc93ed5172a372bcabc83f0ae936aca2cfb33680abf21fe391df4`.
+No raw-original-frame, other config-source/alias/transport/OS or full-method
+compatibility follows from this owner.
+
+Counts: **5,302 implemented / 1,209 missing / 110 blocked** contracts;
+**462 implemented / 12 missing / 11 blocked** requirements, zero verified.
+Prohibited security/permission tests/audits, broad/hosted workflows, A11,
+unavailable producers and external/backend/OS/full-goal/release gates stay
+incomplete. No publication or deployment. Older checkpoints below keep their
+original scoped counts and evidence.
+
 ## Default and origin discriminators
 
 This continuation qualifies exactly canonical **3554/3612/3613** on immutable

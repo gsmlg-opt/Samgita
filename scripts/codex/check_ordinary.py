@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "22f9ebd2cdcc6c9a6be2e7a0f4cc7d53bb218f5498919662135d9d14eaa1186d"
+REVIEWED_SOURCE_SHA256 = "7dec070021a232a757d4e9ff2c92e3d242b2aeba24b1d3737851d96a6bb98849"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_search_input_wait_test.exs
@@ -63,9 +63,10 @@ native_mcp_status_detail_test.exs
 native_local_config_migration_test.exs
 native_local_plugin_migration_test.exs
 native_local_memory_migration_test.exs
+native_config_override_metadata_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
-DRIVER_CASES = 64
+DRIVER_CASES = 67
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -181,7 +182,7 @@ def execute(steps, output, before):
         raise SystemExit("BLOCKED_ENV: owned POSIX process-group lifecycle required")
     env = os.environ.copy()
     for key in ("MIX_BUILD_PATH", "MIX_DEPS_PATH", "MIX_LOCKFILE", "MIX_EXS", "MIX_CONFIG_PATH",
-                "MIX_TEST_PARTITION", "ERL_LIBS"):
+                "MIX_TEST_PARTITION", "ERL_LIBS", "CODEX_MODEL_FIXTURE_SCRIPT"):
         env.pop(key, None)
     binary = CACHE / "codex-x86_64-unknown-linux-musl"
     if not binary.is_file() or digest(binary) != BINARY_SHA256:

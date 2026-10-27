@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [complete session-flags origin object](config-override-metadata-qualification.md)
+qualifies only canonical 3611 through the unchanged native configuration profile,
+independent CLI-layer hash and cold persisted value/origin. Focused **3/0**,
+**67 ordinary cases twice**, three selected WebSocket cases at three seeds,
+outside consumer **1/0**, all 14 reviewed checks and 1,660 unchanged sources pass.
+Counts: **5,302 implemented / 1,209 missing / 110 blocked**, unchanged requirements
+and zero verified. No prohibited tests/audits or hosted workflow runs. Continue
+exact source-bound search projection alternatives; full-goal and release gates
+remain incomplete.
+
 The [native projection source audit](native-projection-boundaries.md) matches
 all 5,259 Rust files/42 key sources and five exact nodes to the official pin.
 Only two skill outer-null owners become blocked. Three selective tool-status
