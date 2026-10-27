@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary plugin-read/local-environment unit](ordinary-turn-environments-qualification.md#final-combined-source-functional-qualification)
+passes all fourteen reviewed checks: **64 files / 125 actual-native cases at
+each seed**, three selected neutral WebSocket seeds, outside consumer **1/0**,
+static/build checks and **1,683** identical guarded sources. Complete original
+read exchanges and seven local environment turns bind only owners1479/6522
+through24 immutable producers. Loaded selection snapshots are separate from
+durable cwd/model/history. The initial Credo findings remain recorded; exact
+helper extraction preserves all assertions and limits. Contracts become
+**5,491 implemented / 1,000 missing / 130 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Next: integrate
+the independently reviewed ordinary local plugin-search cursor/limit scratch
+case, then focused and final-source qualification. The draft is not acceptance;
+remote-limit success retains its missing state. Prohibited/hosted, A11,
+source-unreachable/external/OS/full-goal and release gates remain incomplete.
+
 The [seven-owner native evidence index](ordinary-request-evidence-index.md)
 binds exact existing correlation/effect assertions to the passed63-file/124-case
 two-seed matrix. Only seven manifest metadata rows change; all1,681 other

@@ -3,7 +3,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
 
   alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
-  alias SamgitaProtocolCodex.Error
+  alias SamgitaProtocolCodex.{Error, Schema, Wire}
   import SamgitaCodexDriver.TurnFixture, only: [call: 3, configure_model: 2, notification: 3]
 
   @moduletag :real_codex
@@ -28,6 +28,8 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     empty_clears: [[@plugin], []],
     present_disables: [[@plugin], [], [@plugin]]
   }
+  @ordinary_summary ~w(id name source installed enabled interface keywords version localVersion)
+  @ordinary_detail ~w(marketplaceName marketplacePath description skills onboardingSkill hooks apps appTemplates mcpServers scheduledTasks summary)
 
   # Bounded test-only capture of the actual successfully sent synthetic request.
   # Native replies pass through unchanged. Initialization/credentials are excluded.
@@ -41,19 +43,36 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
       inbound = Keyword.fetch!(opts, :inbound)
+      plugin_read = Keyword.fetch!(opts, :plugin_read)
 
-      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :inbound])),
-           do: {:ok, Map.merge(state, %{capture: capture, inbound: inbound})}
+      with {:ok, state} <- Stdio.open(Keyword.drop(opts, [:capture, :inbound, :plugin_read])),
+           do:
+             {:ok,
+              Map.merge(state, %{capture: capture, inbound: inbound, plugin_read: plugin_read})}
     end
 
     @impl true
     def send(state, encoded) do
       wire = JSON.decode!(encoded)
 
-      if wire["method"] == "turn/start" and Map.has_key?(wire, "id") do
-        capture_send(state, encoded, wire)
-      else
-        Stdio.send(state, encoded)
+      case wire["method"] do
+        "turn/start" when is_map_key(wire, "id") ->
+          capture_send(state, encoded, wire)
+
+        "plugin/read" ->
+          send_plugin_read(state, encoded, wire)
+
+        _ ->
+          Stdio.send(state, encoded)
+      end
+    end
+
+    defp send_plugin_read(state, encoded, wire) do
+      with {:ok, next} <- Stdio.send(state, encoded) do
+        case record_plugin_read(next, :out, encoded, wire) do
+          :ok -> {:ok, next}
+          {:error, failure} -> {:error, failure, next}
+        end
       end
     end
 
@@ -72,7 +91,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     def handle_info(message, state) do
       case Stdio.handle_info(message, state) do
         {:ok, events, next} ->
-          case Enum.reduce_while(events, :ok, &record_inbound(&1, &2, next.inbound)) do
+          case Enum.reduce_while(events, :ok, &record_event(&1, &2, next)) do
             :ok -> {:ok, events, next}
             {:error, failure} -> {:error, failure, next}
           end
@@ -80,6 +99,41 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
         other ->
           other
       end
+    end
+
+    defp record_event({:message, encoded} = event, :ok, state) do
+      wire = JSON.decode!(encoded)
+      id = Agent.get(state.plugin_read, & &1.id)
+
+      if id != nil and wire["id"] === id do
+        case record_plugin_read(state, :in, encoded, wire) do
+          :ok -> record_inbound(event, :ok, state.inbound)
+          failure -> {:halt, failure}
+        end
+      else
+        record_inbound(event, :ok, state.inbound)
+      end
+    end
+
+    defp record_event(event, :ok, state), do: record_inbound(event, :ok, state.inbound)
+
+    # One complete synthetic plugin/read exchange, independent of the retained
+    # turn-request and settings-notification captures and their original bounds.
+    defp record_plugin_read(state, direction, encoded, wire) do
+      Agent.get_and_update(state.plugin_read, fn ledger ->
+        size = byte_size(encoded)
+        limit = if direction == :out, do: 4096, else: 65_536
+        id = if direction == :out, do: wire["id"], else: ledger.id
+
+        if length(ledger.records) < 2 and size <= limit and ledger.bytes + size <= 69_632 do
+          entry = %{direction: direction, encoded: encoded, wire: wire}
+
+          {:ok,
+           %{ledger | id: id, records: ledger.records ++ [entry], bytes: ledger.bytes + size}}
+        else
+          {{:error, Error.new(:test_capture_overflow)}, ledger}
+        end
+      end)
     end
 
     defp record_inbound({:message, encoded}, :ok, inbound) do
@@ -200,7 +254,15 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
         Supervisor.child_spec({Agent, fn -> %{records: [], bytes: 0} end}, id: :settings_inbound)
       )
 
-    Map.merge(ctx, %{capture: capture, inbound: inbound})
+    plugin_read =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{id: nil, records: [], bytes: 0} end},
+          id: :plugin_read_capture
+        )
+      )
+
+    Map.merge(ctx, %{capture: capture, inbound: inbound, plugin_read: plugin_read})
   end
 
   @tag scenario: :enabled_omitted
@@ -227,7 +289,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     pid = start_native(ctx)
     native = call(pid, "server/diagnostics", %{})["process"]["id"]
     assert hash(File.read!("/proc/#{native}/exe")) == @binary_sha
-    installed_skill = install_plugin(ctx, pid)
+    {installed_skill, read_originals} = install_plugin(ctx, pid)
     files = snapshot([ctx.marketplace, ctx.manifest, ctx.skill, installed_skill])
     config_bytes = File.read!(Path.join(ctx.fixture.codex_home, "config.toml"))
     generation = Session.status(pid).generation
@@ -252,6 +314,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
 
     assert length(ModelFixture.requests(ctx.fixture)) == 2
     assert Agent.get(ctx.capture, &length/1) == 2
+    assert Agent.get(ctx.plugin_read, & &1) === read_originals
     assert snapshot(Map.keys(files)) === files
     assert File.read!(Path.join(ctx.fixture.codex_home, "config.toml")) === config_bytes
     trailing = assert_idle(pid)
@@ -260,6 +323,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
     refute File.exists?("/proc/#{native}")
     assert snapshot(Map.keys(files)) === files
     assert_provider(ctx, [first, followup], [expected_count, expected_count * 2])
+    assert Agent.get(ctx.plugin_read, & &1) === read_originals
 
     assert_settings_envelopes(
       ctx,
@@ -323,6 +387,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
              [
                capture: ctx.capture,
                inbound: ctx.inbound,
+               plugin_read: ctx.plugin_read,
                executable: ctx.binary,
                args: [
                  "-c",
@@ -380,7 +445,7 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
 
     assert listing["marketplaceLoadErrors"] == []
     call(pid, "plugin/install", params)
-    detail = call(pid, "plugin/read", params)["plugin"]
+    {detail, read_originals} = read_plugin(ctx, pid, params)
     assert %{"installed" => true, "enabled" => true, "id" => @plugin} = detail["summary"]
     assert [%{"enabled" => true}] = detail["skills"]
 
@@ -393,7 +458,85 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
 
     assert skill["enabled"] == true and File.regular?(skill["path"])
     assert File.read!(skill["path"]) == @skill
-    skill["path"]
+    {skill["path"], read_originals}
+  end
+
+  defp read_plugin(ctx, pid, params) do
+    id = "owned-plugin-read-#{ctx.scenario}"
+    wire = %{"id" => id, "method" => "plugin/read", "params" => params}
+    expected = expected_ordinary_plugin(ctx)
+
+    assert {:ok, %{"id" => ^id, "result" => %{"plugin" => detail}} = response} =
+             Session.request_native(pid, wire, timeout_ms: 5000)
+
+    original = Agent.get(ctx.plugin_read, & &1)
+    assert original.id === id
+    assert [sent, received] = original.records
+    assert sent.direction === :out and received.direction === :in
+    assert sent.wire === wire and sent.encoded === JSON.encode!(wire)
+    assert received.wire === response
+    assert JSON.decode!(received.encoded) === response
+    assert {:ok, decoded} = Wire.decode(received.encoded, max_depth: 32)
+    assert decoded === response
+    assert {:ok, encoded} = Wire.encode(decoded, max_depth: 32)
+    assert JSON.decode!(encoded) === response
+    assert :ok = Schema.validate(protocol_schema("ClientRequest.json"), wire)
+    assert :ok = Schema.validate(protocol_schema("JSONRPCResponse.json"), response)
+    assert Enum.sort(Map.keys(response)) === ["id", "result"]
+    assert original.bytes === byte_size(sent.encoded) + byte_size(received.encoded)
+
+    # Full original response bytes are preserved for losslessness/correlation.
+    # Only this independently specified ordinary metadata projection is qualified.
+    ordinary =
+      detail
+      |> Map.take(@ordinary_detail)
+      |> Map.update!("summary", &Map.take(&1, @ordinary_summary))
+
+    assert ordinary === expected
+    {detail, original}
+  end
+
+  defp expected_ordinary_plugin(ctx) do
+    %{
+      "marketplaceName" => "owned-local-market",
+      "marketplacePath" => ctx.marketplace,
+      "description" => "Owned inert skill",
+      "summary" => %{
+        "id" => @plugin,
+        "name" => @name,
+        "source" => %{"type" => "local", "path" => Path.join(ctx.fixture.workspace, @name)},
+        "installed" => true,
+        "enabled" => true,
+        "interface" => nil,
+        "keywords" => [],
+        "version" => nil,
+        "localVersion" => nil
+      },
+      "skills" => [
+        %{
+          "name" => @name <> ":inspect",
+          "description" => "Owned inert inspection",
+          "shortDescription" => nil,
+          "interface" => nil,
+          "path" => ctx.skill,
+          "enabled" => true
+        }
+      ],
+      "onboardingSkill" => nil,
+      "hooks" => [],
+      "apps" => [],
+      "appTemplates" => [],
+      "mcpServers" => [],
+      "scheduledTasks" => nil
+    }
+  end
+
+  defp protocol_schema(relative) do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> File.read!()
+    |> JSON.decode!()
   end
 
   defp new_thread(ctx, pid) do

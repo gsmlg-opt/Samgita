@@ -1,5 +1,9 @@
 # Existing ordinary native request evidence
 
+The subsequent [V515 ordinary plugin read](ordinary-plugin-read-qualification.md)
+adds the missing original read exchange and string-ID evidence. Its predecessor
+exclusion below records the V514 boundary, before that new test coverage.
+
 V514 indexes seven exact physical owners after the final functional source in
 `97e9c4e`. It adds no scenario or executable change. All owning cases already
 ran in the [successful 124-case two-seed selection](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification).

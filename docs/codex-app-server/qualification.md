@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [ordinary plugin-read and local-environment unit](ordinary-turn-environments-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional checks**: **64 files / 125 actual-native
+cases at both seeds**, selected neutral WebSocket cases at three seeds,
+outside consumer **1/0**, compile/format/Credo/Dialyzer/assets and **1,683**
+identical guarded source hashes. Original read exchanges and seven real local
+environment turns bind exactly two owners through 24 immutable producer files.
+The initial capture-helper Credo findings are corrected without weakening
+assertions, bounds or waits. Contracts: **5,491 implemented / 1,000 missing /
+130 blocked**; requirements **462 implemented / 12 missing / 11 blocked**;
+zero verified. Next is the source-reviewed local-search cursor/limit draft,
+which has no runtime acceptance yet. Prohibited/hosted, A11, unavailable
+emitters/external/OS, full compatibility and release remain incomplete.
+Nothing is published or deployed.
+
 The [existing native request index](ordinary-request-evidence-index.md) adds
 scoped evidence for seven exact physical owners from the passed63-file/124-case
 two-seed matrix. The final metadata proof retains all1,681 other guarded source
