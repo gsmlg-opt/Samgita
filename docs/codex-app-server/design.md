@@ -416,6 +416,13 @@ separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 
+Direct MCP has separate caller and backend contracts. The
+[ordinary metadata profile](mcp-request-metadata-qualification.md) preserves
+original optional JSON shapes through Samgita; native Option decoding, thread
+metadata and pinned RMCP progress tokens determine backend requests. Backend
+token allocation is per Peer and independent of caller request IDs. A fresh
+cold thread/connection is initialization evidence, not old-work replay.
+
 Local plugin skill metadata is rescanned independently of manifest/config caches.
 The [optional skill profile](plugin-skill-optional-metadata-qualification.md)
 distinguishes a populated interface with absent icons from no interface while

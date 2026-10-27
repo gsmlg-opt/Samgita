@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary direct MCP profile](mcp-request-metadata-qualification.md) qualifies
+exact4398–4402 via original nested JSON/optional caller shapes and complete actual
+backend params/results across fresh warm/cold roots. A retained oracle failure
+is source-corrected for mandatory SDK progress tokens; startup0/calls1–4 and
+cold reset remain exact. After-repair1/0, final **2/0 twice**, strict Credo549,
+syntax/compile/format and383 stable sources pass; all381 prior sources plus the
+unchanged existing peer remain exact. Contracts become **5,065 implemented
+/1,490 missing /66 blocked**; requirements stay **462 implemented /12 missing
+/11 blocked**, zero verified. Continue source-supported ordinary metadata and
+query variants. Prohibited/broad/hosted, A11, legacy/external/OS/platform and
+full-goal gates remain incomplete.
+
 The [optional skill metadata profile](plugin-skill-optional-metadata-qualification.md)
 qualifies exact4676/4717/4721/4728 through fixed null onboarding and genuine
 rich/stripped/held warm and cold YAML scans with restored metadata and concrete

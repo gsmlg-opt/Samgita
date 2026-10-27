@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [ordinary direct MCP profile](mcp-request-metadata-qualification.md) adds
+complete original nested/optional inputs and actual backend/results, preserving
+a source-corrected initial progress-token oracle failure and cold counter reset.
+Final2/0 twice and strict checks pass with383 stable sources/all381 prior unchanged
+plus the existing unchanged peer. Only4398–4402 become scoped implemented;
+full compatibility and prohibited/hosted gates remain incomplete.
+
 The [optional skill metadata profile](plugin-skill-optional-metadata-qualification.md)
 qualifies four exact null alternatives through direct local reads and unchanged
 skill identity across warm/cold YAML removal/restoration. Initial1/0, focused2/0

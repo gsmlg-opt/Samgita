@@ -3303,14 +3303,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/mcp-direct-qualification.md"
+        "docs/codex-app-server/mcp-direct-qualification.md",
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:mcpServer/tool/call",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified.",
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
       ],
       "params": {
         "$ref": "#/definitions/McpServerToolCallParams"
@@ -3341,7 +3343,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs",
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17785,14 +17788,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/mcp-direct-qualification.md"
+        "docs/codex-app-server/mcp-direct-qualification.md",
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:mcpServer/tool/call",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified.",
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
       ],
       "prerequisites": [
         "initialized"
@@ -17809,7 +17814,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs",
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -158256,131 +158262,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallParams.json#/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/properties/_meta",
       "required": false,
       "schema": "v2/McpServerToolCallParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallParams.json#/properties/arguments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/properties/arguments",
       "required": false,
       "schema": "v2/McpServerToolCallParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "arguments"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallParams.json#/properties/server",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/properties/server",
       "required": true,
       "schema": "v2/McpServerToolCallParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "server"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/McpServerToolCallParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-request-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallParams.json#/properties/tool",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native ordinary direct MCP2025-06-18 requests: eight calls across distinct warm/cold native processes and fresh ephemeral normal root threads independently preserve full nested Unicode arguments/nonreserved metadata and original sent bytes/IDs, with exact actual MCP-peer params/result. Omitted and explicit-null input remain distinct on caller wire but converge at native Option decoding; empty argument objects stay present. Complete backend maps include source-proven native threadId and RMCP per-Peer progress tokens: startup list0 then four calls1..4, cold reset. Initial native oracle failure is retained; pinned SDK source repairs only missing mandatory progress metadata and strengthens startup controls. Strict quote-style finding is fixed without behavior/gate changes. Exact18selected requests, bounded backend journal/snapshots, checked owned native/helper cleanup, unchanged config/fixture and zero inference; no old-thread replay, model/resource/external/auth/permission operation. After-repair1/0, final2ordinary cases twice plus strict checks pass with383stable sources/all381prior unchanged and unchanged existing peer newly guarded,770exports/15descriptors exact. Prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4398-4402 become scoped implemented; no verified/whole-method/alias/modern-MCP/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete; no publication/deployment."
+      ],
       "nullable": false,
       "pointer": "/properties/tool",
       "required": true,
       "schema": "v2/McpServerToolCallParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_request_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tool"
     },
     {
