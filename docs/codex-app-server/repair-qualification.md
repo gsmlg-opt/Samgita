@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [interrupted-child close profile](interrupted-child-close-qualification.md)
+requires actual child HTTP/native readiness and both genuine interrupt
+observations before releasing real close_agent. Independent complete live maps,
+actual tool output and warm/first-cold selective history agree with four total
+model requests. Initial **1/0**; a strict-Credo complexity finding is repaired
+without removing assertions. Final focused **1/0**, **42ordinary cases twice**,
+syntax/strict checks and408stable-source guard pass;all406prior paths stay exact
+and26whole sources match the pin. Only2084/5293 become scoped implemented:
+**5,165 implemented /1,390 missing /66 blocked**, unchanged requirements and zero
+verified. Continue ordinary saved-setting null/process-stream union owners;
+prohibited/full-goal gates remain incomplete.
+
 The [controlled child-resume profile](controlled-child-resume-qualification.md)
 requires exact native pendingInit/null in complete resumeAgent maps/live warm
 history and independent actual provider pending_init. Existing thirteen requests,

@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [interrupted-child close unit](interrupted-child-close-qualification.md)
+qualifies only2084/5293 through real child HTTP/native readiness, public
+interruption ACK plus matched interrupted completion, then explicit release
+of the root close action. Independent complete live maps, actual tool result
+and warm/first-cold persisted entry agree without new inference. Initial native
+**1/0**; a Credo complexity failure is fixed by extracting unchanged assertions.
+Final focused **1/0**, **42ordinary cases twice**, syntax/strict checks and
+408stable sources pass;all406prior paths stay exact and26whole sources match
+the pin. Only two become scoped implemented:
+**5,165 implemented /1,390 missing /66 blocked**, unchanged requirements and zero
+verified. Shutdown/private analytics/transient history stay unqualified.
+Continue ordinary saved-setting null and process-stream union owners;
+prohibited/full-goal gates remain incomplete.
+
 The [controlled child-resume unit](controlled-child-resume-qualification.md)
 qualifies only2082/5291 through an existing real V1 completed-child reload with
 no new child input. Complete independent resumeAgent maps/live warm history
