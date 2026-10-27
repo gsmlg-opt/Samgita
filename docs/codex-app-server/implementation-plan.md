@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [initial thread plugin-list output](turn-start-settings-qualification.md)
+binds exact owner 6362 to the present empty native result in the retained
+five-case plugin selection/retention profile. Only fixed process YOLO literals
+change in the owning test. Focused **5/0**, **73 ordinary cases twice**, three
+WebSocket cases at each of three seeds, outside consumer **1/0**, all 14 reviewed
+checks and 1,660 stable source hashes pass. Counts: **5,310 implemented /
+1,199 missing / 112 blocked**, unchanged requirements and zero verified.
+Continue original-frame/causal-order qualification of ordinary settings, hook
+and skill change events; prohibited/external/full-goal/release gates stay open.
+
 The [suggested plugin interface reload](native-plugin-and-thread-results-qualification.md)
 proves actual A/B/logo-omitted/interface-omitted/restored/cold projections through
 both native inventory and search, retaining false installed/enabled state and

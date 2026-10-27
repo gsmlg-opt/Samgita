@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [initial thread plugin-list result](turn-start-settings-qualification.md)
+directly requires present `[]` before settings or turns, with retained native
+plugin/context/retention effects. The owning test only gains fixed process YOLO.
+Focused **5/0**, **73 ordinary cases twice**, selected WebSocket cases at three
+seeds, outside consumer **1/0**, all 14 reviewed steps and 1,660 unchanged sources
+pass. Only 6362 gains scoped evidence: **5,310 implemented / 1,199 missing /
+112 blocked**, unchanged requirements and zero verified. No prohibited checks
+or hosted workflow runs. Continue ordinary settings/hook/skill event evidence;
+full-goal and release gates remain incomplete.
+
 The [suggested plugin inventory/search reload](native-plugin-and-thread-results-qualification.md)
 retains original frames and independently prescribed optional metadata across
 A/B/omission/restoration/cold reads without installing or executing plugins.

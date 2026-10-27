@@ -1,5 +1,66 @@
 # Native turn-start settings
 
+## Initial thread plugin-list output
+
+V472 freshly executes the existing five-case local-plugin selection file and
+binds only canonical output owner **6362**,
+`schema:v2/ThreadStartResponse.json#/properties/disabledPluginIds`. The direct
+initial native reply must contain exactly `[]` before settings or turns run.
+`thread_processor.rs:1636–1638` returns the configuration snapshot's saved list;
+`v2/thread.rs:193–195` declares the response vector. The exact canonical node is
+`f27565f754f924a35a552321462b8f9c8160cffc642e58704fd250f8292d6364`
+in independently checked stable and experimental exports. Both complete
+producer/type files match the official immutable archive. Binding
+`/tmp/samgita-v472-plugin-start-binding/source.json`, SHA256
+`bcc1f2a52cf51ead756e47ee30cf9f614c7c855204f69a54df7ba5d3c6b7a6d7`.
+
+The sole test change adds fixed process-level `approval_policy="never"` and
+`sandbox_mode="danger-full-access"` CLI settings, matching its existing thread
+setup. The local-plugin startup helper remains intact; the ordinary helper's
+permanent `plugins=false` override would suppress the feature being exercised.
+No permission/security/approval/credential behavior is tested. The file retains
+native plugin installation, causal settings notices, omitted/null/empty/nonempty
+turn overrides, exact outgoing turn requests, actual provider-observed plugin
+hints, second-turn retention, explicit resume output, immutable inputs and
+checked owned cleanup. It uses a local deterministic provider, not synthetic
+app-server responses. No helper, assertion, bound or timeout changes.
+
+Focused **5/0**, seed `501432`, 7.1 ExUnit seconds:
+
+```sh
+mix test test/native_turn_plugin_list_test.exs --warnings-as-errors --seed 501432
+```
+
+Test SHA256 `ff48547ba5ed11771da040d98415550da665b97d6285a486e03119c4dcdbfdc1`;
+log `/tmp/samgita-v472-plugin-overrides-501432.log`, SHA256
+`b43707cd7fdb40a4fa2395dc03c6dcaa74b7638cfaf487651019830a3f1cfd32`.
+The ordinary runner now selects 44 files/73 cases. Final combined source passes
+**73/0** at each seed `501432`/`987654` (119.307/119.210 seconds), three selected
+WebSocket cases at each of three seeds, and the outside consumer **1/0**. All
+**14** reviewed checks pass, including inventory, format, warning-free compile,
+strict Credo, forced Dialyzer and assets. Assets retains the unrelated Bun version
+warning with exit zero. All **1,660** guarded source hashes remain identical.
+
+Final commands/logs `/tmp/samgita-ordinary-v472/`; results/source SHA256
+`50a30479d227d8650a9f3594cfe88e46d25b9deae55b0fac7c95ff35e646f934` /
+`4290f4878ca496585fd683334d52e1d000c2aa7e9b9e732b5f2d7381c3107d47`;
+plan SHA256 `80517c8d942bef6b21d9e89d0358bd3d51e8cda4f189930f0656defff3c68330`;
+reviewed fingerprint
+`d8327ededacdfa42acc35d7a0116768a85ea7d8d74981a5988985e096f81f6cc`.
+
+This is a decoded correlated reply oracle, **not original incoming-byte proof**.
+No `ThreadStartParams` input field, nonempty startup output, missing/default
+decoding, alias or complete method/schema is newly qualified. Earlier turn-input
+owners below remain unchanged. Contracts: **5,310 implemented / 1,199 missing /
+112 blocked**; requirements remain **462 implemented / 12 missing / 11 blocked**,
+zero verified. Prohibited/broad/hosted, A11, unavailable native producers,
+external/OS/backend/full-goal and release gates remain incomplete. No publication
+or deployment. Earlier records retain their original scope and results.
+Continue original-frame and causal-order qualification of ordinary settings,
+hook and skill change notifications; retain excluded mixed-file profiles.
+
+## Earlier turn-input scope
+
 This unit qualifies selected `turn/start` personality and plugin-list behavior
 against stock `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`, executable SHA256

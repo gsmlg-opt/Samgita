@@ -265,7 +265,15 @@ defmodule SamgitaCodexDriver.NativeTurnPluginListTest do
              [
                capture: ctx.capture,
                executable: ctx.binary,
-               args: ["app-server", "--listen", "stdio://"],
+               args: [
+                 "-c",
+                 ~s(approval_policy="never"),
+                 "-c",
+                 ~s(sandbox_mode="danger-full-access"),
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ],
                cwd: ctx.fixture.workspace,
                inherit_env: [],
                env: %{

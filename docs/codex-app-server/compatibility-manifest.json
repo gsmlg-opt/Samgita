@@ -224095,27 +224095,43 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-start-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/disabledPluginIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Fresh real immutable-native five-case local plugin selection profile directly requires thread/start.disabledPluginIds to equal the present empty list before subsequent settings or turns. Actual plugin installation, causal baseline notices, omitted/null/empty/nonempty turn overrides, exact outgoing turn requests, provider-observed hints and second-turn retention preserve independent native effects and decoded result correlation. Only this exact initial ThreadStartResponse output field gains new evidence; the turn input owner was already implemented.",
+        "The sole owning-test change adds fixed process-level approval_policy=never and sandbox_mode=danger-full-access startup literals, consistent with its existing fixed thread setup; no permission/security/approval/credential behavior is tested. No new input, nonempty startup-output, missing/default decoding, original incoming-byte, alias/full-schema/method/transport/OS/external/full-goal or release credit. Existing assertions, helpers, capture bounds and cleanup stay intact; prohibited/broad/hosted/A11/unavailable gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/disabledPluginIds",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "f27565f754f924a35a552321462b8f9c8160cffc642e58704fd250f8292d6364",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:176",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:179",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:182",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:185",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:190",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:196",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:340",
+          "apps/samgita_codex_driver/test/native_turn_plugin_list_test.exs:352"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disabledPluginIds"
     },
     {
