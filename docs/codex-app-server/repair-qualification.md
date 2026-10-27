@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [original dynamic-tool item profile](dynamic-tool-original-item-qualification.md)
+preserves complete native started/completed input bytes and validates their
+independent full maps against the canonical experimental export. Exact false
+tool result,two provider requests,overall completed turn,bounds and checked
+cleanup remain. Focused **1/0**, **50ordinary cases twice**,eight checks and
+414stable sources pass;only2648 gains scoped evidence. Contracts become
+**5,227 implemented /1,328 missing /66 blocked**, unchanged requirements and
+zero verified. Continue ordinary native realtime service-error closure;
+prohibited/full-goal gates remain incomplete.
+
 The [ordinary Interrupt Hook profile](ordinary-interrupt-hook-qualification.md)
 checks the full original native Hook pair plus interrupted terminal from one
 root cancellation and one owned sync handler. Provider inference stays held;

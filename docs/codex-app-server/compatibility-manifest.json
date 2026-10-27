@@ -104863,24 +104863,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-original-item-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V436 selected complete canonical live dynamicToolCall item. One real pinned native turn produces original started/completed JSONL captured before Session decode; both equal independently prescribed full envelopes and validate experimental ServerNotification. Exact registered tool/call/arguments,null inProgress fields,false failed text result,bounded native duration/times and native generation/order are retained. The tool failure still yields the original completed overall turn and exact two-request model continuation. Stable-schema regression,all original deadlines/event bounds and checked owned-process cleanup remain. Focused1/0,50reviewed ordinary cases twice,eight checks and414stable source hashes;413prior paths unchanged,one modified test. Seven whole upstream files/this canonical node archive/export-match. Only2648 becomes scoped implemented,zero verified. Other tool statuses/content/namespaces,persisted-history owners,reconnect,legacy no-emitter paths,remote providers/OS/transports remain unqualified. No permission/security tests or audits,broad suites or hosted workflows ran;A11/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/9",
       "schema": "ServerNotification.json",
       "schema_sha256": "664c8564f4b51fbf6aaaac8f35683a88c05133d02ea225d9051e168b4ce3317d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_failed_dynamic_tool_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

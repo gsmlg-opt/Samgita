@@ -3,7 +3,6 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
   use ExUnit.Case, async: false
 
   alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, StdioSessionFixture}
-  alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.{Schema, Wire}
   import SamgitaCodexDriver.TurnFixture, only: [call: 3, configure_model: 2]
 
@@ -27,6 +26,77 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
       "additionalProperties" => false
     }
   }
+
+  defmodule CaptureStdio do
+    @moduledoc false
+    @behaviour SamgitaCodexDriver.Transport
+    alias SamgitaCodexDriver.Transport.Stdio
+    alias SamgitaProtocolCodex.Error
+
+    @impl true
+    def open(opts) do
+      capture = Keyword.fetch!(opts, :capture)
+
+      with {:ok, state} <- Stdio.open(Keyword.delete(opts, :capture)),
+           do: {:ok, Map.put(state, :capture, capture)}
+    end
+
+    @impl true
+    def send(state, encoded), do: Stdio.send(state, encoded)
+
+    @impl true
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case Enum.reduce_while(events, :ok, &capture_item(&1, &2, next.capture)) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    # Preserve selected native JSONL before Session decoding or projection.
+    defp capture_item({:message, encoded}, :ok, capture) do
+      wire = JSON.decode!(encoded)
+
+      if wire["method"] in ["item/started", "item/completed"] and
+           get_in(wire, ["params", "item", "type"]) == "dynamicToolCall" do
+        case Agent.get_and_update(capture, &append(&1, encoded, wire)) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      else
+        {:cont, :ok}
+      end
+    end
+
+    defp capture_item(_event, :ok, _capture), do: {:cont, :ok}
+
+    defp append(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if ledger.count < 128 and size <= 65_536 and ledger.bytes + size <= 1_048_576 do
+        record = %{encoded: encoded, wire: wire, ordinal: ledger.count + 1}
+
+        {:ok,
+         %{
+           count: ledger.count + 1,
+           bytes: ledger.bytes + size,
+           records: [record | ledger.records]
+         }}
+      else
+        {{:error, Error.new(:test_capture_overflow)}, ledger}
+      end
+    end
+
+    @impl true
+    def close(state), do: Stdio.close(state)
+    @impl true
+    def metadata(state), do: Stdio.metadata(state)
+  end
 
   setup do
     binary = System.get_env("CODEX_BINARY")
@@ -66,7 +136,8 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
     end)
 
     File.write!(fixture.requests, "[]")
-    ctx = %{binary: binary, fixture: fixture, root: root}
+    capture = start_supervised!({Agent, fn -> %{count: 0, bytes: 0, records: []} end})
+    ctx = %{binary: binary, fixture: fixture, root: root, capture: capture}
     configure_model(ctx, %{})
     config = Path.join(fixture.codex_home, "config.toml")
     Map.merge(ctx, %{config: config, config_bytes: File.read!(config)})
@@ -90,6 +161,8 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
 
     assert is_binary(thread) and byte_size(thread) > 0
     assert ModelFixture.requests(ctx.fixture) == []
+    generation = Session.status(pid).generation
+    native_lower = System.system_time(:millisecond)
     began_at = System.monotonic_time(:millisecond)
 
     turn =
@@ -125,6 +198,7 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
 
     events = await_turn(pid, turn, events, System.monotonic_time(:millisecond) + 20_000)
     elapsed = System.monotonic_time(:millisecond) - began_at
+    native_upper = System.system_time(:millisecond)
     assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
     started = item_event(events, "item/started", "dynamicToolCall")
     completed = item_event(events, "item/completed", "dynamicToolCall")
@@ -134,6 +208,7 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
     assert is_integer(start_time) and start_time > 0
     assert is_integer(completion_time) and completion_time >= start_time
     assert is_integer(duration) and duration >= 0 and duration <= elapsed
+    assert native_lower <= start_time and completion_time <= native_upper
 
     expected = %{
       "type" => "dynamicToolCall",
@@ -166,6 +241,36 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
                }),
              "startedAtMs" => start_time
            }
+
+    expected_started =
+      Map.merge(expected, %{
+        "status" => "inProgress",
+        "contentItems" => nil,
+        "success" => nil,
+        "durationMs" => nil
+      })
+
+    originals =
+      assert_original_items(
+        ctx,
+        [
+          {started, "item/started",
+           %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => expected_started,
+             "startedAtMs" => start_time
+           }},
+          {completed, "item/completed",
+           %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => expected,
+             "completedAtMs" => completion_time
+           }}
+        ],
+        %{generation: generation, lower: native_lower, upper: native_upper}
+      )
 
     # Validate the actual native envelope against its root export, not a
     # fabricated item or a sibling persisted-history response contract.
@@ -207,12 +312,55 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
     assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0, gap: nil} =
              Session.status(pid)
 
+    assert Session.status(pid).generation === generation
     assert File.ls!(ctx.fixture.workspace) == []
     assert File.read!(ctx.config) == ctx.config_bytes
     assert hash(File.read!(@script)) == @script_sha
+    assert captured_items(ctx) === originals
     assert :ok = StdioSessionFixture.close(pid, connection)
     refute File.exists?("/proc/#{native}")
+    assert captured_items(ctx) === originals
     assert ModelFixture.requests(ctx.fixture) == [first, continued]
+  end
+
+  defp assert_original_items(ctx, prescribed, %{
+         generation: generation,
+         lower: lower,
+         upper: upper
+       }) do
+    originals = captured_items(ctx)
+    assert length(originals) === 2
+    assert Enum.map(originals, & &1.ordinal) === [1, 2]
+
+    assert Enum.map(originals, & &1.wire) ===
+             Enum.map(prescribed, fn {event, _, _} -> event.wire end)
+
+    canonical = notification_schema()
+
+    for {original, {event, method, params}} <- Enum.zip(originals, prescribed) do
+      emitted = Map.fetch!(event.wire, "emittedAtMs")
+      assert is_integer(emitted) and lower <= emitted and emitted <= upper
+      assert event.kind === :notification and event.generation === generation
+      expected = %{"method" => method, "params" => params, "emittedAtMs" => emitted}
+      assert event.wire === expected
+      assert original.wire === expected
+      assert JSON.decode!(original.encoded) === expected
+      assert {:ok, preserved} = Wire.decode(original.encoded, max_depth: 32)
+      assert preserved === expected
+      assert :ok = Schema.validate(canonical, original.wire, max_depth: 32)
+    end
+
+    originals
+  end
+
+  defp captured_items(ctx), do: Agent.get(ctx.capture, &Enum.reverse(&1.records))
+
+  defp notification_schema do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> File.read!()
+    |> JSON.decode!()
   end
 
   defp await_tool(pid, events, deadline) do
@@ -295,8 +443,9 @@ defmodule SamgitaCodexDriver.NativeFailedDynamicToolNotificationTest do
     {:ok, pid} =
       Session.start_link(
         transport:
-          {Stdio,
+          {CaptureStdio,
            [
+             capture: ctx.capture,
              executable: ctx.binary,
              args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
              cwd: fixture.workspace,

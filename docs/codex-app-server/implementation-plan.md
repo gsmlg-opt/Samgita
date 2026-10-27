@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [original dynamic-tool item](dynamic-tool-original-item-qualification.md)
+adds bounded original JSONL capture and complete independent envelope/canonical
+schema checks to the retained false-tool-result/overall-completed-turn case.
+Focused **1/0**, **50ordinary cases twice**,eight checks and414stable sources
+pass;413prior paths stay exact and one test changes. Seven whole sources/one
+node match the pin. Only2648 gains evidence: **5,227 implemented /1,328 missing
+/66 blocked**, unchanged requirements and zero verified. Continue ordinary
+realtime service-error closure;prohibited/full-goal gates remain incomplete.
+
 The [native ended-outcome index](realtime-ended-index-qualification.md) binds
 only2700 to the unchanged first ordinary realtime case's complete independently
 prescribed native closure envelopes and original canonical ingress. No new
