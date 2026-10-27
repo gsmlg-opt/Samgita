@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [process-notification unit](process-notification-envelopes-qualification.md)
+qualifies complete exact2927/2931 through two cold null/cap0 profiles, held
+binary stdin, a live no-effect barrier, explicit EOF and independent actual-write
+journals. Full original frames, per-stream bytes, native timestamps, unique last
+exit and checked native/child cleanup remain. Initial unrelated startup notice
+is excluded through supported native subscription; no process assertion or
+deadline changes. Final **25ordinary cases twice**, strict checks and398-source
+guard pass; all397 prior bytes stay unchanged and7 upstream files match the
+pin. Only these two become scoped implemented: **5,117 implemented /1,438
+missing /66 blocked**, unchanged requirements and zero verified. Continue real
+import progress/completion envelopes; prohibited/full-goal gates stay incomplete.
+
 The [command-output ingress unit](command-output-ingress-qualification.md)
 binds exact2923–2926 through original incoming native frames before Session
 decode and complete driver-map equality. Independent binary stdout/stderr,

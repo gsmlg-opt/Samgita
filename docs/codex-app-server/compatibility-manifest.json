@@ -113189,24 +113189,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/36",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V402 scoped ordinary actual-native complete process/outputDelta and process/exited envelopes: two cold owned Linux stdio profiles with explicit outputBytesCap null/0,distinct literal handles and independent child journals. Two binary stdin chunks plus live diagnostics prove no output/effect before explicit EOF. Child verifies input and journals actual prescribed binary stdout/stderr writes and exit7. Original incoming frames before Session decode equal complete event maps; full independent envelope keysets/methods/handles/base64/flags and host-bracketed native emittedAtMs are required. Uncapped per-stream prefixes reconstruct exact independent bytes;cap0 has two empty true-cap deltas while journal proves nonempty writes. Exactly one terminal event is last with empty buffered output and expected capflags. 16original RPC pairs/2initialized notifications,96raw frames/256KiB,64events/256KiB,5sRPC/EOF/terminal bounds,unchanged inputs/workspaces and checked native/child/Port cleanup remain. No model/provider/thread/auth/approval path or fabricated frames. 25reviewed ordinary cases pass25/0 twice;syntax/format/compile/strict Credo and398 stable source guard pass,all397prior source bytes unchanged. Seven whole upstream files/two stable exact nodes match the immutable pin. Only selected pipe null/cap0/exit7/Linux stdio behavior;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial new-fixture run received the stock disabled remote-control startup notice before any process call. Supported initialize optOutNotificationMethods now excludes only remoteControl/status/changed;process output/exit assertions,empty startup/no-effect controls,limits/deadlines/cleanup remain unchanged. No driver filter or remote-control/authentication behavior is qualified."
+      ],
       "pointer": "/oneOf/36",
       "schema": "ServerNotification.json",
       "schema_sha256": "3f528aec09034acd33a942a1ad84c166e53b179cb0f06349e126a47f1103d365",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -113309,24 +113317,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/37",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V402 scoped ordinary actual-native complete process/outputDelta and process/exited envelopes: two cold owned Linux stdio profiles with explicit outputBytesCap null/0,distinct literal handles and independent child journals. Two binary stdin chunks plus live diagnostics prove no output/effect before explicit EOF. Child verifies input and journals actual prescribed binary stdout/stderr writes and exit7. Original incoming frames before Session decode equal complete event maps; full independent envelope keysets/methods/handles/base64/flags and host-bracketed native emittedAtMs are required. Uncapped per-stream prefixes reconstruct exact independent bytes;cap0 has two empty true-cap deltas while journal proves nonempty writes. Exactly one terminal event is last with empty buffered output and expected capflags. 16original RPC pairs/2initialized notifications,96raw frames/256KiB,64events/256KiB,5sRPC/EOF/terminal bounds,unchanged inputs/workspaces and checked native/child/Port cleanup remain. No model/provider/thread/auth/approval path or fabricated frames. 25reviewed ordinary cases pass25/0 twice;syntax/format/compile/strict Credo and398 stable source guard pass,all397prior source bytes unchanged. Seven whole upstream files/two stable exact nodes match the immutable pin. Only selected pipe null/cap0/exit7/Linux stdio behavior;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial new-fixture run received the stock disabled remote-control startup notice before any process call. Supported initialize optOutNotificationMethods now excludes only remoteControl/status/changed;process output/exit assertions,empty startup/no-effect controls,limits/deadlines/cleanup remain unchanged. No driver filter or remote-control/authentication behavior is qualified."
+      ],
       "pointer": "/oneOf/37",
       "schema": "ServerNotification.json",
       "schema_sha256": "a242f8c9982aa3d0178aa60832d90f1cbf0311d2b9803923f1a4864e35be79fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

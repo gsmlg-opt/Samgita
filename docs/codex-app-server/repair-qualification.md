@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [process-notification envelope profile](process-notification-envelopes-qualification.md)
+proves two cold null/cap0 executions, accepted binary input, no-effect barrier,
+explicit EOF, independent actual writes and complete original output/exit frames.
+Unique terminal ordering and checked native/child cleanup remain. First startup
+fails on an unrelated stock notice; supported exact-method native subscription
+repairs the fixture without changing process assertions/deadlines. Final
+**25ordinary cases twice**, strict checks and398-source guard pass; all397 prior
+paths remain unchanged and7 whole upstream files match the pin. Only2927/2931
+become scoped implemented: **5,117 implemented /1,438 missing /66 blocked**,
+unchanged requirements and zero verified. Continue real import-notification
+envelopes; all prohibited/full-goal gates remain incomplete.
+
 The [command-output ingress profile](command-output-ingress-qualification.md)
 retains original pre-Session native JSON and requires ordered equality with
 complete driver events. Existing independent binary streams, timestamps, exact
