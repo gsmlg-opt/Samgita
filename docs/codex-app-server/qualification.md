@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [local environment metadata unit](ordinary-local-environment-info-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**: **68 files / 129 actual-native cases at both
+seeds**, three selected neutral WebSocket seeds, outside consumer **1/0** and
+static/build checks with **1,687** identical guarded sources. Exact encoded
+paths, live rename, empty owned-cwd unlink/recreation and cold controls bind
+only owners3908/3909. The temporary final-binding canonicalization mistake is
+corrected without changing guarded sources or tests. Contracts: **5,493
+implemented / 998 missing / 130 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**; zero verified. Next is source-reviewed indexing of
+existing realtime original-frame identity coverage; it has no new-owner credit
+yet. Prohibited/hosted, A11, emitter/external/OS, full compatibility and release
+gates remain incomplete. Nothing is published or deployed.
+
 The [inherited selective-item unit](ordinary-inherited-items-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**: **66 files / 127 actual-native cases at both
 seeds**, selected neutral WebSocket cases at three seeds, outside consumer

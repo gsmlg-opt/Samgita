@@ -145850,46 +145850,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-local-environment-info-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentInfoResponse.json#/properties/cwd/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V519 actual-native local environment/info positive PathUri branch: independently authored reserved/Unicode cwd URI, same-process live directory rename with unchanged inode/native PID/driver instance and stable repeated replies, then distinct cold native repeat. Six original correlated info responses and exact fourteen-RPC inventory, zero model requests or thread/turn/executor/tool operations, unchanged input/sentinel bytes, fixed yolo and confirmed owned cleanup are required. This exact physical nonnull reference only; no null branch, shell/aggregate/PathUri alias, remote executor, other OS/transport or complete method promotion. Prohibited tests/audits/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/properties/cwd/anyOf/0",
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "815f1f5d28890061ed18b2319f46edf96e316cdcd4d96db2180bac4e0a96a755",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-local-environment-info-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentInfoResponse.json#/properties/cwd/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V520 actual-native local environment/info explicit-null cwd branch: remove only a new empty owned launch directory after a positive URI reply; same native/driver and held inode return successful original cwd:null replies both before and after a new directory is created at that pathname. Distinct cold native on the new inode returns the authored positive URI again. Exact key presence, four explicit-null and three positive info responses within fifteen original correlated RPCs, zero inference/thread/turn/tool/executor operations, bounded capture/snapshots and confirmed owned cleanup are required. Ordinary Linux directory lifecycle only; no permission-denial test. This physical null branch only; no omitted cwd, shell/aggregate/PathUri aliases, remote executor, other OS/transport or complete method credit. Rust/toolchain and Linux manual source explain the trigger without proving compiler inputs; real pinned binary responses are decisive. Prohibited tests/audits/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/properties/cwd/anyOf/1",
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_missing_cwd_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

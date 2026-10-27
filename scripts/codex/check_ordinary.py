@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "ebe4b4242da13ff22f00f53b5fab3da0ea6518a6000c68df7bc4fdad10e44566"
+REVIEWED_SOURCE_SHA256 = "c73312083a489a82c534e28dc4cde12a6c3484cd938fa1471025be9869fc3451"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -59,6 +59,8 @@ native_failed_dynamic_tool_notification_test.exs
 native_thread_revert_profile.exs
 native_attachment_envelope_test.exs
 native_environment_observation_test.exs
+native_local_environment_info_test.exs
+native_local_environment_missing_cwd_test.exs
 native_initialize_request_ids_test.exs
 native_fs_path_values_test.exs
 native_hook_plugin_metadata_test.exs
@@ -89,7 +91,7 @@ native_command_control_values_test.exs
 native_process_values_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
-DRIVER_CASES = 127
+DRIVER_CASES = 129
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
