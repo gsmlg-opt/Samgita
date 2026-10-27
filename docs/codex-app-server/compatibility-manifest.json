@@ -48156,124 +48156,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/109",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine inline Custom review: original outgoing review/start bytes, literal string ID, method and params correlate to native reply. Actual Review child/provider identity, entered/exited/completed items, durable parent/child records and unloaded warm/cold discovery/history establish effects. Only Custom inline YOLO fixture; no detached review, other target, real-provider reasoning or whole-method verification credit."
+      ],
       "pointer": "/oneOf/109",
       "schema": "ClientRequest.json",
       "schema_sha256": "ceac63b050ed545df3c3c96161f8e5bf9b7689c46bfa50d99928e24876e19a36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/109/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine inline Custom review: original outgoing review/start bytes, literal string ID, method and params correlate to native reply. Actual Review child/provider identity, entered/exited/completed items, durable parent/child records and unloaded warm/cold discovery/history establish effects. Only Custom inline YOLO fixture; no detached review, other target, real-provider reasoning or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/109/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/109/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine inline Custom review: original outgoing review/start bytes, literal string ID, method and params correlate to native reply. Actual Review child/provider identity, entered/exited/completed items, durable parent/child records and unloaded warm/cold discovery/history establish effects. Only Custom inline YOLO fixture; no detached review, other target, real-provider reasoning or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/109/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d362fdb7a787dcf2e78f149c953149fad2269265591fbb57c79b7f4acbe151b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/109/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine inline Custom review: original outgoing review/start bytes, literal string ID, method and params correlate to native reply. Actual Review child/provider identity, entered/exited/completed items, durable parent/child records and unloaded warm/cold discovery/history establish effects. Only Custom inline YOLO fixture; no detached review, other target, real-provider reasoning or whole-method verification credit."
+      ],
       "pointer": "/oneOf/109/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "838a4e57673ab2b19a3840f84dfccd3e926d18f42314c3a1a6a3a1330844041d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/109/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine inline Custom review: original outgoing review/start bytes, literal string ID, method and params correlate to native reply. Actual Review child/provider identity, entered/exited/completed items, durable parent/child records and unloaded warm/cold discovery/history establish effects. Only Custom inline YOLO fixture; no detached review, other target, real-provider reasoning or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/109/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4cc1ed7bd732642e7568c53a1db59ef1dd9882370678ff146fd6071eb35e0f20",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -68228,124 +68268,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/69",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/add: original outgoing bytes, literal string ID, method and params correlate to native response. Real loopback Git HTTP selects known nondefault A ref and sparse working tree while source HEAD remains distinct B. Exact persisted configuration, warm/cold duplicate no-ops and unchanged source/journal establish effects. No external marketplace, arbitrary selectors, plugin execution or whole-method verification credit."
+      ],
       "pointer": "/oneOf/69",
       "schema": "ClientRequest.json",
       "schema_sha256": "b869e87df846918ec390ccf2f9b2742c45457e46b19f33a393882602238a0da7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/69/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/add: original outgoing bytes, literal string ID, method and params correlate to native response. Real loopback Git HTTP selects known nondefault A ref and sparse working tree while source HEAD remains distinct B. Exact persisted configuration, warm/cold duplicate no-ops and unchanged source/journal establish effects. No external marketplace, arbitrary selectors, plugin execution or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/69/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/69/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/add: original outgoing bytes, literal string ID, method and params correlate to native response. Real loopback Git HTTP selects known nondefault A ref and sparse working tree while source HEAD remains distinct B. Exact persisted configuration, warm/cold duplicate no-ops and unchanged source/journal establish effects. No external marketplace, arbitrary selectors, plugin execution or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/69/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "546309f04ca38e7544f93db7b94b39e4a696a60b1ff53907c5249b9c9e0b883b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/69/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/add: original outgoing bytes, literal string ID, method and params correlate to native response. Real loopback Git HTTP selects known nondefault A ref and sparse working tree while source HEAD remains distinct B. Exact persisted configuration, warm/cold duplicate no-ops and unchanged source/journal establish effects. No external marketplace, arbitrary selectors, plugin execution or whole-method verification credit."
+      ],
       "pointer": "/oneOf/69/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c250f59390a52469801e983ec706c53d8568dcf7ee37a0312f12427af7ab0bf0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/69/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/add: original outgoing bytes, literal string ID, method and params correlate to native response. Real loopback Git HTTP selects known nondefault A ref and sparse working tree while source HEAD remains distinct B. Exact persisted configuration, warm/cold duplicate no-ops and unchanged source/journal establish effects. No external marketplace, arbitrary selectors, plugin execution or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/69/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3daac16d01e3dc8bd49af63d459139e7cdd6846d07a0d935a36b71c60c03f873",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_git_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -68633,124 +68713,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/71",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/upgrade: original outgoing bytes, literal string IDs, method and empty params correlate to native replies. One valid local Git source materializes exact known content while independent invalid source remains an errors entry in successful response. Repeated warm/cold no-ops preserve source/config/installed bytes. No marketplaceName alternatives, remote Git service or whole-method verification credit."
+      ],
       "pointer": "/oneOf/71",
       "schema": "ClientRequest.json",
       "schema_sha256": "004ec1d199123444bd8cf7b37b7ccf689d742a0bba2897e016a6e90565633c5f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/71/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/upgrade: original outgoing bytes, literal string IDs, method and empty params correlate to native replies. One valid local Git source materializes exact known content while independent invalid source remains an errors entry in successful response. Repeated warm/cold no-ops preserve source/config/installed bytes. No marketplaceName alternatives, remote Git service or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/71/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/71/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/upgrade: original outgoing bytes, literal string IDs, method and empty params correlate to native replies. One valid local Git source materializes exact known content while independent invalid source remains an errors entry in successful response. Repeated warm/cold no-ops preserve source/config/installed bytes. No marketplaceName alternatives, remote Git service or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/71/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c20af58d333e9e414303dc61f9e13202f8f8f7bbf93af589e13553de4f1afc3d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/71/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/upgrade: original outgoing bytes, literal string IDs, method and empty params correlate to native replies. One valid local Git source materializes exact known content while independent invalid source remains an errors entry in successful response. Repeated warm/cold no-ops preserve source/config/installed bytes. No marketplaceName alternatives, remote Git service or whole-method verification credit."
+      ],
       "pointer": "/oneOf/71/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "dd3f6a5b69d3d89ebe35531f8df179133c86a0627aaf801d6eefa1fb03c17636",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/71/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V483 genuine marketplace/upgrade: original outgoing bytes, literal string IDs, method and empty params correlate to native replies. One valid local Git source materializes exact known content while independent invalid source remains an errors entry in successful response. Repeated warm/cold no-ops preserve source/config/installed bytes. No marketplaceName alternatives, remote Git service or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/71/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9a4ec360870b983c390e4a816fce945f1932b25a03bd8f9d37e5d3e8a797067a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_marketplace_partial_error_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

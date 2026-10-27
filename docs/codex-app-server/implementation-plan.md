@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary marketplace/review envelope index](ordinary-native-request-envelopes-qualification.md)
+binds fifteen exact physical owners to three unchanged original-wire native
+cases and their real Git/review-child effects. Focused **3/0 at both seeds**,
+ten complete producer hashes, fifteen canonical nodes and 1,668 stable source
+hashes support scoped implemented evidence only: **5,432 implemented /
+1,073 missing / 116 blocked**, unchanged requirements and zero verified.
+The reviewed runner now selects53 files/87 cases; the combined87-case run is
+pending. Continue genuine realtime start/end instruction effects and final
+combined permitted checks. Prohibited/hosted, A11, unavailable/full-goal and
+release gates remain incomplete.
+
 The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)
 adds original startup/correlation, exact ordered role/text backend effects and
 warm/cold start/closed-only history. Its initial **8/1** wrong graceful-close

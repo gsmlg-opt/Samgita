@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [ordinary marketplace/review envelope index](ordinary-native-request-envelopes-qualification.md)
+adds fifteen precise request owners using three unchanged actual-native cases.
+Both focused seeds pass **3/0**, preserving real Git materialization/partial
+errors, genuine Review child persistence, original bytes and cold no-ops.
+Ten complete source files, fifteen canonical nodes and 1,668 stable runtime
+source hashes bind the evidence. Counts: **5,432 implemented / 1,073 missing /
+116 blocked**, unchanged requirements and zero verified. The combined53-file/
+87-case reviewed run remains pending. Fixed YOLO is setup; prohibited/hosted,
+A11, external/full-goal and release gates remain incomplete.
+
 The [configured V3 initial-item profile](ordinary-realtime-start-stop-qualification.md#configured-v3-initial-items-and-requested-stop-boundary)
 passes **84 ordinary real-binary cases at both seeds**, selected WebSocket
 cases at three seeds, outside consumer **1/0** and all fourteen reviewed checks,
