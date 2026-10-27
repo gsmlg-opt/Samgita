@@ -27907,24 +27907,43 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-migration-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two enabled directory-marketplace plugins; import preserves the detected item except for selecting A by native pluginNames. Exact original requests, progress/completion and durable history accompany A-only enabled configuration and version 2.4.1 manifest/skill cache bytes. B remains absent and detectable in warm and distinct cold native processes. Only these four ClientRequest definition owners gain scoped evidence.",
+        "Runtime plugins stay disabled; fixtures contain metadata/skill text only. No hook/MCP/plugin execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/3",
       "schema": "ClientRequest.json",
       "schema_sha256": "478e9f3ec481d8e39a3d07917cf86e4bb71e9160c04e275a1b30c0eb20af8fb1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:225",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:243",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:245",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:297",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:309",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:339",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:355",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:452"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -30504,27 +30523,46 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/plugins",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two enabled directory-marketplace plugins; import preserves the detected item except for selecting A by native pluginNames. Exact original requests, progress/completion and durable history accompany A-only enabled configuration and version 2.4.1 manifest/skill cache bytes. B remains absent and detectable in warm and distinct cold native processes. Only these four ClientRequest definition owners gain scoped evidence.",
+        "Runtime plugins stay disabled; fixtures contain metadata/skill text only. No hook/MCP/plugin execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/plugins",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "a641f4e33f4e706d346b6bdfaa9708eeae50b5b8d141c5421380ab553e2d57fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:225",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:243",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:245",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:297",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:309",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:339",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:355",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:452"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugins"
     },
     {
@@ -31666,53 +31704,91 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/PluginsMigration/properties/marketplaceName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two enabled directory-marketplace plugins; import preserves the detected item except for selecting A by native pluginNames. Exact original requests, progress/completion and durable history accompany A-only enabled configuration and version 2.4.1 manifest/skill cache bytes. B remains absent and detectable in warm and distinct cold native processes. Only these four ClientRequest definition owners gain scoped evidence.",
+        "Runtime plugins stay disabled; fixtures contain metadata/skill text only. No hook/MCP/plugin execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginsMigration/properties/marketplaceName",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:225",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:243",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:245",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:297",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:309",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:339",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:355",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:452"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/PluginsMigration/properties/pluginNames",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two enabled directory-marketplace plugins; import preserves the detected item except for selecting A by native pluginNames. Exact original requests, progress/completion and durable history accompany A-only enabled configuration and version 2.4.1 manifest/skill cache bytes. B remains absent and detectable in warm and distinct cold native processes. Only these four ClientRequest definition owners gain scoped evidence.",
+        "Runtime plugins stay disabled; fixtures contain metadata/skill text only. No hook/MCP/plugin execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginsMigration/properties/pluginNames",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:225",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:243",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:245",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:297",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:309",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:339",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:355",
+          "apps/samgita_codex_driver/test/native_local_plugin_migration_test.exs:452"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginNames"
     },
     {

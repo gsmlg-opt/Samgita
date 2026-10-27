@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native selective plugin migration](local-plugin-migration-qualification.md)
+passes A-only local installation with exact native frames/progress/history,
+versioned cache bytes and B still detectable warm/cold. Focused **1/0**,
+**63 ordinary cases twice**, selected WebSocket cases at three seeds, outside
+consumer **1/0**, all 14 reviewed steps and 1,659 unchanged sources pass. Four
+exact owners gain scoped evidence: **5,299 implemented / 1,214 missing /
+108 blocked**, unchanged requirements and zero verified. Runtime plugins stay
+disabled; no prohibited tests/audits or hosted workflow runs. Continue ordinary
+memory ingestion only with a proven no-inference fixture; full-goal and release
+gates remain incomplete.
+
 The [ordinary native local configuration migration](local-config-migration-qualification.md)
 passes named hooks/MCP detection/import, physical destinations, exact native
 progress/history, repeated empty results with a new history and cold persistence.

@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [selective local-plugin migration](local-plugin-migration-qualification.md)
+proves actual detection, A-only installation/configuration/versioned cache,
+native progress/history and B remaining detectable across a distinct cold
+process. Four exact input owners gain scoped evidence. Focused **1/0**,
+**63 ordinary cases twice**, three WebSocket cases at each of three seeds,
+outside consumer **1/0**, all 14 reviewed steps and 1,659 stable sources pass.
+Counts: **5,299 implemented / 1,214 missing / 108 blocked**, unchanged
+requirements and zero verified. Runtime plugins remain disabled. Continue
+bounded local memory ingestion after excluding background inference;
+prohibited, external and full-goal/release gates remain incomplete.
+
 The [native local hooks/MCP migration profile](local-config-migration-qualification.md)
 proves actual named detection, unchanged import inputs, native progress/history,
 physical destinations, recorded empty repeats and cold persistence. Initial
