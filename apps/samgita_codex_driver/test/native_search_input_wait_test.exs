@@ -32,10 +32,17 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
       incoming = Keyword.fetch!(opts, :incoming_capture)
-      transport_opts = Keyword.drop(opts, [:capture, :incoming_capture])
+      status = Keyword.fetch!(opts, :status_capture)
+      transport_opts = Keyword.drop(opts, [:capture, :incoming_capture, :status_capture])
 
       with {:ok, state} <- Stdio.open(transport_opts),
-           do: {:ok, Map.merge(state, %{capture: capture, incoming_capture: incoming})}
+           do:
+             {:ok,
+              Map.merge(state, %{
+                capture: capture,
+                incoming_capture: incoming,
+                status_capture: status
+              })}
     end
 
     @impl true
@@ -84,6 +91,9 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
 
     defp capture_incoming_event(state, {:message, encoded}) do
       case JSON.decode(encoded) do
+        {:ok, %{"method" => "thread/status/changed"} = wire} ->
+          Agent.get_and_update(state.status_capture, &append_status(&1, encoded, wire))
+
         {:ok, %{"method" => method} = wire}
         when method in [
                "item/tool/requestUserInput",
@@ -98,6 +108,17 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     end
 
     defp capture_incoming_event(_state, _event), do: :ok
+
+    defp append_status(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if length(ledger.frames) < 16 and size <= 65_536 and
+           ledger.bytes + size <= 1_048_576 do
+        {:ok, %{frames: ledger.frames ++ [{encoded, wire}], bytes: ledger.bytes + size}}
+      else
+        {{:error, SamgitaProtocolCodex.Error.new(:test_status_capture_overflow)}, ledger}
+      end
+    end
 
     defp append_incoming(ledger, encoded, wire) do
       size = byte_size(encoded)
@@ -178,6 +199,11 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
         start_supervised!(%{
           id: :incoming_capture,
           start: {Agent, :start_link, [fn -> %{frames: [], bytes: 0} end]}
+        }),
+      status_capture:
+        start_supervised!(%{
+          id: :status_capture,
+          start: {Agent, :start_link, [fn -> %{frames: [], bytes: 0} end]}
         })
     })
   end
@@ -210,6 +236,9 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     search(ctx, warm.pid, initial, %{"type" => "idle"})
     assert length(ModelFixture.requests(ctx.fixture)) == 1
 
+    status_lower = System.system_time(:millisecond)
+    status_generation = Session.status(warm.pid).generation
+
     second =
       turn(warm.pid, thread, @question, %{
         "collaborationMode" => %{
@@ -226,9 +255,17 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
       collect(
         warm.pid,
         [],
-        &Enum.any?(&1, fn event -> event.wire["method"] == "item/tool/requestUserInput" end),
+        fn events ->
+          Enum.any?(events, &(&1.wire["method"] == "item/tool/requestUserInput")) and
+            Enum.any?(events, &waiting_status?(&1.wire, thread))
+        end,
         deadline(20_000)
       )
+
+    status_upper = System.system_time(:millisecond)
+
+    waiting_original =
+      assert_waiting_status(ctx, held, thread, {status_lower, status_upper, status_generation})
 
     [request] = Enum.filter(held, &(&1.wire["method"] == "item/tool/requestUserInput"))
     assert request.kind == :server_request
@@ -342,6 +379,65 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
     assert length(Enum.uniq_by(queries, & &1["id"])) == 4
     assert Enum.map(queries, & &1["params"]) == List.duplicate(search_params(), 4)
     assert Agent.get(ctx.incoming_capture, & &1) === final_incoming
+    assert_waiting_original(ctx, thread, waiting_original)
+  end
+
+  defp waiting_status?(wire, thread) do
+    flags = get_in(wire, ["params", "status", "activeFlags"])
+
+    wire["method"] === "thread/status/changed" and
+      get_in(wire, ["params", "threadId"]) === thread and
+      is_list(flags) and "waitingOnUserInput" in flags
+  end
+
+  defp assert_waiting_status(ctx, events, thread, {lower, upper, generation}) do
+    [notice] = Enum.filter(events, &waiting_status?(&1.wire, thread))
+    emitted = Map.fetch!(notice.wire, "emittedAtMs")
+    assert is_integer(emitted) and lower <= emitted and emitted <= upper
+    assert notice.kind === :notification and notice.generation === generation
+
+    assert notice.wire === %{
+             "method" => "thread/status/changed",
+             "params" => %{
+               "threadId" => thread,
+               "status" => %{"type" => "active", "activeFlags" => ["waitingOnUserInput"]}
+             },
+             "emittedAtMs" => emitted
+           }
+
+    schema =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+      |> File.read!()
+      |> JSON.decode!()
+
+    assert :ok = SamgitaProtocolCodex.Schema.validate(schema, notice.wire, max_depth: 32)
+    [original] = waiting_originals(ctx, thread)
+    {encoded, wire} = original
+    assert wire === notice.wire and JSON.decode!(encoded) === notice.wire
+    original
+  end
+
+  defp assert_waiting_original(ctx, thread, original) do
+    assert waiting_originals(ctx, thread) === [original]
+  end
+
+  defp waiting_originals(ctx, thread) do
+    ledger = Agent.get(ctx.status_capture, & &1)
+    assert length(ledger.frames) <= 16 and ledger.bytes <= 1_048_576
+
+    assert ledger.bytes ===
+             Enum.sum(for {encoded, _wire} <- ledger.frames, do: byte_size(encoded))
+
+    for {encoded, wire} <- ledger.frames do
+      assert byte_size(encoded) <= 65_536
+      assert wire["method"] === "thread/status/changed"
+      assert wire["params"]["threadId"] === thread
+      assert JSON.decode!(encoded) === wire
+    end
+
+    Enum.filter(ledger.frames, fn {_encoded, wire} -> waiting_status?(wire, thread) end)
   end
 
   defp assert_resolution(ctx, events, request, incoming, {lower, upper, generation}) do
@@ -627,6 +723,7 @@ defmodule SamgitaCodexDriver.NativeSearchInputWaitTest do
                   [
                     capture: ctx.capture,
                     incoming_capture: ctx.incoming_capture,
+                    status_capture: ctx.status_capture,
                     executable: ctx.binary,
                     args:
                       NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),

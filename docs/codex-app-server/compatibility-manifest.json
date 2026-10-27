@@ -55701,27 +55701,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/152/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V498 command/exec/write original request and native response preserve selected Unicode string and positive integer IDs/types through real Stdio capture, Wire/schema validation and exact empty control result. Real PTY stdin/dimensions/stdout/files/exit/PIDs remain independently checked. No new command, session or model call; no alias/shared RequestId/exhaustive numeric/transport/OS promotion. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/152/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -55867,27 +55875,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/153/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V498 command/exec/terminate retains original signed integer -498003 through complete original request/schema/native response and exact empty control acknowledgement. Existing selected real child termination/exit/status/no-effect/PID disappearance still required. No success inferred from acknowledgement alone, no added control or model execution; other IDs/aliases/deployments unqualified. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/153/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -56033,27 +56049,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/154/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V498 command/exec/resize retains original integer498001 through complete original request/schema/native response and exact empty control acknowledgement. Existing actual kernel PTY dimensions, stdin/output and selected process effects/PID cleanup retained. No extra process/control/model call; physical owner only, no alias/shared type/full method credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/154/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_control_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -56520,27 +56544,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/157/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V499 process/kill retains original Unicode string owned-v499-kill-λ🙂 and type through successful-send original request capture, exact native ingress/schema/Wire and delivered empty result. Actual selected process exit/PID disappearance, unaffected pipe/PTY output and zero model requests still required. No extra control/child/turn, no aliases/exhaustive ID/transport/OS credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/157/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -56674,27 +56706,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/158/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V499 process/resizePty retains original positive integer499001/type through original request/schema/native response bytes and exact delivered empty result. Independent actual kernel dimensions/stdin/output/normal exit/cleanup remain, with all three ordinary cases and zero model calls. Only physical owner, no shared type or whole-method promotion. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/158/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -91910,24 +91950,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V496 ordinary inert synchronous PreToolUse for actual native Bash exec_command: complete original started/completed envelopes, exact real stdin/session/turn/tool/input/call ID, exclusive actual command record before physical printf effect. Genuine command/process/stdout and normal continuation/history, exact maps/timing/capture and unchanged owned cleanup. Fixed YOLO setup only; no control/decision/security/permission profile. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/HookEventName/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c7ca4f6b1124346fea209257e4a61bc70b4f9a35a7f1f145aa0ebf0ec6f5dd1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -92014,24 +92062,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V496 ordinary inert synchronous PostToolUse: actual completed Bash stdout, native tool_response and independent exact printf file/process identities precede actual post hook pair. Positively await hook+command item+turn settlement without unsupported watcher/post ordering; full original wire/schema/maps/times, final summary and continuation retained. Other tools, failed/async/control outcomes/OS/transports remain unqualified. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/HookEventName/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "1d9f03c30d6f7dce27c41856e0e56b9ec4b7977abef3475f932480014432b692",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -92186,46 +92242,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V495 ordinary successful MAv2 child SubagentStart: actual held model response, independently resolved child UUID, root-shared session ID vs child agent/notification ID, exact original native hook pair/schema/generation/times, exclusive real command record/PID, native full history/root activity and four genuine model requests. No fabricated child or generic whole-lifecycle qualification. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/HookEventName/enum/8",
       "schema": "ServerNotification.json",
       "schema_sha256": "35aebb8c245be741c5091bc4f4a9dbf9fea7665ed4fe7ea0ae879119968a8621",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookEventName/enum/9",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V495 ordinary successful MAv2 child SubagentStop: actual child answer precedes full original native pair and child terminal, independently awaited root and child settlement, root-shared session/child agent IDs and exclusive actual process record with final answer and exited PID. Exact raw capture/history/provider facts/cardinality/cleanup retained. Other hooks/handlers/faults/transports/OS remain unqualified. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/HookEventName/enum/9",
       "schema": "ServerNotification.json",
       "schema_sha256": "a3962a64456ec92a1df9bfcfa6d380f04fa7530d2d4de38b98de5b65594b93c1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -99871,24 +99943,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hooks-and-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadActiveFlag/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V497 ordinary Plan-mode user-input waiting notification: positively observe real request and exact original thread/status/changed active singleton waitingOnUserInput before reply, without cross-producer ordering assumption. Full original native frame/schema/known thread/timestamp/generation, bounded separate status ledger and unchanged bytes after warm/cold shutdown. Existing answer/resolution/full history/provider/cleanup retained. Only this physical notification enum owner; no alias or whole-state lifecycle credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+      ],
       "pointer": "/definitions/ThreadActiveFlag/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "6eaa09674e6a45394bbd63716ad32a20e9ec0a632f51493d11a1883de8d059a5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "stdio"
+      ],
       "wire_name": "enum"
     },
     {

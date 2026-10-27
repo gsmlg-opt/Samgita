@@ -123,8 +123,11 @@ The scoped binding checks all **29** selected complete producer sources against
 the immutable archive, all three exact canonical nodes and final test/fixture/
 helper bytes: `/tmp/samgita-v493-v494-focused-binding/evidence.json`, SHA256
 `e4199e74047b5d2fcb99dc47a0c2cce47865652081fe93ed9774e6cacb178cd0`.
-The final combined-source matrix remains required and follows with the separate
-ordinary child/tool hook unit; these scoped passes do not stand in for it.
+The [final ordinary child/tool/control matrix](ordinary-hooks-and-control-qualification.md)
+now passes all fourteen reviewed commands, including these final helper bytes,
+109 actual-native cases at both fixed seeds and unchanged source hashes. The
+first failed matrix and focused repair logs above remain historical evidence;
+full compatibility, prohibited and hosted gates stay incomplete.
 
 Both cases keep 60s case/20s journey/5s observations and existing checked stdio
 owner completion/reaping, native/provider executable identity, closed Ports,

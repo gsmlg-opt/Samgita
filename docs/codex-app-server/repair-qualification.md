@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary child/tool hooks and control-correlation unit](ordinary-hooks-and-control-qualification.md)
+corrects root-session/child-agent identity and final-summary expectations with
+all complete maps/effects/cleanup retained. Final **59 files / 109 native cases
+twice**, three WebSocket seeds, outside consumer **1/0** and all fourteen
+reviewed checks pass with1,676 unchanged source hashes. Seventy-three complete
+producers bind exactly ten new physical owners: **5,464 implemented / 1,041
+missing / 116 blocked contracts**, unchanged requirements and zero verified.
+This also qualifies the corrected compaction/SessionEnd helper combination.
+Continue ordinary PostToolUse exit7 observation and exact async-notification
+source suppression; source review is available but runtime remains unrun.
+Prohibited/hosted, A11, external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary compaction/root SessionEnd unit](ordinary-compaction-session-hooks-qualification.md)
 requires actual native pairs, independent hook processes, installed checkpoint
 consumption and preserved reverted history. Initial **102 ordinary cases twice**

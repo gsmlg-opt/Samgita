@@ -10,6 +10,8 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     TurnFixture
   }
 
+  alias SamgitaProtocolCodex.{Schema, Wire}
+
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/command_control_fixture.py", __DIR__)
@@ -42,9 +44,10 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     end
 
     defp capture(state, encoded, wire) do
-      if length(Agent.get(state.capture, & &1)) < 16 and byte_size(encoded) <= 4096 do
+      if length(Agent.get(state.capture, & &1.outgoing)) < 16 and byte_size(encoded) <= 4096 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [wire]))
+          Agent.update(state.capture, &append_outgoing(&1, encoded, wire))
+
           {:ok, next}
         end
       else
@@ -52,8 +55,60 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
       end
     end
 
+    defp append_outgoing(ledger, encoded, wire),
+      do: %{ledger | outgoing: ledger.outgoing ++ [%{encoded: encoded, wire: wire}]}
+
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case capture_incoming(events, next.capture) do
+            :ok -> {:ok, events, next}
+            :overflow -> {:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow), next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp capture_incoming(events, capture) do
+      Enum.reduce_while(events, :ok, &capture_event(&1, &2, capture))
+    end
+
+    defp capture_event({:message, encoded}, :ok, capture) do
+      wire = JSON.decode!(encoded)
+      result = Agent.get_and_update(capture, &capture_response(&1, encoded, wire))
+      if result == :ok, do: {:cont, :ok}, else: {:halt, :overflow}
+    end
+
+    defp capture_event(_event, :ok, _capture), do: {:cont, :ok}
+
+    defp capture_response(ledger, encoded, wire) do
+      ids = Enum.map(ledger.outgoing, & &1.wire["id"])
+
+      if SamgitaProtocolCodex.Wire.classify(wire) in [:response, :error] and
+           wire["id"] in ids,
+         do: append_incoming(ledger, encoded, wire),
+         else: {:ok, ledger}
+    end
+
+    defp append_incoming(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if length(ledger.incoming) < 16 and size <= 4096 and
+           ledger.incoming_bytes + size <= 65_536 do
+        {:ok,
+         %{
+           ledger
+           | incoming: ledger.incoming ++ [%{encoded: encoded, wire: wire}],
+             incoming_bytes: ledger.incoming_bytes + size
+         }}
+      else
+        {:overflow, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -68,7 +123,10 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     assert File.regular?(@script), "BLOCKED_ENV: owned command fixture missing"
     script = Path.join(ctx.fixture.workspace, "owned_command_control.py")
     File.cp!(@script, script)
-    capture = start_supervised!({Agent, fn -> [] end})
+
+    capture =
+      start_supervised!({Agent, fn -> %{outgoing: [], incoming: [], incoming_bytes: 0} end})
+
     records = Path.join(ctx.root, "command-control-records.json")
     File.write!(records, "[]")
 
@@ -94,21 +152,21 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     assert terminal_identity["cols"] == 80
 
     resize_wire =
-      wire("command/exec/resize", "resize-owned-terminal", %{
+      wire("command/exec/resize", 498_001, %{
         "processId" => terminal.handle,
         "size" => %{"rows" => 45, "cols" => 132}
       })
 
-    assert rpc(pid, resize_wire) == %{}
+    assert rpc(ctx, pid, resize_wire) == %{}
 
     write_wire =
-      wire("command/exec/write", "write-owned-terminal", %{
+      wire("command/exec/write", "owned-v498-write-λ🙂", %{
         "processId" => terminal.handle,
         "deltaBase64" => Base.encode64(@input),
         "closeStdin" => false
       })
 
-    assert rpc(pid, write_wire) == %{}
+    assert rpc(ctx, pid, write_wire) == %{}
 
     events =
       collect(
@@ -150,11 +208,11 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     refute File.exists?(waiter.result)
 
     terminate_wire =
-      wire("command/exec/terminate", "terminate-owned-waiter", %{
+      wire("command/exec/terminate", -498_003, %{
         "processId" => waiter.handle
       })
 
-    assert rpc(pid, terminate_wire) == %{}
+    assert rpc(ctx, pid, terminate_wire) == %{}
     # Pinned Linux pipe terminator uses SIGKILL; status maps to 128 + signal.
     assert_final(waiter_task, waiter_wire["id"], 137)
     events = drain(pid, events)
@@ -163,7 +221,7 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     refute File.exists?(waiter.result)
     await_gone(waiter)
 
-    assert Agent.get(ctx.capture, & &1) === [
+    assert captured_requests(ctx) === [
              terminal_wire,
              resize_wire,
              write_wire,
@@ -208,13 +266,13 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
            ]
 
     write_wire =
-      wire("command/exec/write", "write-owned-initial-terminal", %{
+      wire("command/exec/write", 498_004, %{
         "processId" => terminal.handle,
         "deltaBase64" => Base.encode64(@input),
         "closeStdin" => false
       })
 
-    assert rpc(pid, write_wire) == %{}
+    assert rpc(ctx, pid, write_wire) == %{}
 
     events =
       collect(
@@ -246,7 +304,7 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     assert output(events, terminal.handle, "stderr") == ""
     await_gone(terminal)
 
-    assert Agent.get(ctx.capture, & &1) === [terminal_wire, write_wire]
+    assert captured_requests(ctx) === [terminal_wire, write_wire]
     assert File.read!(ctx.script) === ctx.script_bytes
     assert File.read!(config) === config_bytes
     assert ModelFixture.requests(ctx.fixture) == []
@@ -299,11 +357,42 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     assert result === %{"exitCode" => exit_code, "stdout" => "", "stderr" => ""}
   end
 
-  defp rpc(pid, %{"id" => id} = wire) do
-    assert {:ok, %{"id" => ^id, "result" => result}} =
+  defp rpc(ctx, pid, %{"id" => id} = wire) do
+    assert {:ok, %{"id" => ^id, "result" => result} = response} =
              Session.request_native(pid, wire, timeout_ms: 5_000)
 
+    assert response === %{"id" => id, "result" => %{}}
+    assert_exchange(ctx, wire, response)
     result
+  end
+
+  defp captured_requests(ctx) do
+    Agent.get(ctx.capture, fn ledger -> Enum.map(ledger.outgoing, & &1.wire) end)
+  end
+
+  defp assert_exchange(ctx, %{"id" => id} = request, response) do
+    ledger = Agent.get(ctx.capture, & &1)
+    assert [outgoing] = Enum.filter(ledger.outgoing, &(&1.wire["id"] === id))
+    assert [incoming] = Enum.filter(ledger.incoming, &(&1.wire["id"] === id))
+    assert {:ok, decoded_request} = Wire.decode(outgoing.encoded, max_depth: 32)
+    assert decoded_request === request
+    assert outgoing.wire === request
+    assert :ok = Schema.validate(client_request_schema(), decoded_request, max_depth: 32)
+    assert {:ok, decoded_response} = Wire.decode(incoming.encoded, max_depth: 32)
+    assert decoded_response === response
+    assert incoming.wire === response
+    assert decoded_response === %{"id" => id, "result" => %{}}
+  end
+
+  defp client_request_schema do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> File.read!()
+
+    assert hash(bytes) == "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+    JSON.decode!(bytes)
   end
 
   defp call(pid, method, params) do

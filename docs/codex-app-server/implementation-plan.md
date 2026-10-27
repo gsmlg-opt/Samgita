@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary child/tool hooks and control-correlation unit](ordinary-hooks-and-control-qualification.md)
+passes all fourteen reviewed commands: **59 files / 109 actual-native cases at
+both seeds**, selected WebSocket cases at all three seeds, outside consumer
+**1/0**, strict/static/build checks and1,676 unchanged source hashes. Exact root
+session/child agent identity, final summaries, ordinary waiting status and typed
+control request IDs preserve complete original maps, independent effects and
+cleanup. Seventy-three complete producers bind ten physical owners: **5,464
+implemented / 1,041 missing / 116 blocked contracts**, unchanged requirements,
+zero verified. The earlier compaction helper checkpoint is included. Next:
+source-reviewed ordinary PostToolUse observer exit7 and the exact source-
+suppressed async notification owner, with final-source qualification to follow.
+Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal and release
+gates remain incomplete.
+
 The [ordinary compaction/root SessionEnd unit](ordinary-compaction-session-hooks-qualification.md)
 adds genuine pre/post compaction and fully drained replacement-shutdown pairs,
 independent command/PID records, installed checkpoint consumption and preserved

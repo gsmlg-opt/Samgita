@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [ordinary child/tool hooks and control-correlation unit](ordinary-hooks-and-control-qualification.md)
+passes **59 files / 109 actual-native cases at both seeds**, selected WebSocket
+cases at three seeds, outside consumer **1/0** and all fourteen reviewed checks.
+All1,676 guarded sources stay unchanged. Complete original native pairs, the
+root-session/child-agent distinction, command effects/PIDs, held user-input
+status and typed control responses add ten exact physical owners through73
+complete immutable producers. Contracts: **5,464 implemented / 1,041 missing /
+116 blocked**, unchanged requirements and zero verified. Initial invalid
+oracles and strict-Credo failures remain in the linked record. Prohibited/hosted,
+A11, unavailable emitters/external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary V3 output-branch profile](ordinary-realtime-output-branches-qualification.md)
 passes **53 files / 99 ordinary real-binary cases at both seeds**, selected
 WebSocket cases at three seeds, outside consumer **1/0** and all fourteen

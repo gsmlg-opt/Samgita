@@ -10,6 +10,8 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     TurnFixture
   }
 
+  alias SamgitaProtocolCodex.{Schema, Wire}
+
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
@@ -40,9 +42,10 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     end
 
     defp capture(state, encoded, wire) do
-      if length(Agent.get(state.capture, & &1)) < 32 and byte_size(encoded) <= 4096 do
+      if length(Agent.get(state.capture, & &1.outgoing)) < 32 and byte_size(encoded) <= 4096 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [wire]))
+          Agent.update(state.capture, &append_outgoing(&1, encoded, wire))
+
           {:ok, next}
         end
       else
@@ -50,8 +53,60 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
       end
     end
 
+    defp append_outgoing(ledger, encoded, wire),
+      do: %{ledger | outgoing: ledger.outgoing ++ [%{encoded: encoded, wire: wire}]}
+
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case capture_incoming(events, next.capture) do
+            :ok -> {:ok, events, next}
+            :overflow -> {:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow), next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp capture_incoming(events, capture) do
+      Enum.reduce_while(events, :ok, &capture_event(&1, &2, capture))
+    end
+
+    defp capture_event({:message, encoded}, :ok, capture) do
+      wire = JSON.decode!(encoded)
+      result = Agent.get_and_update(capture, &capture_response(&1, encoded, wire))
+      if result == :ok, do: {:cont, :ok}, else: {:halt, :overflow}
+    end
+
+    defp capture_event(_event, :ok, _capture), do: {:cont, :ok}
+
+    defp capture_response(ledger, encoded, wire) do
+      ids = Enum.map(ledger.outgoing, & &1.wire["id"])
+
+      if SamgitaProtocolCodex.Wire.classify(wire) in [:response, :error] and
+           wire["id"] in ids,
+         do: append_incoming(ledger, encoded, wire),
+         else: {:ok, ledger}
+    end
+
+    defp append_incoming(ledger, encoded, wire) do
+      size = byte_size(encoded)
+
+      if length(ledger.incoming) < 32 and size <= 4096 and
+           ledger.incoming_bytes + size <= 131_072 do
+        {:ok,
+         %{
+           ledger
+           | incoming: ledger.incoming ++ [%{encoded: encoded, wire: wire}],
+             incoming_bytes: ledger.incoming_bytes + size
+         }}
+      else
+        {:overflow, ledger}
+      end
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -80,7 +135,10 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
 
     records = Path.join(ctx.root, "owned-process-handles.json")
     File.write!(records, "[]")
-    capture = start_supervised!({Agent, fn -> [] end})
+
+    capture =
+      start_supervised!({Agent, fn -> %{outgoing: [], incoming: [], incoming_bytes: 0} end})
+
     config = Path.join(ctx.fixture.codex_home, "config.toml")
 
     Map.merge(ctx, %{
@@ -110,10 +168,16 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     spawn_child(ctx, pid, default, %{"tty" => true, "size" => nil})
     events = ready(pid, default, events, %{"rows" => 24, "cols" => 80})
 
-    assert rpc(ctx, pid, "process/resizePty", %{
-             "processHandle" => explicit.handle,
-             "size" => %{"rows" => 40, "cols" => 120}
-           }) == %{}
+    assert rpc(
+             ctx,
+             pid,
+             "process/resizePty",
+             %{
+               "processHandle" => explicit.handle,
+               "size" => %{"rows" => 40, "cols" => 120}
+             },
+             499_001
+           ) == %{}
 
     write(ctx, pid, explicit, "?", false)
 
@@ -144,7 +208,14 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     assert Enum.all?(deltas(events, explicit.handle), &(&1["stream"] == "stdout"))
     await_gone(explicit)
 
-    assert rpc(ctx, pid, "process/kill", %{"processHandle" => default.handle}) == %{}
+    assert rpc(
+             ctx,
+             pid,
+             "process/kill",
+             %{"processHandle" => default.handle},
+             "owned-v499-kill-λ🙂"
+           ) == %{}
+
     events = collect(pid, &exited(&1, default.handle), events)
     killed = exited(events, default.handle)
     assert is_integer(killed["exitCode"]) and killed["exitCode"] not in [0, 7, 124, 125]
@@ -167,7 +238,7 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     await_gone(pipe)
     assert_retained(ctx, pid, [pipe, explicit, default])
 
-    assert Enum.frequencies_by(Agent.get(ctx.capture, & &1), & &1["method"]) == %{
+    assert Enum.frequencies_by(captured_requests(ctx), & &1["method"]) == %{
              "process/spawn" => 3,
              "process/resizePty" => 1,
              "process/writeStdin" => 5,
@@ -196,7 +267,7 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     await_gone(pipe)
     assert_retained(ctx, pid, [pipe])
 
-    assert Enum.map(Agent.get(ctx.capture, & &1), & &1["method"]) ==
+    assert Enum.map(captured_requests(ctx), & &1["method"]) ==
              ["process/spawn", "process/writeStdin"]
 
     close(pid, native)
@@ -236,7 +307,7 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     await_gone(terminal)
     assert_retained(ctx, pid, [terminal])
 
-    assert [spawn_wire, write_wire] = Agent.get(ctx.capture, & &1)
+    assert [spawn_wire, write_wire] = captured_requests(ctx)
     spawn_id = Map.fetch!(spawn_wire, "id")
     write_id = Map.fetch!(write_wire, "id")
 
@@ -384,17 +455,52 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
            }) == %{}
   end
 
-  defp rpc(ctx, pid, method, params) when method in @process_methods do
-    before = length(Agent.get(ctx.capture, & &1))
-    id = "owned-process-values-#{System.unique_integer([:positive, :monotonic])}"
+  defp rpc(ctx, pid, method, params, id \\ nil) when method in @process_methods do
+    before = length(captured_requests(ctx))
+    id = id || "owned-process-values-#{System.unique_integer([:positive, :monotonic])}"
     wire = %{"id" => id, "method" => method, "params" => params}
 
-    assert {:ok, %{"id" => ^id, "result" => result}} =
+    assert {:ok, %{"id" => ^id, "result" => result} = response} =
              Session.request_native(pid, wire, timeout_ms: 5_000)
 
-    assert [captured] = Agent.get(ctx.capture, &Enum.drop(&1, before))
+    assert [captured] = Enum.drop(captured_requests(ctx), before)
     assert captured === wire
+
+    if method in ["process/kill", "process/resizePty"] do
+      assert response === %{"id" => id, "result" => %{}}
+      assert_exchange(ctx, wire, response)
+    end
+
     result
+  end
+
+  defp captured_requests(ctx) do
+    Agent.get(ctx.capture, fn ledger -> Enum.map(ledger.outgoing, & &1.wire) end)
+  end
+
+  defp assert_exchange(ctx, %{"id" => id} = request, response) do
+    ledger = Agent.get(ctx.capture, & &1)
+    assert [outgoing] = Enum.filter(ledger.outgoing, &(&1.wire["id"] === id))
+    assert [incoming] = Enum.filter(ledger.incoming, &(&1.wire["id"] === id))
+    assert {:ok, decoded_request} = Wire.decode(outgoing.encoded, max_depth: 32)
+    assert decoded_request === request
+    assert outgoing.wire === request
+    assert :ok = Schema.validate(client_request_schema(), decoded_request, max_depth: 32)
+    assert {:ok, decoded_response} = Wire.decode(incoming.encoded, max_depth: 32)
+    assert decoded_response === response
+    assert incoming.wire === response
+    assert decoded_response === %{"id" => id, "result" => %{}}
+  end
+
+  defp client_request_schema do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> File.read!()
+
+    assert hash(bytes) == "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+    JSON.decode!(bytes)
   end
 
   defp collect(pid, predicate, events, until \\ nil) do
@@ -495,8 +601,8 @@ defmodule SamgitaCodexDriver.NativeProcessValuesTest do
     assert Session.uncertain_operations(pid) == []
     assert %{phase: :ready, pending: 0, uncertain: 0, gap: nil} = Session.status(pid)
 
-    assert length(Enum.uniq_by(Agent.get(ctx.capture, & &1), & &1["id"])) ==
-             length(Agent.get(ctx.capture, & &1))
+    assert length(Enum.uniq_by(captured_requests(ctx), & &1["id"])) ==
+             length(captured_requests(ctx))
   end
 
   defp start(ctx) do
