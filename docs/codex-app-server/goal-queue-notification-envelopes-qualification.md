@@ -1,5 +1,9 @@
 # Native goal and queue notification envelopes
 
+The later [ordinary lifecycle unit](ordinary-lifecycle-envelopes-qualification.md)
+strengthens this owning test and supplies fresh final-source functional checks.
+The exact source-bound runs below remain historical for their recorded bytes.
+
 V405 starts from `3efcddf8d91c12c9c1a70ac5f5ece27732bc3291` on `main`.
 The new [ordinary native module](../../apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs)
 qualifies only stable `ServerNotification.json` roots 2823, 2831 and 2835:

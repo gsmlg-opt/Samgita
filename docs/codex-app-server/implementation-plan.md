@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary lifecycle unit](ordinary-lifecycle-envelopes-qualification.md)
+qualifies only roots2855/2867/2875/2891/2911, preserving fifteen implemented
+siblings. Two existing direct fixed-YOLO modules add complete normal status,
+nine-field started/completed Turn and independent item wrappers, original ingress
+and distinct clock bounds without new executions/RPCs/inputs/deadlines. Focused
+**4/0** and final **37ordinary cases twice**, syntax/strict checks and403stable
+sources pass;401other prior paths stay unchanged and35whole upstream files match
+the pin. Only these five become scoped implemented: **5,145 implemented
+/1,410 missing /66 blocked**, unchanged requirements and zero verified. Old V405/
+V406 owning-source results stay historical; fresh checks cover both modified
+modules. Continue ordinary token-usage/creation notification evidence; prohibited/
+full-goal gates remain incomplete.
+
 The [reasoning/checklist envelope unit](reasoning-checklist-envelopes-qualification.md)
 qualifies only roots2887/3011/3015/3019, preserving twelve implemented siblings.
 Two direct fixed-YOLO native cases bind seven original Unicode reasoning frames

@@ -111142,24 +111142,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V407/V408 scoped ordinary actual-native full lifecycle wrappers. Existing two reviewed direct fixed-YOLO modules strengthened without new executions,RPCs,provider requests,inputs,resources,deadlines or removed assertions. Queue case binds actual UUIDv7 turn to independent user/provider identity;complete nine-field started Turn has self-root,empty items/notLoaded,inProgress,errornull and null completion/duration. Completed Turn retains root/start,summary/completed,errornull and exactly the independently prescribed queued-answer-1 assistant with literal text/null metadata. Actual assistant item agrees. Full normal active-empty-flags then idle status surrounds started/user/assistant/completed in producer-backed sequence;queue notices may interleave and no queue ACK placement/count is fixed. Unix-second fields,epoch-ms envelopes and host-monotonic duration are separately bounded;1ms allowance only covers integer sampling. Merged selected full frames bind original incoming bodies after queue/add as ordered subsequence. Item module retains independent empty/populated reasoning and assistant maps,adds full method/params/emittedAtMs,kind/generation/schema checks and exactly one original frame per prescribed item/method;final post-shutdown ingress includes lifecycle methods. Existing causal SSE/journals,0/1goal-queue and1/2reasoning-checklist inference counts,exact original RPC pairs/client inventories,bounds and checked native/provider/PID/Port cleanup remain. Focused4/0 then final37/0ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,401other prior bytes unchanged. Thirty-five whole upstream files/five exact stable nodes match pin. Fifteen implemented siblings stay unchanged. PriorV405/V406 owning-source runs remain historical;fresh matrix covers both modified modules. No other item/status/error/interruption/causal-root variant,alias,backend/OS/transport,global loss/replay proof or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "a6ccef1b5e01655848b4046b7d1006fd3797ca47f73fed7f46c640ba50ae6ee3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -111484,24 +111492,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/22",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V407/V408 scoped ordinary actual-native full lifecycle wrappers. Existing two reviewed direct fixed-YOLO modules strengthened without new executions,RPCs,provider requests,inputs,resources,deadlines or removed assertions. Queue case binds actual UUIDv7 turn to independent user/provider identity;complete nine-field started Turn has self-root,empty items/notLoaded,inProgress,errornull and null completion/duration. Completed Turn retains root/start,summary/completed,errornull and exactly the independently prescribed queued-answer-1 assistant with literal text/null metadata. Actual assistant item agrees. Full normal active-empty-flags then idle status surrounds started/user/assistant/completed in producer-backed sequence;queue notices may interleave and no queue ACK placement/count is fixed. Unix-second fields,epoch-ms envelopes and host-monotonic duration are separately bounded;1ms allowance only covers integer sampling. Merged selected full frames bind original incoming bodies after queue/add as ordered subsequence. Item module retains independent empty/populated reasoning and assistant maps,adds full method/params/emittedAtMs,kind/generation/schema checks and exactly one original frame per prescribed item/method;final post-shutdown ingress includes lifecycle methods. Existing causal SSE/journals,0/1goal-queue and1/2reasoning-checklist inference counts,exact original RPC pairs/client inventories,bounds and checked native/provider/PID/Port cleanup remain. Focused4/0 then final37/0ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,401other prior bytes unchanged. Thirty-five whole upstream files/five exact stable nodes match pin. Fifteen implemented siblings stay unchanged. PriorV405/V406 owning-source runs remain historical;fresh matrix covers both modified modules. No other item/status/error/interruption/causal-root variant,alias,backend/OS/transport,global loss/replay proof or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/22",
       "schema": "ServerNotification.json",
       "schema_sha256": "33734cfbdf42fc356ca03f97e48d2266709fa821a562585807e05b4f16fe6396",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -111700,24 +111716,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/24",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V407/V408 scoped ordinary actual-native full lifecycle wrappers. Existing two reviewed direct fixed-YOLO modules strengthened without new executions,RPCs,provider requests,inputs,resources,deadlines or removed assertions. Queue case binds actual UUIDv7 turn to independent user/provider identity;complete nine-field started Turn has self-root,empty items/notLoaded,inProgress,errornull and null completion/duration. Completed Turn retains root/start,summary/completed,errornull and exactly the independently prescribed queued-answer-1 assistant with literal text/null metadata. Actual assistant item agrees. Full normal active-empty-flags then idle status surrounds started/user/assistant/completed in producer-backed sequence;queue notices may interleave and no queue ACK placement/count is fixed. Unix-second fields,epoch-ms envelopes and host-monotonic duration are separately bounded;1ms allowance only covers integer sampling. Merged selected full frames bind original incoming bodies after queue/add as ordered subsequence. Item module retains independent empty/populated reasoning and assistant maps,adds full method/params/emittedAtMs,kind/generation/schema checks and exactly one original frame per prescribed item/method;final post-shutdown ingress includes lifecycle methods. Existing causal SSE/journals,0/1goal-queue and1/2reasoning-checklist inference counts,exact original RPC pairs/client inventories,bounds and checked native/provider/PID/Port cleanup remain. Focused4/0 then final37/0ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,401other prior bytes unchanged. Thirty-five whole upstream files/five exact stable nodes match pin. Fifteen implemented siblings stay unchanged. PriorV405/V406 owning-source runs remain historical;fresh matrix covers both modified modules. No other item/status/error/interruption/causal-root variant,alias,backend/OS/transport,global loss/replay proof or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/24",
       "schema": "ServerNotification.json",
       "schema_sha256": "a1088c9def2242478bf5ce527dd62e7c189b62bfb0482ca5265b40a1a8afaaf5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_queue_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -112176,24 +112200,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/28",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V407/V408 scoped ordinary actual-native full lifecycle wrappers. Existing two reviewed direct fixed-YOLO modules strengthened without new executions,RPCs,provider requests,inputs,resources,deadlines or removed assertions. Queue case binds actual UUIDv7 turn to independent user/provider identity;complete nine-field started Turn has self-root,empty items/notLoaded,inProgress,errornull and null completion/duration. Completed Turn retains root/start,summary/completed,errornull and exactly the independently prescribed queued-answer-1 assistant with literal text/null metadata. Actual assistant item agrees. Full normal active-empty-flags then idle status surrounds started/user/assistant/completed in producer-backed sequence;queue notices may interleave and no queue ACK placement/count is fixed. Unix-second fields,epoch-ms envelopes and host-monotonic duration are separately bounded;1ms allowance only covers integer sampling. Merged selected full frames bind original incoming bodies after queue/add as ordered subsequence. Item module retains independent empty/populated reasoning and assistant maps,adds full method/params/emittedAtMs,kind/generation/schema checks and exactly one original frame per prescribed item/method;final post-shutdown ingress includes lifecycle methods. Existing causal SSE/journals,0/1goal-queue and1/2reasoning-checklist inference counts,exact original RPC pairs/client inventories,bounds and checked native/provider/PID/Port cleanup remain. Focused4/0 then final37/0ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,401other prior bytes unchanged. Thirty-five whole upstream files/five exact stable nodes match pin. Fifteen implemented siblings stay unchanged. PriorV405/V406 owning-source runs remain historical;fresh matrix covers both modified modules. No other item/status/error/interruption/causal-root variant,alias,backend/OS/transport,global loss/replay proof or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/28",
       "schema": "ServerNotification.json",
       "schema_sha256": "1162457a9e73ffda1cc6650f5f9d8f790ffd253493543bdf5c9f3eaefb901f95",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -112710,24 +112742,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/32",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V407/V408 scoped ordinary actual-native full lifecycle wrappers. Existing two reviewed direct fixed-YOLO modules strengthened without new executions,RPCs,provider requests,inputs,resources,deadlines or removed assertions. Queue case binds actual UUIDv7 turn to independent user/provider identity;complete nine-field started Turn has self-root,empty items/notLoaded,inProgress,errornull and null completion/duration. Completed Turn retains root/start,summary/completed,errornull and exactly the independently prescribed queued-answer-1 assistant with literal text/null metadata. Actual assistant item agrees. Full normal active-empty-flags then idle status surrounds started/user/assistant/completed in producer-backed sequence;queue notices may interleave and no queue ACK placement/count is fixed. Unix-second fields,epoch-ms envelopes and host-monotonic duration are separately bounded;1ms allowance only covers integer sampling. Merged selected full frames bind original incoming bodies after queue/add as ordered subsequence. Item module retains independent empty/populated reasoning and assistant maps,adds full method/params/emittedAtMs,kind/generation/schema checks and exactly one original frame per prescribed item/method;final post-shutdown ingress includes lifecycle methods. Existing causal SSE/journals,0/1goal-queue and1/2reasoning-checklist inference counts,exact original RPC pairs/client inventories,bounds and checked native/provider/PID/Port cleanup remain. Focused4/0 then final37/0ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,401other prior bytes unchanged. Thirty-five whole upstream files/five exact stable nodes match pin. Fifteen implemented siblings stay unchanged. PriorV405/V406 owning-source runs remain historical;fresh matrix covers both modified modules. No other item/status/error/interruption/causal-root variant,alias,backend/OS/transport,global loss/replay proof or full verified acceptance follows. FixedYOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/32",
       "schema": "ServerNotification.json",
       "schema_sha256": "f2ba824e3b2c91c03fe7efe4dd2faa2f9cf2db17c56241ba126d14116eb56ece",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

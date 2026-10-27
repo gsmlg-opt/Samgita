@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary lifecycle profile](ordinary-lifecycle-envelopes-qualification.md)
+binds complete normal active/idle, nine-field started/completed Turn and literal
+reasoning/assistant item wrappers to original native frames and independent
+clock/effect oracles. No new executions,RPCs,inputs,resources or deadlines.
+Focused **4/0** and final **37ordinary cases twice**, syntax/strict checks and
+403stable-source guard pass;401other prior paths stay unchanged and35whole
+upstream files match the pin. Only roots2855/2867/2875/2891/2911 become scoped
+implemented: **5,145 implemented /1,410 missing /66 blocked**, unchanged
+requirements and zero verified. V405/V406 old owning-source runs remain
+historical; fresh checks cover both modified modules. Continue ordinary
+token-usage/creation envelopes; prohibited/full-goal gates remain incomplete.
+
 The [ordinary reasoning/checklist profile](reasoning-checklist-envelopes-qualification.md)
 proves seven original native reasoning frames and one real default-mode
 update_plan notice with independent complete maps, exact item lifecycle and

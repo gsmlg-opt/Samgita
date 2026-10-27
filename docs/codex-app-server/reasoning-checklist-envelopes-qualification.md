@@ -1,5 +1,9 @@
 # Native reasoning and checklist envelopes
 
+The later [ordinary lifecycle unit](ordinary-lifecycle-envelopes-qualification.md)
+strengthens this owning test and provides fresh final-source functional checks.
+The exact source-bound runs below remain historical for their recorded bytes.
+
 This unit supplements the [implementation ledger](implementation-plan.md) and
 [repair record](repair-qualification.md) on existing `main`, baseline
 `a8ce1f99bdf923b0ed4bd876fb00d69134959ba2`. Only full notification roots

@@ -150,13 +150,13 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       "content" => []
     }
 
-    started = assert_item(run, "item/started", initial, "startedAtMs")
-    completed = assert_item(run, "item/completed", reasoning_item(), "completedAtMs")
+    started = assert_item(ctx.profile, run, "item/started", initial, "startedAtMs")
+    completed = assert_item(ctx.profile, run, "item/completed", reasoning_item(), "completedAtMs")
     assert started.sequence < hd(selected).sequence
     assert List.last(selected).sequence < completed.sequence
     assert completed.sequence < run.finished.sequence
     assert_original_order(ctx.profile, [started] ++ selected ++ [completed, run.finished])
-    assert_answer(run, "owned-reasoning-answer", "Synthetic reasoning finished")
+    assert_answer(ctx.profile, run, "owned-reasoning-answer", "Synthetic reasoning finished")
     assert_provider(ctx.profile, run, 1)
     assert read_json(ctx.profile, "provider-events.json") === [reasoning_provider_events()]
     finish(ctx, run)
@@ -171,7 +171,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert updated.sequence < run.finished.sequence
     assert notices(run.events, "item/plan/delta") === []
     assert_original_order(ctx.profile, [updated, run.finished])
-    assert_answer(run, "owned-checklist-answer", "Synthetic tool finished")
+    assert_answer(ctx.profile, run, "owned-checklist-answer", "Synthetic tool finished")
     [first, second] = assert_provider(ctx.profile, run, 2)
     [tool] = Enum.filter(first["tools"], &(&1["name"] == "update_plan"))
     assert tool["type"] === "function"
@@ -440,24 +440,37 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
     assert :ok = Schema.validate(schema, event.wire, max_depth: 32)
   end
 
-  defp assert_item(run, method, item, time_key) do
+  defp assert_item(profile, run, method, item, time_key) do
     [event] =
       Enum.filter(notices(run.events, method), &(&1.wire["params"]["item"]["id"] == item["id"]))
 
     time = Map.fetch!(event.wire["params"], time_key)
     assert_time(time, run)
 
-    assert event.wire["params"] === %{
-             "threadId" => run.thread,
-             "turnId" => run.turn,
-             "item" => item,
-             time_key => time
-           }
+    params = %{
+      "threadId" => run.thread,
+      "turnId" => run.turn,
+      "item" => item,
+      time_key => time
+    }
 
+    assert event.wire["params"] === params
+    assert_notice(profile, run, event, method, params)
+
+    originals =
+      for record <- capture(profile),
+          record.direction == :in,
+          record.wire["method"] == method,
+          get_in(record.wire, ["params", "item", "id"]) == item["id"],
+          do: record
+
+    assert [original] = originals
+    assert original.wire === event.wire
+    assert JSON.decode!(original.encoded) === event.wire
     event
   end
 
-  defp assert_answer(run, id, text) do
+  defp assert_answer(profile, run, id, text) do
     [event] =
       Enum.filter(
         notices(run.events, "item/completed"),
@@ -474,7 +487,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       "questions" => nil
     }
 
-    assert_item(run, "item/completed", item, "completedAtMs")
+    assert_item(profile, run, "item/completed", item, "completedAtMs")
     assert event.sequence < run.finished.sequence
   end
 
@@ -632,6 +645,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
 
   defp assert_final_ingress(profile, run) do
     methods = if profile.scenario == "reasoning", do: @reasoning_methods, else: [@checklist]
+    methods = methods ++ ~w(item/started item/completed)
 
     originals =
       for record <- capture(profile),

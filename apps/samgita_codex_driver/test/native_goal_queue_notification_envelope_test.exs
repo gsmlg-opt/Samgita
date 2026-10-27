@@ -290,6 +290,7 @@ defmodule SamgitaCodexDriver.NativeGoalQueueNotificationEnvelopeTest do
     prior = last_sequence(events)
     lower = System.system_time(:millisecond)
     client = "owned-queue-envelope-client-λ"
+    lower_mono = now()
     text = "Owned queued envelope message 雪"
 
     {request_id, %{"queuedSubmission" => queued}} =
@@ -326,6 +327,7 @@ defmodule SamgitaCodexDriver.NativeGoalQueueNotificationEnvelopeTest do
     # notice count or a queue acknowledgement ordering guarantee.
     events = drain(session.pid, events)
     upper = System.system_time(:millisecond)
+    elapsed = now() - lower_mono
     changes = queue_changes(events, thread, prior)
     assert changes != []
 
@@ -333,6 +335,12 @@ defmodule SamgitaCodexDriver.NativeGoalQueueNotificationEnvelopeTest do
         do: assert_notice(ctx, event, @queue_changed, %{"threadId" => thread}, lower, upper)
 
     assert_original_order(ctx, changes, request_id)
+
+    lifecycle =
+      assert_queue_lifecycle(ctx, events, thread, turn, prior, {lower, upper, elapsed})
+
+    ordered = Enum.sort_by(changes ++ lifecycle, & &1.sequence)
+    assert_original_order(ctx, ordered, request_id)
 
     assert_inventory(
       ctx,
@@ -534,6 +542,167 @@ defmodule SamgitaCodexDriver.NativeGoalQueueNotificationEnvelopeTest do
     assert is_integer(emitted_at) and lower <= emitted_at and emitted_at <= upper
     assert event.kind === :notification and event.generation === ctx.generation
     assert event.wire === %{"emittedAtMs" => emitted_at, "method" => method, "params" => params}
+  end
+
+  defp assert_queue_lifecycle(ctx, events, thread, turn, prior, {lower, upper, elapsed}) do
+    assert Regex.match?(
+             ~r/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+             turn
+           )
+
+    started = lifecycle_event(events, "turn/started", thread, turn, prior)
+    completed = lifecycle_event(events, "turn/completed", thread, turn, prior)
+    user = lifecycle_event(events, "item/started", thread, turn, prior)
+    assistant = lifecycle_event(events, "item/completed", thread, turn, prior)
+    active_status = %{"type" => "active", "activeFlags" => []}
+    idle_status = %{"type" => "idle"}
+    active = status_event(events, thread, active_status, prior, started.sequence)
+    idle = status_event(events, thread, idle_status, assistant.sequence, completed.sequence)
+    assert assistant.wire["params"]["item"] === expected_assistant_item()
+
+    for event <- [user, assistant] do
+      assert event.kind === :notification
+      assert event.generation === ctx.generation
+    end
+
+    started_at = assert_started_turn(ctx, started, thread, turn, {lower, upper})
+    assert_completed_turn(ctx, completed, thread, turn, started_at, {lower, upper, elapsed})
+
+    assert_notice(
+      ctx,
+      active,
+      "thread/status/changed",
+      %{"threadId" => thread, "status" => active_status},
+      lower,
+      upper
+    )
+
+    assert_notice(
+      ctx,
+      idle,
+      "thread/status/changed",
+      %{"threadId" => thread, "status" => idle_status},
+      lower,
+      upper
+    )
+
+    selected = [active, started, user, assistant, idle, completed]
+    sequences = Enum.map(selected, & &1.sequence)
+    assert sequences === Enum.sort(sequences)
+    assert sequences === Enum.uniq(sequences)
+    selected
+  end
+
+  defp lifecycle_event(events, method, thread, turn, prior) do
+    selected =
+      Enum.filter(events, fn event ->
+        params = event.wire["params"] || %{}
+
+        event.sequence > prior and event.wire["method"] == method and
+          params["threadId"] === thread and lifecycle_item?(params, method, turn)
+      end)
+
+    assert [event] = selected
+    event
+  end
+
+  defp lifecycle_item?(params, "item/started", turn),
+    do: params["turnId"] === turn and params["item"]["type"] === "userMessage"
+
+  defp lifecycle_item?(params, "item/completed", turn),
+    do: params["turnId"] === turn and params["item"]["id"] === "queued-answer-1"
+
+  defp lifecycle_item?(params, _method, turn), do: params["turn"]["id"] === turn
+
+  defp status_event(events, thread, status, after_sequence, before_sequence) do
+    selected =
+      Enum.filter(events, fn event ->
+        event.sequence > after_sequence and event.sequence < before_sequence and
+          event.wire["method"] == "thread/status/changed" and
+          event.wire["params"]["threadId"] === thread and
+          event.wire["params"]["status"] === status
+      end)
+
+    assert [event] = selected
+    event
+  end
+
+  defp assert_started_turn(ctx, event, thread, turn, {lower, upper}) do
+    started_at = Map.fetch!(event.wire["params"]["turn"], "startedAt")
+    assert_seconds(started_at, lower, upper)
+
+    expected = %{
+      "id" => turn,
+      "rootTurnId" => turn,
+      "items" => [],
+      "itemsView" => "notLoaded",
+      "status" => "inProgress",
+      "error" => nil,
+      "startedAt" => started_at,
+      "completedAt" => nil,
+      "durationMs" => nil
+    }
+
+    assert_notice(
+      ctx,
+      event,
+      "turn/started",
+      %{"threadId" => thread, "turn" => expected},
+      lower,
+      upper
+    )
+
+    started_at
+  end
+
+  defp assert_completed_turn(ctx, event, thread, turn, started_at, {lower, upper, elapsed}) do
+    observed = event.wire["params"]["turn"]
+    completed_at = Map.fetch!(observed, "completedAt")
+    duration_ms = Map.fetch!(observed, "durationMs")
+    assert_seconds(completed_at, lower, upper)
+    assert completed_at >= started_at
+    assert is_integer(duration_ms) and duration_ms >= 0
+    # Native duration uses Instant; public timestamps use Unix seconds.
+    # The 1ms allowance only covers integer sampling at the outer boundaries.
+    assert duration_ms <= elapsed + 1
+
+    expected = %{
+      "id" => turn,
+      "rootTurnId" => turn,
+      "items" => [expected_assistant_item()],
+      "itemsView" => "summary",
+      "status" => "completed",
+      "error" => nil,
+      "startedAt" => started_at,
+      "completedAt" => completed_at,
+      "durationMs" => duration_ms
+    }
+
+    assert_notice(
+      ctx,
+      event,
+      "turn/completed",
+      %{"threadId" => thread, "turn" => expected},
+      lower,
+      upper
+    )
+  end
+
+  defp assert_seconds(value, lower, upper) do
+    assert is_integer(value)
+    assert div(lower, 1000) <= value and value <= div(upper, 1000)
+  end
+
+  defp expected_assistant_item do
+    %{
+      "type" => "agentMessage",
+      "id" => "queued-answer-1",
+      "text" => "Synthetic queue answer 1",
+      "phase" => nil,
+      "memoryCitation" => nil,
+      "delivery" => nil,
+      "questions" => nil
+    }
   end
 
   defp assert_provider_effect(ctx, thread, turn, text) do
