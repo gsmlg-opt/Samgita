@@ -114876,15 +114876,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/43",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/43",
       "schema": "ServerNotification.json",
       "schema_sha256": "bf50bf505c9da6104d1762134d775b8d8bc57fae1cd051b90ef5de9183a086c6",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -114899,18 +114903,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/43/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/43/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e316227909cb00f6b5c8c3d24291c16dbbf91710d0ea2ac8bb29e1560570b0e4",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -114924,15 +114932,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/43/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/43/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "193919b378a15de055771956322284421710a0f5afe31918cbb63efd50c26559",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -114947,18 +114959,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/43/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/43/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "cae0e989a80407e9f912d963c4be3584a827c7ce2c00cfe3e08c00d8c5726959",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -116746,15 +116762,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/58",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/58",
       "schema": "ServerNotification.json",
       "schema_sha256": "3415cbc2f3ea4f2b3753e1af0a06581a509bb842440c8d377045939ee6a28c5a",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -116769,18 +116789,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/58/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/58/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "727f4dd5ede6086a0036bff09d3f63d0ad3e741999ceecb70ca21978f460af0a",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -116794,15 +116818,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/58/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/58/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "49ea0245de68a66350ee03e7119f4081f5a2f9c0ee221464b1a318d70f3bd982",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -116817,18 +116845,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/58/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/58/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e040f7caeb36d2879e961f2678d7e025d6750aa840592acc2e9dadd627260a40",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -143064,18 +143096,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ContextCompactedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ContextCompactedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -143090,18 +143126,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ContextCompactedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned bespoke_event_handling.rs:1016-1020 explicitly suppresses the deprecated ContextCompacted event; canonical contextCompaction items and legacy raw events are different owners. The retained thread/compacted envelope and payload have no native producer. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ContextCompactedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -160024,18 +160064,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpToolCallProgressNotification.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/McpToolCallProgressNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -160050,18 +160094,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpToolCallProgressNotification.json#/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "v2/McpToolCallProgressNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -160076,18 +160124,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpToolCallProgressNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/McpToolCallProgressNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -160102,18 +160154,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpToolCallProgressNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V463 immutable producer boundary at rust-v0.163.0: Pinned rmcp-client/logging_client_handler.rs:63-74 only logs incoming MCP progress. Complete Rust-tree references contain no production constructor/send for item/mcpToolCall/progress; the sole constructor is under cfg(test). Generic mcpServer/event/stream/notification forwarding is a separate reachable contract. Exact14nodes/14key files and all5259Rust files match the pinned official archive/export;852V462guarded sources/13successful logs remain exact. Source-only classification, no new test run, native-success evidence or transport credit. Existing tests, schema and completion requirement remain intact; no synthetic substitution, local emitter, upstream modification, target exclusion or waiver. Security/permission tests/audits, broad/hosted workflows, A11, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/McpToolCallProgressNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

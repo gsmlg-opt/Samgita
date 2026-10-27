@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The retained [compaction](compacted-boundary.md) and
+[MCP progress](mcp-direct-qualification.md) source boundaries now bind 14 exact
+subordinate contracts. All 5,259 Rust files/14 key files and canonical nodes match
+the official pin; all 852 V462 guarded sources/13 logs stay exact. No new test
+runs or native-success credit. Counts: **5,288 implemented / 1,225 missing /
+108 blocked**, unchanged requirements and zero verified. Continue reachable
+ordinary behavior; prohibited/full-goal gates remain incomplete.
+
 The [native collaboration catalogue profile](collaboration-catalogue-qualification.md)
 requires full original Plan/Default rows across warm/cold actual-native reads.
 Source distinguishes Default outer None, so only 3387 gains evidence; inner-null

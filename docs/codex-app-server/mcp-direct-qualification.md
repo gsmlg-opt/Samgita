@@ -134,6 +134,20 @@ failing. Synthetic Session/codec evidence cannot satisfy native emission, and
 neither an older/modified binary nor sending a mock progress event changes this
 target's evidence. The requirement remains incomplete pending an explicit
 upstream/evidence-policy resolution; no target exclusion is assumed.
+
+V463 applies this same source boundary to eight exact subordinate contracts:
+`ServerNotification.json#/oneOf/43`, its `method`, literal `method/enum/0` and
+`params`, and `v2/McpToolCallProgressNotification.json#/properties/` followed by
+`itemId`, `message`, `threadId` and `turnId`. They become **blocked**, with no
+native-positive test or transport credit. All subtree hashes match the original
+export/generated copy. All 5,259 Rust files and 14 key source files match the
+pinned official archive. The source binding is shared with
+[the compaction boundary](compacted-boundary.md); no new runtime test runs.
+The production `mcp_event_stream.rs:185-204` explicitly sends a different
+`McpServerEventStream` notification. Its reachable forwarding path cannot supply
+evidence for these item-progress fields. The schema, parent requirement and
+existing completion gate remain intact; no mock substitutes for emission.
+
 ## Successful Apps resource origins
 
 The dedicated `native_mcp_resource_origin_profile.exs` runs immutable Codex

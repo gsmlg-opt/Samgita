@@ -3,8 +3,9 @@
 `thread/compacted` remains advertised by Codex `rust-v0.163.0`, but the pinned
 production dispatcher deliberately suppresses it. Native v2 clients receive a
 `contextCompaction` item instead. The retained notification is therefore
-**blocked**, not verified. Its two field contracts remain missing native-success
-evidence. No synthetic app-server message is counted as a native emission.
+**blocked**, not verified. Its envelope and two payload fields are also blocked
+for required native-success evidence. No synthetic app-server message is counted
+as a native emission.
 
 The immutable source is `83086188ae0614bd882818ff1aa23f3194962012`; the Linux
 executable SHA256 is
@@ -53,6 +54,25 @@ history-retention, interruption and cold-resume assertions. They do not establis
 this deprecated notification's positive emission. This source-only classification
 adds no runtime qualification or decoder-success claim and promotes no field.
 The lossless native schema and accessible decoder remain intact.
+
+V463 binds the same production boundary to exactly six contracts:
+`ServerNotification.json#/oneOf/58`, its `method`, literal `method/enum/0` and
+`params`, and `v2/ContextCompactedNotification.json#/properties/threadId` and
+`turnId`. Each canonical subtree hash matches the experimental export and its
+generated copy. All 5,259 Rust files match the pinned official source archive,
+including the three producer/declaration files above and all consumers. These
+rows move from missing to blocked; no test, transport or verified credit is added.
+The existing parent requirement stays blocked.
+
+The shared source binding also checks the distinct MCP progress boundary in
+[MCP qualification](mcp-direct-qualification.md). Artifact
+`/tmp/samgita-v463-binding/source.json`, SHA256
+`12cbde5c6cd2bf49d6e2516bb74d4add856b97c66e69dfde0b3bd344d9396a73`,
+records all source preimages, 14 exact nodes and the full reference search.
+The V462 source guard's 852 files and all 13 successful command logs remain
+byte-identical. This source-only update runs no new runtime tests; prior ordinary
+functional results remain separate from prohibited security/permission tests,
+broad/hosted workflows, A11, external/platform and full-goal gates.
 
 Do not manufacture an upstream producer, modify the pinned binary, treat a raw
 legacy event as this v2 notification, or silently exclude its advertised schema

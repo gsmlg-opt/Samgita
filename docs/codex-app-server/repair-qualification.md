@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The existing [compaction](compacted-boundary.md) and
+[MCP item-progress](mcp-direct-qualification.md) producer boundaries now bind 14
+exact envelope/payload contracts as blocked. All 5,259 Rust files/14 key files and
+canonical nodes match the official pin; all 852 V462 source hashes/13 logs stay
+exact. No new tests run and no native-positive or transport credit is added.
+Counts: **5,288 implemented / 1,225 missing / 108 blocked**, unchanged
+requirements and zero verified. Continue reachable ordinary behavior;
+prohibited/full-goal and release gates remain incomplete.
+
 The [ordinary collaboration catalogue profile](collaboration-catalogue-qualification.md)
 checks exact full original responses across warm/cold native processes with
 unchanged static inputs. Only source-assisted outer-None node 3387 gains evidence.
