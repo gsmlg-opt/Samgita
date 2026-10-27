@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [realtime/settings envelope correction](realtime-settings-envelope-qualification.md)
+binds three selected native string-ID fields and six exact realtime notification
+method/discriminator leaves, each with original frames and independent native
+effects. Both owning tests are unchanged/enabled in latest V456 **58/0** runs;
+850 source hashes/13 logs remain exact, 14 native files/nine nodes/six parents
+match the pin. No new tests run. Counts: **5,286 implemented / 1,248 missing /
+87 blocked**, unchanged requirements and zero verified. Continue ordinary
+hook-plugin metadata; prohibited/full-goal gates remain incomplete.
+
 The [retained notification producer boundary](retained-notification-producer-limitations.md)
 formally blocks only 3996–3999/5725–5727, preserving prior synthetic/negative
 evidence. Explicit native non-emission/unimplemented paths, all 5,259 Rust files,

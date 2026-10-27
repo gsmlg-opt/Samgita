@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [realtime/settings envelope binding](realtime-settings-envelope-qualification.md)
+adds nine exact scoped fields from unchanged native original-frame/effect
+assertions enabled in both latest V456 **58/0** runs. All 850 source hashes/13
+logs remain exact; no new tests run. Fourteen native files/nine nodes/six parents
+match the pin. Counts: **5,286 implemented / 1,248 missing / 87 blocked**,
+unchanged requirements and zero verified. Continue ordinary hook-plugin metadata;
+prohibited/full-goal gates remain incomplete.
+
 The [retained notification field blockers](retained-notification-producer-limitations.md)
 add exact immutable producer evidence to seven fields while preserving their
 prior synthetic/negative tests and transports. All 5,259 Rust files/five key

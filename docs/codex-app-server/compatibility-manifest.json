@@ -46669,27 +46669,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/102/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/102/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -47231,27 +47239,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/106/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/106/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -61227,27 +61243,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/32/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for exact settings/update id. Existing unchanged runtime-roots case performs4prescribed alternating concise/detailed updates;original full sent bytes/maps and native response retain generated string ID;actual settings notice matches prescribed model/provider/summary and local provider journal stays unchanged. No mixed settings/permission test supplies evidence;no complete settings-map or original-notification claim. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/32/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_runtime_roots_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -118377,49 +118401,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/71/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/71/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8f0b95a21ef4d34b8aeadc57332e0a09dd04cba37a6b529d564597bc217e7d6e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/71/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "pointer": "/oneOf/71/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "5cca04ef6b0cb06658349a35cd1a7cd087202d80525b037349c673b4a95fd521",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -118569,49 +118609,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/73/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/73/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "03a564578263f8dfd8e3d4eae635ff9c8350c9c8674e362481916f676bac663e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/73/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "pointer": "/oneOf/73/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "df483fd3bf2534bb516b8adea4aeaccb22dc33061ae24ab7719c4857158b5273",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -118761,49 +118817,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/75/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/75/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e0f4f52ecaa87ab106d1654259cda18a86f485bc3c98f6ce6fce4a12447e2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-settings-envelope-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/75/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V458 evidence correction only for selected realtime start/stop string IDs and started/item-started/item-completed method/discriminator leaves. Existing unchanged case captures original native RPC/notification bytes,exact prescribed full maps,correlated complete ACKs,and schema-valid native-generated distinct UUIDv7 start/closed lifecycle items with caller session/version and requested-ended stop. Real native store barrier and repeated exact ordered[start,closed]timeline page prove effects;local owned WS peer supplies only backend handshake/ACK,not app-server messages or real-provider success. Six method leaves are bound individually;no params refs/parents/aliases/timestamp credit. Both owning files enabled in latest V45658/0 ordinary runs at501432/987654;850source hashes/13successful logs exact,14native files and9exact nodes/6parents archive/export-match. No new runtime/test;all finite bounds and checked native/peer owner/Port/PID cleanup unchanged. Only9physical fields gain scoped implemented evidence,zero verified. No integer/all-ID/reorder/concurrent/reconnect/cancel/whole method/media/live backend/other OS/transports/full-goal claim. Fixed YOLO setup only;security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform gates incomplete."
+      ],
       "pointer": "/oneOf/75/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "4d298c3c84c3110fec50edbb32d03f5fb7a746a5a63092b20a02602245411bed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
