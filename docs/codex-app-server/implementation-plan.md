@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary warning unit](unsupported-tier-warning-qualification.md)
+qualifies only3055–3058 through two existing direct fixed-YOLO scenarios.
+Independent exact warning text/current thread, original full ingress, clock and
+turn ordering combine with actual provider-request service_tier omission;
+all prior reasoning/checklist/usage/tool/cleanup checks and bounds remain.
+Focused **2/0** and final **38ordinary cases twice**, syntax/strict checks and
+404stable sources pass;403other prior paths stay unchanged and15whole upstream
+files match the pin. Only these four become scoped implemented:
+**5,156 implemented /1,399 missing /66 blocked**, unchanged requirements and zero
+verified. Continue independent complete thread/started snapshots; prohibited/
+full-goal gates stay incomplete.
+
 The [filesystem/deprecation unit](filesystem-and-deprecation-envelopes-qualification.md)
 qualifies only root3007 and3063–3066, preserving three implemented FS siblings.
 Actual host writes trigger complete native file notices, live control delivery

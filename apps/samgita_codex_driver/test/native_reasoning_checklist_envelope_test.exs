@@ -18,6 +18,8 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   @raw "item/reasoning/textDelta"
   @checklist "turn/plan/updated"
   @usage "thread/tokenUsage/updated"
+  @warning "warning"
+  @tier_warning "Configured service tier `priority` is not advertised as supported for model `mock-model` and will be omitted from requests."
   @reasoning_methods [@summary, @part, @raw]
   @checklist_arguments ~s({"explanation":"Synthetic checklist λ🙂","plan":[{"step":"Owned completed step","status":"completed"},{"step":"Owned current step","status":"in_progress"},{"step":"Owned pending step","status":"pending"}]})
 
@@ -141,6 +143,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   test "whole native reasoning envelopes retain independent streamed indices text and item lifecycle",
        ctx do
     run = run_turn(ctx)
+    assert_warning(ctx.profile, run)
     expected = reasoning_notices(run.thread, run.turn)
     selected = assert_notices(ctx.profile, run, @reasoning_methods, expected)
 
@@ -168,6 +171,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   test "whole native checklist envelope reflects actual default-mode update_plan and followup output",
        ctx do
     run = run_turn(ctx)
+    assert_warning(ctx.profile, run)
     expected = [{@checklist, checklist_params(run.thread, run.turn)}]
     [updated] = assert_notices(ctx.profile, run, [@checklist], expected)
     assert updated.sequence < run.finished.sequence
@@ -313,11 +317,13 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
   defp run_turn(ctx) do
     profile = ctx.profile
     pid = ctx.session.pid
+    thread_lower = System.system_time(:millisecond)
 
     thread =
       call(profile, pid, "thread/start", %{
         "model" => "mock-model",
         "modelProvider" => "fixture",
+        "serviceTier" => "priority",
         "cwd" => profile.workspace,
         "sandbox" => "danger-full-access",
         "approvalPolicy" => "never",
@@ -358,6 +364,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       marker: marker,
       events: events,
       finished: finished,
+      thread_lower: thread_lower,
       lower: lower,
       upper: upper
     }
@@ -420,6 +427,18 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
       "summary" => ["Synthetic summary λ🙂", "Synthetic second summary"],
       "content" => ["", "", "Synthetic raw α🙂"]
     }
+  end
+
+  defp assert_warning(profile, run) do
+    params = %{"threadId" => run.thread, "message" => @tier_warning}
+    warning_run = %{run | lower: run.thread_lower}
+    [warning] = assert_notices(profile, warning_run, [@warning], [{@warning, params}])
+    [started] = notices(run.events, "turn/started")
+    assert started.wire["params"]["threadId"] === run.thread
+    assert get_in(started.wire, ["params", "turn", "id"]) === run.turn
+    assert warning.sequence < started.sequence
+    assert started.sequence < run.finished.sequence
+    assert_original_order(profile, [warning, started, run.finished])
   end
 
   defp first_usage do
@@ -561,6 +580,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
 
   defp assert_provider_request(request, run) do
     assert request["model"] === "mock-model"
+    refute Map.has_key?(request, "service_tier")
     metadata = JSON.decode!(request["client_metadata"]["x-codex-turn-metadata"])
     assert metadata["thread_id"] === run.thread and metadata["turn_id"] === run.turn
 
@@ -719,7 +739,7 @@ defmodule SamgitaCodexDriver.NativeReasoningChecklistEnvelopeTest do
 
   defp assert_final_ingress(profile, run) do
     methods = if profile.scenario == "reasoning", do: @reasoning_methods, else: [@checklist]
-    methods = methods ++ [@usage] ++ ~w(item/started item/completed)
+    methods = methods ++ [@usage, @warning] ++ ~w(item/started item/completed)
 
     originals =
       for record <- capture(profile),

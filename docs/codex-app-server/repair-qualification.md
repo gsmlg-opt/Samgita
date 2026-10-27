@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary warning profile](unsupported-tier-warning-qualification.md)
+binds complete original native unsupported-tier notices to independent literal
+text/current thread, clock/turn ordering and actual provider-request tier
+omission. Existing reasoning/checklist/usage/tool/cleanup checks and bounds stay
+intact. Focused **2/0** and final **38ordinary cases twice**, syntax/strict checks
+and404stable-source guard pass;403other prior paths stay unchanged and15whole
+upstream files match the pin. Only3055–3058 become scoped implemented:
+**5,156 implemented /1,399 missing /66 blocked**, unchanged requirements and zero
+verified. Continue independent complete thread/started snapshots; prohibited/
+full-goal gates remain incomplete.
+
 The [filesystem/deprecation profile](filesystem-and-deprecation-envelopes-qualification.md)
 proves real native file notices/unwatch fences and a real paginated-read legacy
 producer using complete original wrappers, independent file effects and explicit

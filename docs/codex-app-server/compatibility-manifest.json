@@ -116839,98 +116839,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/unsupported-tier-warning-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/65",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V413 scoped actual-native unsupported service-tier warning envelope. Both existing direct fixed-YOLO reasoning/checklist cases pass explicit priority on thread/start against the unchanged prescribed mock-model catalog with default-empty service tiers. The actual native complete warning has independent literal text and returned thread ID, schema/current generation and separate pre-thread host clock bound; old turn/item/usage bounds stay unchanged. Exactly one warning per finite scenario precedes matching real turn/started/completed in original ingress and Session order. All actual captured local provider requests omit the service_tier key while retaining model, marker, identities, answers, full SSE/tool/usage journals and original request counts1/2. Final post-shutdown ingress equality includes warnings, rejecting hidden duplicates/late frames. No extra native/provider requests/processes, new fixture, buffer or deadline changes. Existing 128-message/2MiB,5sRPC/20sturn/60scase and checked owned cleanup retained. Focused2/0 and reviewed38ordinary cases twice,syntax/format/compile/strictCredo pass;404sources stable,403other prior paths unchanged. Fifteen whole upstream sources/four exact nodes archive-match. Only3055-3058 gain implemented evidence; no referenced payload alias, global/null-thread warning, other causes, supported/disabled/default tier branch, external paid provider, transport/OS or full verified acceptance follows. Prior changed owning-source runs remain historical. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/65",
       "schema": "ServerNotification.json",
       "schema_sha256": "c4323f0888c6d4e002781199c8c970848592aeb6e4b822ed9a757b6d7e493852",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/unsupported-tier-warning-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/65/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V413 scoped actual-native unsupported service-tier warning envelope. Both existing direct fixed-YOLO reasoning/checklist cases pass explicit priority on thread/start against the unchanged prescribed mock-model catalog with default-empty service tiers. The actual native complete warning has independent literal text and returned thread ID, schema/current generation and separate pre-thread host clock bound; old turn/item/usage bounds stay unchanged. Exactly one warning per finite scenario precedes matching real turn/started/completed in original ingress and Session order. All actual captured local provider requests omit the service_tier key while retaining model, marker, identities, answers, full SSE/tool/usage journals and original request counts1/2. Final post-shutdown ingress equality includes warnings, rejecting hidden duplicates/late frames. No extra native/provider requests/processes, new fixture, buffer or deadline changes. Existing 128-message/2MiB,5sRPC/20sturn/60scase and checked owned cleanup retained. Focused2/0 and reviewed38ordinary cases twice,syntax/format/compile/strictCredo pass;404sources stable,403other prior paths unchanged. Fifteen whole upstream sources/four exact nodes archive-match. Only3055-3058 gain implemented evidence; no referenced payload alias, global/null-thread warning, other causes, supported/disabled/default tier branch, external paid provider, transport/OS or full verified acceptance follows. Prior changed owning-source runs remain historical. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5d807edb2c63ec659c33b51032c89e3af390ba400def31238675fb8962770cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/unsupported-tier-warning-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/65/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V413 scoped actual-native unsupported service-tier warning envelope. Both existing direct fixed-YOLO reasoning/checklist cases pass explicit priority on thread/start against the unchanged prescribed mock-model catalog with default-empty service tiers. The actual native complete warning has independent literal text and returned thread ID, schema/current generation and separate pre-thread host clock bound; old turn/item/usage bounds stay unchanged. Exactly one warning per finite scenario precedes matching real turn/started/completed in original ingress and Session order. All actual captured local provider requests omit the service_tier key while retaining model, marker, identities, answers, full SSE/tool/usage journals and original request counts1/2. Final post-shutdown ingress equality includes warnings, rejecting hidden duplicates/late frames. No extra native/provider requests/processes, new fixture, buffer or deadline changes. Existing 128-message/2MiB,5sRPC/20sturn/60scase and checked owned cleanup retained. Focused2/0 and reviewed38ordinary cases twice,syntax/format/compile/strictCredo pass;404sources stable,403other prior paths unchanged. Fifteen whole upstream sources/four exact nodes archive-match. Only3055-3058 gain implemented evidence; no referenced payload alias, global/null-thread warning, other causes, supported/disabled/default tier branch, external paid provider, transport/OS or full verified acceptance follows. Prior changed owning-source runs remain historical. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/65/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3098b1b8dd83b8f920733a176c78e2f9c8851f3e9a24096a7e824bb737032ea8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/unsupported-tier-warning-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/65/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V413 scoped actual-native unsupported service-tier warning envelope. Both existing direct fixed-YOLO reasoning/checklist cases pass explicit priority on thread/start against the unchanged prescribed mock-model catalog with default-empty service tiers. The actual native complete warning has independent literal text and returned thread ID, schema/current generation and separate pre-thread host clock bound; old turn/item/usage bounds stay unchanged. Exactly one warning per finite scenario precedes matching real turn/started/completed in original ingress and Session order. All actual captured local provider requests omit the service_tier key while retaining model, marker, identities, answers, full SSE/tool/usage journals and original request counts1/2. Final post-shutdown ingress equality includes warnings, rejecting hidden duplicates/late frames. No extra native/provider requests/processes, new fixture, buffer or deadline changes. Existing 128-message/2MiB,5sRPC/20sturn/60scase and checked owned cleanup retained. Focused2/0 and reviewed38ordinary cases twice,syntax/format/compile/strictCredo pass;404sources stable,403other prior paths unchanged. Fifteen whole upstream sources/four exact nodes archive-match. Only3055-3058 gain implemented evidence; no referenced payload alias, global/null-thread warning, other causes, supported/disabled/default tier branch, external paid provider, transport/OS or full verified acceptance follows. Prior changed owning-source runs remain historical. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "197d3cde9e850eb70ac57eb5efe384bbe7040fc275e826b0e0f0f3059fad5fe7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
