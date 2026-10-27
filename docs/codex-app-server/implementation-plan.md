@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary MCP startup unit](mcp-startup-notice-qualification.md) qualifies
+exact4391/4392/4394/4397 through two independent cold dependency profiles.
+Native starting/ready payloads retain actual thread/server identity and explicit
+null diagnostics; a live public barrier proves readiness is withheld until
+explicit initialize release. Zero inference/tools and checked child/native/
+provider cleanup remain. Initial strict-Credo nesting is repaired by unchanged
+callback extraction; final **23ordinary cases twice**, syntax/strict checks and
+397-source guard pass, all395 prior bytes unchanged and7 whole upstream files
+match the pin. Only these four become scoped implemented: **5,111 implemented
+/1,444 missing /66 blocked**, unchanged requirements and zero verified. The
+selected MCP2025 profile does not qualify other versions/authentication failures.
+Continue ordinary command-output ingress evidence. Prohibited/broad/hosted, A11,
+unavailable producers and external/OS/platform/full-goal/release gates stay open.
+
 The [reported-import history unit](import-record-history-qualification.md)
 qualifies exact3978–3980 through two distinct nonempty reports/providers,
 native UUID/time constraints, independent complete public readbacks and exact

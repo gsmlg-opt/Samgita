@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary MCP startup profile](mcp-startup-notice-qualification.md) proves
+native starting/ready full payloads for two independent cold roots/server names.
+The held dependency, public loaded-list barrier and explicit release establish
+causality; original frames, zero inference/tools and checked descendant cleanup
+remain. Initial strict-Credo nesting failure is repaired by extracting unchanged
+recording logic. Final **23ordinary cases twice**, syntax/strict checks and397-source
+guard pass; all395 prior bytes retain their hashes and7 upstream files match
+the pin. Only4391/4392/4394/4397 become scoped implemented: **5,111 implemented
+/1,444 missing /66 blocked**, unchanged requirements and zero verified. Other
+versions/failures and all prohibited/full-goal gates remain incomplete. Continue
+ordinary original command-output ingress qualification.
+
 The [reported-history persistence profile](import-record-history-qualification.md)
 proves two distinct report/provider records, native UUID/time bounds, exact
 public readbacks and a cold native restart with retained complete history.
