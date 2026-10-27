@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native projection source audit](native-projection-boundaries.md) binds
+42 key files/all 5,259 Rust files and five exact nodes to the official pin.
+Only skill outer-null owners 5092/5097 become blocked; selective tool statuses
+5307/5336/5406 stay missing because arbitrary raw item inputs remain possible.
+No new runtime test or native-positive credit. All V467 logs and 1,659 other
+guarded sources stay exact; inventory consistency passes. Counts: **5,301
+implemented / 1,210 missing / 110 blocked**, unchanged requirements and zero
+verified. Continue exact ordinary configuration metadata evidence review;
+prohibited, external and full-goal/release gates remain incomplete.
+
 The [selected local-memory migration](local-memory-migration-qualification.md)
 proves A-only scoped resource copying, original native frames/progress/history,
 explicit new repeat history, one pending SQL consolidation row with advancing

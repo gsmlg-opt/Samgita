@@ -1,8 +1,9 @@
 # Pinned native projection boundaries
 
-These five physical schema owners remain **missing**. Source evidence explains
-why the pinned local producer cannot supply the proposed observations; it is
-not a native success test or completion of the compatibility goal.
+These eight physical schema owners remain incomplete. The two explicit-null
+skill owners are **blocked** by typed serialization; the other six remain
+**missing**. Source evidence explains the ordinary native producer boundaries;
+it is not a native success test or completion of the compatibility goal.
 
 Target: official Codex `rust-v0.163.0`, immutable source commit
 `83086188ae0614bd882818ff1aa23f3194962012`, executable SHA256
@@ -18,6 +19,9 @@ Owner numbers identify the existing inventory entries, not new acceptance.
 | 6133 | `v2/ThreadSearchResponse.json#/definitions/Thread/properties/extra/anyOf/0` | Nonnull search extension |
 | 5092 | `v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/dependencies/anyOf/1` | Explicit null skill dependencies |
 | 5097 | `v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/interface/anyOf/1` | Explicit null skill interface |
+| 5307 | `v2/ThreadItemsReadResponse.json#/definitions/CollabAgentToolCallStatus/enum/0` | Selective persisted collaboration `inProgress` |
+| 5336 | `v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionStatus/enum/0` | Selective persisted command `inProgress` |
+| 5406 | `v2/ThreadItemsReadResponse.json#/definitions/McpToolCallStatus/enum/0` | Selective persisted MCP `inProgress` |
 
 ## Selective history reads settled items
 
@@ -42,10 +46,52 @@ evidence for this selective-response owner.
 
 [Settled tool-item qualification](persisted-tool-items-qualification.md) and
 [live notification qualification](failed-dynamic-tool-notification-qualification.md)
-cover their own contracts. This dynamic producer analysis does **not** qualify
-or prove global unreachability for related selective status owners 5307
-(collaboration), 5336 (command) or 5406 (MCP). Each requires its own producer
-chain and evidence; their state is unchanged.
+cover their own contracts. The dynamic analysis does not transfer to the related
+command, MCP or collaboration owners. Their separate producer chains follow;
+none gains runtime or state credit.
+
+## Other live tool starts are distinct from persisted completion
+
+Command start [emission:170-194][command-events] uses `InProgress`.
+The completion [emitter:516-592][command-events] selects terminal statuses
+(Completed, Failed or Declined) from the outcome. It never selects InProgress.
+Short-lived execution uses that same helper at
+[`process_manager.rs:786-834`][command-process]. Background execution does not
+settle the item when it returns a live session ID: its
+[watcher:180-244,331-382][command-watcher] waits for exit and output drain before
+the terminal completion. [User-shell completion:269-350][user-shell] likewise
+uses only terminal outcomes. A running background process or live start notice
+therefore does not establish persisted command owner **5336**.
+
+The normal [MCP tool-call:992-1077][mcp-call] and separate
+[resource handler:215-281][mcp-resource] start with InProgress, then complete
+with result-derived Completed/Failed. The local selective projector cannot turn
+the discarded start into persisted MCP owner **5406**.
+
+Collaboration [V1 completion status:86-97][collaboration] maps even a still
+running child to a completed call; the child status and the collaboration item's
+status are different fields. V1 [wait:246-251][collaboration-wait] uses the same
+terminal distinction; V2 [wait:114-134][collaboration-v2-wait] completes explicitly.
+V2 private analytics is not another public tool-item producer. None supplies
+persisted collaboration owner **5307**.
+
+These are closed ordinary local-store producer chains, **not global
+unreachability claims**. Stock [store selection:464-520][store-selection] chooses
+Local or InMemory; InMemory inherits [unsupported `list_items`:490-496][store-api].
+[`thread/resume.history`:354-362][resume-input] accepts ResponseItems, whose
+[conversion:181-264][resume-events] does not create these tool completions. The
+external session exporter produces ordinary legacy events/ResponseItems, and
+legacy command/MCP completion conversion is terminal.
+
+Crucially, [canonicalization:231-240][canonicalizer] preserves arbitrary existing
+ItemCompleted payloads except for thread-ID normalization. Supplied/custom
+rollouts can therefore contain inProgress; this code does not reject or erase
+them. Such manufactured data cannot stand in for a genuine stock production
+completion. All three owners remain **missing**, with no tests or transport
+coverage added. Existing `native_persisted_execution_items_test.exs`,
+`native_persisted_mcp_variants_test.exs` and
+`native_collaboration_failure_running_test.exs` retain only their own live-start
+and terminal-history evidence.
 
 ## Local search discards the two nonnull fields
 
@@ -87,9 +133,11 @@ ordinary producer cannot emit the explicit-null branches at **5092/5097**.
 
 The nullable schema remains supported by the decoder, but a fixture, app-server
 mock, rewritten response or equal-hash sibling cannot provide native success
-evidence. Omission is not null. This source boundary adds no runtime test,
-transport coverage or state promotion; both exact owners remain missing. It is
-not an upstream-defect assertion or exhaustion of other ordinary work.
+evidence. Omission is not null. The alternate `From<CoreSkillMetadata>` constructor
+at `v2/plugin.rs:985` preserves the same Options and serializer. Both exact null
+owners are now source-bound **blocked**, with their earlier missing annotations
+retained as history. No runtime test, native-positive result or transport credit
+is added. This is not an upstream-defect assertion or exhaustion of ordinary work.
 
 ## Source identity and verification limits
 
@@ -122,11 +170,33 @@ canonical schema hashes. Source binding is recorded at
 `/tmp/samgita-v391-skill-omission-boundary.md`. No executable source changes;
 the passing four-case/two-seed matrix retains its original389-source guard.
 
-This documentation adds no runtime verification, mock acceptance, protected
-checks, implementation, inventory promotion or aggregate-count change. No
-security or permission-related test was run. The five named owners remain
-missing, and full compatibility, external integration, A11, publication and
-deployment are not established by source analysis.
+The initial review added no runtime verification or state change. Its source
+evidence and original missing classifications remain historical context. The
+current follow-up archive-matches **all 5,259 Rust files**, hashes **42 key
+files**, and independently binds five exact canonical nodes: two skill nulls
+and the three tool-status variants. Binding
+`/tmp/samgita-v468-projection-binding/source.json`, SHA256
+`28115218243bc39b0b503dbcdc88f0c2c18c69d0bacd0a6686dea8f988fcfe7b`.
+
+Only **5092/5097** change from missing to blocked. **5307/5336/5406** gain scoped
+source annotations while staying missing; their tests/transports remain empty.
+The other three table owners are unchanged. No test runs, synthetic acceptance
+or native-positive credit is added. Full compatibility, external integration,
+A11, publication and deployment remain incomplete.
+
+All 14 final V467 logs retain their original hashes. Among the **1,660** guarded
+sources only manifest metadata differs; the runner's normalized logic and exact
+command-plan digest are unchanged. No new tests run. Inventory consistency
+passes; audit evidence `/tmp/samgita-v468-projection-binding/qualification.json`,
+SHA256 `0d984950bc2c8b6f6803b5d133ae8859986bcb35b9a7f268d2512fed05db14df`;
+inventory log SHA256
+`f79f570470b5dab788feeb4482724064a24f7b8f0aa621f2d4e12dec5aca126c`.
+
+Counts: **5,301 implemented / 1,210 missing / 110 blocked** contracts;
+**462 implemented / 12 missing / 11 blocked** requirements, zero verified.
+No prohibited security/permission check, audit or hosted workflow runs. Continue
+reviewing existing ordinary configuration metadata evidence for its exact schema
+owner before adding a duplicate fixture or granting compatibility credit.
 
 [selective]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L3622-L3669
 [local-read]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/thread_history/read.rs#L163-L204
@@ -146,3 +216,17 @@ deployment are not established by source analysis.
 [skills-convert]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/catalog_processor.rs#L23-L73
 [skills-wire]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/plugin.rs#L465-L485
 [skills-serialize]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/common.rs#L318-L368
+[command-events]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/events.rs
+[command-process]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/unified_exec/process_manager.rs#L786-L834
+[command-watcher]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/unified_exec/async_watcher.rs
+[user-shell]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tasks/user_shell.rs#L269-L350
+[mcp-call]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/mcp_tool_call.rs#L992-L1077
+[mcp-resource]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/mcp_resource.rs#L215-L281
+[collaboration]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents.rs#L86-L97
+[collaboration-wait]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents/wait.rs#L246-L251
+[collaboration-v2-wait]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/wait.rs#L114-L134
+[store-selection]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/thread_manager.rs#L464-L520
+[store-api]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/store.rs#L490-L496
+[resume-input]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L354-L362
+[resume-events]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/event_mapping.rs#L181-L264
+[canonicalizer]: https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/rollout_migration/canonicalizer.rs#L231-L240

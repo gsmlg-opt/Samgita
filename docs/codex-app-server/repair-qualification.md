@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native projection source audit](native-projection-boundaries.md) matches
+all 5,259 Rust files/42 key sources and five exact nodes to the official pin.
+Only two skill outer-null owners become blocked. Three selective tool-status
+owners remain missing; canonicalization preserves arbitrary existing inputs,
+so local producer limits are not global impossibility. All V467 logs and 1,659
+other guarded sources stay exact; inventory consistency passes. No new tests,
+mock/native-success credit or hosted workflow. Counts: **5,301 implemented /
+1,210 missing / 110 blocked**, unchanged requirements and zero verified.
+Continue existing ordinary config metadata evidence review; full-goal and
+release gates remain incomplete.
+
 The [native selected memory migration](local-memory-migration-qualification.md)
 passes scoped A-only resource/import/history, repeat watermark and cold
 preservation without inference. Wrong-store **1/1** and the later combined Credo

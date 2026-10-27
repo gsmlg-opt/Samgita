@@ -182860,12 +182860,13 @@
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/dependencies/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. No test/native/transport/state promotion is attached; this owner remains missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred."
+        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. At the earlier source-only checkpoint no native-success or transport credit was attached and this owner was still missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred.",
+        "Current source-bound classification is blocked for this exact explicit-null alternative: both public SkillMetadata construction routes retain Option values and use the same skip_serializing_if Option::is_none serializer. None omits the field; Some emits an object. All 5,259 Rust files, 42 key sources and five independently bound projection nodes match the official immutable pin. No native-positive, synthetic acceptance, test/transport credit or full-goal completion follows; ordinary unrelated work continues."
       ],
       "pointer": "/definitions/SkillMetadata/properties/dependencies/anyOf/1",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -183019,12 +183020,13 @@
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/interface/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. No test/native/transport/state promotion is attached; this owner remains missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred."
+        "Pinned source-only ordinary skills/list producer boundary: absent optional skill metadata becomes None; skills_to_info preserves it through clone().map(...); typed SkillMetadata uses skip_serializing_if Option::is_none for interface/dependencies and typed response serialization omits the selected key. None is omitted and Some is an object, so the exact explicit-null branch has no producer in this closed chain. Removal, forced reload, cold startup, schema fixtures, rewritten responses and mock app-server peers cannot qualify native emission for this owner. Sixteen whole sources match the immutable archive and both physical nodes match canonical schema hashes. At the earlier source-only checkpoint no native-success or transport credit was attached and this owner was still missing. No upstream defect, exhaustion of ordinary work, external success or full-goal completion is inferred.",
+        "Current source-bound classification is blocked for this exact explicit-null alternative: both public SkillMetadata construction routes retain Option values and use the same skip_serializing_if Option::is_none serializer. None omits the field; Some emits an object. All 5,259 Rust files, 42 key sources and five independently bound projection nodes match the official immutable pin. No native-positive, synthetic acceptance, test/transport credit or full-goal completion follows; ordinary unrelated work continues."
       ],
       "pointer": "/definitions/SkillMetadata/properties/interface/anyOf/1",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -189894,11 +189896,16 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. Collaboration completion maps child status to Completed/Failed; an ongoing child is distinct from the completed collaboration item. Both V1 status helpers and V2 wait completion are terminal. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
@@ -190822,11 +190829,16 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. Command InProgress is an ItemStarted observation. Short-lived and background unified execution await exit/output and use terminal item statuses; user shell has the same boundary. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+      ],
       "pointer": "/definitions/CommandExecutionStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
@@ -193138,11 +193150,16 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. MCP tool-call and resource producers use InProgress on start, then Completed/Failed on item completion. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+      ],
       "pointer": "/definitions/McpToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
