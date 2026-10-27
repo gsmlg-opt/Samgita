@@ -241,7 +241,12 @@ defmodule SamgitaCodexDriver.NativePluginSearchScopeTest do
 
     union = ranked_union(global, personal)
 
-    for {scope, expected} <- [{"global", global}, {"personal", personal}, {:omitted, union}],
+    for {scope, expected} <- [
+          {"global", global},
+          {"personal", personal},
+          {:omitted, union},
+          {nil, union}
+        ],
         into: %{} do
       params = %{"searchTerm" => @query, "cwds" => [ctx.global.root, ctx.personal.root]}
       params = if scope == :omitted, do: params, else: Map.put(params, "scope", scope)
@@ -436,14 +441,14 @@ defmodule SamgitaCodexDriver.NativePluginSearchScopeTest do
 
     expected =
       ["initialize", "server/diagnostics"] ++
-        List.duplicate("plugin/search", 15) ++
+        List.duplicate("plugin/search", 20) ++
         ["thread/loaded/list", "initialize", "server/diagnostics"] ++
-        List.duplicate("plugin/search", 3) ++ ["thread/loaded/list"]
+        List.duplicate("plugin/search", 4) ++ ["thread/loaded/list"]
 
     assert Enum.map(ledger.out, & &1.wire["method"]) === expected
-    assert length(ledger.in) == 24
+    assert length(ledger.in) == 30
     ids = Enum.map(ledger.out, & &1.wire["id"])
-    assert length(Enum.uniq(ids)) == 24
+    assert length(Enum.uniq(ids)) == 30
     assert MapSet.new(Enum.map(ledger.in, & &1.wire["id"])) == MapSet.new(ids)
   end
 

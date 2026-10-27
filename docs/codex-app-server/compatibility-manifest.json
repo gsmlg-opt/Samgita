@@ -170755,24 +170755,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-null-scope-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchParams.json#/properties/scope/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V443 explicit plugin/search scope:null selects the independently prescribed union of global and personal local catalogs. Six genuine native null queries cover both present,global held/restored,personal held/restored and distinct cold-process catalogs;existing global/personal/omitted controls remain. Each actual request retains the explicit null key in complete original encoded capture;whole ordinary candidate projections,exact order and nextCursor:null follow fixture literals,not prior responses. Original response envelopes,config/catalog/source snapshots,zero provider requests/rollouts,ready/no-gap/no-uncertainty and existing owned owner/Port/PID cleanup stay checked. Inventory expands from24 to30correlated RPCs inside unchanged32per-direction capture capacity and unchanged deadlines/byte bounds. Focused1/0,55reviewed ordinary cases twice,outside consumer1/0,nine checks and415stable sources;414prior paths exact,one modified module. Three native source files/one exact node archive/export-match. Only4752 gains scoped implemented evidence,zero verified. Ordinary candidate projection does not qualify every PluginSummary field,remote/workspace catalogs,requested remote limit or actual remote pagination. No native producer is mocked. Security/permission tests/audits,broad suites and hosted workflows remain unrun;A11/legacy/external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/properties/scope/anyOf/1",
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

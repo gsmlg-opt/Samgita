@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [explicit null plugin scope](plugin-search-null-scope-qualification.md)
+retains independent complete ordinary candidate arrays through six native
+null queries and all existing global/personal/omitted controls. Focused **1/0**,
+**55 ordinary cases twice**, outside consumer **1/0**, nine checks and 415 stable
+sources pass, within unchanged capture/deadline bounds. Only 4752 gains
+evidence: **5,248 implemented / 1,307 missing / 66 blocked**, unchanged
+requirements and zero verified. Continue ordinary environment observation and
+exact upstream producer-limit evidence; prohibited/full-goal gates remain open.
+
 The [native attachment lifecycle](attachment-envelope-qualification.md) checks
 committed create/delete/recreate, retained duplicate operations, full original
 notice/response ordering and repeated warm/cold membership. Focused **1/0**,

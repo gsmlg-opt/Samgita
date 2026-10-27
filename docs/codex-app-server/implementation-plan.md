@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [explicit null plugin scope](plugin-search-null-scope-qualification.md) adds
+six native queries to the independent two-catalog held/restored/cold matrix,
+retaining every prior control and bound. Focused **1/0**, **55 ordinary cases
+twice**, outside consumer **1/0**, nine checks and 415 stable sources pass.
+Three source files/one exact node match the pin. Only 4752 gains evidence:
+**5,248 implemented / 1,307 missing / 66 blocked**, unchanged requirements and
+zero verified. The ordinary projection does not qualify complete PluginSummary
+or remote catalogs. Continue ordinary environment observation and upstream
+producer-limit evidence; prohibited/full-goal gates remain incomplete.
+
 The [native attachment lifecycle](attachment-envelope-qualification.md) checks
 whole original create/delete/recreate notices, duplicate mutation retention,
 response ordering and exact warm/cold durable membership. Focused **1/0**,
