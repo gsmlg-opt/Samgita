@@ -153907,24 +153907,39 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-status-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/detail/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex rust-v0.163.0 receives original omitted/null/full/null-repeat mcpServerStatus/list requests. Nonempty literal resource/template projections and independent per-call peer RPC journals prove Full discovery for explicit null; native responses and typed request IDs are retained unchanged. Fixed ordinary YOLO launch; no thread, model, hosted bootstrap or permission/authentication assertions.",
+        "Scoped implemented evidence for this exact nullable detail arm only. No whole-method, other nullable/status variants, other transports/OS, real external service or complete compatibility credit. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "pointer": "/properties/detail/anyOf/1",
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:184",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:186",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:195",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:197",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:274",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:299",
+          "apps/samgita_codex_driver/test/native_mcp_status_detail_test.exs:319"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

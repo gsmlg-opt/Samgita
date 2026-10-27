@@ -20,6 +20,8 @@ The current authorized goal is complete client/driver compatibility with immutab
 
 Current verification restriction from the user: do not run any security or permission-related tests. This includes credential/authentication/authorization/approval tests, audits and broad suites or automatic hosted workflows that execute them. Run only reviewed functional checks; preserve existing tests and required gates, record prohibited checks as unrun/incomplete, and suppress automatic CI when pushing under this restriction. It does not authorize weakening access controls or claiming blocked acceptance complete.
 
+The reproducible reviewed selection is `python3 -B scripts/codex/check_ordinary.py --list`; execute with `--output <new-evidence-directory>` in the verified Elixir/OTP environment. Its source fingerprint, named tests and expected case counts require review before modification. See `docs/codex-app-server/mcp-status-detail-qualification.md`. This subset does not replace the full compatibility or release matrix.
+
 Ordinary owned Codex functional qualification launches default to fixed yolo configuration: `approval_policy="never"` and `sandbox_mode="danger-full-access"`. Keep permission behavior outside these checks; the verification restriction above still applies.
 
 ## Target Umbrella

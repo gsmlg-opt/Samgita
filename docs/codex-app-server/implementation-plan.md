@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [MCP status-detail profile and repository runner](mcp-status-detail-qualification.md)
+prove omitted/null/full resource discovery through the real pin and an ordinary
+stdio MCP dependency. Focused **1/0**, **61 ordinary cases twice**, three
+WebSocket cases at each of three seeds, outside consumer **1/0**, all 14 reviewed
+steps and owned runner timeout/interruption checks pass; 1,657 sources stay
+exact. Only detail-null node 4216 gains scoped evidence. Counts: **5,289
+implemented / 1,224 missing / 108 blocked**, unchanged requirements and zero
+verified. Continue ordinary native HOOKS/MCP config imports; prohibited/full-goal
+and release gates remain incomplete.
+
 The retained [compaction](compacted-boundary.md) and
 [MCP progress](mcp-direct-qualification.md) source boundaries now bind 14 exact
 subordinate contracts. All 5,259 Rust files/14 key files and canonical nodes match

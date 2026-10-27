@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native MCP detail profile and repeatable ordinary runner](mcp-status-detail-qualification.md)
+pass focused **1/0**, **61 ordinary cases twice**, three WebSocket overflow/replay
+cases at each of three seeds, outside consumer **1/0** and all **14** reviewed
+steps. All 1,657 source hashes stay exact; owned subprocess timeout/interruption
+probes pass. Only explicit detail-null node 4216 gains evidence: **5,289
+implemented / 1,224 missing / 108 blocked**, unchanged requirements and zero
+verified. No security/permission test, audit, database admission/recovery test or
+hosted workflow runs. Continue ordinary HOOKS/MCP config imports; all earlier
+incomplete gates remain incomplete.
+
 The existing [compaction](compacted-boundary.md) and
 [MCP item-progress](mcp-direct-qualification.md) producer boundaries now bind 14
 exact envelope/payload contracts as blocked. All 5,259 Rust files/14 key files and
