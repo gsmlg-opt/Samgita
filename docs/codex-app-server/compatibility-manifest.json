@@ -212800,24 +212800,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: cli. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/0",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "3e32720a84f76aa3c6d43c98afe5b44c70938bfb1eac76f371d1a60838da8b4a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212851,24 +212859,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: exec. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/2",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "c20d3fcfc0c2bd2a6ecb30670b66a69dce7b92ca87e3cefd922f3ec19b917e82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212917,24 +212933,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: subAgentReview. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/5",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "5cc708a85d1d6e44ff3cf912b9ddffe694298365f329defe2360068555e9f006",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -212961,24 +212985,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: subAgentThreadSpawn. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/7",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "3e410a59dd1f59fca47ebbf3240ee77c8e5c3bb71227b5cafb7e285c9b384a36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -213511,24 +213543,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: cli. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "3e32720a84f76aa3c6d43c98afe5b44c70938bfb1eac76f371d1a60838da8b4a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -213562,24 +213602,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: exec. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/2",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c20d3fcfc0c2bd2a6ecb30670b66a69dce7b92ca87e3cefd922f3ec19b917e82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_exec_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -213766,24 +213814,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-source-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native thread/search source owner only: review. Original captured parameters, correlated native results and independent real producer/history IDs supply a positive matching oracle; singleton/OR controls discriminate Cli/Exec/Review, and the actual V1 child supplies ThreadSpawn. Distinct cold readers stay unloaded with retained complete history and bounded unchanged journals. Current exact-source87schema/154ordinary driver twice, outside consumer1/0 and strict checks pass;386sources unchanged. This indexes existing behavior, adds no runtime/test/schema change and promotes no equal-hash alias, parent, other endpoint, other source producer or verified state. Prohibited/broad/hosted, A11, unavailable legacy/external/backend/OS/platform and full-goal gates remain incomplete."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/0/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "049325e91469f33f035f3153f87a3a89d93e41f292dd00fc5df091496a7ad2c2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [positive search-source binding](search-source-owners-qualification.md)
+indexes seven exact standalone search input/output owners for genuine Cli,
+Exec, code-review and spawned-child producers. Existing captured positive
+singleton/OR queries, independently known source/ID/history and cold readers
+already pass in the preceding **87schema/154ordinary-driver-twice** matrix;
+all386 source bytes stay unchanged, and32 complete sources match the pin.
+Only6073/6075/6078/6080/6098/6100/6108 become scoped implemented, with no
+requirement-row change or alias/parent inference. Contracts become **5,076
+implemented /1,479 missing /66 blocked**, zero verified. Continue the reachable
+ordinary outer collaboration-mode null retention oracle. Prohibited/broad/
+hosted, A11, legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [ordinary input-wait search profile](search-user-input-wait-qualification.md)
 adds one actual-native case with four correlated searches: idle, held ordinary
 user input, completed idle and cold notLoaded. Exactly three model requests,

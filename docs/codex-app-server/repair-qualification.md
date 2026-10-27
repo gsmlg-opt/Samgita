@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [positive search-source evidence](search-source-owners-qualification.md)
+binds seven individually checked standalone export nodes to actual Cli/Exec,
+code-review and spawned-child search oracles. All386 sources equal the passing
+**87schema/154ordinary-driver-twice** matrix; no new runtime result is inferred.
+Thirty-two complete source files match the immutable archive. Only the seven
+named physical rows change; all485 requirement rows remain equivalent. Contracts
+become **5,076 implemented /1,479 missing /66 blocked**, zero verified. The next
+ordinary native gap is outer collaboration-mode null retention. Prohibited/
+broad/hosted, A11, unavailable producers and full-goal/release gates remain open.
+
 The [ordinary input-wait search case](search-user-input-wait-qualification.md)
 proves real idle → waitingOnUserInput → idle → cold notLoaded with one held
 native question and exactly three local model requests. Original request/reply
