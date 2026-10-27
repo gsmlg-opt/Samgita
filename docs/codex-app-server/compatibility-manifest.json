@@ -6571,7 +6571,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/inject_items",
@@ -6579,7 +6580,7 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Injected assistant output-text message appears exactly in the next native model request with generated ID; only one provider request occurs. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:327-343 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Only an assistant output-text item; no cold durability, other ResponseItem variants, active-turn interaction or cancellation."
+        "Additional ordinary idle profile: two explicit prefixed-ID output-text Messages have complete source-prepared durable records immediately after actual ACK before any later RPC, with zero inference; confirmed warm shutdown, cold resume, exact next-provider-input ordering and one completed turn preserve original rows without duplication. Other ResponseItem variants, active-turn queued durability, cancellation and other transports remain unqualified; no blanket ACK-to-durability guarantee."
       ],
       "params": {
         "$ref": "#/definitions/ThreadInjectItemsParams"
@@ -6610,7 +6611,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -20248,7 +20250,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/inject_items",
@@ -20256,7 +20259,7 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Injected assistant output-text message appears exactly in the next native model request with generated ID; only one provider request occurs. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:327-343 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Only an assistant output-text item; no cold durability, other ResponseItem variants, active-turn interaction or cancellation."
+        "Additional ordinary idle profile: two explicit prefixed-ID output-text Messages have complete source-prepared durable records immediately after actual ACK before any later RPC, with zero inference; confirmed warm shutdown, cold resume, exact next-provider-input ordering and one completed turn preserve original rows without duplication. Other ResponseItem variants, active-turn queued durability, cancellation and other transports remain unqualified; no blanket ACK-to-durability guarantee."
       ],
       "prerequisites": [
         "initialized"
@@ -20273,7 +20276,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -67761,124 +67765,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/65",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual idle injection of two independently authored assistant items performs exactly one native call, receives original correlated empty result, and immediately checks complete actual prepared durable records with no intervening flush/read RPC or inference. Confirmed shutdown, cold resume and exact one-request provider continuation preserve content/order/identity and original rows. Outer request only; no active-queue durable-ACK, arbitrary raw-item variant or whole-method completion claim."
+      ],
       "pointer": "/oneOf/65",
       "schema": "ClientRequest.json",
       "schema_sha256": "a6324b0bbd845a6808871edaf864a833a7f44ce127f04228775e18d9f8ce35db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/65/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual original Unicode string operation ID survives exact outgoing bytes, native one-response correlation, codec and schema checks through real idle injection, immediate durable effects and cold continuation. Only this physical ID and observed string profile; arbitrary/other typed IDs and other transports remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/65/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact original thread/inject_items method property is schema-checked and physically performed by stock Codex with immediate idle durable rows and cold next-provider-input effects. Only this property; no alias or unrelated payload field credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "af9e4008c1e1f6946a54b31d0011016de4613ef7f40c76828a7e04c77cbb5f81",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/65/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact thread/inject_items wire literal is physically performed and schema-checked through full idle ACK/durable-record/cold-continuation effects. Only this enum owner; active/cancellation and other raw-item profiles remain unqualified."
+      ],
       "pointer": "/oneOf/65/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8f9c2ef6421546523a37432731fd2dba944fbfe16f9e8cf2f80e84833ec465db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-injected-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/65/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Original params reference carries the actual thread ID and two complete authored output-text Message items through native idle persistence and cold continuation. Explicit prefixed IDs and source turn ID remain; exact prepared content_item_kinds unknown and separate provider metadata removal follow pinned source. Reference container only; no raw-item union/alias/default or active-queue credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "79e8a552a942c8593f3d2f463f7d97c897713c932c6d612205480fc2b6ad547b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_injected_history_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

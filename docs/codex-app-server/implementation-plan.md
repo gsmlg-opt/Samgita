@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)
+passes **62 files / 121 actual-native cases twice**, three selected WebSocket
+seeds, outside consumer **1/0** and all fourteen reviewed checks. All1,681
+guarded source hashes stay unchanged. Complete original wire, independently
+prepared disk records immediately after ACK, confirmed warm shutdown and exact
+cold provider input bind five precise physical owners through16 complete
+immutable producer files. The initial failed metadata oracle and source-backed
+complete-equality correction remain recorded. Contracts: **5,482 implemented /
+1,009 missing / 130 blocked**; requirements **462 implemented / 12 missing /
+11 blocked**, zero verified. Continue the source-reviewed active injection
+FIFO-consumption/interruption/cold-continuation cases; their scratch work is
+not runtime evidence. Prohibited/hosted, A11, unavailable emitters/external/OS,
+full compatibility and release gates remain incomplete.
+
 The [ordinary fuzzy session unit](ordinary-fuzzy-session-control-qualification.md)
 passes all fourteen reviewed checks: **61 files / 120 actual-native cases at
 both seeds**, three WebSocket seeds, outside consumer **1/0**, static/build

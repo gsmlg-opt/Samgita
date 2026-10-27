@@ -140,6 +140,19 @@ uses real loopback Git HTTP data to qualify nondefault branch and sparse working
 tree effects plus native config/duplicate persistence. Its source peer is a test
 fixture; this does not establish a real remote repository integration.
 
+Native operation responses retain their upstream meaning. In particular,
+`thread/inject_items` records idle input through a preparation checkpoint but
+queues input when a turn is active. Its empty success result cannot universally
+mean durable storage. The [ordinary idle injection profile](ordinary-injected-history-qualification.md)
+requires complete actual disk records immediately after ACK, followed by a
+confirmed process shutdown, cold resume and exact next-provider-input effects.
+The original request, prepared durable record and provider projection are
+separate oracles: native adds content annotations and can remove internal
+metadata before model submission. The driver preserves original wire values;
+native normalization belongs to Codex and cannot silently redefine neutral
+project-event acceptance. Active queue/cancellation qualification remains
+separate, and ambiguous mutations never become automatic retries.
+
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
 not Repo, web, orchestration or platform configuration. The pure schema layer

@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)
+passes **62 files / 121 actual-native cases twice**, selected WebSocket seeds,
+outside consumer **1/0** and all fourteen reviewed checks. All1,681 guarded
+sources match the unchanged before/after snapshot. Sixteen complete immutable
+producer files bind five physical owners, immediate prepared disk records,
+confirmed warm shutdown and exact cold provider input. The metadata-oracle
+failure and independent source-backed correction remain recorded. Contracts:
+**5,482 implemented / 1,009 missing / 130 blocked**, unchanged requirements and
+zero verified. Continue active queued-injection consumption/interruption with
+actual native evidence; the pending scratch candidate has no runtime acceptance.
+Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility and
+release gates remain incomplete.
+
 The [ordinary fuzzy populated-stop/cold-recovery unit](ordinary-fuzzy-session-control-qualification.md)
 passes **61 files / 120 actual-native cases twice**, all three selected
 WebSocket seeds, outside consumer **1/0** and all fourteen reviewed checks.
