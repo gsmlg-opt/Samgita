@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [unclassified turn-error profile](unclassified-turn-error-qualification.md)
+checks actual successful shell RPC then full native started/error/failed
+completion with nonnull TurnError and explicit inner null. It has zero inference
+or command effects, fixed YOLO and unchanged bounds/checked cleanup.
+Initial/final focused **1/0**, **44ordinary cases twice**, syntax/strict checks
+and409stable-source guard pass;all408prior paths stay exact and12whole sources
+match the pin. Only2776 becomes scoped implemented:
+**5,178 implemented /1,377 missing /66 blocked**, unchanged requirements and zero
+verified. Continue bounded ordinary error variants; prohibited/full-goal gates
+remain incomplete.
+
 The [creation metadata index profile](creation-metadata-index-qualification.md)
 binds seven selected values already checked by the complete independent native
 creation oracle/raw ingress. Exact unchanged owner remains in both passing V421

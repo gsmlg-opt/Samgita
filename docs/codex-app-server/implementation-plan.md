@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [unclassified turn-error unit](unclassified-turn-error-qualification.md)
+qualifies only2776 through a real empty-selected-environment standalone shell
+task. Successful RPC then complete native error/failed lifecycle retains a
+nonnull TurnError with explicit codexErrorInfo:null. Idle provider journals and
+workspace remain empty;all source/control/bounds/cleanup checks stay intact.
+Initial/final focused **1/0**, **44ordinary cases twice**, syntax/strict checks
+and409stable sources pass;all408prior paths stay exact and12whole sources match
+the pin. Only one becomes scoped implemented:
+**5,178 implemented /1,377 missing /66 blocked**, unchanged requirements and zero
+verified. Continue the bounded ordinary CodexErrorInfo variant audit;
+prohibited/full-goal gates remain incomplete.
+
 The [creation metadata index unit](creation-metadata-index-qualification.md)
 binds seven already-observed selected values from the unchanged independent
 32-field creation oracle/original ingress. Existing V421 **43ordinary cases
