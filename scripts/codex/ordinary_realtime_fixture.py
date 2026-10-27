@@ -114,7 +114,8 @@ DELEGATION_ACK = {"type": "session.started", "session": {
     "id": "owned-v485-peer-session", "instructions": PROMPT}}
 DELEGATION_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
-DELEGATION_SCENARIOS = ("delegation", "delegation-status", "delegation-bem", "delegation-thinking", "delegation-null")
+DELEGATION_SCENARIOS = ("delegation", "delegation-status", "delegation-bem", "delegation-thinking", "delegation-null",
+                        "delegation-null-transport", "delegation-null-version", "delegation-null-voice")
 THINKING_OUTPUT = {"type": "session.context.append", "content": [
     {"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
 BEM_PROGRESS = "[OWNED_PROGRESS]Owned bounded progress λ"

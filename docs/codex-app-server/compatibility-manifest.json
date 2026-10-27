@@ -213290,24 +213290,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-startup-null-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/transport/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V490 independent original-key/null startup case: transport: null resolves to WebSocket while version v3 and voice cove stay explicit; actual /v1/live handshake/session update and native started.version v3 are required. Exactly one genuine native delegation/backing turn without client turn/start, original correlated request/body/native IDs, exact commentary result, two completed items/three SSE/six canonical timeline rows, loaded full-history persistence barrier, repeated warm/cold equality, requested-stop EOF and existing owned cleanup/bounds. Only selected explicit-null normalization receives scoped evidence; no omission/default recognition, different configured defaults, alternate voice/version/transport, null combinations, other fields, streaming, repeated handoffs, remote media semantics or whole-method completeness. Fixed YOLO ordinary fixture only."
+      ],
       "pointer": "/properties/transport/anyOf/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -213382,24 +213390,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-startup-null-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/version/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V490 independent original-key/null startup case: version: null resolves to the exact frozen configured V3 while WebSocket transport and voice cove stay explicit; actual /v1/live handshake/session update and native started.version v3 are required. Exactly one genuine native delegation/backing turn without client turn/start, original correlated request/body/native IDs, exact commentary result, two completed items/three SSE/six canonical timeline rows, loaded full-history persistence barrier, repeated warm/cold equality, requested-stop EOF and existing owned cleanup/bounds. Only selected explicit-null normalization receives scoped evidence; no omission/default recognition, different configured defaults, alternate voice/version/transport, null combinations, other fields, streaming, repeated handoffs, remote media semantics or whole-method completeness. Fixed YOLO ordinary fixture only."
+      ],
       "pointer": "/properties/version/anyOf/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -213468,24 +213484,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-startup-null-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/voice/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V490 independent original-key/null startup case: voice: null resolves to builtin default_v1 Cove with the exact frozen realtime table ending at analytics and no configured voice; version v3 and WebSocket transport stay explicit; actual audio.output.voice cove is required. Exactly one genuine native delegation/backing turn without client turn/start, original correlated request/body/native IDs, exact commentary result, two completed items/three SSE/six canonical timeline rows, loaded full-history persistence barrier, repeated warm/cold equality, requested-stop EOF and existing owned cleanup/bounds. Only selected explicit-null normalization receives scoped evidence; no omission/default recognition, different configured defaults, alternate voice/version/transport, null combinations, other fields, streaming, repeated handoffs, remote media semantics or whole-method completeness. Fixed YOLO ordinary fixture only."
+      ],
       "pointer": "/properties/voice/anyOf/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

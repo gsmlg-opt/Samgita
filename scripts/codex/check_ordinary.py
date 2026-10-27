@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "5cc3d2a9e84cf16aba7735a8fa52dae2af86b96becdc26b4a678e92e509720bb"
+REVIEWED_SOURCE_SHA256 = "c9a70c1db29d96480e6e8e5ddc9cc9a5e11fd190871dbb4f26a5b222da1a0d7b"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_search_input_wait_test.exs
@@ -76,7 +76,7 @@ native_marketplace_partial_error_test.exs
 native_review_source_values_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
-DRIVER_CASES = 93
+DRIVER_CASES = 96
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 

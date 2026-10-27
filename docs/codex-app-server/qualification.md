@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary V3 startup-null profile](ordinary-realtime-startup-null-qualification.md)
+passes **53 files / 96 ordinary real-binary cases at both seeds**, selected
+WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
+reviewed checks, with 1,668 identical guarded source hashes. Three independent
+original-key/null inputs produce actual WebSocket/V3/Cove sessions, genuine
+native delegated turns and complete six-row cold histories. Frozen config and
+original request capture qualify only selected null acceptance, with no omitted
+or broader default recognition credit. Thirty-nine complete source files bind
+exactly three owners: **5,451 implemented / 1,054 missing / 116 blocked**,
+unchanged requirements and zero verified. Continue selected filler/prefix/output
+branches on already implemented owners. Prohibited/hosted, A11, unavailable
+emitters/external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary V3 mode-routing profile](ordinary-realtime-mode-routing-qualification.md)
 passes **53 files / 93 ordinary real-binary cases at both seeds**, selected
 WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
@@ -9,8 +22,8 @@ Thinking/null output, preserving full seven/six-row histories through cold
 reads. Explicit-null RPCs keep their original keys. Final-tag recognition and
 explicit-vs-default Thinking distinction receive no credit. Thirty-seven whole
 producer hashes bind six precise owners: **5,448 implemented / 1,057 missing /
-116 blocked**, unchanged requirements and zero verified. Continue independent
-explicit-null transport/version/voice startup branches. Prohibited/hosted, A11,
+116 blocked**, unchanged requirements and zero verified. The later startup-null
+profile above separately qualifies selected startup null values. Prohibited/hosted, A11,
 unavailable emitters/external/OS/full-goal and release gates remain incomplete.
 
 The [ordinary V3 public-summary relay](ordinary-realtime-summary-relay-qualification.md)

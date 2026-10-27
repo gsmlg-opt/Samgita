@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary V3 startup-null profile](ordinary-realtime-startup-null-qualification.md)
+qualifies exactly transport/version/voice null owners5972/5975/5978 through three
+independent native delegated turns. Original null keys remain on wire; frozen
+configuration, actual WebSocket/V3/Cove session, exact commentary output and full
+six-row warm/cold histories are required. Focused **17/0**, final **53 files /
+96 ordinary cases twice**, selected WebSocket seeds, outside consumer **1/0**,
+all fourteen reviewed checks and 1,668 identical guarded source hashes pass.
+Thirty-nine complete producers bind **5,451 implemented / 1,054 missing / 116
+blocked**, unchanged requirements and zero verified. No omission/default
+recognition credit. Next scoped unit adds selected delegation filler=true,
+null-prefix and response-items=false behavior to already implemented owners
+5958/5956/5957 without count increases; source is reviewed, runtime unrun.
+Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal and release
+gates remain incomplete.
+
 The [ordinary V3 mode-routing profile](ordinary-realtime-mode-routing-qualification.md)
 qualifies six exact BEM/Thinking/custom-prefix/explicit-null owners through three
 independent genuine native delegated turns. Exact original RPCs/provider IDs,
@@ -31,9 +46,8 @@ Thinking/null equality earns no omitted/default recognition credit. Focused
 WebSocket seeds, outside consumer **1/0**, all fourteen reviewed checks and
 1,668 identical guarded source hashes pass. Thirty-seven complete producers
 bind **5,448 implemented / 1,057 missing / 116 blocked**, unchanged requirements
-and zero verified. Next scoped work is explicit-null transport/version/voice
-startup branches (owners5972/5975/5978); pinned source confirms reachable
-WebSocket/configured V3/cove behavior but runtime remains unrun. Prohibited/
+and zero verified. The later startup-null profile above separately qualifies
+selected transport/version/voice null values. Prohibited/
 hosted, A11, unavailable emitters/external/OS/full-goal and release gates remain
 incomplete.
 
