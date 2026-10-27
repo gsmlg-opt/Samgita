@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native context settings unit](native-context-settings-qualification.md)
+qualifies exact resume collaboration branch6027 and turn runtime roots6536.
+Plan/Default objects survive four actual resumes across two distinct processes;
+four separate turns prove ordered root deduplication and omitted/null/empty
+semantics through native loaded environments. The failed empty-thread/read
+prerequisites remain recorded; two independently evidenced warmups materialize
+real histories before resume, with no extra inference from settings/resumes.
+Final **8ordinary cases twice**, strict checks and391-source guard pass; all389
+prior sources remain unchanged, and29 whole upstream files match the pin.
+Only6027/6536 become scoped implemented: **5,085 implemented /1,470 missing
+/66 blocked**, unchanged requirements and zero verified. No cold mode/root
+persistence or alias promotion follows. Continue ordinary hook configuration
+error/recovery fields. Prohibited/broad/hosted, A11, unavailable producers and
+external/OS/platform/full-goal/release gates remain incomplete.
+
 The [original incoming-frame unit](ordinary-incoming-frame-qualification.md)
 retains real question-request and MCP-result JSON bytes before Session decoding,
 with distinct bounded ledgers and unchanged outgoing captures/causal oracles.

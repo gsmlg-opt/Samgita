@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native context settings profile](native-context-settings-qualification.md)
+adds two independently prescribed ordinary paths: complete Plan/Default resume
+objects and four turn-root replacement/retention/clearing cases. Actual native
+empty-thread/read failures remain recorded; two real assistant-only prerequisite
+turns establish resume history, with frozen journals through mode/resume steps.
+Full items/history, original raw frames and all bounds/cleanup remain asserted.
+Final **8ordinary cases twice**, strict checks and391-source guard pass; all389
+prior sources remain unchanged and29 whole files match the immutable archive.
+Only6027/6536 become scoped implemented: **5,085 implemented /1,470 missing
+/66 blocked**, unchanged requirements and zero verified. Cold-root/mode and
+alias acceptance remain separate. Continue reachable ordinary hook error and
+same-process recovery evidence; prohibited/full-goal gates remain incomplete.
+
 The [original incoming-frame follow-up](ordinary-incoming-frame-qualification.md)
 adds bounded original question-request and direct MCP-result frames before
 Session decoding. Complete frame/native-ID equality supplements the independent

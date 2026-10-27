@@ -211362,24 +211362,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-context-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/collaborationMode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V395 scoped actual-native ordinary context evidence: Four loaded native resumes across two distinct processes return independently prescribed complete Plan/Default collaboration objects after matching applied-settings notifications. Fresh-empty resume fails no-rollout and the attempted empty full read fails unsupported list_turns; those red sources/logs remain. One actual assistant-only warmup per new root supplies native persistence, with independently checked provider IDs/markers/items and full original histories before/after every mode/resume. Exactly two fixture model requests occur; journal bytes stay frozen through settings/resumes and generation changes. Thirty unique original request/response pairs are preserved; excludeTurns returns [] while independent full reads preserve the actual warmup. Both tests capture original incoming JSON frames before Session decoding, excluding JSONL delimiters/OS chunks; independent literals and causal oracles remain required. Capture32frames/direction,4096out/65536in bytes,1MiB total; events256/1MiB, snapshots1MiB and5s request/settings,20s turn,60s case bounds and checked owned cleanup remain. Final eight reviewed ordinary cases pass8/0 twice with no exclusions, strict checks pass,391 guarded sources are stable and all389 prior sources unchanged;29 complete upstream files match the immutable archive and each exact physical node hash matches. No alias/sibling/family/default/value/transport/OS/backend or fully verified promotion follows; omitted/null resume result and cold persistence remain separate. Prohibited security/permission tests/audits, broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete."
+      ],
       "pointer": "/properties/collaborationMode/anyOf/0",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "77f16da68e4435e4e9e38e7616ea2798bd2cdfe789903f2a46e7f9d9670ffa1b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_collaboration_result_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -227671,27 +227679,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-context-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnStartParams.json#/properties/runtimeWorkspaceRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V395 scoped actual-native ordinary context evidence: Four actual assistant-only turns send original [B,A,B], omitted, explicit null and [] top-level root inputs. Independently prescribed public local environment vectors are [B,A], [B,A], [B,A], []; summary-only applied-settings barriers supply no root override. Exact four provider markers/native IDs, all eight distinct full live/history items, repeated full reads and frozen final rollout/journal are asserted. Eighteen unique original request/response pairs are preserved. This is sticky live context only; root-only checkpoint/cold restoration and filesystem access are not qualified. Both tests capture original incoming JSON frames before Session decoding, excluding JSONL delimiters/OS chunks; independent literals and causal oracles remain required. Capture32frames/direction,4096out/65536in bytes,1MiB total; events256/1MiB, snapshots1MiB and5s request/settings,20s turn,60s case bounds and checked owned cleanup remain. Final eight reviewed ordinary cases pass8/0 twice with no exclusions, strict checks pass,391 guarded sources are stable and all389 prior sources unchanged;29 complete upstream files match the immutable archive and each exact physical node hash matches. No alias/sibling/family/default/value/transport/OS/backend or fully verified promotion follows; omitted/null resume result and cold persistence remain separate. Prohibited security/permission tests/audits, broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "ec80eef005ad0b0b1c42c734b1d90a711268ccde5492b4a5443de78744349d5d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_runtime_roots_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
