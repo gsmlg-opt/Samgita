@@ -87270,24 +87270,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/controlled-child-resume-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V416 controlled actual-native ordinary V1 child resume. Existing three-phase lifecycle completes/closes exact child,proves unloaded,then resumes completed history without child input. Full independent completed resumeAgent item requires agentsStates child status pendingInit with explicit null message;warm selective item equals same full oracle,with original native timestamp brackets. Actual provider tool result separately requires exact status pending_init. Six/eight/thirteen request barriers,two distinct child turns,eleven root/two child grouping,twelve unique native request envelopes and loaded-list observations rule out new child inference during idle resume. Fixed direct YOLO,original provider/config/workspace immutability,ready/empty/no uncertainty/gap,all existing bounds and owned cleanup retained. No RPC,fixture,scenario,timeout or cap added. Both owning ordinary cases now join reviewed24module/41case final matrix at two seeds;focused2/0,41/0twice and8Python syntax/format/compile/strictCredo/inventory pass. All406guarded sources stable;405other prior paths unchanged. Twenty-five whole upstream files and two exact canonical nodes archive-match;ThreadItemsReadResponse uses experimental export. Only2082/5291 gain scoped implemented evidence,all siblings unchanged. Spawn/send timing snapshots,cold PendingInit,V2 private analytics literals,interrupted/shutdown and broader emitters/aliases/transports/OS/external/platform/full verified acceptance remain unqualified. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "92bb841157c533e14eb43d906eb4f708a9baff6b5812d824294ac1d489f85165",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -188185,24 +188193,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/controlled-child-resume-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V416 controlled actual-native ordinary V1 child resume. Existing three-phase lifecycle completes/closes exact child,proves unloaded,then resumes completed history without child input. Full independent completed resumeAgent item requires agentsStates child status pendingInit with explicit null message;warm selective item equals same full oracle,with original native timestamp brackets. Actual provider tool result separately requires exact status pending_init. Six/eight/thirteen request barriers,two distinct child turns,eleven root/two child grouping,twelve unique native request envelopes and loaded-list observations rule out new child inference during idle resume. Fixed direct YOLO,original provider/config/workspace immutability,ready/empty/no uncertainty/gap,all existing bounds and owned cleanup retained. No RPC,fixture,scenario,timeout or cap added. Both owning ordinary cases now join reviewed24module/41case final matrix at two seeds;focused2/0,41/0twice and8Python syntax/format/compile/strictCredo/inventory pass. All406guarded sources stable;405other prior paths unchanged. Twenty-five whole upstream files and two exact canonical nodes archive-match;ThreadItemsReadResponse uses experimental export. Only2082/5291 gain scoped implemented evidence,all siblings unchanged. Spawn/send timing snapshots,cold PendingInit,V2 private analytics literals,interrupted/shutdown and broader emitters/aliases/transports/OS/external/platform/full verified acceptance remain unqualified. Prohibited security/permission/authentication/approval tests/audits,broad/hosted checks,A11,unreachable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "92bb841157c533e14eb43d906eb4f708a9baff6b5812d824294ac1d489f85165",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

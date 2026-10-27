@@ -136,13 +136,17 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
     # exact child was loaded before send_input could auto-load anything.
     assert loaded(ctx, pid) == Enum.sort([root, child])
 
-    assert_terminal_items(
-      ctx,
-      pid,
-      root,
-      resumed,
+    # Completed history reloads into a new idle runtime without a child turn.
+    # Its source-prescribed PendingInit is distinct from spawn/send snapshots.
+    [resume_item] =
       items(root, child, [{"owned-collab-resume", "resumeAgent", nil, nil, nil, nil}])
-    )
+
+    expected_resume =
+      Map.put(resume_item, "agentsStates", %{
+        child => %{"status" => "pendingInit", "message" => nil}
+      })
+
+    assert_terminal_items(ctx, pid, root, resumed, [expected_resume])
 
     followup = run_phase(ctx, pid, root, 3)
     assert loaded(ctx, pid) == [root]
@@ -483,8 +487,8 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
     if Map.has_key?(expected, "agentsStates") do
       assert actual === expected
     else
-      # Spawn/send/resume status snapshots are timing-dependent. Qualify only
-      # prescribed stable fields; PendingInit/Running remain unverified.
+      # Spawn/send status snapshots are timing-dependent. Qualify only their
+      # prescribed stable fields; the controlled idle resume uses a full map.
       assert Map.drop(actual, ["agentsStates"]) === expected
     end
   end
@@ -525,7 +529,7 @@ defmodule SamgitaCodexDriver.NativeCollaborationLifecycleValuesTest do
       assert tool_result(requests, id) === expected
     end
 
-    assert %{"status" => _snapshot} = tool_result(requests, "owned-collab-resume")
+    assert tool_result(requests, "owned-collab-resume") === %{"status" => "pending_init"}
     assert %{"submission_id" => submission} = tool_result(requests, "owned-collab-send")
     assert is_binary(submission) and submission != ""
   end

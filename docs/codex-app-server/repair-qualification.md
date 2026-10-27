@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [controlled child-resume profile](controlled-child-resume-qualification.md)
+requires exact native pendingInit/null in complete resumeAgent maps/live warm
+history and independent actual provider pending_init. Existing thirteen requests,
+loaded barriers, distinct child turns, bounds and cleanup remain. Focused
+**2/0** and final **41ordinary cases twice**, syntax/strict checks and406stable
+source guard pass;405other prior paths stay unchanged and25whole sources match
+the pin. Only2082/5291 become scoped implemented: **5,163 implemented /1,392
+missing /66 blocked**, unchanged requirements and zero verified. V2 private
+analytics cannot qualify public items. Continue actual interrupted-child close;
+prohibited/full-goal gates remain incomplete.
+
 The [real file-change profile](file-change-envelopes-qualification.md)
 requires actual native Add effects/control bytes, independent complete maps/
 diff and all original lifecycle frames. First-run count1 failure is corrected

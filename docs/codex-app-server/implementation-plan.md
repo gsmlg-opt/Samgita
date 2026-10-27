@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [controlled child-resume unit](controlled-child-resume-qualification.md)
+qualifies only2082/5291 through an existing real V1 completed-child reload with
+no new child input. Complete independent resumeAgent maps/live warm history
+require pendingInit/null; actual provider tool output separately requires
+pending_init. All original calls/counts/barriers/bounds and cleanup remain.
+Focused **2/0** and final **41ordinary cases twice**, syntax/strict checks and
+406stable sources pass;405other prior paths stay unchanged and25whole sources
+match the pin. Only two become scoped implemented:
+**5,163 implemented /1,392 missing /66 blocked**, unchanged requirements and zero
+verified. V2 analytics is not public-item evidence. Continue the controlled
+ordinary interrupted-child close; prohibited/full-goal gates remain incomplete.
+
 The [real file-change unit](file-change-envelopes-qualification.md)
 qualifies only2316/2618/2883/2951 through one direct fixed-YOLO native patch,
 actual/control bytes, independent full diff and original complete native maps.
