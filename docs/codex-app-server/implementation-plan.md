@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [positive local plugin-search scope profile](plugin-search-scope-qualification.md)
+proves distinct global/personal and omitted-union results from two inert local
+catalogs. Held/restored manifests change exactly their own result set; a fresh
+native process retains complete original results without inference. Final
+**4ordinary cases twice**, strict checks and389-source guard pass; all388 prior
+sources remain unchanged and9 complete upstream files match the pin. Only4744/
+4746/4751 gain scoped implemented evidence: **5,081 implemented /1,474 missing
+/66 blocked** contracts, unchanged requirements and zero verified. Workspace,
+remote limit and null branches remain unqualified. Continue reachable ordinary
+producer/effect gaps; keep source-proven omission/projection boundaries out of
+repeated candidate searches. Prohibited/broad/hosted, A11, unavailable producers,
+external/OS/platform and complete-goal/release gates remain incomplete.
+
 The [thread serviceName profile](thread-service-name-qualification.md) qualifies
 trimmed/case-normalized known names and unknown/null/omitted fallbacks across
 six real persistent threads. Literal creation provenance, six independent model

@@ -169459,24 +169459,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-scope-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchParams.json#/definitions/PluginSearchScope/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native positive local global/personal scope discrimination: two inert catalogs named codex-official and owned-personal-orbit supply independently prescribed disjoint candidate IDs/manifest paths/content and cross-catalog ranks. Global, personal and omitted-union queries observe both present, each real manifest held outside discovery and restored, then a new process with identical complete raw results. Exactly18 searches and24 original-byte correlated RPC pairs preserve full native data; complete source trees/config/journal remain exact, no inference/rollout/install occurs, finite bounds and checked native owner/Port/PID cleanup remain. Final4 ordinary cases pass twice; format/compile/strict Credo554/inventory and389-source guard pass with all388 prior sources unchanged;9 whole upstream files match the pin. Only4744/4746/4751 gain implemented evidence; workspace4745, remote-only limit4749, null4752, aliases and whole families stay unqualified. A local classifier is not official hosted-catalog acceptance or plugin execution authority. Fully verified status, other deployments, prohibited/broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete. No publication or deployment."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/0",
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "786cb707c0636ab2ed8400f63529dc5cef8e24b0a832a4f82209b0b18c86a459",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -169503,24 +169511,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-scope-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchParams.json#/definitions/PluginSearchScope/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native positive local global/personal scope discrimination: two inert catalogs named codex-official and owned-personal-orbit supply independently prescribed disjoint candidate IDs/manifest paths/content and cross-catalog ranks. Global, personal and omitted-union queries observe both present, each real manifest held outside discovery and restored, then a new process with identical complete raw results. Exactly18 searches and24 original-byte correlated RPC pairs preserve full native data; complete source trees/config/journal remain exact, no inference/rollout/install occurs, finite bounds and checked native owner/Port/PID cleanup remain. Final4 ordinary cases pass twice; format/compile/strict Credo554/inventory and389-source guard pass with all388 prior sources unchanged;9 whole upstream files match the pin. Only4744/4746/4751 gain implemented evidence; workspace4745, remote-only limit4749, null4752, aliases and whole families stay unqualified. A local classifier is not official hosted-catalog acceptance or plugin execution authority. Fully verified status, other deployments, prohibited/broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete. No publication or deployment."
+      ],
       "pointer": "/definitions/PluginSearchScope/enum/2",
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "b616d47c510f4492db16117ff870b28b82b90f3839e0ec79265579917e75bbc5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -169653,24 +169669,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-search-scope-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchParams.json#/properties/scope/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native positive local global/personal scope discrimination: two inert catalogs named codex-official and owned-personal-orbit supply independently prescribed disjoint candidate IDs/manifest paths/content and cross-catalog ranks. Global, personal and omitted-union queries observe both present, each real manifest held outside discovery and restored, then a new process with identical complete raw results. Exactly18 searches and24 original-byte correlated RPC pairs preserve full native data; complete source trees/config/journal remain exact, no inference/rollout/install occurs, finite bounds and checked native owner/Port/PID cleanup remain. Final4 ordinary cases pass twice; format/compile/strict Credo554/inventory and389-source guard pass with all388 prior sources unchanged;9 whole upstream files match the pin. Only4744/4746/4751 gain implemented evidence; workspace4745, remote-only limit4749, null4752, aliases and whole families stay unqualified. A local classifier is not official hosted-catalog acceptance or plugin execution authority. Fully verified status, other deployments, prohibited/broad/hosted checks, A11, unavailable producers, external/platform and full-goal/release gates remain incomplete. No publication or deployment."
+      ],
       "pointer": "/properties/scope/anyOf/0",
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "ca40a3904fe0887e1f16e067da63fe7f69ffbe947edcb899c9c457ece82a69e4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

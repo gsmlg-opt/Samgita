@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [positive plugin-search scope case](plugin-search-scope-qualification.md)
+uses actual local global/personal producers, prescribed ranks, removed/restored
+manifests and a fresh native process. Eighteen searches and24 exact correlated
+RPC pairs retain full raw/results and source bytes, with no model request or
+installation. Final **4ordinary cases twice**, strict checks and389-source guard
+pass; all388 prior sources remain unchanged and9 whole source files match the
+pin. Only4744/4746/4751 become scoped implemented: **5,081 implemented /1,474
+missing /66 blocked**, unchanged requirements and zero verified. No workspace,
+remote-limit/null or alias qualification follows. Prohibited/broad/hosted, A11,
+unavailable producers and complete-goal gates stay open.
+
 The [serviceName provenance case](thread-service-name-qualification.md) proves
 six original-byte creation/default cases with six native marked turns, exact
 provenance/history and different-client cold readback. Its initial cross-second
