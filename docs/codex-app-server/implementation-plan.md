@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [inherited selective-item unit](ordinary-inherited-items-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, including **66 files / 127 actual-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0** and
+all static/build checks with **1,685** unchanged guarded source hashes. Exact
+child lineage survives parent revert and first-cold selective lookup without
+implicit resume or inference. Only two existing request/response entries and
+four schema owners gain supplemental metadata; no states change. Counts remain
+**5,491 implemented / 1,000 missing / 130 blocked** contracts, unchanged
+requirements and zero verified. Continue the source-reviewed local environment
+cwd/rename/cold draft; it is not integrated or executed. Prohibited/hosted,
+A11, unavailable emitter/external/OS, full-goal and release gates remain open.
+
 The [ordinary local-plugin search unit](ordinary-local-plugin-search-pagination-qualification.md#final-combined-source-functional-qualification)
 passes all fourteen reviewed checks: **65 files / 126 actual-native cases at
 each seed**, selected neutral WebSocket cases at three seeds, outside consumer

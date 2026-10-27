@@ -6690,7 +6690,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/query-uncertainty-qualification.md"
+        "docs/codex-app-server/query-uncertainty-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/items/read",
@@ -6699,7 +6700,8 @@
       "limitations": [
         "Positive selected behavior: An actual two-turn persisted history supplies first-turn entries; agentMessage text matches native output; targeted read returns exactly the requested agent entry. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions.",
-        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/ThreadItemsReadParams"
@@ -6731,7 +6733,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/method_families_test.exs",
-          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -20340,7 +20343,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/items/read",
@@ -20348,7 +20352,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: An actual two-turn persisted history supplies first-turn entries; agentMessage text matches native output; targeted read returns exactly the requested agent entry. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions."
+        "One list page with limit100 and one exact item ID; no cursor/backwards/sort combinations or timestamp assertions.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -20365,7 +20370,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -191136,14 +191142,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadParams.json#/properties/itemIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/itemIds",
@@ -191158,7 +191166,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -191170,14 +191179,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -191192,7 +191203,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -191204,14 +191216,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadParams.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native agent item identity selects a matching response. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -191226,7 +191240,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -204252,14 +204267,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-inherited-items-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Read returns exactly the previously observed native agentMessage entry; no other entry metadata inferred. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Read returns exactly the previously observed native agentMessage entry; no other entry metadata inferred. Assertions: apps/samgita_codex_driver/test/method_families_test.exs:585-628 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "V518 actual-native paginated inherited selective-item lifecycle: four authored parent turns, exclusive fork cutoff, deliberate branch divergence and non-latest parent revert retain exact child lineage while replaced parent history omits removed turns. Reversed/duplicate/absent selectors preserve durable creation order; original user/assistant item payloads and bounded native timestamps are checked against authored model/input oracles. First content RPC of a distinct cold native process is inherited items/read before hydration or resume; later explicit child resume adds no inference. Six provider requests, original unique-string correlated exchanges, unchanged retained rollout bytes/prefixes, fixed yolo and confirmed owned cleanup are required. Supplemental evidence only for this existing implemented owner/request; no new schema state, missing response enums, broader item variants, arbitrary IDs, transports, external/OS or full compatibility qualification. Prohibited tests/audits/broad/hosted, A11 and release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -204274,7 +204291,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/method_families_test.exs"
+          "apps/samgita_codex_driver/test/method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_inherited_items_read_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [

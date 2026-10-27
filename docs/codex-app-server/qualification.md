@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [inherited selective-item unit](ordinary-inherited-items-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**: **66 files / 127 actual-native cases at both
+seeds**, selected neutral WebSocket cases at three seeds, outside consumer
+**1/0**, static/build checks and **1,685** identical guarded sources. Real fork
+cutoff, branch divergence, parent revert and first-cold selective reads retain
+the child's exact lineage without additional inference. Six existing rows gain
+supplemental evidence only: **5,491 implemented / 1,000 missing / 130 blocked**
+contracts; **462 implemented / 12 missing / 11 blocked** requirements; zero
+verified. Next is the reviewed local environment cwd/rename/cold scratch case;
+it has no native acceptance yet. Prohibited/hosted, A11, emitter/external/OS,
+full compatibility and release gates stay incomplete. Nothing is published or
+deployed.
+
 The [ordinary local-search pagination unit](ordinary-local-plugin-search-pagination-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed checks**: **65 files / 126 actual-native cases at both
 seeds**, three selected neutral WebSocket seeds, outside consumer **1/0**,
