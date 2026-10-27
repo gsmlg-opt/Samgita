@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [reported-import history unit](import-record-history-qualification.md)
+qualifies exact3978–3980 through two distinct nonempty reports/providers,
+native UUID/time constraints, independent complete public readbacks and exact
+cold persistence. No actual import, inference or metadata-path creation occurs;
+native group flattening does not qualify owner160. Final **22ordinary cases
+twice**, strict checks and395-source guard pass; all394 prior source bytes
+remain unchanged and6 whole upstream files match the pin. Only these three
+become scoped implemented: **5,107 implemented /1,448 missing /66 blocked**,
+unchanged requirements and zero verified. Continue ordinary MCP startup
+starting/ready notices, excluding authentication failures. Prohibited/broad/
+hosted, A11, unavailable producers and external/OS/platform/full-goal/release
+gates remain incomplete.
+
 The [plugin search-source unit](plugin-search-sources-qualification.md) qualifies
 exact4826–4838 through complete independent Git/npm maps, changed and omitted
 options, exact-byte restoration, held-catalog empty controls and cold rereads.

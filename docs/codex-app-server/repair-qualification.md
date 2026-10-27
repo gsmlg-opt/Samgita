@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [reported-history persistence profile](import-record-history-qualification.md)
+proves two distinct report/provider records, native UUID/time bounds, exact
+public readbacks and a cold native restart with retained complete history.
+Original raw correlation, zero actual imports/inference/metadata-path creation
+and checked cleanup remain asserted. Final **22ordinary cases twice**, strict
+checks and395-source guard pass; all394 prior source bytes stay unchanged and6
+whole upstream files match the pin. Only3978–3980 become scoped implemented:
+**5,107 implemented /1,448 missing /66 blocked**, unchanged requirements and zero
+verified. Group itemType/aliases and actual import success are not inferred.
+Continue ordinary MCP startup notices; prohibited/full-goal gates stay open.
+
 The [plugin search-source profile](plugin-search-sources-qualification.md) proves
 complete Git/npm descriptor maps across declaration changes/null options,
 source removal/restoration and a distinct cold native. All32 original RPC pairs,

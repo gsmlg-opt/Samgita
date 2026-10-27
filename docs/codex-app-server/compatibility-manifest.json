@@ -144632,21 +144632,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-record-history-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordParams.json#/properties/itemTypeResults",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete.",
+        "V399 scoped ordinary actual-native recordHistory evidence: two independently prescribed nonempty report/provider vectors return distinct native UUIDv4 IDs after persistence. Public readHistories returns exact separate full outcome/provider maps,original A retention,host-bracketed native UTC millisecond times and documented time/UUID ordering. Checked native close and distinct cold native reproduce exact full history without extra writes. Original delimiter-stripped incoming JSON precedes Session decoding; each explicit request ID binds original outgoing/incoming frames. Raw128frames/64KiB/2MiB,Session8pending/64events/2MiB,5sRPC/60scase,unchanged inputs and checked owner/Port/PID/provider cleanup remain. Only two recordHistory writes/four readHistories reads;zero actual import/model/thread/turn/command calls,byte-exact empty model journal,absent reported metadata paths/rollouts and empty workspace. Recording reported successes is NOT actual import success. Native flattens outcomes and does not persist group itemType; owner160/nested/readback aliases gain no inferred state. Final22reviewed ordinary cases pass22/0 twice,format/compile/strict Credo and395source guard pass,all394prior source bytes unchanged. Six whole upstream files and three stable physical nodes match immutable pin. Only these named fields gain scoped implemented evidence;no all-variant/transport/OS/backend or fully verified promotion. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/itemTypeResults",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoryRecordParams.json",
       "schema_sha256": "40d2377fc2c4b0858d1d6d5b94bd2a4da3d84345b5fe0e9839e5b53e179df12c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -144654,31 +144656,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemTypeResults"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-record-history-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordParams.json#/properties/providerId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete.",
+        "V399 scoped ordinary actual-native recordHistory evidence: two independently prescribed nonempty report/provider vectors return distinct native UUIDv4 IDs after persistence. Public readHistories returns exact separate full outcome/provider maps,original A retention,host-bracketed native UTC millisecond times and documented time/UUID ordering. Checked native close and distinct cold native reproduce exact full history without extra writes. Original delimiter-stripped incoming JSON precedes Session decoding; each explicit request ID binds original outgoing/incoming frames. Raw128frames/64KiB/2MiB,Session8pending/64events/2MiB,5sRPC/60scase,unchanged inputs and checked owner/Port/PID/provider cleanup remain. Only two recordHistory writes/four readHistories reads;zero actual import/model/thread/turn/command calls,byte-exact empty model journal,absent reported metadata paths/rollouts and empty workspace. Recording reported successes is NOT actual import success. Native flattens outcomes and does not persist group itemType; owner160/nested/readback aliases gain no inferred state. Final22reviewed ordinary cases pass22/0 twice,format/compile/strict Credo and395source guard pass,all394prior source bytes unchanged. Six whole upstream files and three stable physical nodes match immutable pin. Only these named fields gain scoped implemented evidence;no all-variant/transport/OS/backend or fully verified promotion. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/providerId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoryRecordParams.json",
       "schema_sha256": "f352e980f9068f0445e725513157818a93f6d43c898d43ac3ea4fa96d70dd23c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -144686,31 +144693,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerId"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-record-history-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordResponse.json#/properties/importId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Record ACK UUID distinct across two metadata-only records. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Record ACK UUID distinct across two metadata-only records. Other variants and full implementation qualification remain incomplete.",
+        "V399 scoped ordinary actual-native recordHistory evidence: two independently prescribed nonempty report/provider vectors return distinct native UUIDv4 IDs after persistence. Public readHistories returns exact separate full outcome/provider maps,original A retention,host-bracketed native UTC millisecond times and documented time/UUID ordering. Checked native close and distinct cold native reproduce exact full history without extra writes. Original delimiter-stripped incoming JSON precedes Session decoding; each explicit request ID binds original outgoing/incoming frames. Raw128frames/64KiB/2MiB,Session8pending/64events/2MiB,5sRPC/60scase,unchanged inputs and checked owner/Port/PID/provider cleanup remain. Only two recordHistory writes/four readHistories reads;zero actual import/model/thread/turn/command calls,byte-exact empty model journal,absent reported metadata paths/rollouts and empty workspace. Recording reported successes is NOT actual import success. Native flattens outcomes and does not persist group itemType; owner160/nested/readback aliases gain no inferred state. Final22reviewed ordinary cases pass22/0 twice,format/compile/strict Credo and395source guard pass,all394prior source bytes unchanged. Six whole upstream files and three stable physical nodes match immutable pin. Only these named fields gain scoped implemented evidence;no all-variant/transport/OS/backend or fully verified promotion. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/importId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoryRecordResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -144718,10 +144730,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "importId"
     },
     {
