@@ -117103,98 +117103,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/69",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "pointer": "/oneOf/69",
       "schema": "ServerNotification.json",
       "schema_sha256": "1c609dce1f5d4b97a69069440d5616882b36b66a992bc5bebd0b7e7e6b2a00b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/69/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "nullable": false,
       "pointer": "/oneOf/69/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "983c7e9613ff089333387bac95695a488c92e6e4b3fb5d9e428799eb5631db17",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/69/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "pointer": "/oneOf/69/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "bae0d8738dc87b790ed2ffe4f3ca2d28485abc98be511f65fa3891e8b40a524a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/69/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "nullable": false,
       "pointer": "/oneOf/69/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "9fd3781dd11d59ac46e10a4c1a18db19d72c3b021e6a796b2957119a199db9dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -117327,98 +117359,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/70",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "pointer": "/oneOf/70",
       "schema": "ServerNotification.json",
       "schema_sha256": "d3ff227190f1aec7a09a02b3868d11da0c6e8c700438f5a797ee7d4c6188eb83",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/70/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "nullable": false,
       "pointer": "/oneOf/70/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "de8f27855227c0952cb60de497af7e0ecb42d7c070915ffcd3d38656cfac8ab8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/70/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "pointer": "/oneOf/70/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d3e6a9ae85fa3f117cd828dce3c4fa24382fad559b7edcfb96a9ef52d9bf2fcd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-notification-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/70/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V404 scoped ordinary actual-native fuzzyFileSearch/sessionUpdated and sessionCompleted complete envelopes: two cold owned Linux stdio roots use literal distinct Unicode session IDs. Official pinned five-file abe golden independently prescribes complete ranked file maps/scores/indices;second root omits abexy and yields exact remaining two rows. Shared native one-shot/session scanner factory verified in pinned source. Startup Completed is observed as idle only;matching unique abe snapshots,then full empty-query snapshots have exact independently expected method/params/keysets and host-bracketed emittedAtMs. Selected original pre-Session ingress maps occur in the same ordered subsequence as delivered events;transient partial snapshots and duplicate idle completions remain allowed within finite128events/1MiB and128raw/1MiB bounds,4KiBout/64KiBin. Fourteen exact RPC pairs/two initialized notifications,5sRPC/predicate bounds,unchanged files/config/empty workspace,explicit stop and checked native/owner/Port cleanup remain. Empty update has no generation token:sequence/time cannot prove causal clear;already-spawned startup empty notice could send late. Completion/stop is not a query fence or exactly-once guarantee. FixedYOLO,no model/provider/thread/security/permission behavior. Final33reviewed ordinary cases pass33/0 twice;syntax/format/compile/strict Credo and399stable source guard pass,all398prior bytes unchanged. Ten whole upstream files/eight stable exact nodes match immutable pin. Only selected local file/root/query envelope profiles;other aliases/transports/OS/backend/full verified acceptance remain unqualified. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete. Initial strictCredo rejects discarded Enum.reduce result in new ingress-order helper;removing only trailing :ok returns that result naturally,with all assertion/bound/deadline bytes retained."
+      ],
       "nullable": false,
       "pointer": "/oneOf/70/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "310109d7f53565aecc43c39e7a434069b546d60ccf6e0b1b934237f42c8a18ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [fuzzy-notification unit](fuzzy-notification-envelopes-qualification.md)
+qualifies exact3071–3074/3079–3082 through two cold owned roots, the official
+full `abe` ranking, independent file omission and original complete-frame order.
+Idle completion and empty snapshots explicitly carry no query-generation/stop
+fence guarantee. Initial unused-return Credo failure is repaired without changing
+assertions/bounds. Final **33ordinary cases twice**, syntax/strict checks and399
+stable sources pass;398 prior paths remain unchanged and10 whole upstream files
+match the pin. Only these eight become scoped implemented: **5,133 implemented
+/1,422 missing /66 blocked**, unchanged requirements and zero verified. Continue
+ordinary goal/queue envelopes with direct fixed-YOLO threads; prohibited/full-goal
+gates stay incomplete.
+
 The [real import-notification unit](import-notification-envelopes-qualification.md)
 qualifies exact2999–3006 by binding original native ingress to independent full
 progress/completion maps for actual two-file SUBAGENTS import and known-complete

@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [fuzzy-notification profile](fuzzy-notification-envelopes-qualification.md)
+proves complete native ranked/empty/idle frames through two cold roots, an
+independent official ranking and deliberate file omission. Original ingress
+order, checked native cleanup and finite bounds remain. Empty and completion
+frames do not prove query-generation or stop fences. Initial unused-return
+Credo failure is repaired without changing assertions/deadlines. Final
+**33ordinary cases twice**, strict checks and399-source guard pass;398 prior
+paths stay unchanged and10 whole upstream files match the pin. Only3071–3074/
+3079–3082 become scoped implemented: **5,133 implemented /1,422 missing /66
+blocked**, unchanged requirements and zero verified. Continue ordinary goal/queue
+envelopes; all prohibited/full-goal gates remain incomplete.
+
 The [actual import-notification profile](import-notification-envelopes-qualification.md)
 adds25 assertions linking original incoming frames to complete independently
 expected progress/completion maps. Actual two-file conversion, known-complete
