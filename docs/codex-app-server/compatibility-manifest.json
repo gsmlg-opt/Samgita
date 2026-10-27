@@ -3870,7 +3870,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-selection-qualification.md",
-        "docs/codex-app-server/plugin-hook-declarations-qualification.md"
+        "docs/codex-app-server/plugin-hook-declarations-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/read",
@@ -3878,7 +3879,8 @@
       "legacy": false,
       "limitations": [
         "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
-        "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "params": {
         "$ref": "#/definitions/PluginReadParams"
@@ -3910,7 +3912,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/plugin_selection_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18206,7 +18209,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-selection-qualification.md",
-        "docs/codex-app-server/plugin-hook-declarations-qualification.md"
+        "docs/codex-app-server/plugin-hook-declarations-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/read",
@@ -18214,7 +18218,8 @@
       "legacy": false,
       "limitations": [
         "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
-        "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "prerequisites": [
         "initialized"
@@ -18232,7 +18237,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/plugin_selection_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -166953,7 +166959,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-reachable-projections-qualification.md"
+        "docs/codex-app-server/native-reachable-projections-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
@@ -166961,7 +166968,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Complete direct native plugin/read and plugin/search equality asserts owned rich plugin metadata, normalized namespaced skill interface, local assets and onboardingSkill in warm and distinct cold owned native processes. Pinned search reports enabled=false even for installed active plugins. Source bytes and idle/no-inference state remain unchanged. Empty arrays and observed nulls qualify their fields, not absent element or non-null branches.",
-        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion."
+        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/PluginDetail/properties/onboardingSkill",
@@ -166976,7 +166984,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -167017,24 +167026,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/PluginDetail/properties/onboardingSkill/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/PluginDetail/properties/onboardingSkill/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -168389,7 +168406,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-reachable-projections-qualification.md"
+        "docs/codex-app-server/native-reachable-projections-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -168397,7 +168415,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Complete direct native plugin/read and plugin/search equality asserts owned rich plugin metadata, normalized namespaced skill interface, local assets and onboardingSkill in warm and distinct cold owned native processes. Pinned search reports enabled=false even for installed active plugins. Source bytes and idle/no-inference state remain unchanged. Empty arrays and observed nulls qualify their fields, not absent element or non-null branches.",
-        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion."
+        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/SkillInterface/properties/iconLarge",
@@ -168412,7 +168431,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -168453,24 +168473,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/SkillInterface/properties/iconLarge/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/SkillInterface/properties/iconLarge/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -168512,7 +168540,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-reachable-projections-qualification.md"
+        "docs/codex-app-server/native-reachable-projections-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -168520,7 +168549,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Complete direct native plugin/read and plugin/search equality asserts owned rich plugin metadata, normalized namespaced skill interface, local assets and onboardingSkill in warm and distinct cold owned native processes. Pinned search reports enabled=false even for installed active plugins. Source bytes and idle/no-inference state remain unchanged. Empty arrays and observed nulls qualify their fields, not absent element or non-null branches.",
-        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion."
+        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/SkillInterface/properties/iconSmall",
@@ -168535,7 +168565,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -168576,24 +168607,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/SkillInterface/properties/iconSmall/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/SkillInterface/properties/iconSmall/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -168739,7 +168778,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-reachable-projections-qualification.md"
+        "docs/codex-app-server/native-reachable-projections-qualification.md",
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -168747,7 +168787,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Complete direct native plugin/read and plugin/search equality asserts owned rich plugin metadata, normalized namespaced skill interface, local assets and onboardingSkill in warm and distinct cold owned native processes. Pinned search reports enabled=false even for installed active plugins. Source bytes and idle/no-inference state remain unchanged. Empty arrays and observed nulls qualify their fields, not absent element or non-null branches.",
-        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion."
+        "Selected observed physical owners only, bound to the exact passing v28 source/binary guards and complete nine-file block at both fixed seeds. No unobserved sibling/alias, whole family, unavailable backend/OS, A11, full compatibility or verified-state promotion.",
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/SkillSummary/properties/interface",
@@ -168762,7 +168803,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -168803,24 +168845,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/SkillSummary/properties/interface/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+      ],
       "pointer": "/definitions/SkillSummary/properties/interface/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

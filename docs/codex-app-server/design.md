@@ -416,6 +416,12 @@ separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 
+Local plugin skill metadata is rescanned independently of manifest/config caches.
+The [optional skill profile](plugin-skill-optional-metadata-qualification.md)
+distinguishes a populated interface with absent icons from no interface while
+retaining a real SKILL.md identity/path. Local paths remain concrete; only the
+separate remote-detail producer can qualify that response's null-path branch.
+
 Uninstalled npm plugin sources can be local catalog descriptors without package
 materialization. The [npm metadata profile](plugin-npm-metadata-qualification.md)
 observes actual normalization and optional null serialization through current

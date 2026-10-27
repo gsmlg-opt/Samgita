@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [optional skill metadata profile](plugin-skill-optional-metadata-qualification.md)
+qualifies four exact null alternatives through direct local reads and unchanged
+skill identity across warm/cold YAML removal/restoration. Initial1/0, focused2/0
+twice and strict checks pass with381 stable sources/all380 prior unchanged.
+Remote-only null-path4732 and every broader gate remain incomplete; prior
+87schema/148ordinary-driver/outside-consumer evidence retains source equivalence.
+
 The [npm descriptor profile](plugin-npm-metadata-qualification.md) qualifies
 real normalization, optional removal/nulls and current-source/cold restoration
 without installation. Final **87 protocol /148 reviewed ordinary driver at both

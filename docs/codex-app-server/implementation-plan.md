@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [optional skill metadata profile](plugin-skill-optional-metadata-qualification.md)
+qualifies exact4676/4717/4721/4728 through fixed null onboarding and genuine
+rich/stripped/held warm and cold YAML scans with restored metadata and concrete
+skill identity/path. Remote-only path-null4732 stays missing. Initial1/0,
+focused **2/0 twice**, strict checks and381 stable sources pass; all380 prior
+sources remain exact, retaining87schema/148ordinary-driver-twice/outside-consumer
+source equivalence. Contracts become **5,060 implemented /1,495 missing /66
+blocked**; requirements stay **462 implemented /12 missing /11 blocked**, zero
+verified. Continue ordinary direct-MCP request preservation. Prohibited/broad/
+hosted, A11, legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [npm descriptor profile](plugin-npm-metadata-qualification.md) qualifies
 exact4602–4607 via real local suggestion discovery, trimmed populated source
 fields, changed-package/explicit-null reload and restored cold identity. No npm
