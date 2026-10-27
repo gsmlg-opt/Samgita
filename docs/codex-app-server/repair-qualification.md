@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native selected memory migration](local-memory-migration-qualification.md)
+passes scoped A-only resource/import/history, repeat watermark and cold
+preservation without inference. Wrong-store **1/1** and the later combined Credo
+failure are retained; two-store reads and capture extraction preserve all
+oracles/bounds. Final focused **1/0**, **64 ordinary cases twice**, selected
+WebSocket cases at three seeds, outside consumer **1/0**, all 14 reviewed steps
+and 1,660 unchanged sources pass. Only 183/256 gain evidence: **5,301 implemented
+/ 1,212 missing / 108 blocked**, unchanged requirements and zero verified.
+No prohibited tests/audits or hosted workflow runs. Continue source-only skill
+omission/tool projection boundaries; full-goal and release gates remain incomplete.
+
 The [native selective plugin migration](local-plugin-migration-qualification.md)
 passes A-only local installation with exact native frames/progress/history,
 versioned cache bytes and B still detectable warm/cold. Focused **1/0**,

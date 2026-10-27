@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [selected local-memory migration](local-memory-migration-qualification.md)
+proves A-only scoped resource copying, original native frames/progress/history,
+explicit new repeat history, one pending SQL consolidation row with advancing
+watermark and cold persistence/B remaining detectable. No inference runs.
+Initial wrong-store **1/1** and subsequent combined Credo failure stay recorded;
+correct store reads and capture extraction preserve all assertions/bounds.
+Final focused **1/0**, **64 ordinary cases twice**, three WebSocket cases at each
+of three seeds, outside consumer **1/0**, all 14 steps and 1,660 stable sources
+pass. Only 183/256 gain evidence: **5,301 implemented / 1,212 missing /
+108 blocked**, unchanged requirements and zero verified. Continue source-only
+skill omission/tool projection boundaries; prohibited, external and full-goal/
+release gates remain incomplete.
+
 The [selective local-plugin migration](local-plugin-migration-qualification.md)
 proves actual detection, A-only installation/configuration/versioned cache,
 native progress/history and B remaining detectable across a distinct cold

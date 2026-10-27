@@ -28093,18 +28093,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/local-memory-migration-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Selected negative_only native evidence: MEMORY disabled; SESSIONS out-of-scope rejection. Neither import succeeds. Other variants and full implementation qualification remain incomplete."
+        "Selected negative_only native evidence: MEMORY disabled; SESSIONS out-of-scope rejection. Neither import succeeds. Other variants and full implementation qualification remain incomplete.",
+        "Additional positive ordinary immutable-native profile: enable external_agent_memory_import while memories remains false, detect two scoped source projects and import only A from the actual item. Exact original frames, native progress/completion, physical nested resources/scope/instructions and durable public/SQLite history are prescribed. Explicit repeat produces a new import/history and advances the same one pending consolidation row; a distinct cold process preserves it and still detects B. Only these two ClientRequest definition owners gain scoped evidence; the prior disabled-profile evidence is retained.",
+        "No thread/turn, inference, memory retrieval or consolidation execution occurs. Native memory queue and general import history use separate memories_1.sqlite/state_5.sqlite stores; the initial wrong-store oracle failure and corrected read-only inspection remain documented. Fixed ordinary YOLO setup only. No other field/variant/transport/OS, real service, prohibited security/permission test/audit, full-compatibility, A11 or release claim."
       ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/8",
       "schema": "ClientRequest.json",
       "schema_sha256": "020b967d50c394fd0842f5539baf820acf4a0c6998e7b1b448e37df6efca9afa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -28112,10 +28115,26 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:202",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:209",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:223",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:241",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:261",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:288",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:326",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:345",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:359",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:382",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:429",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:508",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:564"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -30492,21 +30511,24 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/local-memory-migration-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/memory",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Selected negative_only native evidence: Session path rejected; memory import disabled. Other variants and full implementation qualification remain incomplete."
+        "Selected negative_only native evidence: Session path rejected; memory import disabled. Other variants and full implementation qualification remain incomplete.",
+        "Additional positive ordinary immutable-native profile: enable external_agent_memory_import while memories remains false, detect two scoped source projects and import only A from the actual item. Exact original frames, native progress/completion, physical nested resources/scope/instructions and durable public/SQLite history are prescribed. Explicit repeat produces a new import/history and advances the same one pending consolidation row; a distinct cold process preserves it and still detects B. Only these two ClientRequest definition owners gain scoped evidence; the prior disabled-profile evidence is retained.",
+        "No thread/turn, inference, memory retrieval or consolidation execution occurs. Native memory queue and general import history use separate memories_1.sqlite/state_5.sqlite stores; the initial wrong-store oracle failure and corrected read-only inspection remain documented. Fixed ordinary YOLO setup only. No other field/variant/transport/OS, real service, prohibited security/permission test/audit, full-compatibility, A11 or release claim."
       ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/memory",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -30514,10 +30536,26 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:202",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:209",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:213",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:223",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:241",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:261",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:288",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:326",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:345",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:359",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:382",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:429",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:508",
+          "apps/samgita_codex_driver/test/native_local_memory_migration_test.exs:564"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "memory"
     },
     {
