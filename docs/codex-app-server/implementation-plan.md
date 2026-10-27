@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [reported-import input index](import-history-input-index-qualification.md)
+binds only154–159/161–168 to the unchanged ordinary native recordHistory
+case. Full original request bytes and independent complete warm/cold stored
+facts support these14 exact fields;actual import execution and discarded group
+itemType160 remain unqualified. No executable change/new run;V424 **44ordinary
+cases twice**, eight check logs and all409source paths retain exact hashes.
+Six whole sources/14canonical nodes match the pin. Contracts become
+**5,192 implemented /1,363 missing /66 blocked**, unchanged requirements and
+zero verified. Continue the ordinary root Interrupt Hook profile;
+prohibited/full-goal gates stay incomplete.
+
 The [unclassified turn-error unit](unclassified-turn-error-qualification.md)
 qualifies only2776 through a real empty-selected-environment standalone shell
 task. Successful RPC then complete native error/failed lifecycle retains a

@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [reported-import input index](import-history-input-index-qualification.md)
+adds14 exact request/persisted-fact bindings from unchanged complete ordinary
+recordHistory oracles. Actual import execution and group itemType160 are
+excluded. V424 **44ordinary cases twice** and strict checks remain
+source-equivalent with all409paths/eight logs exact;six whole sources and
+14canonical nodes match the pin. No new runtime run. Contracts become
+**5,192 implemented /1,363 missing /66 blocked**, unchanged requirements and
+zero verified. Continue ordinary root Interrupt Hook behavior;
+prohibited/full-goal gates remain incomplete.
+
 The [unclassified turn-error profile](unclassified-turn-error-qualification.md)
 checks actual successful shell RPC then full native started/error/failed
 completion with nonnull TurnError and explicit inner null. It has zero inference

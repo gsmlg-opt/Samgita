@@ -27073,21 +27073,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/cwd",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27095,31 +27097,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/itemType",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27127,31 +27134,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemType"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/source",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27159,31 +27171,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/target",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/target",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27191,31 +27208,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "target"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/title",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "6e83f3a243c84a8f4235d790dc06f82921fe3f1269e406c37b603d9850458952",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27223,31 +27245,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/failures",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/failures",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "dd7bd4b4730bdc088a51295c9496efb1e6f92ce6122647df5cf9e98fdb58e9f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27255,10 +27282,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failures"
     },
     {
@@ -27297,21 +27327,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/successes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/successes",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ade73be00d0ce7fcffe1f3ad0ed721619f32b751cf0c49f1a4d64b19e67d1d34",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27319,31 +27351,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "successes"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/cwd",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27351,31 +27388,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/errorType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/errorType",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27383,31 +27425,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "errorType"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/failureStage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/failureStage",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27415,31 +27462,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failureStage"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/itemType",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27447,31 +27499,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemType"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/message",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27479,31 +27536,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/source",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27511,31 +27573,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/import-history-input-index-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/subErrorType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete.",
+        "V429 evidence-index-only binding to unchanged ordinary native_import_record_history_test.exs. Two exact original recordHistory request maps and independent complete readback maps prove three caller-reported successes and three failures across distinct providers/groups, native UUID-v4 and bounded UTC-ms identity, stable within-vector ordering and sorted history after checked cold restart. Success cwd/title are populated+null;source/target and failure errorType are populated-only;failure cwd/source/subErrorType are populated+null;itemType/failureStage/message and empty/nonempty failure plus nonempty success vectors have exact supplied values. These are request/admission and reported-fact persistence fields, not actual import effects, import-engine errors, all null/default variants or notification evidence. Group itemType160 is discarded by stock flattening and stays missing;no wrappers,aliases or enum literal owners inherit evidence. Zero model/import/thread/turn/command execution;reported paths remain absent,workspace/rollouts empty and source/config/journal frozen. No executable change/new test run in this index unit;existing V42444/0 twice and static checks retain all409 exact source hashes,including unchanged test and owner/PID/Port cleanup. Six whole upstream files and14 canonical nodes match immutable source archive/generated exports. Only154-159/161-168 become scoped implemented;requirements and zero verified unchanged. Security/authentication/authorization/credential/permission/approval tests,audits,broad/hosted workflows,A11,unreachable producers,external/platform/full-goal/release gates remain unrun or incomplete;no publication/deployment."
       ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/subErrorType",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27543,10 +27610,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "subErrorType"
     },
     {
