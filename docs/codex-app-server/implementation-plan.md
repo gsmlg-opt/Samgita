@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary V3 public-summary relay](ordinary-realtime-summary-relay-qualification.md)
+qualifies explicit `backendReasoningStatus=true` through a genuine native
+delegation and public reasoning item. Actual quiet WS status releases final SSE
+bytes within the existing deadline, preserving the stale-handoff guard. Exact
+three-item/full seven-row history, original wire/body/SSE segments and native
+IDs survive warm/cold reads with no replay. Focused **11/0**, final **53 files /
+90 ordinary cases twice**, selected WebSocket seeds, outside consumer **1/0**,
+all fourteen reviewed checks and 1,668 identical guarded source hashes pass.
+Thirty-six complete producers bind only owner5950: **5,442 implemented / 1,063
+missing / 116 blocked**, unchanged requirements and zero verified. Continue
+custom BEM channel-prefix routing. Prohibited/hosted, A11, unavailable emitters/
+external/OS/full-goal and release gates remain incomplete.
+
 The [ordinary V3 delegation profile](ordinary-realtime-delegation-qualification.md)
 qualifies seven precise request/enum owners through a real backend-created
 native turn and one exact prefixed commentary result, without client turn start.
@@ -31,7 +44,7 @@ cleanup remain required. Final **53 files / 89 ordinary cases twice**, selected
 WebSocket seeds, outside consumer **1/0**, all fourteen reviewed checks and
 1,668 identical guarded source hashes pass. Thirty-five complete source files
 bind **5,441 implemented / 1,064 missing / 116 blocked** contracts, unchanged
-requirements and zero verified. Next ordinary gap is actual V3 public-summary
+requirements and zero verified. V486 above separately qualifies public-summary
 context relay. Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal
 and release gates remain incomplete.
 

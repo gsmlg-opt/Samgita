@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "adc0b577fadacbc3a9191ec497cbcb731e91b89233a933742378ba168e850828"
+  @script_sha "f30e079705f54542c0e97b189ea552161a76c148f56a7cfb11bd03800c39d075"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1557,6 +1557,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp unexpected_notice_methods(%{scenario: "delegation"}),
     do: ~w(error warning thread/realtime/error)
 
+  defp unexpected_notice_methods(%{scenario: "delegation-status"}),
+    do: ~w(error warning thread/realtime/error)
+
   defp unexpected_notice_methods(_profile),
     do:
       ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
@@ -1619,7 +1622,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "speech",
            "initial-items",
            "instructions",
-           "delegation"
+           "delegation",
+           "delegation-status"
          ],
          do: args ++ ["--scenario", profile.scenario],
          else: args
@@ -1651,6 +1655,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp selected_methods(%{scenario: "service-error"}), do: @selected ++ [@realtime_error]
   defp selected_methods(%{scenario: "item-audio"}), do: @selected ++ [@item_added, @audio_delta]
   defp selected_methods(%{scenario: "delegation"}), do: @selected ++ [@item_added]
+  defp selected_methods(%{scenario: "delegation-status"}), do: @selected ++ [@item_added]
   defp selected_methods(_profile), do: @selected
 
   defp peer_startup(port, buffer, deadline) do
@@ -3135,6 +3140,16 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @tag realtime_scenario: "delegation"
   test "native V3 delegation starts one backing turn and returns its prefixed commentary without client turn start",
        ctx do
+    delegation_journey(ctx)
+  end
+
+  @tag realtime_scenario: "delegation-status"
+  test "native V3 relays a real backing turn public summary before its completed assistant result",
+       ctx do
+    delegation_journey(ctx)
+  end
+
+  defp delegation_journey(ctx) do
     profile = ctx.profile
     pid = ctx.session.pid
     deadline = now() + 20_000
@@ -3151,27 +3166,34 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
     assert_uuid(thread)
 
-    assert instruction_call(profile, pid, "thread/realtime/start", %{
-             "threadId" => thread,
-             "version" => "v3",
-             "outputModality" => "audio",
-             "voice" => "cove",
-             "transport" => %{"type" => "websocket"},
-             "realtimeSessionId" => @delegation_session,
-             "includeStartupContext" => false,
-             "flushTranscriptTailOnSessionEnd" => false,
-             "clientManagedHandoffs" => false,
-             "codexResponsesAsItems" => true,
-             "codexResponseItemPrefix" => "Owned delegate result λ",
-             "codexResponseHandoffMode" => "commentary",
-             "prompt" => @prompt
-           }) === %{}
+    start_params = %{
+      "threadId" => thread,
+      "version" => "v3",
+      "outputModality" => "audio",
+      "voice" => "cove",
+      "transport" => %{"type" => "websocket"},
+      "realtimeSessionId" => @delegation_session,
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => false,
+      "codexResponsesAsItems" => true,
+      "codexResponseItemPrefix" => "Owned delegate result λ",
+      "codexResponseHandoffMode" => "commentary",
+      "prompt" => @prompt
+    }
+
+    start_params =
+      if delegation_status?(profile),
+        do: Map.put(start_params, "backendReasoningStatus", true),
+        else: start_params
+
+    assert instruction_call(profile, pid, "thread/realtime/start", start_params) === %{}
 
     events =
       collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
         length(notices(events, "turn/completed")) == 1 and
           length(notices(events, @item_added)) == 1 and
-          read_peer(profile)["delegationOutput"] == [@delegation_output]
+          read_peer(profile)["delegationOutput"] == delegation_outputs(profile)
       end)
 
     row = delegation_row(profile, thread, events)
@@ -3207,7 +3229,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     path = metadata["path"]
     query = %{"threadId" => thread, "limit" => 100}
     timeline = instruction_call(profile, pid, "thread/timeline/list", query)
-    rollout = delegation_timeline(path, thread, row, realtime, timeline)
+    rollout = delegation_timeline(profile, path, thread, row, realtime, timeline)
     assert instruction_history(profile, pid, thread, [row]) === {metadata, turns}
     assert instruction_call(profile, pid, "thread/timeline/list", query) === timeline
     assert {:ok, fresh} = Session.drain(pid, 128)
@@ -3305,7 +3327,8 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            }
 
     relevant = notices(events, "item/completed")
-    assert [user, assistant] = items = Enum.map(relevant, & &1.wire["params"]["item"])
+    items = Enum.map(relevant, & &1.wire["params"]["item"])
+    {user, assistant} = delegation_items(profile, items)
 
     assert %{
              "type" => "userMessage",
@@ -3379,7 +3402,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              "frameCount" => state["frameCount"],
              "responsesRequests" => 1,
              "delegationResponses" => [entry],
-             "delegationOutput" => [@delegation_output],
+             "delegationOutput" => delegation_outputs(profile),
              "transportEofCount" => 1,
              "activeConnections" => 0,
              "requestCount" => 2,
@@ -3412,9 +3435,13 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert Enum.count(user_texts, &(&1 === @delegation_input)) === 1
 
     assert Enum.map(entry["events"], & &1["type"]) ===
-             ~w(response.created response.output_item.done response.completed)
+             delegation_event_types(profile)
 
-    assert Enum.at(entry["events"], 1)["item"]["content"] === [
+    delegation_summary_evidence(profile, entry)
+
+    assistant_index = if delegation_status?(profile), do: 2, else: 1
+
+    assert Enum.at(entry["events"], assistant_index)["item"]["content"] === [
              %{"type" => "output_text", "text" => @delegation_answer}
            ]
 
@@ -3472,7 +3499,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     {items, selected, originals}
   end
 
-  defp delegation_timeline(path, thread, row, realtime, page) do
+  defp delegation_timeline(profile, path, thread, row, realtime, page) do
     assert File.regular?(path) and File.stat!(path).size <= 1_048_576
     bytes = File.read!(path)
     assert byte_size(bytes) in 1..1_048_576 and String.ends_with?(bytes, "\n")
@@ -3500,13 +3527,15 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert page["nextCursor"] === nil and page["activeRealtimeSessionAtPageStart"] === nil
 
     assert Enum.map(data, & &1["type"]) ===
-             ~w(realtime turnStarted item item turnCompleted realtime)
+             delegation_timeline_types(profile)
 
     positions = Enum.map(data, & &1["position"])
     assert Enum.all?(positions, &(is_integer(&1) and &1 >= 0))
     assert positions === Enum.sort(Enum.uniq(positions))
 
-    for {index, raw, expected} <- Enum.zip([[0, 5], raw_realtime, realtime]) do
+    last_index = if delegation_status?(profile), do: 6, else: 5
+
+    for {index, raw, expected} <- Enum.zip([[0, last_index], raw_realtime, realtime]) do
       assert Enum.at(data, index) === %{
                "type" => "realtime",
                "position" => raw["ordinal"],
@@ -3514,8 +3543,110 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              }
     end
 
-    instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+    delegation_timeline_turn(profile, records, data, thread, row)
     bytes
+  end
+
+  defp delegation_status?(%{scenario: "delegation-status"}), do: true
+  defp delegation_status?(%{scenario: "delegation"}), do: false
+
+  defp delegation_outputs(%{scenario: "delegation"}), do: [@delegation_output]
+
+  defp delegation_outputs(%{scenario: "delegation-status"}) do
+    [
+      %{
+        "type" => "delegation.context.append",
+        "delegation_item_id" => "owned-handoff-1",
+        "channel" => "commentary",
+        "content" => [%{"type" => "input_text", "text" => "[STATUS] Owned quiet progress λ"}]
+      },
+      @delegation_output
+    ]
+  end
+
+  defp delegation_items(%{scenario: "delegation"}, [user, assistant]), do: {user, assistant}
+
+  defp delegation_items(%{scenario: "delegation-status"}, [user, reasoning, assistant]) do
+    assert reasoning === %{
+             "type" => "reasoning",
+             "id" => "owned-v486-public-summary",
+             "summary" => ["  Owned quiet progress λ  "],
+             "content" => []
+           }
+
+    ids = Enum.map([user, reasoning, assistant], & &1["id"])
+    assert Enum.uniq(ids) === ids
+    {user, assistant}
+  end
+
+  defp delegation_event_types(%{scenario: "delegation"}),
+    do: ~w(response.created response.output_item.done response.completed)
+
+  defp delegation_event_types(%{scenario: "delegation-status"}),
+    do:
+      ~w(response.created response.output_item.done response.output_item.done response.completed)
+
+  defp delegation_summary_evidence(%{scenario: "delegation"}, _entry), do: :ok
+
+  defp delegation_summary_evidence(%{scenario: "delegation-status"}, entry) do
+    assert Enum.at(entry["events"], 1)["item"] === %{
+             "type" => "reasoning",
+             "id" => "owned-v486-public-summary",
+             "summary" => [%{"type" => "summary_text", "text" => "  Owned quiet progress λ  "}],
+             "content" => []
+           }
+
+    assert entry["quietStatusBarrier"] === true
+    assert [prefix, suffix] = Enum.map(entry["sseSegmentsBase64"], &Base.decode64!/1)
+    assert byte_size(prefix <> suffix) in 1..65_536
+    assert delegation_sse_events(prefix) === Enum.take(entry["events"], 2)
+    assert delegation_sse_events(suffix) === Enum.drop(entry["events"], 2)
+  end
+
+  defp delegation_sse_events(bytes) do
+    for block <- String.split(bytes, "\n\n", trim: true) do
+      assert ["event: " <> kind, "data: " <> encoded] = String.split(block, "\n")
+      event = JSON.decode!(encoded)
+      assert event["type"] === kind
+      event
+    end
+  end
+
+  defp delegation_timeline_types(%{scenario: "delegation"}),
+    do: ~w(realtime turnStarted item item turnCompleted realtime)
+
+  defp delegation_timeline_types(%{scenario: "delegation-status"}),
+    do: ~w(realtime turnStarted item item item turnCompleted realtime)
+
+  defp delegation_timeline_turn(%{scenario: "delegation"}, records, data, thread, row),
+    do: instruction_timeline_turn(records, Enum.slice(data, 1, 4), thread, row)
+
+  defp delegation_timeline_turn(%{scenario: "delegation-status"}, records, data, thread, row) do
+    [started, user, reasoning, assistant, completed] = Enum.slice(data, 1, 5)
+    [user_item, reasoning_item, assistant_item] = row.items
+    # Full seven-row page is checked above. Retain V485's four boundary/final
+    # assertions, then independently verify the extra persisted reasoning row.
+    instruction_timeline_turn(records, [started, user, assistant, completed], thread, %{
+      row
+      | items: [user_item, assistant_item]
+    })
+
+    raw = instruction_record(records, "item_completed", row.id, reasoning_item["id"])
+    assert raw["payload"]["thread_id"] === thread
+
+    assert raw["payload"]["item"] === %{
+             "type" => "Reasoning",
+             "id" => "owned-v486-public-summary",
+             "summary_text" => ["  Owned quiet progress λ  "],
+             "raw_content" => []
+           }
+
+    assert reasoning === %{
+             "type" => "item",
+             "position" => raw["ordinal"],
+             "turnId" => row.id,
+             "item" => reasoning_item
+           }
   end
 
   defp instruction_call(profile, pid, method, params) do

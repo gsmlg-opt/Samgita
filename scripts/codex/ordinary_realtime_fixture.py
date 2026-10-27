@@ -3,7 +3,7 @@
 
 Only functional paths, bounded fixture model bodies and WebSocket messages enter
 the journal. This peer never implements app-server requests or journals headers.
-Only instructions/delegation scenarios serve bounded assistant-only model outputs.
+Only instructions/delegation scenarios serve bounded inert model outputs.
 """
 import argparse
 import base64
@@ -114,6 +114,16 @@ DELEGATION_ACK = {"type": "session.started", "session": {
     "id": "owned-v485-peer-session", "instructions": PROMPT}}
 DELEGATION_OUTPUT = {"type": "session.context.append", "channel": "commentary",
     "content": [{"type": "input_text", "text": "Owned delegate result λ\n\nOwned bounded assistant result 🙂"}]}
+DELEGATION_SCENARIOS = ("delegation", "delegation-status")
+QUIET_REASONING = {"type": "reasoning", "id": "owned-v486-public-summary",
+    "summary": [{"type": "summary_text", "text": "  Owned quiet progress λ  "}], "content": []}
+QUIET_STATUS = {"type": "delegation.context.append", "delegation_item_id": "owned-handoff-1",
+    "channel": "commentary", "content": [{"type": "input_text", "text": "[STATUS] Owned quiet progress λ"}]}
+
+
+def delegation_outputs(scenario):
+    return ([QUIET_STATUS, DELEGATION_OUTPUT] if scenario == "delegation-status"
+            else [DELEGATION_OUTPUT])
 
 
 def write_json(path, value):
@@ -200,7 +210,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 and path == "/v1/responses"):
             self.instructions_response(fixture, fields, deadline)
             return
-        if (fixture.scenario == "delegation" and method == "POST"
+        if (fixture.scenario in DELEGATION_SCENARIOS and method == "POST"
                 and path == "/v1/responses"):
             self.delegation_response(fixture, fields, deadline)
             return
@@ -267,7 +277,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
             return
 
         expected_path = (SDP_SIDEBAND_PATH if fixture.scenario == "sdp"
-                         else f"/v1/live?model={MODEL}" if fixture.scenario in ("initial-items", "delegation")
+                         else f"/v1/live?model={MODEL}" if fixture.scenario in ("initial-items", *DELEGATION_SCENARIOS)
                          else f"/v1/realtime?model={MODEL}")
         if method != "GET" or path != expected_path:
             with fixture.lock:
@@ -304,11 +314,11 @@ class PeerHandler(socketserver.BaseRequestHandler):
         while not fixture.stopping.is_set():
             first = self.read_exact(2, fixture, deadline)
             if first is None:
-                if fixture.scenario == "delegation":
+                if fixture.scenario in DELEGATION_SCENARIOS:
                     assert not fixture.stopping.is_set()
                     with fixture.lock:
                         assert fixture.state["responsesRequests"] == 1
-                        assert fixture.state["delegationOutput"] == [DELEGATION_OUTPUT]
+                        assert fixture.state["delegationOutput"] == delegation_outputs(fixture.scenario)
                         assert fixture.state["transportEofCount"] == 0
                         fixture.state["transportEofCount"] = 1
                         fixture.save_locked()
@@ -366,12 +376,15 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 continue
             assert opcode == 1, "Unexpected owned realtime frame opcode"
             message = json.loads(payload.decode("utf-8"))
-            if fixture.scenario == "delegation" and message.get("type") != "session.update":
-                assert message == DELEGATION_OUTPUT
+            if fixture.scenario in DELEGATION_SCENARIOS and message.get("type") != "session.update":
                 with fixture.lock:
-                    assert fixture.state["delegationOutput"] == []
+                    expected = delegation_outputs(fixture.scenario)
+                    index = len(fixture.state["delegationOutput"])
+                    assert index < len(expected) and message == expected[index]
                     fixture.state["delegationOutput"].append(message)
                     fixture.save_locked()
+                if fixture.scenario == "delegation-status" and message == QUIET_STATUS:
+                    fixture.release.set()
                 continue
             if fixture.scenario == "ingress" and message.get("type") != "session.update":
                 with fixture.lock:
@@ -408,7 +421,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 assert message == {"type": "session.update", "session": sdp_session()}
             elif fixture.scenario == "initial-items":
                 assert message == {"type": "session.update", "session": INITIAL_SESSION}
-            elif fixture.scenario == "delegation":
+            elif fixture.scenario in DELEGATION_SCENARIOS:
                 assert message == {"type": "session.update", "session": DELEGATION_SESSION}
             else:
                 assert message["session"]["type"] == "realtime"
@@ -422,12 +435,12 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 assert len(fixture.state["messages"]) == 1, "Extra owned session.update"
                 fixture.save_locked()
             ack = (INITIAL_ACK if fixture.scenario == "initial-items" else
-                   DELEGATION_ACK if fixture.scenario == "delegation" else ACK)
+                   DELEGATION_ACK if fixture.scenario in DELEGATION_SCENARIOS else ACK)
             self.send_frame(fixture, 1, json.dumps(ack, separators=(",", ":")).encode())
             with fixture.lock:
                 fixture.state["sent"].append(ack)
                 fixture.save_locked()
-            if fixture.scenario == "delegation":
+            if fixture.scenario in DELEGATION_SCENARIOS:
                 self.send_frame(fixture, 1,
                     json.dumps(DELEGATION_FRAME, ensure_ascii=False, separators=(",", ":")).encode())
                 with fixture.lock:
@@ -482,6 +495,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
                         fixture.save_locked()
 
     def delegation_response(self, fixture, fields, deadline):
+        status = fixture.scenario == "delegation-status"
         size = int(fields.get("content-length", "0"))
         assert 0 < size <= MAX_FRAME, "Owned delegation request body bound"
         raw = self.read_exact(size, fixture, deadline)
@@ -505,6 +519,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 "input_tokens": 0, "input_tokens_details": None,
                 "output_tokens": 0, "output_tokens_details": None, "total_tokens": 0}}},
         ]
+        if status:
+            events.insert(1, {"type": "response.output_item.done", "item": QUIET_REASONING})
         with fixture.lock:
             assert fixture.state["responsesRequests"] == 0
             assert fixture.state["activeConnections"] == 1
@@ -522,9 +538,33 @@ class PeerHandler(socketserver.BaseRequestHandler):
         body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
                        for event in events).encode()
         assert len(body) <= MAX_FRAME
-        self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: text/event-stream\r\n"
-            + f"Content-Length: {len(body)}\r\n".encode()
-            + b"Connection: close\r\n\r\n" + body)
+        header = (b"HTTP/1.1 200 OK\r\nContent-Type: text/event-stream\r\n"
+            + f"Content-Length: {len(body)}\r\n".encode() + b"Connection: close\r\n\r\n")
+        if not status:
+            self.request.sendall(header + body)
+            return
+        prefix = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
+                         for event in events[:2]).encode()
+        suffix = body[len(prefix):]
+        assert prefix + suffix == body and suffix
+        with fixture.lock:
+            entry = fixture.state["delegationResponses"][0]
+            entry["sseSegmentsBase64"] = [base64.b64encode(segment).decode()
+                                           for segment in (prefix, suffix)]
+            entry["quietStatusBarrier"] = False
+            fixture.save_locked()
+        self.request.sendall(header + prefix)
+        # Keep the handoff active until its actual quiet status traverses WS.
+        # Existing close() sets stopping/release, so failed tests cannot strand
+        # this provider handler while the existing cleanup joins it.
+        remaining = deadline - time.monotonic()
+        assert remaining > 0 and fixture.release.wait(remaining), "Owned quiet status deadline"
+        assert not fixture.stopping.is_set(), "Owned quiet status peer stopping"
+        with fixture.lock:
+            assert fixture.state["delegationOutput"] == [QUIET_STATUS]
+            entry["quietStatusBarrier"] = True
+            fixture.save_locked()
+        self.request.sendall(suffix)
 
     def instructions_response(self, fixture, fields, deadline):
         size = int(fields.get("content-length", "0"))
@@ -689,7 +729,7 @@ class OrdinaryRealtimePeer:
         if scenario == "instructions":
             self.state["instructionResponses"] = []
             self.state["transportEofCount"] = 0
-        if scenario == "delegation":
+        if scenario in DELEGATION_SCENARIOS:
             self.state["delegationResponses"] = []
             self.state["delegationOutput"] = []
             self.state["transportEofCount"] = 0
@@ -728,7 +768,7 @@ class OrdinaryRealtimePeer:
         sdp_config = (f'experimental_realtime_webrtc_call_base_url = "{self.url}/v1"\n'
                       '[realtime]\ntype = "conversational"\n' if self.scenario == "sdp" else "")
         initial_config = ('[realtime]\nversion = "v3"\ntype = "conversational"\n'
-                          if self.scenario in ("initial-items", "delegation") else "")
+                          if self.scenario in ("initial-items", *DELEGATION_SCENARIOS) else "")
         catalog = self.root / "codex/models.json"
         write_json(catalog, {"models": [{
             "slug": "mock-model", "display_name": "Owned ordinary realtime fixture",
@@ -832,7 +872,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions", "delegation"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions", *DELEGATION_SCENARIOS],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

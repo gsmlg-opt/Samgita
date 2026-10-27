@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary V3 public-summary relay](ordinary-realtime-summary-relay-qualification.md)
+passes **53 files / 90 ordinary real-binary cases at both seeds**, selected
+WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
+reviewed checks, with 1,668 identical guarded source hashes. Actual quiet-status
+receipt releases the provider's final SSE suffix within the existing deadline;
+native summary whitespace, real IDs, three items and all seven canonical
+timeline rows survive cold reads without inference. Thirty-six complete source
+files bind only owner5950: **5,442 implemented / 1,063 missing / 116 blocked**,
+unchanged requirements and zero verified. Continue custom BEM channel prefixes.
+Prohibited/hosted, A11, unavailable emitters/external/OS/full-goal and release
+gates stay incomplete.
+
 The [ordinary V3 delegation profile](ordinary-realtime-delegation-qualification.md)
 passes **53 files / 89 ordinary real-binary cases at both seeds**, selected
 WebSocket cases at three seeds, outside consumer **1/0** and all fourteen
@@ -9,8 +21,8 @@ enriched input, returns one exact prefixed commentary append and retains the
 entire six-row history through cold reads. The initial parser-only transcript
 oracle failures and source-based correction remain recorded. Thirty-five whole
 producer hashes bind seven exact owners: **5,441 implemented / 1,064 missing /
-116 blocked** contracts, unchanged requirements and zero verified. Continue V3
-public-summary context relay. Prohibited/hosted, A11, unavailable emitters,
+116 blocked** contracts, unchanged requirements and zero verified. V486 above
+separately qualifies public-summary relay. Prohibited/hosted, A11, unavailable emitters,
 external/OS/full-goal and release gates remain incomplete.
 
 The [ordinary realtime instruction-effects profile](ordinary-realtime-instruction-effects-qualification.md)
