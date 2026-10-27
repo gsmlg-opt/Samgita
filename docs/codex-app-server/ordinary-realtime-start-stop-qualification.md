@@ -1,5 +1,79 @@
 # Ordinary native realtime start and stop
 
+## Current builtin voices and speech qualification
+
+V481 (2026-10-28) extends the text/PCM profile below with one ordinary native
+case. Two `thread/realtime/listVoices` calls return independently prescribed
+complete V1/V2/V3 lists, order and defaults, before any loaded/persisted thread,
+workspace effect or backend connection exists. Full original outgoing bytes,
+distinct string request IDs and correlated native responses remain required.
+The test explicitly uses the returned `defaultV2` value `marin` for a V2 audio
+session and independently observes it in the actual backend session.update.
+This qualifies explicit use of a reported default, not omitted-voice fallback
+or synthesis with every advertised voice.
+
+Empty and whitespace-only `appendSpeech` inputs receive correlated submission
+ACKs and produce no backend frames. One nonblank Unicode input preserves its
+LF/trailing space and produces exactly two independently prescribed frames:
+
+```json
+{"type":"conversation.item.create","item":{"type":"message","role":"user","content":[{"type":"input_text","text":"[BACKEND] Owned ordinary speech λ🙂\nkeep trailing space "}]}}
+{"type":"response.create"}
+```
+
+Both frames must be observed before requested stop. The final closed peer
+journal detects delayed blank dispatch and duplicates as well. The peer emits
+only session readiness, no generated speech, audio or model response. Thus a
+native RPC result, backend request, audio production and audible playback
+remain separate boundaries. Complete original lifecycle notifications, repeated
+warm/cold start/closed timeline, empty ordinary turns, byte-identical rollout/
+peer journal/config/workspace and existing owned cleanup remain required.
+All previous cases/assertions and frame/byte/journey/RPC limits are retained.
+
+Exactly six missing physical ClientRequest owners gain scoped implemented
+evidence: **780/781/784** (`/oneOf/105`, appendSpeech) and **795/796/799**
+(`/oneOf/108`, listVoices), each the object, ID property and params reference.
+No other RequestId alternative, parameter branch, referenced type, capability,
+transport, OS, voice or whole-method verification is inferred.
+
+The exact native builtin implementation is
+`protocol/src/protocol.rs:349–404`; `turn_processor.rs:331–340` returns it without
+loading a thread, while `:1364–1386` queues speech. The nonblank/blank behavior,
+V2 `[BACKEND] ` prefix, ordered message and response scheduling are in
+`realtime_conversation.rs:1171–1194,1648–1658,2509–2520`. Role conversion is in
+`methods_v2.rs:39–64`. All five complete producer sources match the immutable
+archive binding below. An initial binding helper assumed a separate queue file
+and searched the wrong type name; it stopped without writing an artifact.
+The actual `RealtimeResponseCreateQueue` is in the already-bound
+`realtime_conversation.rs`; no source identity or native assertion changes.
+The corrected six-node/source/test binding is
+`/tmp/samgita-v481-realtime-speech-binding-final/source.json`, SHA256
+`5e00acccd9ba28d1b673568e7ed0bb88d352faac781ae65666b35b949e664370`.
+
+The initial focused **7/0** and the strengthened blank-input focused **7/0**
+pass. Final **83 ordinary cases at seeds 501432/987654**, three selected
+WebSocket cases at each of 455834/501432/987654, outside consumer **1/0**,
+warning-strict compile, format, inventory consistency, strict Credo, forced
+Dialyzer and assets pass: all **14** steps, all **1,668** before/after hashes
+identical. Exact commands/logs: `/tmp/samgita-ordinary-v481/`;
+`results.json` SHA256
+`e6e4eb11a562df4b8d735f74f5d94de492e5e0d3186e33703f5bc25f53edccb4`,
+`source.json` SHA256
+`a64908d144356f84c895cd6b94f8ac4c59d2f36421446b7b65291d19972c6717`.
+Reviewed fingerprint:
+`4be4417fad8abfe7c5b083a8d087e23932256a99d41c282a1be843fe1809a9f1`.
+
+Counts are **5,415 implemented / 1,090 missing / 116 blocked** contracts,
+unchanged **462 implemented / 12 missing / 11 blocked** requirements, zero
+verified. No prohibited security/permission/approval/authentication/credential
+test or audit, broad suite or hosted workflow runs. Full compatibility, A11,
+unavailable emitters/external/OS and release gates remain incomplete; no
+publication, deployment, production migration or sibling edit. Rollback reverts
+this scoped test/fixture/metadata commit without changing platform data or
+production driver code. Continue the source-confirmed V3 initial-item profile:
+configured version fallback, `/v1/live`, exact initial messages and explicit
+session.close. These are not yet qualified by this V2 result.
+
 ## Current text and PCM input qualification
 
 V480 (2026-10-28) adds one ordinary actual-native case to the existing five-case

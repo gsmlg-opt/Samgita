@@ -47480,50 +47480,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/105",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "pointer": "/oneOf/105",
       "schema": "ClientRequest.json",
       "schema_sha256": "f51ba593507870f9d89c1c4954e134b4ed5d289dfb0b053df0cc683c73807f36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/105/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/105/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -47597,27 +47613,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/105/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/105/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c4721b4e5b1186fc6072653a5ddffb698d1942c966aae194bc83bd1d3d3f06a1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -47952,50 +47976,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/108",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "pointer": "/oneOf/108",
       "schema": "ClientRequest.json",
       "schema_sha256": "c20f71a0549e95ceffc873466eefc69cfd46ac5576873729191b66216fc54ae3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/108/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/108/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -48067,27 +48107,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/108/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V481 exact original native listVoices and appendSpeech envelopes with literal string IDs and correlated replies. Builtin voice lists/order/defaults are independently prescribed before thread/backend creation; explicit returned defaultV2 marin configures the V2 audio backend. Empty/whitespace speech yields no backend frames; one nonblank input yields exactly a prefixed user text item then response.create before stop. Warm/cold history retains only start/closed facts and no ordinary turns. No omitted-voice fallback, every-voice synthesis, playback, live provider, other backend/OS/transport or whole-method verification credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/108/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "7876a17d6bfb7494ff340e0f7f251222349572bac6ec75fb11dab4644a5b6e8f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

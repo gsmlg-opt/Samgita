@@ -21,20 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-The [ordinary text/PCM input profile](ordinary-realtime-start-stop-qualification.md#current-text-and-pcm-input-qualification)
-requires original correlated app-server requests plus independently observed
-backend effects before each next input/stop. Exact role transformations, user
-prefix, whitespace/Unicode/CRLF, request-side audio metadata and data-only V2
-backend semantics retain start/closed-only warm/cold history and owned cleanup.
-Focused **6/0**, **82 ordinary cases twice**, selected WebSocket seeds, outside
-consumer **1/0**, all fourteen reviewed checks and 1,668 identical source hashes
-pass. Exactly 36 physical owners gain scoped evidence; thirteen additional
-[producer boundaries](native-projection-boundaries.md) stay missing, without
-mock or imported-history acceptance. Counts: **5,409 implemented / 1,096 missing
-/ 116 blocked**, unchanged requirements and zero verified. Next qualify builtin
-voices and genuine appendSpeech's text-plus-response backend effect. Prohibited/
-hosted, A11, unavailable emitters/external/OS/full-goal and release gates remain
-incomplete.
+The [ordinary realtime inputs and voices](ordinary-realtime-start-stop-qualification.md#current-builtin-voices-and-speech-qualification)
+require exact original correlated RPCs and independent backend effects, with
+start/closed-only warm/cold history and existing cleanup. The latest case adds
+thread-independent builtin voice lists, explicit reported-default selection,
+blank speech no-ops and one nonblank text-plus-response backend effect. Focused
+**7/0**, **83 ordinary cases twice**, selected WebSocket seeds, outside consumer
+**1/0**, all fourteen reviewed checks and 1,668 identical source hashes pass.
+Six exact owners join V480's 36 scoped owners; thirteen additional
+[producer boundaries](native-projection-boundaries.md) stay missing. Counts:
+**5,415 implemented / 1,090 missing / 116 blocked**, unchanged requirements and
+zero verified. Next qualify V3 initialItems/configured version fallback with
+`/v1/live` and explicit session.close. Prohibited/hosted, A11, unavailable
+emitters/external/OS/full-goal and release gates remain incomplete.
 
 The [existing native V2 realtime literal](native-realtime-v2-index-qualification.md)
 indexes only experimental canonical owner 5933 from the unchanged original

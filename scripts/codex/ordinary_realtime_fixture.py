@@ -61,6 +61,14 @@ INGRESS = [
     }},
     {"type": "input_audio_buffer.append", "audio": "AADoAxj8/38="},
 ]
+SPEECH = [
+    {"type": "conversation.item.create", "item": {
+        "type": "message", "role": "user",
+        "content": [{"type": "input_text",
+                     "text": "[BACKEND] Owned ordinary speech λ🙂\nkeep trailing space "}],
+    }},
+    {"type": "response.create"},
+]
 SDP_OFFER = "v=0\r\ns=Owned ordinary offer λ\r\na=inactive\r\n"
 SDP_ANSWER = "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
 SDP_CALL_ID = "rtc_owned_ordinary_sdp"
@@ -285,14 +293,26 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     fixture.state["ingress"].append(message)
                     fixture.save_locked()
                 continue
+            if fixture.scenario == "speech" and message.get("type") != "session.update":
+                with fixture.lock:
+                    assert len(fixture.state["messages"]) == 1
+                    assert fixture.state["sent"] == [ACK]
+                    index = len(fixture.state["speech"])
+                    assert index < len(SPEECH), "Extra owned realtime speech message"
+                    assert message == SPEECH[index], "Unexpected owned realtime speech message"
+                    fixture.state["speech"].append(message)
+                    fixture.save_locked()
+                continue
             assert isinstance(message, dict) and message.get("type") == "session.update"
             if fixture.scenario == "sdp":
                 assert message == {"type": "session.update", "session": sdp_session()}
             else:
                 assert message["session"]["type"] == "realtime"
                 assert message["session"]["instructions"] == PROMPT
-                expected_modality = "audio" if fixture.scenario == "item-audio" else "text"
+                expected_modality = "audio" if fixture.scenario in ("item-audio", "speech") else "text"
                 assert message["session"]["output_modalities"] == [expected_modality]
+                if fixture.scenario == "speech":
+                    assert message["session"]["audio"]["output"]["voice"] == "marin"
             with fixture.lock:
                 fixture.state["messages"].append(message)
                 assert len(fixture.state["messages"]) == 1, "Extra owned session.update"
@@ -443,6 +463,8 @@ class OrdinaryRealtimePeer:
             self.state["calls"] = []
         if scenario == "ingress":
             self.state["ingress"] = []
+        if scenario == "speech":
+            self.state["speech"] = []
         self.server = PeerServer(("127.0.0.1", 0), PeerHandler)
         self.server.fixture = self
         self.thread = threading.Thread(
@@ -576,7 +598,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

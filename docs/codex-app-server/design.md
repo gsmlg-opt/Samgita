@@ -325,6 +325,10 @@ append results acknowledge submitted operations; an observed backend message is
 a separate boundary. User text gains `[USER] `; assistant text uses output_text.
 V2 audio forwards base64 data and omits sample metadata/item ID on its backend
 wire. Input submission alone creates no transcript or ordinary turn history.
+The [builtin voices/speech case](ordinary-realtime-start-stop-qualification.md#current-builtin-voices-and-speech-qualification)
+also observes thread-independent catalog results and explicitly uses their V2
+default. Blank speech is a no-op; nonblank speech sends `[BACKEND] ` text plus
+response.create. That request pair does not establish generated or audible audio.
 The later local V1 multipart SDP/sideband profile qualifies that exchange only;
 neither profile establishes live ICE/DTLS, playback or external-provider success.
 Private collaborator analytics and preserved canonical imported history remain
