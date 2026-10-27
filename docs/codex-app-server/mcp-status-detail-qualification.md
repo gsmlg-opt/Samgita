@@ -57,8 +57,8 @@ devenv shell --no-tui -- python3 -B scripts/codex/check_ordinary.py --output /tm
 ```
 
 The output directory must be new. The runner executes three overflow/replay
-cases at each of seeds 455834/501432/987654, 39 named driver files at seeds
-501432/987654, the outside-umbrella real-binary consumer, inventory consistency,
+cases at each of seeds 455834/501432/987654, explicitly named driver files at
+seeds 501432/987654, the outside-umbrella real-binary consumer, inventory consistency,
 and the retained compile/format/Credo/Dialyzer/assets static checks. It requires
 the exact case counts; the WebSocket selection explicitly excludes the other
 13 cases in its mixed file. It runs no database recovery/admission tests, broad

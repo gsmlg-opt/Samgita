@@ -27929,24 +27929,42 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/4",
       "schema": "ClientRequest.json",
       "schema_sha256": "aa55af89bcb1d0a6115f165a789985d87fb3b60289e3db2cc0f68693bfa97c5f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -27985,24 +28003,42 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/6",
       "schema": "ClientRequest.json",
       "schema_sha256": "39e5b48f5b5e5a5fe118423872cc62049ba306788d526fb64a5522a9a3d6ff17",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -28984,27 +29020,45 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/HookMigration/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMigration/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
@@ -29845,27 +29899,45 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerMigration/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerMigration/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
@@ -30312,53 +30384,89 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/hooks",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/hooks",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "e2f6d147c8b0dd1bf0c64bb912764d5a6581b2c94da5c1b90168cf4b70c5460d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-config-migration-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/mcpServers",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable Codex detects two named local MCP declarations and two ordinary hook event names, preserves original detected details/types in import requests, emits exact native progress/completion and persists independently prescribed TOML/hooks/script bytes. Explicit repeated import records a new history with empty successes and unchanged destinations; a distinct cold native process reads the same files/history. Only these six ClientRequest definition owners gain scoped evidence.",
+        "Migration detail names are advisory; the native importer rediscovers source scope, so this is not per-name selection evidence. Imported commands are never invoked; no hook/MCP execution, thread/turn/model, external service, other variant/transport/OS or full-compatibility claim. Fixed ordinary YOLO setup only. Prohibited security/permission tests/audits, broad/hosted, A11 and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/mcpServers",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "5caed84e2268faa3c3e466ae222f103c2c8a7a2a7acb4c18829f3c6d62c73595",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:224",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:231",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:240",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:249",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:268",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:278",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:302",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:322",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:370",
+          "apps/samgita_codex_driver/test/native_local_config_migration_test.exs:473"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServers"
     },
     {

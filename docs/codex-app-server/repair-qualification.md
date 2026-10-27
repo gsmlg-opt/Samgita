@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary native local configuration migration](local-config-migration-qualification.md)
+passes named hooks/MCP detection/import, physical destinations, exact native
+progress/history, repeated empty results with a new history and cold persistence.
+The initial **1/1** pretty-TOML oracle failure is retained; full-file stdlib
+parsing preserves exact field checks. Final focused **1/0**, **62 ordinary cases
+twice**, selected WebSocket cases at three seeds, outside consumer **1/0**, all
+14 reviewed steps and 1,658 stable sources pass. Six exact owners gain evidence:
+**5,295 implemented / 1,218 missing / 108 blocked**, unchanged requirements and
+zero verified. No prohibited tests/audits or hosted workflow runs. Continue
+ordinary plugin migration selection; full-goal and release gates stay incomplete.
+
 The [native MCP detail profile and repeatable ordinary runner](mcp-status-detail-qualification.md)
 pass focused **1/0**, **61 ordinary cases twice**, three WebSocket overflow/replay
 cases at each of three seeds, outside consumer **1/0** and all **14** reviewed

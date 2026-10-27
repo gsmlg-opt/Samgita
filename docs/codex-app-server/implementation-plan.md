@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native local hooks/MCP migration profile](local-config-migration-qualification.md)
+proves actual named detection, unchanged import inputs, native progress/history,
+physical destinations, recorded empty repeats and cold persistence. Initial
+**1/1** exposed an ad hoc pretty-TOML parser; full-file stdlib parsing preserves
+all field oracles. Repaired focused **1/0**, **62 ordinary cases twice**, three
+WebSocket cases at each of three seeds, outside consumer **1/0**, all 14 reviewed
+steps and 1,658 stable sources pass. Six exact input owners gain evidence:
+**5,295 implemented / 1,218 missing / 108 blocked**, unchanged requirements and
+zero verified. Continue ordinary local-plugin migration selection; prohibited,
+external and full-goal/release gates remain incomplete.
+
 The [MCP status-detail profile and repository runner](mcp-status-detail-qualification.md)
 prove omitted/null/full resource discovery through the real pin and an ordinary
 stdio MCP dependency. Focused **1/0**, **61 ordinary cases twice**, three
