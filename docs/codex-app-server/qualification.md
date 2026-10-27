@@ -1,5 +1,11 @@
 # Codex compatibility qualification
 
+The [native ended-outcome index](realtime-ended-index-qualification.md) binds
+one exact notification enum to already passing complete original native closure
+evidence. No new execution/source change;V43549ordinary cases twice and all414
+hashes remain exact. Only2700 gains scoped implemented evidence;failed/audio/
+media and broader gates remain incomplete.
+
 The [ordinary realtime transcript](ordinary-realtime-transcript-qualification.md)
 preserves native streamed/done semantics through13original notices and real
 timeline persistence with a functional release barrier. Focused2/0,49ordinary

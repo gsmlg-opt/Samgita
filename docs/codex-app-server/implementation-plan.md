@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native ended-outcome index](realtime-ended-index-qualification.md) binds
+only2700 to the unchanged first ordinary realtime case's complete independently
+prescribed native closure envelopes and original canonical ingress. No new
+execution/source change;V435focused **2/0**, **49ordinary cases twice**,eight
+check logs and414source hashes remain exact. Six whole sources/one node match
+the pin. Contracts: **5,226 implemented /1,329 missing /66 blocked**;
+requirements and zero verified unchanged. Continue original dynamic-tool item
+ingress;failed/audio and prohibited/full-goal gates remain incomplete.
+
 The [ordinary realtime transcript](ordinary-realtime-transcript-qualification.md)
 qualifies seven physical owners with an explicit functional readiness release,
 13complete original native envelopes and repeated independent three-row timeline.

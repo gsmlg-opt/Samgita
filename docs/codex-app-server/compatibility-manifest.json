@@ -106571,24 +106571,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-ended-index-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeSessionOutcome/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V437 evidence-index-only canonical notification ended literal. The unchanged first ordinary native realtime case independently prescribes complete ended closed-item started/completed envelopes after one explicit requested stop,retains caller session/native IDs,brackets native times,captures original incoming JSON before Session decoding and validates the canonical experimental notification schema. Real native reducer chooses Ended on nonfailed closure;the peer never emits an app-server outcome. Warm repeated exact timeline is corroboration,not equal-hash owner6412 transfer. Reuses V435 final focused2/0,49reviewed ordinary cases twice,eight check logs and all414matching source hashes;no executable change or new run. Six whole upstream files and this canonical literal archive/export-match. Only2700 becomes scoped implemented,zero verified;failed enum/audio/media/other closure conditions/OS/transports remain unqualified. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release stay incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeSessionOutcome/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "58e05e8d66023d540d23db5ddf55315f3248253a94c754dda9d1508e8b2855f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
