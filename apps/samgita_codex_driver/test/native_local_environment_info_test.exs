@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeLocalEnvironmentInfoTest do
     TurnFixture
   }
 
-  alias SamgitaProtocolCodex.Schema
+  alias SamgitaProtocolCodex.{Schema, Wire}
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
@@ -238,6 +238,97 @@ defmodule SamgitaCodexDriver.NativeLocalEnvironmentInfoTest do
     assert_controls(ctx, ctx.renamed)
     assert_inventory(ctx)
     close_provider(ctx.fixture)
+  end
+
+  test "native configured provider capability upper bounds retain exact identities without starting work",
+       ctx do
+    assert hash(File.read!(schema_path("v2/ModelProviderCapabilitiesReadParams.json"))) ===
+             "9db732188a15476cabb42cf05e495ae0803a1ada993fca7348c21c30a998388d"
+
+    assert hash(File.read!(schema_path("v2/ModelProviderCapabilitiesReadResponse.json"))) ===
+             "96979d0111a38cb35a313e111c2f7c449441aee7fd51e1757f2d11c2213d4e77"
+
+    warm_ids = [-530_001, 530_001, "owned-provider-upper-bound-warm-λ🙂"]
+    cold_ids = [-530_002, 530_002, "owned-provider-upper-bound-cold-λ🙂"]
+    warm = start(ctx, ctx.original)
+    warm_instance = Session.status(warm.pid).instance_id
+    assert call(ctx, warm.pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    for id <- warm_ids, do: assert_provider_capabilities(ctx, warm.pid, id)
+
+    assert call(ctx, warm.pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+    assert_controls(ctx, ctx.original)
+    assert_idle(warm.pid)
+    close(warm)
+
+    cold = start(ctx, ctx.original)
+    refute cold.native === warm.native
+    refute Session.status(cold.pid).instance_id === warm_instance
+    assert call(ctx, cold.pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+
+    for id <- cold_ids, do: assert_provider_capabilities(ctx, cold.pid, id)
+
+    assert call(ctx, cold.pid, "thread/loaded/list", %{}) === %{"data" => [], "nextCursor" => nil}
+    assert_controls(ctx, ctx.original)
+    assert_idle(cold.pid)
+    close(cold)
+    assert_controls(ctx, ctx.original)
+    assert_provider_capability_inventory(ctx, warm_ids ++ cold_ids)
+    close_provider(ctx.fixture)
+    assert_controls(ctx, ctx.original)
+  end
+
+  defp assert_provider_capabilities(ctx, pid, id) do
+    method = "modelProvider/capabilities/read"
+    wire = %{"id" => id, "method" => method, "params" => %{}}
+    # The configured provider's immutable upper bounds are independent of model
+    # calls, model capabilities, thread state and the values returned here.
+    expected = %{"imageGeneration" => true, "webSearch" => true}
+    envelope = %{"id" => id, "result" => expected}
+
+    assert :ok = Schema.validate(schema("ClientRequest.json"), wire, max_depth: 32)
+    assert :ok = Schema.validate(schema("v2/ModelProviderCapabilitiesReadParams.json"), %{})
+    assert {:ok, ^envelope} = Session.request_native(pid, wire, timeout_ms: 5_000)
+    assert_exchange(ctx, wire, envelope)
+
+    ledger = Agent.get(ctx.capture, & &1)
+    assert [sent] = Enum.filter(ledger.out, &(&1.wire["id"] === id))
+    assert [received] = Enum.filter(ledger.in, &(&1.wire["id"] === id))
+    assert sent.wire === wire and sent.encoded === JSON.encode!(wire)
+    assert JSON.decode!(received.encoded) === envelope
+    assert {:ok, ^wire} = Wire.decode(sent.encoded, max_depth: 32)
+    assert {:ok, ^envelope} = Wire.decode(received.encoded, max_depth: 32)
+
+    assert :ok =
+             Schema.validate(
+               schema("v2/ModelProviderCapabilitiesReadResponse.json"),
+               received.wire["result"],
+               max_depth: 32
+             )
+
+    assert_controls(ctx, ctx.original)
+  end
+
+  defp assert_provider_capability_inventory(ctx, capability_ids) do
+    ledger = Agent.get(ctx.capture, & &1)
+
+    one_process =
+      ~w(initialize initialized server/diagnostics thread/loaded/list modelProvider/capabilities/read modelProvider/capabilities/read modelProvider/capabilities/read thread/loaded/list)
+
+    assert Enum.map(ledger.out, & &1.wire["method"]) === one_process ++ one_process
+    requests = Enum.filter(ledger.out, &Map.has_key?(&1.wire, "id"))
+    replies = Enum.filter(ledger.in, &Map.has_key?(&1.wire, "id"))
+    ids = Enum.map(requests, & &1.wire["id"])
+    assert length(ids) === 14 and length(Enum.uniq(ids)) === 14
+    assert length(replies) === 14
+    assert MapSet.new(Enum.map(replies, & &1.wire["id"])) === MapSet.new(ids)
+
+    capabilities =
+      Enum.filter(requests, &(&1.wire["method"] === "modelProvider/capabilities/read"))
+
+    assert Enum.map(capabilities, & &1.wire["id"]) === capability_ids
+    assert length(capabilities) === 6
+    for request <- capabilities, do: assert(request.wire["params"] === %{})
   end
 
   defp local_info(ctx, pid, expected_cwd) do

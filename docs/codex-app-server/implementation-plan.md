@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary User-transcript/provider-metadata unit](ordinary-user-transcript-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **70 files / 133 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,689** identical guarded hashes. Six physical owners gain scoped
+implemented credit: **5,507 implemented / 984 missing / 130 blocked** contracts;
+requirements unchanged, zero verified. The source-only V531 memory producer
+uses Internal/Unknown and supplies no SubAgent literal credit; bounded Compact
+search remains inconclusive. Next: finish independent source review of the new
+ordinary MCP app-context fixture and case, then integrate/qualify it. Its draft
+is unrun and earns no state change. Prohibited/hosted, A11, unavailable
+emitter/external/OS, full-goal and release gates remain open.
+
 The [ordinary environment connection unit](ordinary-environment-connection-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **70 files / 131 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

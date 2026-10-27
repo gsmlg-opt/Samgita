@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "ce13766823f7cd70a98e5be3bf01d9ee3ac6fcc86c4c6f99c732af59cc4630fe"
+  @script_sha "fbd3c18b360f8113292584fbfa6e57e133a5bb6849152e3acf96796c8fcd4f09"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -65,6 +65,25 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     %{"type" => "response.output_text.delta", "delta" => @delta_one},
     %{"type" => "response.output_text.delta", "delta" => @delta_two},
     %{"type" => "response.output_text.done", "text" => @done_text}
+  ]
+  @user_transcript_session "owned-v529-user-realtime-session"
+  @user_delta_one "Owned user realtime λ "
+  @user_delta_two "draft."
+  @user_streamed_text "Owned user realtime λ draft."
+  @user_done_text "Owned user realtime λ revised final."
+  @user_transcript_backend [
+    %{
+      "type" => "conversation.item.input_audio_transcription.delta",
+      "delta" => @user_delta_one
+    },
+    %{
+      "type" => "conversation.item.input_audio_transcription.delta",
+      "delta" => @user_delta_two
+    },
+    %{
+      "type" => "conversation.item.input_audio_transcription.completed",
+      "transcript" => @user_done_text
+    }
   ]
   @uuid ~r/\A[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/
   @peer_ack %{
@@ -582,6 +601,280 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert Enum.filter(events, &(&1.wire["method"] in methods)) === selected
     await_peer_closed(profile, min(active_deadline, now() + 5_000))
     peer_state = assert_transcript_peer(profile, 0)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_inputs(ctx)
+    assert_ready(profile, pid)
+    assert now() <= active_deadline
+    outgoing = for frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]
+
+    assert outgoing ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/stop thread/read thread/timeline/list thread/timeline/list)
+
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert_inputs(ctx)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer_state
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+
+    assert assert_originals(profile, selected) === originals
+    assert_rollout_snapshot(rollout)
+  end
+
+  @tag realtime_scenario: "user-transcript"
+  test "native User transcript retains streamed text when input completion revises the final text",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    active_deadline = now() + 20_000
+
+    thread =
+      call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+
+    params = %{
+      "threadId" => thread,
+      "outputModality" => "text",
+      "version" => "v2",
+      "transport" => %{"type" => "websocket"},
+      "realtimeSessionId" => @user_transcript_session,
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => true,
+      "prompt" => @prompt
+    }
+
+    lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/start", params) === %{}
+
+    [start_request] =
+      Enum.filter(
+        capture(profile),
+        &(&1.direction == :out and
+            &1.wire["method"] == "thread/realtime/start")
+      )
+
+    assert :ok = Schema.validate(schema("ClientRequest.json"), start_request.wire, max_depth: 32)
+
+    events =
+      collect(profile, pid, [], min(active_deadline, now() + 5_000), fn events ->
+        length(notices(events, @item_started)) == 1 and
+          length(notices(events, @item_completed)) == 1 and
+          length(notices(events, @started)) == 1 and peer_ready?(profile)
+      end)
+
+    started_upper = System.system_time(:millisecond)
+    [first_start] = notices(events, @item_started)
+    a = Map.fetch!(first_start.wire["params"]["item"], "id")
+    assert_uuid(a)
+
+    first_item = %{
+      "id" => a,
+      "realtimeSessionId" => @user_transcript_session,
+      "type" => "realtimeSessionStarted"
+    }
+
+    first_expected = [
+      {@item_started, %{"threadId" => thread, "item" => first_item}},
+      {@item_completed, %{"threadId" => thread, "item" => first_item}},
+      {@started,
+       %{"threadId" => thread, "realtimeSessionId" => @user_transcript_session, "version" => "v2"}}
+    ]
+
+    assert_selected(profile, events, first_expected, lower, started_upper)
+    assert_peer(profile, 1)
+
+    first_originals =
+      assert_originals(
+        profile,
+        Enum.filter(events, &(&1.wire["method"] in selected_methods(profile)))
+      )
+
+    release_boundary = length(capture(profile))
+
+    # Release genuine backend data only after both native and peer readiness.
+    transcript_lower = System.system_time(:millisecond)
+    release_transcript(ctx.peer.port, min(active_deadline, now() + 5_000))
+
+    events =
+      collect(profile, pid, events, min(active_deadline, now() + 5_000), fn events ->
+        length(notices(events, @flat_done)) == 1 and
+          length(notices(events, @item_completed)) == 2 and
+          read_peer(profile)["sent"] == [@peer_ack | @user_transcript_backend]
+      end)
+
+    transcript_upper = System.system_time(:millisecond)
+    [^first_start, transcript_start] = notices(events, @item_started)
+    t = Map.fetch!(transcript_start.wire["params"]["item"], "id")
+    assert_uuid(t)
+    refute t === a
+
+    empty_transcript = %{
+      "id" => t,
+      "realtimeSessionId" => @user_transcript_session,
+      "type" => "transcriptSegment",
+      "role" => "user",
+      "text" => ""
+    }
+
+    transcript = %{
+      "id" => t,
+      "realtimeSessionId" => @user_transcript_session,
+      "type" => "transcriptSegment",
+      "role" => "user",
+      "text" => @user_streamed_text
+    }
+
+    transcript_expected = [
+      {@item_started, %{"threadId" => thread, "item" => empty_transcript}},
+      {@item_delta, %{"threadId" => thread, "itemId" => t, "delta" => @user_delta_one}},
+      {@flat_delta, %{"threadId" => thread, "role" => "user", "delta" => @user_delta_one}},
+      {@item_delta, %{"threadId" => thread, "itemId" => t, "delta" => @user_delta_two}},
+      {@flat_delta, %{"threadId" => thread, "role" => "user", "delta" => @user_delta_two}},
+      {@item_completed, %{"threadId" => thread, "item" => transcript}},
+      {@flat_done, %{"threadId" => thread, "role" => "user", "text" => @user_done_text}}
+    ]
+
+    methods = selected_methods(profile)
+    selected = Enum.filter(events, &(&1.wire["method"] in methods))
+    assert length(selected) === 10
+    assert_selected(profile, Enum.take(selected, 3), first_expected, lower, started_upper)
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      transcript_expected,
+      transcript_lower,
+      transcript_upper
+    )
+
+    assert_transcript_peer(profile, 1, @user_transcript_backend)
+
+    stop_lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    events =
+      collect(profile, pid, events, min(active_deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1
+      end)
+
+    stopped_upper = System.system_time(:millisecond)
+    [^first_start, ^transcript_start, last_start] = notices(events, @item_started)
+    b = Map.fetch!(last_start.wire["params"]["item"], "id")
+    assert_uuid(b)
+    assert length(Enum.uniq([a, t, b])) === 3
+
+    last_item = %{
+      "id" => b,
+      "realtimeSessionId" => @user_transcript_session,
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    last_expected = [
+      {@item_started, %{"threadId" => thread, "item" => last_item}},
+      {@item_completed, %{"threadId" => thread, "item" => last_item}},
+      {@closed, %{"threadId" => thread, "reason" => "requested"}}
+    ]
+
+    selected = Enum.filter(events, &(&1.wire["method"] in methods))
+    assert length(selected) === 13
+    assert_selected(profile, Enum.take(selected, 3), first_expected, lower, started_upper)
+
+    assert_selected(
+      profile,
+      Enum.slice(selected, 3, 7),
+      transcript_expected,
+      transcript_lower,
+      transcript_upper
+    )
+
+    assert_selected(profile, Enum.drop(selected, 10), last_expected, stop_lower, stopped_upper)
+    originals = assert_originals(profile, selected)
+    assert Enum.take(originals, 3) === first_originals
+    assert_original_user_items(originals, thread, empty_transcript, transcript)
+    assert_transcript_delta_payloads(originals, thread, t, [@user_delta_one, @user_delta_two])
+    assert_release_order(profile, originals, release_boundary)
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+
+    rollout =
+      assert_transcript_rollout(
+        profile,
+        saved["path"],
+        [
+          %{
+            "id" => a,
+            "realtime_session_id" => @user_transcript_session,
+            "type" => "realtime_session_started"
+          },
+          %{
+            "id" => t,
+            "realtime_session_id" => @user_transcript_session,
+            "type" => "transcript_segment",
+            "role" => "user",
+            "text" => @user_streamed_text
+          },
+          %{
+            "id" => b,
+            "realtime_session_id" => @user_transcript_session,
+            "type" => "realtime_session_closed",
+            "outcome" => "ended"
+          }
+        ],
+        [
+          {lower, started_upper},
+          {transcript_lower, transcript_upper},
+          {stop_lower, stopped_upper}
+        ]
+      )
+
+    expected_timeline = %{
+      "data" =>
+        Enum.zip_with(rollout.ordinals, [first_item, transcript, last_item], fn ordinal, item ->
+          %{"type" => "realtime", "position" => ordinal, "item" => item}
+        end),
+      "nextCursor" => nil,
+      "activeRealtimeSessionAtPageStart" => nil
+    }
+
+    timeline = call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})
+    assert_transcript_timeline(timeline, [first_item, transcript, last_item])
+    assert timeline === expected_timeline
+    assert_original_timeline_responses(profile, thread, expected_timeline, 1)
+    refute Enum.any?(timeline["data"], &(get_in(&1, ["item", "text"]) in ["", @user_done_text]))
+
+    assert call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100}) ===
+             timeline
+
+    assert_original_timeline_responses(profile, thread, expected_timeline, 2)
+    assert_rollout_snapshot(rollout)
+
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert Enum.filter(events, &(&1.wire["method"] in methods)) === selected
+    await_peer_closed(profile, min(active_deadline, now() + 5_000))
+    peer_state = assert_transcript_peer(profile, 0, @user_transcript_backend)
     peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
     assert_inputs(ctx)
     assert_ready(profile, pid)
@@ -1321,11 +1614,16 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
              Schema.validate(schema("v2/ThreadTimelineListResponse.json"), page, max_depth: 32)
   end
 
-  defp assert_transcript_delta_payloads(originals, thread, item) do
+  defp assert_transcript_delta_payloads(
+         originals,
+         thread,
+         item,
+         deltas_expected \\ [@delta_one, @delta_two]
+       ) do
     deltas = Enum.filter(originals, &(&1.wire["method"] == @item_delta))
     assert length(deltas) === 2
 
-    for {original, delta} <- Enum.zip(deltas, [@delta_one, @delta_two]) do
+    for {original, delta} <- Enum.zip(deltas, deltas_expected) do
       expected = %{"threadId" => thread, "itemId" => item, "delta" => delta}
       assert original.wire["params"] === expected
       assert JSON.decode!(original.encoded)["params"] === expected
@@ -1336,6 +1634,36 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
                  original.wire["params"],
                  max_depth: 32
                )
+    end
+  end
+
+  defp assert_original_user_items(originals, thread, empty_item, completed_item) do
+    assert empty_item["role"] === "user" and completed_item["role"] === "user"
+
+    items =
+      Enum.filter(originals, fn original ->
+        original.wire["method"] in [@item_started, @item_completed] and
+          get_in(original.wire, ["params", "item", "id"]) === completed_item["id"]
+      end)
+
+    assert [started, completed] = items
+
+    for {original, method, item, standalone} <- [
+          {started, @item_started, empty_item, "v2/ThreadRealtimeItemStartedNotification.json"},
+          {completed, @item_completed, completed_item,
+           "v2/ThreadRealtimeItemCompletedNotification.json"}
+        ] do
+      expected = %{
+        "method" => method,
+        "params" => %{"threadId" => thread, "item" => item},
+        "emittedAtMs" => original.wire["emittedAtMs"]
+      }
+
+      assert original.wire === expected
+      assert JSON.decode!(original.encoded) === expected
+      assert {:ok, ^expected} = Wire.decode(original.encoded, max_depth: 32)
+      assert :ok = Schema.validate(schema(standalone), expected["params"], max_depth: 32)
+      assert :ok = Schema.validate(schema("ServerNotification.json"), expected, max_depth: 32)
     end
   end
 
@@ -1405,7 +1733,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     end
   end
 
-  defp assert_transcript_peer(profile, active) do
+  defp assert_transcript_peer(profile, active, backend \\ @transcript_backend) do
     state = read_peer(profile)
     assert state["paths"] === ["/v1/realtime?model=#{@model}"]
     assert [message] = state["messages"]
@@ -1413,7 +1741,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert message["session"]["type"] === "realtime"
     assert message["session"]["instructions"] === @prompt
     assert message["session"]["output_modalities"] === ["text"]
-    assert state["sent"] === [@peer_ack | @transcript_backend]
+    assert state["sent"] === [@peer_ack | backend]
     assert state["requestCount"] === 2
 
     assert state["controls"] === [
@@ -1645,6 +1973,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     args =
       if profile.scenario in [
            "transcript",
+           "user-transcript",
            "service-error",
            "item-audio",
            "sdp",
@@ -1692,6 +2021,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   end
 
   defp selected_methods(%{scenario: "transcript"}), do: @selected ++ @transcript_methods
+  defp selected_methods(%{scenario: "user-transcript"}), do: @selected ++ @transcript_methods
   defp selected_methods(%{scenario: "service-error"}), do: @selected ++ [@realtime_error]
   defp selected_methods(%{scenario: "item-audio"}), do: @selected ++ [@item_added, @audio_delta]
   defp selected_methods(%{scenario: "delegation"}), do: @selected ++ [@item_added]

@@ -103,6 +103,12 @@ INSTRUCTIONS_FRAGMENTS = [
     f"<realtime_conversation>\n{INSTRUCTIONS_START}\n</realtime_conversation>",
     f"<realtime_conversation>\n{INSTRUCTIONS_END}\n</realtime_conversation>",
 ]
+USER_TRANSCRIPT = [
+    {"type": "conversation.item.input_audio_transcription.delta", "delta": "Owned user realtime λ "},
+    {"type": "conversation.item.input_audio_transcription.delta", "delta": "draft."},
+    {"type": "conversation.item.input_audio_transcription.completed", "transcript": "Owned user realtime λ revised final."},
+]
+
 DELEGATION_INPUT = "<realtime_delegation>\n  <input>Owned bounded request λ</input>\n  <transcript_delta>user: Owned bounded request λ</transcript_delta>\n</realtime_delegation>"
 DELEGATION_ANSWER = "Owned bounded assistant result 🙂"
 DELEGATION_FRAME = {"type": "delegation.created", "item": {
@@ -261,7 +267,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
             self.create_sdp_call(fixture, fields, deadline)
             return
 
-        if (fixture.scenario == "transcript" and method == "POST"
+        if (fixture.scenario in ("transcript", "user-transcript") and method == "POST"
                 and path == "/fixture/transcript"):
             assert fields.get("content-length") == "0"
             with fixture.lock:
@@ -490,7 +496,7 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 with fixture.lock:
                     fixture.state["sent"].append(DELEGATION_FRAME)
                     fixture.save_locked()
-            if fixture.scenario == "transcript":
+            if fixture.scenario in ("transcript", "user-transcript"):
                 while not fixture.release.is_set():
                     if fixture.stopping.is_set():
                         return
@@ -499,7 +505,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     fixture.release.wait(min(0.2, remaining))
                 if fixture.stopping.is_set():
                     return
-                for entry in TRANSCRIPT:
+                entries = USER_TRANSCRIPT if fixture.scenario == "user-transcript" else TRANSCRIPT
+                for entry in entries:
                     self.send_frame(fixture, 1,
                         json.dumps(entry, ensure_ascii=False, separators=(",", ":")).encode())
                     with fixture.lock:
@@ -966,7 +973,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions", *DELEGATION_SCENARIOS],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "user-transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions", *DELEGATION_SCENARIOS],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

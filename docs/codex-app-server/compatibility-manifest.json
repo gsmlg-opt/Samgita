@@ -24792,7 +24792,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -24825,7 +24825,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -28317,7 +28317,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28353,7 +28353,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28391,7 +28391,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28427,7 +28427,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -42726,7 +42726,7 @@
       "id": "schema:ClientRequest.json#/definitions/ThreadMetadataGitInfoUpdateParams/properties/branch",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Padded feature/λ trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
+        "actual_native_selected_values: Padded feature/\u03bb trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
         "Native metadata update and readback in an isolated synthetic local thread; no remote Git or credentials."
       ],
       "nullable": true,
@@ -44908,7 +44908,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0",
@@ -44939,7 +44939,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -44972,7 +44972,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -45005,7 +45005,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -45036,7 +45036,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
@@ -49047,124 +49047,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-provider-capabilities-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/114",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V530 actual-native modelProvider/capabilities/read through normal dispatcher/configured-provider construction and typed response delivery. Six independently authored complete requests in warm/cold owned processes cover signed negative/positive numeric and Unicode string IDs with required empty params. Root-request/standalone-param/result validation and JSON/Wire decoding of original outgoing/incoming bytes require exact method/ID/params and independent imageGeneration=true, webSearch=true result envelopes. These are passive configured-provider upper bounds, not model/tool execution or availability. Exact16-out/14-distinct-request-reply/six-query inventory, zero loaded threads before/after, zero model Responses calls, unchanged config/catalog/source/workspace/sentinel/directory facts, idle driver and owned warm/cold native/provider cleanup. Existing case and helper bounds/deadlines unchanged; fixed yolo. Only this physical request node on owned Linux-musl/stdio, not standalone result/alias, other providers/false/Bedrock profiles, actual image/search, other transport/OS, whole-family or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun; A11, external/full-goal and publication gates remain incomplete."
+      ],
       "pointer": "/oneOf/114",
       "schema": "ClientRequest.json",
       "schema_sha256": "5369d4a84b6df1251d815e790db7b039a48ac43fee9c88e156e7a859ec16374c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-provider-capabilities-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/114/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V530 actual-native modelProvider/capabilities/read through normal dispatcher/configured-provider construction and typed response delivery. Six independently authored complete requests in warm/cold owned processes cover signed negative/positive numeric and Unicode string IDs with required empty params. Root-request/standalone-param/result validation and JSON/Wire decoding of original outgoing/incoming bytes require exact method/ID/params and independent imageGeneration=true, webSearch=true result envelopes. These are passive configured-provider upper bounds, not model/tool execution or availability. Exact16-out/14-distinct-request-reply/six-query inventory, zero loaded threads before/after, zero model Responses calls, unchanged config/catalog/source/workspace/sentinel/directory facts, idle driver and owned warm/cold native/provider cleanup. Existing case and helper bounds/deadlines unchanged; fixed yolo. Only this physical request node on owned Linux-musl/stdio, not standalone result/alias, other providers/false/Bedrock profiles, actual image/search, other transport/OS, whole-family or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun; A11, external/full-goal and publication gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/114/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-provider-capabilities-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/114/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V530 actual-native modelProvider/capabilities/read through normal dispatcher/configured-provider construction and typed response delivery. Six independently authored complete requests in warm/cold owned processes cover signed negative/positive numeric and Unicode string IDs with required empty params. Root-request/standalone-param/result validation and JSON/Wire decoding of original outgoing/incoming bytes require exact method/ID/params and independent imageGeneration=true, webSearch=true result envelopes. These are passive configured-provider upper bounds, not model/tool execution or availability. Exact16-out/14-distinct-request-reply/six-query inventory, zero loaded threads before/after, zero model Responses calls, unchanged config/catalog/source/workspace/sentinel/directory facts, idle driver and owned warm/cold native/provider cleanup. Existing case and helper bounds/deadlines unchanged; fixed yolo. Only this physical request node on owned Linux-musl/stdio, not standalone result/alias, other providers/false/Bedrock profiles, actual image/search, other transport/OS, whole-family or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun; A11, external/full-goal and publication gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/114/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "29d6fe510d5442ee62ca7aaf8a7055cdc55553c50e220fb88c8bbe997233ed70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-provider-capabilities-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/114/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V530 actual-native modelProvider/capabilities/read through normal dispatcher/configured-provider construction and typed response delivery. Six independently authored complete requests in warm/cold owned processes cover signed negative/positive numeric and Unicode string IDs with required empty params. Root-request/standalone-param/result validation and JSON/Wire decoding of original outgoing/incoming bytes require exact method/ID/params and independent imageGeneration=true, webSearch=true result envelopes. These are passive configured-provider upper bounds, not model/tool execution or availability. Exact16-out/14-distinct-request-reply/six-query inventory, zero loaded threads before/after, zero model Responses calls, unchanged config/catalog/source/workspace/sentinel/directory facts, idle driver and owned warm/cold native/provider cleanup. Existing case and helper bounds/deadlines unchanged; fixed yolo. Only this physical request node on owned Linux-musl/stdio, not standalone result/alias, other providers/false/Bedrock profiles, actual image/search, other transport/OS, whole-family or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun; A11, external/full-goal and publication gates remain incomplete."
+      ],
       "pointer": "/oneOf/114/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "3dfc55a6db2f40689b3ae8dd89b8074c34f71f551fd00429cbdea9e4d665bdcc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-provider-capabilities-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/114/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V530 actual-native modelProvider/capabilities/read through normal dispatcher/configured-provider construction and typed response delivery. Six independently authored complete requests in warm/cold owned processes cover signed negative/positive numeric and Unicode string IDs with required empty params. Root-request/standalone-param/result validation and JSON/Wire decoding of original outgoing/incoming bytes require exact method/ID/params and independent imageGeneration=true, webSearch=true result envelopes. These are passive configured-provider upper bounds, not model/tool execution or availability. Exact16-out/14-distinct-request-reply/six-query inventory, zero loaded threads before/after, zero model Responses calls, unchanged config/catalog/source/workspace/sentinel/directory facts, idle driver and owned warm/cold native/provider cleanup. Existing case and helper bounds/deadlines unchanged; fixed yolo. Only this physical request node on owned Linux-musl/stdio, not standalone result/alias, other providers/false/Bedrock profiles, actual image/search, other transport/OS, whole-family or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun; A11, external/full-goal and publication gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/114/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d994a577ea6fa9e2238f481a7918047125ee4c608b9a56a33b9e7f7684a79b91",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_environment_info_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -56612,7 +56652,7 @@
       "id": "schema:ClientRequest.json#/oneOf/157/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V499 process/kill retains original Unicode string owned-v499-kill-λ🙂 and type through successful-send original request capture, exact native ingress/schema/Wire and delivered empty result. Actual selected process exit/PID disappearance, unaffected pipe/PTY output and zero model requests still required. No extra control/child/turn, no aliases/exhaustive ID/transport/OS credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+        "V499 process/kill retains original Unicode string owned-v499-kill-\u03bb\ud83d\ude42 and type through successful-send original request capture, exact native ingress/schema/Wire and delivered empty result. Actual selected process exit/PID disappearance, unaffected pipe/PTY output and zero model requests still required. No extra control/child/turn, no aliases/exhaustive ID/transport/OS credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
       ],
       "nullable": false,
       "pointer": "/oneOf/157/properties/id",
@@ -108011,24 +108051,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-user-transcript-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeTranscriptRole/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V529 actual-native v2 input_audio_transcription delta/completed backend messages produce typed User started/completed items and flat User notifications. Independent User/session/text oracles require complete original encoded envelopes, JSON/Wire/aggregate and standalone typed-param validation, exact counts/order/identity/generation/time brackets, positive native/peer readiness then explicit release, canonical rollout payloads/ordinals and exact repeated timeline maps. Accumulated streamed text remains distinct from the revised flat final text. Actual stock Codex emits all public frames; the bounded local backend supplies only upstream backend data. Zero model calls, exact metadata-operation inventory and owned process/socket cleanup; unchanged existing Assistant body, caps and deadlines, fixed yolo. Only this physical User leaf on owned Linux-musl/stdio with a configured v2 backend; no equal-definition alias, timeline, v1/frameless, cold-restart/media/real-provider/OS, whole-method or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted workflows stay unrun; A11, upstream-unavailable emitters, external/full-goal and publication gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeTranscriptRole/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:631"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -164123,7 +164171,7 @@
       "id": "schema:v2/ModelListResponse.json#/definitions/ReasoningEffortOption/properties/description",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact Focused λ and Maximum effort descriptions.",
+        "actual_native_selected_values: Exact Focused \u03bb and Maximum effort descriptions.",
         "Real pinned native model/list projection from offline synthetic static local catalog. Metadata only; no inference, real provider authorization, hosted discovery, managed policy or advertised capability execution success."
       ],
       "nullable": false,
@@ -216678,7 +216726,7 @@
       "id": "schema:v2/ThreadSearchOccurrencesResponse.json#/definitions/ThreadSearchOccurrence/properties/snippet",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact original 😀 Needle needle NEEDLE source text.",
+        "actual_native_selected_values: Exact original \ud83d\ude00 Needle needle NEEDLE source text.",
         "Real pinned native thread/searchOccurrences over one local paginated Unicode turn; UTF16 ranges, item identity, cursor continuation and cold equality asserted."
       ],
       "nullable": false,
@@ -217431,7 +217479,7 @@
       "id": "schema:v2/ThreadSearchParams.json#/properties/searchTerm",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Literal quoted \"needle\" with backslash, é and emoji selects exactly matching native histories.",
+        "actual_native_selected_values: Literal quoted \"needle\" with backslash, \u00e9 and emoji selects exactly matching native histories.",
         "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
       ],
       "nullable": false,

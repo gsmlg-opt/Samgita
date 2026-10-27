@@ -1,5 +1,27 @@
 # Codex compatibility qualification
 
+The [ordinary User-transcript/provider-metadata unit](ordinary-user-transcript-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **70 files / 133 real-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0**,
+compile/format/Credo/Dialyzer/assets and **1,689** identical guarded hashes.
+Complete original User frames, canonical streamed text and revised flat final
+remain distinct; warm/cold passive capability queries preserve exact signed/
+string request IDs without model work. Only six physical owners gain scoped
+evidence. Contracts: **5,507 implemented / 984 missing / 130 blocked**;
+requirements **462 implemented / 12 missing / 11 blocked**, zero verified.
+The source-only MCP app-context draft remains unrun. Prohibited/hosted, A11,
+unavailable emitters/external/OS, full compatibility and release stay incomplete.
+
+The [ordinary environment connection unit](ordinary-environment-connection-qualification.md#final-combined-source-functional-qualification)
+passes fourteen reviewed checks and **131/0 twice**, including outside consumer,
+three selected WebSocket seeds and static/build gates. Real app-server and
+exec-server publish original connected/disconnected envelopes after a proven
+subscription barrier; detached controls remain unaffected. The initial two
+Credo findings and exact test-only correction remain recorded. Commit
+`b8543ff` is pushed to main with `[skip ci]`; local/tracking/live refs converged,
+and GitHub reports no workflow run for that SHA. No prohibited test, release,
+publication, service deployment or production migration occurs.
+
 The [two-producer generic-subAgent search unit](ordinary-generic-subagent-search-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**: **69 files / 130 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

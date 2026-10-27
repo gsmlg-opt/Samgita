@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "892cf5373d7e7ab71c6d30dd445cc6c9b980d3ef02393aab0241d06abea8ca95"
+REVIEWED_SOURCE_SHA256 = "c2ceb2c6c6edd7245ee6745ce89a1be495e9e1d8f14cad34a9957760beed9520"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -93,7 +93,7 @@ native_command_control_values_test.exs
 native_process_values_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
-DRIVER_CASES = 131
+DRIVER_CASES = 133
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 

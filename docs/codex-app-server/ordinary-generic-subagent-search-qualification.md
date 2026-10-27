@@ -143,3 +143,25 @@ Security, credential, authentication, authorization, approval and permission
 tests/audits, broad suites and hosted workflows remain unrun and incomplete.
 A11, unavailable emitters/external/OS, full compatibility and release gates
 remain incomplete. Nothing is published or deployed.
+
+## Current internal memory producer remains a separate source domain
+
+V531 checks eight complete official sources and their excerpts against the
+same immutable archive. Current
+[`memories/write/src/runtime.rs:398`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/memories/write/src/runtime.rs#L398)
+selects `SessionSource::Internal(InternalSessionSource::MemoryConsolidation)`
+and a separate `ThreadSource::MemoryConsolidation`. Public source conversion
+maps Internal to Unknown; it maps only actual SubAgent values to public
+SubAgent. The current memory path therefore cannot establish the retained
+SubAgent `memory_consolidation` literal by its name alone. No memory runtime
+or synthetic public event is launched to manufacture that evidence.
+
+The manager also excludes Internal sessions from ordinary live-thread APIs;
+this source observation does not exhaust every stored/imported/backend route.
+The bounded Compact constructor search remains inconclusive. Owners2405/2406/
+6109/6110 remain missing; no global unreachability, blocked state, alias or
+implemented credit is inferred. Source-only handoff:
+`/tmp/samgita-v531-source-handoff.md`, SHA256
+`ffd123562e513eab6d5dbf14c5a21427697836a99540f9f550ba2e8678306c06`;
+source/schema evidence `/tmp/samgita-v531-source-evidence.json`, SHA256
+`d46f62a593db45b7a59a3c5e2305fd78e2325b38520060c2e5f4999238da9208`.
