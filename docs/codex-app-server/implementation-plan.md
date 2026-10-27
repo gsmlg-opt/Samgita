@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary input-wait search profile](search-user-input-wait-qualification.md)
+adds one actual-native case with four correlated searches: idle, held ordinary
+user input, completed idle and cold notLoaded. Exactly three model requests,
+native handle/resolution/reply digest, complete history and checked cleanup
+remain required. Initial metadata-oracle and formatting failures are retained;
+final **87 schema /154 ordinary driver twice**, outside consumer **1/0**, strict
+checks and386-source guard pass, with all384 prior sources unchanged. Only6169
+gains scoped implemented evidence: **5,069 implemented /1,486 missing /66
+blocked** contracts, unchanged **462 implemented /12 missing /11 blocked**
+requirements and zero verified. Continue attributable ordinary search-source
+owners and the next reachable functional gap. Prohibited/broad/hosted, A11,
+legacy/external/OS/platform and full-goal gates remain incomplete.
+
 The [ordinary direct MCP profile](mcp-request-metadata-qualification.md) qualifies
 exact4398–4402 via original nested JSON/optional caller shapes and complete actual
 backend params/results across fresh warm/cold roots. A retained oracle failure

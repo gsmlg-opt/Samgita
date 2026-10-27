@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary input-wait search case](search-user-input-wait-qualification.md)
+proves real idle → waitingOnUserInput → idle → cold notLoaded with one held
+native question and exactly three local model requests. Original request/reply
+bytes, native resolution and outcome digest, complete history and owned cleanup
+are checked. The corrected metadata oracle and first formatting failure remain
+recorded. Final **87schema/154ordinary driver twice**, outside consumer **1/0**,
+strict checks and386-source guard pass; all384 prior sources remain unchanged.
+Only6169 becomes scoped implemented: **5,069 implemented /1,486 missing /66
+blocked**, unchanged requirements and zero verified. Existing lock/replay/
+recovery/cleanup repairs remain intact. Prohibited/broad/hosted gates stay unrun;
+A11, unavailable upstream producers and full-goal/release gates remain open.
+
 The [V1 child search case](v1-child-search-qualification.md) proves an actual
 spawned child's explicit null path through warm and first-cold native searches,
 with six model requests, exact source/history and checked cleanup. Both initial
