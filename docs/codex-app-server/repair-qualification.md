@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary realtime service-error profile](realtime-service-error-qualification.md)
+requires one actual backend error,seven complete original native notices and
+the same two persisted failed-session facts across repeated warm/cold reads.
+Both previous cases,bounds,one connection/zero inference and checked cleanup
+remain. Focused **3/0**, **51ordinary cases twice**,outside consumer **1/0**,
+nine checks and414stable sources pass. Only2701/3123–3130 gain evidence:
+**5,236 implemented /1,319 missing /66 blocked**, unchanged requirements and
+zero verified. Continue native canonical rollout/timeline and MCP startup
+envelopes;prohibited/full-goal gates remain incomplete.
+
 The [original dynamic-tool item profile](dynamic-tool-original-item-qualification.md)
 preserves complete native started/completed input bytes and validates their
 independent full maps against the canonical experimental export. Exact false

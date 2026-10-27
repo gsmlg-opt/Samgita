@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "f895e8ffeb3fd39141d71d4572b06c221acd446be0e250ce32750e40fc34b6f6"
+  @script_sha "240e72696dff5c224f49eb11a1f5954d0874949d22bce3e207da5f89e50d3290"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -18,6 +18,18 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @item_completed "thread/realtime/item/completed"
   @started "thread/realtime/started"
   @closed "thread/realtime/closed"
+  @realtime_error "thread/realtime/error"
+  @service_error_session "owned-v438-realtime-session"
+  @service_error_message "Owned local realtime service unavailable λ"
+  @service_error_backend %{
+    "type" => "error",
+    "error" => %{
+      "type" => "server_error",
+      "code" => "server_error",
+      "message" => @service_error_message,
+      "param" => nil
+    }
+  }
   @selected [@item_started, @item_completed, @started, @closed]
   @item_delta "thread/realtime/item/transcript/delta"
   @flat_delta "thread/realtime/transcript/delta"
@@ -528,6 +540,299 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     assert assert_originals(profile, selected) === originals
   end
 
+  @tag realtime_scenario: "service-error"
+  test "native backend service error closes once and retains failed facts across a cold read",
+       ctx do
+    pid = ctx.session.pid
+    active_deadline = now() + 20_000
+
+    thread =
+      call(ctx.profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+    profile = Map.put(ctx.profile, :service_error_thread, thread)
+
+    params = %{
+      "threadId" => thread,
+      "outputModality" => "text",
+      "version" => "v2",
+      "transport" => %{"type" => "websocket"},
+      "realtimeSessionId" => @service_error_session,
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => true,
+      "prompt" => @prompt
+    }
+
+    lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/start", params) === %{}
+
+    [start_request] =
+      Enum.filter(
+        capture(profile),
+        &(&1.direction == :out and &1.wire["method"] == "thread/realtime/start")
+      )
+
+    assert :ok = Schema.validate(schema("ClientRequest.json"), start_request.wire, max_depth: 32)
+
+    events =
+      collect(profile, pid, [], min(active_deadline, now() + 5_000), fn events ->
+        length(notices(events, @item_started)) == 1 and
+          length(notices(events, @item_completed)) == 1 and
+          length(notices(events, @started)) == 1 and peer_ready?(profile)
+      end)
+
+    started_upper = System.system_time(:millisecond)
+    [first_start] = notices(events, @item_started)
+    a = Map.fetch!(first_start.wire["params"]["item"], "id")
+    assert_uuid(a)
+
+    first_item = %{
+      "id" => a,
+      "realtimeSessionId" => @service_error_session,
+      "type" => "realtimeSessionStarted"
+    }
+
+    first_expected = [
+      {@item_started, %{"threadId" => thread, "item" => first_item}},
+      {@item_completed, %{"threadId" => thread, "item" => first_item}},
+      {@started,
+       %{"threadId" => thread, "realtimeSessionId" => @service_error_session, "version" => "v2"}}
+    ]
+
+    assert_selected(profile, events, first_expected, lower, started_upper)
+    assert_peer(profile, 1)
+
+    first_originals =
+      assert_originals(
+        profile,
+        Enum.filter(events, &(&1.wire["method"] in selected_methods(profile)))
+      )
+
+    release_boundary = length(capture(profile))
+    failure_lower = System.system_time(:millisecond)
+    release_service_error(ctx.peer.port, min(active_deadline, now() + 5_000))
+
+    events =
+      collect(profile, pid, events, min(active_deadline, now() + 5_000), fn events ->
+        length(notices(events, @realtime_error)) == 1 and
+          length(notices(events, @item_started)) == 2 and
+          length(notices(events, @item_completed)) == 2 and
+          length(notices(events, @closed)) == 1 and
+          read_peer(profile)["sent"] == [@peer_ack, @service_error_backend]
+      end)
+
+    failure_upper = System.system_time(:millisecond)
+    [^first_start, failed_start] = notices(events, @item_started)
+    b = Map.fetch!(failed_start.wire["params"]["item"], "id")
+    assert_uuid(b)
+    refute b === a
+
+    failed_item = %{
+      "id" => b,
+      "realtimeSessionId" => @service_error_session,
+      "type" => "realtimeSessionClosed",
+      "outcome" => "failed"
+    }
+
+    failed_expected = [
+      {@realtime_error, %{"threadId" => thread, "message" => @service_error_message}},
+      {@item_started, %{"threadId" => thread, "item" => failed_item}},
+      {@item_completed, %{"threadId" => thread, "item" => failed_item}},
+      {@closed, %{"threadId" => thread, "reason" => "error"}}
+    ]
+
+    methods = selected_methods(profile)
+    selected = Enum.filter(events, &(&1.wire["method"] in methods))
+    assert length(selected) === 7
+    assert_selected(profile, Enum.take(selected, 3), first_expected, lower, started_upper)
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      failed_expected,
+      failure_lower,
+      failure_upper
+    )
+
+    originals = assert_originals(profile, selected)
+    assert Enum.take(originals, 3) === first_originals
+    assert_service_error_release(profile, originals, release_boundary)
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+    timeline = call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})
+    assert_timeline(timeline, first_item, failed_item)
+
+    assert call(profile, pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100}) ===
+             timeline
+
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert Enum.filter(events, &(&1.wire["method"] in methods)) === selected
+    await_peer_closed(profile, min(active_deadline, now() + 5_000))
+    peer_state = assert_service_error_peer(profile)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_ready(profile, pid)
+    assert_inputs(ctx)
+
+    outgoing = for frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]
+
+    assert outgoing ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/read thread/timeline/list thread/timeline/list)
+
+    warm_native = :atomics.get(ctx.session.identity, 1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+    original_capture = Agent.get(profile.capture, & &1)
+
+    # A cold native instance has its own bounded ledger; original ingress stays immutable.
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :service_error_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = Map.put(cold_profile, :generation, Session.status(cold.pid).generation)
+    refute :atomics.get(cold.identity, 1) === warm_native
+
+    assert call(cold_profile, cold.pid, "thread/loaded/list", %{}) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+
+    cold_saved =
+      call(cold_profile, cold.pid, "thread/read", %{
+        "threadId" => thread,
+        "includeTurns" => false
+      })["thread"]
+
+    assert cold_saved["id"] === thread and cold_saved["historyMode"] === "paginated"
+    assert cold_saved["path"] === saved["path"]
+
+    for _read <- 1..2 do
+      page =
+        call(cold_profile, cold.pid, "thread/timeline/list", %{
+          "threadId" => thread,
+          "limit" => 100
+        })
+
+      assert page === timeline
+      assert_timeline(page, first_item, failed_item)
+    end
+
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+    refute Enum.any?(cold_events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+    assert assert_originals(cold_profile, []) === []
+    assert_ready(cold_profile, cold.pid)
+    assert now() <= active_deadline
+
+    cold_outgoing =
+      for frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]
+
+    assert cold_outgoing ===
+             ~w(initialize initialized server/diagnostics thread/loaded/list thread/read thread/timeline/list thread/timeline/list)
+
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert_inputs(ctx)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer_state
+    assert Agent.get(profile.capture, & &1) === original_capture
+    assert assert_originals(profile, selected) === originals
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+  end
+
+  defp assert_service_error_release(profile, originals, release_boundary) do
+    frames = capture(profile)
+
+    [start] =
+      Enum.filter(
+        frames,
+        &(&1.direction == :out and &1.wire["method"] == "thread/realtime/start")
+      )
+
+    [response] = Enum.filter(frames, &(&1.direction == :in and &1.wire["id"] == start.wire["id"]))
+    assert start.index < response.index and response.index <= release_boundary
+    assert Enum.all?(Enum.take(originals, 3), &(&1.index <= release_boundary))
+    assert Enum.all?(Enum.drop(originals, 3), &(&1.index > release_boundary))
+  end
+
+  defp release_service_error(port, deadline) do
+    remaining = deadline - now()
+    assert remaining > 0
+
+    assert {:ok, socket} =
+             :gen_tcp.connect(
+               {127, 0, 0, 1},
+               port,
+               [:binary, active: false, send_timeout: remaining, send_timeout_close: true],
+               remaining
+             )
+
+    try do
+      request =
+        "POST /fixture/service-error HTTP/1.1\r\nHost: 127.0.0.1\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"
+
+      assert byte_size(request) <= 8192
+      assert :ok = :gen_tcp.send(socket, request)
+      response = control_response(socket, <<>>, deadline)
+      assert byte_size(request) + byte_size(response) <= 8192
+
+      assert response ===
+               "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 17\r\nConnection: close\r\n\r\n{\"released\":true}"
+    after
+      assert :ok = :gen_tcp.close(socket)
+    end
+  end
+
+  defp assert_service_error_peer(profile) do
+    state = read_peer(profile)
+    assert state["paths"] === ["/v1/realtime?model=#{@model}"]
+    assert [message] = state["messages"]
+    assert message["type"] === "session.update"
+    assert message["session"]["type"] === "realtime"
+    assert message["session"]["instructions"] === @prompt
+    assert message["session"]["output_modalities"] === ["text"]
+    assert state["sent"] === [@peer_ack, @service_error_backend]
+    assert state["requestCount"] === 2
+
+    assert state["controls"] === [
+             %{"method" => "POST", "path" => "/fixture/service-error", "bodyBytes" => 0}
+           ]
+
+    assert state["activeConnections"] === 0
+    assert state["responsesRequests"] === 0 and state["otherHttp"] === []
+    assert state["errors"] === []
+
+    assert is_integer(state["frameCount"]) and state["frameCount"] >= 3 and
+             state["frameCount"] <= 32
+
+    state
+  end
+
   defp assert_transcript_timeline(page, items) do
     assert [first, middle, last] = Map.fetch!(page, "data")
     a = Map.fetch!(first, "position")
@@ -744,9 +1049,30 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     sequences = Enum.map(events, & &1.sequence)
     assert sequences === Enum.sort(Enum.uniq(sequences))
 
-    refute Enum.any?(events, fn event ->
-             event.wire["method"] in ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
-           end)
+    if profile.scenario == "service-error" do
+      refute Enum.any?(events, fn event ->
+               event.wire["method"] in ~w(error warning turn/started turn/completed item/started item/completed)
+             end)
+
+      failures = notices(events, @realtime_error)
+      assert length(failures) <= 1
+
+      for failure <- failures do
+        assert failure.wire["params"] === %{
+                 "threadId" => profile.service_error_thread,
+                 "message" => @service_error_message
+               }
+      end
+
+      refute Enum.any?(events, fn event ->
+               String.starts_with?(event.wire["method"], "thread/realtime/") and
+                 event.wire["method"] not in selected_methods(profile)
+             end)
+    else
+      refute Enum.any?(events, fn event ->
+               event.wire["method"] in ~w(error warning turn/started turn/completed item/started item/completed thread/realtime/error)
+             end)
+    end
 
     if profile.scenario == "start-stop" do
       refute Enum.any?(events, &(&1.wire["method"] in @transcript_methods))
@@ -802,7 +1128,9 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     args = [@script, "--root", profile.root]
 
     args =
-      if profile.scenario == "transcript", do: args ++ ["--scenario", "transcript"], else: args
+      if profile.scenario in ["transcript", "service-error"],
+        do: args ++ ["--scenario", profile.scenario],
+        else: args
 
     assert {:ok, transport} =
              Stdio.open(
@@ -828,6 +1156,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   end
 
   defp selected_methods(%{scenario: "transcript"}), do: @selected ++ @transcript_methods
+  defp selected_methods(%{scenario: "service-error"}), do: @selected ++ [@realtime_error]
   defp selected_methods(_profile), do: @selected
 
   defp peer_startup(port, buffer, deadline) do

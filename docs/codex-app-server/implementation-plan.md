@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary realtime service-error](realtime-service-error-qualification.md)
+adds one explicitly released backend failure and seven complete original native
+notices,with failed closure and repeated warm/distinct-process cold history.
+One connection/zero Responses,bounds,original cases and checked cleanup remain.
+Focused **3/0**, **51ordinary cases twice**,outside consumer **1/0**,nine checks
+and414stable sources pass. Ten whole sources/nine nodes match the pin. Only
+2701/3123–3130 gain evidence: **5,236 implemented /1,319 missing /66 blocked**,
+unchanged requirements and zero verified. Continue canonical rollout/timeline
+readback and MCP startup envelopes;prohibited/full-goal gates stay incomplete.
+
 The [original dynamic-tool item](dynamic-tool-original-item-qualification.md)
 adds bounded original JSONL capture and complete independent envelope/canonical
 schema checks to the retained false-tool-result/overall-completed-turn case.

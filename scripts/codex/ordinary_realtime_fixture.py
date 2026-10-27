@@ -28,6 +28,13 @@ TRANSCRIPT = [
     {"type": "response.output_text.delta", "delta": "draft."},
     {"type": "response.output_text.done", "text": "Owned realtime λ revised final."},
 ]
+SERVICE_ERROR = {
+    "type": "error",
+    "error": {
+        "type": "server_error", "code": "server_error",
+        "message": "Owned local realtime service unavailable λ", "param": None,
+    },
+}
 MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
@@ -122,6 +129,25 @@ class PeerHandler(socketserver.BaseRequestHandler):
             fixture.release.set()
             return
 
+        if (fixture.scenario == "service-error" and method == "POST"
+                and path == "/fixture/service-error"):
+            assert fields.get("content-length") == "0"
+            with fixture.lock:
+                assert fixture.state["paths"] == [f"/v1/realtime?model={MODEL}"]
+                assert len(fixture.state["messages"]) == 1
+                assert fixture.state["sent"] == [ACK]
+                assert fixture.state["activeConnections"] == 1
+                assert fixture.state["controls"] == []
+                fixture.state["controls"].append({
+                    "method": "POST", "path": "/fixture/service-error", "bodyBytes": 0})
+                fixture.save_locked()
+            body = b'{"released":true}'
+            self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+                + f"Content-Length: {len(body)}\r\n".encode()
+                + b"Connection: close\r\n\r\n" + body)
+            fixture.release.set()
+            return
+
         if method != "GET" or path != f"/v1/realtime?model={MODEL}":
             with fixture.lock:
                 if method == "POST" and path == "/v1/responses":
@@ -207,6 +233,22 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     with fixture.lock:
                         fixture.state["sent"].append(entry)
                         fixture.save_locked()
+
+            if fixture.scenario == "service-error":
+                while not fixture.release.is_set():
+                    if fixture.stopping.is_set():
+                        return
+                    remaining = deadline - time.monotonic()
+                    assert remaining > 0, "Owned service-error release deadline"
+                    fixture.release.wait(min(0.2, remaining))
+                if fixture.stopping.is_set():
+                    return
+                self.send_frame(fixture, 1,
+                    json.dumps(SERVICE_ERROR, ensure_ascii=False,
+                               separators=(",", ":")).encode())
+                with fixture.lock:
+                    fixture.state["sent"].append(SERVICE_ERROR)
+                    fixture.save_locked()
 
     def send_frame(self, fixture, opcode, payload):
         assert len(payload) <= MAX_FRAME
@@ -398,7 +440,8 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript"], default="start-stop")
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error"],
+                        default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
     peer = OrdinaryRealtimePeer(root, args.scenario)

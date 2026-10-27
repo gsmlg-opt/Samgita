@@ -106609,24 +106609,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeSessionOutcome/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeSessionOutcome/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -119074,194 +119082,258 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/80",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/80",
       "schema": "ServerNotification.json",
       "schema_sha256": "892ec249810f6bf50f7bebd3fd0761b75caee4bc6ba6a0ccba50340eff4bf562",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/80/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/80/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4bcd0a276f6e5de5358bcfa33fb88824bb4349e90a1f6cdfb321800715e57ebd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/80/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/80/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3efe17a1463fc758d5c4bb475896b789d67573ccfc5e2b68ceb249f3c5545da0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/80/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/80/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8fdb4c2cf09a77b96ee9a4b2f5c3d4d93e0c2cece396074f882d315f4b5c487a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/81",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/81",
       "schema": "ServerNotification.json",
       "schema_sha256": "12aa359dc0855664f3abdd5df923a885fedb60b5b9d826a67d9fff0201b14f67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/81/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/81/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "92e603e2322e7b688a780d9c1ab5489abc377baa124e9d631bb0c43d66bf663c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/81/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "pointer": "/oneOf/81/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "87b4c9e9c45ddeb3b5ab17cff31bdd16c2dd7e271c9b4826247a476965a65a1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-service-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/81/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V438 selected ordinary V2 WebSocket backend service error. A local dependency sends one nested server_error only after explicit native/peer readiness. Stock pinned Codex produces exactly seven complete original native notices:started facts,one exact error message,failed closed-item pair and reason:error. Original ingress/direct codec/full canonical schema,prescribed caller identity,native UUIDv7s,bracketed times,generation/order and request correlation agree. Two exact warm plus two distinct-process cold timeline reads retain only start/failed-close facts. One backend connection,one explicit release,zero Responses/no explicit stop or automatic restart,checked native/peer socket/thread/Port cleanup and frozen inputs retain all original bounds and both successful cases. Focused3/0,51reviewed ordinary cases twice,independent outside consumer1/0,nine checks and414stable source hashes;412prior paths unchanged,two modified files. Ten whole upstream files/nine exact nodes archive/export-match. Only2701/3123-3130 gain scoped implemented evidence,zero verified. Backend type/code/param are not forwarded or retry authority;there is no separate durable error-item variant. Transport loss/reconnect/retry,media/audio,remote providers/OS/transports remain unqualified. No security/permission tests/audits,broad suites or hosted workflows ran;A11/legacy/external/platform/full-goal/release gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/81/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "7bf8dcd71f4ede7cd5a2d0b8f76f84a10ae76d13f2d49601660c99a8390ba77d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
