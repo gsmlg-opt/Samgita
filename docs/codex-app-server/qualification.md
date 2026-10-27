@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [ordinary local-search pagination unit](ordinary-local-plugin-search-pagination-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed checks**: **65 files / 126 actual-native cases at both
+seeds**, three selected neutral WebSocket seeds, outside consumer **1/0**,
+static/build checks and **1,684** identical guarded sources. Eighteen authored
+candidates, exact omitted/null/empty cursor controls, source hold/restore and
+cold reads bind only supplemental evidence on four existing owners. Initial
+module-attribute compile failure and its parse-only repair are preserved.
+The remote-limit owner stays missing. Counts remain **5,491 implemented /
+1,000 missing / 130 blocked** contracts and **462 implemented / 12 missing /
+11 blocked** requirements, zero verified. Next is the source-reviewed inherited
+selective-item/fork/revert/cold draft, which has no runtime acceptance.
+Prohibited/hosted, A11, emitter/external/OS/full-goal and release gates stay
+incomplete. Nothing is published or deployed.
+
 The [ordinary plugin-read and local-environment unit](ordinary-turn-environments-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional checks**: **64 files / 125 actual-native
 cases at both seeds**, selected neutral WebSocket cases at three seeds,

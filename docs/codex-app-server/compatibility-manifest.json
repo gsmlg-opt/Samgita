@@ -69297,14 +69297,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-search-request-id-qualification.md"
+        "docs/codex-app-server/plugin-search-request-id-qualification.md",
+        "docs/codex-app-server/ordinary-local-plugin-search-pagination-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/73/properties/id",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "V453 evidence-index correction only for physical plugin/search id reference,unique-string profile. Existing unchanged ordinary native_plugin_search_scope_test independently chooses string IDs before dispatch,captures original outgoing/incoming bytes/maps,requires exact sent map/bytes,returned pinned ID and id/result keys.24actual local-catalog search exchanges have independent held/restored/cold ranked candidate projections,within30total correlated pairs and existing caps.417current V450source hashes/9logs remain exact,both58ordinary command lists enable this exact file;no new test/runtime. Eight production/declaration/processor/serialization files and exact node/parent method archive/export-match. Only this id property gains scoped implemented evidence;not integer-vs-string lookup,all strings,reused/concurrent IDs,reconnect/remote catalogs,pagination,complete PluginSummary,parent method or sibling aliases. Existing finite bounds,empty provider/workspace/rollout/config snapshots and owned cleanup remain. Security/permission checks/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates incomplete."
+        "V453 evidence-index correction only for physical plugin/search id reference,unique-string profile. Existing unchanged ordinary native_plugin_search_scope_test independently chooses string IDs before dispatch,captures original outgoing/incoming bytes/maps,requires exact sent map/bytes,returned pinned ID and id/result keys.24actual local-catalog search exchanges have independent held/restored/cold ranked candidate projections,within30total correlated pairs and existing caps.417current V450source hashes/9logs remain exact,both58ordinary command lists enable this exact file;no new test/runtime. Eight production/declaration/processor/serialization files and exact node/parent method archive/export-match. Only this id property gains scoped implemented evidence;not integer-vs-string lookup,all strings,reused/concurrent IDs,reconnect/remote catalogs,pagination,complete PluginSummary,parent method or sibling aliases. Existing finite bounds,empty provider/workspace/rollout/config snapshots and owned cleanup remain. Security/permission checks/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates incomplete.",
+        "V517 actual-native local-only eighteen-candidate control: omitted/null cursor retains all matches, every supplied string cursor including empty returns no local rows, and omitted/null/0/1/17/1001 requested limits do not truncate local first pages. Complete original unique-string-ID exchange capture, authored ordinary identity/source projection, exact source hold/restore and distinct cold-process controls are required. Supplemental evidence for this already implemented physical owner only; no remote limit/default/clamp (owner4749 stays missing), nonnull remote cursor, complete PluginSummary, arbitrary RequestId alternatives, aliases, other transports or permission semantics gain credit."
       ],
       "nullable": false,
       "pointer": "/oneOf/73/properties/id",
@@ -69319,7 +69321,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_search_scope_test.exs",
+          "apps/samgita_codex_driver/test/native_local_plugin_search_pagination_test.exs"
         ]
       },
       "transport_coverage": [
@@ -173236,14 +173239,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-local-plugin-search-pagination-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/cursor",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "V517 actual-native local-only eighteen-candidate control: omitted/null cursor retains all matches, every supplied string cursor including empty returns no local rows, and omitted/null/0/1/17/1001 requested limits do not truncate local first pages. Complete original unique-string-ID exchange capture, authored ordinary identity/source projection, exact source hold/restore and distinct cold-process controls are required. Supplemental evidence for this already implemented physical owner only; no remote limit/default/clamp (owner4749 stays missing), nonnull remote cursor, complete PluginSummary, arbitrary RequestId alternatives, aliases, other transports or permission semantics gain credit."
       ],
       "nullable": true,
       "pointer": "/properties/cursor",
@@ -173258,7 +173263,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_local_plugin_search_pagination_test.exs"
         ]
       },
       "transport_coverage": [
@@ -177213,7 +177219,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/search-ranking-qualification.md"
+        "docs/codex-app-server/search-ranking-qualification.md",
+        "docs/codex-app-server/ordinary-local-plugin-search-pagination-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -177221,7 +177228,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "actual_native_local_rank_keywords: Six prescribed exact display/internal/prefix/substring/keyword ranks plus description-only exclusion, reverse input order, exact empty/nonempty keywords, identity/local provenance and installed:false/enabled:false. Default/personal scopes, explicit cursor-empty behavior, confirmed cold restart, unchanged source/config/skill bytes, absent auth and no model/tool/install execution. Four-file block24/0 both fixed seeds, strict checks/source guard. Only first-page local Linux stdio ranking and exact fields; limit/cap, remote identity/pagination, sharing, full summary fields, backend/OS/A11 remain incomplete. No verified or sibling promotion."
+        "actual_native_local_rank_keywords: Six prescribed exact display/internal/prefix/substring/keyword ranks plus description-only exclusion, reverse input order, exact empty/nonempty keywords, identity/local provenance and installed:false/enabled:false. Default/personal scopes, explicit cursor-empty behavior, confirmed cold restart, unchanged source/config/skill bytes, absent auth and no model/tool/install execution. Four-file block24/0 both fixed seeds, strict checks/source guard. Only first-page local Linux stdio ranking and exact fields; limit/cap, remote identity/pagination, sharing, full summary fields, backend/OS/A11 remain incomplete. No verified or sibling promotion.",
+        "V517 actual-native local-only eighteen-candidate control: omitted/null cursor retains all matches, every supplied string cursor including empty returns no local rows, and omitted/null/0/1/17/1001 requested limits do not truncate local first pages. Complete original unique-string-ID exchange capture, authored ordinary identity/source projection, exact source hold/restore and distinct cold-process controls are required. Supplemental evidence for this already implemented physical owner only; no remote limit/default/clamp (owner4749 stays missing), nonnull remote cursor, complete PluginSummary, arbitrary RequestId alternatives, aliases, other transports or permission semantics gain credit."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -177237,7 +177245,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:692-808"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:692-808",
+          "apps/samgita_codex_driver/test/native_local_plugin_search_pagination_test.exs"
         ]
       },
       "transport_coverage": [
@@ -177249,14 +177258,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-local-plugin-search-pagination-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "V517 actual-native local-only eighteen-candidate control: omitted/null cursor retains all matches, every supplied string cursor including empty returns no local rows, and omitted/null/0/1/17/1001 requested limits do not truncate local first pages. Complete original unique-string-ID exchange capture, authored ordinary identity/source projection, exact source hold/restore and distinct cold-process controls are required. Supplemental evidence for this already implemented physical owner only; no remote limit/default/clamp (owner4749 stays missing), nonnull remote cursor, complete PluginSummary, arbitrary RequestId alternatives, aliases, other transports or permission semantics gain credit."
       ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
@@ -177271,7 +177282,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_local_plugin_search_pagination_test.exs"
         ]
       },
       "transport_coverage": [

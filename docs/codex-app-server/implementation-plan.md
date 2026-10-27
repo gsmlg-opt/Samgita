@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary local-plugin search unit](ordinary-local-plugin-search-pagination-qualification.md#final-combined-source-functional-qualification)
+passes all fourteen reviewed checks: **65 files / 126 actual-native cases at
+each seed**, selected neutral WebSocket cases at three seeds, outside consumer
+**1/0**, static/build checks and **1,684** identical guarded source hashes.
+Exact local cursor/limit differences, 18 independently prescribed candidates,
+source hold/restore and cold native controls supplement four existing owners;
+missing remote-limit owner4749 remains untouched. The initial compile failure
+and parse-only fix remain recorded. Counts stay **5,491 implemented / 1,000
+missing / 130 blocked** contracts and **462 implemented / 12 missing /
+11 blocked** requirements, zero verified. Next: integrate and qualify the
+source-reviewed selective inherited-item/fork-cutoff/parent-revert/first-cold
+scratch case. Its draft is uncompiled/unexecuted, with no promotion. Prohibited/
+hosted, A11, unavailable emitters/external/OS/full-goal and release gates remain
+incomplete; inspected-path gaps do not establish global source unreachability.
+
 The [ordinary plugin-read/local-environment unit](ordinary-turn-environments-qualification.md#final-combined-source-functional-qualification)
 passes all fourteen reviewed checks: **64 files / 125 actual-native cases at
 each seed**, three selected neutral WebSocket seeds, outside consumer **1/0**,

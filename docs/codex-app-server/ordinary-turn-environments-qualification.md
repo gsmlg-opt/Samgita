@@ -131,8 +131,8 @@ hosted workflows, full compatibility or release gates. Current A11,
 source-unreachable emitters and unavailable external/OS success remain open.
 No publication, release or deployment follows from these results.
 
-Next ordinary work is the source-reviewed local plugin-search cursor/limit
-differential. Its scratch draft and independent review are not integrated or
-executed, and earn no field promotion. Remote-limit success remains missing;
-local directory behavior cannot qualify it. Continue that logical unit with
-parent-owned focused and final-source checks.
+At this checkpoint the local plugin-search cursor/limit differential was a
+source-reviewed, unexecuted draft. The subsequent
+[V517 record](ordinary-local-plugin-search-pagination-qualification.md#final-combined-source-functional-qualification)
+now qualifies that ordinary behavior and its final 126-case selection.
+Remote-limit success remains missing; local directory behavior cannot qualify it.
