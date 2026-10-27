@@ -15,6 +15,13 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [fork request-ID correction](fork-request-id-qualification.md) adds only
+1554 from the existing unchanged native original-frame/durable-child journey,
+enabled in both V450 **58/0** runs. All 417 sources/nine logs remain exact; no
+new test runs. Counts: **5,271 implemented / 1,270 missing / 80 blocked**,
+unchanged requirements and zero verified. Continue existing plugin-search IDs;
+prohibited/full-goal gates stay incomplete.
+
 The [background-terminal resource limit](background-terminal-resource-limitations.md)
 binds the native None assignments and full source/serialization chain. Only
 5169/5172/5174 become blocked for unavailable nonnull measurements; historical

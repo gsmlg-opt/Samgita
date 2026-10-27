@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [fork string-ID evidence correction](fork-request-id-qualification.md)
+binds only 1554 to existing unchanged original-frame/native-child/Git readback
+assertions, already enabled in both V450 **58/0** ordinary runs. All 417 guarded
+sources/nine logs stay exact; seven native files/one node match the pin. No new
+test runs. Counts: **5,271 implemented / 1,270 missing / 80 blocked**, unchanged
+requirements and zero verified. Continue existing plugin-search string IDs;
+prohibited/full-goal gates remain incomplete.
+
 The [background-terminal metric boundary](background-terminal-resource-limitations.md)
 proves the sole native API mapper hardcodes None and pagination/serialization
 preserve explicit null. All 5,259 Rust files, twelve key files and three nodes

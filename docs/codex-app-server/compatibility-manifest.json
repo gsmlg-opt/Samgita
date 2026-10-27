@@ -70956,27 +70956,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-request-id-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/9/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V452 evidence-index correction only for physical thread/fork id reference,string-ID profile. Existing unchanged ordinary native_fork_git_notification_test captures actual original requests/replies,independently creates the generated string ID before dispatch,requires exact correlation/whole request bytes/response keys,and orders fork request before native response before child notice. Persisted distinct child UUID/path/lineage/name/Git facts and unchanged parent/Git/provider state are independent effects. Exact unchanged test/shared sources are bound in current V450417-source guard and58ordinary cases at both seeds;no new test/runtime or generic alias promotion. Seven production files and exact canonical node/parent method archive/export-match. Only this id property gains scoped implemented evidence;not referenced int64 alternatives,whole RequestId,other methods/transports/OS/all fork profiles or full compatibility. Existing owned cleanup and finite caps remain. Security/permission checks/audits,broad/hosted/release and A11/legacy/external/platform/full-goal gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/9/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_git_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
