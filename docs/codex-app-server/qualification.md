@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [plugin hook declaration profile](plugin-hook-declarations-qualification.md)
+adds actual populated metadata, independent source/event/group/handler ordering,
+content reload/removal/restoration and cold repeat. Initial1/0, focused1/0 twice
+and strict checks pass with378 stable sources/all377 prior unchanged. Exactly
+4681/4682 gain scoped implemented evidence; no hook execution, notification or
+complete/prohibited-gate acceptance is claimed.
+
 The [Git marketplace selection profile](marketplace-git-selection-qualification.md)
 adds real nondefault branch/sparse-checkout effects and warm/cold native
 persistence. Initial1/0, focused2/0 twice, retained fixture lifecycle1/0 and

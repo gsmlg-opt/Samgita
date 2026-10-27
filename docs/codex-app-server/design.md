@@ -416,6 +416,12 @@ separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 
+Local plugin hook declarations and executable hook events have distinct native
+producers. The [declaration profile](plugin-hook-declarations-qualification.md)
+qualifies only metadata source/event/group/handler keys and current-file reload
+through plugin/read. Inert declaration descriptors do not establish executable
+handler support, emitted lifecycle events or legacy production triggers.
+
 The generated compatibility manifest covers all four message directions,
 parameter/result types and variants, errors, field/method gates and lifecycle
 rules. Each entry names implementation ownership and planned/actual evidence.

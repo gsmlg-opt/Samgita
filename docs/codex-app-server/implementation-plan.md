@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [plugin hook declaration profile](plugin-hook-declarations-qualification.md)
+qualifies exact4681/4682 through five independently prescribed native metadata
+maps, source/event/group/handler ordering, changed/held/restored sources and a
+distinct cold process. Initial1/0, focused **1/0 twice**, compile/format, strict
+Credo545 and inventory pass with378 stable sources/all377 prior unchanged.
+No hook/plugin/thread/model execution occurs. Contracts become **5,048 implemented
+/1,507 missing /66 blocked**; requirements remain **462 implemented /12 missing
+/11 blocked**, zero verified. Continue the source-backed plugin/installed
+partial-result producer and remaining ordinary variants. Prohibited/broad/hosted,
+A11, legacy/external/OS/platform and complete-goal gates stay incomplete.
+
 The [Git marketplace selection profile](marketplace-git-selection-qualification.md)
 qualifies exact4331/4333 through real HTTP Git refs/objects, independently known
 branch A while source main=B, sparse exclusion of a tracked nested file and
