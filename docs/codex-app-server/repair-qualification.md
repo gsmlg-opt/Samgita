@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [installed local-plugin metadata profile](hook-plugin-metadata-qualification.md)
+proves populated provenance through real install, repeated warm/cold catalog and
+uninstall, with original frames and checked owned cleanup. Initial fixture **1/1**
+is retained; exact source-defined PreCompact warning/null correction preserves
+input73. Final focused **1/0**, **59 ordinary cases twice**, outside consumer
+**1/0**, 13 checks and 851 stable sources pass; 850 prior sources stay unchanged.
+Only 4174 gains evidence: **5,287 implemented / 1,240 missing / 94 blocked**,
+unchanged requirements and zero verified. Continue V462 ordinary catalog
+outer-None qualification; prohibited/full-goal gates remain incomplete.
+
 The [catalog/warning/read-state limits](catalog-warning-read-state-limitations.md)
 bind seven unavailable native variants to complete pinned source, preserving
 prior evidence. Overlapping reasoning-effort nulls and reachable hook-plugin

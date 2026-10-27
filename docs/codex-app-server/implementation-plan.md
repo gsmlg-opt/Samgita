@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native installed-plugin hook metadata journey](hook-plugin-metadata-qualification.md)
+adds actual install/warm/cold/uninstall provenance and bounded original RPC frames
+without executing a hook. Initial **1/1** exposed the authored PreCompact context
+expectation; exact native warning/null normalization retains input73 and all
+bounds. Final focused **1/0**, **59 ordinary cases twice**, outside consumer
+**1/0** and all 13 reviewed commands pass; 851 sources stay exact with 850 prior
+unchanged. Fifteen native files/one node match the pin. Only 4174 gains evidence:
+**5,287 implemented / 1,240 missing / 94 blocked**, unchanged requirements and
+zero verified. Continue the V462 ordinary catalog outer-None proposal;
+prohibited/full-goal gates remain incomplete.
+
 The [catalog/warning/read-state producer limits](catalog-warning-read-state-limitations.md)
 block seven exact unavailable variants, preserving prior partial evidence and
 leaving overlapping reasoning-effort nulls unqualified. All 5,259 Rust files,

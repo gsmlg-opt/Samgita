@@ -152440,21 +152440,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/hook-plugin-metadata-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/pluginId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected null_only native evidence: Only null; no plugin-bound hook qualification. Other variants and full implementation qualification remain incomplete."
+        "Selected null_only native evidence: Only null; no plugin-bound hook qualification. Other variants and full implementation qualification remain incomplete.",
+        "V461 adds one real installed-local-plugin HookMetadata.pluginId profile. Independently authored marketplace/manifest/inert PreCompact descriptor are installed through native API;exact cached source bytes and metadata key/event/handler/command/source/path/pluginId prove causal populated fixed string. Two warm queries and distinct checked-owned cold native replacement retain exact config/catalog;explicit uninstall removes cache and returns complete empty catalog while originals remain. All11RPC envelopes capture original bytes/maps and unique typed correlation;no thread/turn/model/hook/command trigger. Initial fixture incorrectly expected PreCompact additionalContextLimit73 retained with no warning;source discovery541-560 proves exact warning/None. Input73 retained,exact path/text warning and null oracle added;focused passes. Final focused1/0,59reviewed ordinary cases twice,outsideconsumer1/0 and13commands pass;851guarded sources stable with850prior unchanged,15native files/one node archive/export-match.96frame/8KiB out/64KiB in/1MiB capture,64event/256KiB Session,5s RPC/60s case and checked owner/native/Port cleanup unchanged. Existing null-only historical evidence retained;only4174 gains scoped implemented evidence,zero verified. No security/trust/auth/policy assertions or configuration changes;fixed YOLO setup only. No hook execution,cold-after-uninstall,all plugin/backend/platform/transport/absence-null variants/full-goal claim. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform acceptance stay incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/HookMetadata/properties/pluginId",
       "required": false,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -152462,10 +152464,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_hook_plugin_metadata_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginId"
     },
     {
