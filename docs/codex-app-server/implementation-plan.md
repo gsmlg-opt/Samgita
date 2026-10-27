@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [reasoning/checklist envelope unit](reasoning-checklist-envelopes-qualification.md)
+qualifies only roots2887/3011/3015/3019, preserving twelve implemented siblings.
+Two direct fixed-YOLO native cases bind seven original Unicode reasoning frames
+and one actual default-mode checklist to independent full maps, lifecycle and
+provider journals. The real tool result carries native fco_UUIDv7 identity.
+Focused **2/0** and final **37ordinary cases twice**, syntax/strict checks and
+403stable-source guard pass; all401prior bytes stay unchanged and17whole upstream
+files match the pin. Only these four become scoped implemented: **5,140 implemented
+/1,415 missing /66 blocked**, unchanged requirements and zero verified. Continue
+ordinary item/status/turn lifecycle envelopes; prohibited/full-goal gates remain
+incomplete.
+
 The [goal/queue notification unit](goal-queue-notification-envelopes-qualification.md)
 qualifies only roots 2823/2831/2835; nine implemented siblings remain unchanged.
 Direct fixed-YOLO threads prove complete paused goal state/get/clear with zero

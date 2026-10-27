@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary reasoning/checklist profile](reasoning-checklist-envelopes-qualification.md)
+proves seven original native reasoning frames and one real default-mode
+update_plan notice with independent complete maps, exact item lifecycle and
+provider SSE journals. Actual followup tool output includes native fco_UUIDv7
+identity. Direct fixed-YOLO setup introduces no permission check. Focused **2/0**
+and final **37ordinary cases twice**, syntax/strict checks and403stable-source
+guard pass; all401prior bytes remain unchanged and17upstream files match the pin.
+Only roots2887/3011/3015/3019 become scoped implemented: **5,140 implemented
+/1,415 missing /66 blocked**, unchanged requirements and zero verified. Continue
+ordinary item/status/turn lifecycle envelopes; all prohibited/full-goal gates
+remain incomplete.
+
 The [ordinary goal/queue profile](goal-queue-notification-envelopes-qualification.md)
 uses direct fixed-YOLO threads, full independent paused-goal/get/clear maps and
 one real queued execution with matching provider metadata/public empty queue.

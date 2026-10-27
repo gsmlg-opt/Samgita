@@ -112042,24 +112042,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-checklist-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/27",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V406 scoped ordinary actual-native complete reasoning/checklist envelopes. Two fresh direct-stdio fixed-YOLO cases with no old mixed launch/thread helper. Independent provider SSE yields exact seven reasoning part/summary/raw notices with indices0/1/2,Unicode fragments and literal item ID;empty-start/populated-done reasoning items and exact final assistant bracket original ordered native frames. Default-mode update_plan yields complete Unicode explanation and three ordered camelCase statuses;provider sends in_progress. Exactly one checklist notice,no Plan delta;actual second model request contains matching Plan updated tool result with native fco_UUIDv7 identity and exact four-field map before final response. Independent full provider SSE journals and1/2request counts,actual matching thread/turn metadata,original unique RPC pairs and exact client method inventories remain. Complete method/params/emittedAtMs maps equal original pre-Session ingress and native projection;timestamps independently host-bracketed. Capture/events128/2MiB,8KiBout/64KiBin,request1MiB,journal2MiB,SSE64events/64KiB,5sRPC/startup,20sturn/60scase and checked native/provider/PID/Port cleanup remain. Focused2/0 and final37/0 ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,all401prior bytes unchanged. Seventeen upstream whole files/four stable exact nodes match pin. Twelve implemented siblings stay unchanged;no alias,other backend/OS/transport or full verified acceptance claim. Fixed YOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/27",
       "schema": "ServerNotification.json",
       "schema_sha256": "1eec04066bbc044192c0a45a32e809926bc425376838450d9294c575fecc4274",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -115565,24 +115573,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-checklist-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/55",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V406 scoped ordinary actual-native complete reasoning/checklist envelopes. Two fresh direct-stdio fixed-YOLO cases with no old mixed launch/thread helper. Independent provider SSE yields exact seven reasoning part/summary/raw notices with indices0/1/2,Unicode fragments and literal item ID;empty-start/populated-done reasoning items and exact final assistant bracket original ordered native frames. Default-mode update_plan yields complete Unicode explanation and three ordered camelCase statuses;provider sends in_progress. Exactly one checklist notice,no Plan delta;actual second model request contains matching Plan updated tool result with native fco_UUIDv7 identity and exact four-field map before final response. Independent full provider SSE journals and1/2request counts,actual matching thread/turn metadata,original unique RPC pairs and exact client method inventories remain. Complete method/params/emittedAtMs maps equal original pre-Session ingress and native projection;timestamps independently host-bracketed. Capture/events128/2MiB,8KiBout/64KiBin,request1MiB,journal2MiB,SSE64events/64KiB,5sRPC/startup,20sturn/60scase and checked native/provider/PID/Port cleanup remain. Focused2/0 and final37/0 ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,all401prior bytes unchanged. Seventeen upstream whole files/four stable exact nodes match pin. Twelve implemented siblings stay unchanged;no alias,other backend/OS/transport or full verified acceptance claim. Fixed YOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/55",
       "schema": "ServerNotification.json",
       "schema_sha256": "a5d9b6ae81553bdca0eaf3bdaab768cdba35f7dd3f9f6fdede7fe91824e1199d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -115691,24 +115707,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-checklist-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/56",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V406 scoped ordinary actual-native complete reasoning/checklist envelopes. Two fresh direct-stdio fixed-YOLO cases with no old mixed launch/thread helper. Independent provider SSE yields exact seven reasoning part/summary/raw notices with indices0/1/2,Unicode fragments and literal item ID;empty-start/populated-done reasoning items and exact final assistant bracket original ordered native frames. Default-mode update_plan yields complete Unicode explanation and three ordered camelCase statuses;provider sends in_progress. Exactly one checklist notice,no Plan delta;actual second model request contains matching Plan updated tool result with native fco_UUIDv7 identity and exact four-field map before final response. Independent full provider SSE journals and1/2request counts,actual matching thread/turn metadata,original unique RPC pairs and exact client method inventories remain. Complete method/params/emittedAtMs maps equal original pre-Session ingress and native projection;timestamps independently host-bracketed. Capture/events128/2MiB,8KiBout/64KiBin,request1MiB,journal2MiB,SSE64events/64KiB,5sRPC/startup,20sturn/60scase and checked native/provider/PID/Port cleanup remain. Focused2/0 and final37/0 ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,all401prior bytes unchanged. Seventeen upstream whole files/four stable exact nodes match pin. Twelve implemented siblings stay unchanged;no alias,other backend/OS/transport or full verified acceptance claim. Fixed YOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/56",
       "schema": "ServerNotification.json",
       "schema_sha256": "1c40ccb415b36012a541262a330955dd4143f5c2074610f1cd3c1da1f775c330",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -115817,24 +115841,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-checklist-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/57",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V406 scoped ordinary actual-native complete reasoning/checklist envelopes. Two fresh direct-stdio fixed-YOLO cases with no old mixed launch/thread helper. Independent provider SSE yields exact seven reasoning part/summary/raw notices with indices0/1/2,Unicode fragments and literal item ID;empty-start/populated-done reasoning items and exact final assistant bracket original ordered native frames. Default-mode update_plan yields complete Unicode explanation and three ordered camelCase statuses;provider sends in_progress. Exactly one checklist notice,no Plan delta;actual second model request contains matching Plan updated tool result with native fco_UUIDv7 identity and exact four-field map before final response. Independent full provider SSE journals and1/2request counts,actual matching thread/turn metadata,original unique RPC pairs and exact client method inventories remain. Complete method/params/emittedAtMs maps equal original pre-Session ingress and native projection;timestamps independently host-bracketed. Capture/events128/2MiB,8KiBout/64KiBin,request1MiB,journal2MiB,SSE64events/64KiB,5sRPC/startup,20sturn/60scase and checked native/provider/PID/Port cleanup remain. Focused2/0 and final37/0 ordinary twice;five Python syntax checks,format/compile/strictCredo and403stable-source guard pass,all401prior bytes unchanged. Seventeen upstream whole files/four stable exact nodes match pin. Twelve implemented siblings stay unchanged;no alias,other backend/OS/transport or full verified acceptance claim. Fixed YOLO is setup only;prohibited tests/audits,broad/hosted checks,A11,unavailable producers,real external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/57",
       "schema": "ServerNotification.json",
       "schema_sha256": "69c86fa837006080a853b60b28dad9072dcf93a3b62e7ec8fbbc822b34c3909c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_checklist_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
