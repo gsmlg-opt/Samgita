@@ -151660,15 +151660,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/2",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "91e14528b95a3d0f0ed85d518e2808d35eb5951e0c459e9b5684774189face32",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -151683,18 +151687,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/2/properties/handlerType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/oneOf/2/properties/handlerType",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "f8d424b88cd311fef8f8a702736876f537af43bdc7bbe60ab106ce2b9025c190",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -151708,15 +151716,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/2/properties/handlerType/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/2/properties/handlerType/enum/0",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "60b5693ef09527a4bcf56d65322b1fa843bbda2534ddbf928150ee3267d52e97",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -151730,15 +151742,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/3",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "54fa5af1b7a67226acac4dea5d355e561fad54158502c9bea057229fabd4bf46",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -151753,18 +151769,22 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/3/properties/handlerType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/oneOf/3/properties/handlerType",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "a28d1636a0b280883d7acc3c5dcbbab62fdaaf7237708f3d75ce0d7a46cb44da",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -151778,15 +151798,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-metadata-producer-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/3/properties/handlerType/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V445 immutable native hooks/list producer boundary: the sole production HooksListResponse builder uses the sole hooks_to_info metadata conversion,which exhaustively matches the closed two-variant HookListEntryHandler(Command,McpTool). All managed/layer/plugin discovery inputs converge before Prompt and Agent unconditionally continue as unsupported,prior to the sole HookListEntry push. Public schema/UI/configured-handler/declaration/test references do not create this response. Complete5259Rust-file textual identifier/constructor/raw-tag scan and closed-type chain,19whole-source hashes and6exact nodes bind to the official source archive/exports. Native positive prompt/agent metadata cannot be produced by this unmodified pinned path;an upstream implementation and explicitly accepted target revision are prerequisites. This is source-only evidence,not a native passing case;tests/planned/schema identity remain intact,verified tests and transport coverage remain empty. No mock/empty/error response counts as positive acceptance. All415previously tested sources/nine logs remain exact;no new runtime/test executed. No security/permission tests/audits,broader/hosted gates,scope waiver,upstream edits,release or deployment. Full compatibility,A11,legacy/external/platform acceptance remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/3/properties/handlerType/enum/0",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "6cf85bf41d9570deed965109eed6c05c9512f6d79e321c70f3f3d900c8d06c74",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

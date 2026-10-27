@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [Prompt/Agent hook metadata boundary](hook-metadata-producer-limitations.md)
+binds the sole response/converter/closed-list type and all discovery inputs to
+the immutable archive. All 5,259 Rust files and 19 key files match; only six
+exact contracts 4160–4165 become source-blocked, with empty test/transport
+credit. Counts: **5,248 implemented / 1,301 missing / 72 blocked**, unchanged
+requirements and zero verified. No new runtime/test runs; V443's 415 source
+hashes and nine logs remain exact. Continue ordinary environment observation;
+upstream positive acceptance and prohibited/full-goal gates remain incomplete.
+
 The [explicit null plugin scope](plugin-search-null-scope-qualification.md)
 retains independent complete ordinary candidate arrays through six native
 null queries and all existing global/personal/omitted controls. Focused **1/0**,

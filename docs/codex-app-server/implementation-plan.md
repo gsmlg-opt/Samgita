@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [Prompt/Agent hook metadata boundary](hook-metadata-producer-limitations.md)
+proves the pinned native list path cannot emit either variant: one response
+builder, one exhaustive converter and a closed two-variant internal enum;
+all config/plugin inputs skip those unsupported kinds. The complete 5,259-file
+Rust source set and 19 key files match the archive; six nodes match the export.
+Only 4160–4165 become source-blocked, with no passing-test or transport credit:
+**5,248 implemented / 1,301 missing / 72 blocked**, unchanged requirements and
+zero verified. All 415 V443 source hashes/nine logs remain exact; no new test
+is run. Continue ordinary environment observation; prohibited/full-goal gates
+remain incomplete and no upstream workaround or scope waiver is applied.
+
 The [explicit null plugin scope](plugin-search-null-scope-qualification.md) adds
 six native queries to the independent two-catalog held/restored/cold matrix,
 retaining every prior control and bound. Focused **1/0**, **55 ordinary cases
