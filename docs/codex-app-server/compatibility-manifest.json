@@ -42857,72 +42857,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c8b2479ad3561754f996a7b883227b6050249dea2e00ea9f38ac53e218b8ea85",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "7a0152b22a94c945827642b6d674faa73ff6bad434fe20ca123082decbf91aa1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1e30b60c2df8d7c3bb08f0a4ef3eeeeb736be44af5f42ac52b90707e67b1e433",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -105883,72 +105907,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3905705fec9780a09a73ccd52e60a5d00757d1d5e8bb4361718831befbbc68a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6e6ef77a980fff8b72763f9742c283119c0e4b452b5fff9b1b434f7600e23f10",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "684a94c136e1dc64fa39c5fff77c7014d95a421c5804a356266f95ccd476cece",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -106287,150 +106335,198 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "009a09eed0b0d09242eadf63128650cd6d5bdf7caaaab5076e0867d0cdb88d59",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/outcome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/outcome",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6a78176b7470173267fd102d3591e2424eb25fed8599f08cccff74a117a8d4c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outcome"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "12f9d1616bd0509b77b8e1958b70c1b559fb200731cf996f0a99f74e17a9015e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "4b4f2eca6a33eb2fdeba2fb5d89a039663fdcba5260b661682602f880a3bbcb5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/properties/realtimeSessionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/properties/realtimeSessionId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "realtimeSessionId"
     },
     {
@@ -223885,24 +223981,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "3905705fec9780a09a73ccd52e60a5d00757d1d5e8bb4361718831befbbc68a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -224337,24 +224441,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-start-stop-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V432 scoped actual-native ordinary WebSocket/V2 start and requested stop only. Direct fixed-YOLO public requests reach one new finite loopback functional-only peer;literal caller session/model/prompt/text output and exactly one session.update precede stop. Independent complete started/completed native item pairs plus started/closed notifications require exact six-event order,distinct UUIDv7 item IDs,caller session identity,ended outcome,requested reason,measured emission times and original pre-Session ingress/generation. Native thread/read store barrier and two exact repeated timeline pages prove genuine two-row persistence;no shared-hash alias inference. Original RPC correlation,zero Responses/ordinary turns/transcripts,unchanged inputs and checked owned socket/thread/listener/process/Port cleanup pass. Limits128stdioframes/2MiB,64KiBin/8KiBout,5sRPC/startup/collector,20sactive/60scase;peer64KiBframes/32frames/2MiBjournal. Focused1/0,47reviewed ordinary cases twice,11Python syntax,format/compile/strictCredo/inventory pass;414sources stable,412prior unchanged. Fourteen whole upstream sources and14distinct canonical nodes archive/export-match. Only646-648/2680-2682/2694-2699/6392/6406 become scoped implemented,zero verified;no transcript,failed close,WebRTC/existingCall,media/remote backend or other transport qualification. Prohibited tests/audits,broad/hosted,A11,legacy/external/platform/full-goal/release remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "009a09eed0b0d09242eadf63128650cd6d5bdf7caaaab5076e0867d0cdb88d59",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

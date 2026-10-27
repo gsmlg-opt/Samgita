@@ -1,5 +1,12 @@
 # Codex compatibility qualification
 
+The [ordinary realtime start/stop profile](ordinary-realtime-start-stop-qualification.md)
+adds a genuine local V2 WebSocket lifecycle and independently checked native
+notifications plus persisted timeline. Focused1/0,47ordinary cases twice and
+strict checks pass with414stable sources/all412prior unchanged. Only14physical
+owners gain scoped implemented evidence;transcript/media/remote backends and
+prohibited/hosted/full-goal gates remain incomplete.
+
 The [genuine import-title index](native-import-title-index-qualification.md)
 corrects one stale missing owner using already passing actual import effects,
 independent complete source-title oracles and cold durable history. No new

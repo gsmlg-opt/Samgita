@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary realtime start/stop](ordinary-realtime-start-stop-qualification.md)
+qualifies14physical owners through a genuine local WebSocket/V2 connection,
+exact native six-notice lifecycle and two repeated durable timeline rows.
+One explicit start/stop and zero inference/transcript retain full original
+ingress/correlation,caller identity,bounds and checked socket/thread/process
+cleanup. Focused **1/0**, **47ordinary cases twice**,strict checks and414stable
+sources pass;all412prior paths stay exact. Fourteen whole sources/14nodes
+match the pin. Contracts: **5,214 implemented /1,341 missing /66 blocked**;
+requirements and zero verified unchanged. Continue original shell-output delta
+envelopes;prohibited/full-goal gates remain incomplete.
+
 The [genuine import-title index](native-import-title-index-qualification.md)
 binds only2125 to the unchanged ordinary native import profile's independent
 source title,full success/progress/completion and warm/cold persisted history.
