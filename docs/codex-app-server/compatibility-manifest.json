@@ -126852,15 +126852,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/mode/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V459 immutable producer limitation at rust-v0.163.0: Closed built-in collaboration listing returns exactly Plan/Default with both mode Some and model None;both production manager implementations delegate directly,thread manager/catalog conversion copy unchanged. Thus null mode and populated model have no native list producer. Existing null-model partial test reference remains historical,not positive string evidence. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/mode/anyOf/1",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -126876,21 +126880,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Selected null_only native evidence: Only null; no selected model behavior. Other variants and full implementation qualification remain incomplete."
+        "Selected null_only native evidence: Only null; no selected model behavior. Other variants and full implementation qualification remain incomplete.",
+        "V459 immutable producer limitation at rust-v0.163.0: Closed built-in collaboration listing returns exactly Plan/Default with both mode Some and model None;both production manager implementations delegate directly,thread manager/catalog conversion copy unchanged. Thus null mode and populated model have no native list producer. Existing null-model partial test reference remains historical,not positive string evidence. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
       ],
       "nullable": true,
       "pointer": "/definitions/CollaborationModeMask/properties/model",
       "required": false,
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -142252,15 +142258,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/range/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V459 immutable producer limitation at rust-v0.163.0: Typed ConfigWarning.range is Option<TextRange> with skip_serializing_if Option::is_none;None omits the property and Some emits an object. The advertised explicit-null range arm has no typed native serialization path;omission is not null evidence. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
+      ],
       "pointer": "/properties/range/anyOf/1",
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -207406,19 +207416,21 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/read-state-realtime-history-qualification.md",
-        "docs/codex-app-server/read-state-update-success-limitation.md"
+        "docs/codex-app-server/read-state-update-success-limitation.md",
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
-        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change.",
+        "V459 immutable producer limitation at rust-v0.163.0: Read-state Applied success is constructed only from Read=>None or Unread=>empty-string freshly committed by update_thread_read_state. Success converter emits null/threadStart;nonempty turn alternatives in read/list/changed or conflict Err are distinct producers and cannot qualify this success branch. Existing read-state-update-success-limitation source proof remains authoritative. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
       ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "450f44996f5d23f8381d6cea049ad7c43cf9d0a424eed9d0ba8988f0183b4718",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -207435,7 +207447,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/read-state-realtime-history-qualification.md",
-        "docs/codex-app-server/read-state-update-success-limitation.md"
+        "docs/codex-app-server/read-state-update-success-limitation.md",
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -207443,14 +207456,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
-        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change.",
+        "V459 immutable producer limitation at rust-v0.163.0: Read-state Applied success is constructed only from Read=>None or Unread=>empty-string freshly committed by update_thread_read_state. Success converter emits null/threadStart;nonempty turn alternatives in read/list/changed or conflict Err are distinct producers and cannot qualify this success branch. Existing read-state-update-success-limitation source proof remains authoritative. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -207467,7 +207481,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/read-state-realtime-history-qualification.md",
-        "docs/codex-app-server/read-state-update-success-limitation.md"
+        "docs/codex-app-server/read-state-update-success-limitation.md",
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -207475,14 +207490,15 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
-        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change.",
+        "V459 immutable producer limitation at rust-v0.163.0: Read-state Applied success is constructed only from Read=>None or Unread=>empty-string freshly committed by update_thread_read_state. Success converter emits null/threadStart;nonempty turn alternatives in read/list/changed or conflict Err are distinct producers and cannot qualify this success branch. Existing read-state-update-success-limitation source proof remains authoritative. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "0445f419575b06899f4ec0111da4471375d889d88f98293fef99970a17f77761",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -207498,19 +207514,21 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/read-state-realtime-history-qualification.md",
-        "docs/codex-app-server/read-state-update-success-limitation.md"
+        "docs/codex-app-server/read-state-update-success-limitation.md",
+        "docs/codex-app-server/catalog-warning-read-state-limitations.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
-        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change.",
+        "V459 immutable producer limitation at rust-v0.163.0: Read-state Applied success is constructed only from Read=>None or Unread=>empty-string freshly committed by update_thread_read_state. Success converter emits null/threadStart;nonempty turn alternatives in read/list/changed or conflict Err are distinct producers and cannot qualify this success branch. Existing read-state-update-success-limitation source proof remains authoritative. All5259Rust files/10key files and7exact nodes archive/export-match;850V456sources/13logs exact. No new runtime/test/passing evidence/transport credit;prior arrays and limits preserved. Overlapping nested/outer reasoning_effort null owners3386/3387 and reachable hook pluginId remain unchanged/unqualified. No schema deletion/mock/native-success substitute/local workaround/target waiver. Security/permission tests/audits,broad/hosted/release,A11/legacy/external/platform/full-goal gates stay incomplete."
       ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "51b5af118ab00bb2dfda4c21a2646056568d783a77f21293c41670d634c6d86c",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

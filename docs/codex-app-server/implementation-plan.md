@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [catalog/warning/read-state producer limits](catalog-warning-read-state-limitations.md)
+block seven exact unavailable variants, preserving prior partial evidence and
+leaving overlapping reasoning-effort nulls unqualified. All 5,259 Rust files,
+ten key files/seven nodes match the pin; all 850 V456 source hashes/13 logs stay
+exact. No new tests run. Counts: **5,286 implemented / 1,241 missing / 94
+blocked**, unchanged requirements and zero verified. Continue enabled ordinary
+hook-plugin metadata; prohibited/full-goal gates remain incomplete.
+
 The [realtime/settings envelope correction](realtime-settings-envelope-qualification.md)
 binds three selected native string-ID fields and six exact realtime notification
 method/discriminator leaves, each with original frames and independent native

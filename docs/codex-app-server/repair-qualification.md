@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [catalog/warning/read-state limits](catalog-warning-read-state-limitations.md)
+bind seven unavailable native variants to complete pinned source, preserving
+prior evidence. Overlapping reasoning-effort nulls and reachable hook-plugin
+metadata receive no credit. All 5,259 Rust files/ten key files/seven nodes and
+850 V456 source hashes/13 logs match; no new tests run. Counts: **5,286
+implemented / 1,241 missing / 94 blocked**, unchanged requirements and zero
+verified. Continue ordinary hook-plugin metadata; prohibited/full-goal gates
+remain incomplete.
+
 The [realtime/settings envelope binding](realtime-settings-envelope-qualification.md)
 adds nine exact scoped fields from unchanged native original-frame/effect
 assertions enabled in both latest V456 **58/0** runs. All 850 source hashes/13
