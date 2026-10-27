@@ -68,7 +68,7 @@ def command(root):
     os.execv("/bin/sh", ["/bin/sh", "-c", script])
 
 
-def hook(root, event):
+def hook(root, event, post_hook_exit):
     body = sys.stdin.buffer.read(MAX_HOOK_BYTES + 1)
     assert 0 < len(body) <= MAX_HOOK_BYTES, "Owned tool hook input limit"
     received = json.loads(body)
@@ -102,6 +102,9 @@ def hook(root, event):
     with (root / f"{event}-invocation.json").open("xb") as output:
         output.write(encoded)
     print("{}", flush=True)
+    if event == "PostToolUse" and post_hook_exit == 7:
+        print("Owned inert post observer diagnostic λ🙂", file=sys.stderr, flush=True)
+        raise SystemExit(7)
 
 
 class ProviderHandler(BaseHTTPRequestHandler):
@@ -132,8 +135,9 @@ class ProviderHandler(BaseHTTPRequestHandler):
 
 
 class ToolProvider:
-    def __init__(self, root):
+    def __init__(self, root, post_hook_exit):
         self.root = root
+        self.post_hook_exit = post_hook_exit
         self.lock = threading.Lock()
         self.requests = []
         self.state = {"requests": 0, "finished_handlers": 0, "errors": [], "closed": False}
@@ -242,7 +246,8 @@ class ToolProvider:
             "experimental_supported_tools": [],
         }]})
         command = shlex.join([sys.executable, str(Path(__file__).resolve()),
-                              "--root", str(self.root), "--hook"])
+                              "--root", str(self.root),
+                              "--post-hook-exit", str(self.post_hook_exit), "--hook"])
         config = f'''model = "mock-model"
 model_provider = "fixture"
 model_catalog_json = {json.dumps(str(catalog))}
@@ -310,15 +315,16 @@ def main():
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--hook", choices=["PreToolUse", "PostToolUse"])
     parser.add_argument("--command", action="store_true")
+    parser.add_argument("--post-hook-exit", type=int, choices=[0, 7], default=0)
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
     if args.command:
         command(root)
         return
     if args.hook:
-        hook(root, args.hook)
+        hook(root, args.hook, args.post_hook_exit)
         return
-    fixture = ToolProvider(root)
+    fixture = ToolProvider(root, args.post_hook_exit)
     signal.signal(signal.SIGTERM, terminate)
     try:
         fixture.configure()

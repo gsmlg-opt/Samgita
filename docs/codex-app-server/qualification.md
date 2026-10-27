@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary PostToolUse failure/async boundary](ordinary-hook-failure-and-async-boundary.md)
+passes **59 files / 110 actual-native cases at both seeds**, selected WebSocket
+seeds, outside consumer **1/0** and all fourteen reviewed checks with1,676
+unchanged guarded sources. Real failed/error observation retains actual successful
+command output, two completed turns and owned cleanup. Complete immutable-source
+proof shows the async notification is intentionally suppressed: only owner2220
+becomes blocked; no fake emitter or verified promotion occurs. Counts: **5,464
+implemented / 1,040 missing / 117 blocked contracts**, unchanged requirements,
+zero verified. The default-dev precheck error is separately recorded.
+Prohibited/hosted, A11, unavailable external/OS/full-goal and release remain
+incomplete.
+
 The [ordinary child/tool hooks and control-correlation unit](ordinary-hooks-and-control-qualification.md)
 passes **59 files / 109 actual-native cases at both seeds**, selected WebSocket
 cases at three seeds, outside consumer **1/0** and all fourteen reviewed checks.

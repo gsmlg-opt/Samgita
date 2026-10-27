@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/tool_hook_fixture.py", __DIR__)
-  @script_sha "66d3c8de56ee35ecebaefb89be93e515707dbe3a0e2e630f2de25aaa6c61cbcc"
+  @script_sha "b3448710bdfe713247ed3390ffc9ab0bd5d3f2d0ef850df682ddbc1e9c4ac88e"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @seed "OWNED_V496_TOOL_TURN"
@@ -99,7 +99,7 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
     def metadata(state), do: Stdio.metadata(state)
   end
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -131,7 +131,8 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
       binary: Path.expand(binary),
       python: python,
       workspace: Path.join(root, "workspace"),
-      capture: capture
+      capture: capture,
+      post_hook_exit: Map.get(tags, :post_hook_exit, 0)
     }
 
     provider = start_provider(profile)
@@ -151,6 +152,16 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
 
   test "native successful root command runs exact inert synchronous pre and post tool hooks",
        ctx do
+    run_tool_journey(ctx)
+  end
+
+  @tag post_hook_exit: 7
+  test "native inert post observer exit seven reports failure while the actual command and turns finish",
+       ctx do
+    run_tool_journey(ctx)
+  end
+
+  defp run_tool_journey(ctx) do
     names = schema()["definitions"]["HookEventName"]["enum"]
     assert Enum.at(names, 0) === "preToolUse"
     assert Enum.at(names, 2) === "postToolUse"
@@ -312,7 +323,7 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
       thread,
       turn,
       {"postToolUse", 1},
-      "completed",
+      if(profile.post_hook_exit == 7, do: "failed", else: "completed"),
       lower,
       upper
     )
@@ -493,7 +504,7 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
       "startedAt" => started,
       "completedAt" => completed,
       "durationMs" => duration,
-      "entries" => []
+      "entries" => hook_entries(status)
     }
 
     assert_notice(
@@ -504,6 +515,11 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
       upper
     )
   end
+
+  defp hook_entries("failed"),
+    do: [%{"kind" => "error", "text" => "hook exited with code 7"}]
+
+  defp hook_entries(status) when status in ["running", "completed"], do: []
 
   defp assert_notice(profile, event, params, lower, upper) do
     emitted = Map.fetch!(event.wire, "emittedAtMs")
@@ -710,7 +726,13 @@ defmodule SamgitaCodexDriver.NativeToolHookTest do
     assert {:ok, transport} =
              Stdio.open(
                executable: profile.python,
-               args: [@script, "--root", profile.root],
+               args: [
+                 @script,
+                 "--root",
+                 profile.root,
+                 "--post-hook-exit",
+                 Integer.to_string(profile.post_hook_exit)
+               ],
                cwd: profile.workspace,
                inherit_env: [],
                env: environment(profile),

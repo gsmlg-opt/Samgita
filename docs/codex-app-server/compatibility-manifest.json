@@ -92332,15 +92332,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-hook-failure-and-async-boundary.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookExecutionMode/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 core/src/hook_runtime.rs:875-927 explicitly filters both public HookStarted and HookCompleted to non-builtin Sync; internal async results/metrics remain separate. Complete5259-file archive-equal Rust scan finds177 references in47 files and no alternate public emitter; upstream test1141-1236 explicitly documents intentional async suppression. Retained Async schema and independently reachable hooks/list async boolean4151 do not qualify this physical ServerNotification owner. No mock or modified binary substitutes for native emission; contract remains required and full-goal incomplete."
+      ],
       "pointer": "/definitions/HookExecutionMode/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "bf4b3fff6944a7ce4f1371b095bc9b88545cd3effd59e955b8701c4fd015fd8b",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -92639,13 +92643,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+        "docs/codex-app-server/notification-owner-supplement-qualification.md",
+        "docs/codex-app-server/ordinary-hook-failure-and-async-boundary.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/4",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Source-attributed actual-native synchronous command-hook literal: independent exact completed entries and native lifecycle/thread/turn pairing from fixed exit2/stderr, exit7 or continue:false/stopReason; independent provider/sentinel effects distinguish block/fail/stop. Original six cases retained and rerun with added warning/context in complete21-file native block127/0 twice; strict checks/source guard pass. Only this exact UserPromptSubmit literal/text; no async/builtin/other event/source/handler, whole lifecycle/OS/backend/A11 or fully verified promotion."
+        "Source-attributed actual-native synchronous command-hook literal: independent exact completed entries and native lifecycle/thread/turn pairing from fixed exit2/stderr, exit7 or continue:false/stopReason; independent provider/sentinel effects distinguish block/fail/stop. Original six cases retained and rerun with added warning/context in complete21-file native block127/0 twice; strict checks/source guard pass. Only this exact UserPromptSubmit literal/text; no async/builtin/other event/source/handler, whole lifecycle/OS/backend/A11 or fully verified promotion.",
+        "V500 separate ordinary inert PostToolUse observer exits7 after independently verified successful native printf effect/stdout. Full original completed notice must be failed with exactly one error entry hook exited with code 7; actual command remains exit0, two turns and three provider calls complete, exact stdin/maps/times/IDs/records/PIDs/provider/history and unchanged bounds/cleanup remain. Original success case retained; historical mixed profile is unrun under current restriction. This adds scoped ordinary failure evidence only, no new implemented/verified state, general failure/permission/control/OS/backend/full lifecycle claim."
       ],
       "pointer": "/definitions/HookOutputEntryKind/enum/4",
       "schema": "ServerNotification.json",
@@ -92658,11 +92664,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_tool_hook_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "stdio"
       ],
       "wire_name": "enum"
     },
@@ -92797,13 +92805,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/hook-lifecycle-qualification.md"
+        "docs/codex-app-server/hook-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-hook-failure-and-async-boundary.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookRunStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified.",
+        "V500 separate ordinary inert PostToolUse observer exits7 after independently verified successful native printf effect/stdout. Full original completed notice must be failed with exactly one error entry hook exited with code 7; actual command remains exit0, two turns and three provider calls complete, exact stdin/maps/times/IDs/records/PIDs/provider/history and unchanged bounds/cleanup remain. Original success case retained; historical mixed profile is unrun under current restriction. This adds scoped ordinary failure evidence only, no new implemented/verified state, general failure/permission/control/OS/backend/full lifecycle claim."
       ],
       "pointer": "/definitions/HookRunStatus/enum/2",
       "schema": "ServerNotification.json",
@@ -92816,11 +92826,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_tool_hook_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "stdio"
       ],
       "wire_name": "enum"
     },

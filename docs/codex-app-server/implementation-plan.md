@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary PostToolUse failure/async boundary](ordinary-hook-failure-and-async-boundary.md)
+passes **59 files / 110 native cases at both seeds**, outside consumer **1/0**,
+three selected WebSocket seeds and all fourteen reviewed static/build checks,
+with1,676 unchanged sources. Original complete successful command/turn maps,
+effects and cleanup remain required when the inert post observer exits7 and
+reports native failed/error. Exact async notification owner2220 becomes blocked
+by the pinned intentional Sync-only emission gate; separate catalog metadata
+cannot qualify it. Ledger: **5,464 implemented / 1,040 missing / 117 blocked**
+contracts, unchanged requirements and zero verified. Next: one real local
+synchronous MCP PostToolUse observer, plus exact unsupported Prompt/Agent
+source evidence; scratch implementation is available, runtime unrun.
+Prohibited/hosted, A11, external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary child/tool hooks and control-correlation unit](ordinary-hooks-and-control-qualification.md)
 passes all fourteen reviewed commands: **59 files / 109 actual-native cases at
 both seeds**, selected WebSocket cases at all three seeds, outside consumer
