@@ -164701,24 +164701,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/composerIcon/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/composerIcon/anyOf/1",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -164925,24 +164942,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/logo/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/logo/anyOf/1",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -164982,24 +165016,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/logoDark/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/logoDark/anyOf/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -167383,24 +167434,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSummary/properties/interface/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSummary/properties/interface/anyOf/1",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -172054,24 +172122,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginInterface/properties/composerIcon/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/composerIcon/anyOf/1",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -172282,24 +172367,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginInterface/properties/logo/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginInterface/properties/logo/anyOf/1",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -174846,24 +174948,41 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-plugin-and-thread-results-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSummary/properties/interface/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual immutable native local-plugin metadata lifecycle: explicit plugin/installed install suggestions and plugin/search each repeat twice for declared dark-logo A, replacement B, omitted logo with retained interface, omitted entire interface, restored A and a distinct cold process. Independently prescribed full interface/null/path and ordinary id/name/source/installed=false/enabled=false projections match original correlated native request/response JSONL. Suggested entries are never misrepresented as installed.",
+        "Only this exact physical optional metadata branch gains scoped evidence. Source tree/config/assets stay byte-exact except prescribed reversible manifest edits; zero loaded threads, rollouts, model requests or plugin installation/content execution. All existing original-case22-exchange and new-case32-exchange oracles, capture bounds and deadlines are retained. Fixed YOLO is launch setup only. No policy/permission/security/approval/credential behavior, broad/hosted/external/OS/full-method/full-goal or release acceptance; A11 and unavailable producer gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginSummary/properties/interface/anyOf/1",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:251",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:255",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:266",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:281",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:317",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:318",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:322",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:379",
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs:610"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

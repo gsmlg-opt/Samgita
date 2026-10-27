@@ -248,6 +248,80 @@ defmodule SamgitaCodexDriver.NativePluginSearchLogoTest do
     assert_inventory(ctx)
   end
 
+  test "native suggested plugin inventory reloads optional interface metadata across a cold process",
+       ctx do
+    warm = start(ctx)
+    assert_unloaded(ctx, warm.pid)
+    inventory_and_search_twice(ctx, warm.pid, "dark-a.svg", ctx.original_tree)
+
+    try do
+      states = [
+        {manifest_bytes(@logo_b), "dark-b.svg"},
+        {manifest_bytes(nil), nil},
+        {JSON.encode!(%{"name" => @plugin}), :no_interface}
+      ]
+
+      for {contents, expected} <- states do
+        replace_file!(ctx.manifest, contents)
+        inventory_and_search_twice(ctx, warm.pid, expected, manifest_tree(ctx, contents))
+      end
+    after
+      replace_file!(ctx.manifest, ctx.original_manifest)
+    end
+
+    inventory_and_search_twice(ctx, warm.pid, "dark-a.svg", ctx.original_tree)
+    assert_unloaded(ctx, warm.pid)
+    assert_quiet(ctx, warm.pid, ctx.original_tree)
+    close(warm)
+    assert_sources(ctx, ctx.original_tree)
+
+    cold = start(ctx)
+    assert cold.native != warm.native
+    assert_unloaded(ctx, cold.pid)
+    inventory_and_search_twice(ctx, cold.pid, "dark-a.svg", ctx.original_tree)
+    assert_unloaded(ctx, cold.pid)
+    assert_quiet(ctx, cold.pid, ctx.original_tree)
+    close(cold)
+    assert_sources(ctx, ctx.original_tree)
+    assert_reload_inventory(ctx)
+  end
+
+  defp inventory_and_search_twice(ctx, pid, logo, tree) do
+    for _ <- 1..2 do
+      assert_sources(ctx, tree)
+
+      result =
+        call(ctx, pid, "plugin/installed", %{
+          "cwds" => [ctx.catalog],
+          "installSuggestionPluginNames" => [@plugin]
+        })
+
+      assert Enum.sort(Map.keys(result)) == ~w(marketplaceLoadErrors marketplaces)
+      assert Map.fetch!(result, "marketplaceLoadErrors") === []
+      assert [marketplace] = Map.fetch!(result, "marketplaces")
+
+      assert Map.take(marketplace, ~w(name path)) === %{
+               "name" => @market,
+               "path" => ctx.marketplace
+             }
+
+      assert [plugin] = Map.fetch!(marketplace, "plugins")
+      [entry] = Map.fetch!(expected_result(ctx, {:present, logo}), "data")
+
+      expected =
+        Map.merge(Map.fetch!(entry, "plugin"), %{"installed" => false, "enabled" => false})
+
+      # plugin/installed also exposes explicit local install suggestions. This
+      # fixture never installs a plugin or executes its contents. Only ordinary
+      # metadata is compared; the optional interface key must actually exist.
+      assert Map.take(plugin, ~w(id name source installed enabled interface)) === expected
+      assert Map.fetch!(plugin, "interface") === Map.fetch!(expected, "interface")
+      assert_quiet(ctx, pid, tree)
+    end
+
+    search_twice(ctx, pid, {:present, logo}, tree)
+  end
+
   defp manifest_bytes(logo) do
     interface = %{"displayName" => @display}
     interface = if is_nil(logo), do: interface, else: Map.put(interface, "logoDark", logo)
@@ -302,6 +376,11 @@ defmodule SamgitaCodexDriver.NativePluginSearchLogoTest do
   end
 
   defp expected_result(_ctx, :absent), do: %{"data" => [], "nextCursor" => nil}
+
+  defp expected_result(ctx, {:present, :no_interface}) do
+    %{"data" => [entry]} = expected_result(ctx, {:present, nil})
+    %{"data" => [put_in(entry, ["plugin", "interface"], nil)], "nextCursor" => nil}
+  end
 
   defp expected_result(ctx, {:present, logo}) do
     path = if is_nil(logo), do: nil, else: Path.join([ctx.plugin_root, "assets", logo])
@@ -526,6 +605,30 @@ defmodule SamgitaCodexDriver.NativePluginSearchLogoTest do
     ids = Enum.map(ledger.out, & &1.wire["id"])
     assert length(Enum.uniq(ids)) == 22
     assert MapSet.new(Enum.map(ledger.in, & &1.wire["id"])) == MapSet.new(ids)
+  end
+
+  defp assert_reload_inventory(ctx) do
+    ledger = Agent.get(ctx.capture, & &1)
+    pair = ~w(plugin/installed plugin/installed plugin/search plugin/search)
+
+    expected =
+      ~w(initialize server/diagnostics thread/loaded/list) ++
+        List.flatten(List.duplicate(pair, 5)) ++
+        ~w(thread/loaded/list initialize server/diagnostics thread/loaded/list) ++
+        pair ++ ["thread/loaded/list"]
+
+    assert Enum.map(ledger.out, & &1.wire["method"]) === expected
+    assert length(ledger.in) == 32
+    ids = Enum.map(ledger.out, & &1.wire["id"])
+    assert length(Enum.uniq(ids)) == 32
+    assert MapSet.new(Enum.map(ledger.in, & &1.wire["id"])) == MapSet.new(ids)
+
+    for sent <- Enum.filter(ledger.out, &(&1.wire["method"] == "plugin/installed")) do
+      assert sent.wire["params"] === %{
+               "cwds" => [ctx.catalog],
+               "installSuggestionPluginNames" => [@plugin]
+             }
+    end
   end
 
   defp assert_sources(ctx, tree) do

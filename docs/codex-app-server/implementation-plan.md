@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [suggested plugin interface reload](native-plugin-and-thread-results-qualification.md)
+proves actual A/B/logo-omitted/interface-omitted/restored/cold projections through
+both native inventory and search, retaining false installed/enabled state and
+original correlated frames. Original 22/new 32 exchanges keep all bounds.
+Initial Python-PATH **2/2 setup failures** remain recorded; corrected focused
+**2/0**, **68 ordinary cases twice**, three WebSocket cases at each of three seeds,
+outside consumer **1/0**, all 14 reviewed checks and 1,660 unchanged sources pass.
+Seven exact owners gain scoped evidence: **5,309 implemented / 1,200 missing /
+112 blocked**, unchanged requirements and zero verified. Continue existing
+ordinary turn plugin overrides with fixed process YOLO; prohibited, external
+and full-goal/release gates remain incomplete.
+
 The [stock search projection boundary](native-projection-boundaries.md) now
 closes both Local/InMemory store paths and derived response serialization.
 All 5,259 Rust files/15 key sources and exact nonnull nodes 6133/6164 match the

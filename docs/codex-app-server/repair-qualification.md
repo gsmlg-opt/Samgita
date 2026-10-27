@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [suggested plugin inventory/search reload](native-plugin-and-thread-results-qualification.md)
+retains original frames and independently prescribed optional metadata across
+A/B/omission/restoration/cold reads without installing or executing plugins.
+Initial Python-PATH **2/2 setup failures** remain; focused **2/0**, **68 ordinary
+cases twice**, selected WebSocket cases at three seeds, outside consumer **1/0**,
+all 14 reviewed steps and 1,660 stable source hashes pass. Seven exact owners
+gain scoped evidence: **5,309 implemented / 1,200 missing / 112 blocked**,
+unchanged requirements and zero verified. No prohibited checks or hosted
+workflow runs. Continue ordinary turn plugin overrides with fixed process YOLO;
+full-goal and release gates remain incomplete.
+
 The [stock search projection source boundary](native-projection-boundaries.md)
 closes Local and InMemory store selection and unchanged typed serialization.
 All 5,259 Rust files/15 complete sources and both exact nodes match the pin.

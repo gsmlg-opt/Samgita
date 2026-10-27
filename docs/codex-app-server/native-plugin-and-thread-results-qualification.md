@@ -1,5 +1,95 @@
 # Native plugin and thread result fields
 
+## Suggested plugin interface reload
+
+V471 extends the existing local-plugin search fixture with a second ordinary
+actual-native case. `plugin/installed` explicitly includes an uninstalled local
+suggestion by name; it does not install it. The suggestion must retain
+`installed: false` and `enabled: false`. At each of five warm states, both that
+inventory and `plugin/search` repeat twice: declared dark-logo A, replacement B,
+omitted logo with interface retained, omitted entire interface, and restored A.
+A distinct cold native process repeats A twice through each API. Marketplace
+category stays omitted so no category fallback can synthesize an interface.
+
+Independent literal identity/source/full-interface projections require the
+absolute owned A/B paths, explicit null composerIcon/logo, and the distinction
+between an interface containing null logoDark and an explicitly null interface.
+Source manifests/assets, config, catalog and fixture inputs remain byte-exact
+except for prescribed reversible manifest edits. No loaded thread, rollout,
+inference, plugin installation or content execution occurs. The provider is an
+unused local dependency; original app-server responses come from the exact pin,
+without rewriting or constructing native-success frames.
+
+Exactly seven previously missing physical owners gain scoped evidence:
+
+| Owner | Schema after `v2/` | Exact pointer after `#/definitions/` |
+| --- | --- | --- |
+| 4546 | `PluginInstalledResponse.json` | `PluginInterface/properties/composerIcon/anyOf/1` |
+| 4553 | `PluginInstalledResponse.json` | `PluginInterface/properties/logo/anyOf/1` |
+| 4555 | `PluginInstalledResponse.json` | `PluginInterface/properties/logoDark/anyOf/0` |
+| 4628 | `PluginInstalledResponse.json` | `PluginSummary/properties/interface/anyOf/1` |
+| 4774 | `PluginSearchResponse.json` | `PluginInterface/properties/composerIcon/anyOf/1` |
+| 4781 | `PluginSearchResponse.json` | `PluginInterface/properties/logo/anyOf/1` |
+| 4859 | `PluginSearchResponse.json` | `PluginSummary/properties/interface/anyOf/1` |
+
+The whole-file source binding covers eight official source files and all seven
+canonical nodes, checked independently in each available stable/experimental
+export. `plugins.rs:822–865,915–939` selects installed **or explicitly suggested**
+entries. Its `188–212` converter preserves optional interfaces; `99–119` copies
+visual resources. `core-plugins/src/marketplace.rs:530–573` reads local manifest
+metadata and `966–976` defines category fallback. The manager's current-context
+listing and `plugin/src/manifest.rs` supply the actual metadata/resource mapping.
+Binding `/tmp/samgita-v471-plugin-binding/source.json`, SHA256
+`1069ca0054b4b362b829e142c231caae8b5435a4de112167e59ee31d5826465b`.
+The immutable source/executable/archive pin below is unchanged.
+
+The existing case retains its exact 22 original request/response exchanges.
+The new case requires exactly 32 per direction, each original response captured
+before Session decoding and matched to its one request ID. The existing capture
+bound remains 32/direction, 4KiB outgoing/64KiB incoming and 1MiB combined; all
+event/RPC/test bounds, per-phase restoration and checked owned shutdown remain.
+Fixed process YOLO is setup only. No security, permission, approval or credential
+assertions run. No runtime/shared-helper change or bound increase is introduced.
+
+The first focused command accidentally replaced PATH instead of prepending the
+verified Elixir/OTP paths, hiding Python: **2/2 setup failures**, before any native
+process. Preserved log `/tmp/samgita-v471-plugin-reload-501432.log`, SHA256
+`8ce2f0d3660a393fe0aab12c95815d7ef45981f5cf40d7addf1883c3fa468b18`.
+Correcting only the command environment gives **2/0**, seed `501432`:
+
+```sh
+mix test test/native_plugin_search_logo_test.exs --warnings-as-errors --seed 501432
+```
+
+Test SHA256 `41306510595c8c2671ad8090def53886d621c276b936cbfcb8a3894d48737b5c`;
+final log `/tmp/samgita-v471-plugin-reload-final-501432.log`, SHA256
+`8a244cced2d1a8618affd5d0ddf5397a457e198a1d72ae3aad6c2ab310557601`.
+The reviewed selection remains 43 files and grows to 68 cases. Final combined
+source passes **68/0** at each seed `501432`/`987654` (112.742/113.042 seconds),
+three selected WebSocket cases at each of three seeds, and the outside consumer
+**1/0**. All **14** reviewed steps pass: scoped/root format, warning-free driver
+and umbrella compile, inventory consistency, strict Credo, forced Dialyzer and
+assets included. Assets retains the known Bun version warning with exit zero.
+All **1,660** guarded sources remain exact throughout the run.
+
+Final commands/logs `/tmp/samgita-ordinary-v471/`; results/source SHA256
+`d4b26e297eae37be0f83272001421b55e2ffe91df0a19bcddea0a82172a7a9c0` /
+`e91e1249a89d5b97464767743a2eed73dbbbefd85f4fe041b6efe6e9948cb7c8`;
+plan SHA256 `93a6bc90dd9cc93ed5172a372bcabc83f0ae936aca2cfb33680abf21fe391df4`;
+reviewed fingerprint
+`68be417c3eaf46b88104f0fcaeff045e8e77493f4185d63633db424d1044bf26`.
+
+Contracts: **5,309 implemented / 1,200 missing / 112 blocked**; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Other
+optional branches, policies, full methods, OS/transport/backend/external success,
+prohibited/broad/hosted checks, A11, full compatibility and release remain
+incomplete. No publication or deployment. Earlier evidence below retains its
+original source/counts; it does not qualify this new lifecycle.
+Continue the existing ordinary five-case turn plugin override profile with
+fixed process YOLO before binding its separate initial thread-result owner.
+
+## Earlier V397 scope
+
 V397 starts from `72d8776fc6757f86ec661ef31638baa365cb8b93` on `main`.
 Three independently prescribed ordinary result contracts gain scoped evidence:
 
