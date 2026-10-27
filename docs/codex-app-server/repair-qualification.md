@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [process request-ID correction](process-request-ids-qualification.md) binds
+only 1064/1069 to unchanged original-frame and real child input/EOF/output/exit
+assertions, enabled in both V450 **58/0** runs. All 417 functional sources/nine
+logs and 825 static sources/four logs stay exact; no new test runs. Counts:
+**5,276 implemented / 1,265 missing / 80 blocked**, unchanged requirements and
+zero verified. Uncalled kill/resize/control IDs remain unqualified. Continue
+existing command request bytes; prohibited/full-goal gates remain incomplete.
+
 The [fuzzy start/update ID correction](fuzzy-session-request-ids-qualification.md)
 binds only 1139/1149 from unchanged original-frame and independent scanner/query
 evidence. Both V450 **58/0** runs enable it; 417 functional sources/nine logs and

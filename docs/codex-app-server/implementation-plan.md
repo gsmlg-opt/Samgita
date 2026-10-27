@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [process spawn/stdin ID correction](process-request-ids-qualification.md)
+binds only 1064/1069 to unchanged original-frame/real-child stdin/EOF/output/exit
+evidence, already enabled in both V450 **58/0** runs. All 417 functional
+sources/nine logs and 825 static sources/four logs remain exact; eight native
+files/two nodes/parent identities match the pin. No new test runs. Counts:
+**5,276 implemented / 1,265 missing / 80 blocked**, unchanged requirements and
+zero verified. Kill/resize and command control IDs stay unqualified. Continue
+the existing command request-byte witness; prohibited/full-goal gates stay open.
+
 The [fuzzy-session ID correction](fuzzy-session-request-ids-qualification.md)
 binds 1139/1149 independently to existing original-frame/scanner-root/query-result
 oracles. The unchanged file is enabled in both V450 **58/0** runs; all 417
