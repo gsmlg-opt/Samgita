@@ -3,6 +3,7 @@ defmodule SamgitaCodexDriver.NativeFuzzyNotificationEnvelopeTest do
   use ExUnit.Case, async: false
 
   alias SamgitaCodexDriver.{NativeLaunchFixture, Session, StdioSessionFixture}
+  alias SamgitaProtocolCodex.{Error, Schema, Wire}
 
   @moduletag :real_codex
   @moduletag timeout: 30_000
@@ -115,6 +116,263 @@ defmodule SamgitaCodexDriver.NativeFuzzyNotificationEnvelopeTest do
           {"owned-fuzzy-envelope-subset 雪", true}
         ] do
       run_profile(ctx, id, omit)
+    end
+  end
+
+  for {label, warm_ids, cold_ids} <- [
+        {"negative integer", {-5_061_134, -5_061_154}, {-5_062_134, -5_062_154}},
+        {"positive integer", {5_061_134, 5_061_154}, {5_062_134, 5_062_154}},
+        {"Unicode string", {"owned-search-λ🙂-warm", "owned-stop-雪🙂-warm"},
+         {"owned-search-λ🙂-cold", "owned-stop-雪🙂-cold"}}
+      ] do
+    @tag warm_ids: warm_ids, cold_ids: cold_ids
+    test "native fuzzy #{label} IDs retain real ranking populated stop and cold recovery", ctx do
+      profile = profile(ctx, "owned-typed-fuzzy-session-λ🙂", false)
+      frozen_code = frozen_code_inputs()
+      warm = run_typed_native(profile, ctx.warm_ids, :warm)
+      prefix = capture(profile)
+      assert capture(profile) === prefix
+      assert_code_inputs(frozen_code)
+
+      cold = run_typed_native(profile, ctx.cold_ids, :cold)
+      refute warm.native === cold.native
+      refute warm.pid === cold.pid
+      assert Enum.take(capture(profile), length(prefix)) === prefix
+      assert_code_inputs(frozen_code)
+      assert_inputs(profile)
+    end
+  end
+
+  defp run_typed_native(profile, {query_id, stop_id}, mode) do
+    before = length(capture(profile))
+    session = start(profile)
+    profile = Map.put(profile, :generation, Session.status(session.pid).generation)
+    assert {:ok, []} = Session.drain(session.pid, 128)
+
+    if mode === :cold do
+      assert_missing_session(profile, session.pid, "owned-cold-absence-probe")
+    end
+
+    expected = %{"files" => expected_files(profile)}
+    params = %{"query" => "abe", "roots" => [profile.tree]}
+    assert call(profile, session.pid, "fuzzyFileSearch", params, query_id) === expected
+    assert {:ok, []} = Session.drain(session.pid, 128)
+
+    # Neither cold initialization nor a one-shot search re-creates the old
+    # registered session or replays public session notifications.
+    assert capture(profile)
+           |> Enum.drop(before)
+           |> Enum.filter(&(&1.direction === :in and Map.has_key?(&1.wire, "method"))) === []
+
+    before_start = System.system_time(:millisecond)
+
+    assert call(profile, session.pid, "fuzzyFileSearch/sessionStart", %{
+             "sessionId" => profile.id,
+             "roots" => [profile.tree]
+           }) === %{}
+
+    complete_params = %{"sessionId" => profile.id}
+    {idle, events} = await_notice(session.pid, @completed, complete_params, [], 0)
+
+    assert_notice(
+      profile,
+      idle,
+      @completed,
+      complete_params,
+      before_start,
+      System.system_time(:millisecond)
+    )
+
+    before_query = System.system_time(:millisecond)
+
+    assert call(profile, session.pid, "fuzzyFileSearch/sessionUpdate", %{
+             "sessionId" => profile.id,
+             "query" => "abe"
+           }) === %{}
+
+    ranked_params = %{
+      "sessionId" => profile.id,
+      "query" => "abe",
+      "files" => expected_files(profile)
+    }
+
+    {ranked, events} = await_notice(session.pid, @updated, ranked_params, events, idle.sequence)
+
+    assert_notice(
+      profile,
+      ranked,
+      @updated,
+      ranked_params,
+      before_query,
+      System.system_time(:millisecond)
+    )
+
+    assert_original_order(profile, [idle, ranked])
+    assert_inputs(profile)
+
+    # The exact populated snapshot proves a real registered usable session.
+    # Stop removes that entry; already spawned native notices may arrive late.
+    stop = %{
+      "id" => stop_id,
+      "method" => "fuzzyFileSearch/sessionStop",
+      "params" => %{"sessionId" => profile.id}
+    }
+
+    assert call(profile, session.pid, stop["method"], stop["params"], stop_id) === %{}
+    assert_typed_stop_after_snapshot(profile, before, ranked.wire, stop)
+    assert_missing_session(profile, session.pid, "owned-after-stop-probe")
+    assert call(profile, session.pid, "fuzzyFileSearch", params) === expected
+
+    assert call(profile, session.pid, "thread/loaded/list", %{}) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+
+    assert diagnostics(profile, session.pid) === session.native
+    events = drain(session.pid, events)
+    assert_event_bounds(profile, events)
+    assert Session.uncertain_operations(session.pid) === []
+    assert Session.interaction_outcomes(session.pid) === []
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(session.pid)
+
+    close_resources(session.pid, session.connection, session.native_identity)
+    # Validate bounded late original notices too, without a stop/worker fence.
+    assert_typed_inventory(profile, before, mode, query_id, stop_id, before_start)
+    assert_inputs(profile)
+    %{pid: session.pid, native: session.native}
+  end
+
+  defp assert_missing_session(profile, pid, query) do
+    wire = %{
+      "id" => request_id(),
+      "method" => "fuzzyFileSearch/sessionUpdate",
+      "params" => %{"sessionId" => profile.id, "query" => query}
+    }
+
+    expected = %{
+      "id" => wire["id"],
+      "error" => %{
+        "code" => -32_600,
+        "message" => "fuzzy file search session not found: #{profile.id}"
+      }
+    }
+
+    assert {:error, %Error{code: :upstream_error, wire: ^expected}} =
+             Session.request_native(pid, wire, timeout_ms: 5_000)
+
+    assert_original_pair(profile, wire, expected)
+  end
+
+  defp assert_typed_stop_after_snapshot(profile, before, ranked, stop) do
+    records = capture(profile) |> Enum.drop(before) |> Enum.with_index()
+
+    assert [{_, stop_index}] =
+             Enum.filter(records, fn {record, _} ->
+               record.direction === :out and record.wire === stop
+             end)
+
+    assert Enum.any?(records, fn {record, index} ->
+             record.direction === :in and record.wire === ranked and index < stop_index
+           end)
+  end
+
+  defp assert_typed_inventory(profile, before, mode, query_id, stop_id, lower) do
+    records = Enum.drop(capture(profile), before)
+    outgoing = Enum.filter(records, &(&1.direction === :out))
+    assert Enum.map(outgoing, & &1.wire["method"]) === typed_methods(mode)
+    assert length(outgoing) === if(mode === :cold, do: 12, else: 11)
+    requests = Enum.filter(outgoing, &Map.has_key?(&1.wire, "id"))
+    assert length(Enum.uniq_by(requests, & &1.wire["id"])) === length(requests)
+    responses = Enum.filter(records, &(&1.direction === :in and Map.has_key?(&1.wire, "id")))
+    assert length(responses) === length(requests)
+
+    for request <- requests do
+      assert [response] = Enum.filter(responses, &(&1.wire["id"] === request.wire["id"]))
+      assert_original_pair(profile, request.wire, response.wire)
+    end
+
+    assert [query, control] = Enum.filter(outgoing, &(&1.wire["method"] === "fuzzyFileSearch"))
+    params = %{"query" => "abe", "roots" => [profile.tree]}
+    assert query.wire === %{"id" => query_id, "method" => "fuzzyFileSearch", "params" => params}
+    assert control.wire["params"] === params and is_binary(control.wire["id"])
+    assert [stop] = Enum.filter(outgoing, &(&1.wire["method"] === "fuzzyFileSearch/sessionStop"))
+
+    assert stop.wire === %{
+             "id" => stop_id,
+             "method" => "fuzzyFileSearch/sessionStop",
+             "params" => %{"sessionId" => profile.id}
+           }
+
+    upper = System.system_time(:millisecond)
+
+    for record <- records, record.direction === :in and Map.has_key?(record.wire, "method") do
+      assert record.wire["method"] in [@updated, @completed]
+      assert record.wire["params"]["sessionId"] === profile.id
+      assert Enum.sort(Map.keys(record.wire)) === ["emittedAtMs", "method", "params"]
+      emitted = record.wire["emittedAtMs"]
+      assert is_integer(emitted) and lower <= emitted and emitted <= upper
+      assert JSON.decode!(record.encoded) === record.wire
+      assert {:ok, decoded} = Wire.decode(record.encoded, max_depth: 32)
+      assert decoded === record.wire
+
+      assert :ok =
+               Schema.validate(protocol_schema("ServerNotification.json"), record.wire,
+                 max_depth: 32
+               )
+    end
+  end
+
+  defp typed_methods(mode) do
+    startup = ~w(initialize initialized server/diagnostics)
+
+    startup =
+      if mode === :cold, do: startup ++ ["fuzzyFileSearch/sessionUpdate"], else: startup
+
+    startup ++
+      ~w(fuzzyFileSearch fuzzyFileSearch/sessionStart fuzzyFileSearch/sessionUpdate fuzzyFileSearch/sessionStop fuzzyFileSearch/sessionUpdate fuzzyFileSearch thread/loaded/list server/diagnostics)
+  end
+
+  defp assert_original_pair(profile, wire, response) do
+    assert [sent, received] = Enum.filter(capture(profile), &(&1.wire["id"] === wire["id"]))
+    assert sent.direction === :out and received.direction === :in
+    assert sent.wire === wire and sent.encoded === JSON.encode!(wire)
+    assert received.wire === response and JSON.decode!(received.encoded) === response
+    assert {:ok, decoded_request} = Wire.decode(sent.encoded, max_depth: 32)
+    assert decoded_request === wire
+    assert {:ok, decoded_response} = Wire.decode(received.encoded, max_depth: 32)
+    assert decoded_response === response
+    assert Enum.sort(Map.keys(response)) in [["id", "result"], ["error", "id"]]
+    assert :ok = Schema.validate(protocol_schema("ClientRequest.json"), wire, max_depth: 32)
+  end
+
+  defp protocol_schema(relative) do
+    :samgita_protocol_codex
+    |> :code.priv_dir()
+    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> File.read!()
+    |> JSON.decode!()
+  end
+
+  defp frozen_code_inputs do
+    Map.new(
+      [
+        __ENV__.file,
+        Path.join(__DIR__, "support/native_launch_fixture.ex"),
+        Path.join(__DIR__, "support/stdio_session_fixture.ex")
+      ],
+      fn path ->
+        assert File.stat!(path).size <= 1_048_576
+        {path, File.read!(path)}
+      end
+    )
+  end
+
+  defp assert_code_inputs(frozen) do
+    for {path, bytes} <- frozen do
+      assert File.stat!(path).size <= 1_048_576
+      assert File.read!(path) === bytes
     end
   end
 
@@ -382,14 +640,18 @@ defmodule SamgitaCodexDriver.NativeFuzzyNotificationEnvelopeTest do
     native
   end
 
-  defp call(profile, pid, method, params) do
-    id = request_id()
+  defp call(profile, pid, method, params, id \\ nil) do
+    id = id || request_id()
     wire = %{"id" => id, "method" => method, "params" => params}
 
     assert {:ok, %{"id" => ^id, "result" => result} = response} =
              Session.request_native(pid, wire, timeout_ms: 5_000)
 
     assert_exchange(profile, wire, response)
+
+    if method in ~w(fuzzyFileSearch fuzzyFileSearch/sessionStop),
+      do: assert_original_pair(profile, wire, response)
+
     result
   end
 

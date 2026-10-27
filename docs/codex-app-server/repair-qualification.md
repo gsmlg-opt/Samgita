@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary fuzzy populated-stop/cold-recovery unit](ordinary-fuzzy-session-control-qualification.md)
+passes **61 files / 120 actual-native cases twice**, all three selected
+WebSocket seeds, outside consumer **1/0** and all fourteen reviewed checks.
+All1,680 guarded sources stay unchanged. The only failed check was strict
+Credo complexity; extracting the expected outgoing list preserves every
+assertion/bound. Complete native ranking, actual populated registry stop,
+exact absent-session error and real cold recreation bind two precise owners
+through nine archive-equal producers. Contracts: **5,477 implemented / 1,014
+missing / 130 blocked**, unchanged requirements and zero verified. Continue
+the reviewed ordinary idle injection/durable-history/cold-continuation case;
+its scratch implementation remains unrun. No prohibited/hosted checks run;
+A11, unavailable emitter/external/OS/full-goal and release gates stay incomplete.
+
 The [installed-plugin Hook, Unicode warning and MCP control-ID unit](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
 passes **61 files / 117 actual-native cases twice**, three selected WebSocket
 seeds including the original `455834`, outside consumer **1/0** and all fourteen

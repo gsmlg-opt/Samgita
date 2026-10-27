@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary fuzzy populated-stop/cold-recovery unit](ordinary-fuzzy-session-control-qualification.md)
+passes all fourteen reviewed functional checks: **61 files / 120 actual-native
+cases twice**, selected WebSocket cases at three seeds and outside consumer
+**1/0**, with1,680 unchanged guarded sources. The first strict-Credo failure
+is corrected by extracting only the expected-method list; every assertion and
+deadline stays. Nine archive-equal producers bind two physical owners:
+**5,477 implemented / 1,014 missing / 130 blocked contracts**, unchanged
+requirements, zero verified. Registry removal is explicitly separate from
+worker join or a notification fence. Continue the reviewed idle injection
+durable-history/cold-continuation case. Prohibited/hosted, A11, unavailable
+external/OS/full-goal and release gates remain incomplete.
+
 The [installed-plugin Hook, Unicode warning and MCP control-ID unit](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
 passes all **14 reviewed functional checks**, including **61 files / 117
 actual-native cases at both seeds**, three WebSocket seeds and outside consumer

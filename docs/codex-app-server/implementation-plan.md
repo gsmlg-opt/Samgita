@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary fuzzy session unit](ordinary-fuzzy-session-control-qualification.md)
+passes all fourteen reviewed checks: **61 files / 120 actual-native cases at
+both seeds**, three WebSocket seeds, outside consumer **1/0**, static/build
+checks and1,680 unchanged guarded sources. Complete authored ranked results,
+real populated registry removal, exact subsequent absence and distinct cold
+recreation bind exactly two physical ID owners through nine complete immutable
+producers. The recorded strict-Credo correction changes only expected-list
+construction. Contracts: **5,477 implemented / 1,014 missing / 130 blocked**;
+requirements unchanged, zero verified. Next: integrate the reviewed ordinary
+idle `thread/inject_items` ACK/durable-record/cold-provider-input lifecycle;
+its scratch implementation has no runtime acceptance yet. Active injection
+queues differently and receives no blanket durable-ACK claim. Prohibited/
+hosted, A11, external/OS/full-goal and release gates stay incomplete.
+
 The [V502–V505 integrated functional record](ordinary-mcp-control-ids-qualification.md#final-combined-source-qualification-for-v502v505)
 passes all fourteen reviewed checks: **61 files / 117 actual-native cases at
 both seeds**, three selected WebSocket seeds, outside consumer **1/0** and all

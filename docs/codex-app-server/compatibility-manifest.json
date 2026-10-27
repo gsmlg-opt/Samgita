@@ -58546,27 +58546,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-fuzzy-session-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/168/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual warm/cold native one-shot queries preserve negative/positive integer and Unicode original IDs, complete independently prescribed ranked files/scores/indices/root/type/name, original request/response bytes, exact correlation and strict codec/schema. Distinct cold process, frozen inputs/prefix, loaded-thread absence and full owned cleanup are required. Only this physical request ID; no sibling/alias, other transport or full-method credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/168/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -59204,27 +59212,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-fuzzy-session-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/171/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual warm/cold typed-ID stops each follow a genuine registered session and original nonempty ranked snapshot. Exact original stop ACK, subsequent native missing-session error and independent surviving one-shot query prove populated registry removal. All late original notices remain bounded/validated. Cold absence/recreation and owned cleanup required; no worker-join, busy-walker, post-ACK notification fence, sibling isolation or alias credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/171/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_notification_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
