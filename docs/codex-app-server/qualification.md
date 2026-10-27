@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [active and historical injection unit](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional checks**, including **63 files / 124
+actual-native cases at both seeds**, three selected WebSocket seeds, outside
+consumer **1/0** and1,682 unchanged guarded sources. Complete immutable-source
+binding covers22 producer files, original idle declarations and every retained
+active assertion. Native queued ACK differs from durable consumption; interrupted
+queues stay absent across cold resume while earlier history survives. Matched
+historical tool calls/results remain evidence without execution replay. Counts:
+**5,482 implemented / 1,009 missing / 130 blocked contracts**, unchanged
+requirements and zero verified. Remaining ordinary variants, prohibited/hosted
+gates, A11, unavailable emitter/external/OS and full compatibility remain open.
+No publication or release is claimed.
+
 The [ordinary fuzzy populated-stop/cold-recovery unit](ordinary-fuzzy-session-control-qualification.md)
 passes all fourteen reviewed functional checks: **61 files / 120 actual-native
 cases twice**, selected WebSocket cases at three seeds and outside consumer

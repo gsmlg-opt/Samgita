@@ -38,6 +38,80 @@ defmodule SamgitaCodexDriver.NativeInjectedHistoryLifecycleTest do
   @answer "Deterministic local fixture answer"
   @inject_id "owned-idle-injection-v508-λ🙂"
 
+  # Independent authored request, durable and provider representations. The
+  # result's supplied create_time is preserved by native output stamping.
+  @historical_pair [
+    %{
+      "type" => "function_call",
+      "id" => "fc_v512_historical_λ",
+      "name" => "fixture_lookup",
+      "arguments" => ~s({"key":"historical-λ"}),
+      "call_id" => "owned-historical-call-v512-雪",
+      "internal_chat_message_metadata_passthrough" => %{
+        "turn_id" => "owned-historical-source-v512"
+      }
+    },
+    %{
+      "type" => "function_call_output",
+      "id" => "fco_v512_historical_雪",
+      "call_id" => "owned-historical-call-v512-雪",
+      "output" => "Historical lookup result 雪🙂\nPreserve this exact output.",
+      "internal_chat_message_metadata_passthrough" => %{
+        "turn_id" => "owned-historical-source-v512",
+        "create_time" => 1_760_000_000.125
+      }
+    }
+  ]
+  @durable_historical_pair [
+    %{
+      "type" => "function_call",
+      "id" => "fc_v512_historical_λ",
+      "name" => "fixture_lookup",
+      "arguments" => ~s({"key":"historical-λ"}),
+      "call_id" => "owned-historical-call-v512-雪",
+      "internal_chat_message_metadata_passthrough" => %{
+        "turn_id" => "owned-historical-source-v512"
+      }
+    },
+    %{
+      "type" => "function_call_output",
+      "id" => "fco_v512_historical_雪",
+      "call_id" => "owned-historical-call-v512-雪",
+      "output" => "Historical lookup result 雪🙂\nPreserve this exact output.",
+      "internal_chat_message_metadata_passthrough" => %{
+        "turn_id" => "owned-historical-source-v512",
+        "create_time" => 1_760_000_000.125
+      }
+    }
+  ]
+  @provider_historical_pair [
+    %{
+      "type" => "function_call",
+      "id" => "fc_v512_historical_λ",
+      "name" => "fixture_lookup",
+      "arguments" => ~s({"key":"historical-λ"}),
+      "call_id" => "owned-historical-call-v512-雪"
+    },
+    %{
+      "type" => "function_call_output",
+      "id" => "fco_v512_historical_雪",
+      "call_id" => "owned-historical-call-v512-雪",
+      "output" => "Historical lookup result 雪🙂\nPreserve this exact output."
+    }
+  ]
+  @historical_input "Continue once from historical lookup evidence β🙂"
+  @historical_lookup %{
+    "type" => "function",
+    "name" => "fixture_lookup",
+    "description" => "Fixed synthetic lookup with an explicit client response",
+    "inputSchema" => %{
+      "type" => "object",
+      "properties" => %{"key" => %{"type" => "string"}},
+      "required" => ["key"],
+      "additionalProperties" => false
+    }
+  }
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -260,6 +334,88 @@ defmodule SamgitaCodexDriver.NativeInjectedHistoryLifecycleTest do
 
     assert ModelFixture.requests(ctx.fixture) === [request]
     assert assert_durable_items(path) === original
+    assert Enum.take(captured(ctx), length(prefix)) === prefix
+    assert_capture(ctx)
+    assert_inputs(ctx)
+    assert File.ls!(ctx.fixture.workspace) === []
+  end
+
+  test "historical call and result remain durable evidence without replaying execution", ctx do
+    warm = start_native(ctx, 1)
+
+    created =
+      call(ctx, warm, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "ephemeral" => false,
+        "dynamicTools" => [@historical_lookup]
+      })["thread"]
+
+    thread = Map.fetch!(created, "id")
+    path = Map.fetch!(created, "path")
+    assert is_binary(thread) and byte_size(thread) > 0
+    assert is_binary(path) and String.starts_with?(path, ctx.fixture.codex_home <> "/")
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert_idle(warm.pid)
+
+    id = "owned-historical-injection-v512-λ🙂"
+    params = %{"threadId" => thread, "items" => @historical_pair}
+    wire = %{"id" => id, "method" => "thread/inject_items", "params" => params}
+    result = call(ctx, warm, wire["method"], params, id)
+    assert result === %{}
+    assert_injection_contract(wire, result)
+
+    # Inspect the actual idle append immediately after its original native ACK,
+    # before any following RPC or process closure can cause a checkpoint.
+    original_rows = assert_historical_rows(path)
+    warm_events = drain(warm, [])
+    assert_no_turn(warm_events)
+    assert_no_historical_execution(warm.pid, warm_events)
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert_inputs(ctx)
+    close_native(warm)
+
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert assert_historical_rows(path) === original_rows
+    prefix = captured(ctx)
+    cold = start_native(ctx, 2)
+    refute cold.pid === warm.pid
+    refute cold.native === warm.native
+
+    assert call(ctx, cold, "thread/loaded/list", %{}) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+
+    resumed = call(ctx, cold, "thread/resume", %{"threadId" => thread})["thread"]
+    assert resumed["id"] === thread and resumed["path"] === path
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert assert_historical_rows(path) === original_rows
+    assert Enum.take(captured(ctx), length(prefix)) === prefix
+    cold_events = drain(cold, [])
+    assert_no_turn(cold_events)
+    assert_no_historical_execution(cold.pid, cold_events)
+
+    turn =
+      call(ctx, cold, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => @historical_input}]
+      })["turn"]["id"]
+
+    assert is_binary(turn) and byte_size(turn) > 0
+    events = await_turn(cold, turn, cold_events, now() + 5000)
+    assert_completed_turn(events, thread, turn)
+    assert_no_historical_execution(cold.pid, events)
+    assert [request] = ModelFixture.requests(ctx.fixture)
+    assert_historical_provider_input(request)
+    assert assert_historical_rows(path) === original_rows
+    assert Enum.take(captured(ctx), length(prefix)) === prefix
+    assert_inputs(ctx)
+    close_native(cold)
+
+    assert ModelFixture.requests(ctx.fixture) === [request]
+    assert assert_historical_rows(path) === original_rows
     assert Enum.take(captured(ctx), length(prefix)) === prefix
     assert_capture(ctx)
     assert_inputs(ctx)
@@ -544,6 +700,80 @@ defmodule SamgitaCodexDriver.NativeInjectedHistoryLifecycleTest do
 
   defp expected_methods(2),
     do: ~w(initialize initialized server/diagnostics thread/loaded/list thread/resume turn/start)
+
+  defp assert_historical_rows(path) do
+    assert File.stat!(path).size <= 1_048_576
+    rows = path |> File.read!() |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+    assert length(rows) <= 128
+    response_rows = Enum.filter(rows, &(&1["type"] === "response_item"))
+    payloads = Enum.map(response_rows, &Map.fetch!(&1, "payload"))
+    assert_historical_pair(payloads, @durable_historical_pair)
+    selected = Enum.filter(response_rows, &historical_call_id?(&1["payload"]))
+    assert length(selected) === 2
+    selected
+  end
+
+  defp assert_historical_pair(items, expected) do
+    ids = ["fc_v512_historical_λ", "fco_v512_historical_雪"]
+    assert Enum.filter(items, &(&1["id"] in ids)) === expected
+    assert Enum.filter(items, &historical_call_id?/1) === expected
+
+    # Independent arguments/output selection also catches a duplicate or altered
+    # native record that lost its supplied item ID or call association.
+    assert Enum.filter(items, fn item ->
+             item["type"] === "function_call" and
+               item["arguments"] === ~s({"key":"historical-λ"})
+           end) === [hd(expected)]
+
+    assert Enum.filter(items, fn item ->
+             item["type"] === "function_call_output" and
+               item["output"] === "Historical lookup result 雪🙂\nPreserve this exact output."
+           end) === [List.last(expected)]
+  end
+
+  defp historical_call_id?(item),
+    do:
+      item["type"] in ["function_call", "function_call_output"] and
+        item["call_id"] === "owned-historical-call-v512-雪"
+
+  defp assert_historical_provider_input(request) do
+    assert request["model"] === "mock-model"
+    assert byte_size(JSON.encode!(request)) <= 1_048_576
+    input = Map.fetch!(request, "input")
+    assert is_list(input) and length(input) <= 128
+    assert_historical_pair(input, @provider_historical_pair)
+
+    assert [user] =
+             Enum.filter(input, fn item ->
+               item["role"] === "user" and
+                 item["content"] === [%{"type" => "input_text", "text" => @historical_input}]
+             end)
+
+    assert is_binary(user["id"]) and byte_size(user["id"]) > 0
+
+    assert Map.delete(user, "id") === %{
+             "type" => "message",
+             "role" => "user",
+             "content" => [%{"type" => "input_text", "text" => @historical_input}]
+           }
+
+    call = Enum.find_index(input, &(&1["id"] === "fc_v512_historical_λ"))
+    output = Enum.find_index(input, &(&1["id"] === "fco_v512_historical_雪"))
+    current = Enum.find_index(input, &(&1 === user))
+    assert Enum.all?([call, output, current], &is_integer/1)
+    assert call < output and output < current
+  end
+
+  defp assert_no_historical_execution(pid, events) do
+    assert_idle(pid)
+    assert Session.interaction_outcomes(pid) === []
+    assert Enum.all?(events, &(&1.kind === :notification))
+
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] in ["item/started", "item/completed"] and
+               get_in(event.wire, ["params", "item", "type"]) === "dynamicToolCall"
+           end)
+  end
 
   defp captured(ctx) do
     Agent.get(ctx.capture, &Enum.reverse(&1.records))

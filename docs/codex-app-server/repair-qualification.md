@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [combined active/history injection record](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
+passes **63 files / 124 actual-native cases twice**, selected WebSocket cases
+at all three seeds, outside consumer **1/0** and all fourteen reviewed checks.
+All1,682 guarded sources stay exact. Twenty-two immutable producers bind complete
+FIFO/cancellation/cold historical preservation and matched historical tool pairs
+without fresh execution. The static comparator correction and original Credo
+failure remain recorded;40 original idle declarations and162 active assertions
+stay unchanged. Counts: **5,482 implemented / 1,009 missing / 130 blocked**,
+unchanged requirements and zero verified. Continue exact source-index candidates
+and remaining ordinary behavior. Prohibited/hosted, A11, unavailable emitters/
+external/OS, full compatibility and release stay incomplete.
+
 The [ordinary active injection unit](ordinary-active-injected-history-qualification.md)
 passes focused **2/0 twice** and strict Credo across595 sources. Real callback
 bracketing proves ACK/consumption differences, FIFO records and interrupted-only
@@ -22,8 +34,8 @@ queue removal while retaining complete original history across cold resume.
 The capture-helper complexity failure and unchanged-assertion extraction remain
 recorded. Counts stay5,482 implemented/1,009 missing/130 blocked contracts,
 unchanged requirements and zero verified. The reviewed ordinary selection gains
-two cases; combined-source qualification follows the next historical call/output
-pair. Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility
+two cases; combined-source qualification is included in the final historical
+call/output-pair record above. Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility
 and release remain incomplete.
 
 The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)

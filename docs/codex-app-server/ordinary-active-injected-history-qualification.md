@@ -96,7 +96,10 @@ Logs `/tmp/samgita-v510-focus-501432.log` and
 `/tmp/samgita-v510-focus-987654.log` have SHA256
 `a1b83b3273c7792e9b01d78031221328b04ada2f159b45df7958b4a7f20c926b` and
 `98a6f871d508197adf1eb474a9b1232f20cf5119dd5a52a2c644bfcdcde6569c`.
-Combined-source qualification and final binding follow separately.
+The [final combined-source record](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
+passes all14 reviewed checks, including **124 actual-native cases twice**,
+selected WebSocket seeds, outside consumer **1/0** and1,682 unchanged source
+hashes. Its22 immutable producer files include this unit's21-file chain.
 
 The first strict-Credo check fails solely on capture-helper complexity13,
 maximum9: `/tmp/samgita-v510-strict-credo.log`, SHA256

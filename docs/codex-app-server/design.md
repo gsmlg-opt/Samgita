@@ -157,6 +157,13 @@ cold resume. Local callback write remains sent-unconfirmed despite later termina
 effects. Other failure/item/transport variants remain separate, and ambiguous
 mutations never become automatic retries.
 
+Imported native tool-call syntax remains historical evidence. The
+[historical call/result profile](ordinary-historical-tool-injection-qualification.md)
+requires immediate full durable records, confirmed cold recovery, exact next
+provider input and zero replayed callback/execution. New provider output enters
+Codex's tool router separately from the history-injection path. Neither imported
+results nor completed native turns can confer Samgita Task acceptance.
+
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
 not Repo, web, orchestration or platform configuration. The pure schema layer

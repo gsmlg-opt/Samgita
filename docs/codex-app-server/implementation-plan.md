@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [combined active/history injection record](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
+passes all fourteen reviewed functional checks: **63 files / 124 actual-native
+cases at both seeds**, selected WebSocket cases at three seeds, outside consumer
+**1/0**, compile/format/Credo/Dialyzer/assets and1,682 identical source hashes.
+Twenty-two complete immutable producers bind active FIFO/interruption, original
+history preservation and historical call/result injection without execution.
+The40 prior idle declarations and162 active assertions remain identical after
+the additions/helper extraction. Counts stay **5,482 implemented / 1,009 missing
+/ 130 blocked contracts**, requirements **462 implemented / 12 missing /
+11 blocked**, zero verified. Continue precise existing-evidence indexing and
+remaining reachable ordinary variants. Source-only candidates receive no credit
+before their exact source/runtime binding. Prohibited/hosted, A11, unavailable
+emitters/external/OS, full compatibility and release remain incomplete.
+
 The [ordinary active injection unit](ordinary-active-injected-history-qualification.md)
 passes focused **2/0 at both fixed seeds** and strict Credo across595 files.
 The genuine held tool callback brackets volatile ACKs; explicit reply produces
@@ -29,9 +43,9 @@ earlier user/call rows without resurrecting the queue. Local callback response
 stays sent-unconfirmed. The unchanged capture assertions are extracted after
 one recorded complexity failure; no bound or runtime behavior changes. Exactly
 the existing five owners gain supplemental evidence, with counts unchanged.
-The reviewed selection now names63 files/123 cases; final combined-source
-qualification remains pending alongside the next historical call/output-pair
-injection profile. No prohibited or hosted check runs; all broader gates remain.
+The subsequent historical call/output-pair profile raises the reviewed selection
+to63 files/124 cases; its final combined-source record above includes this unit.
+No prohibited or hosted check runs; all broader gates remain.
 
 The [ordinary idle history-injection unit](ordinary-injected-history-qualification.md)
 passes **62 files / 121 actual-native cases twice**, three selected WebSocket

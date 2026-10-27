@@ -6573,7 +6573,8 @@
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/inject_items",
@@ -6582,7 +6583,8 @@
       "limitations": [
         "Positive selected behavior: Injected assistant output-text message appears exactly in the next native model request with generated ID; only one provider request occurs. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:327-343 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "Ordinary idle profile qualifies two prepared assistant messages immediately after native ACK, confirmed shutdown and exact cold provider input. Only the selected raw-item/transport variants are evidenced; an empty ACK alone is not a blanket durability or processing-completion guarantee.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "params": {
         "$ref": "#/definitions/ThreadInjectItemsParams"
@@ -20255,7 +20257,8 @@
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/inject_items",
@@ -20264,7 +20267,8 @@
       "limitations": [
         "Positive selected behavior: Injected assistant output-text message appears exactly in the next native model request with generated ID; only one provider request occurs. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:327-343 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "Ordinary idle profile qualifies two prepared assistant messages immediately after native ACK, confirmed shutdown and exact cold provider input. Only the selected raw-item/transport variants are evidenced; an empty ACK alone is not a blanket durability or processing-completion guarantee.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "prerequisites": [
         "initialized"
@@ -67773,14 +67777,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/65",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Actual idle injection of two independently authored assistant items performs exactly one native call, receives original correlated empty result, and immediately checks complete actual prepared durable records with no intervening flush/read RPC or inference. Confirmed shutdown, cold resume and exact one-request provider continuation preserve content/order/identity and original rows. Outer request only; no active-queue durable-ACK, arbitrary raw-item variant or whole-method completion claim.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "pointer": "/oneOf/65",
       "schema": "ClientRequest.json",
@@ -67807,7 +67813,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -67815,7 +67822,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Actual original Unicode string operation ID survives exact outgoing bytes, native one-response correlation, codec and schema checks through real idle injection, immediate durable effects and cold continuation. Only this physical ID and observed string profile; arbitrary/other typed IDs and other transports remain unqualified.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/id",
@@ -67844,7 +67852,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -67852,7 +67861,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Exact original thread/inject_items method property is schema-checked and physically performed by stock Codex with immediate idle durable rows and cold next-provider-input effects. Only this property; no alias or unrelated payload field credit.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/method",
@@ -67880,14 +67890,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/65/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Exact thread/inject_items wire literal is physically performed and schema-checked through full idle ACK/durable-record/cold-continuation effects. Only this enum owner; the idle assertions alone do not qualify active/cancellation or other raw-item profiles.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "pointer": "/oneOf/65/properties/method/enum/0",
       "schema": "ClientRequest.json",
@@ -67914,7 +67926,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/ordinary-injected-history-qualification.md",
-        "docs/codex-app-server/ordinary-active-injected-history-qualification.md"
+        "docs/codex-app-server/ordinary-active-injected-history-qualification.md",
+        "docs/codex-app-server/ordinary-historical-tool-injection-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -67922,7 +67935,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Original params reference carries the actual thread ID and two complete authored output-text Message items through native idle persistence and cold continuation. Explicit prefixed IDs and source turn ID remain; exact prepared content_item_kinds unknown and separate provider metadata removal follow pinned source. Reference container only; no raw-item union/alias/default or active-queue credit.",
-        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone."
+        "Ordinary held dynamic-tool profile: two sequential real ACKs leave active injections absent from disk/model input; explicit tool reply produces exact FIFO durable/provider items after the tool output. Explicit unanswered interruption discards only volatile queued items across cold resume and one fresh turn, preserving complete original user/call rows. Local tool response remains sent_unconfirmed. Other raw-item/error/transport/deployment variants remain incomplete; no durable guarantee follows from active ACK alone.",
+        "Ordinary historical-tool profile injects one full matched FunctionCall/string-output pair: complete original ACK/wire and immediate durable rows, zero execution/callback/inference, confirmed warm shutdown/cold resume, then exact once/in-order projected pair in one explicit provider request. Full original rows and warm capture remain unchanged. Supplied prefixed IDs, turn/create_time and Unicode arguments/output are selected variants, not arbitrary raw-item or transport qualification."
       ],
       "nullable": false,
       "pointer": "/oneOf/65/properties/params",
