@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [pinned projection boundaries](native-projection-boundaries.md) record
+source-only evidence for three still-missing owners: selective dynamic
+inProgress5352 and nonnull search fields6164/6133. Eight complete sources match
+the immutable archive; physical nodes and local documentation links match.
+No test, transport coverage, state promotion or count change is attached.
+Live starts and schema fixtures cannot substitute for these native producers;
+the related collaboration/command/MCP statuses are not declared unreachable.
+
 The [search creator/roots journey](search-creator-roots-qualification.md) adds
 one actual-native case: three independently named processes, two real histories,
 ten warm/mixed/cold searches, independent Project associations and explicit

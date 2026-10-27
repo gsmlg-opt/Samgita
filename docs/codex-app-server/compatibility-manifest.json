@@ -189393,11 +189393,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned local source-only boundary: selective thread/items/read reads durable ItemCompleted projection with no live overlay; actual dynamic InProgress exists only in ItemStarted, which rollout selection excludes. Settled completed/failed and live-notification evidence does not establish this physical selective-history enum. Still missing; no real-native success test, mock substitution, transport/test evidence or full-goal promotion. This does not prove related collaboration/command/MCP status producers globally unreachable."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
@@ -214535,11 +214539,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/extra/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. Still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores."
+      ],
       "pointer": "/definitions/Thread/properties/extra/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "ccb2f08e899f41dc991c541d024607dbe30c42e92938b8052a800f55c802d27b",
@@ -215538,11 +215546,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-projection-boundaries.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/threadSource/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned LocalThreadStore search source-only boundary: every match passes stored_thread_from_rollout_item, which sets thread_source None; public conversion copies that None and sets extra None. Complete loaded/status/settings enrichment assigns neither field. Canonical attribution, creator provenance, runtime roots and native null controls cannot qualify this nonnull physical search branch. Still missing; no native success/test/transport promotion, fabricated response or claim about hypothetical external stores."
+      ],
       "pointer": "/definitions/Thread/properties/threadSource/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "186c1e929ceb3118c193027ef1728332690182745ad70bfc7f2f2bd476f6b835",
