@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [existing assistant transcript-role index](ordinary-realtime-assistant-role-index.md)
+binds the original typed started/completed oracle in the unchanged V523
+**68-file / 129-case** two-seed selection. All **1,686** other guarded sources,
+every command and all fourteen result/log hashes remain identical; fresh
+inventory and metadata binding pass. Nine exact producers and the precise
+aggregate reference justify only root owner2703. Contracts: **5,497
+implemented / 994 missing / 130 blocked**; unchanged requirements, zero
+verified. Continue the reviewed local workspace-search discriminator.
+Prohibited/hosted, A11, unavailable emitter/external/OS, full compatibility
+and release gates remain incomplete. Nothing is published or deployed.
+
 The [explicit local featured-ID unit](ordinary-local-plugin-featured-ids-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **68 files / 129 actual-native
 cases twice**, three selected WebSocket seeds, outside consumer **1/0** and

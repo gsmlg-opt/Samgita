@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [existing assistant transcript-role index](ordinary-realtime-assistant-role-index.md)
+binds only root owner2703 to unchanged complete original-frame, durable-rollout
+and same-process timeline assertions in the passed V523 selection. All **1,686**
+other guarded sources and every command remain exact; inventory and metadata
+binding pass. Contracts: **5,497 implemented / 994 missing / 130 blocked**;
+requirements unchanged, zero verified. Continue the source-reviewed local
+workspace-search discriminator; its scratch patch has not run and earns no
+state credit. Prohibited/hosted, A11, unavailable emitter/external/OS, full-goal
+and release gates remain open.
+
 The [explicit local featured-ID unit](ordinary-local-plugin-featured-ids-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, including **68 files / 129
 actual-native cases twice**, three selected WebSocket seeds, outside consumer

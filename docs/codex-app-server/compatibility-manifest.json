@@ -108033,24 +108033,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-realtime-assistant-role-index.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeTranscriptRole/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V524 evidence-only index of exact root assistant transcript role. The unchanged ordinary real-native transcript case independently prescribes assistant in complete original typed history started/completed notifications, validates their actual aggregate schema and original JSON/Wire, and checks persisted rollout plus repeated same-process timeline. Nine complete pinned producers prove output_text delta/done -> explicit Assistant history reduction -> explicit public Assistant mapping -> genuine typed emissions. The experimental aggregate root differs from the checked-in archived root; its exact role definition matches, and no whole-export archive equality is claimed. Reuses the passing V523 unchanged test and command plan, not a new run. Only this physical root enum/value and owned local backend profile; no user/flat-role/standalone/alias, cold-process, remote-service, other transport/OS, whole-method or verified credit. Prohibited/broad/hosted, A11, external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadRealtimeTranscriptRole/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b9f33d63d2896cec87523f3926ae6403081a4f8d1626635fdff5e1edce987a0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:339"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
