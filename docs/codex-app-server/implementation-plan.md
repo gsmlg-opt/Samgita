@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [seven-owner native evidence index](ordinary-request-evidence-index.md)
+binds exact existing correlation/effect assertions to the passed63-file/124-case
+two-seed matrix. Only seven manifest metadata rows change; all1,681 other
+guarded sources and every command stay identical to `97e9c4e`. Four complete
+official producers,19 support hashes and28 source mappings are checked, with
+no new scenario/run or alias/reference propagation. Contracts become **5,489
+implemented / 1,002 missing / 130 blocked**; requirements stay **462 implemented
+/ 12 missing / 11 blocked**, zero verified. The incomplete plugin/read capture
+is explicitly excluded. Continue that original-exchange deficit and remaining
+ordinary variants. Prohibited/hosted, A11, unavailable emitters/external/OS,
+full compatibility and release remain incomplete.
+
 The [combined active/history injection record](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
 passes all fourteen reviewed functional checks: **63 files / 124 actual-native
 cases at both seeds**, selected WebSocket cases at three seeds, outside consumer

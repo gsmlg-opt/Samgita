@@ -112,8 +112,11 @@ combined V510/V512 executable source:
 | Driver/root warning-free compile and format | Pass |
 | Inventory consistency, strict Credo, Dialyzer, assets build | Pass |
 
-All **1,682** guarded source hashes remain identical before/after and match the
-delivered executable source. Fingerprint:
+All **1,682** guarded source hashes remain identical before/after and match
+the `97e9c4e` functional snapshot. The later
+[seven-owner metadata index](ordinary-request-evidence-index.md) proves its
+manifest-only difference separately; executable code and commands stay exact.
+Executed fingerprint:
 `a35c55d8dfa094e894ecefaa973db0a6b581601b5e927ef2f6ee79b67ef7b779`.
 The final binding rechecks22 complete immutable producer files, five existing
 physical schema nodes, retained helper/fixture/runtime hashes and the pinned

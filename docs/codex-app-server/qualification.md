@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [existing native request index](ordinary-request-evidence-index.md) adds
+scoped evidence for seven exact physical owners from the passed63-file/124-case
+two-seed matrix. The final metadata proof retains all1,681 other guarded source
+hashes and all commands; four immutable producer files,19 support hashes and
+28 indexed mappings bind the original exchanges and actual native effects.
+No test/scenario/run or executable changes. Contracts are **5,489 implemented /
+1,002 missing / 130 blocked**, requirements **462 implemented / 12 missing /
+11 blocked**, zero verified. Incomplete plugin/read capture, other ordinary
+variants and all prohibited/hosted/A11/legacy/external/OS/full-goal gates stay
+open. No publication/release/deployment is claimed.
+
 The [active and historical injection unit](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional checks**, including **63 files / 124
 actual-native cases at both seeds**, three selected WebSocket seeds, outside

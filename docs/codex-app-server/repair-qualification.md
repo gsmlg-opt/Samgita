@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [seven-owner request index](ordinary-request-evidence-index.md) maps existing
+complete native exchanges and method-specific effects to the successful124-case
+two-seed matrix. Its only guarded change is seven manifest evidence/state rows;
+all1,681 other source hashes and the command plan remain identical. Exact
+producer/support/snapshot bindings exclude plugin/read's incomplete capture and
+all aliases. Counts are **5,489 implemented / 1,002 missing / 130 blocked**
+contracts, unchanged requirements and zero verified. No new run or executable
+change occurs. Continue the remaining original-exchange and ordinary behavior
+gaps; prohibited/hosted, A11, unavailable emitters/external/OS, complete
+compatibility and release stay incomplete.
+
 The [combined active/history injection record](ordinary-historical-tool-injection-qualification.md#final-combined-source-functional-qualification)
 passes **63 files / 124 actual-native cases twice**, selected WebSocket cases
 at all three seeds, outside consumer **1/0** and all fourteen reviewed checks.

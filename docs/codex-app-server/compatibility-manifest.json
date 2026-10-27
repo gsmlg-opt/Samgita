@@ -51132,27 +51132,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/125/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Warm/repeated/cold reads equal the complete authored Plan/Default catalogue; original full exchange and exact authored correlation IDs retained. Existing original native exchange/correlation assertions: [[147, 174], [235, 254]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/125/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_catalogue_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -62955,24 +62963,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/38",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Real ACK is separate from genuine contextCompaction item/turn completion, actual pre/post hook invocation records, and next provider input includes the checkpoint. Existing original native exchange/correlation assertions: [[178, 196], [276, 350], [495, 550], [734, 750]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Only tested outer request variant with existing threadId params; no referenced-payload completeness or alias propagation. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "pointer": "/oneOf/38",
       "schema": "ClientRequest.json",
       "schema_sha256": "1e01ef6189652d653629ff2d37d5fed71c79eaf66edcf45459f70f0c82e5c0dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compact_hook_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63719,27 +63735,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/42/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Nonempty actual background terminal has original item/process/command/cwd and independently live reader PID; after explicit stdin completion the second query is exactly empty. Existing original native exchange/correlation assertions: [[172, 195], [245, 275], [726, 742]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/42/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_terminal_interaction_envelope_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -69102,27 +69126,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/72/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Real local fixture marketplace and complete plugin metadata projection match authored catalogue in warm and cold process reads, without sampling; full original request/reply retain string correlation. Existing original native exchange/correlation assertions: [[227, 261], [264, 289], [355, 370]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/72/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_plugin_filter_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -69434,27 +69466,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/74/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Real local install-suggestion catalogue follows native manifest/interface/logo mutations and returns exact expected metadata across repeated/cold reads; no plugin execution or actual remote backend. Existing original native exchange/correlation assertions: [[260, 286], [289, 319], [530, 558]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/74/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_search_logo_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -73074,27 +73114,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/96/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual local install creates byte-identical cached manifest/hook and changes native hook catalogue; config/cache/catalogue survive cold process; complete native exchange/correlation retained. Existing original native exchange/correlation assertions: [[198, 221], [232, 233], [240, 267], [347, 372], [375, 378]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/96/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_plugin_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -73236,27 +73284,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-request-evidence-index.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/97/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual local uninstall replies empty, removes cache and returns native catalogue to exactly empty while preserving original fixture sources; complete native exchange/correlation retained. Existing original native exchange/correlation assertions: [[216, 229], [347, 372], [375, 378]]. Selected ordinary local Linux/stdio behavior and string request IDs only. No RequestId variant expansion, field-family blanket qualification or new native run. Source-only indexing of exact currently passing owner; no new scenario, alias, sibling, full referenced payload, arbitrary ID or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/97/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_plugin_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
