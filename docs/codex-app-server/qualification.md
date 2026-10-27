@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The latest [ordinary startup-warning/V1 SDP qualification](ordinary-startup-sdp-envelopes-qualification.md)
+passes **81 ordinary real-binary cases twice**, selected WebSocket cases at
+three seeds, outside consumer **1/0** and all fourteen reviewed checks, with
+1,668 identical source hashes. The original nonfatal warning preserves valid
+catalog state across fresh native processes; an actual local multipart call
+and sideband produce the literal original SDP and exact warm/cold history.
+The initial exact-page expectation failure is retained with its source-based
+correction. Eight precise nodes gain scoped evidence: **5,372 implemented /
+1,133 missing / 116 blocked** contracts, unchanged requirements and zero verified.
+No live media, prohibited test/audit, broad suite or hosted workflow runs.
+Full compatibility, A11, external/platform and release gates remain incomplete.
+
 The latest [ordinary terminal-interaction qualification](ordinary-terminal-interaction-qualification.md)
 passes **79 ordinary real-binary cases twice**, three selected WebSocket cases
 at three seeds, outside consumer **1/0** and all fourteen reviewed checks, with

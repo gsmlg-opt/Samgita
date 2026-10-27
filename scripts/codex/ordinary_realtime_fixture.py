@@ -6,6 +6,8 @@ implements app-server requests, produces model output, or journals HTTP headers.
 """
 import argparse
 import base64
+from email.parser import BytesParser
+from email.policy import default
 import hashlib
 import json
 import os
@@ -44,6 +46,11 @@ ITEM_AUDIO = [
      "sample_rate": 16000, "channels": 2, "samples_per_channel": 2,
      "item_id": "owned-item-audio-output-item"},
 ]
+SDP_OFFER = "v=0\r\ns=Owned ordinary offer λ\r\na=inactive\r\n"
+SDP_ANSWER = "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
+SDP_CALL_ID = "rtc_owned_ordinary_sdp"
+SDP_CALL_PATH = "/v1/realtime/calls?intent=quicksilver&architecture=avas"
+SDP_SIDEBAND_PATH = f"/v1/realtime?intent=quicksilver&call_id={SDP_CALL_ID}"
 MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
@@ -56,6 +63,15 @@ def write_json(path, value):
     temporary = path.with_suffix(".partial")
     temporary.write_bytes(encoded)
     temporary.replace(path)
+
+
+def sdp_session(with_model=False):
+    session = {"type": "quicksilver", "instructions": PROMPT,
+               "audio": {"input": {"format": {"type": "audio/pcm", "rate": 24000}},
+                         "output": {"voice": "cove"}}}
+    if with_model:
+        session["model"] = MODEL
+    return session
 
 
 class PeerHandler(socketserver.BaseRequestHandler):
@@ -119,6 +135,10 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 name, value = line.split(":", 1)
                 fields[name.lower()] = value.strip()
 
+        if fixture.scenario == "sdp" and method == "POST" and path == SDP_CALL_PATH:
+            self.create_sdp_call(fixture, fields, deadline)
+            return
+
         if (fixture.scenario == "transcript" and method == "POST"
                 and path == "/fixture/transcript"):
             assert fields.get("content-length") == "0"
@@ -176,7 +196,9 @@ class PeerHandler(socketserver.BaseRequestHandler):
             fixture.release.set()
             return
 
-        if method != "GET" or path != f"/v1/realtime?model={MODEL}":
+        expected_path = (SDP_SIDEBAND_PATH if fixture.scenario == "sdp"
+                         else f"/v1/realtime?model={MODEL}")
+        if method != "GET" or path != expected_path:
             with fixture.lock:
                 if method == "POST" and path == "/v1/responses":
                     fixture.state["responsesRequests"] += 1
@@ -185,6 +207,10 @@ class PeerHandler(socketserver.BaseRequestHandler):
             self.request.sendall(b"HTTP/1.1 500 Unexpected fixture request\r\n"
                                  b"Content-Length: 0\r\nConnection: close\r\n\r\n")
             raise ValueError("Unexpected ordinary peer path")
+
+        if fixture.scenario == "sdp":
+            with fixture.lock:
+                assert len(fixture.state["calls"]) == 1
 
         assert fields.get("upgrade", "").lower() == "websocket"
         assert "upgrade" in fields.get("connection", "").lower()
@@ -235,10 +261,13 @@ class PeerHandler(socketserver.BaseRequestHandler):
             assert opcode == 1, "Unexpected owned realtime frame opcode"
             message = json.loads(payload.decode("utf-8"))
             assert isinstance(message, dict) and message.get("type") == "session.update"
-            assert message["session"]["type"] == "realtime"
-            assert message["session"]["instructions"] == PROMPT
-            expected_modality = "audio" if fixture.scenario == "item-audio" else "text"
-            assert message["session"]["output_modalities"] == [expected_modality]
+            if fixture.scenario == "sdp":
+                assert message == {"type": "session.update", "session": sdp_session()}
+            else:
+                assert message["session"]["type"] == "realtime"
+                assert message["session"]["instructions"] == PROMPT
+                expected_modality = "audio" if fixture.scenario == "item-audio" else "text"
+                assert message["session"]["output_modalities"] == [expected_modality]
             with fixture.lock:
                 fixture.state["messages"].append(message)
                 assert len(fixture.state["messages"]) == 1, "Extra owned session.update"
@@ -294,6 +323,37 @@ class PeerHandler(socketserver.BaseRequestHandler):
                     with fixture.lock:
                         fixture.state["sent"].append(entry)
                         fixture.save_locked()
+
+    def create_sdp_call(self, fixture, fields, deadline):
+        size = int(fields.get("content-length", "0"))
+        assert 0 < size <= 16384, "Owned call body bound"
+        kind = fields.get("content-type")
+        assert kind == "multipart/form-data; boundary=codex-realtime-call-boundary"
+        body = self.read_exact(size, fixture, deadline)
+        assert body is not None
+        mime = BytesParser(policy=default).parsebytes(
+            f"Content-Type: {kind}\r\nMIME-Version: 1.0\r\n\r\n".encode() + body)
+        assert mime.is_multipart() and not mime.defects
+        parts = list(mime.iter_parts())
+        assert len(parts) == 2
+        assert [part.get_param("name", header="content-disposition") for part in parts] == ["sdp", "session"]
+        assert [part.get_content_type() for part in parts] == ["application/sdp", "application/json"]
+        assert parts[0].get_payload(decode=True) == SDP_OFFER.encode()
+        session = json.loads(parts[1].get_payload(decode=True))
+        assert session == sdp_session(with_model=True)
+        with fixture.lock:
+            assert fixture.state["calls"] == [] and fixture.state["paths"] == []
+            fixture.state["calls"].append({
+                "method": "POST", "path": SDP_CALL_PATH,
+                "bodyBytes": len(body), "bodyBase64": base64.b64encode(body).decode(),
+                "offer": SDP_OFFER, "session": session,
+                "answer": SDP_ANSWER, "location": f"/v1/realtime/calls/{SDP_CALL_ID}"})
+            fixture.save_locked()
+        answer = SDP_ANSWER.encode()
+        self.request.sendall(b"HTTP/1.1 201 Created\r\nContent-Type: application/sdp\r\n"
+            + f"Location: /v1/realtime/calls/{SDP_CALL_ID}\r\n".encode()
+            + f"Content-Length: {len(answer)}\r\n".encode()
+            + b"Connection: close\r\n\r\n" + answer)
 
     def send_frame(self, fixture, opcode, payload):
         assert len(payload) <= MAX_FRAME
@@ -354,6 +414,8 @@ class OrdinaryRealtimePeer:
         self.state = {"paths": [], "messages": [], "sent": [], "frameCount": 0,
                       "responsesRequests": 0, "otherHttp": [],
                       "activeConnections": 0, "requestCount": 0, "controls": [], "errors": []}
+        if scenario == "sdp":
+            self.state["calls"] = []
         self.server = PeerServer(("127.0.0.1", 0), PeerHandler)
         self.server.fixture = self
         self.thread = threading.Thread(
@@ -382,6 +444,8 @@ class OrdinaryRealtimePeer:
             self.save_locked()
 
     def config(self):
+        sdp_config = (f'experimental_realtime_webrtc_call_base_url = "{self.url}/v1"\n'
+                      '[realtime]\ntype = "conversational"\n' if self.scenario == "sdp" else "")
         catalog = self.root / "codex/models.json"
         write_json(catalog, {"models": [{
             "slug": "mock-model", "display_name": "Owned ordinary realtime fixture",
@@ -406,7 +470,7 @@ experimental_realtime_ws_base_url = "{self.url}/v1"
 experimental_realtime_ws_model = "{MODEL}"
 experimental_realtime_ws_backend_prompt = ""
 experimental_realtime_ws_startup_context = ""
-[analytics]
+{sdp_config}[analytics]
 enabled = false
 [otel]
 exporter = "none"
@@ -485,7 +549,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio"],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "service-error", "item-audio", "sdp"],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

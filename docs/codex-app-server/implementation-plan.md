@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary startup-warning/V1 SDP envelopes](ordinary-startup-sdp-envelopes-qualification.md)
+add a nonfatal invalid inert-attribute warning with exact catalog preservation
+across fresh processes, and a genuine multipart call/sideband handshake with
+literal CRLF/Unicode SDP. Native bytes, causation/order, exact finite traffic,
+warm/cold history and owned cleanup remain required. Initial missing expected
+turn-page `backwardsCursor` is recorded and corrected to the source-required
+null, preserving every bound/assertion. Focused **1/0** and **5/0**, **81 ordinary
+cases twice**, selected WebSocket cases at three seeds, outside consumer
+**1/0**, all fourteen reviewed steps and 1,668 identical source hashes pass.
+Exactly eight physical nodes gain scoped evidence: **5,372 implemented / 1,133
+missing / 116 blocked**, unchanged requirements and zero verified. This is no
+live ICE/DTLS/media interoperability or external-provider qualification.
+Continue exact owner 5933's existing native V2 literal/effect evidence audit
+and the retained ordinary public-item producer boundaries. Prohibited/hosted,
+A11, unavailable emitters/external/OS/full-goal and release gates stay incomplete.
+
 The [ordinary terminal-interaction envelope](ordinary-terminal-interaction-qualification.md)
 uses the stock native stdin tool, a real owned raw-TTY reader, an explicit
 release boundary, exact Unicode bytes and persisted warm/cold command history.

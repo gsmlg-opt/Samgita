@@ -15,6 +15,20 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary startup-warning/V1 SDP envelopes](ordinary-startup-sdp-envelopes-qualification.md)
+preserve original native frames, causation, exact local catalog/session/SDP
+oracles, finite traffic, warm/cold state and owned shutdown. The first SDP focus
+omitted a source-required nullable backwards cursor; its **5/1** remains, and
+warm/cold exact-null expectations retain all assertions/bounds. Final focused
+**1/0** and **5/0**, **81 ordinary cases twice**, selected WebSocket cases at
+three seeds, outside consumer **1/0**, all fourteen reviewed checks and 1,668
+unchanged source hashes pass. Only eight physical owners gain scoped evidence:
+**5,372 implemented / 1,133 missing / 116 blocked**, unchanged requirements and
+zero verified. SDP forwarding/sideband readiness is distinct from live media
+interoperability. Continue exact owner 5933's existing V2 literal/effect audit
+and ordinary public-item producer boundaries. No prohibited/hosted checks run;
+A11, unavailable legacy/external/platform/full-goal and release gates stay open.
+
 The [ordinary terminal-interaction envelope](ordinary-terminal-interaction-qualification.md)
 uses actual native exec/stdin, one release boundary, independent reader byte/
 PID/output/exit effects and warm/cold history. Two corrected source-invalid

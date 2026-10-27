@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "594d4527735a17683cd1f96d6b2a9c6f65df6bf16a65d99dff1b0dba5e14ee84"
+  @script_sha "262ca1e1762659386acc0ad9c493355f2fb1a7b22873b473c298827451def7e7"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1601,7 +1601,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     args = [@script, "--root", profile.root]
 
     args =
-      if profile.scenario in ["transcript", "service-error", "item-audio"],
+      if profile.scenario in ["transcript", "service-error", "item-audio", "sdp"],
         do: args ++ ["--scenario", profile.scenario],
         else: args
 
@@ -1797,4 +1797,309 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   defp request_id, do: "owned-realtime-#{System.unique_integer([:positive, :monotonic])}"
   defp now, do: System.monotonic_time(:millisecond)
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)
+
+  @sdp_method "thread/realtime/sdp"
+  @sdp_session "owned-ordinary-sdp-session"
+  @sdp_call "rtc_owned_ordinary_sdp"
+  @sdp_offer "v=0\r\ns=Owned ordinary offer λ\r\na=inactive\r\n"
+  @sdp_answer "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
+
+  @tag realtime_scenario: "sdp"
+  test "native V1 call returns the exact SDP before requested closure without inference",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+
+    thread =
+      call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+
+    params = %{
+      "threadId" => thread,
+      "transport" => %{"type" => "webrtc", "sdp" => @sdp_offer},
+      "version" => "v1",
+      "outputModality" => "audio",
+      "voice" => "cove",
+      "realtimeSessionId" => @sdp_session,
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => true,
+      "prompt" => @prompt
+    }
+
+    lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/start", params) === %{}
+
+    [request] =
+      Enum.filter(
+        capture(profile),
+        &(&1.direction == :out and &1.wire["method"] == "thread/realtime/start")
+      )
+
+    assert :ok = Schema.validate(schema("ClientRequest.json"), request.wire, max_depth: 32)
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @sdp_method)) == 1 and peer_ready?(profile) and
+          length(notices(events, @item_completed)) == 1 and length(notices(events, @started)) == 1
+      end)
+
+    upper = System.system_time(:millisecond)
+    [first] = notices(events, @item_completed)
+    first_id = first.wire["params"]["item"]["id"]
+    assert_uuid(first_id)
+
+    started_item = %{
+      "id" => first_id,
+      "realtimeSessionId" => @sdp_session,
+      "type" => "realtimeSessionStarted"
+    }
+
+    assert_selected(
+      profile,
+      events,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started_item}},
+        {@item_completed, %{"threadId" => thread, "item" => started_item}},
+        {@started,
+         %{"threadId" => thread, "realtimeSessionId" => @sdp_session, "version" => "v1"}}
+      ],
+      lower,
+      upper
+    )
+
+    [sdp] = notices(events, @sdp_method)
+    original = assert_sdp_original(profile, sdp, thread, lower, upper)
+    [started] = notices(events, @started)
+    assert request.index < original.index
+    assert started.sequence < sdp.sequence
+    assert_sdp_peer(profile, 1)
+
+    stop_lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1
+      end)
+
+    stop_upper = System.system_time(:millisecond)
+    [^first, last] = notices(events, @item_completed)
+    last_id = last.wire["params"]["item"]["id"]
+    assert_uuid(last_id)
+    refute last_id === first_id
+
+    closed_item = %{
+      "id" => last_id,
+      "realtimeSessionId" => @sdp_session,
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    selected = Enum.filter(events, &(&1.wire["method"] in @selected))
+    assert length(selected) === 6
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      [
+        {@item_started, %{"threadId" => thread, "item" => closed_item}},
+        {@item_completed, %{"threadId" => thread, "item" => closed_item}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      stop_lower,
+      stop_upper
+    )
+
+    originals = assert_originals(profile, selected)
+    [closed] = notices(events, @closed)
+    assert sdp.sequence < closed.sequence
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = call(profile, pid, "thread/timeline/list", query)
+    # SDP is transient. Native history observes exactly start/closed facts.
+    assert_timeline(timeline, started_item, closed_item)
+    assert call(profile, pid, "thread/timeline/list", query) === timeline
+
+    assert call(profile, pid, "thread/turns/list", %{"threadId" => thread}) === %{
+             "data" => [],
+             "nextCursor" => nil,
+             "backwardsCursor" => nil
+           }
+
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert notices(events, @sdp_method) === [sdp]
+    assert Enum.filter(events, &(&1.wire["method"] in @selected)) === selected
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+           |> Enum.map(& &1.wire["method"]) ===
+             [
+               @item_started,
+               @item_completed,
+               @started,
+               @sdp_method,
+               @item_started,
+               @item_completed,
+               @closed
+             ]
+
+    await_peer_closed(profile, min(deadline, now() + 5_000))
+    peer = assert_sdp_peer(profile, 0)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_ready(profile, pid)
+    assert_inputs(ctx)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/stop thread/read thread/timeline/list thread/timeline/list thread/turns/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :sdp_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+
+    assert call(cold_profile, cold.pid, "thread/turns/list", %{"threadId" => thread}) === %{
+             "data" => [],
+             "nextCursor" => nil,
+             "backwardsCursor" => nil
+           }
+
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+    refute Enum.any?(cold_events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/timeline/list thread/timeline/list thread/turns/list)
+
+    assert_ready(cold_profile, cold.pid)
+    assert Agent.get(profile.capture, & &1) === warm
+    assert assert_sdp_original(profile, sdp, thread, lower, upper) === original
+    assert assert_originals(profile, selected) === originals
+    assert_inputs(ctx)
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+
+    assert_inputs(ctx)
+  end
+
+  defp assert_sdp_original(profile, event, thread, lower, upper) do
+    emitted = Map.fetch!(event.wire, "emittedAtMs")
+    assert is_integer(emitted) and lower <= emitted and emitted <= upper
+
+    expected = %{
+      "method" => @sdp_method,
+      "params" => %{"threadId" => thread, "sdp" => @sdp_answer},
+      "emittedAtMs" => emitted
+    }
+
+    assert event.kind === :notification and event.generation === profile.generation
+    assert event.wire === expected
+    assert :ok = Schema.validate(schema("ServerNotification.json"), expected, max_depth: 32)
+
+    [original] =
+      Enum.filter(capture(profile), &(&1.direction == :in and &1.wire["method"] == @sdp_method))
+
+    assert JSON.decode!(original.encoded) === expected
+    assert {:ok, ^expected} = Wire.decode(original.encoded, max_depth: 32)
+    original
+  end
+
+  defp assert_sdp_peer(profile, active) do
+    state = read_peer(profile)
+    assert [call] = Map.fetch!(state, "calls")
+    assert call["method"] === "POST"
+    assert call["path"] === "/v1/realtime/calls?intent=quicksilver&architecture=avas"
+    assert call["location"] === "/v1/realtime/calls/" <> @sdp_call
+    assert call["offer"] === @sdp_offer and call["answer"] === @sdp_answer
+    assert call["session"] === Map.put(sdp_backend_session(), "model", @model)
+    body = Base.decode64!(call["bodyBase64"])
+    assert call["bodyBytes"] === byte_size(body) and byte_size(body) <= 16_384
+    boundary = "--codex-realtime-call-boundary"
+
+    prefix =
+      boundary <>
+        "\r\nContent-Disposition: form-data; name=\"sdp\"\r\nContent-Type: application/sdp\r\n\r\n" <>
+        @sdp_offer <>
+        "\r\n" <>
+        boundary <>
+        "\r\nContent-Disposition: form-data; name=\"session\"\r\nContent-Type: application/json\r\n\r\n"
+
+    assert String.starts_with?(body, prefix)
+    suffix = "\r\n" <> boundary <> "--\r\n"
+    assert String.ends_with?(body, suffix)
+
+    session_bytes =
+      binary_part(
+        body,
+        byte_size(prefix),
+        byte_size(body) - byte_size(prefix) - byte_size(suffix)
+      )
+
+    assert JSON.decode!(session_bytes) === Map.put(sdp_backend_session(), "model", @model)
+    assert state["paths"] === ["/v1/realtime?intent=quicksilver&call_id=" <> @sdp_call]
+
+    assert state["messages"] === [
+             %{"type" => "session.update", "session" => sdp_backend_session()}
+           ]
+
+    assert state["sent"] === [@peer_ack]
+    assert state["requestCount"] === 2 and state["controls"] === []
+    assert state["activeConnections"] === active
+    assert state["responsesRequests"] === 0 and state["otherHttp"] === []
+    assert state["errors"] === []
+
+    assert is_integer(state["frameCount"]) and state["frameCount"] >= 2 and
+             state["frameCount"] <= 32
+
+    state
+  end
+
+  defp sdp_backend_session,
+    do: %{
+      "type" => "quicksilver",
+      "instructions" => @prompt,
+      "audio" => %{
+        "input" => %{"format" => %{"type" => "audio/pcm", "rate" => 24_000}},
+        "output" => %{"voice" => "cove"}
+      }
+    }
 end

@@ -118485,98 +118485,150 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/68",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A nonfatal empty otel.span_attributes key with inert metadata and all exporters none produces the exact stock startup configWarning while retaining valid frozen file configuration/catalog. Two fresh native processes each require one complete original raw/decoded independently prescribed envelope, null details/absent path-range, bounded emittedAtMs, current generation/unique ordered sequence, initialize-response-before-warning causation, two exact static model reads, empty loaded threads, exact twelve-frame/six-outgoing/five-correlated-request inventory and frozen config/catalog/shell bytes through owned Session/owner/Port/PID cleanup. No inference, tool, listener or config-fallback profile runs.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/68",
       "schema": "ServerNotification.json",
       "schema_sha256": "5a68a32a17eb2e91dfab42a6ab9d593bf80451d07cd6ad753d340f3f6556b309",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:116",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:176",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:187",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:201",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:217"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/68/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A nonfatal empty otel.span_attributes key with inert metadata and all exporters none produces the exact stock startup configWarning while retaining valid frozen file configuration/catalog. Two fresh native processes each require one complete original raw/decoded independently prescribed envelope, null details/absent path-range, bounded emittedAtMs, current generation/unique ordered sequence, initialize-response-before-warning causation, two exact static model reads, empty loaded threads, exact twelve-frame/six-outgoing/five-correlated-request inventory and frozen config/catalog/shell bytes through owned Session/owner/Port/PID cleanup. No inference, tool, listener or config-fallback profile runs.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/68/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5bad8e8093ba7cc8b96d8af9a7898cd194eeb5c52db012e579579babf7c9b784",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:116",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:176",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:187",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:201",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:217"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/68/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A nonfatal empty otel.span_attributes key with inert metadata and all exporters none produces the exact stock startup configWarning while retaining valid frozen file configuration/catalog. Two fresh native processes each require one complete original raw/decoded independently prescribed envelope, null details/absent path-range, bounded emittedAtMs, current generation/unique ordered sequence, initialize-response-before-warning causation, two exact static model reads, empty loaded threads, exact twelve-frame/six-outgoing/five-correlated-request inventory and frozen config/catalog/shell bytes through owned Session/owner/Port/PID cleanup. No inference, tool, listener or config-fallback profile runs.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/68/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "446b9e2531eefb217700754251624274fe21c315ac524a950ef0d913c982ce07",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:116",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:176",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:187",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:201",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:217"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/68/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "A nonfatal empty otel.span_attributes key with inert metadata and all exporters none produces the exact stock startup configWarning while retaining valid frozen file configuration/catalog. Two fresh native processes each require one complete original raw/decoded independently prescribed envelope, null details/absent path-range, bounded emittedAtMs, current generation/unique ordered sequence, initialize-response-before-warning causation, two exact static model reads, empty loaded threads, exact twelve-frame/six-outgoing/five-correlated-request inventory and frozen config/catalog/shell bytes through owned Session/owner/Port/PID cleanup. No inference, tool, listener or config-fallback profile runs.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/68/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b599395e9fc6a051b974b6c4dfb092cad767d47f681384d04a0f9d0ec0a17267",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:116",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:176",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:187",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:201",
+          "apps/samgita_codex_driver/test/native_config_warning_envelope_test.exs:217"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -120223,98 +120275,154 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/79",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One genuine native explicit V1 conversational WebRTC start creates exactly one local HTTP multipart call with literal CRLF/Unicode offer, complete independently prescribed session and exact returned answer/location; one call-ID sideband WebSocket accepts the exact native session.update and returns only readiness. The stock native complete SDP original/raw/decoded envelope preserves literal answer, thread identity, bounded emittedAtMs, current generation and source-backed started-before-SDP-before-requested-closed order. Exactly start/closed timeline facts, no ordinary turns, repeated warm/cold public reads, no cold SDP replay, finite RPC/backend inventories, frozen config/catalog/fixture bytes and owned process/Port/listener/socket/thread cleanup are required. Initial missing expected backwardsCursor is corrected to the required exact null from pinned ThreadTurnsListResponse.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/79",
       "schema": "ServerNotification.json",
       "schema_sha256": "6af56aebd7f68f79be63d28f607ddbf658c0a39061c43563f32d0890b915a1a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1433",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1808",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2024",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2046",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2096"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/79/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One genuine native explicit V1 conversational WebRTC start creates exactly one local HTTP multipart call with literal CRLF/Unicode offer, complete independently prescribed session and exact returned answer/location; one call-ID sideband WebSocket accepts the exact native session.update and returns only readiness. The stock native complete SDP original/raw/decoded envelope preserves literal answer, thread identity, bounded emittedAtMs, current generation and source-backed started-before-SDP-before-requested-closed order. Exactly start/closed timeline facts, no ordinary turns, repeated warm/cold public reads, no cold SDP replay, finite RPC/backend inventories, frozen config/catalog/fixture bytes and owned process/Port/listener/socket/thread cleanup are required. Initial missing expected backwardsCursor is corrected to the required exact null from pinned ThreadTurnsListResponse.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/79/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "af52b1c31792e5fb4c44e106e403a9ddac0ad2d6e064caf556d949d9c0fcdc80",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1433",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1808",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2024",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2046",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2096"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/79/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One genuine native explicit V1 conversational WebRTC start creates exactly one local HTTP multipart call with literal CRLF/Unicode offer, complete independently prescribed session and exact returned answer/location; one call-ID sideband WebSocket accepts the exact native session.update and returns only readiness. The stock native complete SDP original/raw/decoded envelope preserves literal answer, thread identity, bounded emittedAtMs, current generation and source-backed started-before-SDP-before-requested-closed order. Exactly start/closed timeline facts, no ordinary turns, repeated warm/cold public reads, no cold SDP replay, finite RPC/backend inventories, frozen config/catalog/fixture bytes and owned process/Port/listener/socket/thread cleanup are required. Initial missing expected backwardsCursor is corrected to the required exact null from pinned ThreadTurnsListResponse.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/79/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "ccb550ad979c259fb6671ebfaf22282c4688f8c532e968488f31603db9749065",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1433",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1808",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2024",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2046",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2096"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-startup-sdp-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/79/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "One genuine native explicit V1 conversational WebRTC start creates exactly one local HTTP multipart call with literal CRLF/Unicode offer, complete independently prescribed session and exact returned answer/location; one call-ID sideband WebSocket accepts the exact native session.update and returns only readiness. The stock native complete SDP original/raw/decoded envelope preserves literal answer, thread identity, bounded emittedAtMs, current generation and source-backed started-before-SDP-before-requested-closed order. Exactly start/closed timeline facts, no ordinary turns, repeated warm/cold public reads, no cold SDP replay, finite RPC/backend inventories, frozen config/catalog/fixture bytes and owned process/Port/listener/socket/thread cleanup are required. Initial missing expected backwardsCursor is corrected to the required exact null from pinned ThreadTurnsListResponse.",
+        "Only this exact physical ServerNotification outer/method/literal/params-reference node gains scoped implemented evidence. Seventeen complete producer/projection sources and all 5,259 Rust files match the immutable official source binding; generated/vendored stable and experimental nodes match. App-server frames come only from stock Codex. Fixed YOLO is setup; no security/credential/authentication/authorization/permission/approval test or audit, mixed suite or hosted workflow. No whole method/schema, other warning/SDP/input/version/transport/backend/OS, live ICE/DTLS/media negotiation or playback, database/platform, external/full-goal or release credit. A11, upstream-unreachable emitters, prohibited/external/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/79/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "35eab0dc6b6c457a835fe3df56bd19981b892546f79ca6819b2bf69b8021fbad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1433",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1468",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:1808",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2024",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2046",
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs:2096"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
