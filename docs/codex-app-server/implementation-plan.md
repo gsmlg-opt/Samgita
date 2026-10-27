@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [command-output ingress unit](command-output-ingress-qualification.md)
+binds exact2923–2926 through original incoming native frames before Session
+decode and complete driver-map equality. Independent binary stdout/stderr,
+timestamps, ordering, exit7, empty drain and native/child cleanup retain their
+assertions and bounds. Final **24ordinary cases twice**, strict checks and397
+stable sources pass;396 prior paths remain unchanged, one owning test changes,
+and5 complete upstream files match the pin. Only those four become scoped
+implemented: **5,115 implemented /1,440 missing /66 blocked**, unchanged
+requirements and zero verified. Continue ordinary process notification envelopes.
+Prohibited/broad/hosted, A11, unavailable producers and external/OS/platform/
+full-goal/release gates remain incomplete.
+
 The [ordinary MCP startup unit](mcp-startup-notice-qualification.md) qualifies
 exact4391/4392/4394/4397 through two independent cold dependency profiles.
 Native starting/ready payloads retain actual thread/server identity and explicit

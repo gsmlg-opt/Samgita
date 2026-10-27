@@ -79,6 +79,10 @@ to these three directly queried response fields.
 
 ## Native command streams
 
+V401 adds [original incoming-frame evidence](command-output-ingress-qualification.md)
+to this owning test. Runs below describe the earlier source; the current
+24-case matrix passes twice with all original byte/order/result assertions retained.
+
 `native_command_output_stream_values_test.exs` needs no provider. One owned
 Python `-I -c` process writes prescribed stdout/stderr bytes containing Unicode,
 NUL and invalid UTF-8, then exits 7. The request uses a literal process ID and

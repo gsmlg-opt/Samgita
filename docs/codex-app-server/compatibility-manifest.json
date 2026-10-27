@@ -113061,98 +113061,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-output-ingress-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/35",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V401 scoped actual-native command output envelope evidence: original incoming command/exec/outputDelta JSON is retained after JSONL delimiter removal and before Session decode, then ordered complete decoded frames must equal driver wire maps. Independent stdout/stderr Unicode,NUL,invalid-UTF8 bytes,canonical base64,exact envelope/params keys,known native process ID,host-bracketed emittedAtMs,false cap flags,per-stream order,exit7,empty final captured output/drain and native/child cleanup remain unchanged. Incoming16frames/8192bytes-per-frame/8192total;existing request/event/deadline bounds retained. No thread/model/provider or additional execution;outgoing capture retains decoded maps only,not original encoded bytes. 24reviewed ordinary cases pass24/0 twice;syntax/format/compile/strict Credo and397 stable source guard pass,396prior paths unchanged and one intentional owning-test change. Five whole upstream files/four stable exact nodes match the immutable pin. No other aliases/transports/OS/backend/full verified acceptance follows. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/35",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7ab181f29bd9f799368911463f6825df0ae8f7014ba33f29ea4d1b993f276ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-output-ingress-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/35/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V401 scoped actual-native command output envelope evidence: original incoming command/exec/outputDelta JSON is retained after JSONL delimiter removal and before Session decode, then ordered complete decoded frames must equal driver wire maps. Independent stdout/stderr Unicode,NUL,invalid-UTF8 bytes,canonical base64,exact envelope/params keys,known native process ID,host-bracketed emittedAtMs,false cap flags,per-stream order,exit7,empty final captured output/drain and native/child cleanup remain unchanged. Incoming16frames/8192bytes-per-frame/8192total;existing request/event/deadline bounds retained. No thread/model/provider or additional execution;outgoing capture retains decoded maps only,not original encoded bytes. 24reviewed ordinary cases pass24/0 twice;syntax/format/compile/strict Credo and397 stable source guard pass,396prior paths unchanged and one intentional owning-test change. Five whole upstream files/four stable exact nodes match the immutable pin. No other aliases/transports/OS/backend/full verified acceptance follows. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/35/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "173b675fb561093cfe39473f4a4c679b4ba9c4e6f567349ad292a956e1b9b467",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-output-ingress-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/35/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V401 scoped actual-native command output envelope evidence: original incoming command/exec/outputDelta JSON is retained after JSONL delimiter removal and before Session decode, then ordered complete decoded frames must equal driver wire maps. Independent stdout/stderr Unicode,NUL,invalid-UTF8 bytes,canonical base64,exact envelope/params keys,known native process ID,host-bracketed emittedAtMs,false cap flags,per-stream order,exit7,empty final captured output/drain and native/child cleanup remain unchanged. Incoming16frames/8192bytes-per-frame/8192total;existing request/event/deadline bounds retained. No thread/model/provider or additional execution;outgoing capture retains decoded maps only,not original encoded bytes. 24reviewed ordinary cases pass24/0 twice;syntax/format/compile/strict Credo and397 stable source guard pass,396prior paths unchanged and one intentional owning-test change. Five whole upstream files/four stable exact nodes match the immutable pin. No other aliases/transports/OS/backend/full verified acceptance follows. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/oneOf/35/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "f371bd3cd1d00d83aa8f459c8f8b8ae46d516c845276d805022aa9c41eb772ba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-output-ingress-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/35/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "V401 scoped actual-native command output envelope evidence: original incoming command/exec/outputDelta JSON is retained after JSONL delimiter removal and before Session decode, then ordered complete decoded frames must equal driver wire maps. Independent stdout/stderr Unicode,NUL,invalid-UTF8 bytes,canonical base64,exact envelope/params keys,known native process ID,host-bracketed emittedAtMs,false cap flags,per-stream order,exit7,empty final captured output/drain and native/child cleanup remain unchanged. Incoming16frames/8192bytes-per-frame/8192total;existing request/event/deadline bounds retained. No thread/model/provider or additional execution;outgoing capture retains decoded maps only,not original encoded bytes. 24reviewed ordinary cases pass24/0 twice;syntax/format/compile/strict Credo and397 stable source guard pass,396prior paths unchanged and one intentional owning-test change. Five whole upstream files/four stable exact nodes match the immutable pin. No other aliases/transports/OS/backend/full verified acceptance follows. Prohibited security/permission tests/audits,broad/hosted checks,A11,unavailable producers,external/platform/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/35/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "940e87a8f4251bacd9ea28b1ccc7e585fe7ba3299f7d7b581487cf1d5b98fa2f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_output_stream_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

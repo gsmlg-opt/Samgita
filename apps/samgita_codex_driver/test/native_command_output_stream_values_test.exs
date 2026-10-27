@@ -34,9 +34,9 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
 
     @impl true
     def send(state, encoded) do
-      if length(Agent.get(state.capture, & &1)) < 16 and byte_size(encoded) <= 8192 do
+      if length(Agent.get(state.capture, & &1.outgoing)) < 16 and byte_size(encoded) <= 8192 do
         with {:ok, next} <- Stdio.send(state, encoded) do
-          Agent.update(state.capture, &(&1 ++ [JSON.decode!(encoded)]))
+          record_outgoing(state, encoded)
           {:ok, next}
         end
       else
@@ -45,7 +45,64 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
     end
 
     @impl true
-    def handle_info(message, state), do: Stdio.handle_info(message, state)
+    def handle_info(message, state) do
+      case Stdio.handle_info(message, state) do
+        {:ok, events, next} ->
+          case record_incoming(next, events) do
+            :ok -> {:ok, events, next}
+            {:error, failure} -> {:error, failure, next}
+          end
+
+        other ->
+          other
+      end
+    end
+
+    defp record_outgoing(state, encoded) do
+      Agent.update(state.capture, fn ledger ->
+        %{ledger | outgoing: ledger.outgoing ++ [JSON.decode!(encoded)]}
+      end)
+    end
+
+    defp record_incoming(state, events) do
+      Enum.reduce_while(events, :ok, fn event, :ok ->
+        case record_event(state, event) do
+          :ok -> {:cont, :ok}
+          failure -> {:halt, failure}
+        end
+      end)
+    end
+
+    defp record_event(state, {:message, encoded}) do
+      if JSON.decode!(encoded)["method"] == "command/exec/outputDelta" do
+        # Retain the original framed JSON before Session decoding; never
+        # reconstruct native ingress by re-encoding the driver's event map.
+        append_incoming(state.capture, encoded)
+      else
+        :ok
+      end
+    end
+
+    defp record_event(_state, _event), do: :ok
+
+    defp append_incoming(capture, encoded) do
+      Agent.get_and_update(capture, fn ledger ->
+        size = byte_size(encoded)
+
+        if length(ledger.incoming) < 16 and size <= 8192 and
+             ledger.incoming_bytes + size <= 8192 do
+          {:ok,
+           %{
+             ledger
+             | incoming: ledger.incoming ++ [encoded],
+               incoming_bytes: ledger.incoming_bytes + size
+           }}
+        else
+          {{:error, SamgitaProtocolCodex.Error.new(:test_capture_overflow)}, ledger}
+        end
+      end)
+    end
+
     @impl true
     def close(state), do: Stdio.close(state)
     @impl true
@@ -79,7 +136,8 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
       python: python,
       workspace: Path.join(root, "workspace"),
       child_record: Path.join(root, "owned-command.pid"),
-      capture: start_supervised!({Agent, fn -> [] end})
+      capture:
+        start_supervised!({Agent, fn -> %{outgoing: [], incoming: [], incoming_bytes: 0} end})
     }
   end
 
@@ -122,6 +180,11 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
     assert Enum.uniq(Enum.map(deltas, & &1.sequence)) == Enum.map(deltas, & &1.sequence)
     assert Enum.uniq(Enum.map(deltas, & &1.generation)) == [Session.status(pid).generation]
 
+    original = Agent.get(ctx.capture, & &1.incoming)
+    assert length(original) <= 16
+    assert Enum.sum(Enum.map(original, &byte_size/1)) <= 8192
+    assert Enum.map(original, &JSON.decode!/1) === Enum.map(deltas, & &1.wire)
+
     for event <- deltas do
       assert event.kind == :notification
       assert Enum.sort(Map.keys(event.wire)) == ~w(emittedAtMs method params)
@@ -154,7 +217,8 @@ defmodule SamgitaCodexDriver.NativeCommandOutputStreamValuesTest do
 
     # No thread or inference request is issued: this is a native process API
     # operation without a model provider or synthetic app-server frames.
-    captured = Agent.get(ctx.capture, & &1)
+    captured = Agent.get(ctx.capture, & &1.outgoing)
+    assert Agent.get(ctx.capture, & &1.incoming) === original
 
     assert Enum.map(captured, & &1["method"]) ==
              ~w(initialize initialized server/diagnostics command/exec thread/loaded/list)

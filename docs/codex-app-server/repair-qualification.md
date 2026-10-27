@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [command-output ingress profile](command-output-ingress-qualification.md)
+retains original pre-Session native JSON and requires ordered equality with
+complete driver events. Existing independent binary streams, timestamps, exact
+keys/base64, exit7, empty drain and checked cleanup remain. Final **24ordinary
+cases twice**, strict checks and397-source guard pass;396 prior paths remain
+unchanged and5 whole upstream files match the pin. Only2923–2926 become scoped
+implemented: **5,115 implemented /1,440 missing /66 blocked**, unchanged
+requirements and zero verified. Outgoing evidence remains decoded maps only.
+Continue ordinary process-notification envelopes; all prohibited/full-goal
+gates remain incomplete.
+
 The [ordinary MCP startup profile](mcp-startup-notice-qualification.md) proves
 native starting/ready full payloads for two independent cold roots/server names.
 The held dependency, public loaded-list barrier and explicit release establish
