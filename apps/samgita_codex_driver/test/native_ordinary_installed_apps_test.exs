@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledAppsTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_installed_apps_fixture.py", __DIR__)
-  @script_sha "56fe3f169dbefd4f323c99aae07fe92b7ec4ce53d0b39934c95e94d11667f97f"
+  @script_sha "e20306dd396d517a2f4f9bf75356052c442490b15f39c75d98a9e714ab19a706"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @schema_shas %{

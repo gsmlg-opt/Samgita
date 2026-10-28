@@ -162,6 +162,11 @@ started or deployed, and full acceptance gates remain incomplete.
 
 ## Remaining work
 
+The following draft prerequisites describe this checkpoint. The subsequent
+[stream/discovery unit](ordinary-stream-discovery-qualification.md) qualifies
+the installed-thread and controlled WebSocket candidates with separate bounded
+profiles; its evidence supersedes their runtime-unverified status below.
+
 The ledger is **462 implemented /12 missing /11 blocked requirements** and
 **5,726 implemented /759 missing /136 blocked field/variant contracts**, with
 zero globally verified. This count is evidence indexing, not a compatibility

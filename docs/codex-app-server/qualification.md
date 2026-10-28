@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps with1,757 identical source hashes:
+164/0 twice under original320s bounds,10/0 extensions twice, three selected
+replay seeds, four cleanup cases, outside consumer1/0 and static/build checks.
+Actual native detach/reconnect/history, installed-thread lookup, dormant MCP
+and active-page interruption/first cold content have bounded evidence.
+Contracts5,728 implemented/757 missing/136 blocked; requirements unchanged;
+zero globally verified. Initial static failures remain retained. Genuine
+process-crash tail and side-effect-aware installed metadata remain next work.
+A11, prohibited/broad/hosted, external/OS, full compatibility and release stay open.
+
 The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
 passes all17 reviewed functional steps with1,749 identical guarded source files:
 preserved164 cases twice within their320s bounds, six extension cases twice,

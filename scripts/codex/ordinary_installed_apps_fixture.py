@@ -28,6 +28,7 @@ ALPHA = "owned-installed-alpha"
 BETA = "owned-installed-beta"
 GAMMA = "owned-installed-gamma"
 DELTA = "owned-directory-delta"
+THREAD_CONTEXT = "ordinary-installed-thread-context"
 
 
 def descriptor(connector, suffix, name=None):
@@ -72,6 +73,7 @@ class Fixture(OrdinarySetup):
         self.events = []
         self.http_count = self.initialize_count = self.tools_count = self.directory_count = 0
         self.generation = 1
+        self.thread_initialized_count = 0
         self.journal = self.root / "ordinary-installed-apps-journal.json"
         write_json(self.root / "ordinary-installed-apps-inputs.json",
                    {"generation1": catalog(1), "generation2": catalog(2), "directory": directory()})
@@ -115,6 +117,8 @@ class Fixture(OrdinarySetup):
                         owner.record("mcp_get")
                         self.reply(405)
                     elif parsed.path == "/backend-api/connectors/directory/list":
+                        if owner.args.scenario == THREAD_CONTEXT:
+                            raise RuntimeError("ordinary installed thread context forbids directory discovery")
                         owner.directory_count += 1
                         if query != {"external_logos": ["true"]} or owner.directory_count != 1:
                             raise RuntimeError("ordinary installed directory route/count")
@@ -157,6 +161,10 @@ class Fixture(OrdinarySetup):
                         raise RuntimeError("ordinary installed MCP framing")
                     method = request.get("method")
                     if method == "notifications/initialized" and "id" not in request:
+                        if owner.args.scenario == THREAD_CONTEXT:
+                            owner.thread_initialized_count += 1
+                            if owner.thread_initialized_count > 1:
+                                raise RuntimeError("ordinary installed thread context initialized count")
                         owner.record("mcp_initialized")
                         self.reply(202)
                         return
@@ -164,6 +172,8 @@ class Fixture(OrdinarySetup):
                         raise RuntimeError("ordinary installed MCP request identity")
                     if method == "initialize":
                         owner.initialize_count += 1
+                        if owner.args.scenario == THREAD_CONTEXT and owner.initialize_count > 1:
+                            raise RuntimeError("ordinary installed thread context startup count")
                         if owner.initialize_count > 3:
                             raise RuntimeError("ordinary installed MCP startup count")
                         result = {"protocolVersion": "2025-06-18", "capabilities": {"tools": {}},
@@ -172,6 +182,8 @@ class Fixture(OrdinarySetup):
                         sequence = owner.initialize_count
                     elif method == "tools/list":
                         owner.tools_count += 1
+                        if owner.args.scenario == THREAD_CONTEXT and owner.tools_count > 1:
+                            raise RuntimeError("ordinary installed thread context discovery count")
                         if owner.tools_count > 4:
                             raise RuntimeError("ordinary installed discovery count")
                         result = {"tools": catalog(owner.generation)}
@@ -222,6 +234,8 @@ class Fixture(OrdinarySetup):
             raise RuntimeError("ordinary installed control read bound")
         control = json.loads(raw)
         if control == {"action": "generation", "generation": 2} and self.generation == 1:
+            if self.args.scenario == THREAD_CONTEXT:
+                raise RuntimeError("ordinary installed thread context has one catalog generation")
             self.generation = 2
             path.unlink()
             self.record("generation_changed", generation=2)
@@ -241,7 +255,7 @@ def main():
     parser.add_argument("--codex-home", required=True, type=Path)
     parser.add_argument("--workspace", required=True, type=Path)
     parser.add_argument("--requests-file", required=True, type=Path)
-    parser.add_argument("--scenario", required=True, choices=["ordinary-installed-apps"])
+    parser.add_argument("--scenario", required=True, choices=["ordinary-installed-apps", THREAD_CONTEXT])
     args = parser.parse_args()
     fixture = Fixture(args)
 

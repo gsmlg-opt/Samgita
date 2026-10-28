@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps against1,757 identical sources:
+preserved164 cases twice within320s, ten extension cases twice, three selected
+replay seeds, four cleanup cases, outside consumer and static/build checks.
+Native stream gaps, installed context, dormant child MCP and active-page
+interruption/cold history have exact bounded evidence. Owners3319/4225 become
+implemented; contracts5,728 implemented/757 missing/136 blocked, unchanged
+requirements and zero globally verified. First static failures remain recorded.
+Next: qualify the source-supported genuine process-crash tail using the public
+persisted-content barrier and checked owned-process failure. Installed metadata
+null still needs side-effect-aware reconciliation proof. A11, original unknown
+cleanup cause, prohibited/broad/hosted, external/OS and full/release gates stay open.
+
 The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
 passes all17 reviewed functional steps with1,749 exact guarded sources,
 preserved164-case commands/bounds, six extension cases twice, three selected

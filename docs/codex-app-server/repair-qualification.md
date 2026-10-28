@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps,1,757 exact sources, original164-case repeats under
+320s, ten extension cases twice, three replay seeds, four cleanup cases, outside
+consumer and static/build checks. Two precise owners become implemented:
+5,728 implemented/757 missing/136 blocked, unchanged requirements and zero
+globally verified. Existing dependency/replay/database/cleanup repairs remain
+unchanged. Static findings were corrected by extracting identical assertions,
+without weakened rules or deadlines. Next: genuine owned-process crash-tail
+qualification; no synthetic history or extra installed-query side effects are
+silently accepted. A11, unknown intermittent cause, prohibited/broad/hosted,
+external/OS, full-goal and release remain incomplete.
+
 The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
 passes all17 reviewed steps, with1,749 identical guarded source hashes. It adds
 29 exact physical owners:5,726 implemented/759 missing/136 blocked, unchanged

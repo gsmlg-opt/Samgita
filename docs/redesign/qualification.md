@@ -5,7 +5,15 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
 Current Codex work follows the user's prohibition on security and permission
-tests. The [ordinary summary/context checkpoint](../codex-app-server/ordinary-summary-git-qualification.md#functional-verification)
+tests. The [ordinary stream/discovery checkpoint](../codex-app-server/ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
+passes17 reviewed functional steps against1,757 identical sources:164 retained
+cases twice, ten extension cases twice, three selected replay seeds, four
+cleanup cases, outside consumer and static/build checks. It adds genuine native
+stream/context/dormant-MCP and explicit-interruption cold-history evidence,
+preserving all existing domain/recovery/cleanup boundaries. Genuine process-crash
+qualification continues separately; no PostgreSQL, browser or prohibited tests
+are rerun. A11, broad/hosted/external and full-goal/release gates stay incomplete.
+The [ordinary summary/context checkpoint](../codex-app-server/ordinary-summary-git-qualification.md#functional-verification)
 passes17 reviewed functional steps against1,749 exact guarded sources:
 preserved164-case repeats, six extension cases twice, four cleanup scenarios,
 three selected replay seeds, outside consumer and static/build checks. It
