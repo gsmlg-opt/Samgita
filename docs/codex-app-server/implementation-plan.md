@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
+binds four physical owners with focused native5/0 evidence twice. Its original
+161-case combination failed one cleanup at987654; a subsequent original-helper/
+order observation passes161/0 without reproducing the failure. All seven remaining
+ordinary consumer/static/build commands pass with1,731 unchanged guarded sources.
+Do not call the original combination repaired or complete. Next: obtain the first
+failing helper-side cause if it recurs, while continuing source-reviewed ordinary
+marketplace-kind, checkout/delete and provider-WebSocket candidates. Contracts:
+5,652 implemented/833 missing/136 blocked; requirements462 implemented/12 missing/
+11 blocked; zero globally verified. All prohibited/broad/hosted, A11, external/OS
+and full-goal/release gates remain incomplete.
+
 Accepted scope: [goal](goal.md) and the full user-supplied implementation contract.
 The complete goal remains active. No phase below is a substitute for completion.
 

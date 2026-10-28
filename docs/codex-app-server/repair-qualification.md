@@ -1,5 +1,15 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
+retains a new cleanup failure in the original161-case combination at987654.
+Focused new cases pass5/0 twice; an original-helper/order lifecycle observation
+passes161/0 without reproducing that failure. Seven consumer/static/build suffix
+checks pass against unchanged source. Exact-OTP source rejects the speculative
+normal stream exit-order explanation; a deterministic helper reader barrier
+proves a possible no-ACK branch only. No runtime repair or restored combined gate
+is claimed. Existing lock/replay/database/cleanup safeguards remain intact;
+prohibited checks, A11 and full compatibility remain incomplete.
+
 This record executes `samgita-codex-repair-followup.txt` on the existing `main`,
 starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 [compatibility ledger](implementation-plan.md) and [qualification](qualification.md).

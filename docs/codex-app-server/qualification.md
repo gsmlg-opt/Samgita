@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
+adds four scoped physical owners after focused5/0 runs at both seeds. The original
+161-case combined run passed501432 but failed one cleanup at987654; that gate
+remains failed. A subsequent original-helper/order diagnostic passed161/0 with
+389 successful observed shutdowns and no reproduction. Seven consumer/static/
+build suffix checks pass against1,731 identical guarded sources. Exact-OTP source
+and a deterministic helper barrier narrow possible no-ACK paths without proving
+the original cause or changing cleanup. Contracts:5,652 implemented/833 missing/
+136 blocked; requirements unchanged; zero globally verified. Continue ordinary
+functional gaps; preserve this cleanup uncertainty, A11 and all prohibited/
+external/OS/full-compatibility gates. No audit or hosted workflow runs.
+
 The [ordinary resource/search unit](ordinary-resource-search-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **92 files /158 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

@@ -3430,14 +3430,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/diagnostics-memory-qualification.md"
+        "docs/codex-app-server/diagnostics-memory-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:memory/reset",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, other nonempty/concurrent reset combinations and other OS/transport profiles remain unqualified.",
+        "One actual-native integer-ID omitted-params reset after owned synthetic count2/text inputs; real directory clearing, retained SQLite inode, stopped-native independent count0 and cold count0. Exact bytes/correlation bind only root35/id. No Samgita/shared database, production writer, complete method, alias, union or other deployment credit."
       ],
       "params": {
         "type": "null"
@@ -3468,7 +3470,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -6050,14 +6053,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/backgroundTerminals/clean",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified.",
+        "Actual-native string-ID clean stops reader B after targeted terminate stops A while B survives. ACK is separate from original item completion, read-only pidfd exit and native empty list. Exact bytes/correlation bind only root41/id with unchanged definitions. No mutation retry, live-terminal reconnect, resource measurement, alias, union, complete method or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/ThreadBackgroundTerminalsCleanParams"
@@ -6088,11 +6093,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223",
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "thread/backgroundTerminals/clean"
     },
@@ -6154,14 +6161,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/backgroundTerminals/terminate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified.",
+        "Actual-native integer-ID1299001 terminate stops only reader A while B survives; clean later stops B. ACK is separate from item completion and independent read-only pidfd exit. Exact bytes/correlation and original process IDs bind only root43/id. No mutation retry, live-terminal reconnect, alias, union, complete method or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/ThreadBackgroundTerminalsTerminateParams"
@@ -6192,11 +6201,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156",
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "thread/backgroundTerminals/terminate"
     },
@@ -11686,14 +11697,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/hook-lifecycle-qualification.md"
+        "docs/codex-app-server/hook-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:hook/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified.",
+        "Actual-native synchronous post-tool observer declared only through CLI override. A distinct cold native after warm shutdown emits hook/started and hook/completed source sessionFlags at /<session-flags>/config.toml, bound to independent command/hook journals. Fixed positive setup only; no security/permission/trust outcome, alias, complete hook family or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/HookCompletedNotification"
@@ -11715,7 +11728,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_hook_session_flags_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11727,14 +11741,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/hook-lifecycle-qualification.md"
+        "docs/codex-app-server/hook-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:hook/started",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Six isolated cases execute two fixed owned synchronous command hooks after exact current-hash trust, or prove untrusted/disabled exclusion; native started/completed pairs, metadata, times, feedback/error/stop and zero inference for blocked/stopped input are asserted. Async/builtin lifecycle is source-gated; other events/handlers/sources, managed/plugin integration, timeout/spawn failures and full OS profiles remain unqualified.",
+        "Actual-native synchronous post-tool observer declared only through CLI override. A distinct cold native after warm shutdown emits hook/started and hook/completed source sessionFlags at /<session-flags>/config.toml, bound to independent command/hook journals. Fixed positive setup only; no security/permission/trust outcome, alias, complete hook family or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/HookStartedNotification"
@@ -11756,7 +11772,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_hook_session_flags_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17993,14 +18010,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/diagnostics-memory-qualification.md"
+        "docs/codex-app-server/diagnostics-memory-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:memory/reset",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, other nonempty/concurrent reset combinations and other OS/transport profiles remain unqualified.",
+        "One actual-native integer-ID omitted-params reset after owned synthetic count2/text inputs; real directory clearing, retained SQLite inode, stopped-native independent count0 and cold count0. Exact bytes/correlation bind only root35/id. No Samgita/shared database, production writer, complete method, alias, union or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -18017,7 +18036,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -19951,14 +19971,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/backgroundTerminals/clean",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified.",
+        "Actual-native string-ID clean stops reader B after targeted terminate stops A while B survives. ACK is separate from original item completion, read-only pidfd exit and native empty list. Exact bytes/correlation bind only root41/id with unchanged definitions. No mutation retry, live-terminal reconnect, resource measurement, alias, union, complete method or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -19975,11 +19997,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223",
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "thread/backgroundTerminals/clean"
     },
@@ -20029,14 +20053,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/backgroundTerminals/terminate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified.",
+        "Actual-native integer-ID1299001 terminate stops only reader A while B survives; clean later stops B. ACK is separate from item completion and independent read-only pidfd exit. Exact bytes/correlation and original process IDs bind only root43/id. No mutation retry, live-terminal reconnect, alias, union, complete method or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -20053,11 +20079,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156",
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "thread/backgroundTerminals/terminate"
     },
@@ -62747,25 +62775,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/35/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "One actual-native integer-ID omitted-params reset after owned synthetic count2/text inputs; real directory clearing, retained SQLite inode, stopped-native independent count0 and cold count0. Exact bytes/correlation bind only root35/id. No Samgita/shared database, production writer, complete method, alias, union or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/35/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -63828,25 +63862,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/41/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native string-ID clean stops reader B after targeted terminate stops A while B survives. ACK is separate from original item completion, read-only pidfd exit and native empty list. Exact bytes/correlation bind only root41/id with unchanged definitions. No mutation retry, live-terminal reconnect, resource measurement, alias, union, complete method or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/41/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -64168,25 +64208,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/43/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native integer-ID1299001 terminate stops only reader A while B survives; clean later stops B. ACK is separate from item completion and independent read-only pidfd exit. Exact bytes/correlation and original process IDs bind only root43/id. No mutation retry, live-terminal reconnect, alias, union, complete method or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/43/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_background_terminals_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -94558,22 +94604,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-lifecycle-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookSource/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native synchronous post-tool observer declared only through CLI override. A distinct cold native after warm shutdown emits hook/started and hook/completed source sessionFlags at /<session-flags>/config.toml, bound to independent command/hook journals. Fixed positive setup only; no security/permission/trust outcome, alias, complete hook family or other deployment credit."
+      ],
       "pointer": "/definitions/HookSource/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "e41c4939ef4cb91fec536c0ebe555b0ceefddb1ac75c19eac24ed36bec06298a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_hook_session_flags_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"

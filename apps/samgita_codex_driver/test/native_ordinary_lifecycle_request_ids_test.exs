@@ -1,6 +1,6 @@
 defmodule SamgitaCodexDriver.NativeOrdinaryLifecycleRequestIdsTest do
   @moduledoc """
-  Two physical native request-id owners only. Memory rows/summary are synthetic
+  Three physical native request-id owners only. Memory rows/summary are synthetic
   reader inputs, not extraction, consolidation, writer or production evidence.
   """
   use ExUnit.Case, async: false
@@ -403,6 +403,172 @@ defmodule SamgitaCodexDriver.NativeOrdinaryLifecycleRequestIdsTest do
     close_provider(ctx)
     assert ModelFixture.requests(ctx.fixture) === []
     assert snapshot(summary) === saved_summary
+    assert_controls(ctx)
+  end
+
+  test "ordinary native memory reset preserves its exact integer request id and clears only owned synthetic memory inputs",
+       ctx do
+    database = Path.join(ctx.fixture.codex_home, "memories_v2_1.sqlite")
+    v1_root = Path.join(ctx.fixture.codex_home, "memories")
+    v2_root = Path.join(ctx.fixture.codex_home, "memories_v2")
+    extensions_root = Path.join(ctx.fixture.codex_home, "memories_extensions")
+    roots = [v1_root, v2_root, extensions_root]
+    summary = Path.join(v2_root, "memory_summary.md")
+    refute File.exists?(database)
+    for root <- roots, do: refute(File.exists?(root))
+    requests_before = snapshot(ctx.fixture.requests)
+    initial = start(ctx)
+
+    assert call(ctx, initial.pid, "memory/status", %{}) ===
+             %{"v2ConsolidatedThreads" => 0, "v2Ready" => false}
+
+    assert_empty_loaded(ctx, initial.pid)
+    assert_controls(ctx)
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert_idle(initial.pid)
+    close_native(initial)
+    assert File.regular?(database)
+
+    # The actual native reader creates/migrates the store before this existing
+    # helper updates its exact prior count0 to2. These are synthetic inputs;
+    # no memory generator, consolidation writer, thread or model request runs.
+    assert_input(ctx, "read", initial.native, 0, 0)
+    assert_input(ctx, "seed-two", initial.native, 2, 1)
+    assert_input(ctx, "read", initial.native, 2, 0)
+    database_inode = File.stat!(database).inode
+    assert is_integer(database_inode) and database_inode > 0
+
+    summary_bytes = """
+    v1
+    ## User Profile
+    Owned synthetic memory reset input 1254 λ🙂.
+    ## User preferences
+    Owned synthetic reset preference.
+    ## General Tips
+    Owned synthetic reset tip.
+    ## What's in Memory
+    These disposable text/count inputs are not generated memory.
+    """
+
+    files = %{
+      Path.join(v1_root, "MEMORY.md") => "Owned synthetic V1 reset index 1254 λ🙂\n",
+      Path.join(v1_root, "rollout_summaries/owned-reset.md") =>
+        "Owned synthetic nested V1 reset text 1254 β🙂\n",
+      summary => summary_bytes,
+      Path.join(v2_root, "raw_memories/owned-reset.md") =>
+        "Owned synthetic nested V2 reset text 1254 γ🙂\n",
+      Path.join(extensions_root, "owned-extension.md") =>
+        "Owned synthetic extension reset text 1254 δ🙂\n"
+    }
+
+    for {path, bytes} <- files do
+      assert byte_size(bytes) in 1..4096
+      File.mkdir_p!(Path.dirname(path))
+      File.write!(path, bytes, [:exclusive])
+      assert File.read!(path) === bytes
+    end
+
+    saved_files = Map.new(files, fn {path, _bytes} -> {path, snapshot(path)} end)
+    assert Enum.sort(File.ls!(v1_root)) === ["MEMORY.md", "rollout_summaries"]
+    assert File.ls!(Path.join(v1_root, "rollout_summaries")) === ["owned-reset.md"]
+    assert Enum.sort(File.ls!(v2_root)) === ["memory_summary.md", "raw_memories"]
+    assert File.ls!(Path.join(v2_root, "raw_memories")) === ["owned-reset.md"]
+    assert File.ls!(extensions_root) === ["owned-extension.md"]
+    resetter = start(ctx)
+    refute resetter.native === initial.native
+
+    assert call(ctx, resetter.pid, %{
+             "id" => "owned-reset-pre-status-1254",
+             "method" => "memory/status",
+             "params" => %{"minConsolidatedThreads" => 2}
+           }) === %{"v2ConsolidatedThreads" => 2, "v2Ready" => true}
+
+    for {path, before} <- saved_files, do: assert(snapshot(path) === before)
+    assert snapshot(ctx.fixture.requests) === requests_before
+    assert_controls(ctx)
+
+    # Exactly one nonempty reset. Omitted params is the native optional-unit
+    # request shape. No reset retry or second empty-reset request is issued.
+    reset_wire = %{"id" => -1254, "method" => "memory/reset"}
+    refute Map.has_key?(reset_wire, "params")
+    result = call(ctx, resetter.pid, reset_wire)
+    assert result === %{}
+    assert :ok = Schema.validate_result(:server_response, "memory/reset", result)
+    assert_target_owner(ctx, "memory/reset", -1254, 35)
+    assert [sent_reset] = Enum.filter(outgoing(ctx), &(&1.wire["method"] === "memory/reset"))
+    assert sent_reset.wire === reset_wire
+    assert Enum.sort(Map.keys(sent_reset.wire)) === ~w(id method)
+    refute Map.has_key?(JSON.decode!(sent_reset.encoded), "params")
+
+    for root <- roots do
+      assert File.dir?(root)
+      assert File.ls!(root) === []
+    end
+
+    for path <- Map.keys(files), do: refute(File.exists?(path))
+    assert File.regular?(database)
+    assert File.stat!(database).inode === database_inode
+
+    # Same numeric spelling, distinct JSON type and method. This is supporting
+    # correlation evidence only, with no root34 or RequestId-union promotion.
+    assert call(ctx, resetter.pid, %{
+             "id" => "-1254",
+             "method" => "memory/status",
+             "params" => %{"minConsolidatedThreads" => 2}
+           }) === %{"v2ConsolidatedThreads" => 0, "v2Ready" => false}
+
+    assert_empty_loaded(ctx, resetter.pid)
+    assert_controls(ctx)
+    assert snapshot(ctx.fixture.requests) === requests_before
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert_idle(resetter.pid)
+    close_native(resetter)
+    assert_input(ctx, "read", resetter.native, 0, 0)
+
+    cold = start(ctx)
+    refute cold.native in [initial.native, resetter.native]
+
+    assert call(ctx, cold.pid, "memory/status", %{"minConsolidatedThreads" => 2}) ===
+             %{"v2ConsolidatedThreads" => 0, "v2Ready" => false}
+
+    assert_empty_loaded(ctx, cold.pid)
+    assert_idle(cold.pid)
+    close_native(cold)
+    assert_input(ctx, "read", cold.native, 0, 0)
+    assert File.regular?(database)
+    assert File.stat!(database).inode === database_inode
+
+    for root <- roots do
+      assert File.dir?(root)
+      assert File.ls!(root) === []
+    end
+
+    for path <- Map.keys(files), do: refute(File.exists?(path))
+
+    assert_inventory(
+      ctx,
+      ~w(initialize initialized server/diagnostics memory/status thread/loaded/list initialize initialized server/diagnostics memory/status memory/reset memory/status thread/loaded/list initialize initialized server/diagnostics memory/status thread/loaded/list)
+    )
+
+    typed_pair =
+      Enum.filter(outgoing(ctx), &(&1.wire["id"] === -1254 or &1.wire["id"] === "-1254"))
+
+    assert Enum.map(typed_pair, &Map.take(&1.wire, ~w(id method))) === [
+             %{"id" => -1254, "method" => "memory/reset"},
+             %{"id" => "-1254", "method" => "memory/status"}
+           ]
+
+    refute Enum.any?(
+             incoming(ctx),
+             &(&1.wire["method"] in ~w(thread/started turn/started turn/completed))
+           )
+
+    assert snapshot(ctx.fixture.requests) === requests_before
+    assert ModelFixture.requests(ctx.fixture) === []
+    assert_controls(ctx)
+    close_provider(ctx)
+    assert snapshot(ctx.fixture.requests) === requests_before
+    assert ModelFixture.requests(ctx.fixture) === []
     assert_controls(ctx)
   end
 
