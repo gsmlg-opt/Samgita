@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [millisecond reverse-pagination unit](ordinary-reverse-timestamp-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps with1,762 identical guarded hashes:
+main166/0 twice, extensions23/0 twice, three replay seeds, four cleanup cases,
+outside consumer1/0 and static/build checks under original bounds. Genuine
+updated_at/recency_at reverse cursors preserve exact anchors/prefixes and
+original warm cursors through unloaded cold reads. Original code is preserved
+by177 inserted lines; the first Credo failure and unrelated dev-build attempt
+remain recorded. Only5702 gains partial evidence, retaining its missing state
+and the known created_at failure. Counts stay **5,756 implemented /729 missing
+/136 blocked**, unchanged requirements and zero globally verified. Strict full
+completeness still exits1. Next: bind inspected source-only output prerequisites;
+A11, prohibited/broad/hosted, external/OS and full/release gates stay incomplete.
+
 The [collaboration/steering notification source unit](ordinary-collab-steer-source-boundaries.md#exact-physical-owners-and-verification-boundary)
 adds append-only evidence for2087/2094–2097/2101/2310–2311, all still missing.
 Twenty-four causal files match the pin; the complete archived Rust census

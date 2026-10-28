@@ -187,6 +187,75 @@ defmodule SamgitaCodexDriver.NativeThreadSortValuesTest do
     assert Enum.count(captures, &(&1["method"] == "thread/search")) == 16
   end
 
+  test "native updated and recency reverse cursors retain anchors and complete prefixes across cold reads",
+       ctx do
+    warm = start(ctx)
+    warm_native = native_id(ctx, warm)
+    first = thread(ctx, warm)
+    first_text = "Owned reverse timestamp first " <> @needle
+    first_turn = turn(ctx, warm, first, first_text, 1)
+    first_times = timestamps(ctx)
+    assert Map.keys(first_times) == [first]
+    await_clock(latest_timestamp(first_times), deadline(2_000))
+
+    second = thread(ctx, warm)
+    refute second == first
+    second_text = "Owned reverse timestamp second " <> @needle
+    second_turn = turn(ctx, warm, second, second_text, 2)
+    before = timestamps(ctx)
+    assert MapSet.new(Map.keys(before)) == MapSet.new([first, second])
+    assert before[first]["created_at"] < before[second]["created_at"]
+    await_clock(latest_timestamp(before), deadline(2_000))
+
+    continuation = "Owned reverse timestamp first-thread continuation"
+    later_turn = turn(ctx, warm, first, continuation, 3)
+    observed = timestamps(ctx)
+
+    for id <- [first, second] do
+      assert observed[id]["created_at"] == before[id]["created_at"]
+    end
+
+    for key <- ["updated_at", "recency_at"] do
+      assert observed[first][key] > before[first][key]
+      assert observed[first][key] > observed[second][key]
+      assert order(observed, key, "asc") == [second, first]
+      assert order(observed, key, "desc") == [first, second]
+      assert length(Enum.uniq(Enum.map(observed, fn {_id, row} -> row[key] end))) == 2
+    end
+
+    expected = %{
+      first => [{first_turn, first_text}, {later_turn, continuation}],
+      second => [{second_turn, second_text}]
+    }
+
+    saved = Map.new(expected, fn {id, turns} -> {id, saved_history(ctx, warm, id, turns)} end)
+    journal = snapshot(ctx.fixture.requests)
+    retained = Map.put(ctx.inputs, ctx.fixture.requests, journal)
+    warm_pages = reverse_timestamp_matrix(ctx, warm, observed, saved)
+    assert_retained(ctx, warm, observed, expected, saved, retained)
+    close(warm, warm_native)
+
+    cold = start(ctx)
+    cold_native = native_id(ctx, cold)
+    refute cold_native == warm_native
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
+
+    # Cold requests consume the original warm cursors before loading history.
+    assert reverse_timestamp_matrix(ctx, cold, observed, saved, warm_pages) === warm_pages
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
+    assert_retained(ctx, cold, observed, expected, saved, retained)
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
+    close(cold, cold_native)
+    assert_inputs(retained)
+
+    captures = Agent.get(ctx.capture, & &1)
+    assert length(captures) == 37
+    assert Enum.count(captures, &(&1["method"] == "thread/start")) == 2
+    assert Enum.count(captures, &(&1["method"] == "turn/start")) == 3
+    assert Enum.count(captures, &(&1["method"] == "thread/list")) == 32
+    refute Enum.any?(captures, &(&1["method"] == "thread/search"))
+  end
+
   defp matrix(ctx, pid, observed, snippets, saved) do
     for {method, keys} <- [
           {"thread/list", ["updated_at", "recency_at"]},
@@ -226,6 +295,114 @@ defmodule SamgitaCodexDriver.NativeThreadSortValuesTest do
         {method, key, direction, cursor, ids(method, first)}
       end
     end
+  end
+
+  defp reverse_timestamp_matrix(ctx, pid, observed, saved, originals \\ %{}) do
+    for key <- ["updated_at", "recency_at"], direction <- ["asc", "desc"], into: %{} do
+      expected = order(observed, key, direction)
+      [prior_id, anchor_id] = expected
+      original = Map.get(originals, {key, direction}, %{})
+
+      params = %{
+        "sortKey" => key,
+        "sortDirection" => direction,
+        "limit" => 1,
+        "useStateDbOnly" => true
+      }
+
+      first = reverse_timestamp_page(ctx, pid, params, [prior_id], observed, saved)
+
+      forward_cursor =
+        reverse_timestamp_reused_cursor(first, "nextCursor", original, :forward_cursor)
+
+      second =
+        reverse_timestamp_page(
+          ctx,
+          pid,
+          Map.put(params, "cursor", forward_cursor),
+          [anchor_id],
+          observed,
+          saved
+        )
+
+      assert Map.fetch!(second, "nextCursor") == nil
+
+      backwards_cursor =
+        reverse_timestamp_reused_cursor(second, "backwardsCursor", original, :backwards_cursor)
+
+      opposite = if direction == "asc", do: "desc", else: "asc"
+      reverse_params = Map.put(params, "sortDirection", opposite)
+
+      reverse =
+        reverse_timestamp_page(
+          ctx,
+          pid,
+          Map.put(reverse_params, "cursor", backwards_cursor),
+          [anchor_id],
+          observed,
+          saved
+        )
+
+      prefix_cursor =
+        reverse_timestamp_reused_cursor(reverse, "nextCursor", original, :prefix_cursor)
+
+      prefix =
+        reverse_timestamp_page(
+          ctx,
+          pid,
+          Map.put(reverse_params, "cursor", prefix_cursor),
+          [prior_id],
+          observed,
+          saved
+        )
+
+      assert Map.fetch!(prefix, "nextCursor") == nil
+
+      {{key, direction},
+       %{
+         forward_cursor: forward_cursor,
+         backwards_cursor: backwards_cursor,
+         prefix_cursor: prefix_cursor,
+         pages: Enum.map([first, second, reverse, prefix], &reverse_timestamp_projection/1)
+       }}
+    end
+  end
+
+  defp reverse_timestamp_page(ctx, pid, params, expected, observed, saved) do
+    page = call(ctx, pid, "thread/list", params)
+    assert_page(ctx, "thread/list", page, expected, observed, %{}, saved)
+    reverse_timestamp_cursor(page, "backwardsCursor")
+    page
+  end
+
+  defp reverse_timestamp_cursor(page, field) do
+    cursor = Map.fetch!(page, field)
+    assert is_binary(cursor) and byte_size(cursor) in 1..256
+    cursor
+  end
+
+  defp reverse_timestamp_reused_cursor(page, field, original, name) do
+    cursor = reverse_timestamp_cursor(page, field)
+
+    case Map.fetch(original, name) do
+      {:ok, retained} ->
+        assert cursor === retained
+        retained
+
+      :error ->
+        cursor
+    end
+  end
+
+  defp reverse_timestamp_projection(page) do
+    fields =
+      ~w(id sessionId path preview historyMode source modelProvider cwd cliVersion createdAt updatedAt recencyAt name section sectionEnteredAt projectId parentThreadId forkedFromId ephemeral turns)
+
+    %{
+      rows: Enum.map(Map.fetch!(page, "data"), &Map.take(&1, fields)),
+      next: Map.fetch!(page, "nextCursor"),
+      backwards: Map.fetch!(page, "backwardsCursor")
+    }
   end
 
   defp assert_page(ctx, method, page, expected, observed, snippets, saved) do

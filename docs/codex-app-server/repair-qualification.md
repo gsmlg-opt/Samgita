@@ -1,5 +1,18 @@
 # Repair evidence and continuing compatibility work
 
+The [millisecond reverse-pagination unit](ordinary-reverse-timestamp-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional checks with1,762 identical guarded hashes:
+main166/0 twice, extensions23/0 twice, three replay seeds, four retained cleanup
+cases, outside consumer and static/build checks. Exact native reverse anchors,
+prefixes and cold cursor reuse gain partial evidence only; the original
+created_at failure remains. Initial Credo/dev-environment failures and their
+separate outcomes are retained. Both plug_crypto locks remain2.2.1; runtime,
+database recovery safeguards and shared cleanup stay unchanged. No prohibited
+audit or mixed database suite is rerun. Counts stay **5,756 implemented /729
+missing /136 blocked**, unchanged requirements, zero globally verified; strict
+completeness exits1. A11, prohibited/broad/hosted, unavailable producers,
+external/OS, full compatibility and release remain incomplete.
+
 The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
 attaches stock constructor evidence to three missing output branches without
 native-success or mock-based promotion. Only evidence/limitations and the runner

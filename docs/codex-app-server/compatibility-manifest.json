@@ -207328,7 +207328,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/thread-list-fields-qualification.md",
-        "docs/codex-app-server/section-rank-cursor-qualification.md"
+        "docs/codex-app-server/section-rank-cursor-qualification.md",
+        "docs/codex-app-server/ordinary-reverse-timestamp-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -207336,7 +207337,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Boundary/diagnostic evidence only; retain missing: Initial seed501432 failed the reverse-prefix anchor assertion (original test114; /tmp/samgita-thread-list-initial-501432-20261024.log). Immutable rollout/src/recorder.rs:2170 serializes created_at_ms with SecondsFormat::Secs; thread-store/src/local/helpers.rs:130-142 reparses that truncated value; thread_processor.rs:5902-5930 offsets it by +/-1ms before the opposite strict timestamp query. The current passing diagnostic reads only owned state_5.sqlite timestamps via mode=ro/query_only, asserts exact generated cursor milliseconds and the complete resulting reverse IDs independently. This records native precision loss; it does not establish anchor inclusion or qualify positive backwardsCursor behavior. Null/empty output and restart cursor equality are partial evidence only. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified.",
-        "Scoped real-native integer section-rank reverse-cursor evidence: three genuine paginated histories and public section moves independently prescribe ascending [third,second,first] and reversed descending order. Each direction has three limit1 forward pages, then unchanged middle backwardsCursor in opposite direction includes its anchor and unchanged nextCursor returns the original preceding row. All20pages repeat warm and unloaded cold with exact IDs/native cursors, retained row metadata/original histories/rollout bytes through final retained reads; config/catalog/source/provider journal exact through final close. No separate post-final-close rollout or new model-peer monitor claim.32of40selected captures at4KiB/3inference/2owned native PIDs and fixed bounds/cleanup retained. Initial1/0 and4affected ordinary cases twice, strict checks,373stable sources/all372prior unchanged; previous full matrix/consumer/static/assembly retained by exact source equivalence, not rerun. Native integer branch returns before the separate known created_at timestamp precision defect; owner5702 MUST remain missing. No rank ties/rebalance/concurrent moves, timestamp repair/workaround, state/count promotion, prohibited/broad/hosted gate or full compatibility claim."
+        "Scoped real-native integer section-rank reverse-cursor evidence: three genuine paginated histories and public section moves independently prescribe ascending [third,second,first] and reversed descending order. Each direction has three limit1 forward pages, then unchanged middle backwardsCursor in opposite direction includes its anchor and unchanged nextCursor returns the original preceding row. All20pages repeat warm and unloaded cold with exact IDs/native cursors, retained row metadata/original histories/rollout bytes through final retained reads; config/catalog/source/provider journal exact through final close. No separate post-final-close rollout or new model-peer monitor claim.32of40selected captures at4KiB/3inference/2owned native PIDs and fixed bounds/cleanup retained. Initial1/0 and4affected ordinary cases twice, strict checks,373stable sources/all372prior unchanged; previous full matrix/consumer/static/assembly retained by exact source equivalence, not rerun. Native integer branch returns before the separate known created_at timestamp precision defect; owner5702 MUST remain missing. No rank ties/rebalance/concurrent moves, timestamp repair/workaround, state/count promotion, prohibited/broad/hosted gate or full compatibility claim.",
+        "Additional actual-native updated_at/recency_at millisecond reverse-cursor evidence: two genuine paginated histories and a later first-thread turn prescribe both independent timestamp orders through read-only owned SQLite observation. Each sort/direction consumes unchanged native page2 backwardsCursor in the opposite direction, includes the exact anchor and follows unchanged nextCursor through the complete preceding prefix; all16pages repeat unloaded cold using original warm cursors. Exact native request correlation, row/timestamp/cursor projections, retained histories/rollout/config/provider bytes, three inference requests, distinct reaped native PIDs and37captured setup/list operations are asserted. Original sort case/assertions and known created_at precision-loss failure stay unchanged; owner5702 remains missing. No timestamp ties, concurrent edits, repaired created_at behavior, security/permission/broad/hosted gate, full compatibility or release credit."
       ],
       "nullable": true,
       "pointer": "/properties/backwardsCursor",
@@ -207352,7 +207354,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,146-161,276-324",
-          "apps/samgita_codex_driver/test/native_section_rank_cursor_test.exs"
+          "apps/samgita_codex_driver/test/native_section_rank_cursor_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_sort_values_test.exs"
         ]
       },
       "transport_coverage": [

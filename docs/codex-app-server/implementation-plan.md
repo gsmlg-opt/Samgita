@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [millisecond reverse-pagination unit](ordinary-reverse-timestamp-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps with1,762 identical guarded hashes: main166/0 and
+extensions23/0 twice, selected replay/cleanup/outside-consumer and static/build
+checks, preserving original argv/bounds. One additive case proves exact native
+updated/recency reverse anchors and complete prefixes across cold reads; all
+old code stays exact. The first Credo failure is fixed with an equivalent
+absence assertion; the unrelated dev-build failure is retained. Owner5702
+stays missing because created_at precision loss remains. Counts stay **5,756
+implemented /729 missing /136 blocked**, unchanged requirements, zero globally
+verified; strict completeness exits1. Next: integrate already inspected
+output-producer prerequisites, with no runtime or field-state credit. A11,
+prohibited/broad/hosted, external/OS and full/release gates remain open.
+
 The [collaboration/steering source unit](ordinary-collab-steer-source-boundaries.md#exact-physical-owners-and-verification-boundary)
 records2087/2094–2097/2101/2310–2311 without changing their missing states.
 Twenty-four complete pinned files, all5,259 archived Rust sources and eight

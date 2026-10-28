@@ -20,7 +20,7 @@ import time
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 from fetch_standalone_pin import BINARY as STANDALONE_BINARY, BINARY_SHA256 as STANDALONE_SHA256
 
-REVIEWED_SOURCE_SHA256 = "067878b7f26d96e7006a554532493960ff3555bfee2226fff6c4c0f6b9b3a09e"
+REVIEWED_SOURCE_SHA256 = "002e2b73ddfb71efa25967d7749a9d822f1dd3fe0892b3a1f5f74a0b1dc10f9b"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -132,10 +132,11 @@ native_ordinary_mcp_not_started_test.exs
 native_ordinary_active_page_recovery_test.exs
 native_ordinary_installed_null_test.exs
 native_standalone_source_selector_test.exs
+native_thread_sort_values_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
 DRIVER_CASES = 166
-EXTRA_DRIVER_CASES = 21
+EXTRA_DRIVER_CASES = 23
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -194,7 +195,8 @@ def commands():
                       ["mix", "test", *files, "--warnings-as-errors", "--seed", str(seed)], 320))
     # Keep the original main argv and320s bound; one existing-call case extends
     # the ordinary realtime module while all prior165 cases stay unchanged.
-    # Independent profiles retain their separate count and120s bound.
+    # Independent profiles, including two ordinary timestamp-sort cases,
+    # retain their separate count and120s bound.
     for seed in (501432, 987654):
         steps.append(("ordinary-extra-" + str(seed), driver,
                       ["mix", "test", *extra_files, "--warnings-as-errors", "--seed", str(seed)], 120))
