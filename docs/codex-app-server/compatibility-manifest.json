@@ -127258,11 +127258,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-null-result-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned production constructor evidence: both getConversationSummary conversationId and rolloutPath selectors load StoredThread then call summary_from_stored_thread, which unconditionally wraps mandatory DateTime values as Some formatted strings. The apparent empty-SessionMeta null helper and alternate metadata converter are cfg(test), not shipped public handlers. Nullable supplemental shape remains supported, but no genuine current-server null output follows. This physical owner stays missing; no test, coverage, alias or runtime-success credit. A separately evidenced producer/version or explicit evidence-contract decision is required."
+      ],
       "pointer": "/properties/timestamp/anyOf/1",
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -127343,11 +127347,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-null-result-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned production constructor evidence: both getConversationSummary conversationId and rolloutPath selectors load StoredThread then call summary_from_stored_thread, which unconditionally wraps mandatory DateTime values as Some formatted strings. The apparent empty-SessionMeta null helper and alternate metadata converter are cfg(test), not shipped public handlers. Nullable supplemental shape remains supported, but no genuine current-server null output follows. This physical owner stays missing; no test, coverage, alias or runtime-success credit. A separately evidenced producer/version or explicit evidence-contract decision is required."
+      ],
       "pointer": "/properties/updatedAt/anyOf/1",
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -217690,11 +217698,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-null-result-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/collaborationMode/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned production constructor evidence: complete app-server symbol census finds exactly two ThreadResumeResponse constructors; cold/history/path and loaded/rejoined routes both unconditionally wrap a concrete snapshot CollaborationMode in Some. Fork has a different response; internal recovery supplies no alternative public success. The Option DTO supports older-server compatibility, and test-only None constructors do not establish native current-server null output. This owner stays missing without new test/coverage/success credit; a separately evidenced producer/version or explicit evidence-contract decision remains required."
+      ],
       "pointer": "/properties/collaborationMode/anyOf/1",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",

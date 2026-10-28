@@ -1,5 +1,10 @@
 # Ordinary summaries, Git facts and exact context bindings
 
+Current source-only follow-up: [the legacy null-result prerequisite](ordinary-null-result-prerequisites.md)
+traces both real selectors to the converter that always supplies timestamp
+strings. The apparent null helper is test-only. Owners3264/3267 stay missing;
+the original nonnull behavior evidence below retains its scope.
+
 This unit follows `50c9f5d` on the existing `main`. It continues the full
 compatibility goal against stock Codex `rust-v0.163.0`, commit
 `83086188ae0614bd882818ff1aa23f3194962012`, executable SHA256

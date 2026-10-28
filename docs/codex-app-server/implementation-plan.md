@@ -1,5 +1,16 @@
 # Full compatibility implementation ledger
 
+The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
+adds exact constructor evidence only for3264/3267/6028, all still missing. Both
+resume success constructors use Some; the legacy public summary converter supplies
+strings while the apparent nullable helper is cfg(test). No mock substitutes for
+native output. Inventory passes; only those evidence/limitations lists and the
+reviewed fingerprint change, with all 1,761 other guarded hashes matching the
+preceding successful 17-step source. No runtime/state/coverage credit is added.
+Counts stay **5,748 implemented /737 missing /136 blocked**, unchanged requirements,
+zero globally verified. The real producer/version/evidence-contract prerequisite,
+A11, prohibited/broad/hosted, external/OS and full/release gates stay incomplete.
+
 The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps against 1,762 identical source hashes: main165/0
 twice, extensions15/0 twice, three replay seeds, four cleanup cases, outside

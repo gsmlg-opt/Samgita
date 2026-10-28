@@ -1,5 +1,10 @@
 # Native resume collaboration and turn runtime roots
 
+Current source-only follow-up: [the exact nullable-result prerequisite](ordinary-null-result-prerequisites.md)
+enumerates both pinned production resume constructors, each using Some. It adds
+no null success and leaves owner6028 missing; the nonnull evidence below retains
+its original scope.
+
 V395 starts from `58e2ef00fd7fccb93dd1478d17b627e8f9654782` on `main`.
 Two new ordinary tests qualify narrowly selected native context contracts.
 Production code, shared fixtures, schemas, configuration and locks are unchanged.

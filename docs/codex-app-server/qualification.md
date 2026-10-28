@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
+records production constructor boundaries for3264/3267/6028, all still missing.
+Only evidence/limitations metadata changes; states, tests and coverage stay exact.
+Inventory passes, all 1,761 other guarded hashes match the preceding successful
+17-step source, and the runner updates only its expected fingerprint literal.
+There is no fresh runtime or success credit. Totals remain **5,748 implemented
+/737 missing /136 blocked contracts**, unchanged requirements, zero globally
+verified. Future ordinary scenarios require a genuine producer and causal ordering.
+A11, prohibited/broad/hosted checks, source-bound legacy/nullable branches,
+external/OS acceptance, full compatibility and release remain incomplete.
+
 The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps with 1,762 identical guarded sources: 165/0 main
 cases twice, 15/0 extensions twice, three replay seeds, four cleanup cases,

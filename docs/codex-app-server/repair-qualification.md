@@ -1,5 +1,15 @@
 # Repair evidence and continuing compatibility work
 
+The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
+attaches stock constructor evidence to three missing output branches without
+native-success or mock-based promotion. Only evidence/limitations and the runner
+fingerprint change. Inventory passes; all 1,761 other guarded hashes match the
+preceding successful 17-step code/test source. No runtime suite is rerun for this
+metadata-only binding. Counts stay **5,748 implemented /737 missing /136 blocked**,
+unchanged requirements, zero globally verified. Dependency/replay/database/cleanup
+repairs remain unchanged; A11, source-bound outputs, prohibited/broad/hosted,
+external/OS success, full compatibility and release remain incomplete.
+
 The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps with 1,762 identical guarded sources:165/0 main
 twice,15/0 extensions twice, three replay seeds, four cleanup cases, outside
