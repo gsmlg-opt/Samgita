@@ -207,28 +207,29 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
              ctx,
              warm.pid,
              ["metadata-beta", "metadata-absent", "metadata-alpha", "metadata-beta"],
-             false
+             false,
+             -1
            ) ===
              expected(ctx, [@beta, @alpha], false, ["metadata-absent"])
 
     assert_batches(ctx, [@first_batch])
 
-    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], false) ===
+    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], false, "-1") ===
              expected(ctx, [@alpha, @beta], false, [])
 
     assert_batches(ctx, [@first_batch])
 
-    assert read(ctx, warm.pid, ["metadata-beta", "metadata-alpha"], true) ===
+    assert read(ctx, warm.pid, ["metadata-beta", "metadata-alpha"], true, 1) ===
              expected(ctx, [@beta, @alpha], true, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch])
 
-    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], false) ===
+    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], false, "1") ===
              expected(ctx, [@alpha, @beta], false, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch])
 
-    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], true) ===
+    assert read(ctx, warm.pid, ["metadata-alpha", "metadata-beta"], true, "owned-read-λ🙂") ===
              expected(ctx, [@alpha, @beta], true, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch])
@@ -245,17 +246,29 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
     assert_empty_loaded(ctx, cold.pid)
     # This is the first content RPC of the fresh stock native process. The
     # process-wide metadata cache must refetch from the same local dependency.
-    assert read(ctx, cold.pid, ["metadata-alpha", "metadata-beta"], true) ===
+    assert read(ctx, cold.pid, ["metadata-alpha", "metadata-beta"], true, 0) ===
              expected(ctx, [@alpha, @beta], true, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch, @cold_batch])
 
-    assert read(ctx, cold.pid, ["metadata-beta", "metadata-alpha"], true) ===
+    assert read(
+             ctx,
+             cold.pid,
+             ["metadata-beta", "metadata-alpha"],
+             true,
+             -9_223_372_036_854_775_808
+           ) ===
              expected(ctx, [@beta, @alpha], true, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch, @cold_batch])
 
-    assert read(ctx, cold.pid, ["metadata-beta", "metadata-alpha"], false) ===
+    assert read(
+             ctx,
+             cold.pid,
+             ["metadata-beta", "metadata-alpha"],
+             false,
+             9_223_372_036_854_775_807
+           ) ===
              expected(ctx, [@beta, @alpha], false, [])
 
     assert_batches(ctx, [@first_batch, @promoted_batch, @cold_batch])
@@ -264,7 +277,8 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
              ctx,
              cold.pid,
              ["metadata-beta", "metadata-absent", "metadata-alpha", "metadata-beta"],
-             true
+             true,
+             "owned-read-cold-漢字🙂"
            ) ===
              expected(ctx, [@beta, @alpha], true, ["metadata-absent"])
 
@@ -293,9 +307,15 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
     %{"apps" => projected, "missingAppIds" => missing}
   end
 
-  defp read(ctx, pid, ids, tools) do
+  defp read(ctx, pid, ids, tools, id) do
     response =
-      call(ctx, pid, "app/read", %{"appIds" => ids, "threadId" => nil, "includeTools" => tools})
+      call(
+        ctx,
+        pid,
+        "app/read",
+        %{"appIds" => ids, "threadId" => nil, "includeTools" => tools},
+        id
+      )
 
     assert :ok = Schema.validate(schema("v2/AppsReadResponse.json"), response, max_depth: 64)
     assert_controls(ctx)
@@ -384,8 +404,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
     %{pid: pid, connection: connection, native: native, instance: Session.status(pid).instance_id}
   end
 
-  defp call(ctx, pid, method, params) do
-    id = request_id()
+  defp call(ctx, pid, method, params, id \\ request_id()) do
     wire = %{"id" => id, "method" => method, "params" => params}
     assert :ok = Schema.validate(schema("ClientRequest.json"), wire, max_depth: 64)
 
@@ -457,6 +476,24 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
       ~w(initialize initialized server/diagnostics thread/loaded/list app/read app/read app/read app/read thread/loaded/list)
 
     assert Enum.map(ledger.out, & &1.wire["method"]) === warm ++ cold
+
+    read_ids =
+      ledger.out
+      |> Enum.filter(&(&1.wire["method"] === "app/read"))
+      |> Enum.map(& &1.wire["id"])
+
+    assert read_ids === [
+             -1,
+             "-1",
+             1,
+             "1",
+             "owned-read-λ🙂",
+             0,
+             -9_223_372_036_854_775_808,
+             9_223_372_036_854_775_807,
+             "owned-read-cold-漢字🙂"
+           ]
+
     requests = Enum.filter(ledger.out, &Map.has_key?(&1.wire, "id"))
     replies = Enum.filter(ledger.in, &Map.has_key?(&1.wire, "id"))
     ids = Enum.map(requests, & &1.wire["id"])

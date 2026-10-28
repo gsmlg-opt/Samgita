@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_catalog_metadata_fixture.py", __DIR__)
-  @script_sha "aa2504ad84207f76be387799838158c0b7f40e590e1147ca3a4025420c0d972b"
+  @script_sha "cd21e46bca341400798105d77707b3768f9a00ecde3025afe787df7be8c3cbd6"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @directory "/backend-api/connectors/directory/list"
@@ -226,7 +226,9 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
       Path.join(__DIR__, "support/native_launch_fixture.ex"),
       Path.join(__DIR__, "support/stdio_session_fixture.ex"),
       schema_path("ClientRequest.json"),
-      schema_path("ServerNotification.json")
+      schema_path("ServerNotification.json"),
+      schema_path("v2/AppsListParams.json"),
+      schema_path("v2/AppsListResponse.json")
     ]
 
     capture = start_supervised!({Agent, fn -> %{out: [], in: [], bytes: 0} end})
@@ -244,10 +246,71 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
        ctx do
     warm = start(ctx)
     assert_empty_loaded(ctx, warm.pid)
-    assert_catalog(ctx, warm.pid)
+    assert_catalog(ctx, warm.pid, -1)
     assert_directory(ctx, 2)
-    assert_catalog(ctx, warm.pid)
+    assert_catalog(ctx, warm.pid, 1)
     assert_directory(ctx, 2)
+    # Client pagination uses the completed native cache; backend pagination
+    # and full descriptive update payloads are independent from each page.
+    assert_page(
+      ctx,
+      warm.pid,
+      "owned-list-page-zero",
+      %{"cursor" => nil, "limit" => 0, "forceRefetch" => false},
+      Enum.take(@expected, 1),
+      "1",
+      1
+    )
+
+    assert_directory(ctx, 2)
+
+    assert_page(
+      ctx,
+      warm.pid,
+      "owned-list-page-middle",
+      %{"cursor" => "1", "limit" => 1},
+      Enum.slice(@expected, 1, 1),
+      "2",
+      0
+    )
+
+    assert_directory(ctx, 2)
+
+    assert_page(
+      ctx,
+      warm.pid,
+      "owned-list-page-final",
+      %{"cursor" => "2", "limit" => nil},
+      Enum.slice(@expected, 2, 1),
+      nil,
+      0
+    )
+
+    assert_directory(ctx, 2)
+
+    assert_page(
+      ctx,
+      warm.pid,
+      "owned-list-page-terminal",
+      %{"cursor" => "3", "limit" => nil},
+      [],
+      nil,
+      0
+    )
+
+    assert_directory(ctx, 2)
+    # Explicit cache bypass must fetch both real directory pages again.
+    assert_page(
+      ctx,
+      warm.pid,
+      "owned-list-force-refetch",
+      %{"forceRefetch" => true, "limit" => 100},
+      @expected,
+      nil,
+      1
+    )
+
+    assert_directory(ctx, 4)
     assert_empty_loaded(ctx, warm.pid)
     assert_idle(warm.pid)
     assert_controls(ctx)
@@ -261,8 +324,8 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
     assert_empty_loaded(ctx, cold.pid)
     # First cold content operation is native catalog discovery. Metadata cache
     # writes belong to the stock process; no rollout/database is synthesized.
-    assert_catalog(ctx, cold.pid)
-    assert_directory(ctx, 4)
+    assert_catalog(ctx, cold.pid, "owned-list-cold-漢字🙂")
+    assert_directory(ctx, 6)
     assert_empty_loaded(ctx, cold.pid)
     assert_idle(cold.pid)
     assert_controls(ctx)
@@ -276,22 +339,35 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
     assert_controls(ctx)
   end
 
-  defp assert_catalog(ctx, pid) do
+  defp assert_catalog(ctx, pid, id),
+    do: assert_page(ctx, pid, id, %{"limit" => 100}, @expected, nil, 1)
+
+  defp assert_page(ctx, pid, id, params, expected, next_cursor, update_count) do
+    assert :ok = Schema.validate(schema("v2/AppsListParams.json"), params, max_depth: 64)
     first_incoming = length(Agent.get(ctx.capture, & &1.in))
-    result = call(ctx, pid, "app/list", %{"limit" => 100})
-    assert Map.fetch!(result, "nextCursor") === nil
-    assert project(ctx, Map.fetch!(result, "data")) === @expected
+    result = call(ctx, pid, "app/list", params, id)
+    actual_cursor = Map.fetch!(result, "nextCursor")
+    cursor_schema = schema("v2/AppsListResponse.json")["properties"]["nextCursor"]
+    assert :ok = Schema.validate(cursor_schema, actual_cursor, max_depth: 64)
+    assert actual_cursor === next_cursor
+    assert project(ctx, Map.fetch!(result, "data")) === expected
     assert {:ok, events} = Session.drain(pid, 256)
     assert length(events) <= 256
-    assert [event] = Enum.filter(events, &(&1.wire["method"] == "app/list/updated"))
+    updates = Enum.filter(events, &(&1.wire["method"] == "app/list/updated"))
     originals = Agent.get(ctx.capture, &Enum.drop(&1.in, first_incoming))
-    assert [original] = Enum.filter(originals, &(&1.wire["method"] == "app/list/updated"))
-    assert original.wire === event.wire
-    assert JSON.decode!(original.encoded) === event.wire
-    assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 64)
-    assert decoded === event.wire
-    assert is_integer(decoded["emittedAtMs"]) and decoded["emittedAtMs"] > 0
-    assert project(ctx, decoded["params"]["data"]) === @expected
+    original_updates = Enum.filter(originals, &(&1.wire["method"] == "app/list/updated"))
+    assert length(updates) === update_count
+    assert length(original_updates) === update_count
+
+    for {event, original} <- Enum.zip(updates, original_updates) do
+      assert original.wire === event.wire
+      assert JSON.decode!(original.encoded) === event.wire
+      assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 64)
+      assert decoded === event.wire
+      assert is_integer(decoded["emittedAtMs"]) and decoded["emittedAtMs"] > 0
+      assert project(ctx, decoded["params"]["data"]) === @expected
+    end
+
     refute Enum.any?(events, &(&1.kind == :server_request))
 
     refute Enum.any?(
@@ -432,8 +508,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
     %{pid: pid, connection: connection, native: native, instance: Session.status(pid).instance_id}
   end
 
-  defp call(ctx, pid, method, params) do
-    id = request_id()
+  defp call(ctx, pid, method, params, id \\ request_id()) do
     wire = %{"id" => id, "method" => method, "params" => params}
     assert :ok = Schema.validate(schema("ClientRequest.json"), wire, max_depth: 64)
 
@@ -499,19 +574,36 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCatalogMetadataNotificationTest do
 
   defp assert_inventory(ledger) do
     warm =
-      ~w(initialize initialized server/diagnostics thread/loaded/list app/list app/list thread/loaded/list)
+      ~w(initialize initialized server/diagnostics thread/loaded/list app/list app/list app/list app/list app/list app/list app/list thread/loaded/list)
 
     cold =
       ~w(initialize initialized server/diagnostics thread/loaded/list app/list thread/loaded/list)
 
     assert Enum.map(ledger.out, & &1.wire["method"]) === warm ++ cold
+
+    list_ids =
+      ledger.out
+      |> Enum.filter(&(&1.wire["method"] === "app/list"))
+      |> Enum.map(& &1.wire["id"])
+
+    assert list_ids === [
+             -1,
+             1,
+             "owned-list-page-zero",
+             "owned-list-page-middle",
+             "owned-list-page-final",
+             "owned-list-page-terminal",
+             "owned-list-force-refetch",
+             "owned-list-cold-漢字🙂"
+           ]
+
     requests = Enum.filter(ledger.out, &Map.has_key?(&1.wire, "id"))
     replies = Enum.filter(ledger.in, &Map.has_key?(&1.wire, "id"))
     ids = Enum.map(requests, & &1.wire["id"])
-    assert length(ids) === 11 and length(Enum.uniq(ids)) === 11
-    assert length(replies) === 11
+    assert length(ids) === 16 and length(Enum.uniq(ids)) === 16
+    assert length(replies) === 16
     assert MapSet.new(Enum.map(replies, & &1.wire["id"])) === MapSet.new(ids)
-    assert 3 === Enum.count(ledger.in, &(&1.wire["method"] == "app/list/updated"))
+    assert 5 === Enum.count(ledger.in, &(&1.wire["method"] == "app/list/updated"))
   end
 
   defp snapshot(path) do

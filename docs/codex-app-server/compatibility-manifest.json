@@ -70911,27 +70911,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-request-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/83/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V537 actual pinned rust-v0.163.0 app/read preserves typed signed numeric and Unicode string request IDs through real handlers, original JSONL/Wire envelopes, strict correlated replies and owned warm/cold processes. app/read additionally distinguishes numeric/string twins and covers zero and both i64 bounds. All prior independent metadata/cache/cold/notification/cleanup oracles remain. Two reviewed ordinary cases pass at seeds501432/987654; no mock app-server, alias credit or global verification. Whole retained ClientRequest differs from public archive; selected method envelopes and RequestId match. Other OS/transports, full matrix, prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/83/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -71073,27 +71081,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-request-ids-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/84/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V537 actual pinned rust-v0.163.0 app/list preserves typed signed numeric and Unicode string request IDs through real handlers, original JSONL/Wire envelopes, strict correlated replies and owned warm/cold processes. app/read additionally distinguishes numeric/string twins and covers zero and both i64 bounds. All prior independent metadata/cache/cold/notification/cleanup oracles remain. Two reviewed ordinary cases pass at seeds501432/987654; no mock app-server, alias credit or global verification. Whole retained ClientRequest differs from public archive; selected method envelopes and RequestId match. Other OS/transports, full matrix, prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/84/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -127724,79 +127740,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-pagination-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListParams.json#/properties/cursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V538 actual pinned rust-v0.163.0 app/list exercises null/string cursors, zero-to-one limit, explicit/null/default limits, terminal-empty page, false/omitted/true forceRefetch, and actual cache bypass through six independently journaled backend GETs. Five added calls preserve three original warm/cached/cold full metadata oracles and typed IDs. Eighteen original outgoing envelopes/sixteen replies and five genuine full native updates are exact; nonzero cached cursor pages emit no update. Exact descriptive projections, original frames, selected scalar schemas and confirmed cleanup are required. Only these four physical parameters/cursor nodes receive credit; loaded-thread context, mixed whole arrays, invalid-cursor alternatives, live backends, other OS/transports and global verification remain unqualified. Prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/AppsListParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:245"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-pagination-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListParams.json#/properties/forceRefetch",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V538 actual pinned rust-v0.163.0 app/list exercises null/string cursors, zero-to-one limit, explicit/null/default limits, terminal-empty page, false/omitted/true forceRefetch, and actual cache bypass through six independently journaled backend GETs. Five added calls preserve three original warm/cached/cold full metadata oracles and typed IDs. Eighteen original outgoing envelopes/sixteen replies and five genuine full native updates are exact; nonzero cached cursor pages emit no update. Exact descriptive projections, original frames, selected scalar schemas and confirmed cleanup are required. Only these four physical parameters/cursor nodes receive credit; loaded-thread context, mixed whole arrays, invalid-cursor alternatives, live backends, other OS/transports and global verification remain unqualified. Prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/forceRefetch",
       "required": false,
       "schema": "v2/AppsListParams.json",
       "schema_sha256": "f009fe8a6cc23b2e1ad08e3ed18e27794ba5b6cfe0ddafc991c89db6c9eb3f2d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:245"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "forceRefetch"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-pagination-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListParams.json#/properties/limit",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V538 actual pinned rust-v0.163.0 app/list exercises null/string cursors, zero-to-one limit, explicit/null/default limits, terminal-empty page, false/omitted/true forceRefetch, and actual cache bypass through six independently journaled backend GETs. Five added calls preserve three original warm/cached/cold full metadata oracles and typed IDs. Eighteen original outgoing envelopes/sixteen replies and five genuine full native updates are exact; nonzero cached cursor pages emit no update. Exact descriptive projections, original frames, selected scalar schemas and confirmed cleanup are required. Only these four physical parameters/cursor nodes receive credit; loaded-thread context, mixed whole arrays, invalid-cursor alternatives, live backends, other OS/transports and global verification remain unqualified. Prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/AppsListParams.json",
       "schema_sha256": "2594574e766f25b15bbbb6fb159981988a898bcfa643978d4820c8404be48b3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:245"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
@@ -127854,27 +127894,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-pagination-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V538 actual pinned rust-v0.163.0 app/list exercises null/string cursors, zero-to-one limit, explicit/null/default limits, terminal-empty page, false/omitted/true forceRefetch, and actual cache bypass through six independently journaled backend GETs. Five added calls preserve three original warm/cached/cold full metadata oracles and typed IDs. Eighteen original outgoing envelopes/sixteen replies and five genuine full native updates are exact; nonzero cached cursor pages emit no update. Exact descriptive projections, original frames, selected scalar schemas and confirmed cleanup are required. Only these four physical parameters/cursor nodes receive credit; loaded-thread context, mixed whole arrays, invalid-cursor alternatives, live backends, other OS/transports and global verification remain unqualified. Prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/AppsListResponse.json",
       "schema_sha256": "327f5fc7ab4df2df6babe1388e1263eab8ad0618eeac767724e649225442afc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:245"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {

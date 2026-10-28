@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary Apps ID/pagination batch](ordinary-app-pagination-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **75 files / 138 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,698** identical guarded sources. Exact numeric/string/Unicode IDs,
+client pagination, zero/null/default limits and real forced backend refresh bind
+six physical owners. All commands and **1,694** other prior sources stay exact.
+Contracts: **5,577 implemented / 914 missing / 130 blocked**; requirements
+**462 implemented / 12 missing / 11 blocked**, zero globally verified.
+The separate root/dev formatter dependency-BEAM failure is recorded and remains
+unrepaired; verified test-environment checks pass. Next: finish independent review
+and native qualification of the ordinary MCP form/interruption and initialize
+default/experimental-negotiation drafts. No draft has runtime credit.
+Prohibited/hosted, A11, unavailable emitter/external/OS, full-goal and release
+gates remain open.
+
 The [ordinary app/plugin management batch](ordinary-plugin-template-metadata-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **75 files / 138 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

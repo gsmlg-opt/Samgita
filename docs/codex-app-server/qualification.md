@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary Apps ID/pagination batch](ordinary-app-pagination-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **75 files / 138 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,698** identical guarded sources. Six physical owners gain scoped
+implemented evidence for typed correlation, client pagination and actual cache
+bypass; all commands and **1,694** other prior sources stay exact. Contracts:
+**5,577 implemented / 914 missing / 130 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. A separate root/dev dependency
+BEAM error remains recorded/unrepaired. Next ordinary MCP-form and initialization
+drafts are source-only. Prohibited/hosted, A11, unavailable emitters/external/OS,
+complete compatibility, publication and deployment remain incomplete.
+
 The [ordinary app/plugin management batch](ordinary-plugin-template-metadata-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **75 files / 138 actual-native
 cases twice**, three selected WebSocket seeds, outside consumer **1/0**,

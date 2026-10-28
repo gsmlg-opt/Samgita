@@ -104,7 +104,7 @@ class CatalogFixture(OrdinarySetup):
                     if path == DIRECTORY:
                         query = parse_qs(parsed.query, keep_blank_values=True)
                         owner.directory_count += 1
-                        assert owner.directory_count <= 4, "Owned directory-read bound"
+                        assert owner.directory_count <= 6, "Owned directory-read bound"
                         owner.record("directory", sequence=owner.directory_count, path=path, query=query)
                         records = apps()
                         if query == {"external_logos": ["true"]}:
