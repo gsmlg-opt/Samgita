@@ -154,8 +154,13 @@ def main():
         terminate_child_group(child)
         descendants_reaped = reap_descendants()
         output_thread.join(timeout=1.0)
-        if descendants_reaped and not output_thread.is_alive():
+        output_drained = not output_thread.is_alive()
+        if descendants_reaped and output_drained:
             acknowledge_cleanup()
+    if not descendants_reaped:
+        return 84 if output_drained else 86
+    if not output_drained:
+        return 85
     return child.returncode if child.returncode >= 0 else 128 - child.returncode
 
 

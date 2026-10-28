@@ -39,7 +39,7 @@ defmodule SamgitaCodexDriver.NativeEnvironmentConnectionEnvelopeTest do
     root =
       Path.join(
         System.tmp_dir!(),
-        "samgita-ordinary-environment-#{System.unique_integer([:positive, :monotonic])}"
+        "samgita-ordinary-environment-#{System.pid()}-#{System.unique_integer([:positive, :monotonic])}"
       )
 
     File.mkdir!(root)

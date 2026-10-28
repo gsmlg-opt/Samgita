@@ -4,7 +4,8 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
   alias SamgitaProtocolCodex.Error
 
   def open(python, opts) do
-    completion = :atomics.new(1, [])
+    completion = :atomics.new(2, [])
+    :atomics.put(completion, 2, -1)
 
     with {:ok, pid} <- GenServer.start(__MODULE__, {self(), python, opts, completion}) do
       {:ok, %{pid: pid, completion: completion}, GenServer.call(pid, :port)}
@@ -14,7 +15,7 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
   def close(%{pid: pid, completion: completion}) do
     case :atomics.get(completion, 1) do
       1 -> :ok
-      2 -> raise Error.new(:owned_process_shutdown_unconfirmed)
+      2 -> raise Error.new(:owned_process_shutdown_unconfirmed, cleanup_details(completion))
       0 -> close_current(pid, completion)
     end
   end
@@ -22,13 +23,13 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
   defp close_current(pid, completion) do
     case GenServer.call(pid, :close, 6_000) do
       :ok -> :ok
-      {:error, code} -> raise Error.new(code)
+      {:error, code, details} -> raise Error.new(code, details)
     end
   catch
     :exit, _ ->
       if :atomics.get(completion, 1) == 1,
         do: :ok,
-        else: raise(Error.new(:owned_process_shutdown_unconfirmed))
+        else: raise(Error.new(:owned_process_shutdown_unconfirmed, cleanup_details(completion)))
   end
 
   @impl true
@@ -59,8 +60,9 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
     {:stop, :normal, state}
   end
 
-  def handle_info({port, {:exit_status, _}} = message, %{port: port} = state) do
-    record_completion(state, cleanup_result(state.reaped))
+  def handle_info({port, {:exit_status, status}} = message, %{port: port} = state) do
+    :atomics.put(state.completion, 2, status)
+    record_completion(state, cleanup_result(state.reaped, state.completion))
     send(state.owner, message)
     {:stop, :normal, state}
   end
@@ -73,26 +75,32 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
 
   def handle_info({:EXIT, port, :normal}, %{port: port} = state), do: {:noreply, state}
 
-  defp shutdown(%{port: port, reaped: reaped}) do
+  defp shutdown(%{port: port, reaped: reaped, completion: completion}) do
     # Raw NUL is an internal helper control byte, impossible in valid JSONL.
     deadline = System.monotonic_time(:millisecond) + 5_000
 
     request_shutdown(port, deadline)
 
-    await_exit(port, deadline, reaped)
+    await_exit(port, deadline, reaped, completion)
   end
 
-  defp await_exit(port, deadline, reaped) do
+  defp await_exit(port, deadline, reaped, completion) do
     remaining = max(0, deadline - System.monotonic_time(:millisecond))
 
     receive do
-      {^port, {:exit_status, _}} -> cleanup_result(reaped)
-      {^port, {:data, bytes}} -> await_exit(port, deadline, elem(cleanup_ack(bytes, reaped), 1))
-      {:EXIT, ^port, :normal} -> await_exit(port, deadline, reaped)
+      {^port, {:exit_status, status}} ->
+        :atomics.put(completion, 2, status)
+        cleanup_result(reaped, completion)
+
+      {^port, {:data, bytes}} ->
+        await_exit(port, deadline, elem(cleanup_ack(bytes, reaped), 1), completion)
+
+      {:EXIT, ^port, :normal} ->
+        await_exit(port, deadline, reaped, completion)
     after
       remaining ->
         close_port(port)
-        {:error, :owned_process_shutdown_timeout}
+        {:error, :owned_process_shutdown_timeout, cleanup_details(completion)}
     end
   end
 
@@ -130,8 +138,24 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
       {:binary.replace(bytes, <<0>>, <<>>, [:global]),
        reaped or :binary.match(bytes, <<0>>) != :nomatch}
 
-  defp cleanup_result(true), do: :ok
-  defp cleanup_result(false), do: {:error, :owned_process_shutdown_unconfirmed}
+  defp cleanup_result(true, _completion), do: :ok
+
+  defp cleanup_result(false, completion),
+    do: {:error, :owned_process_shutdown_unconfirmed, cleanup_details(completion)}
+
+  defp cleanup_details(completion) do
+    status = :atomics.get(completion, 2)
+
+    %{
+      "cleanup_stage" => cleanup_stage(status),
+      "exit_status" => if(status >= 0, do: status, else: nil)
+    }
+  end
+
+  defp cleanup_stage(84), do: "descendant_reaping"
+  defp cleanup_stage(85), do: "output_drain"
+  defp cleanup_stage(86), do: "descendant_reaping_and_output_drain"
+  defp cleanup_stage(_), do: "unknown"
 
   defp record_completion(state, result),
     do: :atomics.put(state.completion, 1, if(result == :ok, do: 1, else: 2))
