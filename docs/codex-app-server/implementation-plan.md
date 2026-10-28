@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary app/plugin management batch](ordinary-plugin-template-metadata-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **75 files / 138 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,698** identical guarded sources. Real template/default/null metadata,
+persisted marketplace removal and genuine catalog updates bind exactly **46**
+physical owners. The initial plugin startup failure, fixed explicit feature
+override and bounded response-served barrier remain documented. Contracts:
+**5,571 implemented / 920 missing / 130 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. Next: integrate the reviewed
+app/read and app/list ID delta, then qualify ordinary pagination/force-refetch.
+Those scratch drafts have no runtime credit. Prohibited/hosted, A11, unavailable
+emitter/external/OS, full-goal and release gates remain open.
+
 The [ordinary app/read metadata unit](ordinary-apps-read-metadata-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **72 files / 135 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

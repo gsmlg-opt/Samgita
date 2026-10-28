@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary app/plugin management batch](ordinary-plugin-template-metadata-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **75 files / 138 actual-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0**,
+static/build checks and **1,698** identical guarded sources. Twelve template,
+five marketplace-remove and twenty-nine genuine catalog-update owners gain
+scoped implemented evidence; original failed startup and its deterministic
+repair remain recorded. Contracts: **5,571 implemented / 920 missing / 130
+blocked**; requirements **462 implemented / 12 missing / 11 blocked**, zero
+globally verified. Next ordinary ID/pagination drafts remain unqualified.
+Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility,
+publication and deployment remain incomplete.
+
 The [ordinary app/read metadata unit](ordinary-apps-read-metadata-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **72 files / 135 actual-native
 cases twice**, three selected WebSocket seeds, outside consumer **1/0**,

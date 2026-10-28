@@ -68855,124 +68855,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-remove-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/70",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V535 stock rust-v0.163.0 performs four explicit marketplace/remove operations on independently owned disposable local configuration/snapshot inputs across confirmed warm/cold processes. Configured-only returns exact installedRoot:null; snapshot-only, combined and cold persisted entries return exact removed roots. Native config mutation and snapshot deletion are checked before/after loaded-state barriers; unrelated configuration/snapshot and all source directories remain byte-identical. Complete original request/result/Wire/schema equality preserves signed numeric and Unicode IDs,16 outgoing envelopes/14 unique pairs, unchanged capture prefixes, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup. Ten complete official files/fifteen excerpts and exact five canonical nodes match pinned archive; experimental ClientRequest branch70 equals public branch36, while whole export roots differ. Existing standalone params/response owners receive no alias credit. Fixed yolo/plugins-off setup; no credential inspection, auth/policy/permission/approval outcome, selector-edge probe, inference, Git clone, remote installation or mutation retry. Only these physical request nodes on owned Linux-musl/stdio; real marketplace install, external services, other OS/transports, global verification, prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/70",
       "schema": "ClientRequest.json",
       "schema_sha256": "dec92af616cf7b991bc10125a7678f3d4a234a6740179f4dea7ded20a20c3b92",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_remove_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-remove-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/70/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V535 stock rust-v0.163.0 performs four explicit marketplace/remove operations on independently owned disposable local configuration/snapshot inputs across confirmed warm/cold processes. Configured-only returns exact installedRoot:null; snapshot-only, combined and cold persisted entries return exact removed roots. Native config mutation and snapshot deletion are checked before/after loaded-state barriers; unrelated configuration/snapshot and all source directories remain byte-identical. Complete original request/result/Wire/schema equality preserves signed numeric and Unicode IDs,16 outgoing envelopes/14 unique pairs, unchanged capture prefixes, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup. Ten complete official files/fifteen excerpts and exact five canonical nodes match pinned archive; experimental ClientRequest branch70 equals public branch36, while whole export roots differ. Existing standalone params/response owners receive no alias credit. Fixed yolo/plugins-off setup; no credential inspection, auth/policy/permission/approval outcome, selector-edge probe, inference, Git clone, remote installation or mutation retry. Only these physical request nodes on owned Linux-musl/stdio; real marketplace install, external services, other OS/transports, global verification, prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/70/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_remove_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-remove-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/70/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V535 stock rust-v0.163.0 performs four explicit marketplace/remove operations on independently owned disposable local configuration/snapshot inputs across confirmed warm/cold processes. Configured-only returns exact installedRoot:null; snapshot-only, combined and cold persisted entries return exact removed roots. Native config mutation and snapshot deletion are checked before/after loaded-state barriers; unrelated configuration/snapshot and all source directories remain byte-identical. Complete original request/result/Wire/schema equality preserves signed numeric and Unicode IDs,16 outgoing envelopes/14 unique pairs, unchanged capture prefixes, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup. Ten complete official files/fifteen excerpts and exact five canonical nodes match pinned archive; experimental ClientRequest branch70 equals public branch36, while whole export roots differ. Existing standalone params/response owners receive no alias credit. Fixed yolo/plugins-off setup; no credential inspection, auth/policy/permission/approval outcome, selector-edge probe, inference, Git clone, remote installation or mutation retry. Only these physical request nodes on owned Linux-musl/stdio; real marketplace install, external services, other OS/transports, global verification, prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/70/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "aa576001c24367823745974f6f28a565e05fdc05db47b667735aaf0dd5367dbf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_remove_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-remove-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/70/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V535 stock rust-v0.163.0 performs four explicit marketplace/remove operations on independently owned disposable local configuration/snapshot inputs across confirmed warm/cold processes. Configured-only returns exact installedRoot:null; snapshot-only, combined and cold persisted entries return exact removed roots. Native config mutation and snapshot deletion are checked before/after loaded-state barriers; unrelated configuration/snapshot and all source directories remain byte-identical. Complete original request/result/Wire/schema equality preserves signed numeric and Unicode IDs,16 outgoing envelopes/14 unique pairs, unchanged capture prefixes, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup. Ten complete official files/fifteen excerpts and exact five canonical nodes match pinned archive; experimental ClientRequest branch70 equals public branch36, while whole export roots differ. Existing standalone params/response owners receive no alias credit. Fixed yolo/plugins-off setup; no credential inspection, auth/policy/permission/approval outcome, selector-edge probe, inference, Git clone, remote installation or mutation retry. Only these physical request nodes on owned Linux-musl/stdio; real marketplace install, external services, other OS/transports, global verification, prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/70/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9272de1805075a9eb0d13af25150eebc0634aec953866b0ab17f7db2a501a8bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_remove_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-remove-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/70/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V535 stock rust-v0.163.0 performs four explicit marketplace/remove operations on independently owned disposable local configuration/snapshot inputs across confirmed warm/cold processes. Configured-only returns exact installedRoot:null; snapshot-only, combined and cold persisted entries return exact removed roots. Native config mutation and snapshot deletion are checked before/after loaded-state barriers; unrelated configuration/snapshot and all source directories remain byte-identical. Complete original request/result/Wire/schema equality preserves signed numeric and Unicode IDs,16 outgoing envelopes/14 unique pairs, unchanged capture prefixes, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup. Ten complete official files/fifteen excerpts and exact five canonical nodes match pinned archive; experimental ClientRequest branch70 equals public branch36, while whole export roots differ. Existing standalone params/response owners receive no alias credit. Fixed yolo/plugins-off setup; no credential inspection, auth/policy/permission/approval outcome, selector-edge probe, inference, Git clone, remote installation or mutation retry. Only these physical request nodes on owned Linux-musl/stdio; real marketplace install, external services, other OS/transports, global verification, prohibited/hosted checks, A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/70/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "26e6af44ec7cfe75c16ffc7acf3fc0e4509e1b48022df23942f185cc56ee2ad2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_remove_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -86002,53 +86042,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppBranding/properties/category",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppBranding/properties/category",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "category"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppBranding/properties/developer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppBranding/properties/developer",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developer"
     },
     {
@@ -86080,219 +86136,291 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppBranding/properties/privacyPolicy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppBranding/properties/privacyPolicy",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "privacyPolicy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppBranding/properties/termsOfService",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppBranding/properties/termsOfService",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "termsOfService"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppBranding/properties/website",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppBranding/properties/website",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "website"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/appMetadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/appMetadata",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "0b1032c3bc6b414c450dc7e850d1eab930585b703c1399fd2b032cfb2f5c788e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appMetadata"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/appMetadata/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/AppInfo/properties/appMetadata/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "13dd18c9f0182146229dd2dba82534bc3326db5b0d8608d65aa9b5041fd802d7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/appMetadata/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/AppInfo/properties/appMetadata/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/branding",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/branding",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "62d868304d1ff94b780c2656ea58b0da3e298e5db662af33ef5b8cd67bda6c92",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "branding"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/branding/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/AppInfo/properties/branding/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b8cc96f9e3cc603c34b2545bdb355cf104d6f4e8c977761a29627822a28859dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/branding/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/AppInfo/properties/branding/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -86332,79 +86460,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/distributionChannel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/distributionChannel",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "distributionChannel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/iconAssets",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/iconAssets",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "iconAssets"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/iconDarkAssets",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/iconDarkAssets",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "iconDarkAssets"
     },
     {
@@ -86546,79 +86698,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/labels",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/labels",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "labels"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/logoUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/logoUrl",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "logoUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/logoUrlDark",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/logoUrlDark",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "logoUrlDark"
     },
     {
@@ -86658,79 +86834,103 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/pluginDisplayNames",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppInfo/properties/pluginDisplayNames",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginDisplayNames"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/categories",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/categories",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "categories"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/developer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/developer",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developer"
     },
     {
@@ -86832,53 +87032,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/screenshots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/screenshots",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "507f7c1ca2718ce7145c363de7e3d607f81eb1a578f764d4d732d85d4f043947",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "screenshots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/seoDescription",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/seoDescription",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "seoDescription"
     },
     {
@@ -86910,105 +87126,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/subCategories",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/subCategories",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "subCategories"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/version",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/version",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "version"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/versionId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/versionId",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "versionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppMetadata/properties/versionNotes",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppMetadata/properties/versionNotes",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "versionNotes"
     },
     {
@@ -87040,79 +87288,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppScreenshot/properties/fileId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppScreenshot/properties/fileId",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fileId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppScreenshot/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppScreenshot/properties/url",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "url"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-catalog-metadata-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppScreenshot/properties/userPrompt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V536 stock rust-v0.163.0 emits three genuine app/list/updated notifications for first warm discovery, cached repeat and first cold content read. Original timestamped frames and delivered Session events agree; independent literal descriptive projections preserve populated Unicode metadata/branding/screenshots, snake/camel input aliases, explicit nulls, empty nested objects/maps/strings, categories/order/duplicates, icons/labels/logos and empty pluginDisplayNames. Four bounded two-page directory GETs and empty MCP discovery supply backend data only; no app-server notification/frame/cache/rollout is synthesized. Thirteen original outgoing envelopes/eleven request-reply IDs, unchanged warm prefixes and fixture inputs, empty model/workspace/loaded-state and confirmed native/dependency owner/Port/PID cleanup are checked. Validation/comparison uses only the selected descriptive allowlist; excluded discoverability/install/composer/review/access/policy/outcome fields are neither read nor promoted. Eleven official producer files/twenty-one excerpts, five relevant schema definitions and these29physical node hashes match archive; whole experimental ServerNotification root differs by exactly five unrelated retained-only properties and is not claimed archive-equal. Fixed Apps=true/plugins=false ordinary yolo setup; synthetic identity is inert, no mixed helper imported, no credential inspection, auth/permission/approval or tool/model execution. Only these physical notification owners on owned Linux-musl/stdio; alternate response aliases, populated plugin names, external provider/OS/transport/global verification and prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppScreenshot/properties/userPrompt",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_catalog_metadata_notification_test.exs:243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userPrompt"
     },
     {
@@ -170347,209 +170619,273 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/canonicalConnectorId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/canonicalConnectorId",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "canonicalConnectorId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/category",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/category",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "category"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/description",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/logoUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/logoUrl",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "logoUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/logoUrlDark",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/logoUrlDark",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "logoUrlDark"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/materializedAppIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppTemplateSummary/properties/materializedAppIds",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "materializedAppIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppTemplateSummary/properties/name",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppTemplateSummary/properties/reason",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "0fc03155d9ce4c1726a28a41d01486a64fc4bfd8828723bf1742a78f341add03",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reason"
     },
     {
@@ -170576,50 +170912,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/reason/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/AppTemplateSummary/properties/reason/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/AppTemplateSummary/properties/templateId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppTemplateSummary/properties/templateId",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "templateId"
     },
     {
@@ -170910,24 +171262,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/PluginDetail/properties/marketplacePath/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/PluginDetail/properties/marketplacePath/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -172985,24 +173345,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-template-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/SkillSummary/properties/path/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V534 stock rust-v0.163.0 performs six real plugin/read exchanges across owned warm/cold processes with exact original JSONL/Wire/correlation, sixteen outgoing envelopes/fourteen request-reply IDs and complete independent descriptive template projections. Unicode full/default/null/empty data, ordered duplicate template/materialized IDs, remote marketplacePath:null and remote skill path:null survive exact schemas; nonnull workspace/status reasons and computed summary/policy fields are excluded. Initial source-only launch conflict was corrected using official ordered CLI override evidence. First actual run failed on unmodeled startup featured GET; failure preserved. Supported fixed remote_plugin=true/Apps=false profile now supplies five exact startup metadata GET shapes, empty successful responses, cap2/kind and explicit bounded served-response JSONL generation1/2 barriers before business calls; this does not claim completion of every background worker. Source excludes curated sync, empty installs skip downloads and no configured marketplace reaches Git. Six ordered business detail/scope=GLOBAL installed pairs and unknown HTTP failures remain strict. No deadline increase, skipped assertion or automatic mutation retry. Empty model/workspace/loaded-state, unchanged inputs/warm prefixes and confirmed native/dependency owner/Port/PID cleanup. Eight original producer files/twenty-one excerpts, official launch and thirteen startup-source files/forty-five excerpts bind exact twelve physical response nodes and archive-equal schema; no alias/request/nonnull-reason promotion. Fixed yolo, inert synthetic identity, no mixed helper import, credential inspection or security/auth/permission/approval/policy-outcome tests. Only ordinary owned Linux-musl/stdio metadata; full plugin/install/external provider/OS/transport/global verification, prohibited/hosted/A11/full-goal/release gates remain incomplete."
+      ],
       "pointer": "/definitions/SkillSummary/properties/path/anyOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
