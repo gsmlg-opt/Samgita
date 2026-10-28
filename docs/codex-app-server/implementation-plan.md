@@ -35,6 +35,13 @@ run. Next: adopt and qualify the reviewed installed-app metadata/cache-generatio
 draft, still runtime-unverified outside the repository. A11, unavailable emitters/
 external/OS, timestamp cursor defect, full compatibility and release stay incomplete.
 
+Source-only audits record the remaining [thread-source selectors](thread-source-prerequisites.md)
+and [selective-history producers](selective-history-prerequisites.md). These
+four and ten physical owners respectively remain missing. The supplied multicall
+CLI source selection and the wait-start/subscription ordering require genuine
+producer or observer prerequisites; neither synthetic histories nor a favorable
+race qualifies them. These records add no runtime acceptance or manifest promotion.
+
 The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **86 files / 151 real-native cases
 twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/
