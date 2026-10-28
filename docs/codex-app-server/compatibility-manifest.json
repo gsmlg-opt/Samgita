@@ -3268,14 +3268,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/mcp-direct-qualification.md"
+        "docs/codex-app-server/mcp-direct-qualification.md",
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:mcpServer/resource/read",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified.",
+        "Ordinary actual-native threadless local MCP resource read with one string-ID request. Native output independently equals authored Unicode text, binary bytes, MIME and nested metadata; original peer resources/read traffic and typed native request/response bytes bind only root133/id using the exact ref and unchanged definitions. Empty loaded registries, unchanged workspace/history, absent model connection, one peer startup and confirmed native/peer shutdown remain checked. Local2025-06-18 reader only; no hosted app, alternate routing, union alias, complete method, permission or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/McpResourceReadParams"
@@ -3306,7 +3308,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_resource_test.exs"
         ]
       },
       "transport_coverage": [
@@ -8110,7 +8113,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/thread-history-qualification.md",
-        "docs/codex-app-server/query-uncertainty-qualification.md"
+        "docs/codex-app-server/query-uncertainty-qualification.md",
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/searchOccurrences",
@@ -8118,7 +8122,8 @@
       "legacy": false,
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
-        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
+        "Ordinary actual-native paginated history from one deterministic assistant turn. Three warm occurrence pages preserve independently authored UTF16 ranges3..9/10..16/17..23, snippet and observed native item/turn IDs; a real includeTurns persistence barrier precedes search. Original opaque cursors continue in a distinct cold process before history priming, with exact saved rollout/provider bytes and no extra inference. Original typed native bytes bind only root58/id using exact ref and unchanged definitions. No alias, thread/search timestamp-cursor repair, complete method, permission or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/ThreadSearchOccurrencesParams"
@@ -8150,7 +8155,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_search_occurrences_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17864,14 +17870,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/mcp-direct-qualification.md"
+        "docs/codex-app-server/mcp-direct-qualification.md",
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:mcpServer/resource/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified.",
+        "Ordinary actual-native threadless local MCP resource read with one string-ID request. Native output independently equals authored Unicode text, binary bytes, MIME and nested metadata; original peer resources/read traffic and typed native request/response bytes bind only root133/id using the exact ref and unchanged definitions. Empty loaded registries, unchanged workspace/history, absent model connection, one peer startup and confirmed native/peer shutdown remain checked. Local2025-06-18 reader only; no hosted app, alternate routing, union alias, complete method, permission or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -17888,7 +17896,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_resource_test.exs"
         ]
       },
       "transport_coverage": [
@@ -21461,14 +21470,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/searchOccurrences",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "Ordinary actual-native paginated history from one deterministic assistant turn. Three warm occurrence pages preserve independently authored UTF16 ranges3..9/10..16/17..23, snippet and observed native item/turn IDs; a real includeTurns persistence barrier precedes search. Original opaque cursors continue in a distinct cold process before history priming, with exact saved rollout/provider bytes and no extra inference. Original typed native bytes bind only root58/id using exact ref and unchanged definitions. No alias, thread/search timestamp-cursor repair, complete method, permission or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -21485,7 +21496,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_search_occurrences_test.exs"
         ]
       },
       "transport_coverage": [
@@ -52763,25 +52775,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/133/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native threadless local MCP resource read with one string-ID request. Native output independently equals authored Unicode text, binary bytes, MIME and nested metadata; original peer resources/read traffic and typed native request/response bytes bind only root133/id using the exact ref and unchanged definitions. Empty loaded registries, unchanged workspace/history, absent model connection, one peer startup and confirmed native/peer shutdown remain checked. Local2025-06-18 reader only; no hosted app, alternate routing, union alias, complete method, permission or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/133/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_resource_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -66772,25 +66790,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-resource-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/58/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native paginated history from one deterministic assistant turn. Three warm occurrence pages preserve independently authored UTF16 ranges3..9/10..16/17..23, snippet and observed native item/turn IDs; a real includeTurns persistence barrier precedes search. Original opaque cursors continue in a distinct cold process before history priming, with exact saved rollout/provider bytes and no extra inference. Original typed native bytes bind only root58/id using exact ref and unchanged definitions. No alias, thread/search timestamp-cursor repair, complete method, permission or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/58/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_search_occurrences_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"

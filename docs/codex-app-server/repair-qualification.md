@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary resource/search unit](ordinary-resource-search-qualification.md#final-combined-source-functional-qualification)
+passes **14 reviewed functional steps**, **92 files /158 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build
+checks. All **1,728** guarded hashes match; **1,723** other prior sources remain
+exact. Two physical owners gain scoped evidence: **5,648 implemented /837 missing
+/136 blocked**, unchanged requirements and zero globally verified. First Credo
+failure and byte-equivalent heredoc correction are preserved; genuine persisted
+effects, raw correlation and cleanup remain. Existing dependency, replay and
+fail-closed database repairs stay exact. No prohibited/broad/hosted check or
+database recovery rerun occurs. Continue the unrun terminal/hook/reset drafts.
+A11, unavailable emitters/external/OS, full goal and release remain incomplete.
+
 The [ordinary plugin/lifecycle reference unit](ordinary-native-reference-qualification.md#final-combined-source-functional-qualification)
 passes **14 reviewed functional steps**, **90 files /156 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build

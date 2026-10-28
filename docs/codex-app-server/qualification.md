@@ -1,5 +1,32 @@
 # Codex compatibility qualification
 
+The [ordinary resource/search unit](ordinary-resource-search-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **92 files /158 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,728** identical guarded sources. Exact native/peer resources and
+persisted Unicode pages with cold opaque continuation bind two physical owners;
+four existing requirements gain supplements. Contracts: **5,648 implemented /
+837 missing /136 blocked**; requirements **462 implemented /12 missing /11
+blocked**, zero globally verified. The original literal-style failure and
+equivalent correction remain. No prohibited/broad/hosted check or database
+recovery rerun occurs. Continue the source-reviewed terminal/hook/reset drafts;
+they remain runtime-unverified. A11, unavailable emitters/external/OS, timestamp
+cursor, full goal, publication and release remain incomplete.
+
+The [ordinary plugin/lifecycle reference unit](ordinary-native-reference-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **90 files /156 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,725** identical guarded sources. Genuine remote metadata/null,
+owned persisted deletion and explicit cold memory-reader inputs bind exactly four
+physical owners; six existing requirements gain supplements. Contracts:
+**5,646 implemented /839 missing /136 blocked**; requirements **462 implemented /
+12 missing /11 blocked**, zero globally verified. Commit `1e6597c` is pushed;
+local/tracking/live main refs converge and GitHub lists no workflow for its SHA.
+No prohibited/broad/hosted check or database recovery rerun occurs. Continue
+the source-reviewed resource-read and paginated occurrence-search drafts.
+A11, unavailable emitters/external/OS, timestamp cursor, full goal and release
+remain incomplete.
+
 The [ordinary installed-app unit](ordinary-installed-apps-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **88 files /153 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

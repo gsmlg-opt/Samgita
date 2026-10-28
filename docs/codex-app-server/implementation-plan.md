@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary resource/search unit](ordinary-resource-search-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **92 files /158 real-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build
+checks. All **1,728** guarded hashes match; **1,723** other prior sources and all
+prior command arguments stay exact. Actual threadless MCP content and genuinely
+persisted Unicode occurrence pages with opaque cold continuation bind two
+physical owners; four existing requirements gain supplements. Contracts:
+**5,648 implemented /837 missing /136 blocked**; requirements **462 implemented /
+12 missing /11 blocked**, zero globally verified. The first literal-style
+failure and equivalent heredoc correction remain recorded. No prohibited/broad/
+hosted check or database recovery rerun occurs. Next: qualify the source-reviewed
+ordinary background-terminal lifecycle, CLI hook-source and owned-memory-reset
+drafts; they remain outside the repository and runtime-unverified. A11,
+unavailable emitters/external/OS, timestamp cursor, full goal and release stay open.
+
 The [ordinary plugin/lifecycle reference unit](ordinary-native-reference-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **90 files /156 real-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build
