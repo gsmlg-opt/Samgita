@@ -1517,7 +1517,8 @@
       "evidence": [
         "docs/codex-app-server/environment-qualification.md",
         "docs/codex-app-server/isolated-environment.md",
-        "docs/codex-app-server/environment-skills-qualification.md"
+        "docs/codex-app-server/environment-skills-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:environment/add",
@@ -1525,7 +1526,8 @@
       "legacy": false,
       "limitations": [
         "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified.",
-        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion.",
+        "Ordinary real owned executor discovery: required owned:review catalog appears in actual provider context before one literal assistant turn; same-ID explicit skills:null replacement followed by fresh-thread empty-root discovery succeeds with no stale requirement/catalog and a second literal assistant turn. Only selected skills object/null physical variants; bootstrap remains internal and whole credential-bearing request receives no new credit. Fixed yolo setup; no missing-skill rejection, permission, authentication or approval tests."
       ],
       "params": {
         "$ref": "#/definitions/EnvironmentAddParams"
@@ -1558,7 +1560,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/environment_profiles_test.exs",
           "apps/samgita_codex_driver/test/native_environment_profile.exs",
-          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
         ]
       },
       "transport_coverage": [
@@ -1984,14 +1987,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/feedback-qualification.md"
+        "docs/codex-app-server/feedback-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:feedback/upload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing.",
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/FeedbackUploadParams"
@@ -2026,7 +2031,8 @@
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
-          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139",
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
         ]
       },
       "transport_coverage": [
@@ -3519,14 +3525,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-control-qualification.md"
+        "docs/codex-app-server/thread-control-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:mock/experimentalMethod",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Eight actual-native Linux stdio cases at seeds 501432 and 987654 directly assert loaded pagination, unsubscribe statuses, thread-local runtime counters/cold reset and the official experimental echo endpoint. No model requests, turn, command or approval. Runtime pause duration, concurrency/overflow, eviction timing, unrelated history fields and other deployment profiles remain unqualified."
+        "Eight actual-native Linux stdio cases at seeds 501432 and 987654 directly assert loaded pagination, unsubscribe statuses, thread-local runtime counters/cold reset and the official experimental echo endpoint. No model requests, turn, command or approval. Runtime pause duration, concurrency/overflow, eviction timing, unrelated history fields and other deployment profiles remain unqualified.",
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
       ],
       "params": {
         "$ref": "#/definitions/MockExperimentalMethodParams"
@@ -3557,7 +3565,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs",
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
         ]
       },
       "transport_coverage": [
@@ -16514,7 +16523,8 @@
       "evidence": [
         "docs/codex-app-server/environment-qualification.md",
         "docs/codex-app-server/isolated-environment.md",
-        "docs/codex-app-server/environment-skills-qualification.md"
+        "docs/codex-app-server/environment-skills-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:environment/add",
@@ -16522,7 +16532,8 @@
       "legacy": false,
       "limitations": [
         "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified.",
-        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion.",
+        "Ordinary real owned executor discovery: required owned:review catalog appears in actual provider context before one literal assistant turn; same-ID explicit skills:null replacement followed by fresh-thread empty-root discovery succeeds with no stale requirement/catalog and a second literal assistant turn. Only selected skills object/null physical variants; bootstrap remains internal and whole credential-bearing request receives no new credit. Fixed yolo setup; no missing-skill rejection, permission, authentication or approval tests."
       ],
       "prerequisites": [
         "initialized"
@@ -16541,7 +16552,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/environment_profiles_test.exs",
           "apps/samgita_codex_driver/test/native_environment_profile.exs",
-          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16864,14 +16876,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/feedback-qualification.md"
+        "docs/codex-app-server/feedback-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:feedback/upload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing.",
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -16892,7 +16906,8 @@
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
           "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
-          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139",
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18009,14 +18024,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-control-qualification.md"
+        "docs/codex-app-server/thread-control-qualification.md",
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:mock/experimentalMethod",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Eight actual-native Linux stdio cases at seeds 501432 and 987654 directly assert loaded pagination, unsubscribe statuses, thread-local runtime counters/cold reset and the official experimental echo endpoint. No model requests, turn, command or approval. Runtime pause duration, concurrency/overflow, eviction timing, unrelated history fields and other deployment profiles remain unqualified."
+        "Eight actual-native Linux stdio cases at seeds 501432 and 987654 directly assert loaded pagination, unsubscribe statuses, thread-local runtime counters/cold reset and the official experimental echo endpoint. No model requests, turn, command or approval. Runtime pause duration, concurrency/overflow, eviction timing, unrelated history fields and other deployment profiles remain unqualified.",
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
       ],
       "prerequisites": [
         "initialized"
@@ -18033,7 +18050,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs",
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
         ]
       },
       "transport_coverage": [
@@ -24828,7 +24846,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -24861,7 +24879,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -28353,7 +28371,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28389,7 +28407,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28427,7 +28445,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -28463,7 +28481,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit.",
         "Additional selected text/low/high inline-image arrays with explicit-null/omitted namespace and independent native/provider/cold-history oracles. No other nested alternatives, remote/file references or full lifecycle qualification."
       ],
@@ -42770,7 +42788,7 @@
       "id": "schema:ClientRequest.json#/definitions/ThreadMetadataGitInfoUpdateParams/properties/branch",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Padded feature/\u03bb trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
+        "actual_native_selected_values: Padded feature/λ trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
         "Native metadata update and readback in an isolated synthetic local thread; no remote Git or credentials."
       ],
       "nullable": true,
@@ -44952,7 +44970,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0",
@@ -44983,7 +45001,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -45016,7 +45034,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -45049,7 +45067,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -45080,7 +45098,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
@@ -51353,22 +51371,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/126",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
+      ],
       "pointer": "/oneOf/126",
       "schema": "ClientRequest.json",
       "schema_sha256": "910d8cc3f5e76c8ec50df90a8fe9b79c65b8d60f65e78645d2b9bedff1065920",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -51376,25 +51400,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/126/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
+      ],
       "nullable": false,
       "pointer": "/oneOf/126/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -51402,47 +51432,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/126/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
+      ],
       "nullable": false,
       "pointer": "/oneOf/126/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a549cef08a41348958e509fb7297e5fcb1accd8b8a415011f010a791453fff35",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/126/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
+      ],
       "pointer": "/oneOf/126/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f2477328e01c1f5046d0d674d99bb6422cc75a0ed035e803e4aae42364827880",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -51450,25 +51492,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/126/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual stock rust-v0.163.0 diagnostic echo with Unicode/newline, empty, explicit null and omitted values; normal validation, exact original envelopes, numeric/string IDs, 11 envelopes/10 exchanges and owned cleanup. The official method has a test-only purpose but is shipped unconditionally; this proves only that method, not a fake production emitter or broader compatibility."
+      ],
       "nullable": false,
       "pointer": "/oneOf/126/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "cff303fb83ed770088da43909a60a2b14e2967063610c667d862310e828aa544",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:238"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -55515,22 +55563,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/150",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "pointer": "/oneOf/150",
       "schema": "ClientRequest.json",
       "schema_sha256": "9e9df5b90942f9d938cc81932bac30caa2822dc32437413459168feaa3bb2a05",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -55538,25 +55592,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/150/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/150/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -55564,47 +55624,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/150/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/150/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1ebb3837f3a7f61a01a377e6915314deeda921c192c9afc18f9ef203370ec998",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/150/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "pointer": "/oneOf/150/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1fef10e57a5997fd06f408182365208ef77b8c300c021052aa0e2645f87c805c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -55612,25 +55684,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/150/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/150/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "7cbfd7257d049b2d348d5952c3bcbadfa43726588ecab2706f96e8cdc45d99d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -56696,7 +56774,7 @@
       "id": "schema:ClientRequest.json#/oneOf/157/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V499 process/kill retains original Unicode string owned-v499-kill-\u03bb\ud83d\ude42 and type through successful-send original request capture, exact native ingress/schema/Wire and delivered empty result. Actual selected process exit/PID disappearance, unaffected pipe/PTY output and zero model requests still required. No extra control/child/turn, no aliases/exhaustive ID/transport/OS credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
+        "V499 process/kill retains original Unicode string owned-v499-kill-λ🙂 and type through successful-send original request capture, exact native ingress/schema/Wire and delivered empty result. Actual selected process exit/PID disappearance, unaffected pipe/PTY output and zero model requests still required. No extra control/child/turn, no aliases/exhaustive ID/transport/OS credit. Full-goal/security/external/OS/release gates remain incomplete; no verified promotion."
       ],
       "nullable": false,
       "pointer": "/oneOf/157/properties/id",
@@ -146418,44 +146496,56 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/skills/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary real owned executor discovery: required owned:review catalog appears in actual provider context before one literal assistant turn; same-ID explicit skills:null replacement followed by fresh-thread empty-root discovery succeeds with no stale requirement/catalog and a second literal assistant turn. Only selected skills object/null physical variants; bootstrap remains internal and whole credential-bearing request receives no new credit. Fixed yolo setup; no missing-skill rejection, permission, authentication or approval tests."
+      ],
       "pointer": "/properties/skills/anyOf/0",
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "b2140a361850b5dd78caab5c553701c6b4c4fdfeb870d4cf80e3eb8bf668e25d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/skills/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary real owned executor discovery: required owned:review catalog appears in actual provider context before one literal assistant turn; same-ID explicit skills:null replacement followed by fresh-thread empty-root discovery succeeds with no stale requirement/catalog and a second literal assistant turn. Only selected skills object/null physical variants; bootstrap remains internal and whole credential-bearing request receives no new credit. Fixed yolo setup; no missing-skill rejection, permission, authentication or approval tests."
+      ],
       "pointer": "/properties/skills/anyOf/1",
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -149493,25 +149583,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/tags",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/tags",
       "required": false,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "tags"
@@ -149519,25 +149615,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "threadId"
@@ -149545,25 +149647,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-environment-feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/FeedbackUploadResponse.json#/properties/promptHash",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary genuine native feedback: one real persisted paginated thread/assistant turn, actual SessionMeta/TurnContext and source-rendered provider input; two explicit typed uploads produce distinct consumed native Event envelopes with fixed ordinary tags, actual thread/turn identity and independently fixed non-null normalized prompt hash. Fixed local CONNECT/custom-CA dependency setup only, no transport/security/permission assertions or mixed historical profile. Stable root90 equals experimental root150; root149 is a different method and receives no credit. HTTP acceptance is not durable external Sentry storage; logs/attachments, failure profiles, external/other OS and complete behavior remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/promptHash",
       "required": false,
       "schema": "v2/FeedbackUploadResponse.json",
       "schema_sha256": "21706d226b78e44128edf1e3452a80f454afe158827808379bf24408befa10b5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_feedback_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "promptHash"
@@ -164955,7 +165063,7 @@
       "id": "schema:v2/ModelListResponse.json#/definitions/ReasoningEffortOption/properties/description",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact Focused \u03bb and Maximum effort descriptions.",
+        "actual_native_selected_values: Exact Focused λ and Maximum effort descriptions.",
         "Real pinned native model/list projection from offline synthetic static local catalog. Metadata only; no inference, real provider authorization, hosted discovery, managed policy or advertised capability execution success."
       ],
       "nullable": false,
@@ -217634,7 +217742,7 @@
       "id": "schema:v2/ThreadSearchOccurrencesResponse.json#/definitions/ThreadSearchOccurrence/properties/snippet",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact original \ud83d\ude00 Needle needle NEEDLE source text.",
+        "actual_native_selected_values: Exact original 😀 Needle needle NEEDLE source text.",
         "Real pinned native thread/searchOccurrences over one local paginated Unicode turn; UTF16 ranges, item identity, cursor continuation and cold equality asserted."
       ],
       "nullable": false,
@@ -218387,7 +218495,7 @@
       "id": "schema:v2/ThreadSearchParams.json#/properties/searchTerm",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Literal quoted \"needle\" with backslash, \u00e9 and emoji selects exactly matching native histories.",
+        "actual_native_selected_values: Literal quoted \"needle\" with backslash, é and emoji selects exactly matching native histories.",
         "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
       ],
       "nullable": false,

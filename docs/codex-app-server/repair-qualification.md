@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary executor-skills/feedback/echo unit](ordinary-environment-feedback-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **85 files / 150 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build
+checks. All **1,716** guarded sources match. Only 15 physical owners gain credit:
+**5,629 implemented / 856 missing / 136 blocked**, unchanged requirements and zero
+globally verified. Original strict-oracle failures and exact repairs remain
+recorded; the preexisting process cleanup, replay and database safeguards stay
+intact. No prohibited/broad/hosted check or database recovery rerun occurs.
+Continue the reviewed remote-limit and marketplace-null drafts; they are unrun.
+A11, unavailable emitters/external/OS, full goal and release remain incomplete.
+
 The [ordinary app-context/skill-read unit](ordinary-app-context-skill-read-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **83 files / 147 real-native cases
 twice**, selected WebSocket seeds455834/501432/987654, outside consumer **1/0**

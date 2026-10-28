@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary executor-skills/feedback/echo unit](ordinary-environment-feedback-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **85 files / 150 actual-native cases
+twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/
+build checks and **1,716** identical guarded sources. Actual catalog clearing,
+persisted feedback Event/hash effects and shipped diagnostic echo add only 15
+physical owners, with six existing requirements supplemented. Contracts:
+**5,629 implemented / 856 missing / 136 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. Original strict-oracle failures
+remain documented; no deadline, assertion or process-owner behavior is weakened.
+No prohibited/broad/hosted check runs. Next remote limit/marketplace-read drafts
+remain unrun. A11, unavailable emitters/external/OS, the native timestamp cursor
+defect, full compatibility and release remain incomplete.
+
 The [ordinary app-context/skill-read unit](ordinary-app-context-skill-read-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **83 files / 147 real-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

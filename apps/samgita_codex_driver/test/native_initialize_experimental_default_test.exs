@@ -3,7 +3,7 @@ defmodule SamgitaCodexDriver.NativeInitializeExperimentalDefaultTest do
   use ExUnit.Case, async: false
 
   alias SamgitaCodexDriver.{NativeLaunchFixture, Session, StdioSessionFixture}
-  alias SamgitaProtocolCodex.Error
+  alias SamgitaProtocolCodex.{Error, Schema}
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
@@ -233,6 +233,65 @@ defmodule SamgitaCodexDriver.NativeInitializeExperimentalDefaultTest do
     close(cold)
     assert_inputs(ctx)
     inventory(ctx)
+  end
+
+  test "shipped experimental echo preserves ordinary string, empty, null and omitted values",
+       ctx do
+    session = initialize(ctx, start(ctx), "ordinary-echo", %{"experimentalApi" => true})
+
+    schema_path =
+      Path.join(
+        :code.priv_dir(:samgita_protocol_codex),
+        "upstream/0.163.0/experimental/ClientRequest.json"
+      )
+
+    original = File.read!(schema_path)
+    assert hash(original) === "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+    document = JSON.decode!(original)
+    owner = Enum.at(document["oneOf"], 126)
+    assert owner["properties"]["method"]["enum"] === ["mock/experimentalMethod"]
+
+    selected =
+      Map.put(
+        owner,
+        "definitions",
+        Map.take(document["definitions"], ~w(RequestId MockExperimentalMethodParams))
+      )
+
+    for {request_id, params, expected} <- [
+          {-1, %{"value" => "Owned native echo λ 漢字 🙂\nsecond line"},
+           "Owned native echo λ 漢字 🙂\nsecond line"},
+          {"-1", %{"value" => ""}, ""},
+          {0, %{"value" => nil}, nil},
+          {"ordinary-echo-omitted", %{}, nil}
+        ] do
+      wire = %{"id" => request_id, "method" => "mock/experimentalMethod", "params" => params}
+      assert :ok = Schema.validate(selected, wire, max_depth: 8)
+
+      assert {:ok, %{"id" => ^request_id, "result" => result} = response} =
+               Session.request_native(session.pid, wire, timeout_ms: 5_000)
+
+      assert result === %{"echoed" => expected}
+      exchange(ctx, wire, response)
+      assert File.read!(schema_path) === original
+      quiet(ctx, session)
+    end
+
+    sent = outgoing(ctx)
+    requests = Enum.filter(sent, &Map.has_key?(&1.wire, "id"))
+    replies = Enum.filter(records(ctx), &(&1.direction === :in and Map.has_key?(&1.wire, "id")))
+    assert length(sent) === 11 and length(requests) === 10 and length(replies) === 10
+
+    assert Enum.map(
+             Enum.filter(requests, &(&1.wire["method"] === "mock/experimentalMethod")),
+             & &1.wire["id"]
+           ) === [-1, "-1", 0, "ordinary-echo-omitted"]
+
+    assert MapSet.new(Enum.map(requests, & &1.wire["id"])) ===
+             MapSet.new(Enum.map(replies, & &1.wire["id"]))
+
+    close(session)
+    assert_inputs(ctx)
   end
 
   defp reject_create(ctx, session, params) do
