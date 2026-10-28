@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "617339b109a51a70b3ced03e0d352f42cc785439c3ca067d3328d97bac9618e0"
+REVIEWED_SOURCE_SHA256 = "c8026edb51d2882ba418ba347f49b1ac99591ef021232af75cc1c99efcdbd088"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -129,10 +129,11 @@ native_ordinary_websocket_gap_test.exs
 native_ordinary_installed_thread_context_test.exs
 native_ordinary_mcp_not_started_test.exs
 native_ordinary_active_page_recovery_test.exs
+native_ordinary_installed_null_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
-DRIVER_CASES = 164
-EXTRA_DRIVER_CASES = 11
+DRIVER_CASES = 165
+EXTRA_DRIVER_CASES = 12
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -189,8 +190,9 @@ def commands():
     for seed in (501432, 987654):
         steps.append(("ordinary-" + str(seed), driver,
                       ["mix", "test", *files, "--warnings-as-errors", "--seed", str(seed)], 320))
-    # Preserve the complete prior164-case combination and its320s bound. New
-    # independent profiles have a separate count/bound; no assertion is removed.
+    # Keep the original argv, all prior164 cases and the320s bound. One added
+    # metadata case shares existing import fixtures; no prior assertion changes.
+    # Independent profiles retain their separate count/bound.
     for seed in (501432, 987654):
         steps.append(("ordinary-extra-" + str(seed), driver,
                       ["mix", "test", *extra_files, "--warnings-as-errors", "--seed", str(seed)], 120))

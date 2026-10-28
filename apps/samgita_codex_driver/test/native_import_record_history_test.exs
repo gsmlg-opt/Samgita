@@ -371,6 +371,264 @@ defmodule SamgitaCodexDriver.NativeImportRecordHistoryTest do
     %{id: id, completed_at: completed_at, histories: result}
   end
 
+  test "all recorded outer group labels are accepted while native history retains only inner outcomes",
+       ctx do
+    schema_path =
+      Path.join([
+        to_string(:code.priv_dir(:samgita_protocol_codex)),
+        "upstream/0.163.0/experimental/ClientRequest.json"
+      ])
+
+    schema_bytes = File.read!(schema_path)
+
+    assert hash(schema_bytes) ===
+             "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+
+    schema = JSON.decode!(schema_bytes)
+
+    assert schema["definitions"]["ExternalAgentConfigImportHistoryRecordTypeResultParams"][
+             "properties"
+           ]["itemType"] === %{
+             "$ref" => "#/definitions/ExternalAgentConfigMigrationItemType"
+           }
+
+    labels =
+      ~w(AGENTS_MD CONFIG SKILLS PLUGINS MCP_SERVER_CONFIG SUBAGENTS HOOKS COMMANDS MEMORY SESSIONS)
+
+    assert schema["definitions"]["ExternalAgentConfigMigrationItemType"]["enum"] === labels
+
+    assert "itemType" in schema["definitions"][
+             "ExternalAgentConfigImportHistoryRecordTypeResultParams"
+           ]["required"]
+
+    assert_retained(ctx)
+    warm = start(ctx)
+    assert_no_threads(ctx, warm.pid)
+
+    assert group160_call(ctx, warm.pid, "externalAgentConfig/import/readHistories", nil) ===
+             %{"data" => [], "connectors" => []}
+
+    # These outer labels are categories only. No setting bodies, hook scripts,
+    # MCP definitions or plugin content are supplied or executed. Deliberately
+    # different inner types expose the native flattening contract without
+    # treating an outer category as durable provenance or an execution request.
+    params = %{
+      "providerId" => "owned-group160-reported-provider",
+      "itemTypeResults" => [
+        %{
+          "itemType" => "AGENTS_MD",
+          "successes" => [
+            %{
+              "itemType" => "SESSIONS",
+              "cwd" => ctx.fixture.workspace,
+              "source" => Path.join(ctx.reported, "group160-session-source.jsonl"),
+              "target" => Path.join(ctx.reported, "group160-session-target"),
+              "title" => "Reported group160 session λ"
+            }
+          ],
+          "failures" => []
+        },
+        %{"itemType" => "CONFIG", "successes" => [], "failures" => []},
+        %{
+          "itemType" => "SKILLS",
+          "successes" => [
+            %{
+              "itemType" => "CONFIG",
+              "cwd" => nil,
+              "source" => "Reported group160 source metadata only",
+              "target" => "Reported group160 target metadata only",
+              "title" => nil
+            }
+          ],
+          "failures" => []
+        },
+        %{"itemType" => "PLUGINS", "successes" => [], "failures" => []},
+        %{"itemType" => "MCP_SERVER_CONFIG", "successes" => [], "failures" => []},
+        %{"itemType" => "SUBAGENTS", "successes" => [], "failures" => []},
+        %{"itemType" => "HOOKS", "successes" => [], "failures" => []},
+        %{"itemType" => "COMMANDS", "successes" => [], "failures" => []},
+        %{
+          "itemType" => "MEMORY",
+          "successes" => [],
+          "failures" => [
+            %{
+              "itemType" => "COMMANDS",
+              "cwd" => nil,
+              "errorType" => "reported_group160_outcome",
+              "subErrorType" => nil,
+              "failureStage" => "reported_group160_stage",
+              "message" => "Externally reported group160 failure metadata",
+              "source" => Path.join(ctx.reported, "group160-command-source.md")
+            }
+          ]
+        },
+        %{"itemType" => "SESSIONS", "successes" => [], "failures" => []}
+      ]
+    }
+
+    assert Enum.map(params["itemTypeResults"], &Map.fetch!(&1, "itemType")) === labels
+    before_ms = System.system_time(:millisecond)
+
+    response =
+      group160_call(ctx, warm.pid, "externalAgentConfig/import/recordHistory", params)
+
+    after_ms = System.system_time(:millisecond)
+    assert %{"importId" => id} = response
+    assert Map.keys(response) === ["importId"]
+    assert_uuid(id)
+
+    result = group160_call(ctx, warm.pid, "externalAgentConfig/import/readHistories", nil)
+    assert %{"data" => [%{"completedAtMs" => completed_at}], "connectors" => []} = result
+    assert is_integer(completed_at) and completed_at > 0
+    assert completed_at >= before_ms and completed_at <= after_ms
+
+    # Independent literal oracle. Do not flatten the request or copy the native
+    # returned record to construct this expectation. Outer labels are absent.
+    expected = %{
+      "data" => [
+        %{
+          "importId" => id,
+          "providerId" => "owned-group160-reported-provider",
+          "completedAtMs" => completed_at,
+          "successes" => [
+            %{
+              "itemType" => "SESSIONS",
+              "cwd" => ctx.fixture.workspace,
+              "source" => Path.join(ctx.reported, "group160-session-source.jsonl"),
+              "target" => Path.join(ctx.reported, "group160-session-target"),
+              "title" => "Reported group160 session λ"
+            },
+            %{
+              "itemType" => "CONFIG",
+              "cwd" => nil,
+              "source" => "Reported group160 source metadata only",
+              "target" => "Reported group160 target metadata only",
+              "title" => nil
+            }
+          ],
+          "failures" => [
+            %{
+              "itemType" => "COMMANDS",
+              "cwd" => nil,
+              "errorType" => "reported_group160_outcome",
+              "subErrorType" => nil,
+              "failureStage" => "reported_group160_stage",
+              "message" => "Externally reported group160 failure metadata",
+              "source" => Path.join(ctx.reported, "group160-command-source.md")
+            }
+          ]
+        }
+      ],
+      "connectors" => []
+    }
+
+    assert result === expected
+    assert_idle(ctx, warm.pid)
+    assert_retained(ctx)
+    close(warm)
+    assert_retained(ctx)
+
+    cold = start(ctx)
+    refute cold.native === warm.native
+    assert_no_threads(ctx, cold.pid)
+
+    assert group160_call(ctx, cold.pid, "externalAgentConfig/import/readHistories", nil) ===
+             expected
+
+    assert_idle(ctx, cold.pid)
+    assert_retained(ctx)
+    close(cold)
+    assert_retained(ctx)
+
+    # Exactly one native record request and two distinct owned native processes.
+    # No import/detect/config-write/start-turn request can hide in this ledger.
+    frames = capture(ctx)
+    outgoing = for %{direction: :out, wire: wire} <- frames, do: wire
+
+    assert Enum.map(outgoing, &Map.fetch!(&1, "method")) ===
+             ~w(initialize initialized server/diagnostics thread/loaded/list thread/list externalAgentConfig/import/readHistories externalAgentConfig/import/recordHistory externalAgentConfig/import/readHistories initialize initialized server/diagnostics thread/loaded/list thread/list externalAgentConfig/import/readHistories)
+
+    [sent] =
+      Enum.filter(outgoing, &(&1["method"] === "externalAgentConfig/import/recordHistory"))
+
+    assert Map.fetch!(sent, "params") === params
+    assert :ok = SamgitaProtocolCodex.Schema.validate(schema, sent, experimental: true)
+
+    for %{direction: :in, wire: wire} <- frames do
+      method = wire["method"]
+
+      if is_binary(method) do
+        refute method === "error"
+
+        refute String.starts_with?(method, [
+                 "thread/",
+                 "turn/",
+                 "item/",
+                 "externalAgentConfig/import/"
+               ])
+      end
+    end
+
+    assert length(frames) <= 128
+    for frame <- frames, do: assert(byte_size(frame.encoded) <= @max_line_bytes)
+    close_provider(ctx.fixture)
+    assert_retained(ctx)
+    assert hash(File.read!(ctx.binary)) === @binary_sha
+  end
+
+  defp group160_call(ctx, pid, method, params) do
+    id = "owned-group160-#{System.unique_integer([:positive, :monotonic])}"
+    request = %{"id" => id, "method" => method, "params" => params}
+
+    response =
+      case Session.request_native(pid, request, timeout_ms: 5_000) do
+        {:ok, %{"id" => ^id, "result" => _} = wire} ->
+          wire
+
+        {:error, %SamgitaProtocolCodex.Error{} = failure} ->
+          upstream_code =
+            case failure.wire do
+              %{"error" => %{"code" => code}} when is_integer(code) -> code
+              _ -> :no_upstream_code
+            end
+
+          flunk(
+            "Native group160 #{method} failed: " <>
+              inspect({failure.code, failure.uncertain, upstream_code})
+          )
+
+        _other ->
+          flunk("Unexpected native group160 #{method} response shape")
+      end
+
+    assert [sent, received] = Enum.filter(capture(ctx), &(&1.wire["id"] === id))
+
+    for {frame, direction, expected} <- [
+          {sent, :out, request},
+          {received, :in, response}
+        ] do
+      assert frame.direction === direction
+      assert JSON.decode!(frame.encoded) === expected
+
+      assert {:ok, decoded} =
+               SamgitaProtocolCodex.Wire.decode(frame.encoded,
+                 max_depth: 64,
+                 max_bytes: @max_line_bytes
+               )
+
+      assert decoded === expected
+    end
+
+    result = Map.fetch!(response, "result")
+
+    assert :ok =
+             SamgitaProtocolCodex.Schema.validate_result(:server_response, method, result,
+               experimental: true
+             )
+
+    result
+  end
+
   defp start(ctx) do
     assert {:ok, pid} =
              Session.start_link(

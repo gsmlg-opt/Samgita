@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps with1,760 identical guarded sources,165/0 main cases
+twice under320s,12/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks. All prior164 cases and assertions stay
+intact. Two physical owners gain scoped evidence:5,730 implemented/755 missing/
+136 blocked, unchanged requirements and zero globally verified. Actual committed
+cache null and all ten record-only categories are distinct from second-sync
+completion, actual imports or full conformance. Fresh plain-copy production
+assembly also passes without release startup/publication. Continue the source-supported
+System metadata candidate; A11, unresolved original cleanup/producer questions,
+prohibited/broad/hosted, external/OS and full/release gates remain incomplete.
+
 The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps against1,758 identical guarded sources, including
 original164-case repeats,11-case extensions twice, three replay seeds, four

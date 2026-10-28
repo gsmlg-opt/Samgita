@@ -1,5 +1,19 @@
 # Full compatibility implementation ledger
 
+The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps against1,760 exact guarded sources:165/0 twice with
+all prior164 cases and320s bounds retained,12/0 extensions twice, three replay
+seeds, four cleanup cases, outside consumer and static/build checks. Exactly two
+physical owners gain scoped evidence; contracts5,730 implemented/755 missing/
+136 blocked, unchanged requirements, zero globally verified. Native committed
+cache reads account for their held background refresh; record-only categories
+retain exact independent inner outcomes across cold readback without executing
+imports. Next: inert System layer source/path metadata with an absent-default-file
+prerequisite, then remaining ordinary producer/evidence gaps. Plain-copy production
+assembly also passes without starting or publishing the artifact. Existing platform,
+database, cleanup and replay boundaries remain unchanged. A11, prohibited/broad/
+hosted, external/OS, unresolved producer/cleanup and full/release gates stay open.
+
 The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps against1,758 identical guarded sources:
 original164-case repeats within320s,11-case extensions twice, three selected

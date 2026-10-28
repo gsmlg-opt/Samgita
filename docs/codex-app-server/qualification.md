@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps with1,760 identical guarded sources:165/0 twice
+within original320s bounds,12/0 extensions twice, three replay seeds, four cleanup
+cases, outside consumer1/0 and static/build checks. All prior164 cases remain.
+One genuine committed-cache null and all ten record-only outer categories gain
+two precise physical owners; contracts5,730 implemented/755 missing/136 blocked,
+unchanged requirements and zero globally verified. The separate held refresh is
+never reported completed; cold import-history readback retains inner outcomes,
+not outer categories. Continue inert System source/path metadata after its
+environment prerequisite. A fresh2,304-input plain-copy production assembly also
+passes; its artifact is never started or published. A11, prohibited/broad/hosted checks, unresolved native
+producer/cleanup questions, external/OS success and full/release gates stay open.
+
 The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps with1,758 identical guarded sources:
 164/0 twice within original320s bounds,11/0 extensions twice, three selected

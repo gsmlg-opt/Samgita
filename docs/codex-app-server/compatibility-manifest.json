@@ -1905,7 +1905,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/import-lifecycle-qualification.md",
-        "docs/codex-app-server/native-partial-import-qualification.md"
+        "docs/codex-app-server/native-partial-import-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import/readHistories",
@@ -1913,7 +1914,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
-        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim.",
+        "Actual native record-only input captures all ten required outer itemType labels in one exact ClientRequest payload. Two independent inner successes and one reported failure persist with native UUID/timestamp and exact cold public readback. Outer group labels are deliberately discarded by pinned flattening; no import, detect, config/hook/plugin/MCP/model execution. Only this physical root itemType reference, with no enum alias, inner-field, permission, family or globally verified credit."
       ],
       "params": {
         "type": "null"
@@ -1945,7 +1947,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
-          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs:374"
         ]
       },
       "transport_coverage": [
@@ -1957,14 +1960,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import/recordHistory",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Actual native record-only input captures all ten required outer itemType labels in one exact ClientRequest payload. Two independent inner successes and one reported failure persist with native UUID/timestamp and exact cold public readback. Outer group labels are deliberately discarded by pinned flattening; no import, detect, config/hook/plugin/MCP/model execution. Only this physical root itemType reference, with no enum alias, inner-field, permission, family or globally verified credit."
       ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportHistoryRecordParams"
@@ -1995,7 +2000,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs:374"
         ]
       },
       "transport_coverage": [
@@ -3824,7 +3830,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
         "docs/codex-app-server/plugin-installed-errors-qualification.md",
-        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/installed",
@@ -3833,7 +3840,8 @@
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
         "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
-        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Actual native plugin/reconcile commits one inert skills snapshot and materialized files before ACK. A subsequent plugin/installed returns original captured marketplace/plugin identities with a present path:null while its separately accounted second installed GET is held without response. Six correlated replies; native ACK/reaping precedes explicit fixture handler close without response. Original files remain exact; no second-sync completion, restart durability, policy/capability/auth outcome, response alias, family or globally verified credit."
       ],
       "params": {
         "$ref": "#/definitions/PluginInstalledParams"
@@ -3866,7 +3874,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
           "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_null_test.exs:173"
         ]
       },
       "transport_coverage": [
@@ -3992,7 +4001,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
         "docs/codex-app-server/remote-plugin-qualification.md",
-        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/reconcile",
@@ -4001,7 +4011,8 @@
       "limitations": [
         "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
         "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
-        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs.",
+        "Actual native plugin/reconcile commits one inert skills snapshot and materialized files before ACK. A subsequent plugin/installed returns original captured marketplace/plugin identities with a present path:null while its separately accounted second installed GET is held without response. Six correlated replies; native ACK/reaping precedes explicit fixture handler close without response. Original files remain exact; no second-sync completion, restart durability, policy/capability/auth outcome, response alias, family or globally verified credit."
       ],
       "params": {
         "$ref": "#/definitions/PluginReconcileParams"
@@ -4034,7 +4045,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
           "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_null_test.exs:173"
         ]
       },
       "transport_coverage": [
@@ -16971,7 +16983,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/import-lifecycle-qualification.md",
-        "docs/codex-app-server/native-partial-import-qualification.md"
+        "docs/codex-app-server/native-partial-import-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import/readHistories",
@@ -16979,7 +16992,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
-        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim."
+        "Scoped actual-native partial session import: two real owned in-root Claude transcripts are detected, one renamed aside preserving its original bytes, and one explicit native import returns its UUID before exact validation-failure/import-success progress. Merged completion retains the independent session_missing failure and one real successful native target. Public durable history records the exact same results, provider and host-bracketed completedAtMs; distinct cold process repeats public history/thread reads without another import or inference. Original source/held bytes, real imported full Legacy history/rollout, config/catalog/support and empty provider journal stay exact. Original bidirectional capture/correlation, fixed bounds and owned cleanup remain; six original ordinary cases stay unchanged. Initial7/0, final7ordinary cases twice and strict checks pass with374stable sources and373other prior unchanged. Only3967/3968 gain scoped implemented evidence, preserving prior record-only/mixed historical evidence. No verified/whole-method promotion, filesystem-policy check, recordHistory-as-execution, mixed-suite run, concurrent/changed-source/all-format/backend/transport/OS breadth, prohibited/hosted gate or full compatibility/publication/deployment claim.",
+        "Actual native record-only input captures all ten required outer itemType labels in one exact ClientRequest payload. Two independent inner successes and one reported failure persist with native UUID/timestamp and exact cold public readback. Outer group labels are deliberately discarded by pinned flattening; no import, detect, config/hook/plugin/MCP/model execution. Only this physical root itemType reference, with no enum alias, inner-field, permission, family or globally verified credit."
       ],
       "prerequisites": [
         "initialized"
@@ -16997,7 +17011,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
-          "apps/samgita_codex_driver/test/native_session_import_success_test.exs"
+          "apps/samgita_codex_driver/test/native_session_import_success_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs:374"
         ]
       },
       "transport_coverage": [
@@ -17010,14 +17025,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import/recordHistory",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports.",
+        "Actual native record-only input captures all ten required outer itemType labels in one exact ClientRequest payload. Two independent inner successes and one reported failure persist with native UUID/timestamp and exact cold public readback. Outer group labels are deliberately discarded by pinned flattening; no import, detect, config/hook/plugin/MCP/model execution. Only this physical root itemType reference, with no enum alias, inner-field, permission, family or globally verified credit."
       ],
       "prerequisites": [
         "initialized"
@@ -17034,7 +17051,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs:374"
         ]
       },
       "transport_coverage": [
@@ -18409,7 +18427,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
         "docs/codex-app-server/plugin-installed-errors-qualification.md",
-        "docs/codex-app-server/plugin-npm-metadata-qualification.md"
+        "docs/codex-app-server/plugin-npm-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/installed",
@@ -18418,7 +18437,8 @@
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
         "Scoped actual-native plugin/installed discovered marketplace load errors: malformed owned {} manifest produces the independently expected absolute marketplacePath and full missing-name diagnostic alongside one preserved valid explicitly suggested uninstalled/inert local plugin. Repeated same-process reads, valid-empty repair, exact malformed restoration and a distinct cold process check current-file discovery, filtered good inventory and error preservation together. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. No plugin install/activation/hook/tool/thread/model execution or inference, fake native error, permission/policy variation or external service. Initial1/0, final2/0 twice and strict checks pass with379 stable sources/all378 prior unchanged,770exports/15descriptors unchanged. Only4526/4527 become scoped implemented; parent4639/suggestion4524 receive supplemental evidence. No verified/whole-method/other-error-alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
-        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/installed Npm source descriptor discovery only: independently prescribed raw scoped package/range/HTTPS registry with spaces normalizes to a complete exact map. Rewriting only the owned marketplace source to an unscoped package with omitted version/registry produces exact literal null options while stable plugin identity/status survives. Repeated reads, exact byte restoration and a distinct cold process preserve current-file discovery with no npm/download/install/activation/tool/thread/model operation or external service. Original bytes/IDs, exact16 selected requests, finite capture/source/response bounds, unchanged config/catalog/provider/support and owned cleanup remain checked. Initial1/0, final87schema/148reviewed ordinary driver twice, outsideconsumer1/0 and strict checks pass with380 stable sources/all379 prior unchanged,770exports/15descriptors exact. Only4602-4607 become scoped implemented; source parent4637/suggestion4524 receive supplemental evidence. No verified/whole-method/PluginSearchResponse-alias/npm-materialization/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Actual native plugin/reconcile commits one inert skills snapshot and materialized files before ACK. A subsequent plugin/installed returns original captured marketplace/plugin identities with a present path:null while its separately accounted second installed GET is held without response. Six correlated replies; native ACK/reaping precedes explicit fixture handler close without response. Original files remain exact; no second-sync completion, restart durability, policy/capability/auth outcome, response alias, family or globally verified credit."
       ],
       "prerequisites": [
         "initialized"
@@ -18437,7 +18457,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
           "apps/samgita_codex_driver/test/native_plugin_installed_errors_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_npm_metadata_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_null_test.exs:173"
         ]
       },
       "transport_coverage": [
@@ -18538,7 +18559,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
         "docs/codex-app-server/remote-plugin-qualification.md",
-        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/reconcile",
@@ -18547,7 +18569,8 @@
       "limitations": [
         "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
         "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
-        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs.",
+        "Actual native plugin/reconcile commits one inert skills snapshot and materialized files before ACK. A subsequent plugin/installed returns original captured marketplace/plugin identities with a present path:null while its separately accounted second installed GET is held without response. Six correlated replies; native ACK/reaping precedes explicit fixture handler close without response. Original files remain exact; no second-sync completion, restart durability, policy/capability/auth outcome, response alias, family or globally verified credit."
       ],
       "prerequisites": [
         "initialized"
@@ -18566,7 +18589,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
           "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_null_test.exs:173"
         ]
       },
       "transport_coverage": [
@@ -27713,21 +27737,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/import-lifecycle-qualification.md"
+        "docs/codex-app-server/import-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+        "Earlier selected record_only evidence covered grouped outcomes without importing. The all-label supplement qualifies this outer itemType field; other fields, actual imports and full implementation qualification remain incomplete.",
+        "Actual native record-only input captures all ten required outer itemType labels in one exact ClientRequest payload. Two independent inner successes and one reported failure persist with native UUID/timestamp and exact cold public readback. Outer group labels are deliberately discarded by pinned flattening; no import, detect, config/hook/plugin/MCP/model execution. Only this physical root itemType reference, with no enum alias, inner-field, permission, family or globally verified credit."
       ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/itemType",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -27735,7 +27761,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_import_record_history_test.exs:374"
         ]
       },
       "transport_coverage": [],
@@ -169334,22 +169361,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-record-cache-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/path/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native plugin/reconcile commits one inert skills snapshot and materialized files before ACK. A subsequent plugin/installed returns original captured marketplace/plugin identities with a present path:null while its separately accounted second installed GET is held without response. Six correlated replies; native ACK/reaping precedes explicit fixture handler close without response. Original files remain exact; no second-sync completion, restart durability, policy/capability/auth outcome, response alias, family or globally verified credit."
+      ],
       "pointer": "/definitions/PluginMarketplaceEntry/properties/path/anyOf/1",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_null_test.exs:173"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
