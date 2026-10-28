@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
+passes all17 reviewed functional steps with1,749 exact guarded sources,
+preserved164-case commands/bounds, six extension cases twice, three selected
+replay seeds, four cleanup cases, outside consumer and static/build checks.
+Twenty-nine precise owners gain implemented evidence; contracts5,726
+implemented/759 missing/136 blocked, requirements unchanged, zero globally
+verified. The initial Credo finding is corrected without changing canonical
+bytes or weakening rules. Next: review/run the separate ordinary in-flight
+WebSocket and installed-thread context drafts, then remaining producer gaps.
+A11, original intermittent cause, prohibited/broad/hosted, external/OS,
+full-goal and release remain incomplete. Local production assembly passes in a
+plain isolated copy with pinned tools; it is never started or published.
+
 The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
 passes all 17 reviewed functional steps: preserved164 cases twice within their
 original320s bounds, five extension cases twice, four cleanup scenarios, selected

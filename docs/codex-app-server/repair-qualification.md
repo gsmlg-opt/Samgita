@@ -1,5 +1,15 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
+passes all17 reviewed steps, with1,749 identical guarded source hashes. It adds
+29 exact physical owners:5,726 implemented/759 missing/136 blocked, unchanged
+requirements and zero globally verified. Both164-case and6-case repeats, three
+selected replay seeds, four cleanup cases, outside consumer and static/build
+checks pass. The initial new quoted-JSON Credo failure and corrected final
+evidence are separate. Ordinary WebSocket gap and installed-thread drafts still
+need runtime validation; A11, prohibited/broad/hosted, external/OS, full-goal and
+release remain incomplete. No intermittent-cleanup cause is established.
+
 The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
 passes all17 reviewed steps with1,747 identical guarded sources. The original
 164-case commands pass at both seeds within320s; five extension cases pass

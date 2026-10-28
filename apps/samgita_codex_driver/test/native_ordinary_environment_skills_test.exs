@@ -105,6 +105,19 @@ defmodule SamgitaCodexDriver.NativeOrdinaryEnvironmentSkillsTest do
      }
      """, "b23ca60674da2def8c170b28de596ac7f49045f72fa5865793cb7c3db8b30716"}
   ]
+  @required_field_bytes """
+  {
+    "description": "Exact catalog names that must be available from this environment.",
+    "items": {
+      "type": "string"
+    },
+    "type": [
+      "array",
+      "null"
+    ]
+  }
+  """
+  @required_field_sha "194c548147940b450311462180d07417b504c041f27cb7fd8dad668dc3d61776"
   @environment "owned-ordinary-skills-λ"
   @required %{"required" => ["owned:review"]}
   @prompts [
@@ -181,6 +194,8 @@ defmodule SamgitaCodexDriver.NativeOrdinaryEnvironmentSkillsTest do
       assert length(Enum.filter(entries(ctx, "native_output"), &(&1["id"] === id))) === 1
     end
 
+    assert_required_field_projection(ctx, registration1)
+
     assert length(Enum.filter(entries(ctx, "native_input"), &(&1["method"] === "thread/start"))) ===
              2
 
@@ -199,6 +214,55 @@ defmodule SamgitaCodexDriver.NativeOrdinaryEnvironmentSkillsTest do
     assert_files(ctx)
     close(ctx, pid, connection)
     assert_files(ctx)
+  end
+
+  defp assert_required_field_projection(ctx, registration) do
+    document = @client_schema |> File.read!() |> JSON.decode!()
+    variants = Map.fetch!(document, "oneOf")
+
+    assert [selected] =
+             Enum.filter(
+               variants,
+               &(get_in(&1, ["properties", "method", "enum"]) === ["environment/add"])
+             )
+
+    assert selected === Enum.at(variants, 127)
+    assert selected["properties"]["params"] === %{"$ref" => "#/definitions/EnvironmentAddParams"}
+    definitions = Map.fetch!(document, "definitions")
+    params_node = Map.fetch!(definitions, "EnvironmentAddParams")
+    [skills_ref, _] = get_in(params_node, ["properties", "skills", "anyOf"])
+    assert skills_ref === %{"$ref" => "#/definitions/EnvironmentSkillsParams"}
+    skills_node = Map.fetch!(definitions, "EnvironmentSkillsParams")
+    required_node = get_in(skills_node, ["properties", "required"])
+    assert required_node === JSON.decode!(@required_field_bytes)
+    assert hash(@required_field_bytes) === @required_field_sha
+    skills = Map.fetch!(registration, "skills")
+    required = Map.fetch!(skills, "required")
+    assert required === ["owned:review"]
+    assert :ok = Schema.validate(required_node, required, max_depth: 8)
+
+    assert :ok =
+             Schema.validate(Map.put(skills_ref, "definitions", definitions), skills,
+               max_depth: 8
+             )
+
+    # Owner153 binds only the selected field projection. add/4 and call/4
+    # already require the real successful reply with this strict typed ID.
+    # Registration bootstrap remains opaque; no complete native bytes are claimed.
+    id = Map.fetch!(registration, "id")
+    assert id === 3899
+    assert [input] = Enum.filter(entries(ctx, "native_input"), &(&1["id"] === id))
+    assert [output] = Enum.filter(entries(ctx, "native_output"), &(&1["id"] === id))
+    assert input["method"] === "environment/add"
+    assert output["method"] === nil
+    assert registration["captureId"] < input["captureId"]
+    assert input["captureId"] < output["captureId"]
+
+    assert [thread_input] =
+             Enum.filter(entries(ctx, "native_input"), &(&1["id"] === 3900))
+
+    assert thread_input["method"] === "thread/start"
+    assert output["captureId"] < thread_input["captureId"]
   end
 
   # This adapter injects connection bootstrap internally; only the actual skills

@@ -50,6 +50,32 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
   """
   @known_error_sha "35bbfdf0f8a8582ab497ef79ce4c15e32256f77f4fe91eef104ec007924b3e4b"
 
+  # Owner2983 only: the original ordinary quota notification wrapper.
+  @quota_wrapper_root_sha "8e719512bc26bb3871fcf7b378b79abf912d82787609c0ad418b71f179d0883f"
+  @quota_wrapper_node_sha "5b72f4af340460b1f37e282d303885220f216f2fa62bdf19bf4db8edbaabf3d2"
+  @quota_wrapper_node_bytes """
+  {
+    "properties": {
+      "method": {
+        "enum": [
+          "account/rateLimits/updated"
+        ],
+        "title": "Account/rateLimits/updatedNotificationMethod",
+        "type": "string"
+      },
+      "params": {
+        "$ref": "#/definitions/AccountRateLimitsUpdatedNotification"
+      }
+    },
+    "required": [
+      "method",
+      "params"
+    ],
+    "title": "Account/rateLimits/updatedNotification",
+    "type": "object"
+  }
+  """
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -312,9 +338,33 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
       assert JSON.decode!(frame.encoded) === event.wire
       assert {:ok, decoded} = Wire.decode(frame.encoded, max_depth: 64)
       assert decoded === event.wire
+      if decoded["method"] === @quota, do: assert_quota_wrapper_binding(decoded)
       emitted = Map.fetch!(decoded, "emittedAtMs")
       assert is_integer(emitted) and emitted > 0 and emitted >= before_ms and emitted <= after_ms
     end
+  end
+
+  defp assert_quota_wrapper_binding(original) do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/stable/ServerNotification.json")
+      |> File.read!()
+
+    assert hash(bytes) === @quota_wrapper_root_sha
+    document = JSON.decode!(bytes)
+    node = document |> Map.fetch!("oneOf") |> Enum.fetch!(49)
+    assert hash(@quota_wrapper_node_bytes) === @quota_wrapper_node_sha
+    assert JSON.decode!(@quota_wrapper_node_bytes) === node
+
+    # Preserve the existing finite429 metadata/lifecycle oracle. This adds no
+    # entitlement, credit, member/owner or policy scenario or enum acceptance.
+    assert :ok =
+             Schema.validate(
+               Map.put(node, "definitions", Map.fetch!(document, "definitions")),
+               original,
+               max_depth: 64
+             )
   end
 
   defp assert_physical(snapshot) do

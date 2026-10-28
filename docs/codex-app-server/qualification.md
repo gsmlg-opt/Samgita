@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [ordinary summary/context unit](ordinary-summary-git-qualification.md#functional-verification)
+passes all17 reviewed functional steps with1,749 identical guarded source files:
+preserved164 cases twice within their320s bounds, six extension cases twice,
+four cleanup scenarios, selected three-seed replay, outside consumer1/0 and
+static/build checks. Twenty-nine precise physical owners gain scoped implemented
+evidence:5,726 implemented/759 missing/136 blocked contracts, unchanged
+requirements and zero globally verified. The first failed Credo gate is retained;
+its byte-identical heredoc correction passes the final gate. Ordinary in-flight
+WebSocket and installed-thread context drafts remain runtime-unverified.
+A11, prohibited/broad/hosted, external/OS, full-goal and release gates stay open.
+
 The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
 passes all 17 reviewed functional steps against 1,747 unchanged source hashes:
 164 retained native cases twice, five extension cases twice, four real cleanup

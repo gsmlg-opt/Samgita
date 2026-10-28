@@ -15,6 +15,23 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
   @client "owned_creation_snapshot"
   @answer "Deterministic local fixture answer"
 
+  # Owner2432 only: actual explicit null; nonnull Thread.extra remains unqualified.
+  @thread_extra_root_sha "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1"
+  @thread_extra_node_sha "055911a6e5dbc43a92b9ebb1a7b96c4d552255f35696d407b710de67bbbe797e"
+  @thread_extra_node_bytes """
+  {
+    "anyOf": [
+      {
+        "$ref": "#/definitions/ThreadExtra"
+      },
+      {
+        "type": "null"
+      }
+    ],
+    "description": "Optional implementation-specific thread data."
+  }
+  """
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -430,6 +447,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
 
     for frame <- frames do
       assert JSON.decode!(frame.encoded) === frame.wire
+      assert_thread_extra_binding(frame.wire)
     end
 
     frames
@@ -561,6 +579,37 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
 
       await(pid, events, predicate, deadline)
     end
+  end
+
+  defp assert_thread_extra_binding(original) do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+      |> File.read!()
+
+    assert hash(bytes) === @thread_extra_root_sha
+    document = JSON.decode!(bytes)
+    node = get_in(document, ["definitions", "Thread", "properties", "extra"])
+    assert hash(@thread_extra_node_bytes) === @thread_extra_node_sha
+    assert JSON.decode!(@thread_extra_node_bytes) === node
+
+    # The full independently prescribed creation snapshot already requires null.
+    # Read it from the original notification; absence cannot qualify this field.
+    actual =
+      original
+      |> Map.fetch!("params")
+      |> Map.fetch!("thread")
+      |> Map.fetch!("extra")
+
+    assert actual === nil
+
+    assert :ok =
+             Schema.validate(
+               Map.put(node, "definitions", Map.fetch!(document, "definitions")),
+               actual,
+               max_depth: 32
+             )
   end
 
   defp notification_schema do

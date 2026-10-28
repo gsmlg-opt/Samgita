@@ -58,6 +58,32 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledAppsTest do
     }
   ]
 
+  # Owner2991 only: physical envelope; existing descriptive/structural scope stays.
+  @app_list_wrapper_root_sha "8e719512bc26bb3871fcf7b378b79abf912d82787609c0ad418b71f179d0883f"
+  @app_list_wrapper_node_sha "1b06eb2817f9e8cd55c79a0d124bb34dacd1344c10070627360ef34ca96605b7"
+  @app_list_wrapper_node_bytes """
+  {
+    "properties": {
+      "method": {
+        "enum": [
+          "app/list/updated"
+        ],
+        "title": "App/list/updatedNotificationMethod",
+        "type": "string"
+      },
+      "params": {
+        "$ref": "#/definitions/AppListUpdatedNotification"
+      }
+    },
+    "required": [
+      "method",
+      "params"
+    ],
+    "title": "App/list/updatedNotification",
+    "type": "object"
+  }
+  """
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -345,7 +371,32 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledAppsTest do
                max_depth: 64
              )
 
+    assert_app_list_wrapper_binding(decoded)
+
     descriptive(params["data"])
+  end
+
+  defp assert_app_list_wrapper_binding(original) do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/stable/ServerNotification.json")
+      |> File.read!()
+
+    assert hash(bytes) === @app_list_wrapper_root_sha
+    document = JSON.decode!(bytes)
+    node = document |> Map.fetch!("oneOf") |> Enum.fetch!(50)
+    assert hash(@app_list_wrapper_node_bytes) === @app_list_wrapper_node_sha
+    assert JSON.decode!(@app_list_wrapper_node_bytes) === node
+
+    # Existing standalone params/data shape checks and descriptive oracles stay
+    # unchanged. Do not inspect or assert any eligibility or permission outcome.
+    assert :ok =
+             Schema.validate(
+               Map.put(node, "definitions", Map.fetch!(document, "definitions")),
+               original,
+               max_depth: 64
+             )
   end
 
   defp descriptive(apps) do

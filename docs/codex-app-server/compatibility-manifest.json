@@ -2767,14 +2767,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/local-history-controls-qualification.md"
+        "docs/codex-app-server/local-history-controls-qualification.md",
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:getConversationSummary",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
       "limitations": [
-        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Ordinary supplemental original-wire/physical-node evidence from native-created no-turn histories, ID/absolute/relative summaries, cold reads and real local Git/diff facts. Only prescribed Linux-musl/stdio data branches; other profiles and full method acceptance remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/GetConversationSummaryParams"
@@ -2805,7 +2807,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
         ]
       },
       "transport_coverage": [
@@ -2817,14 +2820,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/local-history-controls-qualification.md"
+        "docs/codex-app-server/local-history-controls-qualification.md",
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:gitDiffToRemote",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
       "limitations": [
-        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Ordinary supplemental original-wire/physical-node evidence from native-created no-turn histories, ID/absolute/relative summaries, cold reads and real local Git/diff facts. Only prescribed Linux-musl/stdio data branches; other profiles and full method acceptance remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/GitDiffToRemoteParams"
@@ -2855,7 +2860,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17574,14 +17580,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/local-history-controls-qualification.md"
+        "docs/codex-app-server/local-history-controls-qualification.md",
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:getConversationSummary",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
       "limitations": [
-        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Ordinary supplemental original-wire/physical-node evidence from native-created no-turn histories, ID/absolute/relative summaries, cold reads and real local Git/diff facts. Only prescribed Linux-musl/stdio data branches; other profiles and full method acceptance remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -17598,7 +17606,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17611,14 +17620,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/local-history-controls-qualification.md"
+        "docs/codex-app-server/local-history-controls-qualification.md",
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:gitDiffToRemote",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
       "limitations": [
-        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Ordinary supplemental original-wire/physical-node evidence from native-created no-turn histories, ID/absolute/relative summaries, cold reads and real local Git/diff facts. Only prescribed Linux-musl/stdio data branches; other profiles and full method acceptance remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -17635,7 +17646,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
         ]
       },
       "transport_coverage": [
@@ -27400,27 +27412,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/EnvironmentSkillsParams/properties/required",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Positive required-list field projection has actual strict successful registration correlation/order and independent executor/catalog/provider-input effects. Bootstrap stays opaque; no complete original environment/add bytes, required:null, omission or empty-list claim. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/EnvironmentSkillsParams/properties/required",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "194c548147940b450311462180d07417b504c041f27cb7fd8dad668dc3d61776",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "required"
     },
     {
@@ -100170,27 +100190,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/extra",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original captured thread/started creation snapshots explicitly contain Thread.extra:null with complete independent snapshot equality. Exact experimental nullable parent only; no nonnull2433 or archive-JSON-export equality claim. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/extra",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "055911a6e5dbc43a92b9ebb1a7b96c4d552255f35696d407b710de67bbbe797e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_creation_snapshot_notification_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extra"
     },
     {
@@ -106623,24 +106651,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/8/properties/appContext/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original item/started and item/completed nonnull appContext is bound through the physical stable notification reference, with retained full context, MCP/provider and cold-persistence oracles. No response5585 transfer. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/appContext/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "eb1116157e85c6093e153f4b64842af82e7b2bebe4c31f945228de36b1f29eb8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_app_context_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -118138,24 +118174,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/49",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original account/rateLimits/updated stable notification wrapper from one genuine provider429 with existing data/order/failed-turn/no-replay oracles. No new quota-policy, credit, entitlement or membership outcome. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/oneOf/49",
       "schema": "ServerNotification.json",
       "schema_sha256": "5b72f4af340460b1f37e282d303885220f216f2fa62bdf19bf4db8edbaabf3d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -118392,24 +118436,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/50",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original app/list/updated stable wrapper after existing standalone params/data shape checks and before descriptive projection. Reachable aggregate definitions match that prior shape; no eligibility or permission outcome is asserted. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/oneOf/50",
       "schema": "ServerNotification.json",
       "schema_sha256": "1b06eb2817f9e8cd55c79a0d124bb34dacd1344c10070627360ef34ca96605b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -125679,246 +125731,326 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/0",
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "79e2083ede3a9407b4e697504d83817d23f207a48e91603f47133eb23fad7e97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/id",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "c08ab28960d64928aca1226e3f946b06a41f70e7d940443c7ac31682ecba9910",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "fcf3437ca4a2985db84f72e8d14385723873fcd5bc33787442e9cad9e64d5285",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/params",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "fbe0b2b1191b449f8b7a7ea14527856895f6eae86832550f2335c59a057baa60",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/1",
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "dc2c12d770e311753be0a92cd63fb07c88e8daca505a3416bc5848fe5f93b39c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/id",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/method",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "0632017eb5e972b72e0185f47eee18d3060a990f827137a2c4e2ae257628a349",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/1/properties/method/enum/0",
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "1bd314a1a63a969a496546ec5722e1f41ead9fa8a8c3dec74d9e105c0f0e135c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/params",
       "required": true,
       "schema": "supplemental/ClientRequest.json",
       "schema_sha256": "ba3d51d2065e4f831a87feee5be761a72735b4711bd739e34fea8c766fcbd9c1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -126318,211 +126450,283 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/branch",
       "required": false,
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "branch"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/branch/anyOf/0",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/branch/anyOf/1",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/origin_url",
       "required": false,
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "origin_url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/origin_url/anyOf/0",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/origin_url/anyOf/1",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/sha",
       "required": false,
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sha"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/sha/anyOf/0",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/sha/anyOf/1",
       "schema": "supplemental/v1/ConversationGitInfo.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -126666,24 +126870,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected ordinary fixed-YOLO no-turn native summary/Git profile with original typed request/reply bytes, actual persisted histories and three real local Git repositories. Named/detached/unborn states prescribe each string/null Git value; cold summaries and tracked/untracked Unicode diffs have independent oracles. Exact physical owner only; no alias, timestamp-null, complete method, security/permission, external/OS or globally verified promotion."
+      ],
       "pointer": "/properties/gitInfo/anyOf/0",
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "2ddf1cf4368581dafdf7419d8415ee56dc600b4037141ec6bd6e29da14d969c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_summary_git_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -154083,27 +154295,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsage/properties/estimatedUsageUsdMicros",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both original correlated thread usage replies contain independently prescribed estimatedUsageUsdMicros=2500000. Exact standalone output property only; USD-null and other account/identity/entitlement outcomes remain unqualified. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsage/properties/estimatedUsageUsdMicros",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "estimatedUsageUsdMicros"
     },
     {
@@ -154659,24 +154879,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/properties/threadUsage/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original warm/cold account-wide profile replies contain explicitly present threadUsage:null with independent distinct scalar/daily data and backend effects. Exact standalone output null branch only. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/properties/threadUsage/anyOf/1",
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -166406,46 +166634,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/NullableGetAccountTokenUsageParams.json#/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original typed usage requests contain the selected threadId object, validated using this standalone nullable root and its own definitions, with independent backend POST and thread reply projection. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/anyOf/0",
       "schema": "v2/NullableGetAccountTokenUsageParams.json",
       "schema_sha256": "27d4d860d2c08fc99eb29b6c45ea45f1b13831a0f133e9a4eced8bc02fd54843",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-summary-git-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/NullableGetAccountTokenUsageParams.json#/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Original typed warm/cold usage requests send explicit params:null to the profile path with independent distinct scalar/daily data. Exact standalone usage-null branch; quota-null is a different unqualified operation. Selected ordinary fixed-YOLO Linux stdio evidence only; no security/permission, external/OS or globally verified promotion and no alias credit."
+      ],
       "pointer": "/anyOf/1",
       "schema": "v2/NullableGetAccountTokenUsageParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

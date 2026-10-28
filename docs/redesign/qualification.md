@@ -5,7 +5,13 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
 Current Codex work follows the user's prohibition on security and permission
-tests. The [ordinary root/rate and cleanup checkpoint](../codex-app-server/ordinary-roots-rate-qualification.md#final-source-functional-qualification)
+tests. The [ordinary summary/context checkpoint](../codex-app-server/ordinary-summary-git-qualification.md#functional-verification)
+passes17 reviewed functional steps against1,749 exact guarded sources:
+preserved164-case repeats, six extension cases twice, four cleanup scenarios,
+three selected replay seeds, outside consumer and static/build checks. It
+preserves all existing domain/recovery/runtime boundaries; no database or
+prohibited test is rerun. Full compatibility, A11, broad/hosted/security and
+release acceptance remain incomplete. The [ordinary root/rate and cleanup checkpoint](../codex-app-server/ordinary-roots-rate-qualification.md#final-source-functional-qualification)
 passes17 reviewed steps with1,747 unchanged guarded sources:164 retained native
 cases twice, five extension cases twice, four cleanup scenarios, three selected
 replay seeds, outside consumer1/0 and static/build checks. It adds diagnostics,

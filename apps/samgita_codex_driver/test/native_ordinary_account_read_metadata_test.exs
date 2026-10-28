@@ -44,6 +44,28 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
   }
   """
   @thread_sha "21343282c7ad507512e2b0518c6801089855cb89a1f837154940ec24c35a4a4f"
+  @usage_params_object_bytes """
+  {
+    "$ref": "#/definitions/GetAccountTokenUsageParams"
+  }
+  """
+  @usage_params_object_sha "27d4d860d2c08fc99eb29b6c45ea45f1b13831a0f133e9a4eced8bc02fd54843"
+  @usage_null_bytes """
+  {
+    "type": "null"
+  }
+  """
+  @usage_null_sha "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb"
+  @usage_usd_bytes """
+  {
+    "format": "int64",
+    "type": [
+      "integer",
+      "null"
+    ]
+  }
+  """
+  @usage_usd_sha "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801"
   @thread "019fc8ab-1fb2-7000-8000-000000000211"
   @rate "account/rateLimits/read"
   @usage "account/usage/read"
@@ -387,6 +409,72 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
                %{"format" => "int64", "type" => "integer"}
              ]
            }
+
+    assert_usage_context_owners(ctx)
+  end
+
+  defp assert_usage_context_owners(ctx) do
+    params_root = schema("v2/NullableGetAccountTokenUsageParams.json")
+    params_definitions = Map.fetch!(params_root, "definitions")
+    [params_object, params_null] = Map.fetch!(params_root, "anyOf")
+    result_root = schema("v2/GetAccountTokenUsageResponse.json")
+
+    usd =
+      get_in(result_root, ["definitions", "ThreadUsage", "properties", "estimatedUsageUsdMicros"])
+
+    [_, thread_usage_null] = get_in(result_root, ["properties", "threadUsage", "anyOf"])
+
+    # Each tuple selects its own physical standalone request/output node.
+    # Equal null-node hashes confer no credit on another operation or alias.
+    for {node, bytes, sha} <- [
+          {params_object, @usage_params_object_bytes, @usage_params_object_sha},
+          {params_null, @usage_null_bytes, @usage_null_sha},
+          {usd, @usage_usd_bytes, @usage_usd_sha},
+          {thread_usage_null, @usage_null_bytes, @usage_null_sha}
+        ] do
+      assert node === JSON.decode!(bytes)
+      assert hash(bytes) === sha
+    end
+
+    for id <- @ids.thread do
+      {params, result} = captured_usage_exchange(ctx, id)
+      assert params === %{"threadId" => @thread}
+      assert :ok = Schema.validate(params_root, params, max_depth: 16)
+
+      assert :ok =
+               Schema.validate(Map.put(params_object, "definitions", params_definitions), params,
+                 max_depth: 16
+               )
+
+      actual_usd = result |> Map.fetch!("threadUsage") |> Map.fetch!("estimatedUsageUsdMicros")
+      assert actual_usd === 2_500_000
+      assert :ok = Schema.validate(usd, actual_usd)
+    end
+
+    for {id, generation} <- Enum.with_index(@ids.profile) do
+      {params, result} = captured_usage_exchange(ctx, id)
+      assert params === nil
+      assert :ok = Schema.validate(params_root, params, max_depth: 16)
+      assert :ok = Schema.validate(params_null, params)
+      assert Map.take(result, ["summary", "dailyUsageBuckets"]) === expected_profile(generation)
+      actual_thread_usage = Map.fetch!(result, "threadUsage")
+      assert actual_thread_usage === nil
+      assert :ok = Schema.validate(thread_usage_null, actual_thread_usage)
+    end
+  end
+
+  defp captured_usage_exchange(ctx, id) do
+    assert [sent] =
+             Enum.filter(
+               frames(ctx),
+               &(&1.direction === :out and &1.wire["method"] === @usage and &1.wire["id"] === id)
+             )
+
+    assert [received] =
+             Enum.filter(frames(ctx), &(&1.direction === :in and &1.wire["id"] === id))
+
+    assert_exchange(ctx, sent.wire, received.wire)
+    {Map.fetch!(sent.wire, "params"), Map.fetch!(received.wire, "result")}
   end
 
   defp assert_backend(ctx) do

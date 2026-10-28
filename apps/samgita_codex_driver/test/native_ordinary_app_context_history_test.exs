@@ -16,6 +16,15 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppContextHistoryTest do
   @uri "ui://owned/inventory-panel.html"
   @arguments %{"query" => "ordinary lamps λ", "link_id" => "owned-link-532"}
 
+  # Owner2626 is the physical notification reference, separate from response5585.
+  @notification_context_root_sha "8e719512bc26bb3871fcf7b378b79abf912d82787609c0ad418b71f179d0883f"
+  @notification_context_node_sha "eb1116157e85c6093e153f4b64842af82e7b2bebe4c31f945228de36b1f29eb8"
+  @notification_context_node_bytes """
+  {
+    "$ref": "#/definitions/McpToolCallAppContext"
+  }
+  """
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -373,7 +382,50 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppContextHistoryTest do
     assert {:ok, decoded} = Wire.decode(original.encoded, max_depth: 64)
     assert decoded === event.wire
     assert :ok = Schema.validate(schema("ServerNotification.json"), decoded, max_depth: 64)
+    assert_notification_context_binding(decoded)
     event
+  end
+
+  defp assert_notification_context_binding(original) do
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/stable/ServerNotification.json")
+      |> File.read!()
+
+    assert hash(bytes) === @notification_context_root_sha
+    document = JSON.decode!(bytes)
+
+    node =
+      document
+      |> Map.fetch!("definitions")
+      |> Map.fetch!("ThreadItem")
+      |> Map.fetch!("oneOf")
+      |> Enum.fetch!(8)
+      |> Map.fetch!("properties")
+      |> Map.fetch!("appContext")
+      |> Map.fetch!("anyOf")
+      |> Enum.fetch!(0)
+
+    assert hash(@notification_context_node_bytes) === @notification_context_node_sha
+    assert JSON.decode!(@notification_context_node_bytes) === node
+
+    actual =
+      original
+      |> Map.fetch!("params")
+      |> Map.fetch!("item")
+      |> Map.fetch!("appContext")
+
+    # Complete literal context equality and independent MCP/provider oracles
+    # remain in the owning test; this selects their original notification value.
+    assert is_map(actual)
+
+    assert :ok =
+             Schema.validate(
+               Map.put(node, "definitions", Map.fetch!(document, "definitions")),
+               actual,
+               max_depth: 64
+             )
   end
 
   defp assert_durable_item(bytes, expected_item, thread, turn, start_ms, end_ms) do
