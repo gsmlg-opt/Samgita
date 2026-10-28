@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
+passes all14 reviewed steps,96 files/164 actual-native cases twice, three selected
+WebSocket seeds, outside consumer1/0 and static/build checks with1,735 identical
+guarded sources. Four marketplace literals and two checkout/delete ID owners gain
+scoped evidence; contracts5,658 implemented/827 missing/136 blocked, unchanged
+requirements and zero globally verified. The original161-case cleanup failure's
+first helper-side cause remains open. Next: adopt/review the ordinary data-read,
+initialize UI descriptor, provider-WebSocket and supplemental raw-envelope drafts;
+none is runtime-qualified yet. Native command times316.641s/319.043s retain320s
+bounds. Add subsequent cases in a separately counted bounded group, preserving
+this complete164-case command and every assertion. A11, prohibited/broad/hosted,
+external/OS, full-goal and release gates remain incomplete.
+
 The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
 binds four physical owners with focused native5/0 evidence twice. Its original
 161-case combination failed one cleanup at987654; a subsequent original-helper/

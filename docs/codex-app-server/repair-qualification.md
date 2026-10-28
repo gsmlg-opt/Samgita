@@ -1,5 +1,18 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
+passes all14 reviewed steps:96 files/164 native cases twice, three selected
+WebSocket seeds, outside consumer1/0 and static/build checks. All1,735 guarded
+hashes match. Actual catalog queries, extracted files, cold edited-file reuse and
+independent DELETE/mapping effects bind six physical owners. Contracts are5,658
+implemented/827 missing/136 blocked, requirements unchanged, zero globally
+verified. Initial fixture-size/startup-accounting and literal-style failures
+remain recorded with their narrow corrections. Existing process cleanup, replay,
+dependency locks and database safeguards remain exact. The earlier161-case
+cleanup failure remains unresolved; no green repeat erases it. Continue the
+reviewed ordinary data/descriptor/provider/raw-envelope drafts. A11, prohibited/
+broad/hosted, real external/OS, full-goal and release gates stay incomplete.
+
 The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
 retains a new cleanup failure in the original161-case combination at987654.
 Focused new cases pass5/0 twice; an original-helper/order lifecycle observation

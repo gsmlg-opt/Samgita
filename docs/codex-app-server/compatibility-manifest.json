@@ -3852,14 +3852,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-selection-qualification.md"
+        "docs/codex-app-server/plugin-selection-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/list",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
+        "Scoped ordinary native supplement: four literal marketplace selectors with independent descriptive catalogs across warm/cold native processes; cold cached startup reads are separate. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "params": {
         "$ref": "#/definitions/PluginListParams"
@@ -3890,7 +3892,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4074,7 +4077,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/checkout",
@@ -4082,7 +4086,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareCheckoutParams"
@@ -4113,7 +4118,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4125,7 +4131,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/delete",
@@ -4133,7 +4140,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareDeleteParams"
@@ -4164,7 +4172,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4177,7 +4186,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+        "docs/codex-app-server/ordinary-native-reference-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/list",
@@ -4186,7 +4196,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification."
+        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareListParams"
@@ -4218,7 +4229,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18328,14 +18340,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-selection-qualification.md"
+        "docs/codex-app-server/plugin-selection-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/list",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
+        "Scoped ordinary native supplement: four literal marketplace selectors with independent descriptive catalogs across warm/cold native processes; cold cached startup reads are separate. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -18352,7 +18366,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18498,7 +18513,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/checkout",
@@ -18506,7 +18522,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -18523,7 +18540,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18536,7 +18554,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/delete",
@@ -18544,7 +18563,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -18561,7 +18581,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18575,7 +18596,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+        "docs/codex-app-server/ordinary-native-reference-qualification.md",
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/list",
@@ -18584,7 +18606,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification."
+        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification.",
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -18602,7 +18625,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
         ]
       },
       "transport_coverage": [
@@ -31345,88 +31369,112 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginListMarketplaceKind/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Native vertical selector reads GLOBAL collection=vertical warm/warm/cold in its fixed separate profile, with independently authored descriptive values/order and exact original exchanges. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "pointer": "/definitions/PluginListMarketplaceKind/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "75f5cdc0528cecd6f8997f519a9fe078ebad7a2e8b67bbc3efb754e583800c38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginListMarketplaceKind/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Native workspace-directory selector reads WORKSPACE catalog and installed snapshots warm/cold, preserving descriptive Unicode values/order and exact explicit-read sequence; cached startup reads are separate. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "pointer": "/definitions/PluginListMarketplaceKind/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "e0366cf2cc4249bfec3ea041eb2500fb453bf251ecf63a975808bb15e84a830d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginListMarketplaceKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Native shared-with-me selector reads workspace/shared with a separate WORKSPACE installed snapshot warm/cold, preserving independently authored descriptive values/order and exact queries/exchanges. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "pointer": "/definitions/PluginListMarketplaceKind/enum/3",
       "schema": "ClientRequest.json",
       "schema_sha256": "1f7200122edc1304fe247834d1b6f7b6a4aa7bff2dd78decf2d55f70b7555dc9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/PluginListMarketplaceKind/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Native created-by-me-remote selector reads USER catalog and installed snapshots warm/cold, preserving descriptive values/order and exact explicit-read sequence; cached startup reads are separate. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "pointer": "/definitions/PluginListMarketplaceKind/enum/4",
       "schema": "ClientRequest.json",
       "schema_sha256": "ff085318e97bcc8b9407c13be59d8f382728ad64d45e67c1496ed5b2998af7f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_marketplace_kinds_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -71048,25 +71096,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/81/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Native checkout integer -1 then string \"-1\" across distinct process/session generations: real bundle extraction, marketplace/mapping persistence, one download and cold reuse preserving an explicit local Unicode edit. Exact unique oneOf81/id, unchanged RequestId definition and original sent/received bytes. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/81/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -71170,25 +71224,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/82/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "One native delete integer1514001 after cold checkout: independent dependency DELETE204/effect record, actual mapping removal, retained edited checkout/marketplace files and terminal empty list. Exact unique oneOf82/id, unchanged RequestId and original exchange. Only this physical owner; no alias, union, neighboring field, full-method, permission/auth/policy, failure atomicity, real service or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/82/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"

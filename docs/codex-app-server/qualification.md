@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
+passes all14 reviewed functional steps:96 files/164 native cases at both fixed
+seeds, three selected WebSocket seeds, outside consumer1/0 and static/build
+checks. All1,735 guarded hashes match. Four actual catalog literals and two
+typed-ID checkout/delete owners gain scoped implemented evidence, including
+independent extracted-file, cold-local-edit and mapping-removal oracles. Counts:
+5,658 implemented/827 missing/136 blocked contracts;462 implemented/12 missing/
+11 blocked requirements; zero globally verified. The earlier161-case cleanup
+failure remains unresolved; this successful selection does not repair its cause.
+Next: qualify source-reviewed ordinary usage/quota/message data, initialize UI
+descriptor, provider-WebSocket metadata and supplemental raw-envelope drafts.
+They remain runtime-unverified. A11, prohibited/broad/hosted, real external/OS,
+full-goal and release gates stay incomplete. No audit or hosted workflow runs.
+
 The [ordinary terminal/Hook/reset unit](ordinary-lifecycle-effects-qualification.md#combined-source-result-and-unresolved-cleanup)
 adds four scoped physical owners after focused5/0 runs at both seeds. The original
 161-case combined run passed501432 but failed one cleanup at987654; that gate
