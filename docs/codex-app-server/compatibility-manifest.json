@@ -577,7 +577,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/account-metadata-qualification.md",
-        "docs/codex-app-server/rate-read-qualification.md"
+        "docs/codex-app-server/rate-read-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/rateLimits/read",
@@ -585,7 +586,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
-        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "anyOf": [
@@ -624,7 +626,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
-          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -740,14 +743,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/usage/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "anyOf": [
@@ -785,7 +790,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -797,14 +803,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/workspaceMessages/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "type": "null"
@@ -835,7 +843,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -2906,14 +2915,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/initialization-qualification.md"
+        "docs/codex-app-server/initialization-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:initialize",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified.",
+        "Scoped ordinary native supplement: one positive known UI descriptor in actual downstream MCP initialize, plus thread-bound resource read; no generic extension registration or rendering claim. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "$ref": "#/definitions/InitializeParams"
@@ -2944,7 +2955,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/initialized_transport_test.exs",
           "apps/samgita_codex_driver/test/initialization_test.exs",
-          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_initialize_extensions_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4078,7 +4090,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/checkout",
@@ -4087,7 +4100,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareCheckoutParams"
@@ -4132,7 +4146,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/delete",
@@ -4141,7 +4156,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareDeleteParams"
@@ -4187,7 +4203,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
         "docs/codex-app-server/ordinary-native-reference-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/list",
@@ -4197,7 +4214,8 @@
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
         "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareListParams"
@@ -11112,14 +11130,16 @@
       "direction": "server_notification",
       "evidence": [
         "docs/codex-app-server/rate-limits-qualification.md",
-        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+        "docs/codex-app-server/notification-owner-supplement-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:account/rateLimits/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified.",
+        "Scoped ordinary native supplement: one genuine provider WebSocket prewarm/generation with native nonnull planType metadata, actual completed turn and cold read-only history; no entitlement/security or provider reconnect claim. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "$ref": "#/definitions/AccountRateLimitsUpdatedNotification"
@@ -11144,7 +11164,8 @@
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
-          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165",
+          "apps/samgita_codex_driver/test/native_ordinary_provider_websocket_plan_test.exs"
         ]
       },
       "transport_coverage": [
@@ -12907,14 +12928,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/response-metadata-qualification.md"
+        "docs/codex-app-server/response-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:rawResponse/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified.",
+        "Scoped ordinary native supplement: two actual internal raw-notification envelopes and native timestamps with one ordinary assistant item; local supplemental schema is derived, not official JSON. No all-payload-variant claim. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "$ref": "#/definitions/RawResponseCompletedNotification"
@@ -12938,7 +12961,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182",
           "apps/samgita_codex_driver/test/native_response_metadata_test.exs:134",
-          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:152"
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:152",
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
         ]
       },
       "transport_coverage": [
@@ -12950,14 +12974,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/response-metadata-qualification.md"
+        "docs/codex-app-server/response-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:rawResponseItem/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified.",
+        "Scoped ordinary native supplement: two actual internal raw-notification envelopes and native timestamps with one ordinary assistant item; local supplemental schema is derived, not official JSON. No all-payload-variant claim. Full method/deployment qualification remains incomplete."
       ],
       "params": {
         "$ref": "#/definitions/RawResponseItemCompletedNotification"
@@ -12980,7 +13006,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_response_metadata_test.exs:316",
-          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:144"
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:144",
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
         ]
       },
       "transport_coverage": [
@@ -15906,7 +15933,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/account-metadata-qualification.md",
-        "docs/codex-app-server/rate-read-qualification.md"
+        "docs/codex-app-server/rate-read-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/rateLimits/read",
@@ -15914,7 +15942,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
-        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -15932,7 +15961,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
-          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16023,14 +16053,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/usage/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -16047,7 +16079,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16060,14 +16093,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/workspaceMessages/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -16084,7 +16119,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -17628,14 +17664,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/initialization-qualification.md"
+        "docs/codex-app-server/initialization-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:initialize",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified.",
+        "Scoped ordinary native supplement: one positive known UI descriptor in actual downstream MCP initialize, plus thread-bound resource read; no generic extension registration or rendering claim. Full method/deployment qualification remains incomplete."
       ],
       "prerequisites": [],
       "request": "client_request:initialize",
@@ -17652,7 +17690,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/initialized_transport_test.exs",
           "apps/samgita_codex_driver/test/initialization_test.exs",
-          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_initialize_extensions_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18514,7 +18553,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/checkout",
@@ -18523,7 +18563,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "prerequisites": [
         "initialized"
@@ -18555,7 +18596,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/delete",
@@ -18564,7 +18606,8 @@
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "prerequisites": [
         "initialized"
@@ -18597,7 +18640,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
         "docs/codex-app-server/ordinary-native-reference-qualification.md",
-        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md"
+        "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/list",
@@ -18607,7 +18651,8 @@
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
         "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification.",
-        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion."
+        "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
       ],
       "prerequisites": [
         "initialized"
@@ -29282,25 +29327,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/GetAccountTokenUsageParams/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual present canonical threadId reaches native backend thread_ids query and independently authored thread/group numeric/text usage in two cold generations. Only present-string input, not null/omission or backend accounting. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/GetAccountTokenUsageParams/properties/threadId",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "21343282c7ad507512e2b0518c6801089855cb89a1f837154940ec24c35a4a4f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "threadId"
@@ -29546,25 +29597,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/InitializeCapabilities/properties/extensions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual nonempty io.modelcontextprotocol/ui descriptor reaches original native MCP initialize bytes via one idle ephemeral thread. Thread-bound resource read supplies independent Unicode result. Only known UI-object forwarding, not null/omission, unknown namespace registration or UI rendering. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/InitializeCapabilities/properties/extensions",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "5846294feadb997908d3b5cf4367981f19d988cbc47a934b9da80bae04952793",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_initialize_extensions_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "extensions"
@@ -54755,25 +54812,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual account/rateLimits/read integer1005001 then string1005001 preserve strict typed original exchanges across distinct native sessions; independently authored numeric quota windows only. Required fixed identity/DTO setup remains opaque. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/145/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -55093,25 +55156,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual account/usage/read thread/profile original integer/string IDs, canonical thread forwarding, distinct independently authored scalar/daily-profile data across two native generations. Unique oneOf147/id and unchanged RequestId bind this owner only. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/147/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -55309,25 +55378,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/148/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual account/workspaceMessages/read explicit-null params with integer1024001 then string1024001; original exchanges and independent Unicode message/type/RFC3339 timestamp projections across two native generations. Feature/identity outputs remain opaque. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/148/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -70945,22 +71020,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/80",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch80 plugin/share/list complete original empty-object request, selected literal method/params and typed native reply; independent populated-created/empty-installed data reads and Unicode descriptive projection. Explicit empty params only. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/80",
       "schema": "ClientRequest.json",
       "schema_sha256": "aa85e19a025e65a31572ca3491a57507ae94b67691620fd9374e5a8828f84b60",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -71000,47 +71081,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/80/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch80 plugin/share/list complete original empty-object request, selected literal method/params and typed native reply; independent populated-created/empty-installed data reads and Unicode descriptive projection. Explicit empty params only. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/80/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a0cfeb1dc4043980fabd3591aae8af87487941036443679d7f3242f7718fbd6c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/80/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch80 plugin/share/list complete original empty-object request, selected literal method/params and typed native reply; independent populated-created/empty-installed data reads and Unicode descriptive projection. Explicit empty params only. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/80/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c1bbbbdc430403c8ce76a5a05cdf3c48f9da951c271649b7f06586a37f7304a9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -71048,47 +71141,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/80/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch80 plugin/share/list complete original empty-object request, selected literal method/params and typed native reply; independent populated-created/empty-installed data reads and Unicode descriptive projection. Explicit empty params only. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/80/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1b6c4d513a8a936f278e454f4efe35b11836c9c7f4c6e9c77c194eeb2a509d4e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/81",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch81 plugin/share/checkout complete original request, selected literal method/params and prescribed remotePluginId; independent bundle extraction, local mapping/marketplace persistence and cold reuse retaining edited Unicode bytes with one download. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/81",
       "schema": "ClientRequest.json",
       "schema_sha256": "3104848760b3c4b94d884f062f1ea5c654ae4b8a16410bb60215dc1581bff994",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -71128,47 +71233,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/81/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch81 plugin/share/checkout complete original request, selected literal method/params and prescribed remotePluginId; independent bundle extraction, local mapping/marketplace persistence and cold reuse retaining edited Unicode bytes with one download. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/81/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1dad7d4f7a6fa44f6e43b3f68ccc9a5ae06b09008b70c8c76ed07551e44ea76d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/81/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch81 plugin/share/checkout complete original request, selected literal method/params and prescribed remotePluginId; independent bundle extraction, local mapping/marketplace persistence and cold reuse retaining edited Unicode bytes with one download. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/81/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f981d962051f67f1c5435c061f517cdd9b635274ed9925c2a1adf5384ad796f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -71176,47 +71293,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/81/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch81 plugin/share/checkout complete original request, selected literal method/params and prescribed remotePluginId; independent bundle extraction, local mapping/marketplace persistence and cold reuse retaining edited Unicode bytes with one download. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/81/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "faa9f9bdd592e5aa97ef3c276bd3b0dd64d0b43ed393641bd8bc63c7a5c706a5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/82",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch82 plugin/share/delete complete original request/params and prescribed remotePluginId; independent matching DELETE204/effect record, mapping removal, retained edited checkout/marketplace files and final empty native list. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/82",
       "schema": "ClientRequest.json",
       "schema_sha256": "c4ba12bd92ea002faab9b214065ce3f35db82a8ed8c78a180886231885a1b3eb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -71304,25 +71433,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/82/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual unique branch82 plugin/share/delete complete original request/params and prescribed remotePluginId; independent matching DELETE204/effect record, mapping removal, retained edited checkout/marketplace files and final empty native list. Only the indexed physical node and selected positive ordinary path; no alias, neighboring owner, all-variant/full-method, permission/auth/approval/security, failure-atomicity, real-service, other-transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/82/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0e18c97844b29313e6afc7240534f4a3dce4c9e99c33b0ef6079e5d04ee1ec09",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -97967,22 +98102,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/planType/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual provider WebSocket codex.rate_limits plan_type=pro becomes native account/rateLimits/updated planType=pro. One genuine generate=false prewarm and one generation share a socket; original frames, completed turn and cold persisted history are independent oracles. Only this nonnull physical ref instance, not PlanType enum siblings or credit/entitlement behavior. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/planType/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "565fa8b5abbd16a7d83b8368ad9a2b364902095465634efaa584b2eef01825a2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_provider_websocket_plan_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -125791,22 +125932,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/0",
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "4cf2e98d8e68b7f6b9d43c5606043412776364896afb6ea49527e47ab64c9c70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -125814,47 +125961,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "85d2b5f928705608b1ccf36ecf0066f42d807029a4cba21acfd6ea303444c327",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "80b22e70682da414f06b140b15f2789d0c3e41df0e84baae0828c5d324e66f10",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -125862,47 +126021,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/params",
       "required": true,
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "1363057c6971b6e567f73ef4c5cbf6d4dfa4c2ce54d35050f0c3de5e90d302e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/1",
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "cce7e29258ec11edc7aff86fb88d4d9ec91c940f1f3f34ab78a9faa6a4c6882e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -125910,47 +126081,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/method",
       "required": true,
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "10b145d3d428e9934ea366c44a0842bdcec0d22ed2a7fb78f9c8a16e8aff618d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "pointer": "/oneOf/1/properties/method/enum/0",
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "90cebfcf1da8475922c715c2c811e85f49eab515c495850d3dd5fd2cf2969eb7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -125958,25 +126141,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/params",
       "required": true,
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "f80f01b8192771f952d4e42fc64d3709345cad9d983b52cf27c6993783341aee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -125984,25 +126173,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/ServerNotification.json#/properties/emittedAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native rawResponseItem/completed assistant frame and rawResponse/completed response frame bind their unique original supplemental variants/method/literal/params nodes; actual emittedAtMs is within independent turn wall-clock bounds. Fixed item/response IDs and actual thread/turn references, exact captured/delivered bytes and one provider SSE request. Supplemental JSON is locally derived from pinned native TypeScript/official payload definitions, not an official JSON export. Only this physical envelope owner; one ordinary assistant payload, not all ResponseItem/usage/metadata alternatives. No alias, neighboring field, full-method/family, permission/auth/approval/security, real service, other transport/OS or global verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/emittedAtMs",
       "required": false,
       "schema": "supplemental/ServerNotification.json",
       "schema_sha256": "180584a60ba9408fcbc37a3edcf90a1cca0687ab1ef8f32b660a588a10671ab2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_raw_envelopes_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "emittedAtMs"

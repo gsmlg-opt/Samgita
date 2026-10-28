@@ -1,5 +1,19 @@
 # Full compatibility implementation ledger
 
+The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
+implements25 scoped physical owners;17 existing requirements gain supplements.
+The new4-case group and all nine independent suffix checks pass against1,743
+identical guarded sources. The original16-step gate fails after6 steps at
+501432:164/1 in unchanged environment-envelope cleanup. Its helper-side cause
+remains unknown; an unchanged-helper profiling diagnostic passes164/0 and cannot
+repair that gate. Contracts5,683 implemented/802 missing/136 blocked; requirements
+unchanged, zero globally verified. Next: inspect source-supported failure-phase
+diagnostics without relaxing cleanup, review/adopt eight ordinary root-input
+capture owners, three direct input evidence owners and the two-owner provider429
+draft. Their source handoffs are linked in the unit record; no runtime acceptance
+is inferred. Keep complete original164-case arguments/assertions/bounds. A11,
+prohibited/broad/hosted, external/OS, full-goal and release gates remain incomplete.
+
 The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
 passes all14 reviewed steps,96 files/164 actual-native cases twice, three selected
 WebSocket seeds, outside consumer1/0 and static/build checks with1,735 identical

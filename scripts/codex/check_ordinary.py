@@ -19,7 +19,7 @@ import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 
-REVIEWED_SOURCE_SHA256 = "595e7ac0925f0a125cf62310a36bdb5d88e26a17033200bf1421b41b96b59975"
+REVIEWED_SOURCE_SHA256 = "680c8a1c2a320f357b409356f0f9568fb7a9d6c1aa115e80d0809bf14cce400b"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -118,8 +118,15 @@ native_plugin_hook_test.exs
 native_command_control_values_test.exs
 native_process_values_test.exs
 """.split()
+EXTRA_DRIVER_TESTS = """
+native_ordinary_account_read_metadata_test.exs
+native_ordinary_initialize_extensions_test.exs
+native_ordinary_provider_websocket_plan_test.exs
+native_ordinary_raw_envelopes_test.exs
+""".split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
 DRIVER_CASES = 164
+EXTRA_DRIVER_CASES = 4
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -162,17 +169,23 @@ def commands():
     driver = ROOT / "apps/samgita_codex_driver"
     websocket = ROOT / "apps/samgita_protocol_websocket"
     files = ["test/" + name for name in DRIVER_TESTS]
+    extra_files = ["test/" + name for name in EXTRA_DRIVER_TESTS]
     steps = []
     for seed in (455834, 501432, 987654):
         steps.append(("websocket-" + str(seed), websocket,
                       ["mix", "test", *WS_TESTS, "--seed", str(seed), "--max-cases", "8"], 120))
     steps.extend([
-        ("driver-format", driver, ["mix", "format", "--check-formatted", *files], 120),
+        ("driver-format", driver, ["mix", "format", "--check-formatted", *files, *extra_files], 120),
         ("driver-compile", driver, ["mix", "compile", "--warnings-as-errors"], 320),
     ])
     for seed in (501432, 987654):
         steps.append(("ordinary-" + str(seed), driver,
                       ["mix", "test", *files, "--warnings-as-errors", "--seed", str(seed)], 320))
+    # Preserve the complete prior164-case combination and its320s bound. New
+    # independent profiles have a separate count/bound; no assertion is removed.
+    for seed in (501432, 987654):
+        steps.append(("ordinary-extra-" + str(seed), driver,
+                      ["mix", "test", *extra_files, "--warnings-as-errors", "--seed", str(seed)], 120))
     steps.extend([
         ("independent-consumer", ROOT, ["python3", "-B", "scripts/codex/verify_consumer.py"], 600),
         ("inventory-consistency", ROOT, ["python3", "-B", "scripts/codex/inventory.py", "--check"], 120),
@@ -189,6 +202,8 @@ def check_test_count(name, log):
     text = log.read_text()
     if name.startswith("websocket-"):
         expected = r"^16 tests, 0 failures, 13 excluded$"
+    elif name.startswith("ordinary-extra-"):
+        expected = rf"^{EXTRA_DRIVER_CASES} tests, 0 failures$"
     elif name.startswith("ordinary-"):
         expected = rf"^{DRIVER_CASES} tests, 0 failures$"
     elif name == "independent-consumer":

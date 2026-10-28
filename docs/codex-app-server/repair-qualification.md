@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
+adds25 scoped physical owners. Four new native cases pass twice, with nine
+independent suffix checks and1,743 identical guarded sources. The original
+16-step aggregate remains **failed**:164/1 at501432 in the retained environment
+connection-envelope close. Inner fixture cleanup is proven; outer helper ACK
+absence is not diagnosed. A focused-helper profiling run passes164/0 without
+reproducing the cause; no timeout, assertion or production cleanup code changes.
+Contracts5,683 implemented/802 missing/136 blocked; requirements unchanged; zero
+globally verified. Existing locks, replay and database safeguards remain exact.
+Continue ordinary root-capture/provider429 drafts while preserving this failed
+gate. A11, prohibited/broad/hosted, external/OS and full-goal/release remain open.
+
 The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
 passes all14 reviewed steps:96 files/164 native cases twice, three selected
 WebSocket seeds, outside consumer1/0 and static/build checks. All1,735 guarded

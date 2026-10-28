@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
+adds25 scoped physical owners and17 existing requirement supplements. New native
+cases pass4/0 twice; all nine independent suffix checks pass, including outside
+consumer1/0, inventory and static/build checks, against1,743 identical guarded
+sources. The original16-step gate **fails** at501432 in the unchanged environment
+connection-envelope cleanup:164 tests/1 failure, shutdown unconfirmed. It stops
+after6 steps; no full combined pass is claimed. A profiling diagnostic passes
+164/0 without reproducing the cause. Contracts:5,683 implemented/802 missing/136
+blocked; requirements unchanged; zero globally verified. Next: retain the first
+helper-side failure cause when observable, then review the ordinary root-input
+capture and provider429 drafts. A11, prohibited/broad/hosted, external/OS,
+full-goal and release gates remain incomplete. No audit or hosted workflow runs.
+
 The [ordinary marketplace/checkout unit](ordinary-marketplace-checkout-qualification.md#final-combined-source-functional-qualification)
 passes all14 reviewed functional steps:96 files/164 native cases at both fixed
 seeds, three selected WebSocket seeds, outside consumer1/0 and static/build
