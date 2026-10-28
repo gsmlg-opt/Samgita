@@ -8,6 +8,7 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @system_config "/etc/codex/config.toml"
   @feature_args [
     "-c",
     "features.apps=false",
@@ -25,6 +26,15 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
   @session_json ~s({"approval_policy":"never","desktop":{"appearanceTheme":"dark","preventSleep":true},"features":{"apps":false,"plugins":false,"recommended_plugins":false,"shell_snapshot":false},"sandbox_mode":"danger-full-access"})
 
   setup tags do
+    # Qualify only the stock empty required layer, without reading host config.
+    case File.lstat(@system_config) do
+      {:error, :enoent} ->
+        :ok
+
+      _ ->
+        flunk("BLOCKED_ENV: inert system-source projection requires absent system config")
+    end
+
     ctx = TurnFixture.setup(tags)
 
     assert Base.encode16(:crypto.hash(:sha256, File.read!(ctx.binary)), case: :lower) ==
@@ -199,6 +209,11 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
     source = %{"type" => "user", "file" => ctx.config_path, "profile" => nil}
 
     call(pid, "config/read", %{"includeLayers" => true})["layers"]
+    |> tap(fn layers ->
+      names = Enum.map(layers, &Map.fetch!(&1, "name"))
+      system_names = Enum.filter(names, &(Map.fetch!(&1, "type") === "system"))
+      assert system_names === [%{"type" => "system", "file" => @system_config}]
+    end)
     |> Enum.find(&(&1["name"] == source))
     |> tap(&assert(is_map(&1)))
   end

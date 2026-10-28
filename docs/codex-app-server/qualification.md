@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [inert System source metadata unit](ordinary-system-source-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps with 1,760 identical guarded source hashes. Both
+165-case native runs, 12-case extensions twice, three replay seeds, four cleanup
+cases, outside consumer 1/0 and static/build checks pass with unchanged bounds.
+Five exact System/name owners become implemented: 5,735 implemented /750 missing
+/136 blocked contracts; requirements unchanged; zero globally verified. The
+absent-system-file prerequisite prevents reading host configuration. Production
+inputs retain the preceding assembly evidence. Continue the separate ordinary
+rate-read null candidate. A11, genuine producer gaps, the historical intermittent
+cleanup cause, prohibited/broad/hosted, external/OS, full compatibility and
+release remain incomplete.
+
 The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps with1,760 identical guarded sources:165/0 twice
 within original320s bounds,12/0 extensions twice, three replay seeds, four cleanup

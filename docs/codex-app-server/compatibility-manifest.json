@@ -137639,120 +137639,160 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-system-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native config/read(includeLayers:true) exposes exactly one inert System source name with type=system and file=/etc/codex/config.toml while the default file is absent before fixture startup. Existing three ordinary desktop cases preserve their operations, value/version assertions, fixed YOLO launch and cleanup. Only this physical System/name shape on Linux stdio; no raw-frame capture, contents, policy, requirements, precedence, whole layer, source alias, other OS/transport, whole-method or globally verified credit. A present path or any lstat result except enoent explicitly blocks this profile without reading or modifying host configuration."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/2",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "70e5f8094529342c49c1599bac5d51776d8c0828f91e96983cee716bf14bdf7d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-system-source-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/2/properties/file",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native config/read(includeLayers:true) exposes exactly one inert System source name with type=system and file=/etc/codex/config.toml while the default file is absent before fixture startup. Existing three ordinary desktop cases preserve their operations, value/version assertions, fixed YOLO launch and cleanup. Only this physical System/name shape on Linux stdio; no raw-frame capture, contents, policy, requirements, precedence, whole layer, source alias, other OS/transport, whole-method or globally verified credit. A present path or any lstat result except enoent explicitly blocks this profile without reading or modifying host configuration."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayerSource/oneOf/2/properties/file",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fe2f4b1a6a231e6274b65ec8c75271560b1396630bddc5b898b6c48ea91fdf7e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "file"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-system-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/2/properties/file/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native config/read(includeLayers:true) exposes exactly one inert System source name with type=system and file=/etc/codex/config.toml while the default file is absent before fixture startup. Existing three ordinary desktop cases preserve their operations, value/version assertions, fixed YOLO launch and cleanup. Only this physical System/name shape on Linux stdio; no raw-frame capture, contents, policy, requirements, precedence, whole layer, source alias, other OS/transport, whole-method or globally verified credit. A present path or any lstat result except enoent explicitly blocks this profile without reading or modifying host configuration."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/2/properties/file/allOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-system-source-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native config/read(includeLayers:true) exposes exactly one inert System source name with type=system and file=/etc/codex/config.toml while the default file is absent before fixture startup. Existing three ordinary desktop cases preserve their operations, value/version assertions, fixed YOLO launch and cleanup. Only this physical System/name shape on Linux stdio; no raw-frame capture, contents, policy, requirements, precedence, whole layer, source alias, other OS/transport, whole-method or globally verified credit. A present path or any lstat result except enoent explicitly blocks this profile without reading or modifying host configuration."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayerSource/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "5610749d649bc10c2ae21b13fdd17982083ed8256a51dcdf83ac647b631cab1c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-system-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native config/read(includeLayers:true) exposes exactly one inert System source name with type=system and file=/etc/codex/config.toml while the default file is absent before fixture startup. Existing three ordinary desktop cases preserve their operations, value/version assertions, fixed YOLO launch and cleanup. Only this physical System/name shape on Linux stdio; no raw-frame capture, contents, policy, requirements, precedence, whole layer, source alias, other OS/transport, whole-method or globally verified credit. A present path or any lstat result except enoent explicitly blocks this profile without reading or modifying host configuration."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/2/properties/type/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cf5fba424df88453fd1c04605897f3372415874ef6eb4d48b3e8bf745f291178",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

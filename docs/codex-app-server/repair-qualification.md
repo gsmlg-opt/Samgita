@@ -1,5 +1,16 @@
 # Repair evidence and continuing compatibility work
 
+The [inert System source metadata unit](ordinary-system-source-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps against 1,760 identical guarded sources: 165/0 twice,
+12/0 extensions twice, three replay seeds, four cleanup cases, outside consumer
+and static/build checks. Original assertions and deadlines remain intact. Five
+physical owners gain source/path metadata evidence only; contracts become
+5,735 implemented /750 missing /136 blocked, unchanged requirements and zero
+globally verified. Production inputs retain the preceding successful assembly.
+Existing dependency/replay/database/cleanup repairs stay unchanged. Continue the
+ordinary rate-read null candidate. A11, prohibited/broad/hosted, unresolved
+producer/cleanup questions, external/OS and full/release gates remain incomplete.
+
 The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps with1,760 identical guarded sources,165/0 main cases
 twice under320s,12/0 extensions twice, three replay seeds, four cleanup cases,

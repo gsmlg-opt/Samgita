@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [inert System source metadata unit](ordinary-system-source-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed functional steps against 1,760 identical guarded sources:
+165/0 main cases twice within the original 320s bounds, 12/0 extensions twice,
+three replay seeds, four cleanup cases, outside consumer and static/build checks.
+Exactly five System/name owners gain scoped implemented evidence; contracts are
+5,735 implemented /750 missing /136 blocked, unchanged requirements and zero
+globally verified. No host configuration is read or modified. Production inputs
+match the preceding successful assembly. Next: qualify a separate ordinary
+rate-read null request with its additional GET accounted for. A11, unresolved
+producers/cleanup, prohibited/broad/hosted, external/OS and full/release gates
+remain incomplete.
+
 The [ordinary recorded/cache metadata unit](ordinary-record-cache-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps against1,760 exact guarded sources:165/0 twice with
 all prior164 cases and320s bounds retained,12/0 extensions twice, three replay
