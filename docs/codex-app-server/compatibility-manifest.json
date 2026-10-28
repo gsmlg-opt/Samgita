@@ -3728,14 +3728,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-selection-qualification.md"
+        "docs/codex-app-server/plugin-selection-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/install",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
+        "Ordinary actual-native remote install sends explicit marketplacePath:null and a nonnull remoteMarketplaceName once. Native downloads and materializes the independently authored inert skill-only tar before one backend install POST; literal manifest/marker/SKILL bytes and persisted remote identity are checked. Newly discoverable namespaced skill metadata proves positive installed-snapshot publication without explicit plugin TOML. Caller marketplace spelling is ignored after remote-branch selection; no name-specific routing, policy, app-auth, alias or whole-method claim. Fixed YOLO/identity/HTTPS/DTO remain setup; no prohibited outcome tests."
       ],
       "params": {
         "$ref": "#/definitions/PluginInstallParams"
@@ -3766,7 +3768,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4002,7 +4005,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:plugin/search",
@@ -4010,7 +4014,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged."
+        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged.",
+        "Ordinary actual-native remote search produces a present marketplacePath:null in every original result across seven exact RPC/backend calls. The pinned experimental response JSON null node is explicitly validated; Map.fetch! and independently authored row equality retain the original metadata, limits, cursor, bytes and cleanup oracles. Rust producer/TS match the source archive; the experimental JSON matches existing pinned-generated/provenance artifacts and has no standalone archive member. Only this physical null owner gains evidence; no aliases or whole-method/policy/transport/OS qualification."
       ],
       "params": {
         "$ref": "#/definitions/PluginSearchParams"
@@ -4368,14 +4373,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/uninstall",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Ordinary actual-native remote-ID uninstall follows positive installed skill publication. Exactly one second no-query detail read and one backend uninstall POST occur while literal cache bytes still exist; native success removes the whole canonical plugin root and the owned skill. Exactly one subsequent empty refresh response is observed, which does not independently prove asynchronous empty-snapshot publication. Original wire/correlation, no model/tool/thread/turn effects, bounded observations and owned cleanup remain. Supplemental breadth only; this already-implemented field/method gains no new state or complete remote compatibility claim."
       ],
       "params": {
         "$ref": "#/definitions/PluginUninstallParams"
@@ -4406,7 +4413,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18181,14 +18189,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-selection-qualification.md"
+        "docs/codex-app-server/plugin-selection-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/install",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
+        "Ordinary actual-native remote install sends explicit marketplacePath:null and a nonnull remoteMarketplaceName once. Native downloads and materializes the independently authored inert skill-only tar before one backend install POST; literal manifest/marker/SKILL bytes and persisted remote identity are checked. Newly discoverable namespaced skill metadata proves positive installed-snapshot publication without explicit plugin TOML. Caller marketplace spelling is ignored after remote-branch selection; no name-specific routing, policy, app-auth, alias or whole-method claim. Fixed YOLO/identity/HTTPS/DTO remain setup; no prohibited outcome tests."
       ],
       "prerequisites": [
         "initialized"
@@ -18205,7 +18215,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18390,7 +18401,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:plugin/search",
@@ -18398,7 +18410,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged."
+        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged.",
+        "Ordinary actual-native remote search produces a present marketplacePath:null in every original result across seven exact RPC/backend calls. The pinned experimental response JSON null node is explicitly validated; Map.fetch! and independently authored row equality retain the original metadata, limits, cursor, bytes and cleanup oracles. Rust producer/TS match the source archive; the experimental JSON matches existing pinned-generated/provenance artifacts and has no standalone archive member. Only this physical null owner gains evidence; no aliases or whole-method/policy/transport/OS qualification."
       ],
       "prerequisites": [
         "initialized"
@@ -18665,14 +18678,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/uninstall",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Ordinary actual-native remote-ID uninstall follows positive installed skill publication. Exactly one second no-query detail read and one backend uninstall POST occur while literal cache bytes still exist; native success removes the whole canonical plugin root and the owned skill. Exactly one subsequent empty refresh response is observed, which does not independently prove asynchronous empty-snapshot publication. Original wire/correlation, no model/tool/thread/turn effects, bounded observations and owned cleanup remain. Supplemental breadth only; this already-implemented field/method gains no new state or complete remote compatibility claim."
       ],
       "prerequisites": [
         "initialized"
@@ -18689,7 +18704,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
@@ -166588,22 +166604,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstallParams.json#/properties/marketplacePath/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native remote install sends explicit marketplacePath:null and a nonnull remoteMarketplaceName once. Native downloads and materializes the independently authored inert skill-only tar before one backend install POST; literal manifest/marker/SKILL bytes and persisted remote identity are checked. Newly discoverable namespaced skill metadata proves positive installed-snapshot publication without explicit plugin TOML. Caller marketplace spelling is ignored after remote-branch selection; no name-specific routing, policy, app-auth, alias or whole-method claim. Fixed YOLO/identity/HTTPS/DTO remain setup; no prohibited outcome tests."
+      ],
       "pointer": "/properties/marketplacePath/anyOf/1",
       "schema": "v2/PluginInstallParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -166644,25 +166666,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstallParams.json#/properties/remoteMarketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native remote install sends explicit marketplacePath:null and a nonnull remoteMarketplaceName once. Native downloads and materializes the independently authored inert skill-only tar before one backend install POST; literal manifest/marker/SKILL bytes and persisted remote identity are checked. Newly discoverable namespaced skill metadata proves positive installed-snapshot publication without explicit plugin TOML. Caller marketplace spelling is ignored after remote-branch selection; no name-specific routing, policy, app-auth, alias or whole-method claim. Fixed YOLO/identity/HTTPS/DTO remain setup; no prohibited outcome tests."
+      ],
       "nullable": true,
       "pointer": "/properties/remoteMarketplaceName",
       "required": false,
       "schema": "v2/PluginInstallParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "remoteMarketplaceName"
@@ -175930,22 +175958,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSearchResult/properties/marketplacePath/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native remote search produces a present marketplacePath:null in every original result across seven exact RPC/backend calls. The pinned experimental response JSON null node is explicitly validated; Map.fetch! and independently authored row equality retain the original metadata, limits, cursor, bytes and cleanup oracles. Rust producer/TS match the source archive; the experimental JSON matches existing pinned-generated/provenance artifacts and has no standalone archive member. Only this physical null owner gains evidence; no aliases or whole-method/policy/transport/OS qualification."
+      ],
       "pointer": "/definitions/PluginSearchResult/properties/marketplacePath/anyOf/1",
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_remote_plugin_limit_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -179518,14 +179552,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginUninstallParams.json#/properties/pluginId",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Ordinary actual-native remote-ID uninstall follows positive installed skill publication. Exactly one second no-query detail read and one backend uninstall POST occur while literal cache bytes still exist; native success removes the whole canonical plugin root and the owned skill. Exactly one subsequent empty refresh response is observed, which does not independently prove asynchronous empty-snapshot publication. Original wire/correlation, no model/tool/thread/turn effects, bounded observations and owned cleanup remain. Supplemental breadth only; this already-implemented field/method gains no new state or complete remote compatibility claim."
       ],
       "nullable": false,
       "pointer": "/properties/pluginId",
@@ -179540,7 +179576,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [

@@ -5,8 +5,8 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
 Current Codex work follows the user's prohibition on security and permission
-tests. The [ordinary remote-limit/read checkpoint](../codex-app-server/ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
-passes 151 real-native cases at each fixed seed, selected three-seed WebSocket
+tests. The [ordinary remote-plugin lifecycle checkpoint](../codex-app-server/ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes 152 real-native cases at each fixed seed, selected three-seed WebSocket
 overflow/replay checks, isolated consumer and static/build checks. The prior
 [values/server-request checkpoint](../codex-app-server/ordinary-server-request-envelopes-qualification.md#final-combined-source-functional-qualification)
 also passes the preserved ordinary process-cleanup regression3/0. Neither reruns database

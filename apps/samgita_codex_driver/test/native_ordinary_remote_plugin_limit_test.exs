@@ -17,6 +17,11 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRemotePluginLimitTest do
             __DIR__
           )
   @schema_sha "9a531ed727cf716302e611d98153f4ed09598b7b27a5629074648c0e57f24e09"
+  @response_schema Path.expand(
+                     "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/PluginSearchResponse.json",
+                     __DIR__
+                   )
+  @response_schema_sha "d98f7926f5bf62c228f8c39e83214e2140e80ea7a1db3c221eb1babe26ff8fed"
   @query "owned ordinary remote limit marker"
   @market "created-by-me-remote"
   @cases [
@@ -113,6 +118,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRemotePluginLimitTest do
     assert hash(File.read!(@script)) === @script_sha
     assert hash(File.read!(@base)) === @base_sha
     assert hash(File.read!(@schema)) === @schema_sha
+    assert hash(File.read!(@response_schema)) === @response_schema_sha
 
     root =
       Path.join(
@@ -154,6 +160,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRemotePluginLimitTest do
       @script,
       @base,
       @schema,
+      @response_schema,
       fixture.requests,
       Path.join(fixture.codex_home, "models.json"),
       Path.join(root, "ordinary-remote-plugin-limit-rows.json"),
@@ -241,6 +248,21 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRemotePluginLimitTest do
 
     result = call(ctx, pid, %{"id" => id, "method" => "plugin/search", "params" => params})
     assert Enum.sort(Map.keys(result)) === ~w(data nextCursor)
+    response_document = @response_schema |> File.read!() |> JSON.decode!()
+
+    null_path =
+      response_document["definitions"]["PluginSearchResult"]["properties"]["marketplacePath"][
+        "anyOf"
+      ]
+      |> Enum.at(1)
+
+    assert null_path === %{"type" => "null"}
+
+    for candidate <- result["data"] do
+      assert :ok =
+               Schema.validate(null_path, Map.fetch!(candidate, "marketplacePath"), max_depth: 8)
+    end
+
     candidates = Enum.map(result["data"], &ordinary_projection/1)
     ids = Enum.map(candidates, & &1["plugin"]["id"])
     assert length(candidates) === length(indices)

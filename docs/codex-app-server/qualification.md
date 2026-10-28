@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [ordinary remote-plugin lifecycle unit](ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **87 files / 152 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,720** identical guarded sources. Actual install/materialization/
+positive skill publication, remote removal and search-null validation add three
+physical owners; existing uninstall4904 and six requirements gain supplements.
+Contracts: **5,635 implemented / 850 missing / 136 blocked**; requirements
+**462 implemented / 12 missing / 11 blocked**, zero globally verified. The sigil
+style repair preserves exact bytes and all assertions/deadlines. An empty refresh
+response does not prove asynchronous empty-snapshot publication. No prohibited/
+broad/hosted check runs. The next installed-app draft remains runtime-unverified.
+A11, unavailable emitters/external/OS, native timestamp cursor, full compatibility
+and release remain incomplete.
+
 The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **86 files / 151 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

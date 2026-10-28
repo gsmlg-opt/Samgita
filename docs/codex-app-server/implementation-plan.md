@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary remote-plugin lifecycle unit](ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **87 files / 152 real-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,720** identical guarded sources. Genuine bundle materialization,
+positive skill publication, remote uninstall/removal and present-null search
+results add only three physical owners; uninstall4904 gains supplemental breadth.
+All **1,715** other prior hashes and command arguments remain exact. Contracts:
+**5,635 implemented / 850 missing / 136 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. The first string-lint failure
+and equivalent sigil repair remain recorded. No prohibited/broad/hosted checks
+run. Next: adopt and qualify the reviewed installed-app metadata/cache-generation
+draft, still runtime-unverified outside the repository. A11, unavailable emitters/
+external/OS, timestamp cursor defect, full compatibility and release stay incomplete.
+
 The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **86 files / 151 real-native cases
 twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/
