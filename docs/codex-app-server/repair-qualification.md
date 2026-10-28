@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary app-context/skill-read unit](ordinary-app-context-skill-read-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **83 files / 147 real-native cases
+twice**, selected WebSocket seeds455834/501432/987654, outside consumer **1/0**
+and static/build checks. All **1,712** guarded sources are identical. Actual
+loaded-thread/null app context and direct Unicode/null skill reads add exactly
+six physical owners; contracts **5,614 implemented / 871 missing / 136 blocked**,
+unchanged requirements and zero globally verified. No assertion, deadline or
+cleanup behavior is weakened. Continue the unrun ordinary environment-skills
+and feedback drafts. Prohibited/broad/hosted checks, A11, unavailable emitters/
+external/OS, complete goal and release remain incomplete.
+
 The [ordinary plugin share/save unit](ordinary-plugin-share-save-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **81 files / 145 actual-native cases
 twice**, selected WebSocket seeds455834/501432/987654, outside consumer **1/0**

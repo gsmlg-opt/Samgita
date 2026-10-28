@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary app-context/skill-read unit](ordinary-app-context-skill-read-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **83 files / 147 real-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,712** identical guarded sources. Genuine loaded-thread/null app
+context and direct Unicode/null skill reads bind six physical owners; **1,707**
+other prior hashes and all prior command arguments remain exact. Contracts:
+**5,614 implemented / 871 missing / 136 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. No prohibited/broad/hosted
+checks run. Next: review/adopt the ordinary environment required-skills
+object/null and feedback tags/thread-context drafts, then qualify their actual
+effects. They remain outside the repository and runtime-unverified. Mixed policy
+arrays, A11, unavailable emitters/external/OS, full compatibility and release
+remain incomplete.
+
 The [ordinary plugin share/save unit](ordinary-plugin-share-save-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **81 files / 145 real-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

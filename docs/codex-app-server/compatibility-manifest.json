@@ -897,14 +897,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/isolated-app-catalog.md"
+        "docs/codex-app-server/isolated-app-catalog.md",
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:app/list",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
+        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required."
       ],
       "params": {
         "$ref": "#/definitions/AppsListParams"
@@ -935,7 +937,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157"
         ]
       },
       "transport_coverage": [
@@ -4295,7 +4298,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/remote-plugin-qualification.md"
+        "docs/codex-app-server/remote-plugin-qualification.md",
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/skill/read",
@@ -4303,7 +4307,8 @@
       "legacy": false,
       "limitations": [
         "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
-        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
       ],
       "params": {
         "$ref": "#/definitions/PluginSkillReadParams"
@@ -4335,7 +4340,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
         ]
       },
       "transport_coverage": [
@@ -16052,14 +16058,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/isolated-app-catalog.md"
+        "docs/codex-app-server/isolated-app-catalog.md",
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:app/list",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
+        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required."
       ],
       "prerequisites": [
         "initialized"
@@ -16076,7 +16084,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157"
         ]
       },
       "transport_coverage": [
@@ -18584,7 +18593,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/remote-plugin-qualification.md"
+        "docs/codex-app-server/remote-plugin-qualification.md",
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/skill/read",
@@ -18592,7 +18602,8 @@
       "legacy": false,
       "limitations": [
         "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
-        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
       ],
       "prerequisites": [
         "initialized"
@@ -18610,7 +18621,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
         ]
       },
       "transport_coverage": [
@@ -70056,124 +70068,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/77",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
+      ],
       "pointer": "/oneOf/77",
       "schema": "ClientRequest.json",
       "schema_sha256": "50736f8549d29343906f7fbbb1640f99c6c13fca78f47b80458d2ded600322c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/77/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/77/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/77/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/77/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c9e323e528ebe1d7dff4ce12fa67b76782e67667f0a9c908977e4a0b99b9b88c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/77/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
+      ],
       "pointer": "/oneOf/77/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "910d196ae9704c4d787719183ced8eecaf0fce6038ebcce6ff10aba64c9c95fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/77/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: two explicit plugin/skill/read calls cause exactly two direct dependency GETs with matching plugin/name; independently literal Unicode content then explicit backend null project to exact native contents results. Original typed -1/string -1 wire frames, selected root77/simple params/result schemas and complete six correlated exchanges agree with Session. Only five physical root77 nodes gain new credit. Owned post-initialize plugins setup, frozen inputs, empty workspace/model/thread state and confirmed bounded native/helper cleanup. No bundle/installation/cache/skill execution, real service, other OS/transport, security/permission/policy test or globally verified credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/77/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "226cbe561cf31396af607763c7f5966f3d901a4db743f2a97d8bbed1ef1e9adf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_skill_read_test.exs:164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -128086,27 +128138,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/AppsListParams.json",
       "schema_sha256": "ee736785760cae17091f7eb8d8238efcf52b4d40960ddae31e8c2ded889d9cf3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
