@@ -3479,14 +3479,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/diagnostics-memory-qualification.md"
+        "docs/codex-app-server/diagnostics-memory-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:memory/status",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified.",
+        "Ordinary actual-native fresh memory/status reader returns count0/false with integer -1249, then a stopped-native existing input helper updates its already migrated owned count to2 and writes an explicit synthetic summary. Distinct cold native requests string -1249/min2 and named/min3 return count2/true and count2/false. Exact captured bytes, typed correlation, root34/id and original definitions remain checked. Status-reader evidence only: no extraction/consolidation writer or production memory success. No permission/auth/policy, alias, full-method or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/MemoryStatusParams"
@@ -3517,7 +3519,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -4167,7 +4170,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/list",
@@ -4175,7 +4179,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareListParams"
@@ -4206,7 +4211,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
         ]
       },
       "transport_coverage": [
@@ -6303,7 +6309,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/delete",
@@ -6311,7 +6318,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native behavior: Empty ACK; list absence and read rejection without reexecution. No deleted event identity or deletion state matrix.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Ordinary actual-native one persisted owned thread/assistant turn is observed in native history/list and original rollout bytes before one integer-ID -806 deletion. Native empty success, same-thread deleted notice, removed rollout and later empty list/loaded registry plus correlated absent-read error are independent aftermath. Original typed request/response bytes bind only root11/id using exact ref and unchanged definitions. No duplicate deletion/inference, subtree/full-method, permission outcome, alias or other deployment credit."
       ],
       "params": {
         "$ref": "#/definitions/ThreadDeleteParams"
@@ -6343,7 +6351,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/method_families_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18014,14 +18023,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/diagnostics-memory-qualification.md"
+        "docs/codex-app-server/diagnostics-memory-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:memory/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified.",
+        "Ordinary actual-native fresh memory/status reader returns count0/false with integer -1249, then a stopped-native existing input helper updates its already migrated owned count to2 and writes an explicit synthetic summary. Distinct cold native requests string -1249/min2 and named/min3 return count2/true and count2/false. Exact captured bytes, typed correlation, root34/id and original definitions remain checked. Status-reader evidence only: no extraction/consolidation writer or production memory success. No permission/auth/policy, alias, full-method or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -18038,7 +18049,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18533,7 +18545,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/list",
@@ -18541,7 +18554,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification."
       ],
       "prerequisites": [
         "initialized"
@@ -18558,7 +18572,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
         ]
       },
       "transport_coverage": [
@@ -20124,7 +20139,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/delete",
@@ -20132,7 +20148,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native behavior: Empty ACK; list absence and read rejection without reexecution. No deleted event identity or deletion state matrix.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Ordinary actual-native one persisted owned thread/assistant turn is observed in native history/list and original rollout bytes before one integer-ID -806 deletion. Native empty success, same-thread deleted notice, removed rollout and later empty list/loaded registry plus correlated absent-read error are independent aftermath. Original typed request/response bytes bind only root11/id using exact ref and unchanged definitions. No duplicate deletion/inference, subtree/full-method, permission outcome, alias or other deployment credit."
       ],
       "prerequisites": [
         "initialized"
@@ -20150,7 +20167,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/method_families_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
         ]
       },
       "transport_coverage": [
@@ -48501,25 +48519,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/11/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native one persisted owned thread/assistant turn is observed in native history/list and original rollout bytes before one integer-ID -806 deletion. Native empty success, same-thread deleted notice, removed rollout and later empty list/loaded registry plus correlated absent-read error are independent aftermath. Original typed request/response bytes bind only root11/id using exact ref and unchanged definitions. No duplicate deletion/inference, subtree/full-method, permission outcome, alias or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/11/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -62545,25 +62569,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/34/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native fresh memory/status reader returns count0/false with integer -1249, then a stopped-native existing input helper updates its already migrated owned count to2 and writes an explicit synthetic summary. Distinct cold native requests string -1249/min2 and named/min3 return count2/true and count2/false. Exact captured bytes, typed correlation, root34/id and original definitions remain checked. Status-reader evidence only: no extraction/consolidation writer or production memory success. No permission/auth/policy, alias, full-method or other deployment credit."
+      ],
       "nullable": false,
       "pointer": "/oneOf/34/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_lifecycle_request_ids_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -70820,25 +70850,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/80/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native plugin/share/list makes one original string-ID request to read one remote item with no local mapping. Exact captured request/reply bytes and independent metadata/read/filesystem effects bind its root80 physical ID ref with unchanged definitions. Only this property, not RequestId aliases, integer branch, whole method, policy or other transport/OS, gains evidence."
+      ],
       "nullable": false,
       "pointer": "/oneOf/80/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -178893,22 +178929,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-native-reference-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginShareListResponse.json#/definitions/PluginShareListItem/properties/localPluginPath/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native plugin/share/list reads one terminal created page and one empty installed page with independently authored remote identity/name/version/description. Fresh owned local mapping remains absent; Map.has_key? and Map.fetch! plus exact null-node/schema checks require present localPluginPath:null. No local checkout/cache/work/model/thread/turn effects occur. Fixed YOLO/identity/required DTO fields are setup, not permission/auth/policy assertions. Only this physical null owner; no aliases, neighboring fields, complete remote service/method/OS qualification."
+      ],
       "pointer": "/definitions/PluginShareListItem/properties/localPluginPath/anyOf/1",
       "schema": "v2/PluginShareListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_list_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
