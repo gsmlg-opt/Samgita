@@ -4189,7 +4189,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/save",
@@ -4197,7 +4198,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareSaveParams"
@@ -4228,7 +4230,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
         ]
       },
       "transport_coverage": [
@@ -18501,7 +18504,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-share-qualification.md"
+        "docs/codex-app-server/plugin-share-qualification.md",
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/save",
@@ -18509,7 +18513,8 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
-        "Selected owned native behavior only, not complete method qualification."
+        "Selected owned native behavior only, not complete method qualification.",
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -18526,7 +18531,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_share_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
         ]
       },
       "transport_coverage": [
@@ -70172,124 +70178,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/78",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
+      ],
       "pointer": "/oneOf/78",
       "schema": "ClientRequest.json",
       "schema_sha256": "e30a4f6997aba1eeccf14e768b24b382832e2bc2b57a6f3640176c0cee2240fd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/78/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/78/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/78/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/78/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "59fe9cfe6eb7019fbc2d7a1be6adbb43555864bdfbdd35b478d7f0cfff09ea0c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/78/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
+      ],
       "pointer": "/oneOf/78/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9aaf7fc55c4303b53c50a130f588d5887a7d8562768d0bc23ca9f2dec587454c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-share-save-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/78/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio at immutable83086188: actual source tar creation/upload/finalize, independent manifest/marker/skill bytes, filename/size/file-ID/JSON-ETag correlation, selected remotePluginId/shareUrl, local mapping, confirmed warm shutdown and explicit-ID cold native update after an owned skill edit. Complete typed -1/string -1 original request/reply and Wire/Session correspondence; frozen inputs, bounded journal/capture and native/helper cleanup. Only root78 physical envelope gains new credit. Same dependency helper spans both processes; best-effort mapping does not prove transactional recovery or implicit lookup. Policy results remain opaque; no policy/security/permission test or globally verified promotion. Real service/publication, startup-enabled behavior, disconnect replay/idempotency, other OS/transport and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/78/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d64ac5ddf94e65ec606498c20a75a75bdf6dd6dde97604386115b9eec89a97bb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_share_save_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

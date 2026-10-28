@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary plugin share/save unit](ordinary-plugin-share-save-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **81 files / 145 real-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,709** identical guarded sources. Native packaging/upload and
+explicit cold-native updates bind only five physical envelope owners, with two
+already-implemented requirements supplemented. Contracts: **5,608 implemented /
+877 missing / 136 blocked**; requirements **462 implemented / 12 missing /
+11 blocked**, zero globally verified. No prohibited tests/audits or hosted
+workflows run. Continue the reviewed loaded-thread/null app-list and direct
+skill-read drafts; they remain runtime-unverified. A11, unavailable emitters/
+external/OS, complete compatibility, publication and deployment remain incomplete.
+
 The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **77 files / 140 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

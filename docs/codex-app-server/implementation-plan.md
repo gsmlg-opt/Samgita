@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary plugin share/save unit](ordinary-plugin-share-save-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **81 files / 145 real-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,709** identical guarded sources. Genuine tar content/upload and
+explicit cold-native updates bind five physical owners; **1,705** other prior
+source hashes and all prior command arguments remain exact. Contracts:
+**5,608 implemented / 877 missing / 136 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. No prohibited/broad/hosted
+checks run. Next: adopt and qualify the reviewed real loaded-thread/null
+`app/list` draft and direct `plugin/skill/read` Unicode/null content draft;
+their runtime is still unverified. Policy fields, A11, unavailable emitters/
+external/OS, full compatibility and release gates remain incomplete.
+
 The [ordinary reconciliation/app/fork batch](ordinary-plugin-reconcile-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **80 files / 144 real-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

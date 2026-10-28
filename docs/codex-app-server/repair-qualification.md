@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary plugin share/save unit](ordinary-plugin-share-save-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **81 files / 145 actual-native cases
+twice**, selected WebSocket seeds455834/501432/987654, outside consumer **1/0**
+and static/build checks. All **1,709** guarded sources remain identical.
+Native tar bytes/upload correlation and explicit cold-native updates add exactly
+five physical owners; contracts **5,608 implemented / 877 missing / 136 blocked**,
+unchanged requirements and zero globally verified. No process cleanup, assertion
+or deadline is weakened. Continue the reviewed loaded-thread/null app-list and
+direct skill-read drafts; their runtime remains unverified. Prohibited/broad/
+hosted checks, A11, unavailable emitters/external/OS, full goal and release gates
+stay incomplete.
+
 The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes 77 files / 140 actual-native cases twice, selected WebSocket seeds 455834,
 501432, 987654, outside consumer 1/0 and all 14 reviewed functional/static/build
