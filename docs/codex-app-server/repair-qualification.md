@@ -1,5 +1,16 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
+passes all17 reviewed steps with1,747 identical guarded sources. The original
+164-case commands pass at both seeds within320s; five extension cases pass
+twice, four cleanup regressions pass, three selected replay seeds and the outside
+consumer/static/build checks pass. Fourteen physical owners gain scoped evidence:
+5,697 implemented/788 missing/136 blocked, unchanged requirements, zero globally
+verified. Actual helper exit diagnostics preserve ACK/deadline requirements and
+do not prove the original intermittent cause. Existing dependency/replay/database
+repairs remain intact. Continue ordinary summary/Git and data/context work;
+A11, prohibited/broad/hosted, external/OS, full-goal and release remain incomplete.
+
 The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
 adds25 scoped physical owners. Four new native cases pass twice, with nine
 independent suffix checks and1,743 identical guarded sources. The original

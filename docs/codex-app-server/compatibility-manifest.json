@@ -744,7 +744,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/account-metadata-qualification.md",
-        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/usage/read",
@@ -752,7 +753,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
-        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "anyOf": [
@@ -4147,7 +4149,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
         "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
-        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/share/delete",
@@ -4157,7 +4160,8 @@
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
         "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
-        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/PluginShareDeleteParams"
@@ -8391,7 +8395,8 @@
         "docs/codex-app-server/deprecated-mode-input-qualification.md",
         "docs/codex-app-server/personality-input-qualification.md",
         "docs/codex-app-server/history-mode-input-qualification.md",
-        "docs/codex-app-server/start-source-input-qualification.md"
+        "docs/codex-app-server/start-source-input-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/start",
@@ -8404,7 +8409,8 @@
         "Scoped deprecated multi-agent input repair: source-pinned input-only correction accepts none string and single-known-key unit objects for none/explicitRequestOnly/proactive with null or empty-map payload on three actual request graphs. Original values, constraints, experimental negotiation, prior descriptors and canonical outputs remain intact. Five structural tests and seven new actual-native profiles prove exact delegated Stdio sends, real summary-applied barriers, fixed explicitRequestOnly/no-op settings, marked provider input/completion/history and one inference per profile; no active delegation or new cold-history claim. Final reviewed30-schema/70-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all319 other prior sources including Session/cleanup/providers unchanged. Nine immutable Codex files, exact dependency lock/crate/source/license and770 unchanged official exports bound. Earlier mistaken null-object negative and null-only interpretation are corrected with source and default-validation native evidence; diagnostic wire-only empty-map characterization and superseded29/64 matrix remain separate. Consumer only locally validates forms then runs native list. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete; see qualification.",
         "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
         "Scoped ThreadHistoryMode input repair: source-pinned seventh descriptor accepts exactly legacy/paginated one-key objects with null/empty-map payload on thread/start only. The original string definition remains a complete union branch; caller values, outer null/omission, enclosing constraints, experimental field gate and six prior corrections remain intact. Protocol red5/3fail and default native1/1fail demonstrate local schema rejection; a separately bound temporary wire-only comparison proves real native acceptance and cold persistence, while final committed tests retain default validation. Five protocol cases plus one native four-profile journey prove exact outbound maps/bytes/correlation, zero creation inference, independently selected canonical creation modes, four actual assistant requests with native IDs, materialized public metadata/full turn pages and exact unloaded cold history without reinference or reexecution. Original32-frame/4KiB bounds, event/deadline limits, fixed YOLO, unchanged provider/config/catalog and owned PID/Port cleanup remain asserted. Final47-schema/122-driver cases twice, outside consumer1/0, format/compile, strict Credo522, inventory and342-source guard pass; all333 other prior sources, six descriptors, prior pins and770 exports unchanged. Eleven archive-matched sources and exact pinned buffered-serde bindings explain the decoder discrepancy. Consumer locally validates four forms then retains the native list-only journey. No physical owner/count/state promotion, complete field/method/lifecycle, unavailable OS/transport/external/platform, prohibited/broad/hosted/A11/full-goal or publication claim is made.",
-        "Scoped ThreadStartSource input repair: the eighth pinned supplement accepts startup/clear one-key objects with null/empty-map payload only on thread/start, preserving original maps/bytes and canonical/null/omission contracts. Protocol red5/2fail and default native red1/1fail reproduce local rejection; a bound wire-only diagnostic proves native acceptance and final default-validation coverage passes. Four native starts and explicit assistant turns independently assert new/cleared provider metadata, exact IDs and retained prior/warm/unloaded-cold histories without reinference. Ten complete archive-matched sources, all770 unchanged exports and seven unchanged descriptors bind the correction. Final52schema/124ordinary driver cases pass twice, consumer1/0 and strict checks pass with347stable sources. Native negotiates experimental API; both validation profiles are structural evidence only. Source-specific hooks, other transports/OS/providers/platforms, prohibited/broad/hosted gates and complete lifecycle remain unqualified. No physical owner/state/count promotion or publication claim."
+        "Scoped ThreadStartSource input repair: the eighth pinned supplement accepts startup/clear one-key objects with null/empty-map payload only on thread/start, preserving original maps/bytes and canonical/null/omission contracts. Protocol red5/2fail and default native red1/1fail reproduce local rejection; a bound wire-only diagnostic proves native acceptance and final default-validation coverage passes. Four native starts and explicit assistant turns independently assert new/cleared provider metadata, exact IDs and retained prior/warm/unloaded-cold histories without reinference. Ten complete archive-matched sources, all770 unchanged exports and seven unchanged descriptors bind the correction. Final52schema/124ordinary driver cases pass twice, consumer1/0 and strict checks pass with347stable sources. Native negotiates experimental API; both validation profiles are structural evidence only. Source-specific hooks, other transports/OS/providers/platforms, prohibited/broad/hosted gates and complete lifecycle remain unqualified. No physical owner/state/count promotion or publication claim.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/ThreadStartParams"
@@ -8447,7 +8453,8 @@
           "apps/samgita_protocol_codex/test/thread_history_mode_input_test.exs",
           "apps/samgita_codex_driver/test/native_history_mode_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/thread_start_source_input_test.exs",
-          "apps/samgita_codex_driver/test/native_start_source_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_start_source_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9026,7 +9033,8 @@
         "docs/codex-app-server/deprecated-mode-input-qualification.md",
         "docs/codex-app-server/collaboration-unit-input-qualification.md",
         "docs/codex-app-server/reasoning-summary-input-qualification.md",
-        "docs/codex-app-server/personality-input-qualification.md"
+        "docs/codex-app-server/personality-input-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:turn/start",
@@ -9040,7 +9048,8 @@
         "Scoped deprecated multi-agent input repair: source-pinned input-only correction accepts none string and single-known-key unit objects for none/explicitRequestOnly/proactive with null or empty-map payload on three actual request graphs. Original values, constraints, experimental negotiation, prior descriptors and canonical outputs remain intact. Five structural tests and seven new actual-native profiles prove exact delegated Stdio sends, real summary-applied barriers, fixed explicitRequestOnly/no-op settings, marked provider input/completion/history and one inference per profile; no active delegation or new cold-history claim. Final reviewed30-schema/70-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all319 other prior sources including Session/cleanup/providers unchanged. Nine immutable Codex files, exact dependency lock/crate/source/license and770 unchanged official exports bound. Earlier mistaken null-object negative and null-only interpretation are corrected with source and default-validation native evidence; diagnostic wire-only empty-map characterization and superseded29/64 matrix remain separate. Consumer only locally validates forms then runs native list. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete; see qualification.",
         "Scoped collaboration unit-object input repair: ModeKind input union accepts exactly six known keys with null/empty-map unit payloads on the two real request graphs, preserving original maps, existing string aliases, settings/negotiation constraints and canonical output schemas. Two added structural cases and twelve new actual-native profiles prove applied settings, Plan versus literal assistant parsing, canonical turn contexts and warm/first cold history with exact request budgets, retained bytes and owned cleanup. Plan context independently checks canonical mode/model, not every builtin setting; Default context remains exact. Final reviewed32-schema/82-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all323 other prior sources and old MultiAgent/dynamic/compaction descriptors unchanged. Eleven exact upstream files plus dependency source/lock/license and770 unchanged official exports bound. Wire-only characterization is diagnostic, not final evidence; final native cases use default validation. Outside addition validates objects locally then runs native list. No new output recorder, cold resumed inference, complete defaults/delegation, state/physical-owner promotion or restricted/broad/hosted/A11/legacy/external/platform/full-goal completion; see qualification.",
         "Scoped ReasoningSummary unit-object input repair: source-pinned input-only contract admits one known auto/concise/detailed/none key with null or empty-map payload on exactly thread/settings/update, turn/start and turn/settings/update. Canonical outputs, caller objects, null/omission distinctions, required fields and experimental negotiation remain intact; ModeKind/MultiAgent corrections compose. Five structural tests and24 new actual-native cases use default validation and unchanged assistant/dynamic-tool Responses fixtures. Thread-owned updates have real canonical applied snapshots and subsequent inference; turn-local updates take effect after an explicit held dynamic-tool result while future thread defaults stay unchanged. Selected none omits provider reasoning.summary; omitted/null updates preserve prior selection. Native-written thread_settings_applied persistence is checked after complete owned shutdown; hardcoded TurnContext.summary is not used as an oracle. Final37-schema/108-driver cases twice, outside consumer1/0, format/compile, strict Credo517, inventory and334-source guard pass; all326 other prior sources and every prior pinned artifact remain unchanged. Thirteen archive-matched source files plus lock-pinned serde source/license and770 unchanged official exports are bound. Consumer adds local object validation then retains native list-only journey. No cold resume, external model behavior, state/physical-owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
-        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification."
+        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/TurnStartParams"
@@ -9083,7 +9092,8 @@
           "apps/samgita_codex_driver/test/native_summary_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/personality_input_test.exs",
           "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
-          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs"
+          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11131,7 +11141,8 @@
       "evidence": [
         "docs/codex-app-server/rate-limits-qualification.md",
         "docs/codex-app-server/notification-owner-supplement-qualification.md",
-        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:account/rateLimits/updated",
@@ -11139,7 +11150,8 @@
       "legacy": false,
       "limitations": [
         "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified.",
-        "Scoped ordinary native supplement: one genuine provider WebSocket prewarm/generation with native nonnull planType metadata, actual completed turn and cold read-only history; no entitlement/security or provider reconnect claim. Full method/deployment qualification remains incomplete."
+        "Scoped ordinary native supplement: one genuine provider WebSocket prewarm/generation with native nonnull planType metadata, actual completed turn and cold read-only history; no entitlement/security or provider reconnect claim. Full method/deployment qualification remains incomplete.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/AccountRateLimitsUpdatedNotification"
@@ -11165,7 +11177,8 @@
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
           "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165",
-          "apps/samgita_codex_driver/test/native_ordinary_provider_websocket_plan_test.exs"
+          "apps/samgita_codex_driver/test/native_ordinary_provider_websocket_plan_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11436,7 +11449,8 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:error",
@@ -11444,7 +11458,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Failed remote compaction emits a correlated terminal error with willRetry=false and exact diagnostic, then fails turn without successful compaction item completion; usable history preserved. Assertions: apps/samgita_codex_driver/test/compaction_retention_test.exs:64-101 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Specific deterministic compaction failure, not whole error taxonomy or retryable error field variants."
+        "Specific deterministic compaction failure, not whole error taxonomy or retryable error field variants.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/ErrorNotification"
@@ -11466,7 +11481,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/compaction_retention_test.exs"
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -14557,7 +14573,8 @@
         "docs/codex-app-server/deferred-mcp-qualification.md",
         "docs/codex-app-server/tool-interactions-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:turn/completed",
@@ -14567,7 +14584,8 @@
         "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
         "Selected actual-native behavior: Actual native correlated identity plus selected directly asserted fields only. No unasserted timing/variants/error payload inferred.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "params": {
         "$ref": "#/definitions/TurnCompletedNotification"
@@ -14594,7 +14612,8 @@
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
           "apps/samgita_codex_driver/test/turn_parameters_test.exs",
           "apps/samgita_codex_driver/test/native_turn_steering_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16054,7 +16073,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/account-metadata-qualification.md",
-        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/usage/read",
@@ -16062,7 +16082,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
-        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete."
+        "Scoped ordinary native supplement: selected usage/quota/message numeric/text/date data and exact typed correlation across two native generations. Identity, entitlement, permission and credential outputs remain opaque. Full method/deployment qualification remains incomplete.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "prerequisites": [
         "initialized"
@@ -18597,7 +18618,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-share-qualification.md",
         "docs/codex-app-server/ordinary-marketplace-checkout-qualification.md",
-        "docs/codex-app-server/ordinary-data-extensions-qualification.md"
+        "docs/codex-app-server/ordinary-data-extensions-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/share/delete",
@@ -18607,7 +18629,8 @@
         "Selected actual-native Linux stdio plugin sharing with isolated authenticated metadata and CA-verified HTTPS objects; no real service/publication, startup-enabled/background behavior, pagination, hostile archives, failure atomicity, concurrent writers, other transports/platforms or A11 acceptance.",
         "Selected owned native behavior only, not complete method qualification.",
         "Scoped ordinary native supplement: warm/cold checkout with content/mapping/local-edit reuse, one independent DELETE effect, mapping removal retaining local files and final empty share list. Synthetic dependencies supply data only. No security/permission assertions or full-method/deployment promotion.",
-        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table."
+        "Ordinary direct input-owner indexing: existing native original-frame/unique-branch and independent list, checkout/reuse or delete effects directly cover only ClientRequest physical owners1503/1505-1508/1510-1513/1517 as applicable. No additional test, alias promotion or complete method qualification; see per-owner evidence table.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "prerequisites": [
         "initialized"
@@ -21748,7 +21771,8 @@
         "docs/codex-app-server/thread-event-lifecycle-qualification.md",
         "docs/codex-app-server/legacy-dynamic-tool-input-qualification.md",
         "docs/codex-app-server/deprecated-mode-input-qualification.md",
-        "docs/codex-app-server/personality-input-qualification.md"
+        "docs/codex-app-server/personality-input-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/start",
@@ -21759,7 +21783,8 @@
         "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
         "Scoped legacy dynamic-tool input repair: source-pinned schema supplement matches native thread/start custom decoding, including required/nullable types and list-wide canonical/legacy consistency, without rewriting original values or official exports. Seven structural regressions and three new actual-native namespaced null/direct/deferred/explicit-false profiles preserve tool calls, provider oracles, canonical session metadata and first cold item reads. Final reviewed17-schema/50-driver cases twice, outside consumer1/0, compile/format, strict Credo512, inventory and319-source guard pass; all309 other previous sources including Session/cleanup unchanged. Eleven immutable source files and770 unchanged official exports are bound. Native coverage does not prove all legacy shapes, independent outbound bytes or resumed inference exposure; outside consumer validates the supplement locally then runs its existing native list journey. No state or physical-schema owner promotion; broad default/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete. Initial red and strict-lint failure retained; see qualification.",
         "Scoped deprecated multi-agent input repair: source-pinned input-only correction accepts none string and single-known-key unit objects for none/explicitRequestOnly/proactive with null or empty-map payload on three actual request graphs. Original values, constraints, experimental negotiation, prior descriptors and canonical outputs remain intact. Five structural tests and seven new actual-native profiles prove exact delegated Stdio sends, real summary-applied barriers, fixed explicitRequestOnly/no-op settings, marked provider input/completion/history and one inference per profile; no active delegation or new cold-history claim. Final reviewed30-schema/70-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all319 other prior sources including Session/cleanup/providers unchanged. Nine immutable Codex files, exact dependency lock/crate/source/license and770 unchanged official exports bound. Earlier mistaken null-object negative and null-only interpretation are corrected with source and default-validation native evidence; diagnostic wire-only empty-map characterization and superseded29/64 matrix remain separate. Consumer only locally validates forms then runs native list. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete; see qualification.",
-        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification."
+        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "prerequisites": [
         "initialized"
@@ -21784,7 +21809,8 @@
           "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs",
           "apps/samgita_protocol_codex/test/personality_input_test.exs",
           "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
-          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs"
+          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
         ]
       },
       "transport_coverage": [
@@ -22223,7 +22249,8 @@
         "docs/codex-app-server/deprecated-mode-input-qualification.md",
         "docs/codex-app-server/collaboration-unit-input-qualification.md",
         "docs/codex-app-server/reasoning-summary-input-qualification.md",
-        "docs/codex-app-server/personality-input-qualification.md"
+        "docs/codex-app-server/personality-input-qualification.md",
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:turn/start",
@@ -22237,7 +22264,8 @@
         "Scoped deprecated multi-agent input repair: source-pinned input-only correction accepts none string and single-known-key unit objects for none/explicitRequestOnly/proactive with null or empty-map payload on three actual request graphs. Original values, constraints, experimental negotiation, prior descriptors and canonical outputs remain intact. Five structural tests and seven new actual-native profiles prove exact delegated Stdio sends, real summary-applied barriers, fixed explicitRequestOnly/no-op settings, marked provider input/completion/history and one inference per profile; no active delegation or new cold-history claim. Final reviewed30-schema/70-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all319 other prior sources including Session/cleanup/providers unchanged. Nine immutable Codex files, exact dependency lock/crate/source/license and770 unchanged official exports bound. Earlier mistaken null-object negative and null-only interpretation are corrected with source and default-validation native evidence; diagnostic wire-only empty-map characterization and superseded29/64 matrix remain separate. Consumer only locally validates forms then runs native list. No state/physical-owner promotion; broad defaults/negotiation, prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates stay incomplete; see qualification.",
         "Scoped collaboration unit-object input repair: ModeKind input union accepts exactly six known keys with null/empty-map unit payloads on the two real request graphs, preserving original maps, existing string aliases, settings/negotiation constraints and canonical output schemas. Two added structural cases and twelve new actual-native profiles prove applied settings, Plan versus literal assistant parsing, canonical turn contexts and warm/first cold history with exact request budgets, retained bytes and owned cleanup. Plan context independently checks canonical mode/model, not every builtin setting; Default context remains exact. Final reviewed32-schema/82-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all323 other prior sources and old MultiAgent/dynamic/compaction descriptors unchanged. Eleven exact upstream files plus dependency source/lock/license and770 unchanged official exports bound. Wire-only characterization is diagnostic, not final evidence; final native cases use default validation. Outside addition validates objects locally then runs native list. No new output recorder, cold resumed inference, complete defaults/delegation, state/physical-owner promotion or restricted/broad/hosted/A11/legacy/external/platform/full-goal completion; see qualification.",
         "Scoped ReasoningSummary unit-object input repair: source-pinned input-only contract admits one known auto/concise/detailed/none key with null or empty-map payload on exactly thread/settings/update, turn/start and turn/settings/update. Canonical outputs, caller objects, null/omission distinctions, required fields and experimental negotiation remain intact; ModeKind/MultiAgent corrections compose. Five structural tests and24 new actual-native cases use default validation and unchanged assistant/dynamic-tool Responses fixtures. Thread-owned updates have real canonical applied snapshots and subsequent inference; turn-local updates take effect after an explicit held dynamic-tool result while future thread defaults stay unchanged. Selected none omits provider reasoning.summary; omitted/null updates preserve prior selection. Native-written thread_settings_applied persistence is checked after complete owned shutdown; hardcoded TurnContext.summary is not used as an oracle. Final37-schema/108-driver cases twice, outside consumer1/0, format/compile, strict Credo517, inventory and334-source guard pass; all326 other prior sources and every prior pinned artifact remain unchanged. Thirteen archive-matched source files plus lock-pinned serde source/license and770 unchanged official exports are bound. Consumer adds local object validation then retains native list-only journey. No cold resume, external model behavior, state/physical-owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
-        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification."
+        "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
+        "Ordinary root/rate unit supplements selected root input/effects, provider429 quota/error/failed-turn lifecycle or direct null-profile/delete inputs as applicable. Exact physical-owner table only; no complete method/global verification, other profile or security/permission/approval outcome."
       ],
       "prerequisites": [
         "initialized"
@@ -22266,7 +22294,8 @@
           "apps/samgita_codex_driver/test/native_summary_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/personality_input_test.exs",
           "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
-          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs"
+          "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -25073,22 +25102,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/CapabilityRootLocation/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/definitions/CapabilityRootLocation/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6d73175de0ff8b0ea33a659b85a83a5cb0e02fa284fc73ce5bb6fdc6d1c54bbc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -25096,25 +25131,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CapabilityRootLocation/oneOf/0/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/CapabilityRootLocation/oneOf/0/properties/environmentId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "environmentId"
@@ -25122,25 +25163,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CapabilityRootLocation/oneOf/0/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/CapabilityRootLocation/oneOf/0/properties/path",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d9ab7109a0d12e8c918615fe790533fac5d91c75b22c03c0a852e53dc7b55444",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -25148,47 +25195,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CapabilityRootLocation/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/CapabilityRootLocation/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "49e97242051a6bd025e35fa63dc26bbbcbd5d50f175dcd0c92729feda304d904",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/CapabilityRootLocation/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/definitions/CapabilityRootLocation/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "53aefa4c0496abfbe1b2195fcfe6b014f50b8c60dc9107d9d4cf52ae2dfb6fe3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -41804,25 +41863,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SelectedCapabilityRoot/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SelectedCapabilityRoot/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d05a3ee48c8c1c21a0dddd016971baad40071399e0fa24bac552ef977b72db70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -41830,47 +41895,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SelectedCapabilityRoot/properties/location",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SelectedCapabilityRoot/properties/location",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d954911f54bed7c433792f6f815dad8569d27f50214bace6bf2bd83078abd88c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "location"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/SelectedCapabilityRoot/properties/location/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original and forwarded typed thread/start exchanges bind branch7 and its eight physical root nodes to independently authored environment/path/ID/type. Real executor discovery, first-only catalog metadata in provider input and completed turns establish selected-root consumption; registration/bootstrap/required-list owner excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/definitions/SelectedCapabilityRoot/properties/location/allOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b23ca60674da2def8c170b28de596ac7f49045f72fa5865793cb7c3db8b30716",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_environment_skills_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "allOf"
@@ -55323,22 +55400,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/147/properties/params/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual explicit-null usage-profile request twice in distinct native generations, unique physical branch147/null and original typed replies. Independent distinct scalar/daily profile data and two backend GETs; omission and other nullable owners excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/147/properties/params/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -71385,47 +71468,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/82/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original plugin/share/delete literal in unique branch82. Independent matching DELETE204/effect, mapping removal, retained edited files and final empty native list establish selected target deletion; other targets excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/82/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a2502c6410a4d8a867e9989f9eb60cb59793e531dbaff10e43743a45cf789f39",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/82/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual original plugin/share/delete literal in unique branch82. Independent matching DELETE204/effect, mapping removal, retained edited files and final empty native list establish selected target deletion; other targets excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/oneOf/82/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "5e176625e88d68dd146dee6ce0031dcb532be4636fa3e91d7f7a01c87e396d87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_share_checkout_delete_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -88511,22 +88606,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected known scalar usageLimitExceeded in actual native terminal error, causally paired with one provider429, quota notice and failed turn. Original bytes and complete error map retained; exact physical anyOf0 node/hash. Other enum members, unknown/future catchall, policy/auth effects and other profiles remain unqualified. No globally verified promotion."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "35bbfdf0f8a8582ab497ef79ce4c15e32256f77f4fe91eef104ec007924b3e4b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -97664,22 +97765,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitReachedType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "One actual provider429 with authored ordinary quota headers produces exact rate_limit_reached enum/nonnull notification, terminal error and failed turn in causal order. One provider request, complete original error retained and no replay; other reached types and credit/reserve/entitlement behavior excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/definitions/RateLimitReachedType/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d28b70fcbb690c73033101e03acfb2f02af76c6b6cda78faf02d9a4161bef177",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -98294,22 +98401,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-roots-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/rateLimitReachedType/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "One actual provider429 with authored ordinary quota headers produces exact rate_limit_reached enum/nonnull notification, terminal error and failed turn in causal order. One provider request, complete original error retained and no replay; other reached types and credit/reserve/entitlement behavior excluded. Ordinary Linux-musl/stdio only; no alias, adjacent owner, full-method, security/auth/permission/approval, external/OS or globally verified promotion."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/rateLimitReachedType/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "34e8447781fd474dff6e6a415c7e2c66a1932b2612d9590854a821e1cce07f63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"

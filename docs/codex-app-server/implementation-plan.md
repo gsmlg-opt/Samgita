@@ -1,5 +1,16 @@
 # Full compatibility implementation ledger
 
+The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
+passes all 17 reviewed functional steps: preserved164 cases twice within their
+original320s bounds, five extension cases twice, four cleanup scenarios, selected
+three-seed replay, outside consumer1/0 and static/build checks. All1,747 guarded
+sources stay exact. Fourteen physical owners gain scoped implemented evidence;
+contracts5,697 implemented/788 missing/136 blocked, requirements unchanged and
+zero globally verified. Exit-stage diagnostics preserve the original ACK and
+shutdown semantics; the earlier intermittent cause remains unresolved. Next:
+review/adopt the ordinary summary/Git draft and remaining data/context gaps.
+A11, prohibited/broad/hosted, external/OS, complete goal and release stay open.
+
 The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
 implements25 scoped physical owners;17 existing requirements gain supplements.
 The new4-case group and all nine independent suffix checks pass against1,743

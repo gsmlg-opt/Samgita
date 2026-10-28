@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary root/rate and cleanup unit](ordinary-roots-rate-qualification.md#final-source-functional-qualification)
+passes all 17 reviewed functional steps against 1,747 unchanged source hashes:
+164 retained native cases twice, five extension cases twice, four real cleanup
+scenarios, three overflow/replay seeds, outside consumer 1/0, inventory and
+static/build checks. Fourteen physical owners gain scoped implemented evidence;
+contracts are 5,697 implemented /788 missing /136 blocked, with zero globally
+verified. New exit-stage diagnostics preserve ACK requirements and deadlines;
+they do not explain the earlier intermittent failure. A11, prohibited/broad/
+hosted, external/OS, full-goal and release gates remain incomplete. Next: review
+and qualify the source-supported ordinary summary/Git draft, then remaining
+data/context producer gaps. No audit or hosted workflow runs.
+
 The [ordinary data/descriptor/raw unit](ordinary-data-extensions-qualification.md#combined-source-functional-gate-and-remaining-work)
 adds25 scoped physical owners and17 existing requirement supplements. New native
 cases pass4/0 twice; all nine independent suffix checks pass, including outside

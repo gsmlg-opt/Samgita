@@ -7,6 +7,7 @@ Connection bootstrap remains internal; HTTP upgrade bytes are forwarded opaquely
 No native app-server response is synthesized.
 """
 import argparse
+import base64
 import hashlib
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
@@ -245,6 +246,10 @@ class Fixture(Lifecycle):
                                  self.root / "workspace")
         self.record("native_started", pid=self.native.pid, executorPid=self.executor.pid,
                     controllerPid=os.getpid())
+        # Only these two ordinary thread/start exchanges have original-byte capture.
+        # Registration bootstrap and every other method remain opaque.
+        self.thread_start_ids = {}
+        self.thread_start_bytes = 0
         self.worker("native-output", self.output)
         self.worker("controls", self.controls)
         pending = bytearray()
@@ -270,10 +275,32 @@ class Fixture(Lifecycle):
                     params.update({"authBearerToken": self.runtime_value, "connectTimeoutMs": 10_000})
                     self.record("registration", id=wire["id"], method=wire["method"],
                                 environmentId=params["environmentId"], skills=params["skills"])
-                self.record("native_input", method=wire.get("method"), id=wire.get("id"))
                 encoded = json.dumps(wire, ensure_ascii=False).encode() + b"\n"
-                self.native.stdin.write(encoded)
-                self.native.stdin.flush()
+                if wire.get("method") == "thread/start":
+                    original = bytes(line) + b"\n"
+                    identity = wire["id"]
+                    if type(identity) not in (int, str):
+                        raise RuntimeError("ordinary skills thread identity type")
+                    if len(original) > 8_192 or len(encoded) > 8_192:
+                        raise RuntimeError("ordinary skills thread input capture byte bound")
+                    key = (type(identity).__name__, identity)
+                    with self.lock:
+                        if len(self.thread_start_ids) >= 2 or key in self.thread_start_ids:
+                            raise RuntimeError("ordinary skills thread input capture count bound")
+                        self.thread_start_ids[key] = False
+                        self.thread_start_bytes += len(original) + len(encoded)
+                        if self.thread_start_bytes > 196_608:
+                            raise RuntimeError("ordinary skills thread total capture byte bound")
+                        # Record forwarded bytes only after the actual flush succeeds.
+                        self.native.stdin.write(encoded)
+                        self.native.stdin.flush()
+                        self.record("native_input", method=wire.get("method"), id=identity,
+                                    driverJsonlBase64=base64.b64encode(original).decode("ascii"),
+                                    nativeJsonlBase64=base64.b64encode(encoded).decode("ascii"))
+                else:
+                    self.record("native_input", method=wire.get("method"), id=wire.get("id"))
+                    self.native.stdin.write(encoded)
+                    self.native.stdin.flush()
 
     def output(self):
         while True:
@@ -286,7 +313,19 @@ class Fixture(Lifecycle):
             if len(line) > 65_536 or not line.endswith(b"\n") or self.output_count > 128:
                 raise RuntimeError("ordinary skills output bound")
             wire = json.loads(line)
-            self.record("native_output", id=wire.get("id"), method=wire.get("method"))
+            identity = wire.get("id")
+            key = (type(identity).__name__, identity) if type(identity) in (int, str) else None
+            with self.lock:
+                captured = {}
+                if key in self.thread_start_ids and "method" not in wire:
+                    if self.thread_start_ids[key]:
+                        raise RuntimeError("ordinary skills duplicate thread output capture")
+                    self.thread_start_ids[key] = True
+                    self.thread_start_bytes += len(line)
+                    if self.thread_start_bytes > 196_608:
+                        raise RuntimeError("ordinary skills thread total capture byte bound")
+                    captured["nativeJsonlBase64"] = base64.b64encode(line).decode("ascii")
+                self.record("native_output", id=identity, method=wire.get("method"), **captured)
             sys.stdout.buffer.write(line)
             sys.stdout.buffer.flush()
 
