@@ -43896,98 +43896,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-existing-call-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned existingCall input is captured unchanged, validated against the owning experimental ClientRequest root and exact653-656 node preimages, then consumed by the native sideband route with the independently prescribed callId. One loopback upgrade, no call-create POST/session.update/model request; real start/requested-stop lifecycle, pre-teardown EOF and exact repeated warm/first-cold timeline without reattachment. Original22 cases and all bounds retained. Synthetic prearranged dependency ID only, not real client-negotiated media, external service, V2/V3, reconnect/error variants, restricted behavior, aliases or globally verified compatibility."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "321616f07930c9c94f003addbd3eb3550b0850b2462eb0104ed85975d849e47f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-existing-call-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/callId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned existingCall input is captured unchanged, validated against the owning experimental ClientRequest root and exact653-656 node preimages, then consumed by the native sideband route with the independently prescribed callId. One loopback upgrade, no call-create POST/session.update/model request; real start/requested-stop lifecycle, pre-teardown EOF and exact repeated warm/first-cold timeline without reattachment. Original22 cases and all bounds retained. Synthetic prearranged dependency ID only, not real client-negotiated media, external service, V2/V3, reconnect/error variants, restricted behavior, aliases or globally verified compatibility."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/callId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "24d091fbf29516ce34ad3f1b54ebf2a84e8a474c2bae1109114c0d7fe3c55a9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "callId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-existing-call-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned existingCall input is captured unchanged, validated against the owning experimental ClientRequest root and exact653-656 node preimages, then consumed by the native sideband route with the independently prescribed callId. One loopback upgrade, no call-create POST/session.update/model request; real start/requested-stop lifecycle, pre-teardown EOF and exact repeated warm/first-cold timeline without reattachment. Original22 cases and all bounds retained. Synthetic prearranged dependency ID only, not real client-negotiated media, external service, V2/V3, reconnect/error variants, restricted behavior, aliases or globally verified compatibility."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3f6f0e88f1102d22a0db69047b58fd42d4f33abb37d0799df8240bb7b5bb7fb2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-existing-call-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned existingCall input is captured unchanged, validated against the owning experimental ClientRequest root and exact653-656 node preimages, then consumed by the native sideband route with the independently prescribed callId. One loopback upgrade, no call-create POST/session.update/model request; real start/requested-stop lifecycle, pre-teardown EOF and exact repeated warm/first-cold timeline without reattachment. Original22 cases and all bounds retained. Synthetic prearranged dependency ID only, not real client-negotiated media, external service, V2/V3, reconnect/error variants, restricted behavior, aliases or globally verified compatibility."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "a7eed88cc53db222a1d5d2db23a868dbe0f584ba69c75eb4a48c5163bdf90e45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_start_stop_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

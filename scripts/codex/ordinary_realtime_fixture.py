@@ -91,6 +91,8 @@ SDP_ANSWER = "v=0\r\ns=Owned ordinary answer 🙂\r\na=inactive\r\n"
 SDP_CALL_ID = "rtc_owned_ordinary_sdp"
 SDP_CALL_PATH = "/v1/realtime/calls?intent=quicksilver&architecture=avas"
 SDP_SIDEBAND_PATH = f"/v1/realtime?intent=quicksilver&call_id={SDP_CALL_ID}"
+EXISTING_CALL_ID = "rtc_owned_existing_call"
+EXISTING_SIDEBAND_PATH = f"/v1/realtime?intent=quicksilver&call_id={EXISTING_CALL_ID}"
 MAX_FRAME = 65_536
 MAX_FRAMES = 32
 MAX_JOURNAL = 2_097_152
@@ -324,7 +326,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
             fixture.release.set()
             return
 
-        expected_path = (SDP_SIDEBAND_PATH if fixture.scenario == "sdp"
+        expected_path = (EXISTING_SIDEBAND_PATH if fixture.scenario == "existing-call"
+                         else SDP_SIDEBAND_PATH if fixture.scenario == "sdp"
                          else f"/v1/live?model={MODEL}" if fixture.scenario in ("initial-items", *DELEGATION_SCENARIOS)
                          else f"/v1/realtime?model={MODEL}")
         if method != "GET" or path != expected_path:
@@ -362,6 +365,15 @@ class PeerHandler(socketserver.BaseRequestHandler):
         while not fixture.stopping.is_set():
             first = self.read_exact(2, fixture, deadline)
             if first is None:
+                if fixture.scenario == "existing-call":
+                    # Observe native requested-stop EOF before fixture teardown.
+                    assert not fixture.stopping.is_set()
+                    with fixture.lock:
+                        assert fixture.state["messages"] == []
+                        assert fixture.state["sent"] == []
+                        assert fixture.state["transportEofCount"] == 0
+                        fixture.state["transportEofCount"] = 1
+                        fixture.save_locked()
                 if fixture.scenario in DELEGATION_SCENARIOS:
                     assert not fixture.stopping.is_set()
                     with fixture.lock:
@@ -424,6 +436,8 @@ class PeerHandler(socketserver.BaseRequestHandler):
                 continue
             assert opcode == 1, "Unexpected owned realtime frame opcode"
             message = json.loads(payload.decode("utf-8"))
+            if fixture.scenario == "existing-call":
+                raise AssertionError("Unexpected owned existing-call application data")
             if fixture.scenario in DELEGATION_SCENARIOS and message.get("type") != "session.update":
                 with fixture.lock:
                     expected = delegation_outputs(fixture.scenario)
@@ -821,6 +835,8 @@ class OrdinaryRealtimePeer:
         self.state = {"paths": [], "messages": [], "sent": [], "frameCount": 0,
                       "responsesRequests": 0, "otherHttp": [],
                       "activeConnections": 0, "requestCount": 0, "controls": [], "errors": []}
+        if scenario == "existing-call":
+            self.state["transportEofCount"] = 0
         if scenario == "sdp":
             self.state["calls"] = []
         if scenario == "ingress":
@@ -973,7 +989,7 @@ def terminate(_signal, _frame):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
-    parser.add_argument("--scenario", choices=["start-stop", "transcript", "user-transcript", "service-error", "item-audio", "sdp", "ingress", "speech", "initial-items", "instructions", *DELEGATION_SCENARIOS],
+    parser.add_argument("--scenario", choices=["start-stop", "transcript", "user-transcript", "service-error", "item-audio", "sdp", "existing-call", "ingress", "speech", "initial-items", "instructions", *DELEGATION_SCENARIOS],
                         default="start-stop")
     args = parser.parse_args()
     root = args.root.resolve(strict=True)

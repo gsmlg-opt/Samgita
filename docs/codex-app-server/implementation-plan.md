@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary existing-call unit](ordinary-existing-call-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps against1,762 identical hashes:
+main166/0 twice, extensions21/0 twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks. All original argv/bounds and22 old
+realtime cases remain. Native callId consumption, inert sideband lifecycle/EOF
+and warm/cold no-reattach history bind exactly653–656; contracts become
+**5,756 implemented /729 missing /136 blocked**, unchanged requirements, zero
+globally verified. Next: bind inspected child-notification source/prerequisite
+boundaries without changing their states or inventing native outputs. Production
+and repaired paths stay intact. Real media/external/OS, A11, prohibited/broad/
+hosted, full compatibility and release gates remain incomplete.
+
 The [ordinary quota literal unit](ordinary-quota-literals-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps against1,762 identical guarded hashes:
 main165/0 twice, extensions21/0 twice, three replay seeds, four cleanup cases,

@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary existing-call unit](ordinary-existing-call-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps against1,762 identical guarded hashes: main166/0
+twice, extensions21/0 twice, three replay seeds, four cleanup cases, outside
+consumer1/0 and static/build checks, with original bounds/argv retained. One
+new native case consumes exact callId into an inert sideband, records real
+start/requested-stop/EOF and unchanged warm/cold history without inference or
+reattachment. Only653–656 become implemented: **5,756 implemented /729 missing
+/136 blocked contracts**, unchanged requirements and zero globally verified.
+The original22 realtime cases reconstruct exactly. Next: record source-only
+child-notification and project-hook prerequisite boundaries, preserving their
+missing states. Production/repaired paths remain unchanged. A11, prohibited/
+broad/hosted, external/OS, full compatibility and release stay incomplete.
+
 The [ordinary quota literal unit](ordinary-quota-literals-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps against1,762 identical guarded hashes: main165/0
 twice, extensions21/0 twice, three replay seeds, four cleanup cases, outside

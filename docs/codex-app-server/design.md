@@ -377,6 +377,12 @@ fragment. A loaded includeTurns read persists both completed turns before full
 warm/cold history queries. Startup ACKs alone establish none of these effects.
 The later local V1 multipart SDP/sideband profile qualifies that exchange only;
 neither profile establishes live ICE/DTLS, playback or external-provider success.
+The [ordinary existing-call profile](ordinary-existing-call-qualification.md)
+separately submits a prearranged callId and observes the native sideband URL,
+start/requested-stop facts and unchanged warm/cold history. This attachment
+sends no new session.update or call-create POST. Its local dependency establishes
+identifier consumption and control lifecycle; prior real media negotiation and
+external service success remain prerequisites for a live-call claim.
 Private collaborator analytics and preserved canonical imported history remain
 distinct from [stock public producers](native-projection-boundaries.md).
 

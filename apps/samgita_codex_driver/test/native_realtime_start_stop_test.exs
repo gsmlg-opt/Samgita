@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
-  @script_sha "fbd3c18b360f8113292584fbfa6e57e133a5bb6849152e3acf96796c8fcd4f09"
+  @script_sha "b881b45392d7d18243f88ce3f6b7f5f9f72849236412eebb994864a0331bab38"
   @session "owned-v432-realtime-session"
   @model "owned-v432-realtime-model"
   @prompt "Owned local realtime start"
@@ -1977,6 +1977,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
            "service-error",
            "item-audio",
            "sdp",
+           "existing-call",
            "ingress",
            "speech",
            "initial-items",
@@ -2425,6 +2426,350 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
     assert_inputs(ctx)
   end
+
+  @existing_call "rtc_owned_existing_call"
+  @existing_session "owned-existing-call-realtime-session"
+  @existing_transport %{"type" => "existingCall", "callId" => @existing_call}
+  @existing_client_schema_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
+  @existing_node_653 ~S"""
+  {
+    "properties": {
+      "callId": {
+        "description": "Identifier of a realtime call already created and negotiated by the client.",
+        "type": "string"
+      },
+      "type": {
+        "enum": [
+          "existingCall"
+        ],
+        "title": "ExistingCallThreadRealtimeStartTransportType",
+        "type": "string"
+      }
+    },
+    "required": [
+      "callId",
+      "type"
+    ],
+    "title": "ExistingCallThreadRealtimeStartTransport",
+    "type": "object"
+  }
+  """
+
+  @existing_node_654 ~S"""
+  {
+    "description": "Identifier of a realtime call already created and negotiated by the client.",
+    "type": "string"
+  }
+  """
+
+  @existing_node_655 ~S"""
+  {
+    "enum": [
+      "existingCall"
+    ],
+    "title": "ExistingCallThreadRealtimeStartTransportType",
+    "type": "string"
+  }
+  """
+
+  @existing_node_656 ~S"""
+  "existingCall"
+  """
+
+  @existing_nodes [
+    {653, "/definitions/ThreadRealtimeStartTransport/oneOf/2",
+     "321616f07930c9c94f003addbd3eb3550b0850b2462eb0104ed85975d849e47f", @existing_node_653},
+    {654, "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/callId",
+     "24d091fbf29516ce34ad3f1b54ebf2a84e8a474c2bae1109114c0d7fe3c55a9b", @existing_node_654},
+    {655, "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type",
+     "3f6f0e88f1102d22a0db69047b58fd42d4f33abb37d0799df8240bb7b5bb7fb2", @existing_node_655},
+    {656, "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type/enum/0",
+     "a7eed88cc53db222a1d5d2db23a868dbe0f584ba69c75eb4a48c5163bdf90e45", @existing_node_656}
+  ]
+
+  @tag realtime_scenario: "existing-call"
+  test "native existing-call identifier selects the sideband without session configuration or inference",
+       ctx do
+    profile = ctx.profile
+    pid = ctx.session.pid
+    deadline = now() + 20_000
+
+    thread =
+      call(profile, pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => profile.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert_uuid(thread)
+
+    params = %{
+      "threadId" => thread,
+      "transport" => @existing_transport,
+      "version" => "v1",
+      "outputModality" => "audio",
+      "realtimeSessionId" => @existing_session,
+      "includeStartupContext" => false,
+      "flushTranscriptTailOnSessionEnd" => false,
+      "clientManagedHandoffs" => true
+    }
+
+    lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/start", params) === %{}
+
+    [request] =
+      Enum.filter(
+        capture(profile),
+        &(&1.direction == :out and &1.wire["method"] == "thread/realtime/start")
+      )
+
+    assert_existing_call_input(profile, request, params)
+
+    events =
+      collect(profile, pid, [], min(deadline, now() + 5_000), fn events ->
+        existing_call_peer_ready?(profile) and
+          length(notices(events, @item_completed)) == 1 and length(notices(events, @started)) == 1
+      end)
+
+    upper = System.system_time(:millisecond)
+    [first] = notices(events, @item_completed)
+    first_id = first.wire["params"]["item"]["id"]
+    assert_uuid(first_id)
+
+    started_item = %{
+      "id" => first_id,
+      "realtimeSessionId" => @existing_session,
+      "type" => "realtimeSessionStarted"
+    }
+
+    assert_selected(
+      profile,
+      events,
+      [
+        {@item_started, %{"threadId" => thread, "item" => started_item}},
+        {@item_completed, %{"threadId" => thread, "item" => started_item}},
+        {@started,
+         %{"threadId" => thread, "realtimeSessionId" => @existing_session, "version" => "v1"}}
+      ],
+      lower,
+      upper
+    )
+
+    [started] = notices(events, @started)
+    start_events = Enum.filter(events, &(&1.wire["method"] in @selected))
+    [_, _, native_started] = assert_originals(profile, start_events)
+    assert request.index < native_started.index
+    assert_existing_call_peer(profile, 1)
+
+    stop_lower = System.system_time(:millisecond)
+    assert call(profile, pid, "thread/realtime/stop", %{"threadId" => thread}) === %{}
+
+    events =
+      collect(profile, pid, events, min(deadline, now() + 5_000), fn events ->
+        length(notices(events, @closed)) == 1
+      end)
+
+    stop_upper = System.system_time(:millisecond)
+    [^first, last] = notices(events, @item_completed)
+    last_id = last.wire["params"]["item"]["id"]
+    assert_uuid(last_id)
+    refute last_id === first_id
+
+    closed_item = %{
+      "id" => last_id,
+      "realtimeSessionId" => @existing_session,
+      "type" => "realtimeSessionClosed",
+      "outcome" => "ended"
+    }
+
+    selected = Enum.filter(events, &(&1.wire["method"] in @selected))
+    assert length(selected) === 6
+
+    assert_selected(
+      profile,
+      Enum.drop(selected, 3),
+      [
+        {@item_started, %{"threadId" => thread, "item" => closed_item}},
+        {@item_completed, %{"threadId" => thread, "item" => closed_item}},
+        {@closed, %{"threadId" => thread, "reason" => "requested"}}
+      ],
+      stop_lower,
+      stop_upper
+    )
+
+    originals = assert_originals(profile, selected)
+    [closed] = notices(events, @closed)
+    assert started.sequence < closed.sequence
+
+    saved =
+      call(profile, pid, "thread/read", %{"threadId" => thread, "includeTurns" => false})[
+        "thread"
+      ]
+
+    assert saved["id"] === thread and saved["historyMode"] === "paginated"
+    assert File.regular?(saved["path"])
+    query = %{"threadId" => thread, "limit" => 100}
+    timeline = call(profile, pid, "thread/timeline/list", query)
+    # An inert attachment persists only native start/closed facts.
+    assert_timeline(timeline, started_item, closed_item)
+    assert call(profile, pid, "thread/timeline/list", query) === timeline
+
+    assert call(profile, pid, "thread/turns/list", %{"threadId" => thread}) === %{
+             "data" => [],
+             "nextCursor" => nil,
+             "backwardsCursor" => nil
+           }
+
+    assert {:ok, fresh} = Session.drain(pid, 128)
+    events = events ++ fresh
+    assert_events(profile, events)
+    assert notices(events, @sdp_method) === []
+    assert Enum.filter(events, &(&1.wire["method"] in @selected)) === selected
+
+    assert Enum.filter(events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+           |> Enum.map(& &1.wire["method"]) ===
+             [
+               @item_started,
+               @item_completed,
+               @started,
+               @item_started,
+               @item_completed,
+               @closed
+             ]
+
+    await_peer_closed(profile, min(deadline, now() + 5_000))
+    peer = assert_existing_call_peer(profile, 0)
+    peer_bytes = File.read!(Path.join(profile.root, "peer.json"))
+    assert_ready(profile, pid)
+    assert_inputs(ctx)
+
+    assert for(frame <- capture(profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start thread/realtime/start thread/realtime/stop thread/read thread/timeline/list thread/timeline/list thread/turns/list)
+
+    warm = Agent.get(profile.capture, & &1)
+    close_native(pid, ctx.session.connection, ctx.session.identity)
+
+    cold_capture =
+      start_supervised!(
+        Supervisor.child_spec(
+          {Agent, fn -> %{count: 0, bytes: 0, records: []} end},
+          id: :existing_call_cold_capture
+        )
+      )
+
+    cold_profile = %{profile | capture: cold_capture}
+    cold = start_native(cold_profile)
+    cold_profile = %{cold_profile | generation: Session.status(cold.pid).generation}
+    refute :atomics.get(cold.identity, 1) === :atomics.get(ctx.session.identity, 1)
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+    assert call(cold_profile, cold.pid, "thread/timeline/list", query) === timeline
+
+    assert call(cold_profile, cold.pid, "thread/turns/list", %{"threadId" => thread}) === %{
+             "data" => [],
+             "nextCursor" => nil,
+             "backwardsCursor" => nil
+           }
+
+    assert {:ok, cold_events} = Session.drain(cold.pid, 128)
+    assert_events(cold_profile, cold_events)
+    refute Enum.any?(cold_events, &String.starts_with?(&1.wire["method"], "thread/realtime/"))
+
+    assert for(frame <- capture(cold_profile), frame.direction == :out, do: frame.wire["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/timeline/list thread/timeline/list thread/turns/list)
+
+    assert_ready(cold_profile, cold.pid)
+    assert Agent.get(profile.capture, & &1) === warm
+    assert assert_originals(profile, selected) === originals
+    assert_inputs(ctx)
+    assert now() <= deadline
+    close_native(cold.pid, cold.connection, cold.identity)
+    close_transport(ctx.peer.transport, ctx.peer.identity)
+    assert File.read!(Path.join(profile.root, "peer.json")) === peer_bytes
+    assert read_peer(profile) === peer
+
+    assert JSON.decode!(File.read!(Path.join(profile.root, "peer-closed.json"))) === %{
+             "activeSockets" => 0,
+             "handlerThreads" => 0,
+             "threadAlive" => false,
+             "serverClosed" => true
+           }
+
+    assert_inputs(ctx)
+  end
+
+  defp assert_existing_call_input(_profile, request, params) do
+    path =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+
+    bytes = File.read!(path)
+    assert hash(bytes) === @existing_client_schema_sha
+    root = JSON.decode!(bytes)
+
+    assert get_in(Enum.at(root["oneOf"], 102), ["properties", "method", "enum"]) ===
+             ["thread/realtime/start"]
+
+    assert request.wire["method"] === "thread/realtime/start"
+    assert request.wire["params"] === params
+    assert params["transport"] === @existing_transport
+    assert JSON.decode!(request.encoded) === request.wire
+    assert {:ok, decoded} = Wire.decode(request.encoded, max_depth: 32)
+    assert decoded === request.wire
+    assert :ok = Schema.validate(root, request.wire, max_depth: 32)
+
+    # Exact physical owners653-656; no standalone/stable definition or alias credit.
+    for {_owner, pointer, digest, preimage} <- @existing_nodes do
+      assert hash(preimage) === digest
+      assert existing_call_schema_node(root, pointer) === JSON.decode!(preimage)
+    end
+
+    assert :ok =
+             Schema.validate(
+               existing_call_schema_node(
+                 root,
+                 "/definitions/ThreadRealtimeStartTransport/oneOf/2"
+               ),
+               params["transport"],
+               max_depth: 32
+             )
+  end
+
+  defp existing_call_schema_node(root, pointer) do
+    pointer
+    |> String.split("/", trim: true)
+    |> Enum.reduce(root, fn key, node ->
+      if is_list(node), do: Enum.fetch!(node, String.to_integer(key)), else: Map.fetch!(node, key)
+    end)
+  end
+
+  defp existing_call_peer_ready?(profile) do
+    state = read_peer(profile)
+
+    state["paths"] === [existing_call_path()] and state["activeConnections"] === 1 and
+      state["messages"] === [] and state["sent"] === []
+  end
+
+  defp assert_existing_call_peer(profile, active) do
+    state = read_peer(profile)
+    assert state["paths"] === [existing_call_path()]
+    assert state["messages"] === [] and state["sent"] === []
+    assert state["requestCount"] === 1 and state["controls"] === []
+    assert state["activeConnections"] === active
+    assert state["transportEofCount"] === if(active == 0, do: 1, else: 0)
+    assert state["responsesRequests"] === 0 and state["otherHttp"] === []
+    assert state["errors"] === []
+
+    assert is_integer(state["frameCount"]) and state["frameCount"] >= 0 and
+             state["frameCount"] <= 32
+
+    state
+  end
+
+  defp existing_call_path,
+    do: "/v1/realtime?intent=quicksilver&call_id=" <> @existing_call
 
   defp assert_sdp_original(profile, event, thread, lower, upper) do
     emitted = Map.fetch!(event.wire, "emittedAtMs")
