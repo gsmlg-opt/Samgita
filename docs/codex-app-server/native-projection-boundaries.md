@@ -1,5 +1,12 @@
 # Pinned native projection boundaries
 
+The later [complete persisted-producer investigation](persisted-in-progress-producer-boundary.md)
+supersedes only the earlier missing-state annotations for5307/5336/5352/5406
+and the separately tracked5421. Those five required native producer profiles
+are now blocked, with no positive/runtime/transport credit; canonical data
+representability and unknown historical provenance remain explicit. Other
+missing owners and all earlier evidence below retain their original scope.
+
 The original eight physical schema owners remain incomplete. The two explicit-null
 skill owners and two nonnull search owners are **blocked** by the stock pinned
 implementation; the four selective tool-status owners remain **missing**.

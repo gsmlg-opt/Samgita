@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary values/server-request batch](ordinary-server-request-envelopes-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **79 files / 143 real-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,705** identical guarded sources. A separately reviewed ordinary cleanup
+file passes **3/0**, preserving the prior guardian repair. False/zero/empty Form
+data, native envelopes and three source-required external-clock reads bind
+exactly fifteen physical owners. Six unavailable stock output profiles become
+blocked without fabricated success. Contracts: **5,594 implemented / 891 missing /
+136 blocked**; requirements **462 implemented / 12 missing / 11 blocked**, zero
+globally verified. Original clock failures and the supported repair remain
+documented. Next: integrate/qualify the reviewed AppsReadParams and fork-result
+drafts; their source-only evidence is unrun. Prohibited/hosted, A11, unavailable
+emitter/external/OS, complete-goal and release gates remain open.
+
 The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **77 files / 140 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

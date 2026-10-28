@@ -81427,68 +81427,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationEnumSchema/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationEnumSchema/anyOf/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "abc3741ed8c449049812f33b2132aa9710941ca4d34937f8db1f9f9c4f8efd3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationEnumSchema/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationEnumSchema/anyOf/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "5d8dd0383808db70d7c54120c6b658ee9acdbd297d73ec3026d3f1ec927c68f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationEnumSchema/anyOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationEnumSchema/anyOf/2",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "6b6571a796b46f2769454e9a310635a56d9203283e7fc145cab6a967ab6d6b70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -82051,90 +82075,122 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationPrimitiveSchema/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationPrimitiveSchema/anyOf/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "828b7e403589922dd6cf28dd7b0ff171afefb56968ebe50c4c71acdfaed60a35",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationPrimitiveSchema/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationPrimitiveSchema/anyOf/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "c050e974fc5a523f1213ce4918614080e1caf2352925b1bc78763404b9db970a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationPrimitiveSchema/anyOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationPrimitiveSchema/anyOf/2",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "7869960a19e07134bdbc020fe4d5d8f85caae81a77576a4ed8b81575057302ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationPrimitiveSchema/anyOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V541 scoped ordinary Form on stock rust-v0.163.0 Linux-musl/stdio: complete original schema/request/reply, exact primitive types and false/zero/empty values differing from nonempty defaults, raw Unicode enum IDs, independent MCP peer receipt and peer-computed provider continuation, native item completion and unanswered-form interruption/retirement. Two focused seeds pass; final combined-source checks remain separately recorded in the qualification. Only this physical owner gains implemented evidence; no aliases, arbitrary constraint enforcement, external/other transport profiles or global verification. Fixed YOLO setup; no security/permission tests or hosted workflows."
+      ],
       "pointer": "/definitions/McpElicitationPrimitiveSchema/anyOf/3",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "1d31d8686a360f55881ba06700eeea4b1ef0650f73d512fd40a902eb2fe5c7f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -82587,15 +82643,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-values-qualification.md#upstream-explicit-null-output-boundary"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/format/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V542 source-proven unreachable explicit-null native output at immutable 83086188ae0614bd882818ff1aa23f3194962012: ordinary Form requested_schema is parsed into McpElicitationSchema; format is Option<McpElicitationStringFormat> with skip_serializing_if=Option::is_none and a closed four-string enum. Null becomes omitted, never Some(null). The sole typed native request constructor and shared stdio/WebSocket serializer cannot restore this field. Sixteen complete source files and selected schema nodes match the official archive; OpenAI aliases reference arbitrary JSON and cannot qualify this owner. No native null-output success, fabricated app-server frame, test or verified promotion is claimed. Closure requires a supported upstream producer/pin change or explicit target-contract decision."
+      ],
       "pointer": "/definitions/McpElicitationStringSchema/properties/format/anyOf/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -123342,24 +123402,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. Existing reviewed native question case joins original inbound bytes/ID to the literal ordinary question, exact original response and actual provider-consumed authored answer, with resolution/retirement/history/cleanup preserved. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "pointer": "/oneOf/2",
       "schema": "ServerRequest.json",
       "schema_sha256": "ed702cda473e79a2186791d9c9a9e91f3ac0b0912ff56012cbca6508e057e77c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -123401,49 +123469,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/2/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. Existing reviewed native question case joins original inbound bytes/ID to the literal ordinary question, exact original response and actual provider-consumed authored answer, with resolution/retirement/history/cleanup preserved. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/2/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "10f54aa84883497ccacf1a86feb2078405b20cdf8ac955c3399eed4faa60d45b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/2/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. Existing reviewed native question case joins original inbound bytes/ID to the literal ordinary question, exact original response and actual provider-consumed authored answer, with resolution/retirement/history/cleanup preserved. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "pointer": "/oneOf/2/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "3b1509b56d15f816baa602763e944675757b0b45fdde99ff4e621b031bac817a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_input_wait_test.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -123484,24 +123568,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. New V541 assertions select the actual ordinary MCP root envelope, require exact nonnegative integer ID/method/literal params and original-byte equality; independent peer/provider consumption, typed false/zero/empty data and unanswered interruption remain required. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "pointer": "/oneOf/3",
       "schema": "ServerRequest.json",
       "schema_sha256": "ac157aab4b4c5d8a2bbf009137ac5b2bd9cc3407ff9afa219f73a51cc283d1f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_values_test.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -123808,50 +123900,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. A minimal additive assertion joins the original inbound frame to the exact delivered dynamic-tool request on its owning connection; selected root schema, ID/opaque handle, literal arguments, exact reply bytes, provider consumption, FIFO persistence and interrupted cold history remain asserted without replacing any lifecycle. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "pointer": "/oneOf/5",
       "schema": "ServerRequest.json",
       "schema_sha256": "19d2a05e06e05ca96bade15a909ace0ea7501034d62f614aba267e07dce1006e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_injected_history_lifecycle_test.exs:246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/5/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. A minimal additive assertion joins the original inbound frame to the exact delivered dynamic-tool request on its owning connection; selected root schema, ID/opaque handle, literal arguments, exact reply bytes, provider consumption, FIFO persistence and interrupted cold history remain asserted without replacing any lifecycle. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/5/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_injected_history_lifecycle_test.exs:246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -123925,27 +124033,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/5/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. A minimal additive assertion joins the original inbound frame to the exact delivered dynamic-tool request on its owning connection; selected root schema, ID/opaque handle, literal arguments, exact reply bytes, provider consumption, FIFO persistence and interrupted cold history remain asserted without replacing any lifecycle. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "nullable": false,
       "pointer": "/oneOf/5/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "e978499fa9dfcdd457367be278374fe168d5efa8cc4e4ad01316bd549f8a6804",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_injected_history_lifecycle_test.exs:246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -124294,24 +124410,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-server-request-envelopes-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ServerRequest.json#/oneOf/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V543 ordinary actual-native envelope slice at pinned83086188 Linux-musl/stdio; exact physical owner only, no alias/global verification. Separate ordinary-only native cases with experimentalApi false and true handle exactly three sequential distinct currentTime requests for initial environment date, UTC reminder and rebuilt environment date. Each complete original request and correlated reply is preserved; before each reply provider count is zero; after the third exactly one actual provider input contains the independently authored UTC reminder. Three response digests remain sent_unconfirmed without invented resolution ACK. Original one-read failures/diagnostics and source-supported correction retain the5-second observable deadline and all owned cleanup. Experimental node is bound to immutable native export provenance and production Rust, not a nonexistent archived experimental schema. No security/permission tests, broad/hosted workflows, external/OS success, full-goal or release acceptance."
+      ],
       "pointer": "/oneOf/8",
       "schema": "ServerRequest.json",
       "schema_sha256": "338e546ac29ee6b553b9c71319925c9baa4f53415de7dc090de8481d5cb7987f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_current_time_test.exs:97"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -192640,19 +192764,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/persisted-in-progress-producer-boundary.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. Collaboration completion maps child status to Completed/Failed; an ongoing child is distinct from the completed collaboration item. Both V1 status helpers and V2 wait completion are terminal. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
-        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. Earlier investigation supplied no native tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim.",
+        "V544 required genuine current stock persisted-producer profile is blocked under immutable83086188: V1 starts are inProgress; spawn/send/resume/close completions call terminal-only collab_tool_call_status; wait helper is Completed/Failed. V2 public Wait completion is Completed; other V2 activity and analytics are separate types/channels. Selective read projects completed canonical items, not live starts. Separate cancellation/error, legacy conversion/round-trip, ResponseItem resume, external import and generic contributor paths were checked against45 complete official files. Existing authored canonical ItemCompleted payloads remain representable and preserved, so this is not global impossibility, rejection or permission to erase history. Their unknown/constructed provenance cannot substitute for required native stock emission. Exact experimental Read schema matches immutable native export provenance; archived List enums are reference-only. No native-positive test, transport or verified credit; other physical owners unchanged. Closure needs a supported genuine producer/pin or an explicit evidence-contract decision."
       ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -193581,19 +193707,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/persisted-in-progress-producer-boundary.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. Command InProgress is an ItemStarted observation. Short-lived and background unified execution await exit/output and use terminal item statuses; user shell has the same boundary. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
-        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. Earlier investigation supplied no native tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim.",
+        "V544 required genuine current stock persisted-producer profile is blocked under immutable83086188: tool begin/user-shell begin are inProgress; tool completion converts closed terminal-only ExecCommandStatus; user-shell normal/error/cancel completion selects Completed/Failed. No current completed command constructor retains InProgress. Selective read projects completed canonical items, not live starts. Separate cancellation/error, legacy conversion/round-trip, ResponseItem resume, external import and generic contributor paths were checked against45 complete official files. Existing authored canonical ItemCompleted payloads remain representable and preserved, so this is not global impossibility, rejection or permission to erase history. Their unknown/constructed provenance cannot substitute for required native stock emission. Exact experimental Read schema matches immutable native export provenance; archived List enums are reference-only. No native-positive test, transport or verified credit; other physical owners unchanged. Closure needs a supported genuine producer/pin or an explicit evidence-contract decision."
       ],
       "pointer": "/definitions/CommandExecutionStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -194082,18 +194210,20 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/persisted-in-progress-producer-boundary.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Pinned local source-only boundary: selective thread/items/read reads durable ItemCompleted projection with no live overlay; actual dynamic InProgress exists only in ItemStarted, which rollout selection excludes. Settled completed/failed and live-notification evidence does not establish this physical selective-history enum. Still missing; no real-native success test, mock substitution, transport/test evidence or full-goal promotion. This does not prove related collaboration/command/MCP status producers globally unreachable."
+        "Pinned local source-only boundary: selective thread/items/read reads durable ItemCompleted projection with no live overlay; actual dynamic InProgress exists only in ItemStarted, which rollout selection excludes. Settled completed/failed and live-notification evidence does not establish this physical selective-history enum. Still missing; no real-native success test, mock substitution, transport/test evidence or full-goal promotion. This does not prove related collaboration/command/MCP status producers globally unreachable.",
+        "V544 required genuine current stock persisted-producer profile is blocked under immutable83086188: dynamic start is InProgress; response success/failure selects Completed/Failed, cancellation or lost response selects Failed. Handler finishes on cancellation. Selective read projects completed canonical items, not live starts. Separate cancellation/error, legacy conversion/round-trip, ResponseItem resume, external import and generic contributor paths were checked against45 complete official files. Existing authored canonical ItemCompleted payloads remain representable and preserved, so this is not global impossibility, rejection or permission to erase history. Their unknown/constructed provenance cannot substitute for required native stock emission. Exact experimental Read schema matches immutable native export provenance; archived List enums are reference-only. No native-positive test, transport or verified credit; other physical owners unchanged. Closure needs a supported genuine producer/pin or an explicit evidence-contract decision."
       ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -195902,19 +196032,21 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/persisted-in-progress-producer-boundary.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Pinned ordinary native local-store source boundary only: selective history projects ItemCompleted and excludes ItemStarted. MCP tool-call and resource producers use InProgress on start, then Completed/Failed on item completion. No genuine stock local-store completion with this inProgress variant was found; existing live-start or terminal-history tests do not qualify it.",
-        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. State remains missing with no tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim."
+        "Raw preexisting ItemCompleted payloads are preserved by canonicalization, so this is not global impossibility or decoder rejection. InMemory list_items is unsupported; thread/resume history and the external exporter do not manufacture these item completions. Hand-written/imported synthetic rollouts or scripted stores cannot substitute for actual production emission. Earlier investigation supplied no native tests or transport credit. All 5,259 Rust files, 42 key files and five exact nodes match the immutable official pin; no full-compatibility or prohibited-check claim.",
+        "V544 required genuine current stock persisted-producer profile is blocked under immutable83086188: both direct MCP and resource starts are InProgress; completion converts result to Completed/Failed, including error. Aborted dispatch cannot project the unpersisted start. Selective read projects completed canonical items, not live starts. Separate cancellation/error, legacy conversion/round-trip, ResponseItem resume, external import and generic contributor paths were checked against45 complete official files. Existing authored canonical ItemCompleted payloads remain representable and preserved, so this is not global impossibility, rejection or permission to erase history. Their unknown/constructed provenance cannot substitute for required native stock emission. Exact experimental Read schema matches immutable native export provenance; archived List enums are reference-only. No native-positive test, transport or verified credit; other physical owners unchanged. Closure needs a supported genuine producer/pin or an explicit evidence-contract decision."
       ],
       "pointer": "/definitions/McpToolCallStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -196384,15 +196516,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-in-progress-producer-boundary.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchApplyStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V544 required genuine current stock persisted-producer profile is blocked under immutable83086188: patch begin alone has status=None; completed patch always has Some(terminal-only CorePatchApplyStatus). Public None->InProgress fallback therefore applies to start/imported data, not a current completed patch producer. Selective read projects completed canonical items, not live starts. Separate cancellation/error, legacy conversion/round-trip, ResponseItem resume, external import and generic contributor paths were checked against45 complete official files. Existing authored canonical ItemCompleted payloads remain representable and preserved, so this is not global impossibility, rejection or permission to erase history. Their unknown/constructed provenance cannot substitute for required native stock emission. Exact experimental Read schema matches immutable native export provenance; archived List enums are reference-only. No native-positive test, transport or verified credit; other physical owners unchanged. Closure needs a supported genuine producer/pin or an explicit evidence-contract decision."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

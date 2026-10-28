@@ -417,6 +417,31 @@ defmodule SamgitaCodexDriver.NativeActiveInjectedHistoryLifecycleTest do
     assert :ok =
              Schema.validate(protocol_schema("DynamicToolCallParams.json"), tool.wire["params"])
 
+    assert [original] =
+             Enum.filter(captured(ctx), fn entry ->
+               entry.connection === session.index and entry.direction === :in and
+                 entry.wire["method"] === "item/tool/call"
+             end)
+
+    assert original.wire === tool.wire
+    assert JSON.decode!(original.encoded) === tool.wire
+    assert tool.wire["id"] >= 0
+
+    assert original.wire === %{
+             "id" => tool.handle.id,
+             "method" => "item/tool/call",
+             "params" => tool.wire["params"]
+           }
+
+    envelope_schema = protocol_schema("ServerRequest.json")
+
+    dynamic_envelope =
+      envelope_schema["oneOf"]
+      |> Enum.at(5)
+      |> Map.put("definitions", envelope_schema["definitions"])
+
+    assert :ok = Schema.validate(dynamic_envelope, original.wire, max_depth: 32)
+
     assert [first] = ModelFixture.requests(ctx.fixture)
     assert_absent(provider_input(first))
     assert_absent(durable_payloads(path))
