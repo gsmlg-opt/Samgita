@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary output-prerequisite unit](ordinary-output-source-prerequisites.md#metadata-only-qualification)
+adds source evidence only for17 still-missing owners, with36 complete archive-
+equal causal files. Fresh inventory and exact physical-node binding pass;
+all1,761 other guarded hashes and prior17-step commands/results/166/23 counts/
+bounds remain exact. No fresh runtime or state credit is added. Counts stay
+**5,756 implemented /729 missing /136 blocked**,462 implemented/12 missing/11
+blocked requirements, zero globally verified. Final strict completeness exits1.
+Next dependent work requires the documented genuine output producers or stored
+provenance, unresolved created_at upstream behavior, currently prohibited gates
+and unavailable external/OS profiles. A11 and full/release acceptance remain
+incomplete; no mock, schema forwarding or green ordinary repeat closes them.
+
 The [millisecond reverse-pagination unit](ordinary-reverse-timestamp-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps with1,762 identical guarded hashes: main166/0 and
 extensions23/0 twice, selected replay/cleanup/outside-consumer and static/build

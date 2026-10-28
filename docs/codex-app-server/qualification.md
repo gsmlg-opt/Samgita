@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary output-prerequisite unit](ordinary-output-source-prerequisites.md#metadata-only-qualification)
+binds17 still-missing owners to36 complete pinned source files: nullable output
+constructors, exact stored search-source prerequisites and conditional populated
+ThreadStarted metadata. No native/test/state credit is added. Inventory passes,
+all1,761 other guarded hashes remain exact, and preceding17-step commands/
+166/23 counts/bounds/logs are rebound. Final strict completeness still exits1.
+Contracts stay **5,756 implemented /729 missing /136 blocked**, requirements
+462 implemented/12 missing/11 blocked, zero globally verified. Reviewed
+remaining runtime candidates require genuine producers/provenance; prohibited
+verification, A11, unavailable real services/OS, full compatibility and release
+remain incomplete. No hosted workflow, publication or deployment runs.
+
 The [millisecond reverse-pagination unit](ordinary-reverse-timestamp-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps with1,762 identical guarded hashes:
 main166/0 twice, extensions23/0 twice, three replay seeds, four cleanup cases,

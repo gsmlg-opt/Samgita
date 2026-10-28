@@ -100468,11 +100468,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/extra/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: ThreadExtra is representable as an empty struct, but all reviewed fresh/pathless and stored app-server constructors set extra=None, with no Some constructor or extra enrichment assignment established. Persistence extra_config is another field. A genuine populated output producer remains prerequisite; no source-only, sibling/null, history or scripted-frame credit. Remains missing."
+      ],
       "pointer": "/definitions/Thread/properties/extra/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "ccb2f08e899f41dc991c541d024607dbe30c42e92938b8052a800f55c802d27b",
@@ -101150,12 +101154,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/section",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/section",
       "required": false,
@@ -101175,11 +101183,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/section/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "pointer": "/definitions/Thread/properties/section/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "fb2c4ef3e45bebf72e4a132dfe1c7f7f0172ba7838612dd90239a71a2a6a82b6",
@@ -104301,11 +104313,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned typed-output source boundary: ImageGenerationItem saved_path uses skip_serializing_if=Option::is_none, so None omits savedPath and Some emits a path. Both genuine provider/core and extension public-item routes share this serializer; media transformation only clears result. Neither omission, a positive artifact nor supplied null proves this explicit-null notification node. No runtime test or sibling/equal-hash credit; remains missing."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -109466,12 +109482,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadSection/properties/appearance",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSection/properties/appearance",
       "required": false,
@@ -109491,11 +109511,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSection/properties/appearance/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "pointer": "/definitions/ThreadSection/properties/appearance/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c52f9891d0c00ac1f0f9e62f855e1b96215e8197352633dc2b19b818074993b6",
@@ -109513,11 +109537,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSection/properties/appearance/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "pointer": "/definitions/ThreadSection/properties/appearance/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -109536,12 +109564,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSection/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSection/properties/id",
       "required": true,
@@ -109562,12 +109594,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSection/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned creation-notification prerequisite: fresh/pathless snapshots set section=None; stored conversion can preserve a section already supplied for the NEW child. Inspected ordinary fork stages project/daybreak and copies name, while local history/create metadata does not copy parent section. A supported child section assignment before its store read/snapshot is unestablished, not globally impossible. Later moves/CRUD/read/search, null parent section and timing races cannot qualify populated notification or nested appearance. No runtime/test/transport/state credit; remains missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSection/properties/name",
       "required": true,
@@ -131153,11 +131189,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Closed pinned catalogue producer boundary: both production models managers call fixed built-in presets, selecting Plan Some(Some(Medium)) or Default outer None. Empty list params and public conversion preserve them; the only inspected Some(None) constructor is cfg(test) mask behavior. Existing Default null belongs to outer owner3387 and cannot qualify this inner-null owner. No mock/native-runtime/test/transport promotion; remains missing."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0/anyOf/1",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -219479,11 +219519,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned search-source prerequisite: public search postfilters exact core SubAgent(Compact) and projects that stored source. Current manual/automatic compaction runs on the existing Session; the reviewed ordinary source paths establish no new permitted Compact child constructor. This is discovery incompleteness, not global impossibility. No empty-query, compaction-item, fabricated history, notification or sibling-source credit; remains missing."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/6",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "d85a2934393a355694655213a832fb9ac656cbc45e0c07bee9498246d5b131b0",
@@ -219531,11 +219575,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned Other search-source prerequisite: actual search requires exact core SubAgent(Other) with searchable persisted content. Generic child roles/source filters do not establish that producer, and the previously excluded path is not reopened. No permitted ordinary producer was established; this is not global impossibility. No fabricated store/history/frame, sibling-owner or new runtime/test/transport credit; remains missing."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/8",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "8c84b24aaff54b79cff49fb22b4fb5b9c289d6a9a6991f9c3b2795f80e6aaaa7",
@@ -220348,11 +220396,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded scalar search-source union prerequisite: existing genuine Review search evidence belongs to its owning leaf and is not recounted as new parent-only acceptance. Compact/current memory-source producers remain unestablished for the retained scalar values; authentic search provenance and independent selection still matter. No alias/mock/state or new native/test/transport credit; remains missing."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "7f04d3588216613ac67049c661fddb95ebfba5110f2af75163fd51d3d9689801",
@@ -220400,11 +220452,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/0/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned search-source prerequisite: public search postfilters exact core SubAgent(Compact) and projects that stored source. Current manual/automatic compaction runs on the existing Session; the reviewed ordinary source paths establish no new permitted Compact child constructor. This is discovery incompleteness, not global impossibility. No empty-query, compaction-item, fabricated history, notification or sibling-source credit; remains missing."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/0/enum/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "714be13672ef0c561905c6074384a9278cfe11bbef038a6fd631e8eb1a38c4a4",
@@ -220422,11 +220478,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/0/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned current memory-source distinction: genuine memory runtime selects Internal(MemoryConsolidation) plus a separate ThreadSource. Public stored-thread conversion maps Internal to Unknown, not retained SubAgent memory_consolidation. No memory runtime was enabled, and a stock SubAgent producer for this search response is unestablished. No same-name/history/notification/equal-hash transfer or new runtime/test credit; remains missing."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/0/enum/2",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b2a24fffd9c63359f35c5a44c224a9c100417d219d098e0979a213aed0600cf3",
@@ -220749,11 +220809,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned Other search-source prerequisite: actual search requires exact core SubAgent(Other) with searchable persisted content. Generic child roles/source filters do not establish that producer, and the previously excluded path is not reopened. No permitted ordinary producer was established; this is not global impossibility. No fabricated store/history/frame, sibling-owner or new runtime/test/transport credit; remains missing."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/2",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "8f2811008ce341fcd1ab642383c1a319df299f482b3792f5990250359c1d26f2",
@@ -220772,12 +220836,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-output-source-prerequisites.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/2/properties/other",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded pinned Other search-source prerequisite: actual search requires exact core SubAgent(Other) with searchable persisted content. Generic child roles/source filters do not establish that producer, and the previously excluded path is not reopened. No permitted ordinary producer was established; this is not global impossibility. No fabricated store/history/frame, sibling-owner or new runtime/test/transport credit; remains missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/2/properties/other",
       "required": true,
