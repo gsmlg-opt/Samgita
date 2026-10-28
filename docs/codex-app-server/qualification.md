@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [collaboration/steering notification source unit](ordinary-collab-steer-source-boundaries.md#exact-physical-owners-and-verification-boundary)
+adds append-only evidence for2087/2094–2097/2101/2310–2311, all still missing.
+Twenty-four causal files match the pin; the complete archived Rust census
+distinguishes RPC-only steering rejection from public error notification.
+Private collaboration analytics and the unmet wait subscription barrier receive
+no native credit. Inventory passes and prior17-step results/commands/counts/
+bounds bind with all1,761 other guarded hashes unchanged. Counts remain
+**5,756 implemented /729 missing /136 blocked contracts**, unchanged requirements,
+zero globally verified. Next: source-supported millisecond reverse pagination,
+preserving the known created_at failure. A11, prohibited/broad/hosted checks,
+external/OS success and full/release gates stay incomplete.
+
 The [ordinary notification source boundary unit](ordinary-notification-source-boundaries.md#metadata-only-qualification)
 adds source evidence only for2259/2404/2409–2412, all still missing. Nineteen
 complete causal files match the immutable archive. Core consumes child startup

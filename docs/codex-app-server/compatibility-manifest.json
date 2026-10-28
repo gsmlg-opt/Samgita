@@ -89921,11 +89921,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentStatus/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded immutable-source notification prerequisite: an already-subscribed V1 wait may publish genuine Shutdown, but ItemStarted precedes status subscription. Sequential close reports its earlier snapshot and removes the child. No public subscription-ready barrier is established; no timing-selected race, equal-history-owner or fabricated record qualifies this notification leaf. Remains missing, with no new native/test/transport credit."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "77ac1ea0dad495e5d50a989e7ccf7d19c1c2945cc2c8dfc2fbae0d9a9a482990",
@@ -90135,14 +90139,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/native-projection-boundaries.md",
-        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md",
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
-        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit.",
+        "Exact notification-leaf source supplement: selected V2 handlers feed ToolCallAnalytics, whose notification-shaped records enter AnalyticsFact/queue rather than app-server output. Generic canonical public conversion preserves supplied values but does not establish a stock public producer. Interrupted on unfinished private analytics is separate from native public item cancellation. Remains missing; no fabricated history, private capture, sibling-owner or new native/test/transport credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/5",
       "schema": "ServerNotification.json",
@@ -90163,14 +90169,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/native-projection-boundaries.md",
-        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md",
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/6",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
-        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit.",
+        "Exact notification-leaf source supplement: selected V2 handlers feed ToolCallAnalytics, whose notification-shaped records enter AnalyticsFact/queue rather than app-server output. Generic canonical public conversion preserves supplied values but does not establish a stock public producer. Interrupted on unfinished private analytics is separate from native public item cancellation. Remains missing; no fabricated history, private capture, sibling-owner or new native/test/transport credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/6",
       "schema": "ServerNotification.json",
@@ -90191,14 +90199,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/native-projection-boundaries.md",
-        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md",
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
-        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit.",
+        "Exact notification-leaf source supplement: selected V2 handlers feed ToolCallAnalytics, whose notification-shaped records enter AnalyticsFact/queue rather than app-server output. Generic canonical public conversion preserves supplied values but does not establish a stock public producer. Interrupted on unfinished private analytics is separate from native public item cancellation. Remains missing; no fabricated history, private capture, sibling-owner or new native/test/transport credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/7",
       "schema": "ServerNotification.json",
@@ -90219,14 +90229,16 @@
       "direction": "schema_variant",
       "evidence": [
         "docs/codex-app-server/native-projection-boundaries.md",
-        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md"
+        "docs/codex-app-server/prediction-and-collaboration-source-boundaries.md",
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
-        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit."
+        "V505 exhaustive source proof additionally distinguishes actual notification-shaped private analytics constructors from their AnalyticsFact/queue sink. Generic canonical-item forwarding and supplied retained histories can preserve this value, so global unreachability is not claimed. Authentic built-in public-operation provenance/runtime success remains unverified; this physical owner stays missing, with no synthetic rollout/private analytics/equal-history-alias credit.",
+        "Exact notification-leaf source supplement: selected V2 handlers feed ToolCallAnalytics, whose notification-shaped records enter AnalyticsFact/queue rather than app-server output. Generic canonical public conversion preserves supplied values but does not establish a stock public producer. Interrupted on unfinished private analytics is separate from native public item cancellation. Remains missing; no fabricated history, private capture, sibling-owner or new native/test/transport credit."
       ],
       "pointer": "/definitions/CollabAgentTool/enum/8",
       "schema": "ServerNotification.json",
@@ -90338,13 +90350,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-projection-boundaries.md"
+        "docs/codex-app-server/native-projection-boundaries.md",
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentToolCallStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing."
+        "V479 source-bound limitation: V2 sendMessage/followupTask/interruptAgent/listAgents and Interrupted are private collaborator analytics, not public CollabAgentToolCall emissions. Public activity/tool output is a distinct record. Public enum conversion and canonical ItemCompleted history preserve supplied values, so this is no global impossibility or decoder limitation. No stock public producer established; remains missing.",
+        "Exact notification-leaf source supplement: selected V2 handlers feed ToolCallAnalytics, whose notification-shaped records enter AnalyticsFact/queue rather than app-server output. Generic canonical public conversion preserves supplied values but does not establish a stock public producer. Interrupted on unfinished private analytics is separate from native public item cancellation. Remains missing; no fabricated history, private capture, sibling-owner or new native/test/transport credit."
       ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/3",
       "schema": "ServerNotification.json",
@@ -96613,11 +96627,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/NonSteerableTurnKind/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded immutable-source notification producer limitation: the active Review/Compact rejection is constructed as turn/steer JSON-RPC error.data, not ErrorNotification. Ordinary Error delivery and history filter this non-turn-affecting error; the legacy submission adapter instead reports generic BadRequest. Existing genuine Compact RPC evidence and typed enum conversion cannot qualify this different physical notification leaf. Remains missing; no new native/test/transport credit."
+      ],
       "pointer": "/definitions/NonSteerableTurnKind/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "049325e91469f33f035f3153f87a3a89d93e41f292dd00fc5df091496a7ad2c2",
@@ -96635,11 +96653,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-collab-steer-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/NonSteerableTurnKind/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded immutable-source notification producer limitation: the active Review/Compact rejection is constructed as turn/steer JSON-RPC error.data, not ErrorNotification. Ordinary Error delivery and history filter this non-turn-affecting error; the legacy submission adapter instead reports generic BadRequest. Existing genuine Compact RPC evidence and typed enum conversion cannot qualify this different physical notification leaf. Remains missing; no new native/test/transport credit."
+      ],
       "pointer": "/definitions/NonSteerableTurnKind/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "714be13672ef0c561905c6074384a9278cfe11bbef038a6fd631e8eb1a38c4a4",

@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [collaboration/steering source unit](ordinary-collab-steer-source-boundaries.md#exact-physical-owners-and-verification-boundary)
+records2087/2094–2097/2101/2310–2311 without changing their missing states.
+Twenty-four complete pinned files, all5,259 archived Rust sources and eight
+exact physical nodes bind private analytics, the wait subscription prerequisite
+and RPC-only non-steerable errors. Inventory passes; all1,761 other guarded
+hashes and prior17-step commands/counts/bounds remain exact. No fresh runtime
+credit is claimed. Counts stay **5,756 implemented /729 missing /136 blocked**,
+unchanged requirements and zero globally verified. Next: additive ordinary
+updated_at/recency_at reverse pagination, with existing created_at failure and
+all old assertions retained. A11, prohibited/broad/hosted, external/OS and
+full/release gates remain open.
+
 The [ordinary notification source boundary unit](ordinary-notification-source-boundaries.md#metadata-only-qualification)
 records2259/2404/2409–2412 without promoting their missing states. Nineteen
 complete immutable source files and exact physical nodes bind the absent traced
