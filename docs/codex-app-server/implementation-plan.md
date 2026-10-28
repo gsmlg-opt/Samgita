@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary notification source boundary unit](ordinary-notification-source-boundaries.md#metadata-only-qualification)
+records2259/2404/2409–2412 without promoting their missing states. Nineteen
+complete immutable source files and exact physical nodes bind the absent traced
+child-notification route and the unmet project-hook fixture input. Inventory
+passes, all1,761 other guarded hashes stay exact, and prior17-step commands,
+166/21 counts and bounds are rebound without fresh runtime credit. Contracts
+stay **5,756 implemented /729 missing /136 blocked**, unchanged requirements,
+zero globally verified. Adjacent remote-disable prerequisites gain no credit.
+Next: continue independently source-supported ordinary
+gaps; never substitute read/history data or mock frames for a missing emitter.
+A11, prohibited/broad/hosted, external/OS and full/release gates remain open.
+
 The [ordinary existing-call unit](ordinary-existing-call-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps against1,762 identical hashes:
 main166/0 twice, extensions21/0 twice, three replay seeds, four cleanup cases,

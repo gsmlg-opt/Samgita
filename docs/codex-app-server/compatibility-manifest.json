@@ -94995,11 +94995,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookSource/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Source-only fixture prerequisite: native ConfigLayerSource::Project maps to HookSource::Project, but reviewed ordinary tool/plugin/SessionFlags generators establish isolated user/CLI/plugin inputs, not a project config layer. No new admission/trust setup or behavior was investigated or performed. This is not an upstream impossibility proof; matching native hook notices require an independently established permitted input. Remains missing; no runtime, test or coverage credit."
+      ],
       "pointer": "/definitions/HookSource/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "7f51421cffd8e5eea782ff7bad1d60b0e4c269cd77a182907cd4eefe4e72a11c",
@@ -99557,11 +99561,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/0/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary-route closure: genuine spawn_agent child nickname/path source is created, but core consumes SessionConfigured before exposing the child; UUID auto-attachment only drains a listener and bespoke conversion has no ThreadStarted emitter. Public start/fork (including inherited options) and detached review omit child session_source; inline Review uses a direct Session whose bridge drops startup. Fifteen complete causal files archive-match. History/read/AgentSpawn outputs cannot substitute for this notification. Bounded stock-route finding, not every embedding/API caller; remains missing without native/test/coverage credit."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/0/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "049325e91469f33f035f3153f87a3a89d93e41f292dd00fc5df091496a7ad2c2",
@@ -99688,12 +99696,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_nickname",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary-route closure: genuine spawn_agent child nickname/path source is created, but core consumes SessionConfigured before exposing the child; UUID auto-attachment only drains a listener and bespoke conversion has no ThreadStarted emitter. Public start/fork (including inherited options) and detached review omit child session_source; inline Review uses a direct Session whose bridge drops startup. Fifteen complete causal files archive-match. History/read/AgentSpawn outputs cannot substitute for this notification. Bounded stock-route finding, not every embedding/API caller; remains missing without native/test/coverage credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_nickname",
       "required": false,
@@ -99714,12 +99726,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary-route closure: genuine spawn_agent child nickname/path source is created, but core consumes SessionConfigured before exposing the child; UUID auto-attachment only drains a listener and bespoke conversion has no ThreadStarted emitter. Public start/fork (including inherited options) and detached review omit child session_source; inline Review uses a direct Session whose bridge drops startup. Fifteen complete causal files archive-match. History/read/AgentSpawn outputs cannot substitute for this notification. Bounded stock-route finding, not every embedding/API caller; remains missing without native/test/coverage credit."
+      ],
       "nullable": true,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path",
       "required": false,
@@ -99739,11 +99755,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary-route closure: genuine spawn_agent child nickname/path source is created, but core consumes SessionConfigured before exposing the child; UUID auto-attachment only drains a listener and bespoke conversion has no ThreadStarted emitter. Public start/fork (including inherited options) and detached review omit child session_source; inline Review uses a direct Session whose bridge drops startup. Fifteen complete causal files archive-match. History/read/AgentSpawn outputs cannot substitute for this notification. Bounded stock-route finding, not every embedding/API caller; remains missing without native/test/coverage credit."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "1bef6f9728beaba3998133575a18426e06da265fee27e0614fc8f5fd05ab1a19",
@@ -99761,11 +99781,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-notification-source-boundaries.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned source-only ordinary-route closure: genuine spawn_agent child nickname/path source is created, but core consumes SessionConfigured before exposing the child; UUID auto-attachment only drains a listener and bespoke conversion has no ThreadStarted emitter. Public start/fork (including inherited options) and detached review omit child session_source; inline Review uses a direct Session whose bridge drops startup. Fifteen complete causal files archive-match. History/read/AgentSpawn outputs cannot substitute for this notification. Bounded stock-route finding, not every embedding/API caller; remains missing without native/test/coverage credit."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",

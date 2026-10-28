@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary notification source boundary unit](ordinary-notification-source-boundaries.md#metadata-only-qualification)
+adds source evidence only for2259/2404/2409–2412, all still missing. Nineteen
+complete causal files match the immutable archive. Core consumes child startup
+before listener attachment; explicit app-server emitters use other source
+options. Project hook provenance lacks an established ordinary fixture input.
+Remote-disable's adjacent constructor/handle prerequisite also gains no credit.
+Inventory and source binding pass; all1,761 other guarded hashes and the prior
+17 commands/results/counts/bounds stay exact. No fresh runtime/test/coverage or
+state credit is added. Counts stay **5,756 implemented /729 missing /136 blocked**,
+unchanged requirements and zero globally verified. A genuine emitter or permitted
+input remains prerequisite; A11, prohibited/broad/hosted, external/OS and
+full/release gates remain incomplete.
+
 The [ordinary existing-call unit](ordinary-existing-call-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps against1,762 identical guarded hashes: main166/0
 twice, extensions21/0 twice, three replay seeds, four cleanup cases, outside
