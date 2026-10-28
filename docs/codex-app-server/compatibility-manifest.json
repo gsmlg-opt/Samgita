@@ -127686,443 +127686,579 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppToolSummary/properties/description",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/disabledReason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppToolSummary/properties/disabledReason",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disabledReason"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/isEnabled",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppToolSummary/properties/isEnabled",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "a6ba34cd39bf30c536aa469ca27c82979943d5c12a2f9053a5ed127ac57f1082",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isEnabled"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/isReadOnly",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppToolSummary/properties/isReadOnly",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isReadOnly"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppToolSummary/properties/name",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/AppToolSummary/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppToolSummary/properties/title",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/description",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/distributionChannel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/distributionChannel",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "distributionChannel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/iconUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/iconUrl",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "iconUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/iconUrlDark",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/iconUrlDark",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "iconUrlDark"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConnectorMetadata/properties/id",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/installUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/installUrl",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConnectorMetadata/properties/name",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/pluginDisplayNames",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConnectorMetadata/properties/pluginDisplayNames",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginDisplayNames"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/definitions/ConnectorMetadata/properties/toolSummaries",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConnectorMetadata/properties/toolSummaries",
       "required": false,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "468ce9b2939a200b6c031f95c92a24559ba0d51b5a65d4048d3c3dad4f673455",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "toolSummaries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/properties/apps",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/apps",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "52fb6ca400d2037d1033216aebbe8ac2d3421555b6a2862e63f874bbd5bee1ee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "apps"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-read-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadResponse.json#/properties/missingAppIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V533 stock rust-v0.163.0 app/read returns exact complete Unicode metadata/tool summaries through nine native RPCs, nineteen original outgoing envelopes and seventeen distinct request/reply IDs across two confirmed owned Linux-musl/stdio processes. Four bounded local backend batches prove first-request ordering, duplicate caller/backend and surplus filtering, partial missing IDs, metadata-only cache, summary promotion, hiding retained summaries and cold refetch. Exact original JSONL/Wire/request/response schema equality, empty loaded-thread/workspace/model journals and confirmed Port/owner/PID cleanup are required. Fixed descriptive isEnabled/isReadOnly/disabledReason are copied data only; no effective permission/access/policy/tool-executability outcome is tested. pluginDisplayNames covers only an empty array with plugins disabled; optional null/other value alternatives and nonempty plugin metadata remain unverified. Twelve official production files/fifteen excerpts and exact schema match immutable archive. No app/list, MCP, turn/model/tool call, template/AppInfo/AppMetadata alias, alternate transport/OS, real provider or global verified credit. No old mixed helper is imported; V532 setup/helper stays byte-identical. Prohibited security/credential/authentication/authorization/approval/permission checks, audits and hosted workflows remain unrun; A11, unavailable emitters/external/full-goal and publication gates stay incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/missingAppIds",
       "required": true,
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:200"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "missingAppIds"
     },
     {

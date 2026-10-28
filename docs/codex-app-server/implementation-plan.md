@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary app/read metadata unit](ordinary-apps-read-metadata-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **72 files / 135 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,693** identical guarded hashes. Nine real reads/four bounded backend
+batches qualify ordering, deduplication, partial misses, cache promotion/hiding
+and cold refetch; only seventeen physical response owners gain scoped evidence.
+Contracts: **5,525 implemented / 966 missing / 130 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Next: independently
+review and qualify the ordinary remote-plugin template metadata draft; its
+source-only result receives no promotion. Prohibited/hosted, A11, unavailable
+emitter/external/OS, full-goal and release gates remain open.
+
 The [ordinary persisted Apps-context unit](ordinary-app-context-history-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **71 files / 134 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary app/read metadata unit](ordinary-apps-read-metadata-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **72 files / 135 actual-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0**,
+static/build checks and **1,693** identical guarded sources. Exact native
+projection, ordering, duplicate/missing IDs, cache promotion/hiding and cold
+refetch bind only owners3334–3350. Contracts: **5,525 implemented / 966 missing /
+130 blocked**; requirements **462 implemented / 12 missing / 11 blocked**, zero
+verified. Descriptive flags confer no policy/outcome evidence; old mixed and
+V532 files remain exact. The next ordinary plugin-template draft is source-only.
+Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility,
+publication and deployment remain incomplete.
+
 The [ordinary persisted Apps-context unit](ordinary-app-context-history-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **71 files / 134 actual-native
 cases twice**, three selected WebSocket seeds, outside consumer **1/0**,
