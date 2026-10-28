@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary persisted Apps-context unit](ordinary-app-context-history-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **71 files / 134 actual-native
+cases twice**, three selected WebSocket seeds, outside consumer **1/0**,
+static/build checks and **1,691** identical guarded sources. One genuine
+metadata MCP call survives exact canonical persistence, duplicate/absent
+selection, first-cold selective read and explicit resume. Only owner5585 gains
+scoped credit: **5,508 implemented / 983 missing / 130 blocked** contracts;
+requirements **462 implemented / 12 missing / 11 blocked**, zero verified.
+The old mixed helper/profile stays unchanged. Next app/read metadata draft
+is source-only and unrun. Prohibited/hosted, A11, unavailable emitters/external/
+OS, full compatibility, publication and deployment remain incomplete.
+
 The [ordinary User-transcript/provider-metadata unit](ordinary-user-transcript-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **70 files / 133 real-native
 cases twice**, three selected WebSocket seeds, outside consumer **1/0**,

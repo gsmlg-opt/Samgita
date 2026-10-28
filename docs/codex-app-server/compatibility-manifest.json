@@ -201280,24 +201280,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-app-context-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/8/properties/appContext/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V532 actual-native configured Apps metadata MCP call emits a full completed item with independently prescribed nonnull appContext. Original JSONL/Wire/aggregate request, notification and selective-response checks preserve exact connector/link/resource/app/action, result, explicit nulls, native identities/times and bounded duration. Full flat camelCase canonical item_completed equality and matching persisted selective data are required; warm duplicate/absent selection, checked owned shutdown, first-cold selective content read before hydration, unchanged rollout/provider bytes, explicit resume and original rollout-prefix/completed-item retention. Exactly two local model-dependency calls, one inert inventory lookup,20 outgoing envelopes/18 distinct request-reply IDs; no command/tool side effect outside metadata fixture. New one-process synchronous bounded dependency imports no old mixed helper, inspects no credential headers/files and tests no auth/permission outcome; synthetic identity is runtime setup only, native launch fixed yolo. Owned native/dependency Port/owner/PID cleanup is checked; earlier mixed files/helpers stay unchanged. Exact experimental export/node is hash-pinned; its JSON is absent from official archive, while23 complete production declarations/implementations are archive-equal. Only this physical nonnull wrapper on owned Linux-musl/stdio; no inner/alias/ref propagation, full MCP/Apps/resource lifecycle, real service/OS/transport or verified credit. Prohibited security/credential/authentication/authorization/approval/permission checks and hosted remain unrun. Other inProgress source searches are bounded/inconclusive, not global unreachability; A11, unavailable emitters/external/full-goal and publication gates remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/8/properties/appContext/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "eb1116157e85c6093e153f4b64842af82e7b2bebe4c31f945228de36b1f29eb8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_app_context_history_test.exs:157"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

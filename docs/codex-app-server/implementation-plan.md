@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary persisted Apps-context unit](ordinary-app-context-history-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **71 files / 134 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,691** identical guarded hashes. Complete original context/result,
+canonical durable item, first-cold selective read and explicit-resume oracles
+bind only owner5585. Contracts: **5,508 implemented / 983 missing / 130 blocked**;
+requirements unchanged, zero verified. The new bounded dependency excludes
+mixed security checks; sixteen earlier inputs stay exact. Next: independently
+review the metadata-only app/read seventeen-owner draft, then integrate and
+qualify its real responses. Its source-only evidence earns no promotion.
+Prohibited/hosted, A11, unavailable emitter/external/OS, full-goal and release
+gates remain open.
+
 The [ordinary User-transcript/provider-metadata unit](ordinary-user-transcript-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **70 files / 133 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks
