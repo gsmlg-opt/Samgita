@@ -15,6 +15,19 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary installed-app unit](ordinary-installed-apps-qualification.md#final-combined-source-functional-qualification)
+passes **14 reviewed steps**, **88 files /153 actual-native cases twice**, three
+selected WebSocket seeds, outside consumer **1/0** and static/build checks.
+All **1,722** guarded hashes agree and **1,718** other prior sources stay exact.
+Only seven physical owners gain evidence: **5,642 implemented /843 missing /
+136 blocked**, unchanged requirements and zero globally verified. Two initial
+draft failures are preserved with exact native source corrections; buffers,
+deadlines, metadata oracles and owned cleanup remain. Existing dependency,
+replay and fail-closed database repairs stay intact. No prohibited/broad/hosted
+check or database recovery rerun occurs. Continue unverified plugin-share/null
+and lifecycle/status ID drafts. A11, unavailable emitter/external/OS, full goal
+and release stay incomplete.
+
 The [ordinary remote-plugin lifecycle unit](ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **87 files / 152 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build

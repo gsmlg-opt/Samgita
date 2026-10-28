@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary installed-app unit](ordinary-installed-apps-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **88 files /153 real-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,722** identical guarded sources. Genuine two-generation refresh/cache
+behavior, deduplication, descriptive response/notification arrays and original
+typed request IDs bind seven physical owners; five existing requirements gain
+supplements. All **1,718** other prior sources and commands remain exact.
+Contracts: **5,642 implemented /843 missing /136 blocked**; requirements
+**462 implemented /12 missing /11 blocked**, zero globally verified. The draft
+timestamp/startup-inventory failures and supported corrections stay documented.
+No prohibited/broad/hosted check or database recovery rerun occurs. Next: qualify
+the source-reviewed unmapped plugin-share list/null and physical ID drafts;
+then the ordinary delete/status ID profiles. These drafts remain unverified.
+A11, unavailable emitters/external/OS, timestamp cursor, full goal and release
+remain incomplete.
+
 The [ordinary remote-plugin lifecycle unit](ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **87 files / 152 real-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

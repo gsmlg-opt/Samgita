@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [ordinary installed-app unit](ordinary-installed-apps-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **88 files /153 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,722** identical guarded sources. Two native snapshot generations,
+cached reads, deduplication, populated descriptive arrays and typed original
+exchange bind seven owners. Contracts: **5,642 implemented /843 missing /
+136 blocked**; requirements **462 implemented /12 missing /11 blocked**, zero
+globally verified. Original timestamp/startup assumptions and their exact
+source-supported corrections remain recorded; no deadline or semantic oracle
+is weakened. No prohibited/broad/hosted check or database recovery rerun occurs.
+Next plugin-share/null and lifecycle/status ID drafts are runtime-unverified.
+A11, unavailable emitters/external/OS, native timestamp cursor, complete goal,
+publication and release remain incomplete.
+
 The [ordinary remote-plugin lifecycle unit](ordinary-remote-plugin-lifecycle-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **87 files / 152 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build

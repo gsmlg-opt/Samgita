@@ -847,14 +847,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/isolated-app-catalog.md"
+        "docs/codex-app-server/isolated-app-catalog.md",
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:app/installed",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
+        "Ordinary actual-native threadless installed reads use omitted,true,false,true,false forceRefresh. Two independently authored backend metadata generations prove cached false reads retain the prior snapshot without discovery and true reads publish changed identities/names. Three MCP initialization lifecycles, four tools/list and one directory GET overall; no model/tool/thread/turn execution. Fixed YOLO/identity setup is not a security/permission/auth/policy outcome assertion."
       ],
       "params": {
         "$ref": "#/definitions/AppsInstalledParams"
@@ -885,7 +887,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
         ]
       },
       "transport_coverage": [
@@ -898,7 +901,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/isolated-app-catalog.md",
-        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md",
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:app/list",
@@ -906,7 +910,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
-        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required."
+        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required.",
+        "Ordinary actual-native app/list produces populated directory/runtime merged arrays with independent id/name/description/logo projections and a directory-only row. A second cached read preserves them without discovery/directory I/O. Response bytes/schema/typed correlation are separate from actual notification captures. Access/enabled/policy outcomes, aliases, other transport/OS and whole-method compatibility remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/AppsListParams"
@@ -938,7 +943,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157"
+          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
         ]
       },
       "transport_coverage": [
@@ -11155,14 +11161,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/isolated-app-catalog.md"
+        "docs/codex-app-server/isolated-app-catalog.md",
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:app/list/updated",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
+        "Ordinary actual-native app/list/updated frames are captured separately from responses. One or two first-list updates include the final independent populated descriptive projection; cached second list emits its own final update. Native emittedAtMs envelope and full/selected data schemas remain validated. Interim arrays are bounded to owned IDs; response data never fabricates notification evidence. Policy/access/auth outcomes, aliases and full profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/AppListUpdatedNotification"
@@ -11184,7 +11192,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16044,14 +16053,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/isolated-app-catalog.md"
+        "docs/codex-app-server/isolated-app-catalog.md",
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:app/installed",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
+        "Ordinary actual-native threadless installed reads use omitted,true,false,true,false forceRefresh. Two independently authored backend metadata generations prove cached false reads retain the prior snapshot without discovery and true reads publish changed identities/names. Three MCP initialization lifecycles, four tools/list and one directory GET overall; no model/tool/thread/turn execution. Fixed YOLO/identity setup is not a security/permission/auth/policy outcome assertion."
       ],
       "prerequisites": [
         "initialized"
@@ -16068,7 +16079,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
         ]
       },
       "transport_coverage": [
@@ -16082,7 +16094,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/isolated-app-catalog.md",
-        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md"
+        "docs/codex-app-server/ordinary-app-context-skill-read-qualification.md",
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:app/list",
@@ -16090,7 +16103,8 @@
       "legacy": false,
       "limitations": [
         "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified.",
-        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required."
+        "Ordinary native Linux-musl/stdio at immutable83086188: real thread/start and loaded-thread ID, app/list with that exact string then explicit null under unchanged feature/config setup, typed -1/string -1 original JSON/Wire/Session correlation, literal id/name projections and real update frames, exact two directory GETs with ordinary MCP discovery and no model/tool work. Only threadId scalar owner3328 gains new credit; mixed AppInfo arrays/policy fields stay opaque. No distinct config-precedence, feature/access/default-policy, security/permission test, other OS/transport, real service or globally verified credit. Bounded capture/dependency and confirmed native/helper cleanup remain required.",
+        "Ordinary actual-native app/list produces populated directory/runtime merged arrays with independent id/name/description/logo projections and a directory-only row. A second cached read preserves them without discovery/directory I/O. Response bytes/schema/typed correlation are separate from actual notification captures. Access/enabled/policy outcomes, aliases, other transport/OS and whole-method compatibility remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -16108,7 +16122,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_app_catalog_profile.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157"
+          "apps/samgita_codex_driver/test/native_ordinary_apps_thread_context_test.exs:157",
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
         ]
       },
       "transport_coverage": [
@@ -71521,25 +71536,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/85/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native app/installed captures five requests, including distinct integer3318 and string3318 IDs. Selects exact experimental ClientRequest variant85/method and validates its original physical id $ref with unchanged root definitions against each actual ID. Original bytes, native response correlation and Wire round trips remain exact. This physical ID property only; no alias, whole-root, other transport/OS or complete-method claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/85/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -127934,25 +127955,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppListUpdatedNotification.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native app/list/updated frames are captured separately from responses. One or two first-list updates include the final independent populated descriptive projection; cached second list emits its own final update. Native emittedAtMs envelope and full/selected data schemas remain validated. Interim arrays are bounded to owned IDs; response data never fabricates notification evidence. Policy/access/auth outcomes, aliases and full profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/AppListUpdatedNotification.json",
       "schema_sha256": "51bf88246c4b0e2246f4b0fc87ff55d255f0a8db507ccdcb06e2c9d6871c53c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "data"
@@ -127960,25 +127987,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsInstalledParams.json#/properties/forceRefresh",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native threadless installed reads use omitted,true,false,true,false forceRefresh. Two independently authored backend metadata generations prove cached false reads retain the prior snapshot without discovery and true reads publish changed identities/names. Three MCP initialization lifecycles, four tools/list and one directory GET overall; no model/tool/thread/turn execution. Fixed YOLO/identity setup is not a security/permission/auth/policy outcome assertion."
+      ],
       "nullable": false,
       "pointer": "/properties/forceRefresh",
       "required": false,
       "schema": "v2/AppsInstalledParams.json",
       "schema_sha256": "7ad01140090a91fe68317931d392cec69e7141dc1969de711bae6e32f3b9cbe3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "forceRefresh"
@@ -128064,25 +128097,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsInstalledResponse.json#/definitions/InstalledApp/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native installed snapshots preserve exact independently authored alpha/beta then alpha/gamma identities. Duplicate alpha tools collapse to one installed identity; exact arrays and backend generations are asserted. Only this identity field gains evidence; computed callable/enabled/policy fields and aliases remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/InstalledApp/properties/id",
       "required": true,
       "schema": "v2/AppsInstalledResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -128090,25 +128129,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsInstalledResponse.json#/definitions/InstalledApp/properties/runtimeName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native installed snapshots trim padded Unicode alpha runtimeName, preserve its changed second-generation name and serialize missing beta/gamma names as present null. Independent metadata and exact native identity/runtimeName arrays are required. Descriptive metadata only; callable/enabled/auth/policy outcomes, aliases and full profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/InstalledApp/properties/runtimeName",
       "required": false,
       "schema": "v2/AppsInstalledResponse.json",
       "schema_sha256": "29461b9a3e4bee8eb9e6c6e1e8f674b96d8e8dcb6d65751d0698b918e24413f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "runtimeName"
@@ -128116,25 +128161,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsInstalledResponse.json#/properties/apps",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native app/installed returns empty then populated committed apps arrays across two genuine metadata generations. Deduplication, changed identities/runtime names and false cached reads have independent literal oracles. Full result and selected-field schemas, original bytes and cleanup remain. Computed callable/enabled/policy values are not semantically asserted or credited."
+      ],
       "nullable": false,
       "pointer": "/properties/apps",
       "required": true,
       "schema": "v2/AppsInstalledResponse.json",
       "schema_sha256": "7608f6f29b3e5936580ece5de5cc03f67946abaa8c4a09e1ff24d9306a56b0bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "apps"
@@ -128278,25 +128329,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-installed-apps-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary actual-native app/list produces populated directory/runtime merged arrays with independent id/name/description/logo projections and a directory-only row. A second cached read preserves them without discovery/directory I/O. Response bytes/schema/typed correlation are separate from actual notification captures. Access/enabled/policy outcomes, aliases, other transport/OS and whole-method compatibility remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/AppsListResponse.json",
       "schema_sha256": "51bf88246c4b0e2246f4b0fc87ff55d255f0a8db507ccdcb06e2c9d6871c53c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_installed_apps_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "data"
