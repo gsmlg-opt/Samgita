@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **86 files / 151 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,718** identical guarded sources. Actual default/clamped limits,
+continuation and null remote-path reads add only three physical owners; four
+existing requirements gain supplements. Contracts: **5,632 implemented /
+853 missing / 136 blocked**; requirements **462 implemented / 12 missing /
+11 blocked**, zero globally verified. The first Credo failure and its structural
+repair remain documented; no assertions, bounds or process-owner behavior change.
+No prohibited/broad/hosted check runs. The next install/uninstall draft remains
+runtime-unverified. A11, unavailable emitters/external/OS, the native timestamp
+cursor defect, full compatibility and release remain incomplete.
+
 The [ordinary executor-skills/feedback/echo unit](ordinary-environment-feedback-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **85 files / 150 actual-native cases
 twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/

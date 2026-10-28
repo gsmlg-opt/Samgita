@@ -9,6 +9,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_plugin_template_fixture.py", __DIR__)
   @script_sha "8853fd4c91aa4b0c2d2004e96cc397c806e19c9332d3e0927a7da981a2cc839a"
+  @read_params_sha "f15952a2828c90501cc32f347c1e1691ea65cd2d97f503ab40e7be08757de74d"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @alpha "plugins~Plugin_metadata_alpha"
@@ -170,6 +171,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
     assert hash(File.read!(binary)) === @binary_sha
     assert hash(File.read!(@script)) === @script_sha
     assert hash(File.read!(@base)) === @base_sha
+    assert hash(File.read!(schema_path("v2/PluginReadParams.json"))) === @read_params_sha
 
     root =
       Path.join(
@@ -203,6 +205,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
       Path.join(__DIR__, "support/native_launch_fixture.ex"),
       Path.join(__DIR__, "support/stdio_session_fixture.ex"),
       schema_path("ClientRequest.json"),
+      schema_path("v2/PluginReadParams.json"),
       schema_path("v2/PluginReadResponse.json")
     ]
 
@@ -229,7 +232,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
     assert_backend(ctx, [@alpha, @beta])
     assert read(ctx, warm.pid, @empty) === expected([], [])
     assert_backend(ctx, [@alpha, @beta, @empty])
-    assert read(ctx, warm.pid, @alpha) === expected(@alpha_templates, @skills)
+    assert read(ctx, warm.pid, @alpha, true) === expected(@alpha_templates, @skills)
     assert_backend(ctx, [@alpha, @beta, @empty, @alpha])
     assert_empty_loaded(ctx, warm.pid)
     assert_idle(warm.pid)
@@ -264,12 +267,29 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
   defp expected(templates, skills),
     do: %{"appTemplates" => templates, "marketplacePath" => nil, "skills" => skills}
 
-  defp read(ctx, pid, id) do
-    result =
-      call(ctx, pid, "plugin/read", %{
-        "remoteMarketplaceName" => "openai-curated-remote",
-        "pluginName" => id
-      })
+  defp read(ctx, pid, id, explicit_null \\ false) do
+    params = %{
+      "remoteMarketplaceName" => "openai-curated-remote",
+      "pluginName" => id
+    }
+
+    params = if explicit_null, do: Map.put(params, "marketplacePath", nil), else: params
+    params_schema = schema("v2/PluginReadParams.json")
+    assert :ok = Schema.validate(params_schema, params, max_depth: 16)
+    properties = Map.fetch!(params_schema, "properties")
+    remote_name = Map.fetch!(properties, "remoteMarketplaceName")
+    assert remote_name === %{"type" => ["string", "null"]}
+    assert :ok = Schema.validate(remote_name, Map.fetch!(params, "remoteMarketplaceName"))
+
+    if explicit_null do
+      null_path = properties["marketplacePath"]["anyOf"] |> Enum.at(1)
+      assert null_path === %{"type" => "null"}
+      assert :ok = Schema.validate(null_path, Map.fetch!(params, "marketplacePath"))
+    else
+      refute Map.has_key?(params, "marketplacePath")
+    end
+
+    result = call(ctx, pid, "plugin/read", params)
 
     plugin = Map.fetch!(result, "plugin")
     document = schema("v2/PluginReadResponse.json")

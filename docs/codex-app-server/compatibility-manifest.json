@@ -3886,7 +3886,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-selection-qualification.md",
         "docs/codex-app-server/plugin-hook-declarations-qualification.md",
-        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/read",
@@ -3895,7 +3896,8 @@
       "limitations": [
         "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
         "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment.",
-        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Ordinary explicit-null marketplacePath plus fixed nonnull remoteMarketplaceName uses the actual native remote-read branch. All six independent template/skill metadata results, precise backend counts, warm/cold rereads, original bytes, frozen inputs and owned cleanup remain required. Native intentionally ignores the supplied name after branch selection and resolves canonical identity from backend scope; no string-specific routing, name validation, permission, install, alias or whole-method claim follows."
       ],
       "params": {
         "$ref": "#/definitions/PluginReadParams"
@@ -3928,7 +3930,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/plugin_selection_test.exs",
           "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -3998,14 +4001,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:plugin/search",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged."
       ],
       "params": {
         "$ref": "#/definitions/PluginSearchParams"
@@ -4036,7 +4041,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_plugin_limit_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18294,7 +18300,8 @@
       "evidence": [
         "docs/codex-app-server/plugin-selection-qualification.md",
         "docs/codex-app-server/plugin-hook-declarations-qualification.md",
-        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md"
+        "docs/codex-app-server/plugin-skill-optional-metadata-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/read",
@@ -18303,7 +18310,8 @@
       "limitations": [
         "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete.",
         "Scoped actual-native plugin/read populated declaration inventory only: two explicitly ordered inert legacy hook files produce five independent exact key/eventName maps, including event order different from input JSON order and distinct source/group/handler positions. Warm repeated reads change three PreCompact declarations to PostCompact, hold/restore the first source with exact preserved bytes, and a distinct cold process reproduces the original inventory. Original byte/ID correlation, exact19 requests, finite capture/source/response bounds and owned cleanup remain checked. No installation, activation, hook/tool/thread/model execution or inference; prompt/agent descriptors are metadata, not executable-compatibility evidence. Initial1/0 and focused1/0 twice plus strict checks pass with378 stable sources/all377 prior unchanged,770exports/15descriptors unchanged. Only4681/4682 become scoped implemented; parent4668 gains supplemental populated evidence. No verified/whole-method/HookEventName notification/legacy-emitter/transport/OS promotion; prohibited/broad/hosted, A11, external/platform and complete-goal gates remain incomplete; no publication/deployment.",
-        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment."
+        "Scoped actual-native plugin/read optional local skill metadata: independent complete sole skill and eight-field interface oracles retain namespaced identity/concrete path while rewriting only YAML to omit both icons yields literal nulls, holding YAML aside yields interface null, and restoring stripped/rich bytes recovers both stages. Warm rich/stripped/held and distinct cold held/stripped/rich are each read twice; declared existing onboarding skill remains explicitly null for the fixed never-installed/disabled plugin, with no positive-to-null onboarding claim. Original bytes/IDs, exact22 selected requests, finite capture/source/response bounds, unchanged assets/SKILL/manifests/config/catalog/provider/support and owned cleanup remain checked. No install/activation/skill/hook/tool/thread/model execution or external service. Initial1/0, focused2/0 twice and strict checks pass with381 stable sources/all380 prior unchanged,770exports/15descriptors exact; prior87schema/148ordinary-driver twice/outsideconsumer evidence retains source equivalence without rerun claims. Only4676/4717/4721/4728 become scoped implemented; four parents gain supplemental evidence. Local SkillSummary.path is always Some; remote-only null4732 remains missing. No verified/whole-method/alias/transport/OS promotion; prohibited/broad/hosted, A11, legacy/external/platform and complete-goal gates remain incomplete; no publication/deployment.",
+        "Ordinary explicit-null marketplacePath plus fixed nonnull remoteMarketplaceName uses the actual native remote-read branch. All six independent template/skill metadata results, precise backend counts, warm/cold rereads, original bytes, frozen inputs and owned cleanup remain required. Native intentionally ignores the supplied name after branch selection and resolves canonical identity from backend scope; no string-specific routing, name validation, permission, install, alias or whole-method claim follows."
       ],
       "prerequisites": [
         "initialized"
@@ -18322,7 +18330,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/plugin_selection_test.exs",
           "apps/samgita_codex_driver/test/native_plugin_hook_declarations_test.exs",
-          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs"
+          "apps/samgita_codex_driver/test/native_plugin_skill_optional_metadata_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs"
         ]
       },
       "transport_coverage": [
@@ -18380,14 +18389,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:plugin/search",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged."
       ],
       "prerequisites": [
         "initialized"
@@ -18404,7 +18415,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_remote_plugin_limit_test.exs"
         ]
       },
       "transport_coverage": [
@@ -171021,22 +171033,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadParams.json#/properties/marketplacePath/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary explicit-null marketplacePath plus fixed nonnull remoteMarketplaceName uses the actual native remote-read branch. All six independent template/skill metadata results, precise backend counts, warm/cold rereads, original bytes, frozen inputs and owned cleanup remain required. Native intentionally ignores the supplied name after branch selection and resolves canonical identity from backend scope; no string-specific routing, name validation, permission, install, alias or whole-method claim follows."
+      ],
       "pointer": "/properties/marketplacePath/anyOf/1",
       "schema": "v2/PluginReadParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -171077,25 +171095,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadParams.json#/properties/remoteMarketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary explicit-null marketplacePath plus fixed nonnull remoteMarketplaceName uses the actual native remote-read branch. All six independent template/skill metadata results, precise backend counts, warm/cold rereads, original bytes, frozen inputs and owned cleanup remain required. Native intentionally ignores the supplied name after branch selection and resolves canonical identity from backend scope; no string-specific routing, name validation, permission, install, alias or whole-method claim follows."
+      ],
       "nullable": true,
       "pointer": "/properties/remoteMarketplaceName",
       "required": false,
       "schema": "v2/PluginReadParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_template_metadata_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "remoteMarketplaceName"
@@ -174407,25 +174431,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-remote-plugin-limit-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Ordinary real native remote plugin search: actual backend query proves omitted/null default16,0/1 lower clamp1, explicit17 and1001 upper clamp1000. Independently authored18-row metadata yields exact page identities, with unchanged native cursor continuation to row18. Exactly seven searches/HTTP calls, eleven native envelopes/ten exchanges, typed IDs, normal validation, no turns/tools and explicit owned native/helper cleanup. Fixed policy metadata/identity setup is not an assertion; policy/error/other-scope/real-service/OS/full behavior remains unqualified. Local-only limit evidence is insufficient and unchanged."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_remote_plugin_limit_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "limit"

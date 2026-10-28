@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **86 files / 151 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build
+checks. All **1,718** guarded sources match. Only three physical owners gain
+credit: **5,632 implemented / 853 missing / 136 blocked**, unchanged requirements
+and zero globally verified. The initial Credo failure and extraction retain every
+semantic assertion/deadline; final checks pass. Existing process cleanup, replay
+and database safeguards remain intact. No prohibited/broad/hosted check or
+database recovery rerun occurs. Continue the source-reviewed remote lifecycle
+draft, still unrun. A11, unavailable emitters/external/OS, full goal and release
+remain incomplete.
+
 The [ordinary executor-skills/feedback/echo unit](ordinary-environment-feedback-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **85 files / 150 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0** and static/build

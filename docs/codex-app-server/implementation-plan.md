@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary remote-limit/read unit](ordinary-remote-plugin-limit-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**, **86 files / 151 real-native cases
+twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/
+build checks and **1,718** identical guarded sources. Actual limit normalization,
+unchanged continuation and explicit-null remote reads bind only three physical
+owners; **1,713** prior hashes and all prior command arguments remain exact.
+The initial Credo nesting failure and unchanged-helper extraction are retained;
+final combined-source checks pass. Contracts: **5,632 implemented / 853 missing /
+136 blocked**; requirements **462 implemented / 12 missing / 11 blocked**, zero
+globally verified. No prohibited/broad/hosted checks run. Next: adopt and qualify
+the source-reviewed ordinary remote install/uninstall lifecycle draft; it remains
+outside the repository and runtime-unverified. A11, unavailable emitters/external/
+OS, the native timestamp cursor defect, full compatibility and release remain
+incomplete.
+
 The [ordinary executor-skills/feedback/echo unit](ordinary-environment-feedback-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**, **85 files / 150 real-native cases
 twice**, selected three-seed WebSocket cases, outside consumer **1/0**, static/
