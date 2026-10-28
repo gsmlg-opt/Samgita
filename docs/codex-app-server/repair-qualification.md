@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps with 1,762 identical guarded sources:165/0 main
+twice,15/0 extensions twice, three replay seeds, four cleanup cases, outside
+consumer and static/build checks. Original assertions/deadlines are preserved;
+the failed draft envelope omitted the real native timestamp and now requires it.
+Six exact notification owners become implemented: **5,748 implemented /737
+missing /136 blocked**, unchanged requirements and zero globally verified.
+Two command/shutdown fields gain explicit producer/ordering prerequisites only.
+Dependency/replay/database/cleanup fixes and production inputs remain unchanged.
+Continue the inspected nullable-result source bindings; A11, prohibited/broad/
+hosted, unresolved producer/cleanup, external/OS and full/release gates stay incomplete.
+
 The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps with 1,762 identical guarded sources: 165/0 main
 cases twice, 14/0 extensions twice, three replay seeds, four cleanup cases,

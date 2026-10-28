@@ -98969,24 +98969,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical cli notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3e32720a84f76aa3c6d43c98afe5b44c70938bfb1eac76f371d1a60838da8b4a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -99021,116 +99029,156 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical exec notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "c20d3fcfc0c2bd2a6ecb30670b66a69dce7b92ca87e3cefd922f3ec19b917e82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical appServer notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "622214a100066aceb1d1ab827c78dee8aaf32f7cd66e8c02400287fe6cb589c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/0/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical unknown notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical custom object notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "d9e145b3bb9eb5bc34a7e8705de3058f42fe714883c960d7f41e5f4fb37378d9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-notification-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/SessionSource/oneOf/1/properties/custom",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) emits exactly one original thread/started per genuine producer. Bounded ingress retains encoded notification bytes and native emittedAtMs. Same-session original thread/start request/reply correlation, independently prescribed source/identity/path metadata and native completed canonical history are asserted after owned shutdown. This physical custom string notification owner is pinned through the actual ServerNotification thread/started reference graph. CLI/Exec selectors create ordinary app-server threads; no terminal CLI or native exec-protocol compatibility is implied. Only this node; no search/response alias, full Thread, whole method, unrelated envelope field, external/other-OS or globally verified credit."
+      ],
       "nullable": false,
       "pointer": "/definitions/SessionSource/oneOf/1/properties/custom",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "custom"
     },
     {
@@ -193738,11 +193786,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-command-shutdown-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentStatus/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded immutable-source prerequisite: sequential close snapshots prior status, removes the child and later wait observes notFound. Already-subscribed concurrent wait can preserve genuine Shutdown, but public ItemStarted is emitted before subscription; no deterministic public subscription-ready barrier was established. No global unreachability claim, race-selected fixture, runtime success or state promotion. A real causal readiness/lifetime ordering and completed selective-history proof remain required."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/5",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "77ac1ea0dad495e5d50a989e7ccf7d19c1c2945cc2c8dfc2fbae0d9a9a482990",
@@ -194879,11 +194931,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-command-shutdown-prerequisites.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionSource/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Bounded immutable-source prerequisite: supported ConfigShellToolType is only UnifiedExec/Disabled; default/local/shell_command aliases all select UnifiedExec and ordinary launch supplies UnifiedExecStartup. Therefore this proposed model-configuration route cannot produce a completed Agent-source item. No global non-emission claim: a separate permitted genuine terminal-history producer is still required. No native success/test/coverage or state promotion follows."
+      ],
       "pointer": "/definitions/CommandExecutionSource/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "6cf85bf41d9570deed965109eed6c05c9512f6d79e321c70f3f3d900c8d06c74",

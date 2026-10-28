@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps with 1,762 identical guarded sources: 165/0 main
+cases twice, 15/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer 1/0 and static/build checks under unchanged bounds. Six original
+native source notifications gain exact owning-node evidence; the initial omitted
+emittedAtMs oracle failure and its source-grounded correction remain recorded.
+Contracts become **5,748 implemented /737 missing /136 blocked**, unchanged
+requirements and zero globally verified. Two additional command/shutdown
+prerequisites gain limitations only and stay missing. Existing production inputs,
+dependency/replay/database/cleanup repairs and platform defaults stay intact.
+Next: bind the inspected nullable-result source boundaries without inventing
+success. A11, prohibited/broad/hosted, unresolved producer/cleanup, external/OS,
+full compatibility and release stay incomplete.
+
 The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed functional steps with 1,762 identical guarded sources:
 165/0 main cases twice, 14/0 extensions twice, three replay seeds, four cleanup

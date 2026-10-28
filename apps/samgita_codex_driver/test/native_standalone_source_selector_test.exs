@@ -55,6 +55,11 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
   @unknown_sha "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e"
   @custom_sha "d9e145b3bb9eb5bc34a7e8705de3058f42fe714883c960d7f41e5f4fb37378d9"
   @string_sha "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7"
+  @notification_sha "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1"
+  @cli_bytes "\"cli\"\n"
+  @exec_bytes "\"exec\"\n"
+  @cli_sha "3e32720a84f76aa3c6d43c98afe5b44c70938bfb1eac76f371d1a60838da8b4a"
+  @exec_sha "c20d3fcfc0c2bd2a6ecb30670b66a69dce7b92ca87e3cefd922f3ec19b917e82"
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -229,6 +234,7 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
             })
 
           close(session)
+          assert_thread_started(session, row)
           frozen = canonical(ctx, row)
           assert frozen.user["id"] === hd(row.items)["id"]
           assert frozen.assistant["id"] === List.last(row.items)["id"]
@@ -270,6 +276,202 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
     assert_retained(ctx, rows, journal)
     assert hash(File.read!(ctx.binary)) === @standalone_sha
     close_provider(ctx.fixture, ctx.resources)
+  end
+
+  @tag :standalone_thread_started_sources
+  test "standalone cli and exec produce original source-exact thread started notifications",
+       ctx do
+    {rows, sessions} =
+      [{"cli", "cli", "CLI"}, {"exec", "exec", "Exec"}]
+      |> Enum.with_index(1)
+      |> Enum.map_reduce([], fn {{selector, source, label}, index}, sessions ->
+        session = start(ctx, selector, index + 1)
+
+        row =
+          produce(ctx, session, %{
+            core: source,
+            public: source,
+            text: label <> ": " <> @needle,
+            index: index
+          })
+
+        close(session)
+        assert_thread_started(session, row)
+        frozen = canonical(ctx, row)
+        assert frozen.user["id"] === hd(row.items)["id"]
+        assert frozen.assistant["id"] === List.last(row.items)["id"]
+        {Map.put(row, :bytes, frozen.bytes), sessions ++ [session]}
+      end)
+
+    assert length(Enum.uniq(Enum.map(rows, & &1.id))) === 2
+    assert length(Enum.uniq(Enum.map(sessions, & &1.native))) === 2
+    assert length(rollouts(ctx)) === 2
+    assert length(requests(ctx)) === 2
+    journal = bounded_file(ctx.fixture.requests)
+    for {path, bytes} <- ctx.inputs, do: assert(bounded_file(path) === bytes)
+    for row <- rows, do: assert(bounded_file(row.path) === row.bytes)
+    assert File.ls!(ctx.fixture.workspace) === []
+    assert_started_inventory(sessions)
+    assert hash(File.read!(ctx.binary)) === @standalone_sha
+    close_provider(ctx.fixture, ctx.resources)
+    assert bounded_file(ctx.fixture.requests) === journal
+    for {path, bytes} <- ctx.inputs, do: assert(bounded_file(path) === bytes)
+    for row <- rows, do: assert(bounded_file(row.path) === row.bytes)
+  end
+
+  defp assert_thread_started(session, row) do
+    records = frames(session)
+
+    assert [request] =
+             Enum.filter(
+               records,
+               &(&1.direction === :out and &1.wire["method"] === "thread/start")
+             )
+
+    assert [response] =
+             Enum.filter(
+               records,
+               &(&1.direction === :in and &1.wire["id"] === request.wire["id"])
+             )
+
+    assert_exchange(session, request.wire, response.wire)
+
+    assert [notice] =
+             Enum.filter(
+               records,
+               &(&1.direction === :in and &1.wire["method"] === "thread/started")
+             )
+
+    assert JSON.decode!(notice.encoded) === notice.wire
+    refute Map.has_key?(notice.wire, "id")
+    assert Enum.sort(Map.keys(notice.wire)) === ["emittedAtMs", "method", "params"]
+    assert Enum.sort(Map.keys(notice.wire["params"])) === ["thread"]
+    notified = Map.fetch!(notice.wire["params"], "thread")
+    initial = Map.fetch!(response.wire["result"], "thread")
+    emitted = Map.fetch!(notice.wire, "emittedAtMs")
+    assert is_integer(emitted) and emitted > 0
+    assert is_integer(initial["createdAt"]) and initial["createdAt"] > 0
+    assert initial["createdAt"] * 1000 <= emitted and emitted <= System.system_time(:millisecond)
+    assert Map.take(notified, @projection) === Map.take(initial, @projection)
+    assert Map.take(notified, @projection) === Map.put(row.projection, "preview", "")
+    assert notified["id"] === row.id and notified["source"] === row.public
+    assert notified["path"] === row.path and notified["turns"] === []
+
+    # Resolve this exact notification graph; search/start-response aliases and
+    # equal node hashes never stand in for original incoming notification bytes.
+    path =
+      Path.join(
+        :code.priv_dir(:samgita_protocol_codex),
+        "upstream/0.163.0/experimental/ServerNotification.json"
+      )
+
+    bytes = bounded_file(path)
+    assert hash(bytes) === @notification_sha
+    root = JSON.decode!(bytes)
+    branch = root |> Map.fetch!("oneOf") |> Enum.at(1)
+    assert get_in(branch, ["properties", "method", "enum"]) === ["thread/started"]
+
+    assert get_in(branch, ["properties", "params"]) === %{
+             "$ref" => "#/definitions/ThreadStartedNotification"
+           }
+
+    assert get_in(root, ["definitions", "ThreadStartedNotification", "properties", "thread"]) ===
+             %{"$ref" => "#/definitions/Thread"}
+
+    assert get_in(root, ["definitions", "Thread", "properties", "source", "allOf"]) === [
+             %{"$ref" => "#/definitions/SessionSource"}
+           ]
+
+    # Validate only the selected source owners below. Other native Thread
+    # fields remain captured opaquely; no unrelated output contract is claimed.
+    assert_started_source_owner(root, notified["source"])
+  end
+
+  defp assert_started_source_owner(root, source) do
+    for binding <- notification_source_bindings(source),
+        do: assert_started_binding(root, binding)
+  end
+
+  defp notification_source_bindings(source) do
+    case source do
+      "cli" ->
+        [{2386, "/definitions/SessionSource/oneOf/0/enum/0", @cli_bytes, @cli_sha, source}]
+
+      "exec" ->
+        [{2388, "/definitions/SessionSource/oneOf/0/enum/2", @exec_bytes, @exec_sha, source}]
+
+      "appServer" ->
+        [{2389, "/definitions/SessionSource/oneOf/0/enum/3", @app_bytes, @app_sha, source}]
+
+      "unknown" ->
+        [
+          {2390, "/definitions/SessionSource/oneOf/0/enum/4", @unknown_bytes, @unknown_sha,
+           source}
+        ]
+
+      %{"custom" => "atlas"} ->
+        [
+          {2391, "/definitions/SessionSource/oneOf/1", @custom_bytes, @custom_sha, source},
+          {2392, "/definitions/SessionSource/oneOf/1/properties/custom", @string_bytes,
+           @string_sha, source["custom"]}
+        ]
+
+      "vscode" ->
+        []
+    end
+  end
+
+  defp assert_started_binding(root, {owner, pointer, bytes, digest, value}) do
+    assert owner in [2386, 2388, 2389, 2390, 2391, 2392]
+    node = notification_node(root, pointer)
+    assert node === JSON.decode!(bytes)
+    assert hash(bytes) === digest
+    if is_map(node), do: assert(:ok = Schema.validate(node, value)), else: assert(node === value)
+  end
+
+  defp notification_node(root, pointer) do
+    pointer
+    |> String.trim_leading("/")
+    |> String.split("/")
+    |> Enum.reduce(root, fn part, current ->
+      if is_list(current),
+        do: Enum.at(current, String.to_integer(part)),
+        else: Map.fetch!(current, part)
+    end)
+  end
+
+  defp assert_started_inventory(sessions) do
+    outgoing =
+      for session <- sessions, %{direction: :out, wire: wire} <- frames(session), do: wire
+
+    for method <-
+          ~w(initialize initialized server/diagnostics thread/start turn/start thread/read thread/items/list),
+        do: assert(Enum.count(outgoing, &(&1["method"] === method)) === 2)
+
+    probes_and_pages = Enum.count(outgoing, &(&1["method"] === "thread/turns/list"))
+    assert probes_and_pages >= 4 and probes_and_pages <= 402
+
+    allowed =
+      ~w(initialize initialized server/diagnostics thread/start turn/start thread/read thread/items/list thread/turns/list)
+
+    assert Enum.all?(outgoing, &(&1["method"] in allowed))
+    for session <- sessions, do: assert_started_session_inventory(session)
+  end
+
+  defp assert_started_session_inventory(session) do
+    records = frames(session)
+    sent = Enum.filter(records, &(&1.direction === :out and Map.has_key?(&1.wire, "id")))
+    replies = Enum.filter(records, &(&1.direction === :in and Map.has_key?(&1.wire, "id")))
+    ids = Enum.map(sent, & &1.wire["id"])
+    assert length(Enum.uniq(ids)) === length(ids)
+    assert length(sent) === length(replies)
+    for request <- sent, do: assert_started_request(session, replies, request)
+    for record <- records, do: assert(JSON.decode!(record.encoded) === record.wire)
+  end
+
+  defp assert_started_request(session, replies, request) do
+    assert [response] = Enum.filter(replies, &(&1.wire["id"] === request.wire["id"]))
+    assert_exchange(session, request.wire, response.wire)
   end
 
   defp produce(ctx, session, source) do

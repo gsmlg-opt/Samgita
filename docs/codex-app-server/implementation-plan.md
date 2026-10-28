@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [standalone source-notification unit](standalone-source-notification-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps against 1,762 identical source hashes: main165/0
+twice, extensions15/0 twice, three replay seeds, four cleanup cases, outside
+consumer and static/build checks. All main argv and original bounds remain.
+Owners2386/2388/2389–2392 gain direct original notification evidence; contracts
+are **5,748 implemented /737 missing /136 blocked**, requirements unchanged and
+zero globally verified. The initial timestamp-envelope oracle failure is retained
+and corrected to the pinned emitter. Command/shutdown prerequisites5296/5332
+stay missing with source evidence. Next: bind three inspected nullable-output
+constructor boundaries; do not manufacture native success from test-only helpers.
+Production inputs and repaired behavior remain unchanged. A11, prohibited/broad/
+hosted, external/OS, unresolved producers/cleanup and full/release gates stay open.
+
 The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps against 1,762 identical source hashes: 165/0 main
 cases twice, 14/0 extensions twice, three replay seeds, four cleanup cases,
