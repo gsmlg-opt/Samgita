@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary reconciliation/app/fork batch](ordinary-plugin-reconcile-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **80 files / 144 real-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,707** identical guarded sources. Actual skills-bundle installation,
+repeat/cold cache recovery and owned-cache removal use the native reconciler;
+only metadata/archive dependencies are fixtures. Exact app inputs and native
+fork projection retain their previous effect/history/cleanup oracles. Nine
+physical owners gain scoped evidence and two existing entries supplemental
+evidence. Contracts: **5,603 implemented / 882 missing / 136 blocked**;
+requirements **462 implemented / 12 missing / 11 blocked**, zero globally
+verified. No prohibited tests/audits or hosted workflows run. Next: implement
+the source-reviewed ordinary `plugin/share/save` tar-upload/local-mapping profile
+for missing root78 owners1488–1492, with policy inputs/outputs excluded from
+verification. The linked source-only next-action ledger earns no runtime credit.
+A11, unavailable emitter/external/OS, full-goal and release gates remain open.
+
 The [ordinary values/server-request batch](ordinary-server-request-envelopes-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **79 files / 143 real-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

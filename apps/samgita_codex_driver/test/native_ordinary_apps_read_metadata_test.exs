@@ -11,6 +11,8 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
   @script_sha "39b9d8c7bba1934139c9234533de47e225e7d4863c0dddbb5a266757d6a5e6a3"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
+  @params_schema_sha "61e6a9d35515f3164a7f7e7a5b0c5ac92817c5a3b5d7fb27e9a704fe2935ddf7"
+
   @alpha %{
     "id" => "metadata-alpha",
     "name" => "Owned Alpha",
@@ -150,6 +152,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
     assert hash(File.read!(binary)) === @binary_sha
     assert hash(File.read!(@script)) === @script_sha
     assert hash(File.read!(@base)) === @base_sha
+    assert hash(File.read!(schema_path("v2/AppsReadParams.json"))) === @params_schema_sha
 
     root =
       Path.join(
@@ -183,6 +186,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
       Path.join(__DIR__, "support/native_launch_fixture.ex"),
       Path.join(__DIR__, "support/stdio_session_fixture.ex"),
       schema_path("ClientRequest.json"),
+      schema_path("v2/AppsReadParams.json"),
       schema_path("v2/AppsReadResponse.json")
     ]
 
@@ -308,14 +312,9 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
   end
 
   defp read(ctx, pid, ids, tools, id) do
-    response =
-      call(
-        ctx,
-        pid,
-        "app/read",
-        %{"appIds" => ids, "threadId" => nil, "includeTools" => tools},
-        id
-      )
+    params = %{"appIds" => ids, "threadId" => nil, "includeTools" => tools}
+    assert :ok = Schema.validate(schema("v2/AppsReadParams.json"), params, max_depth: 64)
+    response = call(ctx, pid, "app/read", params, id)
 
     assert :ok = Schema.validate(schema("v2/AppsReadResponse.json"), response, max_depth: 64)
     assert_controls(ctx)

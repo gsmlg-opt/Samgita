@@ -13,6 +13,7 @@ defmodule SamgitaCodexDriver.NativeForkGitNotificationTest do
   @script_sha "d42e156eb535595d63140870db8414f9cde90298c349d378a1d413dd2c2ba5ff"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_base_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
+  @fork_response_sha "e63cfbeb846304309c9c64fa1235abb1723f8a0abd413aef2d342598bbaf902c"
   @client "owned_fork_git_notification"
   @branch "samgita-v430-fixture"
   @name "Owned empty Git parent λ"
@@ -212,6 +213,8 @@ defmodule SamgitaCodexDriver.NativeForkGitNotificationTest do
         "excludeTurns" => true
       })
 
+    assert_fork_mode(response)
+
     child = response["thread"]["id"]
     assert_uuid(child)
     refute child === parent
@@ -383,7 +386,36 @@ defmodule SamgitaCodexDriver.NativeForkGitNotificationTest do
 
     [original] = Enum.filter(frames, &(&1.direction == :in and &1.wire === event.wire))
     assert request.index < response.index and response.index < original.index
+    assert {:ok, decoded} = Wire.decode(response.encoded, max_depth: 32)
+    assert decoded === response.wire
+    assert_fork_mode(Map.fetch!(decoded, "result"))
     assert response.wire["result"]["thread"] === event.wire["params"]["thread"]
+  end
+
+  defp assert_fork_mode(result) do
+    # This literal is a native response projection, not active delegation.
+    mode = Map.fetch!(result, "multiAgentMode")
+    assert mode === "explicitRequestOnly"
+
+    bytes =
+      :samgita_protocol_codex
+      |> :code.priv_dir()
+      |> Path.join("upstream/0.163.0/experimental/v2/ThreadForkResponse.json")
+      |> File.read!()
+
+    assert hash(bytes) === @fork_response_sha
+    document = JSON.decode!(bytes)
+    assert [owner] = get_in(document, ["properties", "multiAgentMode", "allOf"])
+    assert owner === %{"$ref" => "#/definitions/MultiAgentMode"}
+
+    # Validate only this physical owner and its local definition. Other fork
+    # fields, defaults and mode variants receive no additional coverage.
+    selected = %{
+      "allOf" => [owner],
+      "definitions" => Map.take(Map.fetch!(document, "definitions"), ["MultiAgentMode"])
+    }
+
+    assert :ok = Schema.validate(selected, mode, max_depth: 8)
   end
 
   defp collect(pid, child, events, deadline) do

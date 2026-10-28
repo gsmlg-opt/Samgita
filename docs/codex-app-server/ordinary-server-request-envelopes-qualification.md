@@ -153,6 +153,13 @@ external/OS, A11, hosted, release or deployment acceptance is claimed. Continue
 the reviewed AppsReadParams and fork-result drafts; they remain unrun and earn
 no state credit from this checkpoint.
 
+Delivery: source and evidence are committed as
+[`a603b3f`](https://github.com/gsmlg-opt/Samgita/commit/a603b3fce7c5ccf21ac024d314d5cade7fbd5109).
+HEAD, tracking ref and `git ls-remote` converged on that commit after push.
+`[skip ci]` suppresses the automatic mixed matrix under the user's restriction;
+the read-only Actions query returns zero runs for that commit. This is no
+hosted pass, package publication, release or deployment.
+
 ## Rollback and limits
 
 Restore the eight selected manifest rows, the additive dynamic assertion and

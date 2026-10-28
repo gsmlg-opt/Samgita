@@ -3929,7 +3929,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/remote-plugin-qualification.md"
+        "docs/codex-app-server/remote-plugin-qualification.md",
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/reconcile",
@@ -3937,7 +3938,8 @@
       "legacy": false,
       "limitations": [
         "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
       ],
       "params": {
         "$ref": "#/definitions/PluginReconcileParams"
@@ -3969,7 +3971,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
         ]
       },
       "transport_coverage": [
@@ -18303,7 +18306,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/plugin-lifecycle-qualification.md",
-        "docs/codex-app-server/remote-plugin-qualification.md"
+        "docs/codex-app-server/remote-plugin-qualification.md",
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/reconcile",
@@ -18311,7 +18315,8 @@
       "legacy": false,
       "limitations": [
         "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
-        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified.",
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
       ],
       "prerequisites": [
         "initialized"
@@ -18329,7 +18334,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
-          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
         ]
       },
       "transport_coverage": [
@@ -69712,124 +69718,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/75",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+      ],
       "pointer": "/oneOf/75",
       "schema": "ClientRequest.json",
       "schema_sha256": "c2c6855721e18d173df03570149c9b002838c96cfff29bd87521537c331ce96d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/75/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+      ],
       "nullable": false,
       "pointer": "/oneOf/75/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/75/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+      ],
       "nullable": false,
       "pointer": "/oneOf/75/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c8bf7c2dd5fede49b00415351af538e4dda5fd24f94c3a923c364c8d80915181",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/75/properties/method/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+      ],
       "pointer": "/oneOf/75/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "2aea943c04e2fab2462fe9739a2c748311e8fdca59f269cdd4652098aedd00ab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-plugin-reconcile-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/75/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary real-native Linux-musl/stdio plugin/reconcile at immutable83086188: five original requests with signed integer/string/Unicode IDs and one explicit reason, exact selected physical root75 envelope and full native results, one actual owned HTTPS skills-only tarball download, literal normalized manifest/marker/skill/remote-ID cache bytes, repeated and distinct-cold-process no-op, later empty installed snapshot/removal and repeated no-op. Exact five backend fetches and one download, original typed Wire/Session correspondence, frozen inputs and confirmed native/helper cleanup. Only GLOBAL skills declaration hints and post-initialize owned config enablement; no enabled-at-startup, alternate scope/feature, executable plugin effect, real-service/other OS/transport or globally verified credit. Fixed synthetic identity and listener certificates are setup only; no security/permission/authentication/authorization/approval/TLS test, broad/hosted suite or audit runs."
+      ],
       "nullable": false,
       "pointer": "/oneOf/75/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2ce8287dcde9e0d8f8d00da6835da5e37634d0cc3d7a46b571ccaa5b1f9bfd1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_plugin_reconcile_test.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -128080,79 +128126,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-fork-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadParams.json#/properties/appIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary pinned83086188 Linux-musl/stdio slice only. Nine actual native app/read calls across distinct warm/cold processes: nonempty ordered/duplicate/missing appIds, explicit includeTools false/true with real cache promotion/hiding and exact backend bodies, and explicit threadId null with no loaded threads. Exact original params and correlated native results remain joined to independent literal projection/cache effects; direct physical AppsReadParams validation and unchanged-input snapshots retain the archive-equal schema digest. No empty/100-limit arrays, omission/default includeTools, omitted/non-null/loaded-thread threadId or schema-alias credit. Focused owning files pass both fixed seeds; final combined-source qualification is separately recorded. Fixed YOLO is setup only. No security/permission test, broad/hosted workflow, external/OS success, full compatibility or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/appIds",
       "required": true,
       "schema": "v2/AppsReadParams.json",
       "schema_sha256": "19ba7093ac58a0f261106405cb9905176bd0321c1640118f53ac4594bdd80945",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:204"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-fork-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadParams.json#/properties/includeTools",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary pinned83086188 Linux-musl/stdio slice only. Nine actual native app/read calls across distinct warm/cold processes: nonempty ordered/duplicate/missing appIds, explicit includeTools false/true with real cache promotion/hiding and exact backend bodies, and explicit threadId null with no loaded threads. Exact original params and correlated native results remain joined to independent literal projection/cache effects; direct physical AppsReadParams validation and unchanged-input snapshots retain the archive-equal schema digest. No empty/100-limit arrays, omission/default includeTools, omitted/non-null/loaded-thread threadId or schema-alias credit. Focused owning files pass both fixed seeds; final combined-source qualification is separately recorded. Fixed YOLO is setup only. No security/permission test, broad/hosted workflow, external/OS success, full compatibility or globally verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/includeTools",
       "required": false,
       "schema": "v2/AppsReadParams.json",
       "schema_sha256": "997a3f4eb8b47f4dfa5ccb1c85f6ac9b95744ca078639c55d0bb012cf954e1e4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:204"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "includeTools"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-fork-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AppsReadParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary pinned83086188 Linux-musl/stdio slice only. Nine actual native app/read calls across distinct warm/cold processes: nonempty ordered/duplicate/missing appIds, explicit includeTools false/true with real cache promotion/hiding and exact backend bodies, and explicit threadId null with no loaded threads. Exact original params and correlated native results remain joined to independent literal projection/cache effects; direct physical AppsReadParams validation and unchanged-input snapshots retain the archive-equal schema digest. No empty/100-limit arrays, omission/default includeTools, omitted/non-null/loaded-thread threadId or schema-alias credit. Focused owning files pass both fixed seeds; final combined-source qualification is separately recorded. Fixed YOLO is setup only. No security/permission test, broad/hosted workflow, external/OS success, full compatibility or globally verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/AppsReadParams.json",
       "schema_sha256": "22649c82b922402200147e8ee7d966cb548fcffa2852cd9e2f6e7d1fa1da8ad5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_apps_read_metadata_test.exs:204"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -190216,24 +190286,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-apps-fork-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/multiAgentMode/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Ordinary pinned83086188 Linux-musl/stdio slice only. Fixed native explicitRequestOnly projection in the returned result and Wire-decoded original incoming fork response; exact physical allOf[0] selected with its local definition, native child persistence/read/Git facts/response-before-notification order and parent-byte preservation retained. This constant is not active delegation, default/omission, other mode variants or equal-schema alias evidence. Experimental schema is bound to immutable native-export provenance and actual Rust constructor; default archived response omits this property and is reference-only. Focused owning files pass both fixed seeds; final combined-source qualification is separately recorded. Fixed YOLO is setup only. No security/permission test, broad/hosted workflow, external/OS success, full compatibility or globally verified promotion."
+      ],
       "pointer": "/properties/multiAgentMode/allOf/0",
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_git_notification_test.exs:179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
