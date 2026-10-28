@@ -4,7 +4,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
 
   alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, TurnFixture}
   alias SamgitaCodexDriver.Transport.Stdio
-  alias SamgitaProtocolCodex.Wire
+  alias SamgitaProtocolCodex.{Error, Wire}
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
@@ -15,18 +15,21 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
   @first "Owned visible λ "
   @answer @first <> "detached completion β🙂"
   @scoped ~w(turn/started turn/completed item/started item/completed item/agentMessage/delta)
+  @lost_reply_id "owned-unix-lost-turn-start-reply"
 
   defmodule CaptureWebSocket do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
-    alias SamgitaCodexDriver.Transport.WebSocket
+    alias SamgitaCodexDriver.Transport.{UnixSocket, WebSocket}
     alias SamgitaProtocolCodex.Error
 
     @impl true
     def open(opts) do
       capture = Keyword.fetch!(opts, :capture)
 
-      with {:ok, state} <- WebSocket.open(Keyword.delete(opts, :capture)) do
+      transport = if Keyword.has_key?(opts, :socket_path), do: UnixSocket, else: WebSocket
+
+      with {:ok, state} <- transport.open(Keyword.delete(opts, :capture)) do
         generation =
           Agent.get_and_update(
             capture,
@@ -56,7 +59,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
       case WebSocket.handle_info(message, state) do
         {:ok, events, next} ->
           case record_events(next, events) do
-            :ok -> {:ok, events, next}
+            :ok -> {:ok, Enum.reject(events, &withhold_reply?(next, &1)), next}
             {:error, failure} -> {:error, failure, next}
           end
 
@@ -64,6 +67,22 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
           other
       end
     end
+
+    defp withhold_reply?(state, {:message, encoded}) do
+      wire = JSON.decode!(encoded)
+
+      Agent.get_and_update(state.capture, fn ledger ->
+        if is_binary(ledger.drop_id) and wire["id"] === ledger.drop_id and
+             Map.has_key?(wire, "result") do
+          Kernel.send(ledger.observer, {:native_reply_withheld, self(), wire})
+          {true, %{ledger | dropped: ledger.dropped + 1}}
+        else
+          {false, ledger}
+        end
+      end)
+    end
+
+    defp withhold_reply?(_state, _event), do: false
 
     defp record_events(state, events) do
       Enum.reduce_while(events, :ok, fn
@@ -142,19 +161,63 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
     end)
 
     TurnFixture.configure_model(%{fixture: fixture}, %{})
-    capture = start_supervised!({Agent, fn -> %{generation: 0, frames: [], bytes: 0} end})
+
+    capture =
+      start_supervised!(
+        {Agent,
+         fn ->
+           %{generation: 0, frames: [], bytes: 0, drop_id: nil, observer: nil, dropped: 0}
+         end}
+      )
+
     %{binary: binary, root: root, fixture: fixture, resources: resources, capture: capture}
   end
 
   test "native detached WebSocket stream completes once and explicit history recovery preserves its gap",
        ctx do
-    port = free_port()
+    qualify_detached_stream(ctx, :tcp)
+  end
+
+  test "native detached Unix socket stream completes once and explicit history recovery preserves its gap",
+       ctx do
+    qualify_detached_stream(ctx, :unix)
+  end
+
+  test "native Unix socket turn-start reply loss stays uncertain until explicit history reconciliation",
+       ctx do
+    qualify_detached_stream(ctx, :unix, true)
+  end
+
+  defp qualify_detached_stream(ctx, kind, lose_reply \\ false) do
+    {pid, native_owner, native, transport_kind, assert_listener} = start_native(ctx, kind)
+    thread = start_thread(ctx, pid)
+    {turn, pending} = start_stream(ctx, pid, thread, lose_reply)
+    observe_stream(ctx, pid, thread, turn, pending)
+    gap = reconnect_detached(ctx, pid, thread, pending, transport_kind, assert_listener)
+    terminal = finish_detached(ctx, pid, thread, turn, gap)
+    recover_history(ctx, pid, thread, turn, gap, pending, terminal)
+    assert_provider(ctx, thread, turn)
+    assert_wire_inventory(ctx)
+
+    assert :ok = Session.close(pid)
+    assert_listener.()
+    assert File.exists?("/proc/#{native}")
+    assert :ok = Stdio.close(native_owner)
+    assert :atomics.get(native_owner.owner.completion, 1) === 1
+    refute File.exists?("/proc/#{native}")
+    :atomics.put(ctx.resources, 2, 2)
+    assert hash(File.read!(@script)) === @script_sha
+    assert length(ModelFixture.requests(ctx.fixture)) === 1
+  end
+
+  defp start_native(ctx, kind) do
+    {listen, client_opts, await_listener, assert_listener} = listener(ctx, kind)
+    transport_kind = if kind == :unix, do: "unix_websocket", else: "websocket"
 
     {:ok, native_owner} =
       Stdio.open(
         executable: ctx.binary,
-        args:
-          NativeLaunchFixture.ordinary_args(["app-server", "--listen", "ws://127.0.0.1:#{port}"]),
+        args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", listen]),
         cwd: ctx.fixture.workspace,
         inherit_env: [],
         max_message_bytes: 131_072,
@@ -181,7 +244,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
       :atomics.put(ctx.resources, 2, 2)
     end)
 
-    wait_listener(port, now() + 5_000)
+    await_listener.()
 
     {:ok, pid} =
       Session.start_link(
@@ -190,24 +253,32 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
         max_message_bytes: 131_072,
         transport:
           {CaptureWebSocket,
-           [
-             url: "ws://127.0.0.1:#{port}/app-server",
-             capture: ctx.capture,
-             max_message_bytes: 131_072,
-             max_frame_bytes: 131_072,
-             max_read_bytes: 262_144,
-             connect_timeout_ms: 3_000,
-             send_timeout_ms: 3_000
-           ]}
+           client_opts ++
+             [
+               capture: ctx.capture,
+               max_message_bytes: 131_072,
+               max_frame_bytes: 131_072,
+               max_read_bytes: 262_144,
+               connect_timeout_ms: 3_000,
+               send_timeout_ms: 3_000
+             ]}
       )
 
     on_exit(fn -> if Process.alive?(pid), do: assert(:ok = Session.close(pid)) end)
     initialize(ctx, pid)
+
+    assert %{"transport" => ^transport_kind, "owned_process" => false} =
+             Session.status(pid).transport
+
     native = call(ctx, pid, "server/diagnostics", %{})["process"]["id"]
     assert is_integer(native) and native > 0
     assert hash(File.read!("/proc/#{native}/exe")) === @binary_sha
     assert call(ctx, pid, "thread/loaded/list", %{})["data"] === []
 
+    {pid, native_owner, native, transport_kind, assert_listener}
+  end
+
+  defp start_thread(ctx, pid) do
     thread =
       call(ctx, pid, "thread/start", %{
         "model" => "mock-model",
@@ -217,13 +288,11 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
         "historyMode" => "paginated"
       })["thread"]["id"]
 
-    turn =
-      call(ctx, pid, "turn/start", %{
-        "threadId" => thread,
-        "input" => [%{"type" => "text", "text" => @input}]
-      })["turn"]["id"]
+    thread
+  end
 
-    visible_deadline = now() + 5_000
+  defp observe_stream(ctx, pid, thread, turn, pending) do
+    visible_deadline = if pending, do: pending.reconnect_by, else: now() + 5_000
 
     visible =
       collect(
@@ -248,18 +317,38 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
 
     assert read_state(ctx.root)["first_flushed"] === true
     assert read_state(ctx.root)["released"] === false
+  end
 
+  defp reconnect_detached(ctx, pid, thread, pending, transport_kind, assert_listener) do
     # Explicit native acknowledgement is the subscription-detach barrier.
-    assert call(ctx, pid, "thread/unsubscribe", %{"threadId" => thread}) === %{
+    detach_timeout = if pending, do: pending.reconnect_by - now(), else: 3_000
+    assert detach_timeout > 0 and detach_timeout <= 3_000
+
+    assert call(ctx, pid, "thread/unsubscribe", %{"threadId" => thread}, detach_timeout) === %{
              "status" => "unsubscribed"
            }
 
+    if pending do
+      assert now() < pending.reconnect_by
+      assert Task.yield(pending.task, 0) === nil
+      assert %{pending: 1, uncertain: 0} = Session.status(pid)
+    end
+
     assert :ok = Session.reconnect(pid)
+    assert_pending_outcome(ctx, pid, pending)
+    assert_listener.()
     assert %{phase: :new, generation: 2, gap: gap} = Session.status(pid)
     assert gap.reason === :explicit_reconnect and gap.generation === 1
     initialize(ctx, pid)
     assert %{phase: :ready, generation: 2, gap: ^gap} = Session.status(pid)
 
+    assert %{"transport" => ^transport_kind, "owned_process" => false} =
+             Session.status(pid).transport
+
+    gap
+  end
+
+  defp finish_detached(ctx, pid, thread, turn, gap) do
     assert {:ok, detached} = Session.drain(pid)
     refute Enum.any?(detached, &(&1.generation === 2 and &1.wire["method"] in @scoped))
     assert length(ModelFixture.requests(ctx.fixture)) === 1
@@ -298,6 +387,10 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
     assert read_state(ctx.root)["errors"] === []
     refute Enum.any?(detached_completion, &(&1.generation === 2 and &1.wire["method"] in @scoped))
 
+    terminal
+  end
+
+  defp recover_history(ctx, pid, thread, turn, gap, pending, terminal) do
     resumed = call(ctx, pid, "thread/resume", %{"threadId" => thread})["thread"]
     assert_history(resumed, thread, turn)
 
@@ -307,6 +400,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
     assert_history(recovered, thread, turn)
     assert recovered["turns"] === terminal["turns"]
     assert resumed["turns"] === terminal["turns"]
+    reconcile_pending(ctx, pid, pending, recovered)
 
     assert call(ctx, pid, "thread/unsubscribe", %{"threadId" => thread}) === %{
              "status" => "unsubscribed"
@@ -317,13 +411,17 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
 
     assert %{phase: :ready, generation: 2, pending: 0, interactions: 0, uncertain: 0, gap: ^gap} =
              Session.status(pid)
+  end
 
+  defp assert_provider(ctx, thread, turn) do
     [provider] = ModelFixture.requests(ctx.fixture)
     assert provider["thread_id"] === thread and provider["turn_id"] === turn
     assert provider["marker"] === @input and provider["model"] === "mock-model"
     assert provider["bytes"] > 0 and provider["bytes"] <= 1_048_576
     assert read_state(ctx.root)["handlers"] === 0
+  end
 
+  defp assert_wire_inventory(ctx) do
     frames = Agent.get(ctx.capture, & &1.frames)
 
     wires =
@@ -342,6 +440,14 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
     assert Enum.map(outgoing, & &1["method"]) ===
              ~w(initialize initialized server/diagnostics thread/loaded/list thread/start turn/start thread/unsubscribe initialize initialized thread/read thread/resume thread/read thread/unsubscribe)
 
+    assert_request_pairs(wires)
+
+    refute Enum.any?(wires, fn {frame, wire} ->
+             frame.direction === :in and frame.generation === 2 and wire["method"] in @scoped
+           end)
+  end
+
+  defp assert_request_pairs(wires) do
     requests =
       for {%{direction: :out, generation: generation}, wire} <- wires,
           Map.has_key?(wire, "id"),
@@ -363,19 +469,110 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
 
       assert Map.has_key?(response, "result") and not Map.has_key?(response, "error")
     end
+  end
 
-    refute Enum.any?(wires, fn {frame, wire} ->
-             frame.direction === :in and frame.generation === 2 and wire["method"] in @scoped
-           end)
+  defp start_stream(ctx, pid, thread, false) do
+    turn = call(ctx, pid, "turn/start", stream_params(thread))["turn"]["id"]
+    {turn, nil}
+  end
 
-    assert :ok = Session.close(pid)
-    assert File.exists?("/proc/#{native}")
-    assert :ok = Stdio.close(native_owner)
-    assert :atomics.get(native_owner.owner.completion, 1) === 1
-    refute File.exists?("/proc/#{native}")
-    :atomics.put(ctx.resources, 2, 2)
-    assert hash(File.read!(@script)) === @script_sha
-    assert length(ModelFixture.requests(ctx.fixture)) === 1
+  defp start_stream(ctx, pid, thread, true) do
+    observer = self()
+    Agent.update(ctx.capture, &%{&1 | drop_id: @lost_reply_id, observer: observer})
+    reconnect_by = now() + 2_000
+
+    pending =
+      Task.async(fn ->
+        Session.request(pid, "turn/start", stream_params(thread),
+          id: @lost_reply_id,
+          timeout_ms: 3_000
+        )
+      end)
+
+    capture = ctx.capture
+
+    assert_receive {:native_reply_withheld, ^capture,
+                    %{"id" => @lost_reply_id, "result" => result}},
+                   3_000
+
+    assert %{"turn" => %{"id" => turn, "status" => "inProgress"}} = result
+    assert is_binary(turn) and byte_size(turn) > 0
+    assert Task.yield(pending, 0) === nil
+    assert %{phase: :ready, generation: 1, pending: 1, uncertain: 0} = Session.status(pid)
+    {turn, %{task: pending, reconnect_by: reconnect_by}}
+  end
+
+  defp stream_params(thread),
+    do: %{"threadId" => thread, "input" => [%{"type" => "text", "text" => @input}]}
+
+  defp assert_pending_outcome(ctx, pid, nil) do
+    assert Agent.get(ctx.capture, & &1.dropped) === 0
+    assert Session.uncertain_operations(pid) === []
+  end
+
+  defp assert_pending_outcome(ctx, pid, %{task: pending}) do
+    assert {:error, %Error{code: :explicit_reconnect, uncertain: true}} =
+             Task.await(pending, 3_000)
+
+    assert Agent.get(ctx.capture, & &1.dropped) === 1
+
+    assert Session.uncertain_operations(pid) === [
+             %{
+               id: @lost_reply_id,
+               method: "turn/start",
+               generation: 1,
+               reason: :explicit_reconnect
+             }
+           ]
+  end
+
+  defp reconcile_pending(_ctx, _pid, nil, _history), do: :ok
+
+  defp reconcile_pending(ctx, pid, _pending, history) do
+    assert %{generation: 2, pending: 0, uncertain: 1} = Session.status(pid)
+    assert Agent.get(ctx.capture, & &1.dropped) === 1
+
+    # Native history is independent of the original response intentionally
+    # withheld from Session. Reading/resuming never clears uncertainty itself.
+    evidence =
+      hash(
+        JSON.encode!(%{"history" => history, "provider" => ModelFixture.requests(ctx.fixture)})
+      )
+
+    assert :ok = Session.record_reconciliation(pid, @lost_reply_id, :applied, evidence)
+    assert Session.uncertain_operations(pid) === []
+  end
+
+  defp listener(_ctx, :tcp) do
+    port = free_port()
+
+    {"ws://127.0.0.1:#{port}", [url: "ws://127.0.0.1:#{port}/app-server"],
+     fn -> wait_listener(port, now() + 5_000) end, fn -> :ok end}
+  end
+
+  defp listener(ctx, :unix) do
+    socket = Path.join(ctx.root, "codex.sock")
+    assert byte_size(socket) < 108
+
+    {"unix://" <> socket, [socket_path: socket],
+     fn -> wait_unix_listener(socket, now() + 5_000) end, fn -> assert File.exists?(socket) end}
+  end
+
+  defp wait_unix_listener(socket, deadline) do
+    assert now() < deadline, "Owned native Unix listener deadline"
+
+    case :gen_tcp.connect({:local, String.to_charlist(socket)}, 0, [:binary, active: false], 50) do
+      {:ok, connection} ->
+        :gen_tcp.close(connection)
+
+      {:error, _} ->
+        receive do
+        after
+          10 -> :ok
+        end
+
+        wait_unix_listener(socket, deadline)
+    end
   end
 
   defp assert_history(thread, id, turn) do
@@ -419,14 +616,14 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
     assert_exchange(ctx, before, generation, request, response)
   end
 
-  defp call(ctx, pid, method, params) do
+  defp call(ctx, pid, method, params, timeout_ms \\ 3_000) do
     id = request_id()
     request = %{"id" => id, "method" => method, "params" => params}
     before = length(Agent.get(ctx.capture, & &1.frames))
     generation = Session.status(pid).generation
 
     assert {:ok, %{"id" => ^id, "result" => result} = response} =
-             Session.request(pid, method, params, id: id, timeout_ms: 3_000)
+             Session.request(pid, method, params, id: id, timeout_ms: timeout_ms)
 
     assert_exchange(ctx, before, generation, request, response)
     result

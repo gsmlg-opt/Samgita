@@ -294,6 +294,15 @@ Upstream refuses Origin headers. Its upgrade authentication is not continuous
 credential validation; the platform must still enforce current membership and
 connection authority. Borrowed Unix sockets are never unlinked or shut down.
 
+The [ordinary Unix recovery profile](ordinary-unix-recovery-qualification.md)
+exercises a real streamed turn across explicit subscription detachment and a
+replacement UDS connection. A separate original native success is deliberately
+withheld from Session: reconnect retains that operation's uncertainty, while
+native history and the provider journal establish the one completed turn before
+the caller records reconciliation. The visible stream gap survives history
+recovery. These are controlled client faults; they confer no native execution
+deduplication, arbitrary remote status lookup or automatic retry guarantee.
+
 ## Pinned semantic findings
 
 The stable generated schemas alone do not describe runtime experimental gates.

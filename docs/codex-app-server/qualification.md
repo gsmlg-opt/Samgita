@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [Unix recovery and reply-loss unit](ordinary-unix-recovery-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps against1,762 identical guarded hashes: main165/0
+twice, extensions17/0 twice, three replay seeds, four cleanup cases, outside
+consumer1/0 and static/build checks. Original argv and bounds stay intact. Actual
+UDS detachment/history and one withheld native reply preserve uncertainty until
+explicit reconciliation, with one execution and no fabricated replay. Only two
+existing lifecycle records gain scoped evidence; totals remain **5,748 implemented
+/737 missing /136 blocked contracts**, unchanged requirements, zero globally
+verified. Initial static and binding-bookkeeping corrections remain recorded.
+Production and repaired paths are unchanged. Next: four genuine ordinary quota
+literals, then remaining producer gaps. A11, prohibited/broad/hosted, external/OS,
+full compatibility and release gates stay incomplete. No hosted workflow runs.
+
 The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
 records production constructor boundaries for3264/3267/6028, all still missing.
 Only evidence/limitations metadata changes; states, tests and coverage stay exact.

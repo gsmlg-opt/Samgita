@@ -10424,7 +10424,8 @@
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
         "docs/codex-app-server/capacity-deadline-qualification.md",
-        "docs/codex-app-server/query-uncertainty-qualification.md"
+        "docs/codex-app-server/query-uncertainty-qualification.md",
+        "docs/codex-app-server/ordinary-unix-recovery-qualification.md"
       ],
       "id": "lifecycle:deadline-uncertainty",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10434,7 +10435,8 @@
         "scripted_peer_fault: Mutation send failure uncertain=true.",
         "scripted_peer_fault: Failed notification write also settles held mutation uncertain; reconnect no replay.",
         "A direct sent-mutation response deadline retains uncertainty after an opaque late response and reconnect; only explicit valid reconciliation clears it. This scripted client fault does not prove native result validation or response/deadline races.",
-        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence."
+        "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
+        "Actual stock Linux Unix-socket stream and explicit reconnect with independently held Responses dependency: the original native turn/start reply is captured then withheld from Session, which stays pending under an absolute2s pre-reconnect bound and unchanged3s timer. Explicit reconnect settles the same request uncertain; new initialization and read/resume/read preserve uncertainty and return the one original completed turn. Only caller-recorded native-history/provider evidence clears it. Exactly one provider request, one outgoing turn/start and one withheld response,11 original correlated request/reply pairs over two generations, persistent gap and borrowed-client/owned-native cleanup. Companion acknowledged TCP/UDS cases retain all prior bounds/assertions. Controlled client reply loss, not physical packet loss, native idempotency/deduplication, arbitrary outcome reconciliation or all transports/platforms. No schema-owner promotion, prohibited test, live-service or full-goal qualification."
       ],
       "required_behavior": "timeout/disconnect of mutation is uncertain; never resend as an automatic recovery action",
       "schema_sha256": "9c0bff829152023d131084db5addf70fd24efd28b210760653fc49fa28f6b91d",
@@ -10452,10 +10454,13 @@
           "apps/samgita_codex_driver/test/session_test.exs:249",
           "apps/samgita_codex_driver/test/native_notification_test.exs:177",
           "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:7",
-          "apps/samgita_codex_driver/test/query_uncertainty_test.exs"
+          "apps/samgita_codex_driver/test/query_uncertainty_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_websocket_gap_test.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "deadline-uncertainty"
     },
     {
@@ -10468,7 +10473,8 @@
         "docs/codex-app-server/cold-items-process-config-qualification.md",
         "docs/codex-app-server/query-uncertainty-qualification.md",
         "docs/codex-app-server/ordinary-stream-discovery-qualification.md",
-        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md",
+        "docs/codex-app-server/ordinary-unix-recovery-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10481,7 +10487,8 @@
         "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
         "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
         "Actual stock native borrowed WebSocket stream: one observed prescribed delta, explicit unsubscribe ACK as detach barrier, reconnect/reinitialize without resume, release provider and observe global idle while scoped notifications are absent. Explicit read/resume/read returns exact original completed history; driver gap stays visible, one original turn/provider request, 11 typed correlated request/replies over two generations. Controlled unsubscribe/reconnect, not physical packet loss, ambiguous mutation-ACK loss, native delta replay or cold-process recovery. Borrowed close leaves owned native server alive until explicit owner shutdown. No automatic retry or security/permission outcome assertion.",
-        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change.",
+        "Actual stock Linux Unix-socket stream and explicit reconnect with independently held Responses dependency: the original native turn/start reply is captured then withheld from Session, which stays pending under an absolute2s pre-reconnect bound and unchanged3s timer. Explicit reconnect settles the same request uncertain; new initialization and read/resume/read preserve uncertainty and return the one original completed turn. Only caller-recorded native-history/provider evidence clears it. Exactly one provider request, one outgoing turn/start and one withheld response,11 original correlated request/reply pairs over two generations, persistent gap and borrowed-client/owned-native cleanup. Companion acknowledged TCP/UDS cases retain all prior bounds/assertions. Controlled client reply loss, not physical packet loss, native idempotency/deduplication, arbitrary outcome reconciliation or all transports/platforms. No schema-owner promotion, prohibited test, live-service or full-goal qualification."
       ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
@@ -10505,7 +10512,8 @@
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/websocket-capability-token"
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "disconnect-reconnect"
     },

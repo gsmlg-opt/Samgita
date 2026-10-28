@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [Unix recovery and reply-loss unit](ordinary-unix-recovery-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps against1,762 identical hashes, preserving
+main165/0 twice and original bounds. Extensions17/0 twice add genuine UDS
+reconnect and controlled reply-loss evidence; one execution is recovered through
+native history without clearing the gap or silently settling uncertainty.
+Three replay seeds, four cleanup cases, outside consumer and static/build checks
+pass. Two existing lifecycle records gain evidence only; contracts remain
+**5,748 implemented /737 missing /136 blocked**, unchanged requirements, zero
+globally verified. Initial static/bookkeeping corrections stay visible. Next:
+qualify four ordinary quota literals from their genuine producer, then continue
+remaining gaps. Production/repaired paths are unchanged. A11, prohibited/broad/
+hosted, external/OS, full compatibility and release gates stay incomplete.
+
 The [nullable-output source unit](ordinary-null-result-prerequisites.md#metadata-only-qualification)
 adds exact constructor evidence only for3264/3267/6028, all still missing. Both
 resume success constructors use Some; the legacy public summary converter supplies
