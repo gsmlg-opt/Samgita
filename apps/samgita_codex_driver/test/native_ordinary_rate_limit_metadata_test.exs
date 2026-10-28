@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_rate_limit_metadata_fixture.py", __DIR__)
-  @script_sha "704343bf96f46e1d637db8c4ec97819466ba7a52636720521095138cc80d5d6c"
+  @script_sha "f64f18603635d448e9981e1a20d8793c1f1a75820bedac30666fb8c8e2465b5f"
   @cleanup Path.join(__DIR__, "support/stdio_session_fixture.ex")
   @cleanup_sha "a164a57adff4cba26360a7e2788b8c3e9e6829a0a5e77eae28e857c29dc201a0"
   @root_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
@@ -20,6 +20,16 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
   @message "You’ve hit your usage limit. Try again later."
   @literal_bytes "\"rate_limit_reached\"\n"
   @literal_sha "d28b70fcbb690c73033101e03acfb2f02af76c6b6cda78faf02d9a4161bef177"
+  @quota_literals [
+    {"workspace_owner_credits_depleted", 1,
+     "418e3888e855c21751ee536b69d28e353cd84d2b119bb80010d5fa02466999ac"},
+    {"workspace_member_credits_depleted", 2,
+     "76c10aa6691ddd9ebcc1c61d727f07d6cb268d3918a41fbfa29788dc29cb9a75"},
+    {"workspace_owner_usage_limit_reached", 3,
+     "153f564270c13fadf038316276b57cdb213ebf8b47f783fe540db8647bc71c33"},
+    {"workspace_member_usage_limit_reached", 4,
+     "dbb97eef870378cb1707637f30d2610ef0d208c7a410054c8305805abf9c6467"}
+  ]
   @reference_bytes """
   {
     "$ref": "#/definitions/RateLimitReachedType"
@@ -151,7 +161,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
     def metadata(state), do: Stdio.metadata(state)
   end
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -202,6 +212,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
       capture: start_supervised!({Agent, fn -> %{frames: [], bytes: 0} end})
     }
 
+    ctx = Map.merge(ctx, Map.take(tags, [:reached_type, :literal_index, :literal_sha]))
     peer = start_peer(ctx)
 
     paths = [
@@ -272,6 +283,70 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
            ]
   end
 
+  # These are descriptive dependency-data cases. No real workspace identity,
+  # credit state, entitlement or enforcement behavior is selected as an oracle.
+  for {literal, index, sha} <- @quota_literals do
+    @tag :ordinary_quota_literal
+    @tag reached_type: literal, literal_index: index, literal_sha: sha
+    test "native provider 429 preserves quota literal #{literal} without replay", ctx do
+      run_literal_case(ctx)
+    end
+  end
+
+  defp run_literal_case(ctx) do
+    native = start_native(ctx)
+    assert_empty_loaded(ctx, native.pid)
+
+    thread =
+      call(ctx, native.pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.workspace,
+        "ephemeral" => true
+      })["thread"]["id"]
+
+    assert is_binary(thread) and byte_size(thread) > 0
+    assert_setup(ctx)
+    assert snapshot(ctx.requests).bytes |> JSON.decode!() === []
+    before_ms = System.system_time(:millisecond)
+
+    turn =
+      call(ctx, native.pid, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => @marker}]
+      })["turn"]["id"]
+
+    assert is_binary(turn) and byte_size(turn) > 0
+    events = collect(ctx, native.pid, thread, turn, [], now() + 20_000)
+    after_ms = System.system_time(:millisecond)
+    assert_lifecycle(ctx, events, thread, turn, before_ms, after_ms)
+    assert_provider(ctx, thread, turn)
+    assert_setup(ctx)
+    # These management calls bracket idle state; they never resubmit a turn.
+    assert call(ctx, native.pid, "thread/loaded/list", %{}) === %{
+             "data" => [thread],
+             "nextCursor" => nil
+           }
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(native.pid)
+
+    assert Session.uncertain_operations(native.pid) === []
+    assert_inventory(ctx)
+    requests_before = snapshot(ctx.requests)
+    outgoing_before = Enum.filter(frames(ctx), &(&1.direction === :out))
+    close_native(native)
+    assert snapshot(ctx.requests) === requests_before
+    assert Enum.filter(frames(ctx), &(&1.direction === :out)) === outgoing_before
+    close_peer(ctx.peer)
+    assert snapshot(ctx.requests) === requests_before
+    assert_setup(ctx)
+
+    assert rows(ctx, "fixture_closed") === [
+             %{"event" => "fixture_closed", "pid" => ctx.peer.native}
+           ]
+  end
+
   defp assert_lifecycle(ctx, events, thread, turn, before_ms, after_ms) do
     assert [started] = Enum.filter(events, &(&1.wire["method"] === "turn/started"))
     assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn}} = started.wire["params"]
@@ -287,11 +362,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
 
     emitted_error = error.wire["params"]["error"]
 
-    assert Map.take(emitted_error, ~w(message codexErrorInfo additionalDetails)) === %{
-             "message" => @message,
-             "codexErrorInfo" => "usageLimitExceeded",
-             "additionalDetails" => nil
-           }
+    assert_native_error(ctx, emitted_error)
 
     known_error = schema("experimental/ServerNotification.json")["definitions"]["CodexErrorInfo"]
     known_scalar = Enum.at(known_error["anyOf"], 0)
@@ -326,10 +397,10 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
                "windowDurationMins" => 1440,
                "resetsAt" => 2_000_000_200
              },
-             "rateLimitReachedType" => "rate_limit_reached"
+             "rateLimitReachedType" => Map.get(ctx, :reached_type, "rate_limit_reached")
            }
 
-    assert_physical(snapshot)
+    assert_physical(ctx, snapshot)
 
     for event <- [quota, error, finished] do
       assert [frame] =
@@ -342,6 +413,24 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
       emitted = Map.fetch!(decoded, "emittedAtMs")
       assert is_integer(emitted) and emitted > 0 and emitted >= before_ms and emitted <= after_ms
     end
+  end
+
+  defp assert_native_error(%{reached_type: _literal}, emitted_error) do
+    message = Map.fetch!(emitted_error, "message")
+    assert is_binary(message) and String.trim(message) !== ""
+
+    assert Map.take(emitted_error, ~w(codexErrorInfo additionalDetails)) === %{
+             "codexErrorInfo" => "usageLimitExceeded",
+             "additionalDetails" => nil
+           }
+  end
+
+  defp assert_native_error(_ctx, emitted_error) do
+    assert Map.take(emitted_error, ~w(message codexErrorInfo additionalDetails)) === %{
+             "message" => @message,
+             "codexErrorInfo" => "usageLimitExceeded",
+             "additionalDetails" => nil
+           }
   end
 
   defp assert_quota_wrapper_binding(original) do
@@ -357,8 +446,9 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
     assert hash(@quota_wrapper_node_bytes) === @quota_wrapper_node_sha
     assert JSON.decode!(@quota_wrapper_node_bytes) === node
 
-    # Preserve the existing finite429 metadata/lifecycle oracle. This adds no
-    # entitlement, credit, member/owner or policy scenario or enum acceptance.
+    # Wrapper validation preserves the finite429 metadata/lifecycle oracle.
+    # Only each selected physical literal gains new evidence; no wrapper or
+    # reference owner gains credit from these additional descriptive-data cases.
     assert :ok =
              Schema.validate(
                Map.put(node, "definitions", Map.fetch!(document, "definitions")),
@@ -367,20 +457,30 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
              )
   end
 
-  defp assert_physical(snapshot) do
+  defp assert_physical(ctx, snapshot) do
     root = schema("experimental/ServerNotification.json")
     definitions = Map.fetch!(root, "definitions")
-    literal = definitions["RateLimitReachedType"]["enum"] |> Enum.at(0)
+    expected = Map.get(ctx, :reached_type, "rate_limit_reached")
+    index = Map.get(ctx, :literal_index, 0)
+    literal = definitions["RateLimitReachedType"]["enum"] |> Enum.at(index)
+    literal_bytes = if index === 0, do: @literal_bytes, else: JSON.encode!(expected) <> "\n"
+    literal_sha = Map.get(ctx, :literal_sha, @literal_sha)
+
+    stable_bytes = File.read!(schema_path("stable/ServerNotification.json"))
+    assert hash(stable_bytes) === @quota_wrapper_root_sha
+    stable_definitions = JSON.decode!(stable_bytes)["definitions"]
+    assert stable_definitions["RateLimitReachedType"] === definitions["RateLimitReachedType"]
+    assert Enum.fetch!(stable_definitions["RateLimitReachedType"]["enum"], index) === literal
 
     reference =
       get_in(definitions, ["RateLimitSnapshot", "properties", "rateLimitReachedType", "anyOf"])
       |> Enum.at(0)
 
-    assert hash(@literal_bytes) === @literal_sha
+    assert hash(literal_bytes) === literal_sha
     assert hash(@reference_bytes) === @reference_sha
-    assert JSON.decode!(@literal_bytes) === literal
+    assert JSON.decode!(literal_bytes) === literal
     assert JSON.decode!(@reference_bytes) === reference
-    assert literal === "rate_limit_reached"
+    assert literal === expected
     assert Map.fetch!(snapshot, "rateLimitReachedType") === literal
 
     assert :ok =
@@ -437,7 +537,8 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
                "status" => 429,
                "sequence" => 1,
                "headers" => %{
-                 "x-codex-rate-limit-reached-type" => "rate_limit_reached",
+                 "x-codex-rate-limit-reached-type" =>
+                   Map.get(ctx, :reached_type, "rate_limit_reached"),
                  "x-codex-primary-used-percent" => "91",
                  "x-codex-primary-window-minutes" => "60",
                  "x-codex-primary-reset-at" => "2000000100",
@@ -487,15 +588,16 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
     assert {:ok, transport} =
              Stdio.open(
                executable: ctx.python,
-               args: [
-                 @script,
-                 "--codex-home",
-                 ctx.codex,
-                 "--workspace",
-                 ctx.workspace,
-                 "--requests-file",
-                 ctx.requests
-               ],
+               args:
+                 [
+                   @script,
+                   "--codex-home",
+                   ctx.codex,
+                   "--workspace",
+                   ctx.workspace,
+                   "--requests-file",
+                   ctx.requests
+                 ] ++ reached_type_args(ctx),
                cwd: ctx.workspace,
                inherit_env: [],
                max_message_bytes: 8192,
@@ -519,6 +621,9 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
     assert is_binary(startup["url"]) and String.starts_with?(startup["url"], "http://127.0.0.1:")
     %{transport: transport, identity: identity, native: native, resources: ctx.resources}
   end
+
+  defp reached_type_args(%{reached_type: literal}), do: ["--reached-type", literal]
+  defp reached_type_args(_ctx), do: []
 
   defp peer_startup(port, bytes, deadline) do
     remaining = deadline - now()

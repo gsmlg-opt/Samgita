@@ -20,7 +20,7 @@ import time
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 from fetch_standalone_pin import BINARY as STANDALONE_BINARY, BINARY_SHA256 as STANDALONE_SHA256
 
-REVIEWED_SOURCE_SHA256 = "73c06faef86b5f50d9e208dbc7704f2025d320eb4abc9ca757b52dd7e3d58aa4"
+REVIEWED_SOURCE_SHA256 = "1d9a8ab13bc6e1e3795f949ce07708fa75c3d4d8d96abd831da22a1be2627d8d"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -135,7 +135,7 @@ native_standalone_source_selector_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
 DRIVER_CASES = 165
-EXTRA_DRIVER_CASES = 17
+EXTRA_DRIVER_CASES = 21
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -193,8 +193,8 @@ def commands():
         steps.append(("ordinary-" + str(seed), driver,
                       ["mix", "test", *files, "--warnings-as-errors", "--seed", str(seed)], 320))
     # Keep the original main argv/cases and320s bound. Independent profiles
-    # retain their separate count/bound; two new UDS cases share the existing
-    # detached-stream oracle without changing its TCP assertions.
+    # retain their separate count/bound; four new provider quota literals share
+    # the existing429 lifecycle oracle without changing its base assertions.
     for seed in (501432, 987654):
         steps.append(("ordinary-extra-" + str(seed), driver,
                       ["mix", "test", *extra_files, "--warnings-as-errors", "--seed", str(seed)], 120))

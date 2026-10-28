@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [ordinary quota literal unit](ordinary-quota-literals-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps against1,762 identical guarded hashes: main165/0
+twice, extensions21/0 twice, three replay seeds, four cleanup cases, outside
+consumer1/0 and static/build checks under unchanged bounds. Four exact ordinary
+provider429 literals are preserved in original native notifications before error
+and failed turn, with one request/no replay and no identity/permission oracle.
+Only owners2352–2355 become implemented: **5,752 implemented /733 missing /136
+blocked contracts**, unchanged requirements, zero globally verified. Stable-root
+binding and the original byte-identical case are checked. Next: implement and
+qualify the separately reviewed existingCall input/lifecycle draft. Production
+and repaired paths are unchanged. A11, prohibited/broad/hosted, external/OS,
+full compatibility and release stay incomplete. No hosted workflow runs.
+
 The [Unix recovery and reply-loss unit](ordinary-unix-recovery-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps against1,762 identical guarded hashes: main165/0
 twice, extensions17/0 twice, three replay seeds, four cleanup cases, outside

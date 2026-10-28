@@ -97900,90 +97900,122 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-quota-literals-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitReachedType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned ordinary provider429 header workspace_owner_credits_depleted becomes the exact original account/rateLimits/updated literal before usageLimitExceeded and failed turn. The owning stable schema root/node and experimental equality, original raw frames, complete error maps, thread/turn and six request/reply pairs are bound; one provider POST and one turn/start, no replay. Synthetic dependency data only: no account identity, role, credit/permission enforcement, real backend, other transport/OS or global verification. Adjacent wrappers, aliases and individualLimit receive no credit."
+      ],
       "pointer": "/definitions/RateLimitReachedType/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "418e3888e855c21751ee536b69d28e353cd84d2b119bb80010d5fa02466999ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-quota-literals-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitReachedType/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned ordinary provider429 header workspace_member_credits_depleted becomes the exact original account/rateLimits/updated literal before usageLimitExceeded and failed turn. The owning stable schema root/node and experimental equality, original raw frames, complete error maps, thread/turn and six request/reply pairs are bound; one provider POST and one turn/start, no replay. Synthetic dependency data only: no account identity, role, credit/permission enforcement, real backend, other transport/OS or global verification. Adjacent wrappers, aliases and individualLimit receive no credit."
+      ],
       "pointer": "/definitions/RateLimitReachedType/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "76c10aa6691ddd9ebcc1c61d727f07d6cb268d3918a41fbfa29788dc29cb9a75",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-quota-literals-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitReachedType/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned ordinary provider429 header workspace_owner_usage_limit_reached becomes the exact original account/rateLimits/updated literal before usageLimitExceeded and failed turn. The owning stable schema root/node and experimental equality, original raw frames, complete error maps, thread/turn and six request/reply pairs are bound; one provider POST and one turn/start, no replay. Synthetic dependency data only: no account identity, role, credit/permission enforcement, real backend, other transport/OS or global verification. Adjacent wrappers, aliases and individualLimit receive no credit."
+      ],
       "pointer": "/definitions/RateLimitReachedType/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "153f564270c13fadf038316276b57cdb213ebf8b47f783fe540db8647bc71c33",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-quota-literals-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitReachedType/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual pinned ordinary provider429 header workspace_member_usage_limit_reached becomes the exact original account/rateLimits/updated literal before usageLimitExceeded and failed turn. The owning stable schema root/node and experimental equality, original raw frames, complete error maps, thread/turn and six request/reply pairs are bound; one provider POST and one turn/start, no replay. Synthetic dependency data only: no account identity, role, credit/permission enforcement, real backend, other transport/OS or global verification. Adjacent wrappers, aliases and individualLimit receive no credit."
+      ],
       "pointer": "/definitions/RateLimitReachedType/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "dbb97eef870378cb1707637f30d2610ef0d208c7a410054c8305805abf9c6467",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_rate_limit_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

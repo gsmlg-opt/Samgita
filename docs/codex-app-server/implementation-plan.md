@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary quota literal unit](ordinary-quota-literals-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps against1,762 identical guarded hashes:
+main165/0 twice, extensions21/0 twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks, preserving all original bounds/argv.
+Exactly2352–2355 gain native data/physical-node evidence; contracts are
+**5,752 implemented /733 missing /136 blocked**, unchanged requirements, zero
+globally verified. The original case is byte-identical and final stable-root
+bindings pass. Next: apply and qualify the source-supported existingCall draft
+for653–656, preserving old realtime cases and using an inert sideband; no real
+media negotiation or external success claim. Production/repaired paths remain
+unchanged. A11, prohibited/broad/hosted, external/OS and full/release gates stay open.
+
 The [Unix recovery and reply-loss unit](ordinary-unix-recovery-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps against1,762 identical hashes, preserving
 main165/0 twice and original bounds. Extensions17/0 twice add genuine UDS

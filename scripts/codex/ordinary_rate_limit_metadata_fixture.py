@@ -71,7 +71,7 @@ class Peer:
                     owner.requests.append(request)
                     write_json(args.requests_file, owner.requests)
                     headers = {
-                        "x-codex-rate-limit-reached-type": "rate_limit_reached",
+                        "x-codex-rate-limit-reached-type": args.reached_type,
                         "x-codex-primary-used-percent": "91",
                         "x-codex-primary-window-minutes": "60",
                         "x-codex-primary-reset-at": "2000000100",
@@ -168,6 +168,13 @@ def main():
     parser.add_argument("--codex-home", required=True, type=Path)
     parser.add_argument("--workspace", required=True, type=Path)
     parser.add_argument("--requests-file", required=True, type=Path)
+    parser.add_argument("--reached-type", default="rate_limit_reached", choices=(
+        "rate_limit_reached",
+        "workspace_owner_credits_depleted",
+        "workspace_member_credits_depleted",
+        "workspace_owner_usage_limit_reached",
+        "workspace_member_usage_limit_reached",
+    ))
     args = parser.parse_args()
     peer = Peer(args)
 
