@@ -23,6 +23,13 @@ defmodule SamgitaCodexDriver.NativeOrdinaryActivePageRecoveryTest do
   @answers ["Owned persisted prefix answer β", "Owned interrupted assistant answer γ🙂"]
   @item_ids ["owned-active-page-prefix-message", "owned-active-page-active-message"]
 
+  @crash_controller Path.expand(
+                      "../../../scripts/codex/ordinary_crash_tail_controller.py",
+                      __DIR__
+                    )
+  @crash_controller_sha "71aa0085278620fdfc7b460bfc7604dab12fd4cdbce16a58fc1f0c8c4c38a0c5"
+  @crash_stdio_helper_sha "34f63e30a21b040084a473c3c5ce9e175a43dce6691021ab3126d0d53dbce39f"
+
   defmodule CaptureStdio do
     @moduledoc false
     @behaviour SamgitaCodexDriver.Transport
@@ -567,4 +574,352 @@ defmodule SamgitaCodexDriver.NativeOrdinaryActivePageRecoveryTest do
 
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)
   defp now, do: System.monotonic_time(:millisecond)
+
+  test "genuine native process crash retains its incomplete canonical tail on first cold page",
+       ctx do
+    assert {:unix, :linux} = :os.type()
+    assert hash(File.read!(@crash_controller)) === @crash_controller_sha
+    {warm, warm_connection} = start(ctx, :warm, 2)
+    warm_process = call(ctx, warm, "server/diagnostics", %{})["process"]["id"]
+    identity = crash_identity(ctx, warm_connection, warm_process)
+    {thread, prefix, prefix_snapshot} = crash_prefix(ctx, warm)
+    active = crash_active(ctx, warm, thread, prefix)
+
+    # This public read uses persisted canonical full pages, not the live legacy
+    # overlay. It awaits recorder persist and projection before returning.
+    before_crash =
+      call(ctx, warm, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+    assert before_crash["id"] === thread
+    assert %{"type" => "active"} = before_crash["status"]
+    [stored_prefix, stored_active] = before_crash["turns"]
+    assert stored_prefix === prefix_snapshot
+    assert_turn(stored_active, active, "inProgress", @active, 1)
+    assert Map.fetch!(stored_active, "completedAt") === nil
+    assert Map.fetch!(stored_active, "durationMs") === nil
+    assert_crash_provider_held(ctx, thread, prefix, active)
+
+    owner_monitor = Process.monitor(warm_connection.owner.pid)
+    run_owned_crash(ctx, identity)
+    await_owned_crash(warm, warm_connection, warm_process, identity, owner_monitor)
+
+    # Read only this native-owned synthetic file after confirmed native reaping.
+    # It proves genuine original incomplete records, never authors a fake tail.
+    {rollout, rollout_hash} = assert_crash_rollout(ctx, before_crash, prefix, active)
+    assert Port.command(ctx.fixture.port, JSON.encode!(%{"close_active" => true}) <> "\n")
+    checkpoint(ctx.fixture, %{"event" => "active_handler_closed", "requests" => 2}, now() + 3_000)
+    assert_provider_inventory(ctx, thread, prefix, active)
+    close(ctx, warm, warm_connection, warm_process, 2)
+
+    {cold, cold_connection} = start(ctx, :cold, 3)
+    cold_process = call(ctx, cold, "server/diagnostics", %{})["process"]["id"]
+    refute cold_process === warm_process
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] === []
+
+    # FIRST native content operation in this distinct process. There is no cold
+    # read/resume/hydration or new turn that could repair or execute this history.
+    page =
+      call(ctx, cold, "thread/turns/list", %{
+        "threadId" => thread,
+        "limit" => 2,
+        "sortDirection" => "desc",
+        "itemsView" => "full"
+      })
+
+    assert Enum.map(page["data"], & &1["id"]) === [active, prefix]
+    assert page["data"] === [Map.put(stored_active, "status", "interrupted"), prefix_snapshot]
+    assert_turn(hd(page["data"]), active, "interrupted", @active, 1)
+    assert Map.fetch!(hd(page["data"]), "completedAt") === nil
+    assert Map.fetch!(hd(page["data"]), "durationMs") === nil
+    assert Map.fetch!(page, "nextCursor") === nil
+    assert is_binary(Map.fetch!(page, "backwardsCursor"))
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] === []
+    assert_provider_inventory(ctx, thread, prefix, active)
+    close(ctx, cold, cold_connection, cold_process, 3)
+
+    # Normalization is presentation, not an authored/persisted TurnAborted.
+    assert hash(File.read!(rollout)) === rollout_hash
+    assert_crash_wire_inventory(ctx, thread, prefix, active)
+    assert hash(File.read!(@script)) === @script_sha
+    assert hash(File.read!(@crash_controller)) === @crash_controller_sha
+  end
+
+  defp crash_prefix(ctx, warm) do
+    thread =
+      call(ctx, warm, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "ephemeral" => false,
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert is_binary(thread) and byte_size(thread) > 0
+    prefix = start_turn(ctx, warm, thread, @prefix)
+    events = collect(warm, [], &terminal?(&1, thread, prefix, "completed"), now() + 20_000)
+    assert terminal?(events, thread, prefix, "completed")
+
+    before =
+      call(ctx, warm, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+    assert before["id"] === thread and before["status"] === %{"type" => "idle"}
+    [prefix_snapshot] = before["turns"]
+    assert_turn(prefix_snapshot, prefix, "completed", @prefix, 0)
+    {thread, prefix, prefix_snapshot}
+  end
+
+  defp crash_active(ctx, warm, thread, prefix) do
+    active = start_turn(ctx, warm, thread, @active)
+    refute active === prefix
+    checkpoint(ctx.fixture, %{"event" => "active_item_flushed", "requests" => 2}, now() + 3_000)
+
+    events =
+      collect(
+        warm,
+        [],
+        fn events ->
+          item_done?(events, thread, active) and trailing_started?(events, thread, active)
+        end,
+        now() + 3_000
+      )
+
+    assert item_done?(events, thread, active) and trailing_started?(events, thread, active)
+
+    refute Enum.any?(
+             events,
+             &(&1.wire["method"] === "turn/completed" and
+                 &1.wire["params"]["turn"]["id"] === active)
+           )
+
+    active
+  end
+
+  defp assert_crash_provider_held(ctx, thread, prefix, active) do
+    [first, second] = ModelFixture.requests(ctx.fixture)
+    assert first["thread_id"] === thread and first["turn_id"] === prefix
+    assert second["thread_id"] === thread and second["turn_id"] === active
+    assert first["markers"] === [@prefix] and second["markers"] === [@prefix, @active]
+    state = read_state(ctx.root)
+    assert state["prefix_completed_sent"] === true and state["active_item_flushed"] === true
+    assert state["active_completed_sent"] === false and state["active_closed"] === false
+    assert state["handlers"] === 1 and state["errors"] === []
+  end
+
+  defp crash_identity(ctx, connection, native) do
+    assert is_integer(native) and native > 1
+    assert {:connected, owner} = Port.info(connection.port, :connected)
+    assert owner === connection.owner.pid
+    assert {:os_pid, helper_pid} = Port.info(connection.port, :os_pid)
+    native_facts = crash_proc_facts(native)
+    helper_facts = crash_proc_facts(helper_pid)
+    assert native_facts.ppid === helper_pid
+    assert native_facts.pgrp === native and native_facts.session === native
+    binary = System.find_executable(ctx.binary)
+    python = System.find_executable("python3")
+    assert is_binary(binary) and is_binary(python)
+    helper = Path.join(:code.priv_dir(:samgita_codex_driver), "stdio_owner.py")
+    assert hash(File.read!(binary)) === @binary_sha
+    assert hash(File.read!(helper)) === @crash_stdio_helper_sha
+
+    native_argv = [
+      binary | NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"])
+    ]
+
+    %{
+      "parent_pid" => helper_facts.ppid,
+      "native_pid" => native,
+      "helper_pid" => helper_pid,
+      "native_start" => native_facts.start,
+      "helper_start" => helper_facts.start,
+      "native_argv" => native_argv,
+      "helper_argv" => [python, helper | native_argv],
+      "home" => ctx.fixture.home,
+      "codex_home" => ctx.fixture.codex_home,
+      "cwd" => ctx.fixture.workspace,
+      "binary" => binary,
+      "python" => python,
+      "binary_sha256" => @binary_sha,
+      "helper" => helper,
+      "helper_sha256" => @crash_stdio_helper_sha
+    }
+  end
+
+  defp crash_proc_facts(pid) do
+    # Last closing parenthesis handles spaces/parentheses in the kernel comm field.
+    fields = File.read!("/proc/#{pid}/stat") |> String.split(")") |> List.last() |> String.split()
+
+    %{
+      ppid: fields |> Enum.at(1) |> String.to_integer(),
+      pgrp: fields |> Enum.at(2) |> String.to_integer(),
+      session: fields |> Enum.at(3) |> String.to_integer(),
+      start: Enum.at(fields, 19)
+    }
+  end
+
+  defp run_owned_crash(ctx, identity) do
+    spec = Path.join(ctx.root, "owned-process-crash-spec.json")
+    File.write!(spec, JSON.encode!(identity), [:exclusive])
+
+    {output, status} =
+      System.cmd(identity["python"], [@crash_controller, "--spec", spec],
+        env: [{"PYTHONDONTWRITEBYTECODE", "1"}],
+        stderr_to_stdout: true
+      )
+
+    assert status === 0, "Owned crash controller failed: #{output}"
+    assert byte_size(output) <= 16_384
+    proof = JSON.decode!(String.trim(output))
+
+    expected =
+      identity
+      |> Map.drop(["binary", "python", "helper", "parent_pid"])
+      |> Map.merge(%{
+        "native_ppid" => identity["helper_pid"],
+        "helper_ppid" => identity["parent_pid"],
+        "signal" => "SIGKILL",
+        "signal_count" => 1,
+        "native_pidfd_exited" => true,
+        "helper_pidfd_exited" => true
+      })
+
+    assert proof === expected
+  end
+
+  defp await_owned_crash(warm, connection, native, identity, monitor) do
+    owner = connection.owner.pid
+    assert_receive {:DOWN, ^monitor, :process, ^owner, :normal}, 3_000
+    assert_receive {:codex_driver, ^warm, {:gap, %{reason: :disconnected, generation: 1}}}, 3_000
+
+    assert %{
+             phase: :disconnected,
+             generation: 1,
+             pending: 0,
+             interactions: 0,
+             shutdown_error: nil,
+             gap: %{reason: :disconnected, generation: 1}
+           } = Session.status(warm)
+
+    # Index1 is actual NUL cleanup ACK consumption; index2 is actual helper exit.
+    assert :atomics.get(connection.owner.completion, 1) === 1
+    assert :atomics.get(connection.owner.completion, 2) === 137
+    assert Port.info(connection.port) === nil
+    refute File.exists?("/proc/#{native}")
+    refute File.exists?("/proc/#{identity["helper_pid"]}")
+    assert :ok = Stdio.close(connection)
+  end
+
+  defp assert_crash_rollout(ctx, thread, prefix, active) do
+    path = Map.fetch!(thread, "path")
+    assert is_binary(path) and Path.type(path) === :absolute
+    relative = Path.relative_to(Path.expand(path), Path.expand(ctx.fixture.codex_home))
+    refute Path.type(relative) === :absolute or ".." in Path.split(relative)
+    assert {:ok, %{type: :regular, size: size}} = File.lstat(path)
+    assert size > 0 and size <= 262_144
+    bytes = File.read!(path)
+    assert String.ends_with?(bytes, "\n")
+    lines = String.split(bytes, "\n", trim: true)
+    assert length(lines) <= 128
+
+    events =
+      for line <- lines, row = JSON.decode!(line), row["type"] === "event_msg", do: row["payload"]
+
+    # The pinned persistent v1 spelling is task_started/task_complete. v2 aliases
+    # are accepted upstream but never replace these producer spellings here.
+    assert for(event <- events, event["type"] === "task_started", do: event["turn_id"]) === [
+             prefix,
+             active
+           ]
+
+    assert for(event <- events, event["type"] === "task_complete", do: event["turn_id"]) === [
+             prefix
+           ]
+
+    refute Enum.any?(events, &(&1["type"] === "turn_aborted"))
+
+    completed =
+      for event <- events,
+          event["type"] === "item_completed" and event["turn_id"] === active,
+          do: event
+
+    assert Enum.all?(completed, &(&1["thread_id"] === thread["id"]))
+    [user, assistant] = Enum.map(completed, & &1["item"])
+    [stored_user, _stored_assistant] = List.last(thread["turns"])["items"]
+
+    assert user === %{
+             "type" => "UserMessage",
+             "id" => stored_user["id"],
+             "content" => [%{"type" => "text", "text" => @active, "text_elements" => []}]
+           }
+
+    assert assistant === %{
+             "type" => "AgentMessage",
+             "id" => Enum.at(@item_ids, 1),
+             "content" => [%{"type" => "Text", "text" => Enum.at(@answers, 1)}]
+           }
+
+    {path, hash(bytes)}
+  end
+
+  defp assert_crash_wire_inventory(ctx, thread, prefix, active) do
+    wires =
+      Enum.map(Agent.get(ctx.capture, & &1.frames), fn frame ->
+        assert {:ok, wire} = Wire.decode(frame.encoded, max_depth: 64, max_bytes: 131_072)
+        assert wire === JSON.decode!(frame.encoded)
+        {frame, wire}
+      end)
+
+    outgoing = for {%{direction: :out}, wire} <- wires, do: wire
+
+    assert Enum.map(outgoing, & &1["method"]) ===
+             ~w(initialize initialized server/diagnostics thread/start turn/start thread/read turn/start thread/read initialize initialized server/diagnostics thread/loaded/list thread/turns/list thread/loaded/list)
+
+    requests =
+      for {%{direction: :out, label: label}, wire} <- wires,
+          Map.has_key?(wire, "id"),
+          do: {label, wire}
+
+    responses =
+      for {%{direction: :in, label: label}, wire} <- wires,
+          Map.has_key?(wire, "id"),
+          do: {label, wire}
+
+    assert length(requests) === 12 and length(responses) === 12
+    assert length(Enum.uniq_by(requests, fn {_label, wire} -> wire["id"] end)) === 12
+
+    for {label, request} <- requests do
+      [{^label, response}] =
+        Enum.filter(responses, fn {reply_label, reply} ->
+          reply_label === label and reply["id"] === request["id"]
+        end)
+
+      assert Map.has_key?(response, "result") and not Map.has_key?(response, "error")
+    end
+
+    assert_crash_turn_inventory(wires, thread, prefix, active)
+  end
+
+  defp assert_crash_turn_inventory(wires, thread, prefix, active) do
+    started =
+      for {%{direction: :in, label: :warm}, %{"method" => "turn/started", "params" => params}} <-
+            wires,
+          params["threadId"] === thread,
+          do: params["turn"]["id"]
+
+    assert started === [prefix, active]
+
+    completed =
+      for {%{direction: :in, label: :warm}, %{"method" => "turn/completed", "params" => params}} <-
+            wires,
+          params["threadId"] === thread,
+          do: {params["turn"]["id"], params["turn"]["status"]}
+
+    assert completed === [{prefix, "completed"}]
+
+    cold_turn_events =
+      for {%{direction: :in, label: :cold}, %{"method" => method}} <- wires,
+          method in ~w(turn/started turn/completed item/started item/completed item/agentMessage/delta),
+          do: method
+
+    assert cold_turn_events === []
+  end
 end

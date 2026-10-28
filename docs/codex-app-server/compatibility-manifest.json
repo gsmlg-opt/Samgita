@@ -8540,7 +8540,8 @@
         "docs/codex-app-server/thread-history-qualification.md",
         "docs/codex-app-server/sort-direction-input-qualification.md",
         "docs/codex-app-server/turn-items-view-input-qualification.md",
-        "docs/codex-app-server/rich-item-view-qualification.md"
+        "docs/codex-app-server/rich-item-view-qualification.md",
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/turns/list",
@@ -8550,7 +8551,8 @@
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
         "Scoped SortDirection input correction on exactly six full request graphs: four asc/desc null-or-empty-map objects preserve original wire values, standard/full method and nested-page negotiation. Independent native chronology, real item identities/timing and public project moves prescribe all40 history and8 project ordered queries warm/cold;16cold reads precede resume with no extra inference. Exact runtime projections and the source-prescribed first-cold-resume checkpoint, original SessionMeta creation restoration and bracketed update clock are asserted; every other field and subsequent frozen state stays exact. Only one resume is initially unloaded. Capture45/48 and11/16, provider3/0, original bytes/history and owned cleanup retained. Final67schema and10affected actual-binary cases pass twice plus outsideconsumer1/0 and strict checks, with357stable sources and770unchanged exports. This does not promote physical owners/states or qualify cursor/legacy/other-backend breadth, prohibited/broad/hosted gates or full compatibility.",
         "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
-        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim.",
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
       ],
       "params": {
         "$ref": "#/definitions/ThreadTurnsListParams"
@@ -8586,7 +8588,8 @@
           "apps/samgita_codex_driver/test/native_sort_direction_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/turn_items_view_input_test.exs",
           "apps/samgita_codex_driver/test/native_turn_items_view_unit_input_test.exs",
-          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_active_page_recovery_test.exs"
         ]
       },
       "transport_coverage": [
@@ -10452,7 +10455,8 @@
         "docs/codex-app-server/approval-cold-restart-qualification.md",
         "docs/codex-app-server/cold-items-process-config-qualification.md",
         "docs/codex-app-server/query-uncertainty-qualification.md",
-        "docs/codex-app-server/ordinary-stream-discovery-qualification.md"
+        "docs/codex-app-server/ordinary-stream-discovery-qualification.md",
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10464,7 +10468,8 @@
         "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits.",
         "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
         "Scoped query-effect repair: six source-proven history/introspection queries report deadline/disconnect/send-failure/local-abandonment without execution uncertainty; pending queries no longer reserve mutation uncertainty capacity. New29-case ScriptedTransport regressions prove real Session classification/accounting, not native backend success. Unknown/mutating requests remain conservative, independent max_pending stays bounded, late responses stay observable and reconnect never retries. Final nine-file43/0 twice ordinary native/fault matrix plus four selected existing capacity cases twice, compile/format, strict Credo510, outside actual-binary consumer1/0 and312-source guard pass. Ten immutable source files support query semantics. Only Session plus the new test changes; all310 other prior sources and cleanup stay unchanged. No state/schema-owner promotion; prohibited/broad/hosted, A11, legacy/external/platform/full-goal gates remain incomplete. See the record for retained line-selection correction and exact evidence.",
-        "Actual stock native borrowed WebSocket stream: one observed prescribed delta, explicit unsubscribe ACK as detach barrier, reconnect/reinitialize without resume, release provider and observe global idle while scoped notifications are absent. Explicit read/resume/read returns exact original completed history; driver gap stays visible, one original turn/provider request, 11 typed correlated request/replies over two generations. Controlled unsubscribe/reconnect, not physical packet loss, ambiguous mutation-ACK loss, native delta replay or cold-process recovery. Borrowed close leaves owned native server alive until explicit owner shutdown. No automatic retry or security/permission outcome assertion."
+        "Actual stock native borrowed WebSocket stream: one observed prescribed delta, explicit unsubscribe ACK as detach barrier, reconnect/reinitialize without resume, release provider and observe global idle while scoped notifications are absent. Explicit read/resume/read returns exact original completed history; driver gap stays visible, one original turn/provider request, 11 typed correlated request/replies over two generations. Controlled unsubscribe/reconnect, not physical packet loss, ambiguous mutation-ACK loss, native delta replay or cold-process recovery. Borrowed close leaves owned native server alive until explicit owner shutdown. No automatic retry or security/permission outcome assertion.",
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
       ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
@@ -10483,7 +10488,8 @@
           "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287",
           "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs",
           "apps/samgita_codex_driver/test/query_uncertainty_test.exs",
-          "apps/samgita_codex_driver/test/native_ordinary_websocket_gap_test.exs"
+          "apps/samgita_codex_driver/test/native_ordinary_websocket_gap_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_active_page_recovery_test.exs"
         ]
       },
       "transport_coverage": [
@@ -10632,14 +10638,16 @@
       "evidence": [
         "docs/codex-app-server/tool-interactions-qualification.md",
         "docs/codex-app-server/cold-items-process-config-qualification.md",
-        "docs/codex-app-server/ordinary-stream-discovery-qualification.md"
+        "docs/codex-app-server/ordinary-stream-discovery-qualification.md",
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
       ],
       "id": "lifecycle:item-lifecycle",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
         "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
-        "Ordinary native active-page/interruption recovery: one completed prefix plus held assistant turn, later native item/started as serial-reducer barrier, explicit descending/full limit2 bootstrap with exact live legacy item IDs and independently prescribed content. Explicit native interrupt settles the original turn; paginated includeTurns persists canonical items before confirmed warm shutdown. Distinct native process first reads turns/list and returns exact entire interrupted/completed turn objects without loading/resuming/executing. Fourteen correlated native requests/replies and two original provider requests, no cold stream replay. Explicit interruption only; forced-crash incomplete history, other deployment profiles and full lifecycle remain unqualified. No new physical-owner or verified promotion."
+        "Ordinary native active-page/interruption recovery: one completed prefix plus held assistant turn, later native item/started as serial-reducer barrier, explicit descending/full limit2 bootstrap with exact live legacy item IDs and independently prescribed content. Explicit native interrupt settles the original turn; paginated includeTurns persists canonical items before confirmed warm shutdown. Distinct native process first reads turns/list and returns exact entire interrupted/completed turn objects without loading/resuming/executing. Fourteen correlated native requests/replies and two original provider requests, no cold stream replay. Explicit interruption only; forced-crash incomplete history, other deployment profiles and full lifecycle remain unqualified. No new physical-owner or verified promotion.",
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
       ],
       "required_behavior": "preserve full typed item lifecycle, identifiers, tool/approval associations and upstream ordering",
       "schema_sha256": "73b47afad2b4aa5b02ffe1ef0a6dc1216fc3153d2408dffe08a503ad7b2bdf38",
@@ -10807,7 +10815,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/cold-items-process-config-qualification.md"
+        "docs/codex-app-server/cold-items-process-config-qualification.md",
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
       ],
       "id": "lifecycle:owned-process-exit",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10818,7 +10827,8 @@
         "scripted_peer_fault: Unconfirmed shutdown settles pending mutation uncertain and blocks reconnect262-268.",
         "actual_native_transport: Closing borrowed UDS client leaves actual owner and socket128-129.",
         "Owned-process failure fixtures are Python/ScriptedTransport; Linux only. No authority to terminate borrowed service resources.",
-        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete."
+        "Additional selected cold item, connection-owned process, queue-capacity and metadata/default scenarios; broader lifecycle and external/platform qualification remain incomplete.",
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
       ],
       "required_behavior": "reap only owned child resources; settle pending requests on exit; borrowed endpoints remain untouched",
       "schema_sha256": "a8a95dc2d1b791a6387e66ff93f38e7505c4cb0e4da04498dd58758841ab72bf",
@@ -10835,7 +10845,8 @@
           "apps/samgita_codex_driver/test/transport_stdio_test.exs:133",
           "apps/samgita_codex_driver/test/transport_stdio_test.exs:170",
           "apps/samgita_codex_driver/test/session_test.exs:257",
-          "apps/samgita_codex_driver/test/transport_real_codex_test.exs:116"
+          "apps/samgita_codex_driver/test/transport_real_codex_test.exs:116",
+          "apps/samgita_codex_driver/test/native_ordinary_active_page_recovery_test.exs"
         ]
       },
       "transport_coverage": [],
@@ -21913,7 +21924,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/thread-history-qualification.md",
-        "docs/codex-app-server/rich-item-view-qualification.md"
+        "docs/codex-app-server/rich-item-view-qualification.md",
+        "docs/codex-app-server/ordinary-crash-tail-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/turns/list",
@@ -21921,7 +21933,8 @@
       "legacy": false,
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
-        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim."
+        "Scoped genuine paginated rich-item projection: one actual dynamic-tool turn supplies event-derived user/tool/final-agent items and original item timing, independently matched to native item-list entries and the complete saved full row. Each canonical NotLoaded, Summary and Full independently projects that original row through warm list/resume and unloaded cold list; actual Summary excludes the completed tool while Full retains its complete original content. Other turn fields, rollout/config/catalog/provider journal and history remain exact.11/24x4KiB captured selected frames,2 inference, one explicit tool response,2 owned pinned PIDs and unchanged bounded cleanup. Initial1/0 and affected9/0 twice, compile/format/strict checks and371stable sources pass; all370prior sources,770exports and15descriptors unchanged. Supplemental evidence only: no state, owner or count promotion; no null/default/object filtering, cold resume, cursor/legacy/active/multi-message/other-platform breadth or prohibited/broad/hosted/full-goal claim.",
+        "Additional genuine ordinary process-crash tail: public paginated includeTurns proves persisted original canonical inProgress content while provider remains held. One exact-owned native pidfd SIGKILL; actual unchanged helper cleanup ACK, exit137, Owner exit/reap and Session disconnect are independent observations. Native-generated read-only JSONL proves two original starts, prefix-only completion and no TurnAborted. Distinct process first turns/list returns whole warm active object with status alone normalized to interrupted, original completed prefix, nil terminal times, no loaded thread/new provider work; canonical JSONL hash stays unchanged. Twelve original-byte-correlated request/replies, two original provider requests. No power-loss/fsync, corrupt/truncated-history, unfinished-item survival, remote/provider/OS/full-lifecycle or globally verified claim. No physical-owner state change."
       ],
       "prerequisites": [
         "initialized"
@@ -21939,7 +21952,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs"
+          "apps/samgita_codex_driver/test/native_item_view_projection_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_active_page_recovery_test.exs"
         ]
       },
       "transport_coverage": [

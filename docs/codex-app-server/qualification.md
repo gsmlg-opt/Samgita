@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps with1,758 identical guarded sources:
+164/0 twice within original320s bounds,11/0 extensions twice, three selected
+replay seeds, four cleanup cases, outside consumer1/0 and static/build checks.
+Actual SIGKILL follows a public canonical-persistence barrier; real cleanup ACK,
+exit137 and reaping precede a distinct process's first cold page. Original history
+bytes remain exact; only orphaned active status is presented as interrupted.
+No physical owner or globally verified status changes. Continue side-effect-aware
+installed-null and ordinary import-history metadata qualification. A11, the
+unknown intermittent cleanup cause, prohibited/broad/hosted checks, external/OS
+success, full compatibility and release remain incomplete.
+
 The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps with1,757 identical source hashes:
 164/0 twice under original320s bounds,10/0 extensions twice, three selected

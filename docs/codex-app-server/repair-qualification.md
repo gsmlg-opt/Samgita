@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed steps against1,758 identical guarded sources, including
+original164-case repeats,11-case extensions twice, three replay seeds, four
+cleanup cases, the outside consumer and static/build checks. Native persistence
+precedes one checked-owned SIGKILL; independent ACK/exit137/reaping evidence
+precedes the first cold page. Historical bytes stay exact, without duplicate
+execution or invented terminal records. Counts and globally verified states do
+not change. Existing dependency/replay/database/cleanup repairs remain intact.
+Continue installed-null and ordinary import-history metadata qualification;
+A11, the unknown intermittent cleanup cause, prohibited/broad/hosted checks,
+external/OS success, the full goal and release remain incomplete.
+
 The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed steps,1,757 exact sources, original164-case repeats under
 320s, ten extension cases twice, three replay seeds, four cleanup cases, outside

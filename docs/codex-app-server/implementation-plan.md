@@ -1,5 +1,19 @@
 # Full compatibility implementation ledger
 
+The [genuine process-crash tail unit](ordinary-crash-tail-qualification.md#final-combined-source-functional-qualification)
+passes all17 reviewed functional steps against1,758 identical guarded sources:
+original164-case repeats within320s,11-case extensions twice, three selected
+replay seeds, four cleanup cases, outside consumer and static/build checks.
+Original native canonical history survives a checked-owned SIGKILL and the
+first cold content read without execution or persisted terminal fabrication.
+Requirements remain462 implemented/12 missing/11 blocked; contracts remain
+5,728 implemented/757 missing/136 blocked, zero globally verified. Next: qualify
+the separate installed-null profile with its background sync explicitly held,
+then the source-supported ordinary import-history group labels. Existing profiles,
+database safeguards and production cleanup remain unchanged. A11, original
+intermittent cause, prohibited/broad/hosted, external/OS and full/release gates
+remain incomplete.
+
 The [ordinary stream/discovery unit](ordinary-stream-discovery-qualification.md#final-combined-source-functional-qualification)
 passes all17 reviewed functional steps against1,757 identical sources:
 preserved164 cases twice within320s, ten extension cases twice, three selected
