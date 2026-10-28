@@ -9865,7 +9865,8 @@
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-mcp-form-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:mcpServer/elicitation/request",
@@ -9873,7 +9874,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Native form-mode request targets fixture server/thread; accept/decline/cancel actions reach actual owned MCP peer; accepted structured content matches peer and subsequent model output; stale reply rejects. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:316-350 (default-native-suite); apps/samgita_codex_driver/test/mcp_mention_test.exs:78-137 (default-native-suite); apps/samgita_codex_driver/test/mcp_mention_test.exs:199-213 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Only form mode and simple boolean accepted content. No URL/userVerification/openai form variants, auth challenge, metadata editing, complex schemas or interruption-before-response."
+        "Only form mode and simple boolean accepted content. No URL/userVerification/openai form variants, auth challenge, metadata editing, complex schemas or interruption-before-response.",
+        "V539 stock rust-v0.163.0 emits a real nonempty ordinary label Form for an explicitly User-sourced owned root thread with the standard-form-input extension. The answer is exact across original response bytes, independent MCP peer receipt, provider continuation, native MCP item/final output and resolution digest. An unanswered second Form is interrupted; actual native resolution and independent peer action:cancel retire it without fabricated outcome or late-handle bytes, preserving the first result and exactly three provider calls. Eleven selected original frames,20-second observable deadlines and confirmed native/MCP/provider Port/owner/PID cleanup pass at two seeds. Initial missing-threadSource failure and source-supported repair are preserved. Retained ordinary Form oneOf1 equals archived oneOf0; whole roots differ. Only ordinary MCP2025 form on Linux-musl/stdio, no URL/device/permission/approval/security behavior, alias/global verification or alternate profile success. Prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -9891,7 +9893,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/mcp_mention_test.exs"
+          "apps/samgita_codex_driver/test/mcp_mention_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_lifecycle_test.exs:148"
         ]
       },
       "transport_coverage": [
@@ -10407,7 +10410,8 @@
         "docs/codex-app-server/collaboration-unit-input-qualification.md",
         "docs/codex-app-server/reasoning-summary-input-qualification.md",
         "docs/codex-app-server/personality-input-qualification.md",
-        "docs/codex-app-server/history-mode-input-qualification.md"
+        "docs/codex-app-server/history-mode-input-qualification.md",
+        "docs/codex-app-server/ordinary-initialize-default-qualification.md"
       ],
       "id": "lifecycle:experimental-negotiation",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10423,7 +10427,8 @@
         "Scoped collaboration unit-object input repair: ModeKind input union accepts exactly six known keys with null/empty-map unit payloads on the two real request graphs, preserving original maps, existing string aliases, settings/negotiation constraints and canonical output schemas. Two added structural cases and twelve new actual-native profiles prove applied settings, Plan versus literal assistant parsing, canonical turn contexts and warm/first cold history with exact request budgets, retained bytes and owned cleanup. Plan context independently checks canonical mode/model, not every builtin setting; Default context remains exact. Final reviewed32-schema/82-driver cases twice, outside consumer1/0, format/compile, strict Credo515, inventory and330-source guard pass; all323 other prior sources and old MultiAgent/dynamic/compaction descriptors unchanged. Eleven exact upstream files plus dependency source/lock/license and770 unchanged official exports bound. Wire-only characterization is diagnostic, not final evidence; final native cases use default validation. Outside addition validates objects locally then runs native list. No new output recorder, cold resumed inference, complete defaults/delegation, state/physical-owner promotion or restricted/broad/hosted/A11/legacy/external/platform/full-goal completion; see qualification.",
         "Scoped ReasoningSummary unit-object input repair: source-pinned input-only contract admits one known auto/concise/detailed/none key with null or empty-map payload on exactly thread/settings/update, turn/start and turn/settings/update. Canonical outputs, caller objects, null/omission distinctions, required fields and experimental negotiation remain intact; ModeKind/MultiAgent corrections compose. Five structural tests and24 new actual-native cases use default validation and unchanged assistant/dynamic-tool Responses fixtures. Thread-owned updates have real canonical applied snapshots and subsequent inference; turn-local updates take effect after an explicit held dynamic-tool result while future thread defaults stay unchanged. Selected none omits provider reasoning.summary; omitted/null updates preserve prior selection. Native-written thread_settings_applied persistence is checked after complete owned shutdown; hardcoded TurnContext.summary is not used as an oracle. Final37-schema/108-driver cases twice, outside consumer1/0, format/compile, strict Credo517, inventory and334-source guard pass; all326 other prior sources and every prior pinned artifact remain unchanged. Thirteen archive-matched source files plus lock-pinned serde source/license and770 unchanged official exports are bound. Consumer adds local object validation then retains native list-only journey. No cold resume, external model behavior, state/physical-owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
         "Scoped Personality unit-object input repair: the source-pinned input-only union accepts exactly none/friendly/pragmatic with null/empty-map payload on the four reachable request graphs, composing with dynamic-tool/compaction/ModeKind/MultiAgent/summary corrections and preserving canonical outputs, original values, null/omission, enclosing constraints and negotiation. Five structural tests plus11 ordinary native cases cover six fresh object profiles, two15-turn preserved scalar profiles, a six-update idle journey,11 warm turns and10 genuinely cold parents/20 requests. Actual provider instructions are stripped only for fresh none; subsequent updates/cold override preserve inherited base, warm rejoin ignores personality override. Canonical selected snapshots, fixed assistant answers, public saved items, exact captured maps, unchanged32-frame/4KiB bounds, inference budgets and checked PID replacement/cleanup remain asserted. Final42-schema/119-driver cases twice, outside consumer1/0, format/compile, strict Credo518, inventory and336-source guard pass; all328 other prior sources and every prior pin unchanged. Eleven archive-matched source files plus exact serde source/lock/license and770 unchanged official exports bound. Consumer addition validates objects locally then retains native list-only journey. No distinct friendly/pragmatic style, raw-history immutability, state/owner promotion or prohibited/broad/hosted/A11/legacy/external/platform/full-goal completion is claimed; see qualification.",
-        "Scoped ThreadHistoryMode input repair: source-pinned seventh descriptor accepts exactly legacy/paginated one-key objects with null/empty-map payload on thread/start only. The original string definition remains a complete union branch; caller values, outer null/omission, enclosing constraints, experimental field gate and six prior corrections remain intact. Protocol red5/3fail and default native1/1fail demonstrate local schema rejection; a separately bound temporary wire-only comparison proves real native acceptance and cold persistence, while final committed tests retain default validation. Five protocol cases plus one native four-profile journey prove exact outbound maps/bytes/correlation, zero creation inference, independently selected canonical creation modes, four actual assistant requests with native IDs, materialized public metadata/full turn pages and exact unloaded cold history without reinference or reexecution. Original32-frame/4KiB bounds, event/deadline limits, fixed YOLO, unchanged provider/config/catalog and owned PID/Port cleanup remain asserted. Final47-schema/122-driver cases twice, outside consumer1/0, format/compile, strict Credo522, inventory and342-source guard pass; all333 other prior sources, six descriptors, prior pins and770 exports unchanged. Eleven archive-matched sources and exact pinned buffered-serde bindings explain the decoder discrepancy. Consumer locally validates four forms then retains the native list-only journey. No physical owner/count/state promotion, complete field/method/lifecycle, unavailable OS/transport/external/platform, prohibited/broad/hosted/A11/full-goal or publication claim is made."
+        "Scoped ThreadHistoryMode input repair: source-pinned seventh descriptor accepts exactly legacy/paginated one-key objects with null/empty-map payload on thread/start only. The original string definition remains a complete union branch; caller values, outer null/omission, enclosing constraints, experimental field gate and six prior corrections remain intact. Protocol red5/3fail and default native1/1fail demonstrate local schema rejection; a separately bound temporary wire-only comparison proves real native acceptance and cold persistence, while final committed tests retain default validation. Five protocol cases plus one native four-profile journey prove exact outbound maps/bytes/correlation, zero creation inference, independently selected canonical creation modes, four actual assistant requests with native IDs, materialized public metadata/full turn pages and exact unloaded cold history without reinference or reexecution. Original32-frame/4KiB bounds, event/deadline limits, fixed YOLO, unchanged provider/config/catalog and owned PID/Port cleanup remain asserted. Final47-schema/122-driver cases twice, outside consumer1/0, format/compile, strict Credo522, inventory and342-source guard pass; all333 other prior sources, six descriptors, prior pins and770 exports unchanged. Eleven archive-matched sources and exact pinned buffered-serde bindings explain the decoder discrepancy. Consumer locally validates four forms then retains the native list-only journey. No physical owner/count/state promotion, complete field/method/lifecycle, unavailable OS/transport/external/platform, prohibited/broad/hosted/A11/full-goal or publication claim is made.",
+        "V540 ordinary initialization/default slice: default validation rejects experimentalApi:null locally without sending; a separately identified existing wire-mode probe obtains the true native boolean decoder error, followed by valid same-connection initialization. Omitted/false negotiation preserves ordinary operation while experimental project methods fail explicitly in local and native paths. True negotiation creates one owned native project; independent literals, full original timestamped event, exact persistence/cold read,19pairs/23outgoing and confirmed owned process cleanup pass at two seeds. No validator is changed and no permission/authorization or model/tool behavior is tested. Only this ordinary slice on Linux-musl/stdio; other fields/extensions, OS/transports, full lifecycle, prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
       ],
       "required_behavior": "experimental methods and source-active gated fields/enum variants require capabilities.experimentalApi; false bools, null standard options and empty nonoptional collections are inactive; double options and custom deserializers follow pinned Rust semantics",
       "schema_sha256": "3b5a6f6300cf19cef93f3bae8e2a0dfbf6c837ad7b5ed599562bdb7eaa962182",
@@ -10453,7 +10458,8 @@
           "apps/samgita_codex_driver/test/native_turn_personality_test.exs",
           "apps/samgita_codex_driver/test/native_resume_personality_values_test.exs",
           "apps/samgita_protocol_codex/test/thread_history_mode_input_test.exs",
-          "apps/samgita_codex_driver/test/native_history_mode_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_history_mode_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:145"
         ]
       },
       "transport_coverage": [
@@ -10550,7 +10556,8 @@
         "docs/codex-app-server/project-sort-key-input-qualification.md",
         "docs/codex-app-server/turn-items-view-input-qualification.md",
         "docs/codex-app-server/merge-strategy-input-qualification.md",
-        "docs/codex-app-server/thread-source-kind-input-qualification.md"
+        "docs/codex-app-server/thread-source-kind-input-qualification.md",
+        "docs/codex-app-server/ordinary-initialize-default-qualification.md"
       ],
       "id": "lifecycle:missing-null-default",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10578,7 +10585,8 @@
         "Scoped ProjectSortKey input correction on experimental project/list only: four position/recencyAt null-or-empty-map objects preserve original bytes, canonical outputs, method negotiation and key-dependent native defaults. Four public project creates and one move prescribe position order; two genuine assistant-only turns and read-only native recency columns prescribe active order plus directional ID ties/null-last empty projects. All16 combinations of key objects and omitted/null/asc/desc directions pass warm and unloaded cold:32 complete pages,41/48 bounded captures,2 inference, exact catalog/config/provider journal/project/thread/history retention and owned cleanup. Final72 schema and135 reviewed ordinary driver cases pass twice, outsideconsumer1/0, strict/static/assembly checks and360stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full-compatibility claim.",
         "Scoped TurnItemsView input correction on exactly thread/turns/list.itemsView and experimental thread/resume.initialTurnsPage.itemsView: six notLoaded/summary/full null-or-empty-map objects preserve original bytes, complete canonical described oneOf, outer null/omission and existing gates. One genuine paginated thread/two assistant-only turns provide original event-derived IDs/content/timing. Twelve warm list/resume and six unloaded cold list pages match independent complete row projections; NotLoaded is empty, Summary/Full report distinct canonical views but share this two-item content, leaving richer filtering unqualified. Capture21/24x4KiB,2 inference, no cold resume, exact original history/config/catalog/provider journal and owned cleanup retained. Final77schema/136reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and363stable sources with770unchanged exports. No physical owner/state promotion, cursor/legacy/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
         "Scoped MergeStrategy input correction on exactly standard config/value/write.mergeStrategy and config/batchWrite.edits[].mergeStrategy: four replace/upsert null-or-empty-map objects preserve original bytes, canonical schemas, required nonOption fields and absence of local defaults. Eight real desktop-table writes each change state with independent sentinel expectations: Replace removes a present key; Upsert preserves a separate key while changing another. Ten actual persisted-layer reads, immediate version/file correlation and final unloaded-process exact file/UserLayer continuity pass with original non-desktop config/metadata retained,8/12x4KiB captures,0 inference and owned cleanup. A strict-Credo nested callback finding is repaired by extracting its unchanged recording body, preserving every assertion; failed logs remain separate. Final82schema/137reviewed ordinary driver twice, outsideconsumer1/0, strict/static/assembly checks and367stable sources with770unchanged exports and13unchanged prior descriptors. No physical owner/state promotion, arbitrary-config/mixed-failure/concurrent-writer/backend breadth, prohibited/broad/hosted gate or full compatibility claim.",
-        "Scoped ThreadSourceKind input correction on exactly thread/list.sourceKinds[] and experimental thread/search.sourceKinds[]: twenty null-or-empty-map unit objects preserve literal arrays, original bytes, canonical schemas, outer missing/null/empty distinctions, explicit vscode rename and all existing gates. One genuine paginated vscode thread with one actual ordinary turn supplies original history/items/timing and source provenance; a distinct pinned cold process performs40 discovery queries before hydration. Both vscode forms select the known populated row; the eighteen other forms exclude it but cannot qualify positive producers or discrimination among those nine source kinds. Raw rollout/SessionMeta/config/catalog/provider journal and exact original full history are retained.42/48x4KiB captures,1 inference, owned cleanup and all deadlines/bounds remain intact. First strict-Credo list-predicate finding is corrected without weakening any assertion; failed logs remain separate. Final87schema/138reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly and370stable sources with770unchanged exports and14unchanged descriptors. No physical-owner/state promotion, richer defaults/relation/custom sources, mixed-OR/cursor/warm-object/all-platform breadth, prohibited/broad/hosted gate or full-compatibility claim."
+        "Scoped ThreadSourceKind input correction on exactly thread/list.sourceKinds[] and experimental thread/search.sourceKinds[]: twenty null-or-empty-map unit objects preserve literal arrays, original bytes, canonical schemas, outer missing/null/empty distinctions, explicit vscode rename and all existing gates. One genuine paginated vscode thread with one actual ordinary turn supplies original history/items/timing and source provenance; a distinct pinned cold process performs40 discovery queries before hydration. Both vscode forms select the known populated row; the eighteen other forms exclude it but cannot qualify positive producers or discrimination among those nine source kinds. Raw rollout/SessionMeta/config/catalog/provider journal and exact original full history are retained.42/48x4KiB captures,1 inference, owned cleanup and all deadlines/bounds remain intact. First strict-Credo list-predicate finding is corrected without weakening any assertion; failed logs remain separate. Final87schema/138reviewed ordinary driver twice, outsideconsumer1/0, strict/static/local assembly and370stable sources with770unchanged exports and14unchanged descriptors. No physical-owner/state promotion, richer defaults/relation/custom sources, mixed-OR/cursor/warm-object/all-platform breadth, prohibited/broad/hosted gate or full-compatibility claim.",
+        "V540 ordinary initialization/default slice: default validation rejects experimentalApi:null locally without sending; a separately identified existing wire-mode probe obtains the true native boolean decoder error, followed by valid same-connection initialization. Omitted/false negotiation preserves ordinary operation while experimental project methods fail explicitly in local and native paths. True negotiation creates one owned native project; independent literals, full original timestamped event, exact persistence/cold read,19pairs/23outgoing and confirmed owned process cleanup pass at two seeds. No validator is changed and no permission/authorization or model/tool behavior is tested. Only this ordinary slice on Linux-musl/stdio; other fields/extensions, OS/transports, full lifecycle, prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
       ],
       "required_behavior": "retain absent versus null versus explicit values; apply no undocumented driver defaults",
       "schema_sha256": "050381955e3a76bb19f7cb266f6f931c72dcbf0aa02b73afdd7781f5f6e77568",
@@ -10627,7 +10635,8 @@
           "apps/samgita_protocol_codex/test/merge_strategy_input_test.exs",
           "apps/samgita_codex_driver/test/native_merge_strategy_unit_input_test.exs",
           "apps/samgita_protocol_codex/test/thread_source_kind_input_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_source_kind_unit_input_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_source_kind_unit_input_test.exs",
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:145"
         ]
       },
       "transport_coverage": [
@@ -15359,7 +15368,8 @@
       "direction": "server_request",
       "evidence": [
         "Controlled local stdio MCP form acceptance, exact thread/server identity and peer reply/output journal: apps/samgita_codex_driver/test/mcp_mention_test.exs; other decisions, authentication and transport profiles remain unqualified",
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/ordinary-mcp-form-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:mcpServer/elicitation/request",
@@ -15367,7 +15377,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Native form-mode request targets fixture server/thread; accept/decline/cancel actions reach actual owned MCP peer; accepted structured content matches peer and subsequent model output; stale reply rejects. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:316-350 (default-native-suite); apps/samgita_codex_driver/test/mcp_mention_test.exs:78-137 (default-native-suite); apps/samgita_codex_driver/test/mcp_mention_test.exs:199-213 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Only form mode and simple boolean accepted content. No URL/userVerification/openai form variants, auth challenge, metadata editing, complex schemas or interruption-before-response."
+        "Only form mode and simple boolean accepted content. No URL/userVerification/openai form variants, auth challenge, metadata editing, complex schemas or interruption-before-response.",
+        "V539 stock rust-v0.163.0 emits a real nonempty ordinary label Form for an explicitly User-sourced owned root thread with the standard-form-input extension. The answer is exact across original response bytes, independent MCP peer receipt, provider continuation, native MCP item/final output and resolution digest. An unanswered second Form is interrupted; actual native resolution and independent peer action:cancel retire it without fabricated outcome or late-handle bytes, preserving the first result and exactly three provider calls. Eleven selected original frames,20-second observable deadlines and confirmed native/MCP/provider Port/owner/PID cleanup pass at two seeds. Initial missing-threadSource failure and source-supported repair are preserved. Retained ordinary Form oneOf1 equals archived oneOf0; whole roots differ. Only ordinary MCP2025 form on Linux-musl/stdio, no URL/device/permission/approval/security behavior, alias/global verification or alternate profile success. Prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/McpServerElicitationRequestParams"
@@ -15399,7 +15410,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/mcp_mention_test.exs"
+          "apps/samgita_codex_driver/test/mcp_mention_test.exs",
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_lifecycle_test.exs:148"
         ]
       },
       "transport_coverage": [
@@ -29299,27 +29311,35 @@
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-initialize-default-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/InitializeCapabilities/properties/experimentalApi",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V540 ordinary initialization/default slice: default validation rejects experimentalApi:null locally without sending; a separately identified existing wire-mode probe obtains the true native boolean decoder error, followed by valid same-connection initialization. Omitted/false negotiation preserves ordinary operation while experimental project methods fail explicitly in local and native paths. True negotiation creates one owned native project; independent literals, full original timestamped event, exact persistence/cold read,19pairs/23outgoing and confirmed owned process cleanup pass at two seeds. No validator is changed and no permission/authorization or model/tool behavior is tested. Only this ordinary slice on Linux-musl/stdio; other fields/extensions, OS/transports, full lifecycle, prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/InitializeCapabilities/properties/experimentalApi",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "93e873d36bc295ae100c20b5683086114766a8ba7da0db104ac4ba2282823b1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialize_experimental_default_test.exs:145"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalApi"
     },
     {
@@ -83847,24 +83867,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-mcp-form-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "V539 stock rust-v0.163.0 emits a real nonempty ordinary label Form for an explicitly User-sourced owned root thread with the standard-form-input extension. The answer is exact across original response bytes, independent MCP peer receipt, provider continuation, native MCP item/final output and resolution digest. An unanswered second Form is interrupted; actual native resolution and independent peer action:cancel retire it without fabricated outcome or late-handle bytes, preserving the first result and exactly three provider calls. Eleven selected original frames,20-second observable deadlines and confirmed native/MCP/provider Port/owner/PID cleanup pass at two seeds. Initial missing-threadSource failure and source-supported repair are preserved. Retained ordinary Form oneOf1 equals archived oneOf0; whole roots differ. Only ordinary MCP2025 form on Linux-musl/stdio, no URL/device/permission/approval/security behavior, alias/global verification or alternate profile success. Prohibited/hosted checks, external/A11/full-goal and release gates remain incomplete."
+      ],
       "pointer": "/oneOf/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "50b970d16b1b18f7b45c764d7bc245ba4589b275c73dc62ae60c467ec8b3aa5f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_mcp_form_lifecycle_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed steps**, **77 files / 140 actual-native cases twice**,
+three selected WebSocket seeds, outside consumer **1/0**, static/build checks
+and **1,701** identical guarded sources. Exact answer consumption, unanswered-form
+interruption, initialization defaults and real cold project persistence bind
+only two physical owners. All prior commands and **1,696** other source hashes
+stay exact. Contracts: **5,579 implemented / 912 missing / 130 blocked**;
+requirements **462 implemented / 12 missing / 11 blocked**, zero globally verified.
+The initial missing threadSource, independent draft corrections and Credo
+failure remain documented with their supported repairs. Next: adopt and qualify
+the reviewed ordinary false/zero/empty form-values draft; its source-only result
+has no runtime credit. Prohibited/hosted, A11, unavailable emitter/external/OS,
+full-goal and release gates remain open.
+
 The [ordinary Apps ID/pagination batch](ordinary-app-pagination-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed steps**, **75 files / 138 actual-native cases twice**,
 three selected WebSocket seeds, outside consumer **1/0**, static/build checks

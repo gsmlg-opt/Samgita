@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes 77 files / 140 actual-native cases twice, selected WebSocket seeds 455834,
+501432, 987654, outside consumer 1/0 and all 14 reviewed functional/static/build
+steps. All 1,701 guarded sources stay identical. Original failure causes and
+supported repairs remain recorded; no process-owner behavior or deadline is
+weakened. Only two physical owners gain scoped evidence: **5,579 implemented /
+912 missing / 130 blocked** contracts, unchanged requirements and zero verified.
+Continue the ordinary false/zero/empty form-values case; its reviewed draft
+remains unrun. Prohibited/hosted, A11, unavailable emitter/external/OS, full-goal
+and release gates stay incomplete.
+
 The [seven-owner request index](ordinary-request-evidence-index.md) maps existing
 complete native exchanges and method-specific effects to the successful124-case
 two-seed matrix. Its only guarded change is seven manifest evidence/state rows;

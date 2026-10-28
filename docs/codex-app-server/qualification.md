@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [ordinary MCP form/initialization batch](ordinary-mcp-form-lifecycle-qualification.md#final-combined-source-functional-qualification)
+passes all **14 reviewed functional steps**: **77 files / 140 actual-native cases
+twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
+checks and **1,701** identical guarded sources. Real ordinary form consumption/
+interruption and initialized/cold project effects add two scoped physical owners;
+all prior commands and **1,696** other hashes stay exact. Contracts: **5,579
+implemented / 912 missing / 130 blocked**; requirements **462 implemented /
+12 missing / 11 blocked**, zero globally verified. Failed native/draft/static
+evidence remains preserved. The next ordinary typed-value form draft is unrun.
+Prohibited/hosted, A11, unavailable emitters/external/OS, full compatibility,
+publication and deployment remain incomplete.
+
 The [ordinary Apps ID/pagination batch](ordinary-app-pagination-qualification.md#final-combined-source-functional-qualification)
 passes all **14 reviewed functional steps**: **75 files / 138 actual-native cases
 twice**, three selected WebSocket seeds, outside consumer **1/0**, static/build
