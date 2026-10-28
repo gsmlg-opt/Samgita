@@ -55147,24 +55147,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/ordinary-null-rate-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/145/properties/params/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual native account/rateLimits/read preserves present params:null under integer then same-spelling string request IDs across distinct warm/cold processes. Original captured request/reply bytes bind this root145 null node and exact quota-window numeric oracles. Native default params also cause one accounted reset-detail GET per read; the new finite fixture scenario serves its complete empty DTO. Exactly four business GETs, twelve outgoing frames and ten correlated replies, without inference or task execution. Existing optimized ordinary case and its assertions remain unchanged. This physical input branch only; no omitted-input, standalone/null alias, reset-credit field, identity, permission, policy, external account, whole-method or globally verified credit."
+      ],
       "pointer": "/oneOf/145/properties/params/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_ordinary_account_read_metadata_test.exs:262"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

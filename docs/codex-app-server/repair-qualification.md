@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [ordinary quota null-input unit](ordinary-null-rate-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps with 1,760 identical guarded sources, 165/0 main
+cases twice, 13/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks. Original assertions/deadlines and the
+earlier optimized case stay unchanged. Only owner 1010 gains evidence; contracts
+are 5,736 implemented /749 missing /136 blocked, unchanged requirements and zero
+globally verified. No production code or repaired dependency/replay/database/
+cleanup behavior changes. Next: verify the separately discovered official
+standalone artifact and its actual source selectors, preserving the combined
+pin. A11, prohibited/broad/hosted, unresolved producer/cleanup, external/OS and
+full/release gates remain incomplete.
+
 The [inert System source metadata unit](ordinary-system-source-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps against 1,760 identical guarded sources: 165/0 twice,
 12/0 extensions twice, three replay seeds, four cleanup cases, outside consumer

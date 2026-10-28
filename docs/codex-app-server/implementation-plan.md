@@ -1,5 +1,17 @@
 # Full compatibility implementation ledger
 
+The [ordinary quota null-input unit](ordinary-null-rate-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps against 1,760 identical source hashes: 165/0 main
+cases twice, 13/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks. Existing argv, assertions and bounds
+remain intact. Only owner 1010 becomes implemented: contracts 5,736 implemented
+/749 missing /136 blocked, unchanged requirements and zero globally verified.
+The new native read accounts for its extra GET and preserves the original case.
+Production inputs retain the preceding assembly evidence. Next: separately pin
+the now-discovered official standalone app-server and qualify genuine source
+selectors without changing the combined pin. A11, unresolved producers/cleanup,
+prohibited/broad/hosted, external/OS and full/release gates stay incomplete.
+
 The [inert System source metadata unit](ordinary-system-source-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed functional steps against 1,760 identical guarded sources:
 165/0 main cases twice within the original 320s bounds, 12/0 extensions twice,

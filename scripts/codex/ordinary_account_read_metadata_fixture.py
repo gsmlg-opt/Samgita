@@ -24,6 +24,7 @@ MAX_BODY = 131_072
 MAX_HTTP = 48
 THREAD_ID = "019fc8ab-1fb2-7000-8000-000000000211"
 RATES = "/backend-api/wham/usage"
+DETAILS = "/backend-api/wham/rate-limit-reset-credits"
 PROFILE = "/backend-api/wham/profiles/me"
 MESSAGES = "/backend-api/wham/workspace-messages"
 THREAD = "/backend-api/wham/usage/thread_usage/query"
@@ -85,6 +86,7 @@ class ReadMetadataFixture(OrdinarySetup):
         self.journal = self.root / "ordinary-account-read-metadata-journal.json"
         self.http_count = 0
         self.read_counts = {kind: 0 for kind in ("rates", "thread", "profile", "messages")}
+        self.read_counts["rate_details"] = 0
         owner = self
 
         class Handler(BaseHTTPRequestHandler):
@@ -133,6 +135,11 @@ class ReadMetadataFixture(OrdinarySetup):
                             secondary_percent=12, secondary_seconds=86400,
                             secondary_reset=2_000_000_200)
                         self.reply(200, rate_data())
+                    elif (path == DETAILS and
+                          owner.args.scenario == "ordinary-account-null-rate"):
+                        owner.read("rate_details", "GET", path, query)
+                        # Complete fixed read DTO; not an account/eligibility oracle.
+                        self.reply(200, {"available_count": 0, "credits": []})
                     elif path == PROFILE:
                         sequence = owner.read("profile", "GET", path, query)
                         value = profile_data(sequence)
@@ -228,7 +235,8 @@ def main():
     parser.add_argument("--codex-home", required=True, type=Path)
     parser.add_argument("--workspace", required=True, type=Path)
     parser.add_argument("--requests-file", required=True, type=Path)
-    parser.add_argument("--scenario", required=True, choices=["ordinary-account-read-metadata"])
+    parser.add_argument("--scenario", required=True, choices=[
+        "ordinary-account-read-metadata", "ordinary-account-null-rate"])
     args = parser.parse_args()
     fixture = ReadMetadataFixture(args)
 

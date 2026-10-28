@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
   @moduletag timeout: 60_000
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @script Path.expand("../../../scripts/codex/ordinary_account_read_metadata_fixture.py", __DIR__)
-  @script_sha "7b37020d9da23ce06ecd61d2e449072008c576c0fae1060ce8d026c958db30e5"
+  @script_sha "e69015fb0979cddb5c4752934ae951b55a079929bc7a40a11cbf724bc218cb12"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @cleanup Path.join(__DIR__, "support/stdio_session_fixture.ex")
@@ -66,6 +66,12 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
   }
   """
   @usage_usd_sha "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801"
+  @rate_null_bytes """
+  {
+    "type": "null"
+  }
+  """
+  @rate_null_sha "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb"
   @thread "019fc8ab-1fb2-7000-8000-000000000211"
   @rate "account/rateLimits/read"
   @usage "account/usage/read"
@@ -152,7 +158,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
     def metadata(state), do: Stdio.metadata(state)
   end
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -198,6 +204,11 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
       python: python,
       binary: Path.expand(binary),
       capture: start_supervised!({Agent, fn -> %{frames: [], bytes: 0} end}),
+      scenario:
+        if(tags[:ordinary_null_rate],
+          do: "ordinary-account-null-rate",
+          else: "ordinary-account-read-metadata"
+        ),
       resources: resources
     }
 
@@ -245,6 +256,168 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
     assert rows(ctx, "fixture_closed") === [
              %{"event" => "fixture_closed", "pid" => ctx.provider.native}
            ]
+  end
+
+  @tag :ordinary_null_rate
+  test "ordinary rate read forwards physical root145 params null across cold sessions", ctx do
+    deadline = now() + 30_000
+    warm = start_native(ctx, 2)
+    null_rate_data(ctx, warm.pid, Enum.at(@ids.rate, 0))
+    assert_empty_loaded(ctx, warm.pid)
+    assert_idle(warm.pid)
+    assert_controls(ctx)
+    prefix = frames(ctx)
+    close_native(warm)
+    cold = start_native(ctx, 3)
+    assert cold.native !== warm.native and cold.instance !== warm.instance
+    assert Enum.take(frames(ctx), length(prefix)) === prefix
+    null_rate_data(ctx, cold.pid, Enum.at(@ids.rate, 1))
+    assert_empty_loaded(ctx, cold.pid)
+    assert_idle(cold.pid)
+    assert_controls(ctx)
+    assert_null_rate_owner(ctx)
+    assert_null_rate_backend(ctx)
+    assert_null_rate_inventory(ctx)
+    assert now() < deadline
+    close_native(cold)
+    assert Enum.take(frames(ctx), length(prefix)) === prefix
+    close_provider(ctx.provider)
+    assert_controls(ctx)
+
+    assert rows(ctx, "fixture_closed") === [
+             %{"event" => "fixture_closed", "pid" => ctx.provider.native}
+           ]
+  end
+
+  defp null_rate_data(ctx, pid, id) do
+    result = call(ctx, pid, @rate, nil, id)
+
+    # Numeric quota metadata only; all other account result fields stay opaque.
+    assert Map.take(Map.fetch!(result, "rateLimits"), ["primary", "secondary"]) === %{
+             "primary" => %{
+               "usedPercent" => 37,
+               "windowDurationMins" => 60,
+               "resetsAt" => 2_000_000_100
+             },
+             "secondary" => %{
+               "usedPercent" => 12,
+               "windowDurationMins" => 1440,
+               "resetsAt" => 2_000_000_200
+             }
+           }
+  end
+
+  defp assert_null_rate_owner(ctx) do
+    root = schema("ClientRequest.json")
+    selected = root |> Map.fetch!("oneOf") |> Enum.at(145)
+    assert get_in(selected, ["properties", "method", "enum"]) === [@rate]
+    node = selected |> get_in(["properties", "params", "anyOf"]) |> Enum.at(1)
+    assert node === JSON.decode!(@rate_null_bytes)
+    assert hash(@rate_null_bytes) === @rate_null_sha
+    assert node === %{"type" => "null"}
+    sent = Enum.filter(frames(ctx), &(&1.direction === :out and &1.wire["method"] === @rate))
+    assert Enum.map(sent, & &1.wire["id"]) === @ids.rate
+
+    for frame <- sent do
+      assert Map.fetch!(frame.wire, "params") === nil
+
+      assert frame.encoded ===
+               JSON.encode!(%{"id" => frame.wire["id"], "method" => @rate, "params" => nil})
+
+      assert :ok = Schema.validate(node, Map.fetch!(frame.wire, "params"))
+
+      assert :ok =
+               Schema.validate(Map.put(selected, "definitions", root["definitions"]), frame.wire,
+                 max_depth: 64
+               )
+
+      assert :ok = Schema.validate(root, frame.wire, max_depth: 64)
+
+      assert [reply] =
+               Enum.filter(
+                 frames(ctx),
+                 &(&1.direction === :in and &1.wire["id"] === frame.wire["id"])
+               )
+
+      assert_exchange(ctx, frame.wire, reply.wire)
+    end
+  end
+
+  defp assert_null_rate_backend(ctx) do
+    expected =
+      for sequence <- [1, 2],
+          {kind, path} <- [
+            {"rates", "/backend-api/wham/usage"},
+            {"rate_details", "/backend-api/wham/rate-limit-reset-credits"}
+          ],
+          do: %{
+            "event" => "business_read",
+            "kind" => kind,
+            "sequence" => sequence,
+            "method" => "GET",
+            "path" => path,
+            "query" => %{},
+            "status" => 200
+          }
+
+    # Stock tokio::join! makes sibling GET arrival order unspecified.
+    sort = fn rows -> Enum.sort_by(rows, &{&1["sequence"], &1["kind"]}) end
+    assert sort.(rows(ctx, "business_read")) === sort.(expected)
+
+    rate_rows =
+      for sequence <- [1, 2],
+          do: %{
+            "event" => "rate_data",
+            "sequence" => sequence,
+            "primary_percent" => 37,
+            "primary_seconds" => 3600,
+            "primary_reset" => 2_000_000_100,
+            "secondary_percent" => 12,
+            "secondary_seconds" => 86_400,
+            "secondary_reset" => 2_000_000_200
+          }
+
+    assert rows(ctx, "rate_data") === rate_rows
+
+    for event <- ~w(profile_data thread_data message_data), do: assert(rows(ctx, event) === [])
+
+    assert Enum.all?(
+             rows(ctx, "startup_read"),
+             &(&1["query"] === %{} and
+                 &1["path"] in [
+                   "/backend-api/wham/config/bundle",
+                   "/backend-api/wham/accounts/check",
+                   "/backend-api/wham/settings/user"
+                 ])
+           )
+  end
+
+  defp assert_null_rate_inventory(ctx) do
+    outgoing = Enum.filter(frames(ctx), &(&1.direction === :out))
+
+    per_session = [
+      "initialize",
+      "initialized",
+      "server/diagnostics",
+      "thread/loaded/list",
+      @rate,
+      "thread/loaded/list"
+    ]
+
+    assert Enum.map(outgoing, & &1.wire["method"]) === per_session ++ per_session
+    requests = Enum.filter(outgoing, &Map.has_key?(&1.wire, "id"))
+    ids = Enum.map(requests, & &1.wire["id"])
+    assert length(ids) === 10 and length(Enum.uniq(ids)) === 10
+    incoming = Enum.filter(frames(ctx), &(&1.direction === :in))
+    replies = Enum.filter(incoming, &Map.has_key?(&1.wire, "id"))
+    assert length(replies) === 10
+    assert MapSet.new(Enum.map(replies, & &1.wire["id"])) === MapSet.new(ids)
+
+    for notice <- Enum.reject(incoming, &Map.has_key?(&1.wire, "id")) do
+      assert {:ok, decoded} = Wire.decode(notice.encoded, max_depth: 64)
+      assert decoded === notice.wire
+      refute String.starts_with?(Map.fetch!(notice.wire, "method"), ["thread/", "turn/", "item/"])
+    end
   end
 
   defp read_data(ctx, pid, generation) do
@@ -666,7 +839,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAccountReadMetadataTest do
                  "--requests-file",
                  ctx.requests,
                  "--scenario",
-                 "ordinary-account-read-metadata"
+                 ctx.scenario
                ],
                cwd: ctx.workspace,
                inherit_env: [],
