@@ -210,10 +210,20 @@ Run from this package directory in the repository's Elixir/OTP environment:
 ```sh
 mix deps.get
 export CODEX_BINARY=/absolute/path/to/the/immutable/pinned/codex
+export CODEX_APP_SERVER_BINARY=/absolute/path/to/the/separately/pinned/codex-app-server
 mix compile --warnings-as-errors
 mix test
 mix format --check-formatted
 ```
+
+The separate native source-selector test requires the official standalone
+`codex-app-server` executable. From the repository root,
+`python3 -B scripts/codex/fetch_standalone_pin.py` obtains its separately pinned
+Linux musl artifact without starting it. Its top-level argv differs from the
+combined `codex app-server` entry. See the [exact profile and evidence](../../docs/codex-app-server/standalone-source-selector-qualification.md).
+Under the current test restriction, use only the reviewed ordinary selection
+in `scripts/codex/check_ordinary.py`; the broad commands above remain required
+future gates and must not be run while that restriction applies.
 
 `real_session_test.exs` uses the actual Codex binary with
 `scripts/codex/model_fixture.py`, a deterministic loopback Responses **model**

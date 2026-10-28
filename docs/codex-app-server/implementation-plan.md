@@ -1,5 +1,18 @@
 # Full compatibility implementation ledger
 
+The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps against 1,762 identical source hashes: 165/0 main
+cases twice, 14/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks with original argv and bounds retained.
+The separate official executable and archive are independently pinned without
+changing the combined reference. Only6076/6082/6101–6104 become implemented:
+contracts **5,742 implemented /743 missing /136 blocked**, unchanged requirements,
+zero globally verified. The initial static failure and its assertion-preserving
+helper repair remain recorded. Next: qualify original thread/started source
+notifications, then other permitted genuine producer gaps. A11, unresolved
+producers/cleanup, prohibited/broad/hosted, external/OS and full/release gates
+remain incomplete. Existing production assembly inputs and repaired paths stay intact.
+
 The [ordinary quota null-input unit](ordinary-null-rate-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps against 1,760 identical source hashes: 165/0 main
 cases twice, 13/0 extensions twice, three replay seeds, four cleanup cases,

@@ -9,6 +9,12 @@ is repaired; raw-telemetry confidentiality remains blocked. Current aggregate,
 driver transport repairs and hosted results are tracked in qualification and the
 [repair record](repair-qualification.md).
 
+The [official standalone app-server profile](standalone-source-selector-qualification.md)
+adds explicit native source selection for independent ordinary driver checks.
+It uses a separate pin and top-level argv; platform runtime defaults still use
+the retained combined executable. No automatic platform/service switch follows
+from this local source-selector qualification.
+
 ## Ownership and identities
 
 An operator registers an ordinary Agent with `runtime_driver: "codex"` and

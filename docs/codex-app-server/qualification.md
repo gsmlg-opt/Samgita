@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed functional steps with 1,762 identical guarded sources:
+165/0 main cases twice, 14/0 extensions twice, three replay seeds, four cleanup
+cases, outside consumer 1/0 and static/build checks, within unchanged bounds.
+The separate official artifact creates genuine appServer, unknown and custom
+histories selected by two cold readers; the combined pin stays unchanged.
+Only six exact search owners become implemented: **5,742 implemented /743 missing
+/136 blocked contracts**, unchanged requirements and zero globally verified.
+The first failed Credo gate is retained; helper extraction preserves assertions.
+Production inputs retain the preceding assembly. Next: original native
+thread/started source notifications. A11, unresolved producers/cleanup,
+prohibited/broad/hosted, external/OS, full compatibility and release stay incomplete.
+
 The [ordinary quota null-input unit](ordinary-null-rate-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed functional steps with 1,760 identical guarded source
 hashes: 165/0 main cases twice, 13/0 extensions twice, three replay seeds, four

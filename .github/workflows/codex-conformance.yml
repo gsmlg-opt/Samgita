@@ -23,6 +23,7 @@ jobs:
     timeout-minutes: 30
     env:
       CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
+      CODEX_APP_SERVER_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/standalone/codex-app-server-x86_64-unknown-linux-musl
       POSTGRES_HOST: localhost
       POSTGRES_PORT: "5432"
       POSTGRES_USER: postgres
@@ -66,6 +67,9 @@ jobs:
       - name: Fetch and verify immutable source and executable
         timeout-minutes: 6
         run: python3 scripts/codex/fetch_pin.py
+      - name: Fetch and verify separately pinned standalone app-server
+        timeout-minutes: 6
+        run: python3 scripts/codex/fetch_standalone_pin.py
       - name: Independent native protocol package
         timeout-minutes: 6
         working-directory: apps/samgita_protocol_codex

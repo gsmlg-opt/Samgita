@@ -18,8 +18,9 @@ import subprocess
 import time
 
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
+from fetch_standalone_pin import BINARY as STANDALONE_BINARY, BINARY_SHA256 as STANDALONE_SHA256
 
-REVIEWED_SOURCE_SHA256 = "f3d2712193389a40996231db1a8969eaf2080a5308441737a3d76524563d8a12"
+REVIEWED_SOURCE_SHA256 = "6e2672979306a555257ec0828174128a45c3fae869da259884a38704e68d81b5"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -130,10 +131,11 @@ native_ordinary_installed_thread_context_test.exs
 native_ordinary_mcp_not_started_test.exs
 native_ordinary_active_page_recovery_test.exs
 native_ordinary_installed_null_test.exs
+native_standalone_source_selector_test.exs
 """.split()
 WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
 DRIVER_CASES = 165
-EXTRA_DRIVER_CASES = 13
+EXTRA_DRIVER_CASES = 14
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
 
 
@@ -267,7 +269,10 @@ def execute(steps, output, before):
     binary = CACHE / "codex-x86_64-unknown-linux-musl"
     if not binary.is_file() or digest(binary) != BINARY_SHA256:
         raise SystemExit("BLOCKED_ENV: immutable Codex executable required; no checks executed")
-    env.update(MIX_ENV="test", ERL_FLAGS="+S 2:2", CODEX_BINARY=str(binary), PYTHONDONTWRITEBYTECODE="1")
+    if not STANDALONE_BINARY.is_file() or digest(STANDALONE_BINARY) != STANDALONE_SHA256:
+        raise SystemExit("BLOCKED_ENV: separately pinned standalone app-server required; no checks executed")
+    env.update(MIX_ENV="test", ERL_FLAGS="+S 2:2", CODEX_BINARY=str(binary),
+               CODEX_APP_SERVER_BINARY=str(STANDALONE_BINARY), PYTHONDONTWRITEBYTECODE="1")
     output.mkdir(parents=True, exist_ok=False)
     results = []
     handlers = {sig: signal.signal(sig, interrupt) for sig in (signal.SIGTERM, signal.SIGHUP)}

@@ -1,5 +1,11 @@
 # appServer source producer is unavailable in the selected artifact
 
+Current update: the [separately pinned official standalone app-server](standalone-source-selector-qualification.md)
+now supplies genuine source production and cold search evidence for its declared
+Linux musl stdio profile. The combined executable limitation below remains valid.
+This historical investigation did not establish absence from the entire release.
+No owner676 or notification credit is transferred from the new six-owner unit.
+
 Positive producer/discovery acceptance for `ThreadSourceKind.appServer`
 (canonical physical owner676) remains incomplete for the selected combined
 `codex` executable. Existing explicit input/exclusion evidence is retained.

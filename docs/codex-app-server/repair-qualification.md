@@ -1,5 +1,17 @@
 # Repair evidence and continuing compatibility work
 
+The [official standalone source-selector unit](standalone-source-selector-qualification.md#final-combined-source-functional-qualification)
+passes all 17 reviewed steps with 1,762 identical guarded sources: 165/0 main
+cases twice, 14/0 extensions twice, three replay seeds, four cleanup cases,
+outside consumer and static/build checks. Assertions and deadlines remain intact.
+Separate official artifact verification resolves the source-selector prerequisite;
+genuine histories and two cold readers qualify only six search owners. Contracts
+are **5,742 implemented /743 missing /136 blocked**, unchanged requirements and
+zero globally verified. First Credo failure remains recorded. Dependency/replay/
+database/cleanup repairs and production inputs are unchanged. Continue actual
+thread/started source notifications. A11, prohibited/broad/hosted, unresolved
+producer/cleanup, external/OS and full/release gates remain incomplete.
+
 The [ordinary quota null-input unit](ordinary-null-rate-qualification.md#final-combined-source-functional-qualification)
 passes all 17 reviewed steps with 1,760 identical guarded sources, 165/0 main
 cases twice, 13/0 extensions twice, three replay seeds, four cleanup cases,

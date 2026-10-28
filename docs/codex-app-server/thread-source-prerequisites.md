@@ -1,5 +1,11 @@
 # Remaining thread-search source prerequisites
 
+Current update: the [official standalone source-selector qualification](standalone-source-selector-qualification.md)
+resolves appServer/unknown producer and executable prerequisites in a separately
+pinned Linux musl stdio profile. Owners6076/6082 now have direct native evidence;
+Compact/Other remain missing. The original combined-profile findings and source
+evidence below are preserved as historical context.
+
 This is source evidence for official Codex `rust-v0.163.0`, commit
 `83086188ae0614bd882818ff1aa23f3194962012`. It adds no runtime acceptance.
 The four physical `ThreadSearchParams` owners below remain **missing**. An empty

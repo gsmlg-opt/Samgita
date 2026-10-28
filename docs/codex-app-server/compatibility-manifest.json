@@ -219199,24 +219199,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Explicit appServer sourceKinds element. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/3",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "622214a100066aceb1d1ab827c78dee8aaf32f7cd66e8c02400287fe6cb589c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -219356,24 +219364,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSourceKind/enum/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Explicit unknown sourceKinds element. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/9",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -219951,94 +219967,126 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/0/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Native search result appServer source. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/3",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "622214a100066aceb1d1ab827c78dee8aaf32f7cd66e8c02400287fe6cb589c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/0/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Native search result unknown source. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/0/enum/4",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Native search result custom object with normalized atlas string. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "pointer": "/definitions/SessionSource/oneOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "d9e145b3bb9eb5bc34a7e8705de3058f42fe714883c960d7f41e5f4fb37378d9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/standalone-source-selector-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SessionSource/oneOf/1/properties/custom",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual separately pinned official codex-app-server 0.163.0 (binary SHA256 528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e) creates four genuine native histories via appserver, unknown, mixed-case custom AtLaS and vscode selectors. Two distinct cold readers each perform six exact positive/exclusion queries per list/search method, followed by unchanged-history readback. Exactly four local model calls, original correlated wire bytes, canonical source/content/item IDs, six distinct native processes and existing bounded cleanup are asserted. Native search result custom string normalized from AtLaS to atlas. Only this physical owner; no equal-hash aliases, notification owner, complete method, combined-binary selector, MCP protocol endpoint, external/other-OS profile or globally verified credit."
+      ],
       "nullable": false,
       "pointer": "/definitions/SessionSource/oneOf/1/properties/custom",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_standalone_source_selector_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/standalone-stdio"
+      ],
       "wire_name": "custom"
     },
     {
