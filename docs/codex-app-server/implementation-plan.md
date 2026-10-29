@@ -1,5 +1,20 @@
 # Full compatibility implementation ledger
 
+The [request-option repair](ordinary-request-options-qualification.md#final-combined-source-functional-qualification)
+reproduces three Session crashes before the fix and validates options before
+keyword access, initialization changes, ID allocation or dispatch. All 17
+reviewed functional steps pass against 1,763 identical guarded hashes: 166/0
+twice, extensions 26/0 twice (23 native plus 3 scripted), replay, cleanup,
+outside consumer and static/build checks with original bounds. Only two
+lifecycle records gain evidence; all 6,621 contracts and all states stay exact.
+Five local production assembly steps also pass; the tarball is never started,
+published or deployed.
+Counts remain **5,756 implemented /729 missing /136 blocked**, 462 implemented/
+12 missing/11 blocked requirements, zero globally verified. Strict completeness
+still exits 1. Remaining pagination/search branches require the documented
+upstream correction or genuine producer/provenance; prohibited checks, A11,
+external/OS, full compatibility and release remain incomplete.
+
 The [ordinary output-prerequisite unit](ordinary-output-source-prerequisites.md#metadata-only-qualification)
 adds source evidence only for17 still-missing owners, with36 complete archive-
 equal causal files. Fresh inventory and exact physical-node binding pass;

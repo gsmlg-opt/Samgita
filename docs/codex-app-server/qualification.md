@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [request-option repair](ordinary-request-options-qualification.md#final-combined-source-functional-qualification)
+prevents malformed request options from crashing Session. The retained 3/3
+pre-fix failure becomes 3/0 in focused checks; final combined qualification
+passes all 17 reviewed steps with 1,763 unchanged before/after guarded hashes,
+main 166/0 twice and extensions 26/0 twice (23 native plus 3 scripted), preserving
+original deadlines and argv. No native capability or field-state credit is
+added. Five local production assembly steps also pass without starting or
+publishing the artifact. Contracts remain **5,756 implemented /729 missing /136 blocked**,
+requirements 462 implemented/12 missing/11 blocked, zero globally verified.
+The strict completeness gate still exits 1; missing producers, the pinned
+created_at defect, prohibited verification, A11, external/OS success and
+full/release acceptance remain incomplete. No hosted workflow or deployment runs.
+
 The [ordinary output-prerequisite unit](ordinary-output-source-prerequisites.md#metadata-only-qualification)
 binds17 still-missing owners to36 complete pinned source files: nullable output
 constructors, exact stored search-source prerequisites and conditional populated

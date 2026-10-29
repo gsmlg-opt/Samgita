@@ -10297,7 +10297,8 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/ordinary-request-options-qualification.md"
       ],
       "id": "lifecycle:bidirectional-correlation",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10305,7 +10306,8 @@
         "scripted_peer_exact_value: Integer1/string1 out-of-order responses exact115-120; reused ID rejects123-124.",
         "scripted_peer_exact_value: Same ID7 in both directions; no auto response151, explicit decline153; stale interaction155-156.",
         "scripted_peer_fault: Old generation responses cannot settle fresh handshake152-180; late values observable.",
-        "Collision/out-of-order/generation faults are scripted, not a native concurrency-pressure profile."
+        "Collision/out-of-order/generation faults are scripted, not a native concurrency-pressure profile.",
+        "Ordinary local-options regression: malformed keyword option lists return invalid_options before ID allocation or dispatch, preserve a held read, and allow exact settlement and subsequent native ID reuse on the same connection. This is scripted client-boundary evidence, not a new native concurrency or field/transport qualification; states and coverage remain unchanged."
       ],
       "required_behavior": "request IDs are scoped by direction and connection; out-of-order responses settle once",
       "schema_sha256": "197fc4cba71f7e80bd585d637a374446e12d60dc9a0f8c5ab0e026d1d6b9cdd3",
@@ -10320,7 +10322,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/session_test.exs:107",
           "apps/samgita_codex_driver/test/session_test.exs:143",
-          "apps/samgita_codex_driver/test/initialization_test.exs:138"
+          "apps/samgita_codex_driver/test/initialization_test.exs:138",
+          "apps/samgita_codex_driver/test/ordinary_request_options_test.exs:53"
         ]
       },
       "transport_coverage": [],
@@ -10622,13 +10625,15 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/initialization-qualification.md"
+        "docs/codex-app-server/initialization-qualification.md",
+        "docs/codex-app-server/ordinary-request-options-qualification.md"
       ],
       "id": "lifecycle:initialization-order",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected Linux readiness and scripted Session failure/generation evidence; complete initialization capabilities and deployment profiles remain unqualified.",
-        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified.",
+        "Ordinary local-options regression: direct/native initialization reject malformed keyword options before changing initialization state or dispatching; the same Session then completes a valid explicit handshake, including reuse of the rejected native ID. Scripted client-boundary evidence only; no new native capability, field, deployment or globally verified credit."
       ],
       "required_behavior": "initialize response precedes initialized; other requests require initialization; repeated initialize rejects",
       "schema_sha256": "09c41c42fe37bf87a37b8dcca70c814a371191b4711a3367c2eb51de253c9913",
@@ -10643,7 +10648,9 @@
         "verified": [
           "apps/samgita_codex_driver/test/initialized_transport_test.exs",
           "apps/samgita_codex_driver/test/initialization_test.exs",
-          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs",
+          "apps/samgita_codex_driver/test/ordinary_request_options_test.exs:19",
+          "apps/samgita_codex_driver/test/ordinary_request_options_test.exs:34"
         ]
       },
       "transport_coverage": [

@@ -156,11 +156,17 @@ defmodule SamgitaCodexDriver.Session do
 
   @impl true
   def handle_call({:initialize, info, capabilities, opts}, from, %{phase: :new} = state)
-      when is_map(info) and is_map(capabilities) and is_list(opts) do
-    params = %{"clientInfo" => info, "capabilities" => capabilities}
-    experimental = capabilities["experimentalApi"] == true
-    state = %{state | phase: :initializing, experimental: experimental}
-    submit("initialize", params, opts, from, state)
+      when is_map(info) and is_map(capabilities) do
+    case validate_request_options(opts) do
+      :ok ->
+        params = %{"clientInfo" => info, "capabilities" => capabilities}
+        experimental = capabilities["experimentalApi"] == true
+        state = %{state | phase: :initializing, experimental: experimental}
+        submit("initialize", params, opts, from, state)
+
+      {:error, failure} ->
+        {:reply, {:error, failure}, state}
+    end
   end
 
   def handle_call({:initialize, _, _, _}, _from, state) do
@@ -179,8 +185,9 @@ defmodule SamgitaCodexDriver.Session do
     {:reply, {:error, Error.new(:not_initialized)}, state}
   end
 
-  def handle_call({:request_native, wire, opts}, from, state) when is_list(opts) do
-    if Wire.classify(wire) == :request do
+  def handle_call({:request_native, wire, opts}, from, state) do
+    with :ok <- validate_request_options(opts),
+         :request <- Wire.classify(wire) do
       opts =
         opts
         |> Keyword.put(:id, wire["id"])
@@ -193,12 +200,9 @@ defmodule SamgitaCodexDriver.Session do
         handle_call({:request, wire["method"], wire["params"], opts}, from, state)
       end
     else
-      {:reply, {:error, Error.new(:invalid_envelope)}, state}
+      {:error, failure} -> {:reply, {:error, failure}, state}
+      _ -> {:reply, {:error, Error.new(:invalid_envelope)}, state}
     end
-  end
-
-  def handle_call({:request_native, _, _}, _from, state) do
-    {:reply, {:error, Error.new(:invalid_options)}, state}
   end
 
   def handle_call({:notify_native, wire, opts}, _from, state) do
@@ -412,7 +416,8 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp submit(method, params, opts, from, state) when is_list(opts) do
-    with :ok <- request_capacity(state, method),
+    with :ok <- validate_request_options(opts),
+         :ok <- request_capacity(state, method),
          :ok <- validate_effect(method, opts),
          :ok <- validate_request(method, params, opts, state),
          {:ok, id, state} <- request_id(state, opts),
@@ -488,6 +493,12 @@ defmodule SamgitaCodexDriver.Session do
     if Keyword.get(opts, :effect) == :read and method not in @read_only,
       do: {:error, Error.new(:unsafe_read_classification)},
       else: :ok
+  end
+
+  defp validate_request_options(opts) do
+    if is_list(opts) and Keyword.keyword?(opts),
+      do: :ok,
+      else: {:error, Error.new(:invalid_options)}
   end
 
   defp validate_request(method, params, opts, state) do

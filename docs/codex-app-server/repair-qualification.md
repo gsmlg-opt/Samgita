@@ -1,5 +1,20 @@
 # Repair evidence and continuing compatibility work
 
+The [request-option repair](ordinary-request-options-qualification.md#final-combined-source-functional-qualification)
+fixes a reproduced local Session crash before any keyword access or dispatch.
+All 17 reviewed final-source steps pass, with 166/0 twice, extensions 26/0 twice
+(23 native plus 3 scripted), three replay seeds, four cleanup cases, isolated
+consumer and static/build checks under original bounds. Both plug_crypto 2.2.1
+locks, database safeguards and process-cleanup behavior stay unchanged.
+Five local production assembly steps pass without starting, publishing or
+deploying the artifact.
+Only two existing lifecycle records gain scripted evidence; contracts remain
+**5,756 implemented /729 missing /136 blocked**, unchanged requirements and
+zero globally verified. Strict completeness exits 1. Pagination/search still
+require the established upstream fix or genuine source provenance. Prohibited
+checks, A11, unavailable external/OS profiles, full compatibility and release
+remain incomplete; no audit or mixed database suite is rerun.
+
 The [ordinary output-prerequisite unit](ordinary-output-source-prerequisites.md#metadata-only-qualification)
 records17 unchanged missing owners against36 complete pinned files. All1,761
 other guarded hashes preserve prior17-step functional results and original

@@ -54,6 +54,11 @@ and never replays after reconnect. Failed writes return uncertain native evidenc
 and disconnect. Do not resend an extension with possible effects without
 reconciliation. The pinned `initialized` notification only logs on the server.
 
+Request options must be keyword lists. Malformed option containers return
+`{:error, %SamgitaProtocolCodex.Error{code: :invalid_options}}` before dispatch
+or request-ID allocation. Initialization remains available, and already pending
+requests continue to correlate on the same Session.
+
 Requests correlate typed IDs in their connection
 generation; native server requests have a separate direction and opaque handles.
 Notifications/items retain their complete payloads in a bounded ordered pull
