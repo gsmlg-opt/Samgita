@@ -6,6 +6,13 @@ Codex app-server **0.163.0**, source
 the full compatibility ledger live in `docs/codex-app-server/`. Schema coverage
 and the journeys below do not establish complete behavioral compatibility.
 
+The current [ordinary functional milestone](../../docs/codex-app-server/ordinary-functional-delivery.md)
+provides a [runnable standalone consumer](examples/consumer/README.md): real pinned
+Codex, a loopback deterministic model provider, pure dynamic tool response,
+incremental text, observable interruption, explicit reconnect/history and checked
+owned cleanup. Scripted fault tests cover uncertainty separately. These scoped
+checks do not establish the remaining full-compatibility or platform gates.
+
 The package depends on the reusable `samgita_protocol_codex` schema/wire package
 and Mint WebSocket transport. It has no Repo, project schema, orchestration,
 Phoenix or application configuration inheritance. Loading it starts no listener,
@@ -267,9 +274,10 @@ disconnect, control and bounded-buffer failures. A missing CODEX_BINARY fails th
 real tests with a prerequisite message; it is not skipped compatibility proof.
 
 The [standalone example](examples/consumer/README.md) is copied with its three
-reusable package dependencies outside the umbrella by
-`scripts/codex/verify_consumer.py`. It starts actual Codex and verifies no Ecto,
-Phoenix or Samgita application is present. These checks remain scoped evidence;
+reusable package dependencies and two explicit model-provider fixture scripts
+outside the umbrella by `scripts/codex/verify_consumer.py`. It runs three focused
+tests and `mix run run.exs`, starts actual Codex and verifies no Ecto, Phoenix or
+Samgita application is present. These checks remain scoped evidence;
 external authentication/backend/platform profiles and the manifest determine the
 remaining full-compatibility gates. Nothing here publishes a package or deploys
 a service. The separate Samgita A11 LiveView credential telemetry blocker remains.

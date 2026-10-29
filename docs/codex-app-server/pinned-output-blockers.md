@@ -1,5 +1,9 @@
 # Required output variants blocked by the immutable pin
 
+The user's 2026-10-30 [ordinary milestone amendment](ordinary-functional-delivery.md)
+permits ordinary delivery without promoting these original full-goal contracts.
+The strict gate, denominator and source/native distinction below remain intact.
+
 Status: **59 required field contracts blocked; none verified or excluded**.
 Target: source `83086188ae0614bd882818ff1aa23f3194962012`, Codex
 `rust-v0.163.0`. Source evidence does not substitute for a real emission.

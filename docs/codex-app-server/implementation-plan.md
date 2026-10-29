@@ -1,5 +1,15 @@
 # Full compatibility implementation ledger
 
+Current milestone: [ordinary functional delivery](ordinary-functional-delivery.md),
+explicitly authorized by the user's 2026-10-30 amendment. Deliver the independent
+consumer's A–E workflows and reviewed checks, commit/push, then stop. The full
+plan and historical records below remain intact; their global completeness
+requirements do not block this ordinary milestone or become satisfied by it.
+Its A–E workflows and all 18 reviewed final-source steps pass at implementation
+`025f4a8e431a7e752fb710cb1c9ae724db4799c2`; the canonical record binds commands,
+source/log hashes, original bounds and the separately failing strict full gate.
+No manifest state changes or publication follow.
+
 The [request-option repair](ordinary-request-options-qualification.md#final-combined-source-functional-qualification)
 reproduces three Session crashes before the fix and validates options before
 keyword access, initialization changes, ID allocation or dispatch. All 17

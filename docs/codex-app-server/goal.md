@@ -1,5 +1,11 @@
 # Complete pinned Codex app-server client compatibility
 
+The user's 2026-10-30 `prompt.md` explicitly amends the current milestone to
+[ordinary functional delivery](ordinary-functional-delivery.md). Its A–E
+workflows, focused checks and commit/push can finish independently of the
+original full goal below. Preserve that goal, inventory and strict gate as
+incomplete; after ordinary delivery, stop rather than reopen deferred producers.
+
 The accepted inputs are the user-provided
 [`samgita-codex-full-compatibility-goal.txt`](../../samgita-codex-full-compatibility-goal.txt)
 and [`samgita-codex-full-compatibility-plan.txt`](../../samgita-codex-full-compatibility-plan.txt).

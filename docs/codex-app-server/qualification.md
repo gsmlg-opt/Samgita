@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The current [ordinary functional delivery](ordinary-functional-delivery.md)
+uses the user's 2026-10-30 amended completion boundary. It separates native
+ordinary workflows, scripted fault evidence and remaining global blockers.
+Earlier qualification below retains its original scope and meaning; no full
+compatibility, publication or platform readiness follows from ordinary delivery.
+All 18 reviewed steps pass with 1,770 identical guarded hashes; the independent
+consumer passes three tests and its executable example. Strict full completeness
+still exits 1 for unverified requirements. See the canonical record for the
+actual-binary/scripted evidence split, implementation revision and limitations.
+
 The [request-option repair](ordinary-request-options-qualification.md#final-combined-source-functional-qualification)
 prevents malformed request options from crashing Session. The retained 3/3
 pre-fix failure becomes 3/0 in focused checks; final combined qualification
