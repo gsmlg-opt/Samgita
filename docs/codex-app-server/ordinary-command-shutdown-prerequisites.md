@@ -71,6 +71,20 @@ distinct cold native reader, with the same call/thread/turn/child identities and
 no additional execution. No timing-selected retries, sleep-based proof, testing
 hook or fabricated terminal record is proposed here.
 
+The upstream
+[slow-writer unload scenario](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/tests/suite/v2/thread_unload.rs#L38)
+does not establish an alternative initial-Shutdown snapshot. It holds the
+cross-process writer coordination lock, observes the shutdown warning and
+confirms the thread is still loaded before releasing the lock. In the actual
+[shutdown handler](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/session/handlers.rs#L365),
+`live_thread.shutdown().await` completes before `ShutdownComplete` is delivered
+at lines 389–399. The lock therefore holds persistence before the final status
+is published. Neither the warning nor the loaded-list response proves a
+registered runtime already has Shutdown status. Releasing that lock restores
+the original subscription/removal race. This is an additional rejected ordering
+candidate, not a global non-emission finding. The upstream test was inspected,
+not executed, and supplies no new native acceptance.
+
 ## Immutable evidence and scope
 
 The report `/tmp/samgita-agent-command-shutdown-producer-20261029-report.md`,
@@ -89,6 +103,14 @@ Selected causal full-file hashes:
 | `core/src/agent/control/watch.rs` | `8de160e3e314ef4e51ce4a3c8383a3375d1204ab237ea0a25ad861ffa7d62dac` |
 | `core/src/agent/status.rs` | `11dd75269d0cf2bd35697975c2878db28fb70e7584842a0d4aea198f7bd77d32` |
 | `core/src/tools/handlers/multi_agents/wait.rs` | `51f07a8ce45180d5e7efc8b92a924969d9948350c7780326b70ab3f81b191221` |
+
+The additional writer-lock ordering review compares two more complete files
+byte-for-byte with unique members of the same immutable archive:
+
+| Source under codex-rs/ | SHA256 |
+| --- | --- |
+| `core/src/session/handlers.rs` | `3e49bf0ca6f2d725df3bb424da1040bfff7eb0e32f20429a7fe0a95d1c67310e` |
+| `app-server/tests/suite/v2/thread_unload.rs` | `e0b37f84f2918013c2d21264f718863ba93f2887c2d1fd4777583b0647f9aa5c` |
 
 Both owners keep their missing state and gain only these source limitations.
 No runtime fixture, native success, transport coverage, whole-family evidence or
