@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build and test the reusable driver consumer outside the umbrella, with real Codex.
 
-Only the three reusable packages are copied. No database, Phoenix endpoint or
-umbrella configuration is available. This is portability/round-trip evidence,
-not a full behavioral compatibility certificate.
+Only the three reusable packages and an explicit model-provider fixture are
+copied. No database, Phoenix endpoint or umbrella configuration is available.
+This is ordinary functional evidence, not a full compatibility certificate.
 """
 import argparse
 import hashlib
@@ -36,9 +36,15 @@ def main():
         for package in ("samgita_protocol", "samgita_protocol_codex", "samgita_codex_driver"):
             shutil.copytree(source / "apps" / package, destination / package,
                 ignore=shutil.ignore_patterns("_build", "deps", ".devenv", ".git", "__pycache__"))
+        fixture = destination / "fixtures" / "ordinary_consumer_provider.py"
+        fixture.parent.mkdir()
+        for name in ("ordinary_consumer_provider.py", "model_fixture.py"):
+            shutil.copyfile(source / "scripts/codex" / name, fixture.parent / name)
+        env["CODEX_MODEL_FIXTURE_SCRIPT"] = str(fixture)
         consumer = destination / "samgita_codex_driver" / "examples" / "consumer"
         for command in (["mix", "deps.get"], ["mix", "compile", "--warnings-as-errors"],
-                        ["mix", "test"], ["mix", "format", "--check-formatted"]):
+                        ["mix", "test"], ["mix", "format", "--check-formatted"],
+                        ["mix", "run", "run.exs"]):
             print("Independent consumer: " + " ".join(command), flush=True)
             subprocess.run(command, cwd=consumer, env=env, check=True, timeout=300)
         print("Independent consumer verified: actual pinned binary, no Repo/Phoenix/umbrella", flush=True)

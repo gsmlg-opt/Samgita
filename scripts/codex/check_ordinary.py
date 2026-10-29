@@ -20,7 +20,7 @@ import time
 from fetch_pin import BINARY_SHA256, CACHE, ROOT
 from fetch_standalone_pin import BINARY as STANDALONE_BINARY, BINARY_SHA256 as STANDALONE_SHA256
 
-REVIEWED_SOURCE_SHA256 = "3786e66b12cd1f24ed6d87fbffb4ed867dda75aa4f7b0f2cdb91f6ce3e61cca9"
+REVIEWED_SOURCE_SHA256 = "820cc7f9dabd4079b3ef2aeda19c42f4585e55678bd48b251cfc9ecb43368393"
 DRIVER_TESTS = """
 native_mcp_request_metadata_test.exs
 native_injected_history_lifecycle_test.exs
@@ -186,10 +186,13 @@ def commands():
         steps.append(("websocket-" + str(seed), websocket,
                       ["mix", "test", *WS_TESTS, "--seed", str(seed), "--max-cases", "8"], 120))
     steps.extend([
-        ("driver-format", driver, ["mix", "format", "--check-formatted", *files, *extra_files], 120),
+        ("driver-format", driver, ["mix", "format", "--check-formatted", *files, *extra_files,
+                                  "test/query_uncertainty_test.exs"], 120),
         ("driver-compile", driver, ["mix", "compile", "--warnings-as-errors"], 320),
         ("stdio-cleanup-phases", driver,
          ["mix", "test", "test/stdio_owner_lifecycle_test.exs", "--warnings-as-errors", "--seed", "501432"], 30),
+        ("query-uncertainty", driver,
+         ["mix", "test", "test/query_uncertainty_test.exs", "--warnings-as-errors", "--seed", "501432"], 30),
     ])
     for seed in (501432, 987654):
         steps.append(("ordinary-" + str(seed), driver,
@@ -219,12 +222,14 @@ def check_test_count(name, log):
         expected = r"^16 tests, 0 failures, 13 excluded$"
     elif name == "stdio-cleanup-phases":
         expected = r"^4 tests, 0 failures$"
+    elif name == "query-uncertainty":
+        expected = r"^29 tests, 0 failures$"
     elif name.startswith("ordinary-extra-"):
         expected = rf"^{EXTRA_DRIVER_CASES} tests, 0 failures$"
     elif name.startswith("ordinary-"):
         expected = rf"^{DRIVER_CASES} tests, 0 failures$"
     elif name == "independent-consumer":
-        expected = r"^1 test, 0 failures$"
+        expected = r"^3 tests, 0 failures$"
     else:
         return None
     if not re.search(expected, text, re.M):
