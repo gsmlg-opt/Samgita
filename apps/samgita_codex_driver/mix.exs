@@ -4,7 +4,7 @@ defmodule SamgitaCodexDriver.MixProject do
   def project do
     [
       app: :samgita_codex_driver,
-      version: "0.1.1",
+      version: "0.2.0",
       description:
         "Explicitly owned Codex app-server sessions, transports, tool interactions and truthful recovery.",
       package: [
@@ -19,7 +19,7 @@ defmodule SamgitaCodexDriver.MixProject do
       config_path: "config/config.exs",
       elixirc_paths: if(Mix.env() == :test, do: ["lib", "test/support"], else: ["lib"]),
       deps: [
-        {:samgita_protocol_codex, "~> 0.1.1", path: "../samgita_protocol_codex"},
+        {:samgita_protocol_codex, "~> 0.2.0", path: "../samgita_protocol_codex"},
         {:mint_web_socket, "~> 1.0"}
       ]
     ]
