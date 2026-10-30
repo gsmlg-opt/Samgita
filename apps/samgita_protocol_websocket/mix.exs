@@ -4,7 +4,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
   def project do
     [
       app: :samgita_protocol_websocket,
-      version: "0.1.0",
+      version: "0.1.1",
       description:
         "Optional WebSocket transport and explicitly started Agent hosts for SamgitaProtocol.",
       package: [
@@ -18,7 +18,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
       lockfile: "mix.lock",
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
-        {:samgita_protocol, "~> 0.1.0", path: "../samgita_protocol"},
+        {:samgita_protocol, "~> 0.1.1", path: "../samgita_protocol"},
         {:bandit, "~> 1.13"},
         {:plug, "~> 1.19"},
         {:plug_crypto, "~> 2.2.1"},
