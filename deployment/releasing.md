@@ -67,10 +67,15 @@ Docker uses the updated checkout as its context, so the input version reaches
 the image. The source branch is checked again before the first publication and
 before the final Git push. No database or service is started by the build.
 
-`scripts/release.py` updates both root versions, all six application versions and
-the three internal package requirements together. Source checkouts retain local
-path dependencies. Fresh staging directories contain only each package's listed
-library/config/schema files, README, formatter and license; their sibling
+`scripts/release.py` discovers every first-party `apps/*/mix.exs` and updates all
+application versions, both root versions, versioned app asset manifests (including
+`apps/samgita_web/package.json`) and the three internal package requirements
+together. New top-level apps participate automatically; nested consumer examples
+have independent versions. Git records all these manifests in the version commit.
+The current six apps, four published Hex packages, application archive, release
+tag and image version therefore share the requested release version. Source
+checkouts retain local path dependencies. Fresh staging directories contain only
+each package's listed library/config/schema files, README, formatter and license; their sibling
 dependencies use Hex version requirements with the workspace path removed.
 Pinned upstream schema notices remain included. Tests, platform configuration
 and build caches are excluded. Published packages do not require the umbrella.
@@ -128,3 +133,10 @@ Configuration qualification on 2026-10-30:
 The Docker build also reports three existing legacy `ENV key value` syntax
 warnings. The failing Dialyzer check remains required in CI. This configuration
 commit does not close that failure, the full compatibility gate or A11.
+
+The version synchronization follow-up passes all eight release-helper functional
+tests and Release workflow lint. A disposable `0.1.1` preparation synchronizes
+the root, all six apps and the Web asset manifest; Bun 1.3.13 frozen installation
+then succeeds with identical lockfile bytes. This is a local packaging fixture;
+it creates no release tag or registry publication and does not close the gates
+above.

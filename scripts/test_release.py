@@ -1,6 +1,7 @@
 """Functional coverage for coordinated versions and standalone package staging."""
 
 from pathlib import Path
+import json
 import shutil
 import tempfile
 import unittest
@@ -17,6 +18,8 @@ class ReleaseTest(unittest.TestCase):
             (self.root / path).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(release.ROOT / path, self.root / path)
         self.current = release.VERSION.search((self.root / "mix.exs").read_text()).group(2)
+        asset_manifest = Path("apps/samgita_web/package.json")
+        shutil.copy2(release.ROOT / asset_manifest, self.root / asset_manifest)
         for name, files in release.PACKAGE_FILES.items():
             for item in files:
                 source = release.ROOT / "apps" / name / item
@@ -56,6 +59,25 @@ class ReleaseTest(unittest.TestCase):
                 for path in paths:
                     if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc":
                         self.assertEqual(path.read_bytes(), (staged / path.relative_to(source.parent)).read_bytes())
+
+    def test_asset_manifest_version_matches_apps_without_changing_dependencies(self):
+        path = self.root / "apps/samgita_web/package.json"
+        before = json.loads(path.read_text())
+        release.prepare(self.root, self.next_version, self.output)
+        self.assertEqual(json.loads(path.read_text()), {**before, "version": self.next_version})
+
+    def test_new_top_level_app_is_included_without_changing_nested_consumers(self):
+        app = self.root / "apps/samgita_extra"
+        app.mkdir()
+        source = f'defmodule Extra.MixProject do\n  def project, do: [\n    version: "{self.current}",\n  ]\nend\n'
+        (app / "mix.exs").write_text(source)
+        consumer = app / "examples/consumer/mix.exs"
+        consumer.parent.mkdir(parents=True)
+        consumer.write_text(source)
+        release.prepare(self.root, self.next_version, self.output)
+        self.assertIn(f'version: "{self.next_version}"', (app / "mix.exs").read_text())
+        self.assertEqual(consumer.read_text(), source)
+        self.assertEqual({path.name for path in self.output.iterdir()}, set(release.PACKAGES))
 
     def test_generated_python_cache_is_excluded_from_package_sources(self):
         cache = self.root / "apps/samgita_codex_driver/priv/__pycache__"

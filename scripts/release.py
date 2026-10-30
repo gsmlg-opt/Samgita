@@ -2,6 +2,7 @@
 """Synchronize release versions and stage standalone Hex sources without workspace paths."""
 
 import argparse
+import json
 from pathlib import Path
 import re
 import shutil
@@ -13,7 +14,6 @@ PACKAGES = (
     "samgita_protocol_codex",
     "samgita_codex_driver",
 )
-APPS = ("samgita", "samgita_web", *PACKAGES)
 PACKAGE_FILES = {
     name: ("lib", "mix.exs", "README.md", "LICENSE", ".formatter.exs")
     + (() if name == "samgita_protocol_websocket" else ("priv",))
@@ -29,15 +29,15 @@ VERSION = re.compile(r'(?m)^(\s*version: ")([^"]+)(",)$')
 SEMVER = re.compile(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)")
 
 
-def manifests():
-    return (Path("mix.exs"), *(Path("apps") / name / "mix.exs" for name in APPS))
+def manifests(root=ROOT):
+    return (Path("mix.exs"), *sorted(path.relative_to(root) for path in root.glob("apps/*/mix.exs")))
 
 
 def version_changes(root, version):
     """Validate the current coordinated release, then calculate every manifest edit."""
     if not SEMVER.fullmatch(version):
         raise ValueError("version must be a stable M.N.P release (without a v prefix)")
-    sources = {path: (root / path).read_text() for path in manifests()}
+    sources = {path: (root / path).read_text() for path in manifests(root)}
     root_version = VERSION.search(sources[Path("mix.exs")])
     if root_version is None:
         raise ValueError("canonical version missing from mix.exs")
@@ -51,6 +51,17 @@ def version_changes(root, version):
         if versions != [canonical] * expected_count:
             raise ValueError(f"unexpected version declarations in {path}: {versions}")
         updated[path] = VERSION.sub(lambda m: m.group(1) + version + m.group(3), source)
+    for manifest in manifests(root)[1:]:
+        path = manifest.with_name("package.json")
+        if not (root / path).exists():
+            continue
+        metadata = json.loads((root / path).read_text())
+        if "version" not in metadata:
+            continue
+        if metadata["version"] != canonical:
+            raise ValueError(f"unexpected asset version in {path}: {metadata['version']}")
+        metadata["version"] = version
+        updated[path] = json.dumps(metadata, indent=2) + "\n"
     for name, dependency in SIBLINGS.items():
         path = Path("apps") / name / "mix.exs"
         old = f'{{:{dependency}, "~> {canonical}", path: "../{dependency}"}}'
