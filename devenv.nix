@@ -26,7 +26,7 @@ in {
     ];
 
   languages.elixir.enable = true;
-  languages.elixir.package = pkgs-stable.beam27Packages.elixir;
+  languages.elixir.package = pkgs-stable.beam28Packages.elixir;
 
   languages.javascript.enable = true;
   languages.javascript.bun.enable = true;

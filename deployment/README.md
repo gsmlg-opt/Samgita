@@ -1,8 +1,10 @@
-# Agent Hub deployment tooling
+# Samgita deployment tooling
 
-Stage 1 retains tooling for exactly two first-party release applications,
+The platform release contains exactly two first-party applications,
 `samgita` and `samgita_web`, using only `Samgita.Repo` and PostgreSQL 16.
-Agent transport and full operator behavior are not implemented yet.
+Reusable protocol and driver packages are dependencies of the application.
+See [manual release and registry publication](releasing.md) for the Hex.pm,
+application archive and GHCR workflow. It does not deploy services.
 
 Automatic CD is disabled. Deployment requires two-app release assembly, fresh
 database migration, real Agent WebSocket smoke proof, HTTP health verification,

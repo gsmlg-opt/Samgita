@@ -3,13 +3,17 @@ name: Pinned Codex conformance
 on:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: "1.18.5"
-  OTP_VERSION: "27.3.4.17"
+  ELIXIR_VERSION: "1.19.7"
+  OTP_VERSION: "28.5.0.8"
   PYTHON_VERSION: "3.13"
   PYTHONDONTWRITEBYTECODE: "1"
 
@@ -44,7 +48,7 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Isolate the verified native artifact cache
         run: echo "RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH=$RUNNER_TEMP/samgita-conformance-nifs" >> "$GITHUB_ENV"
       - name: Required native content-search executable
@@ -57,7 +61,7 @@ jobs:
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Required native fixture interpreter
@@ -152,12 +156,12 @@ jobs:
     env:
       CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Required native fixture interpreter
@@ -409,7 +413,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Inventory regressions and source consistency
         run: |
           python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v

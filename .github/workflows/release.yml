@@ -1,0 +1,166 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (e.g. 1.2.3)"
+        required: true
+        type: string
+      git_ref:
+        description: "Git ref to release from (an existing branch name)"
+        required: true
+        default: main
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  MIX_ENV: prod
+  ELIXIR_VERSION: "1.19.7"
+  OTP_VERSION: "28.5.0.8"
+  BUN_VERSION: "1.3.13"
+  RELEASE_VERSION: ${{ inputs.version }}
+  RELEASE_REF: ${{ inputs.git_ref }}
+  IMAGE: ghcr.io/gsmlg-dev/samgita
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.git_ref }}
+          fetch-depth: 0
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          otp-version: ${{ env.OTP_VERSION }}
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+      - name: Use installed Bun for Mix assets
+        run: echo "MIX_BUN_PATH=$(command -v bun)" >> "$GITHUB_ENV"
+      - name: Require source qualification and an unpublished release tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          source_sha=$(git rev-parse HEAD)
+          branch=${RELEASE_REF#refs/heads/}
+          git check-ref-format "refs/heads/$branch"
+          git fetch origin "refs/heads/$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$source_sha"
+          existing_tag=$(git ls-remote --tags origin "refs/tags/v$RELEASE_VERSION")
+          if [ -n "$existing_tag" ]; then
+            echo "Release tag already exists: v$RELEASE_VERSION"
+            exit 1
+          fi
+          for workflow in ci.yml test.yml codex-conformance.yml; do
+            run_id=$(gh run list --workflow "$workflow" --commit "$source_sha" --limit 1 \
+              --json databaseId,status,conclusion \
+              --jq '.[0] | select(.status == "completed" and .conclusion == "success") | .databaseId')
+            if ! [[ "$run_id" =~ ^[0-9]+$ ]]; then
+              echo "Required successful $workflow run missing for $source_sha"
+              exit 1
+            fi
+            echo "Qualified $workflow: $run_id at $source_sha"
+          done
+          # Ordinary delivery cannot satisfy the full native compatibility gate.
+          python3 scripts/codex/inventory.py --check --require-verified
+          # A11 is a separate platform boundary, outside the Codex inventory.
+          jq '.blockers[]' deployment/release-blockers.json
+          jq -e '.blockers == []' deployment/release-blockers.json
+          echo "RELEASE_BRANCH=$branch" >> "$GITHUB_ENV"
+          echo "SOURCE_SHA=$source_sha" >> "$GITHUB_ENV"
+      - name: Prepare coordinated versions and standalone Hex sources
+        run: |
+          publish_dir="$RUNNER_TEMP/samgita-hex"
+          python3 -B scripts/release.py --version "$RELEASE_VERSION" --output "$publish_dir"
+          echo "PUBLISH_DIR=$publish_dir" >> "$GITHUB_ENV"
+          echo "ARTIFACT_DIR=$RUNNER_TEMP/samgita-artifacts" >> "$GITHUB_ENV"
+      - name: Build four Hex archives
+        run: |
+          mkdir -p "$ARTIFACT_DIR"
+          for package in samgita_protocol samgita_protocol_websocket samgita_protocol_codex samgita_codex_driver; do
+            (cd "$PUBLISH_DIR/$package" && mix hex.build)
+            cp "$PUBLISH_DIR/$package/$package-$RELEASE_VERSION.tar" "$ARTIFACT_DIR/"
+          done
+      - name: Build application release
+        run: |
+          mix deps.get --only prod
+          python3 scripts/install_web_dependencies.py
+          mix compile --warnings-as-errors
+          mix assets.deploy
+          mix release --overwrite
+          cp "_build/prod/samgita-$RELEASE_VERSION.tar.gz" "$ARTIFACT_DIR/"
+      - uses: docker/setup-buildx-action@v4
+      - name: Build release image before publishing
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          load: true
+          push: false
+          tags: |
+            ${{ env.IMAGE }}:${{ inputs.version }}
+            ${{ env.IMAGE }}:latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.version=${{ inputs.version }}
+            org.opencontainers.image.revision=${{ env.SOURCE_SHA }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Save built release artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: samgita-${{ inputs.version }}
+          path: ${{ env.ARTIFACT_DIR }}/*
+          if-no-files-found: error
+      - name: Recheck source branch before publication
+        run: |
+          git fetch origin "refs/heads/$RELEASE_BRANCH"
+          test "$(git rev-parse FETCH_HEAD)" = "$SOURCE_SHA"
+      # The repository is gsmlg-opt; the target registry namespace is gsmlg-dev.
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      - name: Publish standalone packages in dependency order
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+        run: |
+          for package in samgita_protocol samgita_protocol_websocket samgita_protocol_codex samgita_codex_driver; do
+            (cd "$PUBLISH_DIR/$package" && mix hex.publish package --yes)
+          done
+      - name: Publish version and latest images
+        run: |
+          docker push "$IMAGE:$RELEASE_VERSION"
+          docker push "$IMAGE:latest"
+      - name: Commit version bump and push release tag
+        run: |
+          # Also catch advancement during registry publication; recovery is explicit.
+          git fetch origin "refs/heads/$RELEASE_BRANCH"
+          test "$(git rev-parse FETCH_HEAD)" = "$SOURCE_SHA"
+          git config user.name github-actions[bot]
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mix.exs apps/samgita/mix.exs apps/samgita_web/mix.exs \
+            apps/samgita_protocol/mix.exs apps/samgita_protocol_websocket/mix.exs \
+            apps/samgita_protocol_codex/mix.exs apps/samgita_codex_driver/mix.exs
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(release): v$RELEASE_VERSION"
+          fi
+          git tag -a "v$RELEASE_VERSION" -m "Release v$RELEASE_VERSION (source $SOURCE_SHA)"
+          git push --atomic origin "HEAD:refs/heads/$RELEASE_BRANCH" "refs/tags/v$RELEASE_VERSION"
+      - name: Create GitHub Release with packages and application archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v$RELEASE_VERSION" "$ARTIFACT_DIR/"* \
+            --verify-tag --generate-notes --title "v$RELEASE_VERSION"

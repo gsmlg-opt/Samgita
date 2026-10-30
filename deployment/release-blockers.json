@@ -1,0 +1,10 @@
+{
+  "blockers": [
+    {
+      "id": "A11",
+      "reason": "Raw LiveView/Bandit telemetry confidentiality remains incomplete. Codex inventory success cannot close this platform boundary.",
+      "evidence": "docs/codex-app-server/repair-qualification.md",
+      "closure": "Retain this blocker until the original acceptance gate has passing evidence and that evidence is reviewed in the repository."
+    }
+  ]
+}

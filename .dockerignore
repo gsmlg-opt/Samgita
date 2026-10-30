@@ -8,6 +8,8 @@
 # Mix artifacts
 /_build
 /deps
+**/_build
+**/deps
 *.ez
 
 # Elixir LS
@@ -23,6 +25,10 @@ erl_crash.dump
 /node_modules
 /apps/samgita_web/node_modules
 /apps/samgita_web/.bun-cache
+**/node_modules
+**/.bun-cache
+**/__pycache__
+**/*.pyc
 
 # Development files
 .env

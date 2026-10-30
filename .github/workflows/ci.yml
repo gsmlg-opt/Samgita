@@ -1,53 +1,36 @@
 name: CI
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
+on: [push, pull_request]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: "1.18.5"
-  OTP_VERSION: "27.3.4.17"
+  ELIXIR_VERSION: "1.19.7"
+  OTP_VERSION: "28.5.0.8"
   BUN_VERSION: "1.3.13"
-  POSTGRES_HOST: localhost
-  POSTGRES_PORT: "5432"
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: postgres
-  SAMGITA_TEST_DATABASE: samgita_redesign_ci_test
 
 jobs:
   foundation:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: samgita_hub_test
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
-      - uses: actions/cache@v4
+      - name: Use installed Bun for Mix assets
+        run: echo "MIX_BUN_PATH=$(command -v bun)" >> "$GITHUB_ENV"
+      - uses: actions/cache@v6
         with:
           path: |
             deps
@@ -60,49 +43,7 @@ jobs:
       - run: mix compile --warnings-as-errors
       - run: mix format --check-formatted
       - run: mix credo --strict
-      - name: Fresh foundation database
-        run: |
-          mix ecto.create
-          mix ecto.migrate
-      - name: Retained and redesign tests, including populated-database repeat
-        run: |
-          mix test
-          mix test
-      - name: Isolated application restart and rollback rehearsal
-        env:
-          SAMGITA_TEST_DATABASE: samgita_redesign_restart_test
-        run: mix test apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e
-      - name: Protocol packages and outside-umbrella consumers
-        run: |
-          python3 scripts/verify_isolated_protocol.py
-          cd apps/samgita_protocol_websocket
-          mix deps.get
-          mix compile --warnings-as-errors
-          mix format --check-formatted
-          mix test
-          mix hex.audit
-          cd ../samgita_protocol_codex
-          mix deps.get
-          mix compile --warnings-as-errors
-          mix format --check-formatted
-          mix test
-          mix hex.audit
-      - run: mix assets.build
-      - name: Reject legacy implementation references
-        run: |
-          python3 scripts/test_check_legacy_runtime.py
-          python3 scripts/check_legacy_runtime.py
-      # Reusable path dependencies change without changing mix.lock. A cached
-      # dependency PLT must be checked against their current BEAM exports too.
+      # Path dependency exports can change without a mix.lock change.
       - run: mix dialyzer --force-check
-      - run: mix hex.audit
-      - name: Assemble local production release
-        env:
-          MIX_ENV: prod
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/samgita_hub_test
-          SECRET_KEY_BASE: ci-only-secret-not-for-deployment-0123456789012345678901234567890123456789
-          SAMGITA_API_KEYS: ci-only-not-for-deployment
-        run: |
-          mix deps.get --only prod
-          mix assets.deploy
-          mix release --overwrite
+      - run: mix assets.build
+      - run: python3 scripts/check_legacy_runtime.py

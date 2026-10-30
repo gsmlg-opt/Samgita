@@ -17,9 +17,10 @@ authorize deleting data or migrations.
 
 The two platform applications are `apps/samgita` (Ecto/domain commands, events,
 schedules and Oban) and `apps/samgita_web` (Phoenix REST and DuskMoon LiveViews).
-Three independently built packages provide a reusable protocol core, optional
-WebSocket transport and a limited pinned Codex adapter. Loading the packages
-starts no Agent or listener.
+Four independently built packages provide a reusable protocol core, optional
+WebSocket transport, a pinned Codex wire adapter and an ordinary Codex driver.
+Loading the packages starts no Agent or listener. Ordinary functional delivery
+does not establish full native compatibility.
 
 The operator journey is available at:
 
@@ -51,8 +52,9 @@ ledger for actual evidence and remaining gates.
 
 ## Development
 
-Use the repository's pinned devenv environment (Elixir/OTP, PostgreSQL 16, Bun
-and Tailwind 4). Start PostgreSQL with `devenv up postgres` in a separate terminal.
+Use Elixir >= 1.18 and Erlang/OTP >= 28. The pinned devenv environment includes
+PostgreSQL 16, Bun and Tailwind 4; CI and Docker pin Elixir 1.19.7 / OTP 28.5.0.8
+and Bun 1.3.13. Start PostgreSQL with `devenv up postgres` in a separate terminal.
 For a deliberately selected local development database:
 
 ```sh
@@ -97,7 +99,10 @@ immutable evidence and bounded reconciliation. Comments, PR creation, merge and
 workflow execution are disabled. No live webhook or real credential provisioning
 is implied by the local fixture tests.
 
-[Deployment tooling](deployment/README.md) describes the release boundary.
-The current CI assembles a local production release; CD remains disabled. There
-is no normal package publication/release workflow in this repository. Passing
-local checks or assembling a release does not authorize deployment.
+[Release instructions](deployment/releasing.md) describe the manual workflow for
+four Hex.pm packages, the application archive and
+`ghcr.io/gsmlg-dev/samgita:{version,latest}`. Publication requires successful
+source qualification and the retained full compatibility gate; current full
+compatibility and A11 blockers remain unresolved. Configuring this workflow does
+not publish anything. [Deployment tooling](deployment/README.md) remains separate;
+CD is disabled and deployment needs explicit authorization.

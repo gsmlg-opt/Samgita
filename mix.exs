@@ -6,6 +6,7 @@ defmodule Samgita.Umbrella.MixProject do
       apps_path: "apps",
       apps: [:samgita, :samgita_web],
       version: "0.1.0",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [plt_add_apps: [:ex_unit]],

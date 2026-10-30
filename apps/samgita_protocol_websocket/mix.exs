@@ -5,13 +5,20 @@ defmodule SamgitaProtocolWebSocket.MixProject do
     [
       app: :samgita_protocol_websocket,
       version: "0.1.0",
+      description:
+        "Optional WebSocket transport and explicitly started Agent hosts for SamgitaProtocol.",
+      package: [
+        licenses: ["AGPL-3.0-only"],
+        links: %{"GitHub" => "https://github.com/gsmlg-opt/Samgita"},
+        files: ~w(lib mix.exs README.md LICENSE .formatter.exs)
+      ],
       elixir: "~> 1.18",
       deps_path: "deps",
       build_path: "_build",
       lockfile: "mix.lock",
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
-        {:samgita_protocol, path: "../samgita_protocol"},
+        {:samgita_protocol, "~> 0.1.0", path: "../samgita_protocol"},
         {:bandit, "~> 1.13"},
         {:plug, "~> 1.19"},
         {:plug_crypto, "~> 2.2.1"},
