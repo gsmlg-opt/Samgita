@@ -146,7 +146,7 @@ jobs:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
         run: |
           for package in samgita_protocol samgita_protocol_websocket samgita_protocol_codex samgita_codex_driver; do
-            (cd "$PUBLISH_DIR/$package" && mix hex.publish package --yes)
+            (cd "$PUBLISH_DIR/$package" && mix deps.get && mix deps.compile && mix hex.publish package --yes)
           done
       - name: Publish version and latest images
         run: |

@@ -97,9 +97,12 @@ Pinned upstream schema notices remain included. Tests, platform configuration
 and build caches are excluded. Published packages do not require the umbrella.
 
 Package-only Hex publication runs in dependency order: core, WebSocket, Codex
-wire layer, then driver. It does not invoke `mix docs`. The image is pushed with
-the version and `latest` tags. The workflow then commits version manifests when
-changed, pushes an annotated `vVERSION` tag and branch atomically, and creates a
+wire layer, then driver. Each staged package resolves and compiles its real Hex
+dependencies after the preceding package is published; unlike `hex.build`,
+`hex.publish` requires dependency load paths. It does not invoke `mix docs`. The
+image is pushed with the version and `latest` tags. The workflow then commits
+version manifests when changed, pushes an annotated `vVERSION` tag and branch
+atomically, and creates a
 GitHub Release with generated notes and the five archives. For 0.x it also sets
 `--prerelease` and attaches the explicit experimental limits. The release tag can
 therefore identify a version-only commit after the qualified source commit; the
@@ -157,3 +160,11 @@ the root, all six apps and the Web asset manifest; Bun 1.3.13 frozen installatio
 then succeeds with identical lockfile bytes. This is a local packaging fixture;
 it creates no release tag or registry publication and does not close the gates
 above.
+
+The first experimental publication attempt (`41017715377`) passed all functional,
+package, application and Docker builds but stopped after publishing only
+`samgita_protocol 0.1.0`: the next staged package had not resolved dependencies
+required by `hex.publish`. No other package, image or Git tag was published in
+that attempt. The publication loop now resolves/compiles dependencies in order.
+The coordinated retry uses `0.1.1`, preserving the already published core 0.1.0
+as historical experimental output rather than overwriting or deleting it.
