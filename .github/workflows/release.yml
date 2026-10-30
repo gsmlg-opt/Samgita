@@ -48,11 +48,12 @@ jobs:
           bun-version: ${{ env.BUN_VERSION }}
       - name: Use installed Bun for Mix assets
         run: echo "MIX_BUN_PATH=$(command -v bun)" >> "$GITHUB_ENV"
-      - name: Require source qualification and an unpublished release tag
+      - name: Select release channel and verify source
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           source_sha=$(git rev-parse HEAD)
+          channel=$(python3 -B scripts/release.py --version "$RELEASE_VERSION" --channel)
           branch=${RELEASE_REF#refs/heads/}
           git check-ref-format "refs/heads/$branch"
           git fetch origin "refs/heads/$branch"
@@ -62,23 +63,29 @@ jobs:
             echo "Release tag already exists: v$RELEASE_VERSION"
             exit 1
           fi
-          for workflow in ci.yml test.yml codex-conformance.yml; do
-            run_id=$(gh run list --workflow "$workflow" --commit "$source_sha" --limit 1 \
-              --json databaseId,status,conclusion \
-              --jq '.[0] | select(.status == "completed" and .conclusion == "success") | .databaseId')
-            if ! [[ "$run_id" =~ ^[0-9]+$ ]]; then
-              echo "Required successful $workflow run missing for $source_sha"
-              exit 1
-            fi
-            echo "Qualified $workflow: $run_id at $source_sha"
-          done
-          # Ordinary delivery cannot satisfy the full native compatibility gate.
-          python3 scripts/codex/inventory.py --check --require-verified
-          # A11 is a separate platform boundary, outside the Codex inventory.
-          jq '.blockers[]' deployment/release-blockers.json
-          jq -e '.blockers == []' deployment/release-blockers.json
+          if [ "$channel" = stable ]; then
+            for workflow in ci.yml test.yml codex-conformance.yml; do
+              run_id=$(gh run list --workflow "$workflow" --commit "$source_sha" --limit 1 \
+                --json databaseId,status,conclusion \
+                --jq '.[0] | select(.status == "completed" and .conclusion == "success") | .databaseId')
+              if ! [[ "$run_id" =~ ^[0-9]+$ ]]; then
+                echo "Required successful $workflow run missing for $source_sha"
+                exit 1
+              fi
+              echo "Qualified $workflow: $run_id at $source_sha"
+            done
+            python3 scripts/codex/inventory.py --check --require-verified
+            jq '.blockers[]' deployment/release-blockers.json
+            jq -e '.blockers == []' deployment/release-blockers.json
+          else
+            echo "Pre-1.0 experimental publication under the approved release policy."
+            echo "Full compatibility, A11 and aggregate checks remain incomplete."
+          fi
           echo "RELEASE_BRANCH=$branch" >> "$GITHUB_ENV"
           echo "SOURCE_SHA=$source_sha" >> "$GITHUB_ENV"
+          echo "RELEASE_CHANNEL=$channel" >> "$GITHUB_ENV"
+      - name: Reviewed release preparation functional tests
+        run: python3 -B -m unittest discover -s scripts -p 'test_release.py' -v
       - name: Prepare coordinated versions and standalone Hex sources
         run: |
           publish_dir="$RUNNER_TEMP/samgita-hex"
@@ -92,6 +99,8 @@ jobs:
             (cd "$PUBLISH_DIR/$package" && mix hex.build)
             cp "$PUBLISH_DIR/$package/$package-$RELEASE_VERSION.tar" "$ARTIFACT_DIR/"
           done
+      - name: Compile extracted packages in an outside consumer
+        run: python3 -B scripts/verify_release_packages.py --directory "$PUBLISH_DIR" --version "$RELEASE_VERSION"
       - name: Build application release
         run: |
           mix deps.get --only prod
@@ -130,7 +139,7 @@ jobs:
       - uses: docker/login-action@v4
         with:
           registry: ghcr.io
-          username: ${{ secrets.GHCR_USERNAME }}
+          username: ${{ secrets.GHCR_USERNAME || github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Publish standalone packages in dependency order
         env:
@@ -160,5 +169,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v$RELEASE_VERSION" "$ARTIFACT_DIR/"* \
-            --verify-tag --generate-notes --title "v$RELEASE_VERSION"
+          if [ "$RELEASE_CHANNEL" = prerelease ]; then
+            gh release create "v$RELEASE_VERSION" "$ARTIFACT_DIR/"* \
+              --verify-tag --generate-notes --title "v$RELEASE_VERSION (experimental)" \
+              --prerelease --notes-file deployment/experimental-release-notes.md
+          else
+            gh release create "v$RELEASE_VERSION" "$ARTIFACT_DIR/"* \
+              --verify-tag --generate-notes --title "v$RELEASE_VERSION"
+          fi

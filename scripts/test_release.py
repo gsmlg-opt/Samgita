@@ -34,6 +34,14 @@ class ReleaseTest(unittest.TestCase):
         major = int(self.current.split(".")[0]) + 1
         self.next_version = f"{major}.2.3"
 
+    def test_pre_one_versions_are_prereleases_and_one_or_later_are_stable(self):
+        for version in ("0.0.1", "0.1.0", "0.99.99"):
+            with self.subTest(version=version):
+                self.assertEqual(release.release_channel(version), "prerelease")
+        for version in ("1.0.0", "1.2.3", "2.0.0"):
+            with self.subTest(version=version):
+                self.assertEqual(release.release_channel(version), "stable")
+
     def test_updates_both_root_versions_all_apps_and_sibling_requirements(self):
         release.prepare(self.root, self.next_version, self.output)
         for path in release.manifests():

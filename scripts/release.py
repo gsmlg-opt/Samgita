@@ -33,16 +33,25 @@ def manifests(root=ROOT):
     return (Path("mix.exs"), *sorted(path.relative_to(root) for path in root.glob("apps/*/mix.exs")))
 
 
+def version_parts(version):
+    if not SEMVER.fullmatch(version):
+        raise ValueError("version must be M.N.P (without a v prefix)")
+    return tuple(map(int, version.split(".")))
+
+
+def release_channel(version):
+    return "prerelease" if version_parts(version)[0] == 0 else "stable"
+
+
 def version_changes(root, version):
     """Validate the current coordinated release, then calculate every manifest edit."""
-    if not SEMVER.fullmatch(version):
-        raise ValueError("version must be a stable M.N.P release (without a v prefix)")
+    requested = version_parts(version)
     sources = {path: (root / path).read_text() for path in manifests(root)}
     root_version = VERSION.search(sources[Path("mix.exs")])
     if root_version is None:
         raise ValueError("canonical version missing from mix.exs")
     canonical = root_version.group(2)
-    if tuple(map(int, version.split("."))) < tuple(map(int, canonical.split("."))):
+    if requested < version_parts(canonical):
         raise ValueError(f"version {version} precedes current version {canonical}")
     updated = {}
     for path, source in sources.items():
@@ -104,9 +113,14 @@ def prepare(root, version, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", required=True)
-    parser.add_argument("--output", type=Path, required=True, help="fresh package source directory")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--output", type=Path, help="fresh package source directory")
+    mode.add_argument("--channel", action="store_true", help="print prerelease for 0.x, stable for >= 1.0")
     args = parser.parse_args()
     try:
+        if args.channel:
+            print(release_channel(args.version))
+            return
         prepare(ROOT, args.version, args.output.resolve())
     except (OSError, ValueError) as error:
         parser.exit(1, f"Release preparation failed: {error}\n")

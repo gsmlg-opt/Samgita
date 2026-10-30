@@ -1,5 +1,9 @@
 # Samgita Codex driver
 
+All package versions below 1.0 are experimental releases for testing. The package
+version is separate from the pinned Codex version; publication does not establish
+complete native behavioral compatibility or platform production readiness.
+
 An independently reusable supervised Elixir client for the immutable official
 Codex app-server **0.163.0**, source
 `83086188ae0614bd882818ff1aa23f3194962012`. Native schemas, binary provenance and

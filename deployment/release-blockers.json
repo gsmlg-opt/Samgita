@@ -1,4 +1,5 @@
 {
+  "applies_to": "stable releases at 1.0 or above",
   "blockers": [
     {
       "id": "A11",

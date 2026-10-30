@@ -11,9 +11,13 @@ The `Release` workflow in `.github/workflows/release.yml` builds and publishes:
 | `samgita-VERSION.tar.gz` and the four Hex archives | GitHub Release `vVERSION` |
 | Linux amd64 application image | `ghcr.io/gsmlg-dev/samgita:VERSION` and `:latest` |
 
-All artifacts share the input version. Stable `M.N.P` versions without a `v`
-prefix are supported. The initial publication can reuse the checked-in version;
-later inputs must not decrease it. The root `mix.exs` is canonical.
+All artifacts share the input `M.N.P` version without a `v` prefix. The initial
+publication can reuse the checked-in version; later inputs must not decrease it.
+The root `mix.exs` is canonical. Per the user's 2026-10-30 release policy, all 0.x
+versions are experimental test releases and GitHub marks them as prereleases.
+Hex.pm receives the numeric 0.x version; its semantic-version prerelease flag is
+not implied by a zero major version, so each package README states the test
+status explicitly. Versions at 1.0 or above use the stable channel.
 
 The supported runtime minimum is Elixir 1.18 / OTP 28. Hosted builds and Docker
 pin Elixir 1.19.7, OTP 28.5.0.8 and Bun 1.3.13. Devenv uses OTP 28 packages.
@@ -26,9 +30,9 @@ Configure these repository Actions secrets through the existing secret facility:
 
 | Reference | Purpose |
 | --- | --- |
-| `HEX_API_KEY` | Publish all four packages on Hex.pm under an authorized owner |
-| `GHCR_USERNAME` | Owner of the GHCR publication token |
-| `GHCR_TOKEN` | Publish packages in the `gsmlg-dev` namespace |
+| `HEX_API_KEY` | Publish all four packages on Hex.pm under an authorized owner; existing organization secret is available |
+| `GHCR_USERNAME` | Optional explicit token-owner login; defaults to the dispatching `github.actor` |
+| `GHCR_TOKEN` | Publish packages in the `gsmlg-dev` namespace; existing organization secret is available |
 
 The source repository is `gsmlg-opt/Samgita`, while the image belongs to
 `gsmlg-dev`. Its normal repository `GITHUB_TOKEN` cannot be assumed to grant
@@ -37,7 +41,18 @@ publication credential references; this change creates no credentials or remote
 permissions. The workflow's `GITHUB_TOKEN` reads Actions results and writes the
 release commit, tag and GitHub Release.
 
-For the exact source commit, the latest runs of `CI`, `Tests` and `Pinned Codex
+Every release runs the reviewed release-helper functional tests, builds four Hex
+archives, compiles all four extracted archives together in a temporary outside
+consumer without starting applications, and builds the production application
+and Docker image before publication. Any failure stops publication.
+
+The pre-1.0 experimental channel is explicitly authorized despite the recorded
+incomplete aggregate checks, full compatibility and A11 boundary. It does not run
+or require mixed broad/security suites. Its GitHub release notes include
+`deployment/experimental-release-notes.md`; none of those outstanding checks are
+marked passing or removed from their evidence ledgers.
+
+For a stable release at 1.0 or above, the exact source commit's latest runs of `CI`, `Tests` and `Pinned Codex
 conformance` must all have completed successfully. The release then checks
 `scripts/codex/inventory.py --check --require-verified` without changing its
 requirements. The separate `deployment/release-blockers.json` gate retains A11:
@@ -45,14 +60,15 @@ the Codex inventory does not verify the platform telemetry boundary. Remove a
 blocker only when its original acceptance evidence passes and is recorded for
 review. The current complete-compatibility evidence and A11 boundary remain
 incomplete; ordinary fake/native functional evidence cannot satisfy those gates.
-Publication remains blocked until the applicable gates are actually closed.
+Stable publication remains blocked until these gates are actually closed.
 
 The user's current restriction prohibits security/permission tests, audits and
 mixed broad suites or hosted runs containing them. Keep those definitions and
-gates intact, but do not run `Tests`, `Pinned Codex conformance` or release under
-that restriction. No hosted workflow was dispatched for this configuration task.
+gates intact, but do not run `Tests` or `Pinned Codex conformance` under that
+restriction. The manual Release workflow contains only the reviewed functional
+and build checks and is authorized for the experimental publication.
 
-## Run after qualification is authorized and complete
+## Run a qualified experimental release or a fully qualified stable release
 
 From Actions, select `Release`, enter `version` (for example `0.1.1`), and use an
 existing branch name for `git_ref` (default `main`). Tags and detached commits are
@@ -84,7 +100,8 @@ Package-only Hex publication runs in dependency order: core, WebSocket, Codex
 wire layer, then driver. It does not invoke `mix docs`. The image is pushed with
 the version and `latest` tags. The workflow then commits version manifests when
 changed, pushes an annotated `vVERSION` tag and branch atomically, and creates a
-GitHub Release with generated notes and the five archives. The release tag can
+GitHub Release with generated notes and the five archives. For 0.x it also sets
+`--prerelease` and attaches the explicit experimental limits. The release tag can
 therefore identify a version-only commit after the qualified source commit; the
 tag annotation and image revision label retain that source SHA. Application code
 must not change between qualification and packaging.

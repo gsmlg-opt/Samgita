@@ -101,8 +101,9 @@ is implied by the local fixture tests.
 
 [Release instructions](deployment/releasing.md) describe the manual workflow for
 four Hex.pm packages, the application archive and
-`ghcr.io/gsmlg-dev/samgita:{version,latest}`. Publication requires successful
-source qualification and the retained full compatibility gate; current full
-compatibility and A11 blockers remain unresolved. Configuring this workflow does
-not publish anything. [Deployment tooling](deployment/README.md) remains separate;
-CD is disabled and deployment needs explicit authorization.
+`ghcr.io/gsmlg-dev/samgita:{version,latest}`. Versions below 1.0 are experimental
+test releases, marked as GitHub prereleases after the reviewed functional and
+packaging builds pass. Stable releases at 1.0 or above retain the full acceptance
+gates. Current full compatibility and A11 blockers remain unresolved and are
+disclosed in experimental release notes. [Deployment tooling](deployment/README.md)
+remains separate; CD is disabled and deployment needs explicit authorization.

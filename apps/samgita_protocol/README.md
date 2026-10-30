@@ -1,6 +1,10 @@
 # SamgitaProtocol
 
-Transport-independent Agent protocol, native schema **1.0**, package **0.1.0**, Elixir 1.18+. No runtime dependencies, application callback, Repo, platform schemas, orchestration, Phoenix, UI, Backplane or application configuration. Loading the library starts no listener or Agent. Consumers can communicate directly with their chosen host while Samgita is absent.
+Transport-independent Agent protocol, native schema **1.0**, Elixir 1.18+. No runtime dependencies, application callback, Repo, platform schemas, orchestration, Phoenix, UI, Backplane or application configuration. Loading the library starts no listener or Agent. Consumers can communicate directly with their chosen host while Samgita is absent.
+
+All package versions below 1.0 are experimental releases for testing. Package
+versions are separate from the native wire schema version. Publication does not
+establish full provider compatibility or platform production readiness.
 
 The three standalone Mix projects follow this repository's `apps/` layout but deliberately do not inherit umbrella configuration, dependencies, lockfiles or build paths. They are not in the platform's explicit application list:
 

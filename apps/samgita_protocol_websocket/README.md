@@ -1,5 +1,8 @@
 # Optional native WebSocket transport
 
+All package versions below 1.0 are experimental releases for testing. Publication
+does not establish real Agent-service integration or platform production readiness.
+
 This standalone Mix package carries `samgita_protocol` JSON text frames over RFC
 6455 WebSockets at `/app-server`. It uses Bandit/WebSockAdapter for the server
 and MintWebSocket for the client. It has no Phoenix, Repo, provider or Backplane

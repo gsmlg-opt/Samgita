@@ -1,5 +1,9 @@
 # SamgitaProtocolCodex
 
+All package versions below 1.0 are experimental releases for testing. The package
+version is separate from the pinned Codex version; publication does not establish
+complete native behavioral compatibility or platform production readiness.
+
 A standalone native wire/schema library for official Codex **0.163.0**, with a
 retained convenience adapter for selected Samgita protocol operations. It opens no listener, starts no runtime, and
 depends only on the sibling `samgita_protocol` library. It does not depend on
