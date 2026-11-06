@@ -19,10 +19,10 @@ defmodule SamgitaProtocolWebSocket.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
         {:samgita_protocol, "~> 0.2.0", path: "../samgita_protocol"},
-        {:bandit, "~> 1.13"},
+        {:gaoxy_http, "~> 0.14.1"},
         {:plug, "~> 1.19"},
         {:plug_crypto, "~> 2.2.1"},
-        {:websock_adapter, "~> 0.6"},
+        {:websock_adapter, "~> 0.14.1", hex: :gaoxy_websock_adapter, override: true},
         {:mint_web_socket, "~> 1.0"}
       ]
     ]

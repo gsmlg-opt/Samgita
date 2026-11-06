@@ -14,9 +14,27 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
-    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    <link
+      phx-track-static
+      rel="stylesheet"
+      href={
+        DuskmoonBundler.static_path(SamgitaWeb.Endpoint, "/assets/css/app.css",
+          profile: :samgita_web
+        )
+      }
+    />
+    <script
+      defer
+      phx-track-static
+      type="module"
+      src={
+        DuskmoonBundler.static_path(SamgitaWeb.Endpoint, "/assets/js/app.js",
+          profile: :samgita_web
+        )
+      }
+    >
     </script>
+    {DuskmoonBundler.Preload.tags(SamgitaWeb.Endpoint, "/assets/js/app.js", profile: :samgita_web)}
     <script>
       (() => {
         const theme = localStorage.getItem("theme") || "default";

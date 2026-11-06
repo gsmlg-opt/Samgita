@@ -15,6 +15,7 @@ defmodule SamgitaProtocolWebSocket.Plug do
       |> WebSockAdapter.upgrade(SamgitaProtocolWebSocket.Socket, opts,
         timeout: Keyword.get(opts, :idle_timeout_ms, 60_000),
         max_frame_size: Keyword.get(opts, :max_frame_bytes, 1_048_576),
+        max_message_size: Keyword.get(opts, :max_frame_bytes, 1_048_576),
         compress: false
       )
       |> halt()

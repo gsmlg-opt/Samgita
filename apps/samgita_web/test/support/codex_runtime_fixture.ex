@@ -204,7 +204,7 @@ defmodule SamgitaWeb.CodexRuntimeFixture do
       audit:
         Repo.all(from e in DomainEvent, where: e.project_id == ^ctx.project["id"], order_by: e.id),
       receipts: Repo.aggregate(CommandReceipt, :count),
-      jobs: Repo.aggregate(Oban.Job, :count)
+      jobs: Repo.aggregate(Styx.Job, :count)
     }
   end
 

@@ -6,7 +6,12 @@ config :samgita,
 
 config :samgita_web, SamgitaWeb.Endpoint,
   url: [host: "samgita.local"],
-  adapter: Bandit.PhoenixAdapter,
+  adapter: Gaoxy.PhoenixAdapter,
+  websocket_paths: [
+    "/live/websocket",
+    "/phoenix/live_reload/socket/websocket",
+    "/@duskmoon_bundler/ws"
+  ],
   render_errors: [
     formats: [html: SamgitaWeb.ErrorHTML, json: SamgitaWeb.ErrorJSON],
     layout: false
@@ -14,25 +19,31 @@ config :samgita_web, SamgitaWeb.Endpoint,
   pubsub_server: Samgita.PubSub,
   live_view: [signing_salt: "sVrxWKHP"]
 
-config :bun,
-  version: "1.3.13",
-  path: System.get_env("MIX_BUN_PATH"),
-  packages: [
-    args: ~w(install --frozen-lockfile),
-    cd: Path.expand("../apps/samgita_web", __DIR__)
+config :duskmoon_bundler, :samgita_web,
+  root: Path.expand("../apps/samgita_web/assets", __DIR__),
+  entry: Path.expand("../apps/samgita_web/assets/js/app.ts", __DIR__),
+  outdir: Path.expand("../apps/samgita_web/priv/static/assets", __DIR__),
+  resolve_dirs: [Path.expand("../deps", __DIR__)],
+  target: :es2020,
+  format: :esm,
+  sourcemap: :hidden,
+  tailwind: [
+    css: Path.expand("../apps/samgita_web/assets/css/app.css", __DIR__),
+    sources: [
+      %{base: Path.expand("../apps/samgita_web/lib", __DIR__), pattern: "**/*.{ex,heex}"},
+      %{base: Path.expand("../apps/samgita_web/assets", __DIR__), pattern: "**/*.{css,js,ts}"},
+      %{base: Path.expand("../deps/phoenix_duskmoon/lib", __DIR__), pattern: "**/*.{ex,heex}"}
+    ]
   ],
-  samgita_web: [
-    args: ~w(build assets/js/app.ts --outdir=priv/static/assets/js --target=browser),
-    cd: Path.expand("../apps/samgita_web", __DIR__)
+  server: [
+    prefix: "/assets",
+    watch_dirs: [
+      Path.expand("../apps/samgita_web/lib", __DIR__),
+      Path.expand("../apps/samgita_web/assets", __DIR__)
+    ]
   ]
 
-config :tailwind,
-  version: "4.3.1",
-  path: System.get_env("MIX_TAILWIND_PATH"),
-  samgita_web: [
-    args: ~w(--input=assets/css/app.css --output=priv/static/assets/css/app.css),
-    cd: Path.expand("../apps/samgita_web", __DIR__)
-  ]
+config :duskmoon_bundler_runtime, :samgita_web, outdir: "priv/static/assets"
 
 config :samgita, Styx,
   repo: Samgita.Repo,

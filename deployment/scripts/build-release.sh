@@ -33,7 +33,7 @@ mix compile
 
 echo ""
 echo "4. Building assets..."
-(cd apps/samgita_web && bun install --frozen-lockfile)
+mix npm.ci
 mix assets.deploy
 
 echo ""

@@ -21,7 +21,7 @@ defmodule SamgitaProtocolWebSocket.WireErrorTest do
          end}
       )
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_address, port}} = Server.listener_info(listener)
     %{url: "ws://127.0.0.1:#{port}/app-server"}
   end
 

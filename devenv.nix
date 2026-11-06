@@ -8,8 +8,6 @@
   pkgs-stable = import inputs.nixpkgs-stable {system = pkgs.stdenv.system;};
 in {
   env.GREET = "Samgita";
-  env.MIX_BUN_PATH = lib.getExe pkgs-stable.bun;
-  env.MIX_TAILWIND_PATH = lib.getExe pkgs-stable.tailwindcss_4;
   env.NODE_PATH = "${toString ./.}/deps";
   env.PGHOST = "${config.env.DEVENV_STATE}/postgres";
   env.POSTGRES_PORT = "5433";
@@ -27,10 +25,6 @@ in {
 
   languages.elixir.enable = true;
   languages.elixir.package = pkgs-stable.beam28Packages.elixir;
-
-  languages.javascript.enable = true;
-  languages.javascript.bun.enable = true;
-  languages.javascript.bun.package = pkgs-stable.bun;
 
   services.postgres = {
     enable = true;

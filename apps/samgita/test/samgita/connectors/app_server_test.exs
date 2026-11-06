@@ -28,7 +28,7 @@ defmodule Samgita.Connectors.AppServerTest do
          end}
       )
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_address, port}} = Server.listener_info(listener)
     agent_id = Ecto.UUID.generate()
     url = "ws://127.0.0.1:#{port}/app-server"
 
@@ -135,7 +135,7 @@ defmodule Samgita.Connectors.AppServerTest do
          handler: __MODULE__.NoEventsHandler}
       )
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_address, port}} = Server.listener_info(listener)
     url = "ws://127.0.0.1:#{port}/app-server"
     target = put_in(target.endpoint_metadata["url"], url)
 
@@ -154,11 +154,18 @@ defmodule Samgita.Connectors.AppServerTest do
       start_supervised!(%{
         id: :rate_limited_agent,
         start:
-          {Bandit, :start_link,
-           [[plug: __MODULE__.RateLimitedPlug, ip: {127, 0, 0, 1}, port: 0, startup_log: false]]}
+          {Gaoxy.HTTP, :start_link,
+           [
+             [
+               id: :rate_limited_agent,
+               plug: __MODULE__.RateLimitedPlug,
+               ip: {127, 0, 0, 1},
+               port: 0
+             ]
+           ]}
       })
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    %{local: {:ok, {_address, port}}} = Gaoxy.info(listener, :rate_limited_agent)
     url = "ws://127.0.0.1:#{port}/app-server"
     target = put_in(target.endpoint_metadata["url"], url)
 

@@ -4,17 +4,11 @@ defmodule SamgitaProtocolWebSocket.Server do
   def start_link(opts) do
     with {:ok, _} <- Keyword.fetch(opts, :authenticate),
          {:ok, _} <- Keyword.fetch(opts, :handler) do
-      Bandit.start_link(
+      Gaoxy.HTTP.start_link(
+        id: :app_server,
         plug: {SamgitaProtocolWebSocket.Plug, opts},
         ip: Keyword.get(opts, :ip, {127, 0, 0, 1}),
-        port: Keyword.fetch!(opts, :port),
-        startup_log: false,
-        http_options: [log_protocol_errors: false],
-        websocket_options: [
-          max_frame_size: Keyword.get(opts, :max_frame_bytes, 1_048_576),
-          max_fragmented_message_size: Keyword.get(opts, :max_frame_bytes, 1_048_576),
-          log_protocol_errors: false
-        ]
+        port: Keyword.fetch!(opts, :port)
       )
     else
       :error -> {:error, :missing_configuration}
@@ -23,6 +17,14 @@ defmodule SamgitaProtocolWebSocket.Server do
 
   def child_spec(opts) do
     %{id: {__MODULE__, make_ref()}, start: {__MODULE__, :start_link, [opts]}, type: :supervisor}
+  end
+
+  @doc "Returns the explicitly started listener's actual address and port."
+  def listener_info(listener) do
+    case Gaoxy.info(listener, :app_server) do
+      %{local: local} -> local
+      error -> error
+    end
   end
 
   @doc "Enqueues a host-originated request through the core correlation state."

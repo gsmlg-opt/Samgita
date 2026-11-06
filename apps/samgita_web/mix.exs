@@ -44,9 +44,10 @@ defmodule SamgitaWeb.MixProject do
       {:phoenix_live_reload, "~> 1.7", only: :dev},
       {:phoenix_live_view, "~> 1.2"},
       {:phoenix_ecto, "~> 4.5"},
-      {:lazy_html, ">= 0.1.13", only: :test},
-      {:bun, "~> 2.0", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
+      {:lazy_html, ">= 0.1.13"},
+      # TODO(upstream): duskmoon-dev/duskmoon-bundler#9 - qualify assets on a glibc 2.43+ builder.
+      {:duskmoon_bundler, "~> 10.0.9", runtime: Mix.env() in [:dev, :test]},
+      {:duskmoon_bundler_runtime, "~> 10.0.9"},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -55,7 +56,10 @@ defmodule SamgitaWeb.MixProject do
        compile: false,
        depth: 1},
       {:phoenix_duskmoon, "~> 9.12"},
-      {:bandit, "~> 1.13"},
+      {:gaoxy_http, "~> 0.14.1"},
+      {:websock_adapter, "~> 0.14.1", hex: :gaoxy_websock_adapter, override: true},
+      # Retained historical raw-HTTP telemetry evidence; never used by the Endpoint.
+      {:bandit, "~> 1.13", only: :test},
       {:telemetry_metrics, "~> 1.2"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 1.0"},
@@ -66,17 +70,12 @@ defmodule SamgitaWeb.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": [
-        "tailwind.install --if-missing",
-        "bun.install --if-missing",
-        "bun packages"
-      ],
+      "assets.setup": ["npm.ci"],
       "assets.copy": [&copy_static_assets/1],
-      "assets.build": ["assets.copy", "tailwind samgita_web", "bun samgita_web"],
+      "assets.build": ["assets.copy", "duskmoon_bundler.build samgita_web --tailwind"],
       "assets.deploy": [
         "assets.copy",
-        "tailwind samgita_web --minify",
-        "bun samgita_web --minify",
+        "duskmoon_bundler.build samgita_web --tailwind",
         "phx.digest"
       ]
     ]

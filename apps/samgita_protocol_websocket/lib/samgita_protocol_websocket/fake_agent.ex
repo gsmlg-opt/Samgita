@@ -58,7 +58,7 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
 
   @impl true
   def handle_call(:url, _from, state) do
-    {:ok, {_address, port}} = ThousandIsland.listener_info(state.listener)
+    {:ok, {_address, port}} = Server.listener_info(state.listener)
     {:reply, "ws://127.0.0.1:#{port}/app-server", state}
   end
 

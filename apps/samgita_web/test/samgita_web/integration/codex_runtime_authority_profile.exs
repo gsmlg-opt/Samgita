@@ -68,7 +68,7 @@ defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
     Samgita.Domain.NativeRuntimeLink,
     Samgita.Domain.DomainEvent,
     CommandReceipt,
-    Oban.Job
+    Styx.Job
   ]
 
   setup_all do

@@ -24,7 +24,8 @@ defmodule Samgita.Umbrella.MixProject do
     [
       # Dev/Test tools shared across all apps
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:websock_adapter, "~> 0.14.1", hex: :gaoxy_websock_adapter, override: true}
     ]
   end
 
@@ -38,17 +39,12 @@ defmodule Samgita.Umbrella.MixProject do
       ],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.setup": [
-        "tailwind.install --if-missing",
-        "bun.install --if-missing",
-        "bun packages"
-      ],
+      "assets.setup": ["npm.ci"],
       "assets.copy": [&copy_static_assets/1],
-      "assets.build": ["assets.copy", "tailwind samgita_web", "bun samgita_web"],
+      "assets.build": ["assets.copy", "duskmoon_bundler.build samgita_web --tailwind"],
       "assets.deploy": [
         "assets.copy",
-        "tailwind samgita_web --minify",
-        "bun samgita_web --minify",
+        "duskmoon_bundler.build samgita_web --tailwind",
         "phx.digest"
       ],
       precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]

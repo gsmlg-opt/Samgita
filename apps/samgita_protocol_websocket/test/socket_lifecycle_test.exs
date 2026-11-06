@@ -2,7 +2,7 @@ defmodule SamgitaProtocolWebSocket.SocketLifecycleTest do
   use ExUnit.Case, async: true
   alias __MODULE__.Handler
   alias SamgitaProtocol.{Client, Codec}
-  alias SamgitaProtocolWebSocket.Socket
+  alias SamgitaProtocolWebSocket.{Server, Socket}
 
   test "real WebSocket deadlines release read capacity and disconnect reports mutations" do
     owner = self()
@@ -21,7 +21,7 @@ defmodule SamgitaProtocolWebSocket.SocketLifecycleTest do
          end}
       )
 
-    {:ok, {_, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_, port}} = Server.listener_info(listener)
 
     {:ok, client} =
       SamgitaProtocolWebSocket.Client.connect("ws://127.0.0.1:#{port}/app-server",

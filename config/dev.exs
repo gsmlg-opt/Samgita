@@ -36,8 +36,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "Pj01A5h21DzggjKpnl3ezzFuxstdmjeKAAuyYMAM1nkKDzo5UF/oCYZnvE6i7nTk",
   watchers: [
-    bun: {Bun, :install_and_run, [:samgita_web, ~w(--watch)]},
-    tailwind: {Tailwind, :install_and_run, [:samgita_web, ~w(--watch)]}
+    duskmoon_bundler: {Mix.Tasks.DuskmoonBundler.Dev, :run, [["samgita_web", "--tailwind"]]}
   ]
 
 # Reload browser tabs when matching files change.

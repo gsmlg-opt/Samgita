@@ -1,0 +1,5 @@
+{
+  "name": "samgita-assets",
+  "private": true,
+  "workspaces": ["apps/samgita_web"]
+}

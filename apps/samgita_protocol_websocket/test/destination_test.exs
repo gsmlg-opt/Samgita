@@ -7,18 +7,18 @@ defmodule SamgitaProtocolWebSocket.DestinationTest do
       start_supervised!(%{
         id: :pinned_listener,
         start:
-          {Bandit, :start_link,
+          {Gaoxy.HTTP, :start_link,
            [
              [
+               id: :app_server,
                plug: {__MODULE__.HostPlug, self()},
                ip: {127, 0, 0, 1},
-               port: 0,
-               startup_log: false
+               port: 0
              ]
            ]}
       })
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_address, port}} = SamgitaProtocolWebSocket.Server.listener_info(listener)
 
     assert {:ok, client} =
              Client.connect("ws://pinned.invalid:#{port}/app-server",
@@ -36,11 +36,11 @@ defmodule SamgitaProtocolWebSocket.DestinationTest do
       start_supervised!(%{
         id: :limited_listener,
         start:
-          {Bandit, :start_link,
-           [[plug: __MODULE__.LimitedPlug, ip: {127, 0, 0, 1}, port: 0, startup_log: false]]}
+          {Gaoxy.HTTP, :start_link,
+           [[id: :app_server, plug: __MODULE__.LimitedPlug, ip: {127, 0, 0, 1}, port: 0]]}
       })
 
-    {:ok, {_address, port}} = ThousandIsland.listener_info(listener)
+    {:ok, {_address, port}} = SamgitaProtocolWebSocket.Server.listener_info(listener)
 
     assert {:error,
             %{

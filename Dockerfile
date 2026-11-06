@@ -3,17 +3,16 @@
 
 ARG ELIXIR_VERSION=1.19.7
 ARG OTP_VERSION=28.5.0.8
-ARG DEBIAN_VERSION=bookworm-20261027-slim
+ARG UBUNTU_VERSION=resolute-20261024.1
 
-ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
+# DuskmoonBundler GNU native artifacts require the Ubuntu 26.04 / glibc 2.43 baseline.
+ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-ubuntu-${UBUNTU_VERSION}"
+ARG RUNNER_IMAGE="ubuntu:${UBUNTU_VERSION}"
 
 ################################################################################
 # Stage 1: Build Environment
 ################################################################################
 FROM ${BUILDER_IMAGE} AS builder
-
-ARG BUN_VERSION=1.3.13
 
 # Install build dependencies
 RUN apt-get update -y && apt-get install -y \
@@ -24,10 +23,6 @@ RUN apt-get update -y && apt-get install -y \
     postgresql-client \
     unzip \
     && rm -rf /var/lib/apt/lists/*
-
-# Match the verified frozen asset toolchain used in CI.
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
-ENV PATH="/root/.bun/bin:${PATH}"
 
 # Prepare build directory
 WORKDIR /app
@@ -41,6 +36,7 @@ ENV MIX_ENV="prod"
 
 # Install mix dependencies
 COPY mix.exs mix.lock ./
+COPY package.json package-lock.json ./
 COPY config config
 COPY apps/samgita/mix.exs apps/samgita/mix.exs
 COPY apps/samgita_web/mix.exs apps/samgita_web/mix.exs
@@ -63,13 +59,10 @@ COPY apps/samgita_web apps/samgita_web
 
 RUN mix deps.compile
 
-# Install JavaScript dependencies
-WORKDIR /app/apps/samgita_web
-RUN bun install --frozen-lockfile
+# Install JavaScript dependencies through DuskmoonBundler's native package manager.
+RUN mix npm.ci
 
 # Build assets
-WORKDIR /app
-ENV MIX_BUN_PATH="/root/.bun/bin/bun"
 RUN mix assets.deploy
 
 # Compile the release
@@ -91,7 +84,7 @@ RUN apt-get update -y && \
     apt-get install -y \
     libstdc++6 \
     openssl \
-    libncurses5 \
+    libncurses6 \
     locales \
     ca-certificates \
     postgresql-client \
