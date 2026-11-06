@@ -8,7 +8,13 @@ The subsequent [reliability repair](qualification.md#reliability-repair-qualific
 
 **Architecture:** keep the existing Ecto/Phoenix umbrella, independently consumable `samgita_protocol` packages and neutral platform contexts. P3 adds durable execution authority starting closed; a deployed legacy system still needs a guarded drain before cutover. Adopt legacy work explicitly; do not implement a second Sigma server or a Backplane protocol dependency.
 
-**Stack:** Elixir/OTP, Ecto/PostgreSQL, Oban, Phoenix LiveView, Tailwind 4, Bun/TypeScript and existing DuskMoon assets. No new account framework, embedded LLM runtime or component library.
+**Stack:** Elixir/OTP, Ecto/PostgreSQL, Styx, Phoenix LiveView, Gaoxy,
+DuskmoonBundler/TypeScript and existing DuskMoon assets. The approved
+[dependency modernization](dependency-modernization.md) owns this amendment,
+including integrated Tailwind compilation, http_fetch, retained historical
+Oban migrations and the upstream-blocked Mint WebSocket slice. Historical phase
+records below retain their original stack and qualification evidence. No new
+account framework, embedded LLM runtime or component library.
 
 Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. P2/P3 paths exist; proposed later files/tests become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
 

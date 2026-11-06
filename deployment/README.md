@@ -31,8 +31,10 @@ deployment/scripts/health-check.sh localhost 3110
 deployment/scripts/smoke-test.sh http://localhost:3110
 ```
 
-Release and Docker installers run `bun install --frozen-lockfile` in
-`apps/samgita_web`. The Docker entrypoint migrates the configured database
+Release and Docker installers run `mix npm.ci` against the root workspace
+`package-lock.json`. The builder must meet DuskmoonBundler's native-library
+platform baseline; see the [migration qualification](../docs/redesign/dependency-modernization.md).
+The Docker entrypoint migrates the configured database
 before startup. HTTP smoke checks prove foundation behavior only, not an Agent
 WebSocket handshake or protocol exchange.
 

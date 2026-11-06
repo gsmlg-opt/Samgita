@@ -2,6 +2,14 @@
 
 Date: 2026-10-23. Status: P0 accepted; P2–P4 implemented; persisted management UI and local qualification are recorded in [qualification](qualification.md). Release and live cutover remain gated.
 
+Infrastructure amendment, 2026-11-05: the user approved
+[dependency modernization](dependency-modernization.md): DuskmoonBundler,
+Gaoxy, Styx and http_fetch replace the current asset/server/job/HTTP libraries.
+That amendment owns migration and verification limits; historical inventories
+and phase evidence below retain their original library names. Mint WebSocket
+replacement remains blocked by upstream http_fetch#152. Domain, preservation
+and security contracts remain authoritative.
+
 ## 1. Authority and phase boundary
 
 Samgita registers Projects and Agents, connects repositories/GitHub, owns validated project/task management state, and emits durable scheduled and external events. Agents decide how to reason, plan, delegate, and execute. No Samgita RARV loop, mandatory PRD, swarm taxonomy, development phase pipeline, or preferred Agent implementation remains in the target.
@@ -58,7 +66,7 @@ flowchart LR
   UI[Operator browser] --> Web[samgita_web: existing Phoenix endpoint]
   Agent[Registered Agent] --> Web
   GH[GitHub signed webhook] --> Web
-  Web --> Core[samgita: contexts, Repo, Oban]
+  Web --> Core[samgita: contexts, Repo, Styx]
   Web --> Protocol[samgita_protocol: reusable protocol]
   Client[Independent client] --> Service[Existing Sigma / Synapsis / Codex endpoint]
   Client -. reusable library .-> Protocol
@@ -66,7 +74,7 @@ flowchart LR
   Service -->|authenticated task commands when needed| Web
 ```
 
-- `apps/samgita`: Projects, repository associations/GitHub connection metadata, Agents and project bindings, Tasks/Attempts, schedules, event inbox/outbox, receipts, and migration authority. Uses Ecto/PostgreSQL and Oban. It does not depend on web or a provider runtime.
+- `apps/samgita`: Projects, repository associations/GitHub connection metadata, Agents and project bindings, Tasks/Attempts, schedules, event inbox/outbox, receipts, and migration authority. Uses Ecto/PostgreSQL and Styx; Oban is retained only for historical migrations. It does not depend on web or a provider runtime.
 - `apps/samgita_web`: existing Phoenix Endpoint, operator REST/LiveView, machine protocol host adapter, and GitHub ingress. It validates transport inputs and delegates to core contexts. It may mount an app-server WebSocket route on its existing endpoint; no separate Sigma server/listener is introduced.
 - `apps/samgita_protocol`: independent Mix library with codecs, versioned schemas, capabilities, correlation/errors, pure connection state, host callbacks, bounded replay and conformance fixtures. It depends on neither core, Repo, Phoenix, providers nor Backplane. `samgita_protocol_websocket` holds the optional transport/fake Agent; `samgita_protocol_codex` holds the provider-specific scoped adapter. All three live under `apps/` but omit umbrella configuration/build inheritance and remain outside the platform's explicit app list. Loading core opens no socket or Agent; transport starts only on an explicit consumer call.
 
@@ -201,7 +209,7 @@ Return success only after durable inbox/event/job insertion. Retryable persisten
 
 ### Scheduled events
 
-A Schedule has an explicit Project, event type/payload template, timezone (UTC by default), expression, revision and operator-enabled state. A durable Oban scanner computes due occurrences in bounded batches and transactionally advances the cursor with each event. Uniqueness on schedule+revision+absolute due time prevents duplicate occurrences across nodes/restarts. DST repeats are distinct UTC instants; a nonexistent local time has no occurrence. Catch-up emits missed real occurrences in bounded batches, with backlog visible; never silently replays legacy jobs as schedule occurrences. Disabling a schedule stops future creation, without erasing already emitted events.
+A Schedule has an explicit Project, event type/payload template, timezone (UTC by default), expression, revision and operator-enabled state. A durable Styx scanner computes due occurrences in bounded batches and transactionally advances the cursor with each event. Uniqueness on schedule+revision+absolute due time prevents duplicate occurrences across nodes/restarts. DST repeats are distinct UTC instants; a nonexistent local time has no occurrence. Catch-up emits missed real occurrences in bounded batches, with backlog visible; never silently replays legacy jobs as schedule occurrences. Disabling a schedule stops future creation, without erasing already emitted events.
 
 ### Events and delivery
 
@@ -211,7 +219,7 @@ P3 freezes the local audit catalog at `schema_version="1.0"`: `agent.registered/
 
 Events have stable IDs, resource/actor/command IDs, UTC creation time and Project sequence where scoped. State mutations include allowlisted before/after snapshots with version/state; an Attempt event also records its Task's before/after snapshot, and membership/repository mutations record the Project version change. Receipts store emitted event IDs atomically. No prompt, credential, lease proof or arbitrary tool result enters this audit envelope. Agent/credential/platform audit has no Project sequence. Mapping previews use their durable source-digest ledger and command receipt; they do not fabricate execution history. Replay of a receipt or a future delivery does not create new management events.
 
-Oban delivery is at least once with stable IDs. Receivers deduplicate IDs and acknowledge durable processing; socket PubSub is only a wake-up. Per-Project cursors detect gaps, and authenticated paginated reads recover history. Delivery retry does not change Task state. Recheck revocation, subscription and destination on each attempt. Moving targets or changing secrets does not redirect already accepted work silently; record subscription revision and require explicit redelivery choice.
+Styx delivery is at least once with stable IDs. Receivers deduplicate IDs and acknowledge durable processing; socket PubSub is only a wake-up. Per-Project cursors detect gaps, and authenticated paginated reads recover history. Delivery retry does not change Task state. Recheck revocation, subscription and destination on each attempt. Moving targets or changing secrets does not redirect already accepted work silently; record subscription revision and require explicit redelivery choice.
 
 Adapt existing generic outbound hooks into this contract. Preserve old subscription/job IDs and their legacy HMAC convention until the versioned replacement is accepted. Do not silently resend old deliveries under a new event ID/body/signature. Record delivered/permanent-failure/retryable/unknown outcomes, honor bounded timeout/backoff and `Retry-After`, and separate delivery queues from task-ownership maintenance. Existing notification delivery is simulated; do not claim production email delivery from its `sent` state.
 
@@ -226,7 +234,7 @@ Adapt existing generic outbound hooks into this contract. Preserve old subscript
 - Execution permission requests and user approvals remain bound to the originating runtime/request/connection. An approval cannot be replayed into another host or interpreted as a Task grant. Protocol codecs must never auto-approve.
 - Bound messages (initial profile 256 KiB), event batches (100), connection buffers, outstanding requests, timeouts and retry counts. Apply machine-identity and source-specific limits in addition to retained operator IP limits. Unknown fields/methods get typed errors; logs/telemetry use allowlisted metadata, not prompts, raw tool output or secrets.
 
-Target active supervision: main Repo, PubSub, Finch and Oban in core; telemetry and the existing Endpoint in web; explicitly started transport connections only. Caches are rebuildable projections. No GenServer per Project/Task, Horde ownership, automatic provider health/startup recovery, Codex/SSH launcher, or second Sigma process. Keep storage/readers needed for quarantined history until a later approved extraction/retirement gate.
+Target active supervision: main Repo, PubSub and Styx in core; telemetry and the existing Gaoxy-backed Endpoint in web; explicitly started transport connections only. http_fetch owns outbound HTTP resources. Caches are rebuildable projections. No GenServer per Project/Task, Horde ownership, automatic provider health/startup recovery, Codex/SSH launcher, or second Sigma process. Keep storage/readers needed for quarantined history until a later approved extraction/retirement gate.
 
 ## 7. Legacy subsystem inventory
 

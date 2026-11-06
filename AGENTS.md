@@ -10,6 +10,14 @@ The authoritative requirements are:
 - `docs/redesign/implementation-plan.md`: bounded stages, file ownership, rollback, blockers, and verification gates.
 - `docs/redesign/acceptance.md`: review checklist and executable acceptance scenarios.
 
+The approved infrastructure amendment is `docs/redesign/dependency-modernization.md`:
+DuskmoonBundler replaces Bun/Tailwind CLI, Gaoxy replaces runtime Bandit,
+Styx replaces runtime Oban and http_fetch replaces ordinary Mint HTTP.
+Mint WebSocket removal remains blocked by http_fetch#152; keep its existing
+transport contracts until the published upstream capability is available.
+Historical phase records and the retained test-only Bandit telemetry evidence
+do not establish qualification of the replacement libraries.
+
 These documents supersede conflicting clean-start, deletion, unique-`git_url`, fixed-lifecycle, and centralized-transport requirements in `docs/prd.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those files remain historical proposals; do not execute their removal checklists. `docs/architecture.md` describes the current implementation and links to its historical version.
 
 P5 management UI, local redesign qualification and the subsequent scoped reliability repair are recorded in `docs/redesign/qualification.md`. This repair includes fake-Agent journeys, isolated consumers, restart/rollback, populated-database repeats and required aggregate release checks. Commit and push the scoped result. Raw LiveView telemetry exposes secret parameters; real HTTP evidence also shows credential-bearing Bandit metadata before application Plugs. A11 remains blocked even when build checks pass; see `docs/codex-app-server/repair-qualification.md`. Moving a form into a controller or early Plug cannot close that boundary. Release only if applicable gates pass and an existing normal publication workflow succeeds; do not tag a failing build. See the phase records for the existing domain, coordination and read/event-only GitHub contracts. Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services, migrate production, delete historical data or deploy. Existing records and references must be preserved. Retiring legacy execution behavior does not authorize deleting its data or migration history.
@@ -32,7 +40,7 @@ Ordinary owned Codex functional qualification launches default to fixed yolo con
 - `apps/samgita_protocol_websocket`: optional standalone authenticated WebSocket transport and explicitly started in-memory fake Agent at `/app-server`.
 - `apps/samgita_protocol_codex`: independently reusable pinned Codex native wire/schema layer plus the existing neutral convenience adapter. Full behavior qualification is tracked separately; source/schema conformance does not establish full compatibility.
 - `apps/samgita_codex_driver`: independently reusable, explicitly started Codex sessions and transports under implementation. No Repo, Phoenix, platform configuration, automatic execution or listener dependency. Borrowed service resources remain owned by their service.
-- `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Oban.
+- `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Styx. Oban remains a non-runtime dependency only for preserved historical migrations.
 - `apps/samgita_web`: existing Phoenix endpoint, REST API, protocol host adapter, GitHub ingress, and DuskMoon LiveView operator UI.
 
 Dependency direction is web -> core -> protocol, with optional web -> transport integration. Core must never depend on web. The protocol and driver projects intentionally omit umbrella build/dependency/config inheritance; run their commands from their own directories. The root's explicit two-app list remains unchanged; core consumes the protocol as a path dependency. Protocol consumers can build outside this repository without starting Samgita. Actual Sigma/Synapsis endpoints remain in their existing services; do not create another Sigma server process or require all traffic to pass through Samgita.
@@ -51,7 +59,7 @@ The redesign inventory describes the historical baseline. Its runtime stays abse
 - Follow the authority fence and global lock order in `docs/redesign/design.md` for all competing commands. Legacy and new execution must never be active simultaneously.
 - Commit aggregate changes, audit events, and protocol receipts atomically. Broadcast only after commit.
 - Delivery is at least once. Lost ACKs/handler leases require stable-operation status reconciliation; no reconnect/timeout may launch execution. Explicit recovery keeps event identity/time and records duplicate-effect risk. Transport receipt, durable notification acceptance, processing completion and Task acceptance are separate.
-- Use Oban for durable scheduling, delivery, and expiry maintenance; PubSub is best-effort notification. A scheduled or external event does not itself authorize execution or a Task transition.
+- Use Styx for durable scheduling, delivery, and expiry maintenance; PubSub is best-effort notification. Preserve historical Oban tables and migration sources without starting its runtime or replaying jobs. A scheduled or external event does not itself authorize execution or a Task transition.
 - Keep core commands out of Channel/controller callbacks. Transport delegates to contexts.
 - Keep existing Project UUIDs canonical and unchanged. Repository identity and URL aliases belong to separate repository associations; `git_url` is preserved legacy provenance, not the new Project identity.
 - Use additive migrations and resumable, audited mappings. Do not replace initial migrations, rekey Projects, merge Projects by URL, or silently replay legacy work.
@@ -67,7 +75,7 @@ GitHub integration verifies raw-body signatures and approved installation/reposi
 
 ## Frontend
 
-Use Phoenix LiveView, Tailwind CSS 4, Bun, TypeScript, and the existing DuskMoon family.
+Use Phoenix LiveView, DuskmoonBundler (including its integrated Tailwind CSS pipeline), TypeScript, and the existing DuskMoon family. Use Mix npm tasks and the root workspace lockfile instead of Bun or standalone Tailwind executables.
 
 - Prefer `phoenix_duskmoon` components and existing `@duskmoon-dev/*` assets.
 - Do not introduce DaisyUI or another component library.

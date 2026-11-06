@@ -4,6 +4,13 @@ Date: 2026-10-23. This separates P0/P2/P3 evidence, bounded P4 coordination/GitH
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
+The 2026-11-05 [dependency modernization](dependency-modernization.md) adds
+separate asset, Gaoxy, Styx and HTTP functional qualification. Earlier Oban,
+Bandit and Bun evidence below describes its original revision. Replacing a
+dependency does not carry that evidence forward automatically, close A11, or
+establish production cutover. The Mint WebSocket replacement is blocked by
+[http_fetch#152](https://github.com/gsmlg-dev/http_fetch/issues/152).
+
 Merged-baseline note: `d6e9eca` combines documentation `3a344f5` and the separately authorized source refactor `811eeb9`. P2 then added independent protocol packages. P3 restores 17 main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, retains the September Oban upgrade, pins main/memory migration hashes and adds neutral tables/columns. This reconciles B0 only for the local P3 fixture scope; it does not prove a production migration, full historical reader, backup restore or dual-Repo/pgvector preservation. Legacy runtime stays absent. P0 checks describe the original four-file documentation commit; historical P1 callsites remain a target-dependent recipe, not current source assignments. See [P3's contract/evidence](domain-phase-3.md).
 
 ## 1. Completed P0: document acceptance

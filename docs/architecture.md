@@ -8,6 +8,13 @@ architecture is preserved in
 [Git history at deff380](https://github.com/gsmlg-opt/Samgita/blob/deff380/docs/architecture.md);
 its data-deletion and fixed-lifecycle proposals are superseded.
 
+The approved [dependency modernization](redesign/dependency-modernization.md)
+replaces the asset build pipeline with DuskmoonBundler, inbound servers with
+Gaoxy, durable runtime jobs with Styx and GitHub HTTP with http_fetch. Mint
+WebSocket replacement is separately blocked by upstream
+[http_fetch#152](https://github.com/gsmlg-dev/http_fetch/issues/152); the existing
+WebSocket clients remain until their transport contracts can be preserved.
+
 ## Ownership and dependencies
 
 ```text
@@ -15,7 +22,7 @@ Browser -> samgita_web LiveViews -> Samgita.Management reads / domain commands
 REST    -> samgita_web controllers -> authenticated domain commands
                                       |
                                       v
-                           samgita -> PostgreSQL + Oban
+                           samgita -> PostgreSQL + Styx
                                       |
                                       v
                               samgita_protocol
@@ -82,9 +89,22 @@ automatically submitting the Task for review or accepting it.
 
 `Events`, `EventDelivery` and `Schedules` persist event identity/time, explicit
 responsible-Agent routing, delivery attempts, acknowledgements, recovery and
-schedule revisions. Enabled Oban queues are `hub_events`, `hub_schedules`,
+schedule revisions. Enabled Styx queues are `hub_events`, `hub_schedules`,
 `hub_maintenance` and `hub_github`. Legacy execution queues remain excluded and
 old hooks enter a disabled quarantine queue.
+
+Styx stores new jobs in additive `styx_jobs` tables. Historical `oban_jobs` and
+migration sources remain intact; Oban is retained only for those migrations and
+has no running supervisor. Cron remains a wakeup for durable domain scanners;
+queue completion cannot confer Task acceptance. No historical job is converted
+or automatically replayed. Pruning and orphan-job rescue are explicitly disabled.
+
+The web app uses `Gaoxy.PhoenixAdapter` and the optional protocol server uses
+`Gaoxy.HTTP`, with the Gaoxy-compatible WebSock adapter. DuskmoonBundler owns
+TypeScript, CSS, the integrated Tailwind pipeline, package installation and
+asset manifests. The existing DuskMoon components and CSS utility semantics
+remain. Production reads manifests through the runtime package without starting
+the development build toolchain.
 
 Delivery is at least once. The outbound native `project_events.v1` connector
 authenticates, initializes, sends one receive/status operation and closes. It

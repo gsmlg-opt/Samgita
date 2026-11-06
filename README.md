@@ -16,7 +16,7 @@ authorize deleting data or migrations.
 ## Current implementation
 
 The two platform applications are `apps/samgita` (Ecto/domain commands, events,
-schedules and Oban) and `apps/samgita_web` (Phoenix REST and DuskMoon LiveViews).
+schedules and Styx) and `apps/samgita_web` (Phoenix REST and DuskMoon LiveViews).
 Four independently built packages provide a reusable protocol core, optional
 WebSocket transport, a pinned Codex wire adapter and an ordinary Codex driver.
 Loading the packages starts no Agent or listener. Ordinary functional delivery
@@ -53,8 +53,11 @@ ledger for actual evidence and remaining gates.
 ## Development
 
 Use Elixir >= 1.18 and Erlang/OTP >= 28. The pinned devenv environment includes
-PostgreSQL 16, Bun and Tailwind 4; CI and Docker pin Elixir 1.19.7 / OTP 28.5.0.8
-and Bun 1.3.13. Start PostgreSQL with `devenv up postgres` in a separate terminal.
+PostgreSQL 16. CI and Docker pin Elixir 1.19.7 / OTP 28.5.0.8 and use Ubuntu
+26.04 for DuskmoonBundler's glibc 2.43 native baseline. The current Nix host's
+glibc 2.42 cannot run that asset compiler; use the supported Docker builder for
+asset builds until the development environment meets the upstream baseline.
+Start PostgreSQL with `devenv up postgres` in a separate terminal.
 For a deliberately selected local development database:
 
 ```sh
@@ -71,8 +74,12 @@ The default development database is `samgita_hub_dev`; HTTP listens on port
 Existing/shared databases require the separate preservation and cutover gates.
 Never use `mix ecto.reset` against an unresolved database target.
 
-Install the web manifest from `apps/samgita_web` using
-`bun install --frozen-lockfile`. Serialize Mix/devenv commands. Use an explicitly
+Install the web workspace from the repository root using `mix npm.ci` (or
+`mix npm.install` when intentionally updating `package-lock.json`). DuskmoonBundler
+owns JS/TS and the integrated Tailwind CSS build. Its published GNU native
+artifacts require the upstream-supported builder baseline; see
+[dependency modernization](docs/redesign/dependency-modernization.md) for
+qualification and known blockers. Serialize Mix/devenv commands. Use an explicitly
 named scratch database matching `samgita_redesign_*_test` for redesign checks:
 
 ```sh
