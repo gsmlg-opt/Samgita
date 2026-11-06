@@ -36,7 +36,7 @@ defmodule Samgita.MixProject do
       {:styx, "~> 0.1.1"},
       {:jason, "~> 1.4"},
       {:tzdata, "~> 1.1"},
-      {:mint, "~> 1.10"}
+      {:http_fetch, "~> 0.21.19"}
     ]
   end
 end

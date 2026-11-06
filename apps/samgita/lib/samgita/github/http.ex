@@ -1,6 +1,6 @@
 defmodule Samgita.GitHub.HTTP do
   @moduledoc """
-  Bounded, nonredirecting HTTP with approved DNS answers and a pinned Mint socket.
+  Bounded, nonredirecting HTTP with approved DNS answers and a pinned Fetch socket.
 
   `:github_hosts` maps registered host names to `%{api_url: base, addresses: [ip]}`.
   GitHub.com always uses `https://api.github.com`; even that default needs operator
@@ -11,6 +11,7 @@ defmodule Samgita.GitHub.HTTP do
   alias Samgita.GitHub.Failure
   @max_bytes 2_097_152
   @timeout 10_000
+  @cleanup_timeout 1_000
 
   def resolve(host) when is_binary(host) do
     with %{api_url: base, addresses: approved} = approval <-
@@ -36,13 +37,7 @@ defmodule Samgita.GitHub.HTTP do
 
   @doc "The injectable transport contract; opts contain an already resolved :destination."
   def request(method, url, headers, body, opts) do
-    # The task owns its socket, so timeout shutdown also closes outstanding I/O.
-    task = Task.async(fn -> safe_request(method, url, headers, body, opts) end)
-
-    case Task.yield(task, @timeout) || Task.shutdown(task, :brutal_kill) do
-      {:ok, result} -> result
-      _ -> {:error, :timeout}
-    end
+    safe_request(method, url, headers, body, opts)
   end
 
   defp safe_request(method, url, headers, body, opts) do
@@ -50,28 +45,8 @@ defmodule Samgita.GitHub.HTTP do
     uri = URI.parse(url)
 
     with true <- read_only_method?(method, uri, destination),
-         true <- approved_url?(uri, destination),
-         {:ok, conn} <- connect(destination) do
-      try do
-        path = (uri.path || "/") <> if(uri.query, do: "?" <> uri.query, else: "")
-
-        case Mint.HTTP1.request(
-               conn,
-               method |> Atom.to_string() |> String.upcase(),
-               path,
-               headers,
-               body
-             ) do
-          {:ok, conn, ref} ->
-            receive_response(conn, ref, %{status: nil, headers: [], body: []}, 0)
-
-          {:error, conn, _reason} ->
-            Mint.HTTP1.close(conn)
-            {:error, :transport_unavailable}
-        end
-      after
-        Mint.HTTP1.close(conn)
-      end
+         true <- approved_url?(uri, destination) do
+      fetch(method, url, headers, body, destination)
     else
       _ -> {:error, :transport_unavailable}
     end
@@ -81,59 +56,100 @@ defmodule Samgita.GitHub.HTTP do
     _, _ -> {:error, :transport_unavailable}
   end
 
-  defp connect(%{uri: uri, address: address}) do
-    scheme = if uri.scheme == "https", do: :https, else: :http
-    transport = [timeout: 3_000]
+  defp fetch(method, url, headers, body, destination) do
+    # Reserve the final second for the request's explicit cleanup barrier. Killing
+    # a caller task alone does not establish that Fetch's socket owner has stopped.
+    deadline = System.monotonic_time(:millisecond) + @timeout - @cleanup_timeout
 
-    transport =
-      if scheme == :https,
-        do: Keyword.put(transport, :cacerts, :public_key.cacerts_get()),
-        else: transport
+    promise =
+      HTTP.fetch(url,
+        method: method,
+        headers: headers,
+        body: body,
+        connect_address: destination.address,
+        connect_timeout: 3_000,
+        timeout: remaining(deadline),
+        http_version: :http1,
+        tls_backend: :ssl,
+        http1_reuse: false,
+        redirect: :manual,
+        decode_body: false,
+        stream_response: true,
+        response_header_limits: [max_head_bytes: 32_768],
+        telemetry: false
+      )
 
-    Mint.HTTP1.connect(scheme, address, uri.port,
-      hostname: uri.host,
-      mode: :passive,
-      log: false,
-      max_header_list_size: 32_768,
-      transport_opts: transport
-    )
-  end
+    completion = HTTP.Promise.completion(promise)
 
-  defp receive_response(conn, ref, result, size) do
-    case Mint.HTTP1.recv(conn, 0, @timeout) do
-      {:ok, conn, responses} ->
-        case consume(responses, ref, result, size) do
-          {:more, result, size} ->
-            receive_response(conn, ref, result, size)
-
-          {:done, result} ->
-            {:ok, %{result | body: result.body |> Enum.reverse() |> IO.iodata_to_binary()}}
-
-          {:error, _} = error ->
-            error
+    result =
+      try do
+        case HTTP.Promise.await(promise, remaining(deadline)) do
+          %HTTP.Response{} = response -> receive_response(response, deadline)
+          {:error, _} -> {:error, :transport_unavailable}
         end
+      rescue
+        _ -> {:error, :transport_unavailable}
+      catch
+        :exit, _ -> {:error, :timeout}
+      end
 
-      {:error, _conn, _reason, _responses} ->
-        {:error, :transport_unavailable}
+    case HTTP.RequestCompletion.abort_and_await(completion, @cleanup_timeout) do
+      :ok -> result
+      {:error, _} -> {:error, :transport_cleanup_unconfirmed}
     end
   end
 
-  defp consume([], _ref, result, size), do: {:more, result, size}
-
-  defp consume([{:status, ref, status} | rest], ref, result, size),
-    do: consume(rest, ref, %{result | status: status}, size)
-
-  defp consume([{:headers, ref, headers} | rest], ref, result, size),
-    do: consume(rest, ref, %{result | headers: result.headers ++ headers}, size)
-
-  defp consume([{:data, ref, data} | rest], ref, result, size) do
-    if size + byte_size(data) <= @max_bytes,
-      do: consume(rest, ref, %{result | body: [data | result.body]}, size + byte_size(data)),
-      else: {:error, :response_too_large}
+  defp receive_response(response, deadline) do
+    with {:ok, body} <- receive_body(response, deadline) do
+      {:ok, %{status: response.status, headers: response.headers.headers, body: body}}
+    end
   end
 
-  defp consume([{:done, ref} | _], ref, result, _size), do: {:done, result}
-  defp consume(_, _, _, _), do: {:error, :invalid_response}
+  defp receive_body(response, deadline) do
+    case HTTP.Response.stream_pid(response) do
+      stream when is_pid(stream) ->
+        monitor = Process.monitor(stream)
+
+        try do
+          send(stream, {:read_chunk, self(), :ack})
+          collect_body(stream, monitor, deadline, [], 0)
+        after
+          Process.demonitor(monitor, [:flush])
+        end
+
+      nil ->
+        body = response.body || ""
+        if byte_size(body) <= @max_bytes, do: {:ok, body}, else: {:error, :response_too_large}
+    end
+  end
+
+  defp collect_body(stream, monitor, deadline, chunks, size) do
+    receive do
+      {:stream_chunk, ^stream, chunk, ack} ->
+        if size + byte_size(chunk) <= @max_bytes do
+          send(stream, {:stream_chunk_ack, ack})
+          collect_body(stream, monitor, deadline, [chunk | chunks], size + byte_size(chunk))
+        else
+          {:error, :response_too_large}
+        end
+
+      {:stream_end, ^stream} ->
+        {:ok, chunks |> Enum.reverse() |> IO.iodata_to_binary()}
+
+      {:stream_trailers, ^stream, _headers} ->
+        collect_body(stream, monitor, deadline, chunks, size)
+
+      {:stream_error, ^stream, _reason} ->
+        {:error, :transport_unavailable}
+
+      {:DOWN, ^monitor, :process, ^stream, _reason} ->
+        {:error, :transport_unavailable}
+    after
+      remaining(deadline) -> {:error, :timeout}
+    end
+  end
+
+  defp remaining(deadline), do: max(deadline - System.monotonic_time(:millisecond), 0)
 
   defp approved_url?(uri, %{uri: base}) do
     uri.scheme == base.scheme && uri.host == base.host && uri.port == base.port &&

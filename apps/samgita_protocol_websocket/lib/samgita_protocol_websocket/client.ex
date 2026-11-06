@@ -10,6 +10,9 @@ defmodule SamgitaProtocolWebSocket.Client do
   use GenServer
   alias SamgitaProtocol.{Client, Codec, Error}
 
+  # TODO(upstream): gsmlg-dev/http_fetch#152 — retain Mint until HTTP.WebSocket
+  # supports pinned dials, bounded upgrade metadata and independent frame/read limits.
+
   def connect(url, opts \\ []) do
     with {:ok, uri} <- validate_url(url, opts),
          {:ok, core} <- Client.new(opts) do

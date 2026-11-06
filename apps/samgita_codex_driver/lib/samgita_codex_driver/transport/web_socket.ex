@@ -12,6 +12,8 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
   """
   @behaviour SamgitaCodexDriver.Transport
   alias SamgitaProtocolCodex.Error
+  # TODO(upstream): gsmlg-dev/http_fetch#152 — preserve Mint's pinned dials,
+  # upgrade metadata/peer cap and separate frame/message/read limits until upstream supports them.
   @limit 8_388_608
   @tls_keys ~w(cacertfile cacerts certfile keyfile password versions depth)a
 
