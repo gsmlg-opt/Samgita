@@ -34,17 +34,19 @@ config :tailwind,
     cd: Path.expand("../apps/samgita_web", __DIR__)
   ]
 
-config :samgita, Oban,
+config :samgita, Styx,
   repo: Samgita.Repo,
   queues: [hub_events: 10, hub_schedules: 1, hub_maintenance: 1, hub_github: 2],
-  plugins: [
-    {Oban.Plugins.Cron,
-     crontab: [
-       {"* * * * *", Samgita.Workers.ScheduleTickWorker},
-       {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker},
-       {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker}
-     ]}
-  ]
+  cron: [
+    crontab: [
+      {"* * * * *", Samgita.Workers.ScheduleTickWorker},
+      {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker},
+      {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker}
+    ]
+  ],
+  pruner: false,
+  lifeline: false,
+  reindexer: false
 
 config :tzdata, :autoupdate, :disabled
 

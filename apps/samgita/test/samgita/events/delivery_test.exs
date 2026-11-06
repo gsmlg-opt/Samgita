@@ -38,19 +38,19 @@ defmodule Samgita.Events.DeliveryTest do
              )
 
     {_, _, _, _, active} = delivery_fixture()
-    Repo.delete_all(Oban.Job)
+    Repo.delete_all(Styx.Job)
 
     assert {:ok, _} = EventDelivery.maintain(limit: 100)
 
     assert Repo.exists?(
-             from j in Oban.Job,
+             from j in Styx.Job,
                where: fragment("?->>'delivery_id'", j.args) == ^active.id
            )
 
     assert Repo.get!(Delivery, old.id).state == "pending"
 
     refute Repo.exists?(
-             from j in Oban.Job,
+             from j in Styx.Job,
                where: fragment("?->>'delivery_id'", j.args) == ^old.id
            )
 
@@ -66,7 +66,7 @@ defmodule Samgita.Events.DeliveryTest do
 
     for id <- ids do
       assert Repo.exists?(
-               from j in Oban.Job,
+               from j in Styx.Job,
                  where: fragment("?->>'delivery_id'", j.args) == ^id
              )
     end
@@ -76,14 +76,14 @@ defmodule Samgita.Events.DeliveryTest do
     {p, a, _s, event, delivery} = delivery_fixture()
     # Simulate a lost durable-job wakeup, retaining the authoritative outbox row.
     Repo.delete_all(
-      from j in Oban.Job, where: fragment("?->>'delivery_id'", j.args) == ^delivery.id
+      from j in Styx.Job, where: fragment("?->>'delivery_id'", j.args) == ^delivery.id
     )
 
     assert {:ok, 1} = EventDelivery.maintain()
 
     assert [_] =
              Repo.all(
-               from j in Oban.Job, where: fragment("?->>'delivery_id'", j.args) == ^delivery.id
+               from j in Styx.Job, where: fragment("?->>'delivery_id'", j.args) == ^delivery.id
              )
 
     assert {:ok, %{"state" => "accepted", "accepted_at" => accepted}} =
@@ -353,7 +353,7 @@ defmodule Samgita.Events.DeliveryTest do
   test "domain change, event, delivery and enqueue failure roll back together" do
     {p, _, _} = routing_fixture()
     attrs = command()
-    before_jobs = Repo.aggregate(Oban.Job, :count)
+    before_jobs = Repo.aggregate(Styx.Job, :count)
 
     assert {:error, %Error{code: :enqueue_failed}} =
              Commands.run(
@@ -371,7 +371,7 @@ defmodule Samgita.Events.DeliveryTest do
 
     refute Repo.get_by(DomainEvent, command_id: attrs["command_id"])
     refute Repo.get_by(CommandReceipt, command_id: attrs["command_id"])
-    assert Repo.aggregate(Oban.Job, :count) == before_jobs
+    assert Repo.aggregate(Styx.Job, :count) == before_jobs
     refute Repo.get!(Samgita.Domain.Project, p["id"]).name == "must roll back"
   end
 

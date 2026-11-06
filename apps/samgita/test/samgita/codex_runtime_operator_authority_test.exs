@@ -280,7 +280,7 @@ defmodule Samgita.CodexRuntimeOperatorAuthorityTest do
           :count
         ),
       receipt_count: Repo.aggregate(CommandReceipt, :count),
-      job_count: Repo.aggregate(Oban.Job, :count)
+      job_count: Repo.aggregate(Styx.Job, :count)
     }
   end
 

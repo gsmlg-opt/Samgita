@@ -60,6 +60,7 @@ defmodule Samgita.Umbrella.MixProject do
       samgita: [
         version: "0.2.0",
         applications: [
+          oban: :load,
           samgita: :permanent,
           samgita_web: :permanent
         ],

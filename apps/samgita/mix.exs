@@ -31,7 +31,9 @@ defmodule Samgita.MixProject do
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_pubsub, "~> 2.3"},
-      {:oban, "~> 2.24"},
+      # Historical migrations still call Oban; no Oban runtime is started.
+      {:oban, "~> 2.24", runtime: false},
+      {:styx, "~> 0.1.1"},
       {:jason, "~> 1.4"},
       {:tzdata, "~> 1.1"},
       {:mint, "~> 1.10"}

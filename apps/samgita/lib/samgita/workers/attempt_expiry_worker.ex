@@ -1,12 +1,12 @@
 defmodule Samgita.Workers.AttemptExpiryWorker do
   @moduledoc "Expiry holds unresolved effects and capacity; it never creates another execution."
-  use Oban.Worker, queue: :hub_maintenance, max_attempts: 5, unique: [period: 60]
+  use Styx.Worker, queue: :hub_maintenance, max_attempts: 5, unique: [period: 60]
   import Ecto.Query
   alias Samgita.{Attempts, Principal, Repo}
   alias Samgita.Domain.TaskAttempt
 
   @impl true
-  def perform(%Oban.Job{}) do
+  def perform(%Styx.Job{}) do
     case expire_due() do
       {:ok, _} -> :ok
       {:error, %{code: code}} -> {:error, code}

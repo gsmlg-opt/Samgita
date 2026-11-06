@@ -9,9 +9,9 @@ defmodule SamgitaTest do
     children = Supervisor.which_children(Samgita.Supervisor)
 
     assert Enum.sort(Enum.map(children, &elem(&1, 0))) ==
-             Enum.sort([Samgita.Repo, Phoenix.PubSub.Supervisor, Oban])
+             Enum.sort([Samgita.Repo, Phoenix.PubSub.Supervisor, Styx])
 
     assert Application.fetch_env!(:samgita, :ecto_repos) == [Samgita.Repo]
-    assert Oban.config().testing == :manual
+    assert Styx.config().testing == :manual
   end
 end

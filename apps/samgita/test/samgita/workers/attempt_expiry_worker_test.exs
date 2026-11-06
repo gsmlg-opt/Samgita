@@ -40,6 +40,6 @@ defmodule Samgita.Workers.AttemptExpiryWorkerTest do
     assert Repo.get!(Task, task["id"]).state == "blocked"
     assert Repo.aggregate(from(a in TaskAttempt, where: a.task_id == ^task["id"]), :count) == 1
     assert {:ok, 0} = AttemptExpiryWorker.expire_due()
-    assert :ok = CoordinationMaintenanceWorker.perform(%Oban.Job{args: %{}})
+    assert :ok = CoordinationMaintenanceWorker.perform(%Styx.Job{args: %{}})
   end
 end

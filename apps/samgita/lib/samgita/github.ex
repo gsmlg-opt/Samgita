@@ -711,7 +711,7 @@ defmodule Samgita.GitHub do
 
   @doc false
   def enqueue_sync!(sync, opts \\ []) do
-    enqueue = Keyword.get(opts, :enqueue, &Oban.insert/1)
+    enqueue = Keyword.get(opts, :enqueue, &Styx.insert(&1, retry: false))
 
     case enqueue.(GitHubReconcileWorker.new(%{"sync_id" => sync.id})) do
       {:ok, job} -> job

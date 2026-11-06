@@ -5,19 +5,21 @@ defmodule Samgita.LegacyIsolationTest do
 
   test "registration is inert and only new coordination queues and cron are enabled" do
     before_children = Supervisor.which_children(Samgita.Supervisor) |> Enum.map(&elem(&1, 0))
-    before_jobs = Repo.aggregate(Oban.Job, :count)
+    before_jobs = Repo.aggregate(Styx.Job, :count)
     agent_fixture(%{"implementation" => "Synapsis"})
 
     assert Supervisor.which_children(Samgita.Supervisor) |> Enum.map(&elem(&1, 0)) ==
              before_children
 
-    assert Repo.aggregate(Oban.Job, :count) == before_jobs
-    config = Application.fetch_env!(:samgita, Oban)
+    assert Repo.aggregate(Styx.Job, :count) == before_jobs
+    config = Application.fetch_env!(:samgita, Styx)
 
     assert Keyword.keys(config[:queues]) |> Enum.sort() ==
              ~w(hub_events hub_github hub_maintenance hub_schedules)a
 
-    assert [{Oban.Plugins.Cron, cron}] = config[:plugins]
+    cron = config[:cron]
+    assert config[:pruner] == false
+    assert config[:lifeline] == false
 
     assert Enum.map(cron[:crontab], &elem(&1, 1)) == [
              Samgita.Workers.ScheduleTickWorker,

@@ -6,6 +6,6 @@ defmodule Samgita.Workers.ScheduleTickWorkerTest do
     job = ScheduleTickWorker.new(%{})
     assert Ecto.Changeset.get_field(job, :queue) == "hub_schedules"
     assert Ecto.Changeset.get_field(job, :max_attempts) == 5
-    assert {:ok, %{"emitted" => 0}} = ScheduleTickWorker.perform(%Oban.Job{args: %{}})
+    assert {:ok, %{"emitted" => 0}} = ScheduleTickWorker.perform(%Styx.Job{args: %{}})
   end
 end

@@ -2,7 +2,7 @@ defmodule Samgita.Schedules do
   @moduledoc "Revisioned schedules emit facts, with bounded catch-up over absolute UTC minutes."
   import Ecto.Query
   import Ecto.Changeset
-  alias Oban.Cron.Expression
+  alias Styx.Cron.Expression
   alias Samgita.{Commands, Events, Params, Principal, Projection, Repo}
   alias Samgita.Domain.{PlatformAuthority, Project, Schedule, ScheduleOccurrence, Task}
 

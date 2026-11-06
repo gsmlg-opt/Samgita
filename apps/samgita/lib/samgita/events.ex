@@ -484,7 +484,7 @@ defmodule Samgita.Events do
          agent.credential_ref}
       )
 
-  def enqueue!(delivery, enqueue \\ &Oban.insert/1) do
+  def enqueue!(delivery, enqueue \\ &Styx.insert(&1, retry: false)) do
     case enqueue.(EventDeliveryWorker.new(%{"delivery_id" => delivery.id})) do
       {:ok, job} -> job
       {:error, _} -> Commands.fail!(:enqueue_failed, %{delivery_id: delivery.id})

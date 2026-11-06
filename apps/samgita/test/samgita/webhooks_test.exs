@@ -17,28 +17,28 @@ defmodule Samgita.WebhooksTest do
     enqueue = fn changeset ->
       count = Process.get(:hook_enqueue_calls)
       Process.put(:hook_enqueue_calls, count + 1)
-      if count == 0, do: Oban.insert(changeset), else: {:error, :database_down}
+      if count == 0, do: Styx.insert(changeset), else: {:error, :database_down}
     end
 
-    before_jobs = Repo.aggregate(Oban.Job, :count)
+    before_jobs = Repo.aggregate(Styx.Job, :count)
 
     assert {:error, %Error{code: :enqueue_failed}} =
              Webhooks.dispatch("task.completed", %{"task_id" => "historical"}, enqueue: enqueue)
 
-    assert Repo.aggregate(Oban.Job, :count) == before_jobs
+    assert Repo.aggregate(Styx.Job, :count) == before_jobs
 
     assert {:ok, %{"state" => "quarantined", "job_ids" => job_ids}} =
              Webhooks.dispatch("task.completed", %{"task_id" => "historical"})
 
     assert length(job_ids) == 2
-    jobs = Repo.all(from j in Oban.Job, where: j.id in ^job_ids)
+    jobs = Repo.all(from j in Styx.Job, where: j.id in ^job_ids)
 
     assert Enum.all?(
              jobs,
              &(&1.queue == "legacy_webhooks" && &1.worker == "Samgita.Workers.WebhookWorker")
            )
 
-    refute Keyword.has_key?(Application.fetch_env!(:samgita, Oban)[:queues], :legacy_webhooks)
+    refute Keyword.has_key?(Application.fetch_env!(:samgita, Styx)[:queues], :legacy_webhooks)
     assert Enum.all?(jobs, &(Map.keys(&1.args) |> Enum.sort() == ~w(event payload webhook_id)))
     refute inspect(jobs) =~ "historical-secret"
     refute Code.ensure_loaded?(Samgita.Workers.WebhookWorker)

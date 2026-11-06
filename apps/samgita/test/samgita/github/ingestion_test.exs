@@ -134,13 +134,13 @@ defmodule Samgita.GitHub.IngestionTest do
 
     counts =
       {Repo.aggregate(DomainEvent, :count), Repo.aggregate(EventDelivery, :count),
-       Repo.aggregate(Oban.Job, :count)}
+       Repo.aggregate(Styx.Job, :count)}
 
     assert {:error, %Error{code: :enqueue_failed}} =
              ingest(connection, body_fixture(), enqueue: fn _ -> {:error, :db_unavailable} end)
 
     assert {Repo.aggregate(DomainEvent, :count), Repo.aggregate(EventDelivery, :count),
-            Repo.aggregate(Oban.Job, :count)} == counts
+            Repo.aggregate(Styx.Job, :count)} == counts
 
     assert receipt_count(connection) == 1
     assert {:ok, _} = ingest(connection)
@@ -171,7 +171,7 @@ defmodule Samgita.GitHub.IngestionTest do
            ) == 0
 
     assert Enum.all?(
-             Repo.all(Oban.Job),
+             Repo.all(Styx.Job),
              &(&1.worker in [
                  "Samgita.Workers.GitHubReconcileWorker",
                  "Samgita.Workers.EventDeliveryWorker"

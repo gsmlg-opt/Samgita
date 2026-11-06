@@ -29,7 +29,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
   secret_key_base: "R0hndBwWd37pDBs+AZIvydzVXqPXTZ8xDoMZPS0QTcdFbUSGfEdgXKyDJhJRtpBW",
   server: false
 
-config :samgita, Oban, testing: :manual
+config :samgita, Styx, testing: :manual
 config :samgita, :lease_key_id, "test-v1"
 config :samgita, :lease_keys, %{"test-v1" => "p3-isolated-test-key-never-use-in-production"}
 config :samgita, :native_payload_key_id, "test-native-v1"

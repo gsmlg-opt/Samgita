@@ -7,7 +7,7 @@ defmodule Samgita.Application do
     children = [
       Samgita.Repo,
       {Phoenix.PubSub, name: Samgita.PubSub},
-      {Oban, Application.fetch_env!(:samgita, Oban)}
+      {Styx, Application.fetch_env!(:samgita, Styx)}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Samgita.Supervisor)

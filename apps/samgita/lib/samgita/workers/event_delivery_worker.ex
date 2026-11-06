@@ -1,9 +1,9 @@
 defmodule Samgita.Workers.EventDeliveryWorker do
-  @moduledoc "Outbox wakeup; delivery rows, not Oban attempts, own retry and uncertainty state."
-  use Oban.Worker, queue: :hub_events, max_attempts: 5, unique: [period: 60, keys: [:delivery_id]]
+  @moduledoc "Outbox wakeup; delivery rows, not Styx attempts, own retry and uncertainty state."
+  use Styx.Worker, queue: :hub_events, max_attempts: 5, unique: [period: 60, keys: [:delivery_id]]
 
   @impl true
-  def perform(%Oban.Job{args: %{"delivery_id" => id}}) do
+  def perform(%Styx.Job{args: %{"delivery_id" => id}}) do
     case Samgita.EventDelivery.dispatch(id) do
       {:ok, %{"state" => state} = delivery}
       when state in ~w(pending retry_wait reconciling delivering) ->

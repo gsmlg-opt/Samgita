@@ -8,7 +8,7 @@ defmodule Samgita.Webhooks do
   alias Samgita.{Commands, Repo}
 
   def dispatch(event, payload, opts \\ []) do
-    enqueue = Keyword.get(opts, :enqueue, &Oban.insert/1)
+    enqueue = Keyword.get(opts, :enqueue, &Styx.insert(&1, retry: false))
 
     Commands.transaction(fn ->
       ids =
@@ -28,7 +28,7 @@ defmodule Samgita.Webhooks do
 
   defp quarantine_job!(id, event, payload, enqueue) do
     changeset =
-      Oban.Job.new(%{"webhook_id" => id, "event" => event, "payload" => payload},
+      Styx.Job.new(%{"webhook_id" => id, "event" => event, "payload" => payload},
         worker: "Samgita.Workers.WebhookWorker",
         queue: "legacy_webhooks",
         max_attempts: 5

@@ -13,7 +13,7 @@ defmodule Samgita.Workers.EventDeliveryWorkerTest do
              "hub_events"
 
     assert {:cancel, "authentication_failed"} =
-             EventDeliveryWorker.perform(%Oban.Job{args: %{"delivery_id" => d.id}})
+             EventDeliveryWorker.perform(%Styx.Job{args: %{"delivery_id" => d.id}})
 
     assert Repo.get!(Delivery, d.id).state == "authentication_failed"
   end
@@ -28,7 +28,7 @@ defmodule Samgita.Workers.EventDeliveryWorkerTest do
                command(%{"expected_version" => a["version"], "reason" => "closed"})
              )
 
-    assert {:snooze, 60} = EventDeliveryWorker.perform(%Oban.Job{args: %{"delivery_id" => d.id}})
+    assert {:snooze, 60} = EventDeliveryWorker.perform(%Styx.Job{args: %{"delivery_id" => d.id}})
     assert Repo.get!(Delivery, d.id).attempt_count == 0
     assert {:ok, _} = EventDelivery.maintain()
   end
