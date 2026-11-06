@@ -12,6 +12,7 @@ permissions:
 
 env:
   MIX_ENV: test
+  SAMGITA_CODEX_SCHEMA_MODE: strict
   ELIXIR_VERSION: "1.19.7"
   OTP_VERSION: "28.5.0.8"
   PYTHON_VERSION: "3.13"

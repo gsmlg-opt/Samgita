@@ -14,6 +14,13 @@ defmodule SamgitaCodexDriver.Session do
   require an explicit response to their exact generation and opaque handle.
   Terminal dynamic-tool item/turn evidence retires unanswered matching handles;
   it does not acknowledge a response or change a sent-unconfirmed outcome.
+
+  `schema_mode: :compatible` (the default) preserves envelope-valid schema drift
+  without disconnecting unrelated work. Unvalidated responses return an Error
+  retaining their complete wire; unvalidated notifications are separate events
+  and never update lifecycle state. `schema_mode: :strict` retains fail-closed
+  pinned-schema conformance. Neither mode relaxes outgoing schema validation;
+  `validation: :wire` is an explicit outbound extension path only.
   """
   use GenServer, restart: :temporary
 
@@ -42,7 +49,14 @@ defmodule SamgitaCodexDriver.Session do
   )
 
   def start_link(opts) do
-    opts = Keyword.put_new(opts, :owner, self())
+    opts =
+      opts
+      |> Keyword.put_new(:owner, self())
+      |> Keyword.put_new(
+        :schema_mode,
+        Application.get_env(:samgita_codex_driver, :schema_mode, :compatible)
+      )
+
     GenServer.start_link(__MODULE__, opts, Keyword.take(opts, [:name]))
   end
 
@@ -429,7 +443,6 @@ defmodule SamgitaCodexDriver.Session do
       pending = %{
         from: from,
         method: method,
-        validation: Keyword.get(opts, :validation, :schema),
         mutation: method not in @read_only,
         generation: state.generation,
         token: token,
@@ -667,10 +680,27 @@ defmodule SamgitaCodexDriver.Session do
           enqueue(state, %{kind: :notification, wire: wire}, bytes)
 
         {:error, failure} ->
-          disconnect(state, failure.code)
+          if state.opts[:schema_mode] == :strict,
+            do: disconnect(state, failure.code),
+            else:
+              enqueue_unvalidated(
+                state,
+                :unvalidated_notification,
+                wire,
+                bytes,
+                :server_notification,
+                failure.code
+              )
       end
     else
-      enqueue(state, %{kind: :unknown_notification, wire: wire}, bytes)
+      enqueue_unvalidated(
+        state,
+        :unknown_notification,
+        wire,
+        bytes,
+        :server_notification,
+        :unsupported_method
+      )
     end
   end
 
@@ -705,12 +735,9 @@ defmodule SamgitaCodexDriver.Session do
 
   defp complete_request(wire, pending, state) do
     validation =
-      if pending.validation == :wire,
-        do: :ok,
-        else:
-          Schema.validate_result(:server_response, pending.method, wire["result"],
-            experimental: state.experimental
-          )
+      Schema.validate_result(:server_response, pending.method, wire["result"],
+        experimental: state.experimental
+      )
 
     case validation do
       :ok ->
@@ -718,9 +745,40 @@ defmodule SamgitaCodexDriver.Session do
 
       {:error, failure} ->
         # A malformed reply does not establish that a mutation failed to execute.
-        state = fail_pending(state, wire["id"], failure.code)
-        disconnect(state, :invalid_response)
+        unvalidated_response(wire, pending, failure, state)
     end
+  end
+
+  defp unvalidated_response(wire, pending, failure, state) do
+    if state.opts[:schema_mode] == :strict do
+      state = fail_pending(state, wire["id"], failure.code, wire: wire)
+      disconnect(state, :invalid_response)
+    else
+      state =
+        fail_pending(state, wire["id"], :unvalidated_response,
+          wire: wire,
+          details: validation_warning(:server_response, failure.code)
+        )
+
+      # The upstream may already have initialized. Do not send initialized or
+      # permit a second handshake on this connection; recovery is explicit.
+      if pending.method == "initialize", do: %{state | phase: :initialization_failed}, else: state
+    end
+  end
+
+  # One fixed-size warning per message: no upstream strings, schema paths or
+  # payload samples enter diagnostic metadata or logs. Raw wire stays separate.
+  defp validation_warning(direction, reason) do
+    %{
+      validation: :unvalidated,
+      warnings: [%{code: :schema_drift, direction: direction, reason: reason}]
+    }
+  end
+
+  defp enqueue_unvalidated(state, kind, wire, bytes, direction, reason) do
+    metadata = validation_warning(direction, reason)
+    event = Map.merge(%{kind: kind, wire: wire}, metadata)
+    enqueue(state, event, bytes + :erlang.external_size(metadata))
   end
 
   defp finish_success(wire, %{method: "initialize"}, state) do
@@ -765,7 +823,33 @@ defmodule SamgitaCodexDriver.Session do
         enqueue(state, %{kind: :server_request, wire: wire, handle: handle}, bytes)
 
       {:error, failure} ->
-        disconnect(state, failure.code)
+        reject_invalid_interaction(wire, bytes, failure, state)
+    end
+  end
+
+  defp reject_invalid_interaction(wire, bytes, failure, state) do
+    if state.opts[:schema_mode] == :strict do
+      disconnect(state, failure.code)
+    else
+      reply = %{
+        "id" => wire["id"],
+        "error" => %{"code" => -32_602, "message" => "Unsupported server request parameters"}
+      }
+
+      case send_wire(state, reply) do
+        {:ok, state} ->
+          enqueue_unvalidated(
+            state,
+            :invalid_server_request,
+            wire,
+            bytes,
+            :server_request,
+            failure.code
+          )
+
+        {:error, _failure, state} ->
+          disconnect(state, :interaction_send_failed)
+      end
     end
   end
 
@@ -933,9 +1017,16 @@ defmodule SamgitaCodexDriver.Session do
     end
   end
 
-  defp fail_pending(state, id, reason) do
+  defp fail_pending(state, id, reason, attrs \\ []) do
     pending = Map.fetch!(state.pending, id)
-    failure = Error.new(reason, %{"request_id" => id}, uncertain: pending.mutation)
+    details = Map.merge(%{"request_id" => id}, Keyword.get(attrs, :details, %{}))
+
+    failure =
+      Error.new(
+        reason,
+        details,
+        attrs |> Keyword.delete(:details) |> Keyword.put(:uncertain, pending.mutation)
+      )
 
     state =
       if pending.mutation do
@@ -1005,6 +1096,7 @@ defmodule SamgitaCodexDriver.Session do
   defp status(state, metadata) do
     %{
       phase: state.phase,
+      schema_mode: state.opts[:schema_mode],
       instance_id: state.instance_id,
       generation: state.generation,
       pending: map_size(state.pending),
@@ -1084,7 +1176,7 @@ defmodule SamgitaCodexDriver.Session do
         is_integer(value) and value > 0 and value <= 1_073_741_824
       end)
 
-    if valid and is_pid(opts[:owner]) and
+    if valid and opts[:schema_mode] in [:compatible, :strict] and is_pid(opts[:owner]) and
          match?({module, args} when is_atom(module) and is_list(args), opts[:transport]),
        do: :ok,
        else: {:error, Error.new(:invalid_options)}

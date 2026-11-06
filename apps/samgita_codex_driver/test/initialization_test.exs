@@ -63,7 +63,7 @@ defmodule SamgitaCodexDriver.InitializationTest do
     @tag malformed: malformed
     test "malformed initialize result disconnects without initialized, variant=#{malformed}",
          context do
-      pid = connection()
+      pid = connection([], schema_mode: :strict)
       id = "malformed-initialize"
       task = begin_initialize(pid, id)
 
@@ -183,13 +183,13 @@ defmodule SamgitaCodexDriver.InitializationTest do
     assert :ok = Session.close(pid)
   end
 
-  defp connection(transport_opts \\ []) do
+  defp connection(transport_opts \\ [], session_opts \\ []) do
     opts = [
       owner: self(),
       transport: {ScriptedTransport, Keyword.put(transport_opts, :observer, self())}
     ]
 
-    pid = start_supervised!({Session, opts}, id: make_ref())
+    pid = start_supervised!({Session, Keyword.merge(opts, session_opts)}, id: make_ref())
     assert_receive {:transport_opened, ^pid}, 2_000
     pid
   end

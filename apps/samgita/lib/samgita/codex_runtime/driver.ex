@@ -62,9 +62,16 @@ defmodule Samgita.CodexRuntime.Driver do
     timeout = max(1, DateTime.diff(deadline, DateTime.utc_now(), :millisecond))
 
     case Session.request_native(session, wire, [{:timeout_ms, timeout} | dispatch_guards(ticket)]) do
-      {:ok, response} -> %{"native" => response}
-      {:error, %SamgitaProtocolCodex.Error{wire: %{} = response}} -> %{"native" => response}
-      {:error, _} -> %{"delivery_outcome" => "uncertain"}
+      {:ok, response} ->
+        %{"native" => response}
+
+      {:error, %SamgitaProtocolCodex.Error{code: :upstream_error, wire: %{} = response}} ->
+        %{"native" => response}
+
+      # Schema drift retains diagnostic wire in the driver's Error, but does
+      # not establish a validated native result or resolve execution uncertainty.
+      {:error, _} ->
+        %{"delivery_outcome" => "uncertain"}
     end
   end
 

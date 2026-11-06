@@ -49,6 +49,61 @@ error data can contain secrets. Do not create atoms from wire values.
 
 ## Lifecycle and interactions
 
+Sessions default to `schema_mode: :compatible`. Set `schema_mode: :strict` on
+`Session.start_link/1` for pinned-schema conformance. The application setting
+`:samgita_codex_driver, :schema_mode` supplies the default; this package's config
+reads `SAMGITA_CODEX_SCHEMA_MODE=compatible|strict`. The conformance workflow sets
+it to `strict`. Embedding applications own their configuration and can set the
+application option explicitly. `Session.status/1` reports the selected mode.
+
+Both modes strictly enforce JSON/envelopes, message and queue bounds, typed IDs,
+correlation, dispatch fences and interaction handles. They retain complete raw
+wire maps, including new fields. Additional fields already accepted by the
+pinned schema do not change successful return values.
+
+In compatible mode, a response with an unknown enum/union or changed result
+shape settles only its correlated caller as
+`{:error, %SamgitaProtocolCodex.Error{code: :unvalidated_response, wire: wire}}`.
+This is **not** a validated success or proof that the operation failed remotely.
+Mutations retain `uncertain: true` and remain in `uncertain_operations/1` until
+explicit reconciliation. Other pending calls and the connection remain usable.
+The error's `details` includes the request ID, `validation: :unvalidated` and
+one structured warning containing only fixed code/direction/reason atoms.
+Error Inspect/messages do not expose the raw wire. Consumers must deliberately
+handle this error, retain the wire as appropriate and never blindly retry it.
+
+Known notifications that fail schema validation become
+`:unvalidated_notification` events with their raw `wire`,
+`validation: :unvalidated` and the same bounded warning format. They never resolve
+interaction handles or update lifecycle state. Unknown notifications remain
+`:unknown_notification` events in both modes, now explicitly marked unvalidated;
+retaining them does not claim schema conformance. Warning metadata counts toward
+the event byte bound; overflow still disconnects with an explicit gap. No extra
+unbounded warning queue or raw-payload logging is introduced.
+
+An uninterpretable initialization response leaves `phase: :initialization_failed`:
+the connection stays open, but no `initialized` is sent and ordinary requests are
+blocked. Recovery requires explicit reconnect and a fresh handshake. Unknown
+server requests still receive `-32601`. A known request with invalid parameters
+receives `-32602` in compatible mode and an `:invalid_server_request` diagnostic
+event, never a response handle or an automatic approval. Strict mode disconnects
+on known response/notification/request schema violations, as before.
+
+Outgoing requests and notifications retain pinned validation by default.
+`validation: :wire` remains an explicit **outbound** extension path; it no longer
+bypasses inbound result validation, even for initialization. Results for unknown
+extension methods are unvalidated errors in compatible mode and failures in
+strict mode. Native upstream error envelopes remain ordinary upstream errors.
+The Samgita bridge reports unvalidated outcomes as uncertain; it does not promote
+their diagnostic wire into a validated durable result. Its durable event journal
+remains schema-strict: callers must retain unvalidated diagnostic events separately,
+not submit them as validated lifecycle evidence.
+
+These rules allow schema drift to remain observable without terminating unrelated
+work. They do not certify semantics of a newer Codex release or close the existing
+full-compatibility and platform qualification gaps. See
+[compatibility-mode qualification](../../docs/codex-app-server/compatible-schema-qualification.md).
+
 Successful initialization sends the upstream `initialized` notification before
 making the Session ready. On the pinned server, the successful initialize request
 itself establishes readiness; client notifications are logging-only. The Session
