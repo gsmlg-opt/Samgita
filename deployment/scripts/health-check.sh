@@ -2,7 +2,7 @@
 # Foundation HTTP and database health only.
 set -euo pipefail
 TARGET_HOST="${1:-localhost}"
-TARGET_PORT="${2:-3110}"
+TARGET_PORT="${2:-4870}"
 TIMEOUT="${3:-10}"
 curl --fail --silent --show-error --max-time "$TIMEOUT" \
   "http://$TARGET_HOST:$TARGET_PORT/api/health" |

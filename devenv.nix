@@ -62,7 +62,7 @@ in {
     echo ""
     echo "Commands:"
     echo "  devenv up   — start PostgreSQL + Phoenix server"
-    echo "  mix samgita.run — start Phoenix server (port 3110)"
+    echo "  mix samgita.run — start Phoenix server (port 4870)"
     echo "  setup       — first-time DB setup (mix ecto.setup)"
     echo "  mix test    — run tests"
   '';

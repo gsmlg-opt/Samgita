@@ -28,14 +28,14 @@ services:
       SECRET_KEY_BASE: ${SECRET_KEY_BASE:?Set SECRET_KEY_BASE}
       PHX_HOST: ${PHX_HOST:-localhost}
       PHX_SERVER: "true"
-      PORT: 3110
+      PORT: 4870
       SAMGITA_API_KEYS: ${SAMGITA_API_KEYS:-}
       MIX_ENV: prod
       RELEASE_COOKIE: ${RELEASE_COOKIE:?Set RELEASE_COOKIE}
     ports:
-      - "${HOST_PORT:-3110}:3110"
+      - "${HOST_PORT:-4870}:4870"
     healthcheck:
-      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:3110/api/health"]
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:4870/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3

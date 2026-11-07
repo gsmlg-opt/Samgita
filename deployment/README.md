@@ -27,8 +27,8 @@ deployment/scripts/build-release.sh
 # Supply an explicitly named isolated DATABASE_URL first.
 _build/prod/rel/samgita/bin/samgita eval 'Samgita.Release.migrate()'
 PHX_SERVER=true _build/prod/rel/samgita/bin/samgita start
-deployment/scripts/health-check.sh localhost 3110
-deployment/scripts/smoke-test.sh http://localhost:3110
+deployment/scripts/health-check.sh localhost 4870
+deployment/scripts/smoke-test.sh http://localhost:4870
 ```
 
 Release and Docker installers run `mix npm.ci` against the root workspace

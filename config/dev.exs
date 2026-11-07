@@ -31,7 +31,7 @@ config :samgita,
 
 config :samgita_web, SamgitaWeb.Endpoint,
   check_origin: ["//localhost", "//127.0.0.1", "//samgita.local"],
-  http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 3110],
+  http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 4870],
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "Pj01A5h21DzggjKpnl3ezzFuxstdmjeKAAuyYMAM1nkKDzo5UF/oCYZnvE6i7nTk",

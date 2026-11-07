@@ -111,7 +111,7 @@ COPY --from=builder --chown=app:app /app/_build/prod/rel/samgita ./
 USER app
 
 # Expose HTTP port
-EXPOSE 3110
+EXPOSE 4870
 
 # Set up entrypoint
 COPY --chown=app:app deployment/docker/entrypoint.sh ./entrypoint.sh

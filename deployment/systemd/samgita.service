@@ -20,7 +20,7 @@ SyslogIdentifier=samgita
 # Environment variables
 Environment="MIX_ENV=prod"
 Environment="LANG=en_US.UTF-8"
-Environment="PORT=3110"
+Environment="PORT=4870"
 
 # Load additional environment from file
 EnvironmentFile=/opt/samgita/etc/samgita.env

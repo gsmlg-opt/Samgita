@@ -91,7 +91,7 @@ ssh "$TARGET_USER@$TARGET_HOST" "
 echo ""
 echo "6. Running health check..."
 sleep 5
-HEALTH_CHECK=$(ssh "$TARGET_USER@$TARGET_HOST" "curl -f http://localhost:3110/api/health 2>/dev/null" || echo "FAILED")
+HEALTH_CHECK=$(ssh "$TARGET_USER@$TARGET_HOST" "curl -f http://localhost:4870/api/health 2>/dev/null" || echo "FAILED")
 
 if [ "$HEALTH_CHECK" == "FAILED" ]; then
     echo ""
@@ -107,5 +107,5 @@ echo "========================================"
 echo ""
 echo "Next steps:"
 echo "  - Check logs: ssh $TARGET_USER@$TARGET_HOST 'journalctl -u samgita -f'"
-echo "  - Health check: curl http://$TARGET_HOST:3110/api/health"
+echo "  - Health check: curl http://$TARGET_HOST:4870/api/health"
 echo ""

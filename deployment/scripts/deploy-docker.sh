@@ -21,6 +21,6 @@ ssh "$TARGET_USER@$TARGET_HOST" "
   export SAMGITA_IMAGE='$SAMGITA_IMAGE'
   docker compose pull web
   docker compose up -d --no-build --wait db web
-  docker compose exec -T web curl --fail --silent --show-error http://localhost:3110/api/health
+  docker compose exec -T web curl --fail --silent --show-error http://localhost:4870/api/health
 "
 echo "Compose startup and HTTP health passed; verify real Agent WebSocket behavior separately."

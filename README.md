@@ -72,7 +72,7 @@ devenv shell --no-tui -- mix samgita.run
 Run `mix samgita.run` from the repository root when the required environment is
 already available. This entry point delegates to Phoenix's `phx.server`.
 The default development database is `samgita_hub_dev`; HTTP listens on port
-3110. Inspect database and runtime configuration before running migrations.
+4870. Inspect database and runtime configuration before running migrations.
 Existing/shared databases require the separate preservation and cutover gates.
 Never use `mix ecto.reset` against an unresolved database target.
 

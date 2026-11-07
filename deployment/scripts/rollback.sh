@@ -130,7 +130,7 @@ sleep 10
 echo ""
 echo "8. Running health check..."
 HEALTH_CHECK=$(ssh "$TARGET_USER@$TARGET_HOST" "
-    curl -f -s -m 10 http://localhost:3110/api/health 2>/dev/null || echo 'FAILED'
+    curl -f -s -m 10 http://localhost:4870/api/health 2>/dev/null || echo 'FAILED'
 ")
 
 if [ "$HEALTH_CHECK" == "FAILED" ]; then
