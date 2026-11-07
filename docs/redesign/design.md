@@ -6,9 +6,21 @@ Infrastructure amendment, 2026-11-05: the user approved
 [dependency modernization](dependency-modernization.md): DuskmoonBundler,
 Gaoxy, Styx and http_fetch replace the current asset/server/job/HTTP libraries.
 That amendment owns migration and verification limits; historical inventories
-and phase evidence below retain their original library names. Mint WebSocket
-replacement remains blocked by upstream http_fetch#152. Domain, preservation
-and security contracts remain authoritative.
+and phase evidence below retain their original library names. The 2026-11-07
+update replaces both production Mint WebSocket clients with published
+http_web_socket 1.0.0-rc.5 APIs; Mint remains a test-only raw-wire oracle.
+Pin/TLS/authentication/security runtime qualification remains unrun under the
+current restriction. Domain, preservation and security contracts remain authoritative.
+
+Infrastructure clarification, 2026-11-08: remove Oban and Bandit completely,
+including production/test/release dependencies, Oban compatibility code and the
+old Bandit raw-HTTP telemetry test. The two Oban migration sources are expressly
+removed; no shim replaces them. This supersedes earlier requirements to retain
+Oban for migrations or Bandit for historical tests. Platform job admission and
+status read only Styx. Existing database objects/rows are not dropped, rewritten
+or replayed by source removal. Historical P3 migration hashes and earlier
+runtime results remain evidence of those revisions; new functional, migration
+and release checks must qualify the changed baseline. A11 remains unverified.
 
 ## 1. Authority and phase boundary
 
@@ -74,7 +86,7 @@ flowchart LR
   Service -->|authenticated task commands when needed| Web
 ```
 
-- `apps/samgita`: Projects, repository associations/GitHub connection metadata, Agents and project bindings, Tasks/Attempts, schedules, event inbox/outbox, receipts, and migration authority. Uses Ecto/PostgreSQL and Styx; Oban is retained only for historical migrations. It does not depend on web or a provider runtime.
+- `apps/samgita`: Projects, repository associations/GitHub connection metadata, Agents and project bindings, Tasks/Attempts, schedules, event inbox/outbox, receipts, and migration authority. Uses Ecto/PostgreSQL and Styx; no Oban dependency or compatibility reader remains. It does not depend on web or a provider runtime.
 - `apps/samgita_web`: existing Phoenix Endpoint, operator REST/LiveView, machine protocol host adapter, and GitHub ingress. It validates transport inputs and delegates to core contexts. It may mount an app-server WebSocket route on its existing endpoint; no separate Sigma server/listener is introduced.
 - `apps/samgita_protocol`: independent Mix library with codecs, versioned schemas, capabilities, correlation/errors, pure connection state, host callbacks, bounded replay and conformance fixtures. It depends on neither core, Repo, Phoenix, providers nor Backplane. `samgita_protocol_websocket` holds the optional transport/fake Agent; `samgita_protocol_codex` holds the provider-specific scoped adapter. All three live under `apps/` but omit umbrella configuration/build inheritance and remain outside the platform's explicit app list. Loading core opens no socket or Agent; transport starts only on an explicit consumer call.
 
@@ -114,7 +126,7 @@ All new domain IDs are UUIDs; keep existing IDs and existing integer history IDs
 | `event_subscriptions`, `event_deliveries` | Explicit source/type/Project filter and Agent binding or approved hook target; unique event+subscription, durable cursor, attempts and next delivery time. |
 | `platform_authority`, `migration_mappings` | Singleton execution owner/admission/epoch; resumable per-record mapping, raw identity digest, resolution state and operator decision. No secrets in mapping reports. |
 
-The preservation contract requires existing history tables and both historical migration sets to remain accounted for. P3 restores the 17 main migration files verbatim and pins the three memory migration sources as inactive fixtures. Their actual deployment state and complete memory/pgvector/history-reader coverage remain unverified. A schema expansion is not permission to drop a legacy column, table, extension, FK, or database.
+The preservation contract requires existing history tables and both historical migration sets to remain accounted for. P3 restored the 17 main migration files verbatim and pinned the three memory migration sources as inactive fixtures. The 2026-11-08 amendment removes only the two Oban migration sources from the active path; their historical provenance remains recorded, without an Oban dependency or shim. Their actual deployment state and complete memory/pgvector/history-reader coverage remain unverified. Source removal is not permission to drop a legacy column, table, extension, FK, or database.
 
 ### Project and Task commands
 
@@ -238,7 +250,7 @@ Target active supervision: main Repo, PubSub and Styx in core; telemetry and the
 
 ## 7. Legacy subsystem inventory
 
-Definitions: **retain** preserves an active responsibility; **adapt** changes its boundary/contract; **quarantine** preserves code/data for bounded drain or read-only history, with no new execution; **retire** removes active behavior only after quarantine/consumer checks. Retirement never means deleting historical rows or rewriting past migrations. This inventories the audited historical baseline; the foundation's already-removed runtime stays absent. The table authorizes no additional removal.
+Definitions: **retain** preserves an active responsibility; **adapt** changes its boundary/contract; **quarantine** preserves code/data for bounded drain or read-only history, with no new execution; **retire** removes active behavior only after quarantine/consumer checks. Retirement never means deleting historical rows. This inventories the audited historical baseline; the foundation's already-removed runtime stays absent. Its original migration-retention and Oban-framework dispositions are superseded only by the explicit 2026-11-08 source/dependency removal above. The table authorizes no additional removal.
 
 Paths below are repository-relative at the audited historical revision; grouped files share the stated owning behavior. Source removal in `811eeb9` is authorized and already merged; these dispositions specify remaining data/operational obligations, not instructions to restore removed files or evidence that runtime drain/preservation happened.
 
@@ -273,7 +285,7 @@ Paths below are repository-relative at the audited historical revision; grouped 
 | `codex_app_servers.ex`, `codex_app_servers/runtime.ex` | retire | Fence local Port/SSH launches; preserve configurations/log provenance, require separate reconciliation of existing processes. |
 | `git.ex`, `git/worktree.ex`, Agent worktree helpers | adapt / retire | Retain repository metadata parsing only after identity audit; retire server clone/worktree/commit execution. Preserve ignored/local workspaces. |
 | `webhooks.ex`, `domain/webhook.ex`, `workers/webhook_worker.ex` | adapt | Preserve subscriptions and pending deliveries independently of the shared execution queue; version inbox/outbox/signing behavior. |
-| Main Oban, `oban_client.ex`, memory Oban and Cron | retain / quarantine | Retain durable job framework; classify by worker/instance, isolate new queues, quarantine legacy producers/retries without deleting jobs. |
+| Main Oban, `oban_client.ex`, memory Oban and Cron | historical disposition; superseded by Styx | Durable scheduling/delivery now belongs to Styx. No Oban dependency, shim or current reader; inventory old deployments separately before cutover without deleting or replaying their jobs. |
 | `cache.ex`, `references.ex`, `priv/references/**` | adapt / quarantine | Audit consumers; retain safe read-only legacy references, never inject old lifecycle instructions into new Agent commands. |
 | `samgita_web/router.ex`, controllers/JSON, LiveViews/templates | adapt | Register/bind Agents; manage Projects/repositories/Tasks/events/history. Retire execution/PRD/Codex controls; keep UUID read links and access boundaries. |
 | `endpoint.ex`, API auth/rate plugs, DuskMoon assets | retain / adapt | Keep platform/UI protections and components; add machine/GitHub transports without a new account system. |

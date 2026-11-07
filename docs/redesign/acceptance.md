@@ -8,8 +8,33 @@ The 2026-11-05 [dependency modernization](dependency-modernization.md) adds
 separate asset, Gaoxy, Styx and HTTP functional qualification. Earlier Oban,
 Bandit and Bun evidence below describes its original revision. Replacing a
 dependency does not carry that evidence forward automatically, close A11, or
-establish production cutover. The Mint WebSocket replacement is blocked by
-[http_fetch#152](https://github.com/gsmlg-dev/http_fetch/issues/152).
+establish production cutover. The 2026-11-07 update adopts published
+http_web_socket 1.0.0-rc.5 APIs to replace both production Mint WebSocket clients.
+The amendment records selected functional evidence separately from the unrun
+pin/TLS/authentication/security checks. Mint remains test-only for raw-wire
+fixtures; the original upstream-blocked result below is historical evidence.
+
+The 2026-11-08 clarification removes Oban and Bandit completely from
+production/test/release dependencies, removes the two Oban migration sources
+without shims, and retires the old Bandit raw-HTTP telemetry test. Platform
+status/admission reads only Styx. This supersedes historical dependency/source
+retention requirements below, while preserving their original evidence and
+existing database data. A11 remains unverified. No earlier passing count or
+release inspection qualifies this final removal.
+
+Final removal acceptance remains pending actual evidence:
+
+- All root/standalone/consumer manifests, locks and assembled release apps are
+  free of Oban/Bandit and compile without compatibility modules.
+- Fresh and populated-history migration rehearsals work without Oban modules,
+  preserve existing rows/references, and explicitly account for the two removed
+  migration sources in provenance checks.
+- Reviewed functional tests prove Styx enqueue/deduplication/rollback and
+  Styx-only Platform job status/admission; supported-builder asset/release and
+  affected dashboard checks pass against the final source.
+- Existing legacy deployment jobs/effects remain a separate cutover inventory;
+  Styx-only status cannot certify their absence. Prohibited security/permission
+  tests remain unrun; deletion of the old test is no A11 pass.
 
 Merged-baseline note: `d6e9eca` combines documentation `3a344f5` and the separately authorized source refactor `811eeb9`. P2 then added independent protocol packages. P3 restores 17 main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, retains the September Oban upgrade, pins main/memory migration hashes and adds neutral tables/columns. This reconciles B0 only for the local P3 fixture scope; it does not prove a production migration, full historical reader, backup restore or dual-Repo/pgvector preservation. Legacy runtime stays absent. P0 checks describe the original four-file documentation commit; historical P1 callsites remain a target-dependent recipe, not current source assignments. See [P3's contract/evidence](domain-phase-3.md).
 
@@ -42,7 +67,7 @@ P0 completion checklist:
 
 These cases run only in their authorized stage. P2 needs no database. P3's `config/test.exs` wires the sole current main Repo to an explicit `SAMGITA_TEST_DATABASE` override and rejects names outside `samgita_redesign_*_test` with an optional numeric partition suffix. Use sanitized fixtures on an explicitly isolated PostgreSQL instance; never production or an unresolved database. The test alias creates/migrates its resolved target, so inspect it before execution. P3's migration test creates a separate uniquely named scratch database. Dual-Repo, complete memory-storage and vector-extension cases remain target-specific preservation gates; hash-pinned inactive memory migrations and an opaque `sm_memories` sentinel do not satisfy them or restore a memory runtime.
 
-Unit tests cover pure transitions, matching, schedule occurrence calculations and codecs. Context tests prove database effects and transactional rollback. Locking tests use independent connections/transactions with deterministic barriers, not a shared sandbox connection. Oban runs manually except in explicitly isolated restart/scheduler tests. P2 real WebSocket tests use their own loopback endpoint/port and in-memory fake host with no database, LLM, tools or production credentials; later platform integration adds an explicitly isolated database. Browser proof records the endpoint/build/assets actually served.
+Unit tests cover pure transitions, matching, schedule occurrence calculations and codecs. Context tests prove database effects and transactional rollback. Locking tests use independent connections/transactions with deterministic barriers, not a shared sandbox connection. Styx runs manually except in explicitly isolated restart/scheduler tests; no current test depends on Oban or Bandit. P2 real WebSocket tests use their own loopback endpoint/port and in-memory fake host with no database, LLM, tools or production credentials; later platform integration adds an explicitly isolated database. Browser proof records the endpoint/build/assets actually served.
 
 Each case records test path/command, build/schema/profile version, database/port, observed assertions and any limitation. A fake service proves the local contract; it cannot certify real Sigma/Synapsis/GitHub authentication or compatibility. No automatic production changes follow a green test.
 
@@ -116,6 +141,10 @@ P2 tests: core `test/{schema,fixtures,client,server,replay}_test.exs`, optional 
 
 ### A08 — Legacy drain and complete mutual exclusion (P1/P6)
 
+The legacy fixture/bridge steps below apply only to an actually inventoried old
+deployment under separate cutover authorization. They do not require Oban or
+Bandit in the current application, fixtures or test dependencies.
+
 Seed available/scheduled/retryable/executing/snoozed/discarded jobs for every legacy worker, both Oban instances, retained webhook jobs, paused/running Projects, global Horde Agents, Codex Ports and fake remote sessions. Close admissions and drain under legacy-only ownership.
 
 Pass when no new PRD/planning/Agent/Codex/provider dispatch occurs, recorded executing work can settle only at its epoch, and each job/process has an explicit drain/quarantine/resolution decision. Snapshot and memory pruning cannot delete history. Stopping a Project supervisor or cancelling an Oban job alone cannot pass the external-effect check. Shared-queue webhook work is not deleted or lost.
@@ -124,7 +153,7 @@ Owner-none/Hub switch refuses while an unguarded node or unknown active effect r
 
 Tests: `redesign/{legacy_guard,drain,restart}_test.exs`, independent old/new races; process/delivery inventory evidence in final rehearsal.
 
-P3's narrower `legacy_isolation_test.exs` verifies disabled queues/plugins, absent legacy executors and pending-job activation refusal without changing job rows. `Platform.status/1` inventories pending jobs; there is no classification/quarantine API. This does not prove a guard-aware legacy deployment, old-node exclusion, named memory Oban state, external-effect cessation or a drain/restart rehearsal.
+P3's narrower `legacy_isolation_test.exs` verified disabled queues/plugins, absent legacy executors and pending-job activation refusal without changing job rows at its recorded revision. Current `Platform.status/1` inventories only pending Styx jobs; there is no legacy Oban reader or classification/quarantine API. This does not prove a guard-aware legacy deployment, old-node exclusion, named memory Oban state, external-effect cessation or a drain/restart rehearsal. Historical Oban inventory requirements for actual old deployments do not authorize reintroducing the dependency into current tests.
 
 ### A09 — Rollback without replay or data destruction (P1/P6)
 
@@ -170,9 +199,9 @@ P5 local evidence is complete for the operator journey: persisted Agent/Project/
 
 ### A14 — Storage/runtime and isolated release safety (P1/P6)
 
-Start the isolated bridge/new release with admissions closed and inspect application children, named Oban instances, queues, migration histories and history reads. Restore the legacy fixture and repeat after additive expansion.
+Start the isolated new release with admissions closed and inspect application children, Styx queues, migration provenance and history reads. Verify Oban/Bandit are absent from release applications. Restore the legacy fixture and repeat after additive expansion; inventory any real old deployment's job instances separately without adding current compatibility code.
 
-Pass when main and memory migrations/storage are accounted for, no recovery/provider/Codex/memory-prune execution starts, retained history is readable, no default/shared database is touched and no ignored local workspace is removed. A supposedly retired dependency with a remaining reader blocks its removal.
+Pass when main and memory migration provenance/storage are accounted for, with the two expressly removed Oban migration sources recorded as historical; no recovery/provider/Codex/memory-prune execution starts; retained history is readable; no default/shared database is touched; and no ignored local workspace is removed. The 2026-11-08 contract removes compatibility readers rather than retaining Oban/Bandit dependencies.
 
 P3 `migration/preservation_test.exs` and `legacy_isolation_test.exs` provide local source/content and inert-runtime evidence with the main Repo. Dual-storage backup/restore, isolated release smoke and guarded old/new restart remain P1/P6. No full legacy test baseline or production operation is required.
 

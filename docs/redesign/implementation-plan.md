@@ -11,10 +11,27 @@ The subsequent [reliability repair](qualification.md#reliability-repair-qualific
 **Stack:** Elixir/OTP, Ecto/PostgreSQL, Styx, Phoenix LiveView, Gaoxy,
 DuskmoonBundler/TypeScript and existing DuskMoon assets. The approved
 [dependency modernization](dependency-modernization.md) owns this amendment,
-including integrated Tailwind compilation, http_fetch, retained historical
-Oban migrations and the upstream-blocked Mint WebSocket slice. Historical phase
-records below retain their original stack and qualification evidence. No new
+including integrated Tailwind compilation, http_fetch and the 2026-11-07 production WebSocket migration to
+http_web_socket 1.0.0-rc.5. Pin/TLS/authentication/security runtime checks remain
+unrun; Gaoxy's pinned Abyss/Hell refresh is tracked in gsmlg-dev/gaoxy#22.
+Historical phase records below retain their original stack and qualification evidence. No new
 account framework, embedded LLM runtime or component library.
+
+The 2026-11-08 user clarification supersedes the old Oban-migration and
+test-only Bandit retention plan. Remove both dependencies from production,
+test and release, the two Oban migration sources and the old Bandit raw-HTTP
+telemetry test; add no shim. Platform admission/status reads Styx only. This
+does not authorize deleting existing database rows or production migration.
+Historical P3/P4 paths, hashes and results below describe their original
+revisions; they do not require restoring Oban or establish new verification.
+
+Final removal obligations: inspect all manifests/locks and assembled release
+applications; compile without Oban/Bandit; run reviewed Styx/transaction/status
+functional checks and fresh/populated-history migration rehearsals in isolated
+databases; record the two intentional source removals in provenance expectations;
+and recheck affected UI/assets on the supported builder. Record actual outcomes
+in the amendment. Security/permission checks remain prohibited and A11 remains
+unverified, including after deletion of the old Bandit test.
 
 Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. P2/P3 paths exist; proposed later files/tests become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
 
@@ -69,8 +86,8 @@ Modify only the relevant wiring in `config/test.exs`, `config/runtime.exs`, `app
 
 - [ ] Write a fixture with every main/memory historical table, stable UUID links, integer notification IDs, all legacy statuses, conflicting dependency representations, secret-shaped redacted endpoint data, opaque memory references and mixed worker jobs. No real credentials or user workspaces.
 - [ ] Configure and prove isolation for every actual deployment Repo. P3's `config/test.exs` implements the `SAMGITA_TEST_DATABASE` allowlist for the sole current main Repo; there is no current memory Repo. Full dual-Repo preservation remains open.
-- [ ] Use manual Oban testing and disable all autonomous recovery/formation/pruning in this harness. Fail closed if the test authority row is missing. Do not let `mix test`'s create/migrate alias touch a default/shared database.
-- [ ] Make the manifest enumerate both migration directories, table/row/ID/FK counts, payload digests, orphan/ambiguous mappings and named Oban instances. Output IDs/counts/digests only; no secret values or raw prompts.
+- [ ] Use manual Styx testing for the current harness and disable all autonomous recovery/formation/pruning. Historical Oban deployment inventory is an external cutover obligation; do not add its dependency or reader. Fail closed if the test authority row is missing. Do not let `mix test`'s create/migrate alias touch a default/shared database.
+- [ ] Make the preservation manifest enumerate historical migration provenance, table/row/ID/FK counts, payload digests and orphan/ambiguous mappings. Separately account for any actual legacy job instances at cutover. Output IDs/counts/digests only; no secret values or raw prompts.
 - [ ] Prove fixture backup/restore on the named scratch DB. Do not treat the existing release helper as proof of memory migration coverage.
 
 Gate: the P1 fixture/backup/dual-storage portions of A02/A14 in [acceptance](acceptance.md): enumerate every table/reference, restore the fixture unchanged, verify both DB overrides and suppress autonomous side effects. State mapping/adoption A03 and post-expansion A02 run in P3; release portions of A14 run in P6. A failure outside the owned scope is reported and stops this slice.

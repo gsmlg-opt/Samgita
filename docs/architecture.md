@@ -10,10 +10,16 @@ its data-deletion and fixed-lifecycle proposals are superseded.
 
 The approved [dependency modernization](redesign/dependency-modernization.md)
 replaces the asset build pipeline with DuskmoonBundler, inbound servers with
-Gaoxy, durable runtime jobs with Styx and GitHub HTTP with http_fetch. Mint
-WebSocket replacement is separately blocked by upstream
-[http_fetch#152](https://github.com/gsmlg-dev/http_fetch/issues/152); the existing
-WebSocket clients remain until their transport contracts can be preserved.
+Gaoxy, durable runtime jobs with Styx and GitHub HTTP with http_fetch. The
+2026-11-07 update adopts DuskmoonBundler 10.1.2, phoenix_duskmoon 10.1.0,
+Gaoxy HTTP 0.15.1 and the HTTP 1.0.0-rc.5 cohort. Published http_web_socket
+APIs now replace both production Mint WebSocket clients; Mint remains a test-only
+raw-wire oracle. The 2026-11-08 clarification removes Oban and Bandit from all
+production, test and release dependencies, including Oban migration sources
+and the old Bandit telemetry test. Pin/TLS/authentication/security checks remain
+unrun; functional results and deletion of the old test do not close A11 or
+full compatibility gates. Earlier build/browser results belong to their
+recorded revisions and do not qualify this removal.
 
 ## Ownership and dependencies
 
@@ -93,9 +99,12 @@ schedule revisions. Enabled Styx queues are `hub_events`, `hub_schedules`,
 `hub_maintenance` and `hub_github`. Legacy execution queues remain excluded and
 old hooks enter a disabled quarantine queue.
 
-Styx stores new jobs in additive `styx_jobs` tables. Historical `oban_jobs` and
-migration sources remain intact; Oban is retained only for those migrations and
-has no running supervisor. Cron remains a wakeup for durable domain scanners;
+Styx stores jobs in `styx_jobs`; Platform admission/status inventories this
+store only. Oban has no dependency, compatibility module, release entry or
+active migration source. Removing its two migration files does not drop
+existing `oban_jobs` tables or other historical database objects, and does not
+certify that old deployments are drained. Their inventory and reconciliation
+remain separately authorized cutover work. Cron remains a wakeup for durable domain scanners;
 queue completion cannot confer Task acceptance. No historical job is converted
 or automatically replayed. Pruning and orphan-job rescue are explicitly disabled.
 

@@ -11,18 +11,28 @@ The authoritative requirements are:
 - `docs/redesign/acceptance.md`: review checklist and executable acceptance scenarios.
 
 The approved infrastructure amendment is `docs/redesign/dependency-modernization.md`:
-DuskmoonBundler replaces Bun/Tailwind CLI, Gaoxy replaces runtime Bandit,
-Styx replaces runtime Oban and http_fetch replaces ordinary Mint HTTP.
-Mint WebSocket removal remains blocked by http_fetch#152; keep its existing
-transport contracts until the published upstream capability is available.
-Historical phase records and the retained test-only Bandit telemetry evidence
-do not establish qualification of the replacement libraries.
+DuskmoonBundler replaces Bun/Tailwind CLI, Gaoxy replaces Bandit,
+Styx replaces Oban; http_fetch and http_web_socket replace production
+Mint HTTP/WebSocket clients using the published 1.0.0-rc.5 APIs. Mint remains
+test-only for the independent raw-wire oracle. Functional verification does not
+qualify the unrun pin/TLS/authentication/security checks. Gaoxy's pinned
+Abyss/Hell RC refresh is tracked by gsmlg-dev/gaoxy#22; do not override it.
+The 2026-11-08 user clarification requires complete Oban/Bandit removal from
+production, test and release dependencies. Do not retain migration shims,
+test-only dependencies or the old Bandit raw-HTTP telemetry test. Remove the
+two Oban migration sources rather than retaining their runtime dependency;
+their original source and evidence remain in Git and historical phase records.
+Platform job admission/status reads Styx only. Existing database rows are not
+deleted, migrated or replayed by this source removal; deployment inventory and
+old-writer exclusion remain separate cutover obligations. Historical phase
+records do not establish qualification of the replacement libraries. A11
+remains unverified; removing the old test does not establish telemetry safety.
 
 These documents supersede conflicting clean-start, deletion, unique-`git_url`, fixed-lifecycle, and centralized-transport requirements in `docs/prd.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those files remain historical proposals; do not execute their removal checklists. `docs/architecture.md` describes the current implementation and links to its historical version.
 
 P5 management UI, local redesign qualification and the subsequent scoped reliability repair are recorded in `docs/redesign/qualification.md`. This repair includes fake-Agent journeys, isolated consumers, restart/rollback, populated-database repeats and required aggregate release checks. Commit and push the scoped result. Raw LiveView telemetry exposes secret parameters; real HTTP evidence also shows credential-bearing Bandit metadata before application Plugs. A11 remains blocked even when build checks pass; see `docs/codex-app-server/repair-qualification.md`. Moving a form into a controller or early Plug cannot close that boundary. Release only if applicable gates pass and an existing normal publication workflow succeeds; do not tag a failing build. See the phase records for the existing domain, coordination and read/event-only GitHub contracts. Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services, migrate production, delete historical data or deploy. Existing records and references must be preserved. Retiring legacy execution behavior does not authorize deleting its data or migration history.
 
-Merged baseline: `d6e9eca` combines redesign documentation `3a344f5` with the separately authorized clean-start source refactor `811eeb9`. That refactor removed legacy source and migration files, leaving a two-app foundation. This merge is not evidence of a database migration, historical-data deletion, or history continuity. P3 restores only main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, accounts for memory migration sources in fixtures, and adds the neutral domain. Restore no legacy runtime. P3 clears B0 for its local fixture scope; actual deployment inventory, legacy-writer exclusion and full memory/backup rehearsal remain cutover gates. Do not apply the historical P1 callsite list to absent modules.
+Merged baseline: `d6e9eca` combines redesign documentation `3a344f5` with the separately authorized clean-start source refactor `811eeb9`. That refactor removed legacy source and migration files, leaving a two-app foundation. This merge is not evidence of a database migration, historical-data deletion, or history continuity. P3 restored main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, accounted for memory migration sources in fixtures, and added the neutral domain. The two Oban migration sources are subsequently removed under the explicit 2026-11-08 amendment. Restore no legacy runtime. P3 clears B0 for its local fixture scope; actual deployment inventory, legacy-writer exclusion and full memory/backup rehearsal remain cutover gates. Do not apply the historical P1 callsite list to absent modules.
 
 The ordinary Codex client/driver milestone is recorded in `docs/codex-app-server/ordinary-functional-delivery.md`, explicitly amended by the user's `prompt.md` on 2026-10-30. Do not resume rare-branch producer searches without a new concrete prerequisite. The original complete compatibility goal in `samgita-codex-full-compatibility-goal.txt` and its accompanying plan remains a separate incomplete target against immutable Codex `rust-v0.163.0`; retain its entire native surface, inventory, strict gate and blockers. Ordinary delivery does not establish full compatibility or platform readiness. Use the existing branch; do not create branches/worktrees. Commit and push scoped units with prohibited automatic CI suppressed. Only explicitly owned disposable Codex processes and isolated synthetic fixtures are authorized; no paid or production tasks or deployment. Preserve the neutral platform and reliability contracts, unavailable external/platform profiles and A11.
 
@@ -40,12 +50,12 @@ Ordinary owned Codex functional qualification launches default to fixed yolo con
 - `apps/samgita_protocol_websocket`: optional standalone authenticated WebSocket transport and explicitly started in-memory fake Agent at `/app-server`.
 - `apps/samgita_protocol_codex`: independently reusable pinned Codex native wire/schema layer plus the existing neutral convenience adapter. Full behavior qualification is tracked separately; source/schema conformance does not establish full compatibility.
 - `apps/samgita_codex_driver`: independently reusable, explicitly started Codex sessions and transports under implementation. No Repo, Phoenix, platform configuration, automatic execution or listener dependency. Borrowed service resources remain owned by their service.
-- `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Styx. Oban remains a non-runtime dependency only for preserved historical migrations.
+- `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Styx. No Oban dependency, compatibility module or historical-job reader.
 - `apps/samgita_web`: existing Phoenix endpoint, REST API, protocol host adapter, GitHub ingress, and DuskMoon LiveView operator UI.
 
 Dependency direction is web -> core -> protocol, with optional web -> transport integration. Core must never depend on web. The protocol and driver projects intentionally omit umbrella build/dependency/config inheritance; run their commands from their own directories. The root's explicit two-app list remains unchanged; core consumes the protocol as a path dependency. Protocol consumers can build outside this repository without starting Samgita. Actual Sigma/Synapsis endpoints remain in their existing services; do not create another Sigma server process or require all traffic to pass through Samgita.
 
-The redesign inventory describes the historical baseline. Its runtime stays absent; its main migration sources are restored without executors. P4 enables only `hub_events`, `hub_schedules`, `hub_maintenance` and `hub_github`, with schedule/coordination/GitHub-read Cron wakeups. Legacy workers/queues remain excluded; old hooks enter a disabled quarantine queue and enqueue failures propagate. P3 intents without P4 approval remain inert. Where a deployment still runs legacy code, fence and drain its producers and external effects before cutover. Preserve historical PRDs, runs, messages, artifacts, snapshots, memory records and references; do not copy dead runtime source into archives.
+The redesign inventory describes the historical baseline. Its runtime stays absent; its main migration restoration excludes the two Oban files removed by the 2026-11-08 amendment. P4 enables only `hub_events`, `hub_schedules`, `hub_maintenance` and `hub_github`, with schedule/coordination/GitHub-read Cron wakeups. Legacy workers/queues remain excluded; old hooks enter a disabled quarantine queue and enqueue failures propagate. P3 intents without P4 approval remain inert. Where a deployment still runs legacy code, fence and drain its producers and external effects before cutover. Preserve historical PRDs, runs, messages, artifacts, snapshots, memory records and references; do not copy dead runtime source into archives.
 
 ## Architecture Rules
 
@@ -59,10 +69,10 @@ The redesign inventory describes the historical baseline. Its runtime stays abse
 - Follow the authority fence and global lock order in `docs/redesign/design.md` for all competing commands. Legacy and new execution must never be active simultaneously.
 - Commit aggregate changes, audit events, and protocol receipts atomically. Broadcast only after commit.
 - Delivery is at least once. Lost ACKs/handler leases require stable-operation status reconciliation; no reconnect/timeout may launch execution. Explicit recovery keeps event identity/time and records duplicate-effect risk. Transport receipt, durable notification acceptance, processing completion and Task acceptance are separate.
-- Use Styx for durable scheduling, delivery, and expiry maintenance; PubSub is best-effort notification. Preserve historical Oban tables and migration sources without starting its runtime or replaying jobs. A scheduled or external event does not itself authorize execution or a Task transition.
+- Use Styx for durable scheduling, delivery, and expiry maintenance; PubSub is best-effort notification. The 2026-11-08 amendment removes Oban migration sources and dependencies without touching existing database tables or replaying jobs. A scheduled or external event does not itself authorize execution or a Task transition.
 - Keep core commands out of Channel/controller callbacks. Transport delegates to contexts.
 - Keep existing Project UUIDs canonical and unchanged. Repository identity and URL aliases belong to separate repository associations; `git_url` is preserved legacy provenance, not the new Project identity.
-- Use additive migrations and resumable, audited mappings. Do not replace initial migrations, rekey Projects, merge Projects by URL, or silently replay legacy work.
+- Use additive migrations and resumable, audited mappings. The expressly authorized removal of the two Oban migration sources is the only exception to retaining initial migration sources. Do not rekey Projects, merge Projects by URL, or silently replay legacy work.
 - Future integration gates require an operator journey, a real-WebSocket fake Agent, protocol-package isolation, and migration/rollback rehearsals. No external LLM is needed for those checks.
 
 ## Security and Scope
