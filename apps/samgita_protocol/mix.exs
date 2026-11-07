@@ -4,7 +4,7 @@ defmodule SamgitaProtocol.MixProject do
   def project do
     [
       app: :samgita_protocol,
-      version: "0.2.0",
+      version: "0.3.0",
       description:
         "Transport-independent Agent protocol with versioned schemas and explicit lifecycle semantics.",
       package: [
