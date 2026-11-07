@@ -38,7 +38,8 @@ The Docker entrypoint migrates the configured database
 before startup. HTTP smoke checks prove foundation behavior only, not an Agent
 WebSocket handshake or protocol exchange.
 
-The retained nginx proxy forwards WebSocket upgrades for LiveView and
-`/agent/socket`, and explicitly forwards `Authorization`. Configure its
-hostname and TLS certificates before use. Keep credentials out of URLs.
+Use an infrastructure-managed reverse proxy with the required hostname, TLS
+certificates and browser access protection. Forward WebSocket upgrades for
+LiveView and `/agent/socket`, and explicitly forward `Authorization`.
+Keep credentials out of URLs.
 See [systemd](systemd/README.md) and [scripts](scripts/README.md).
