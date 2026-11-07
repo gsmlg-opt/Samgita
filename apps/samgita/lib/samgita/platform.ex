@@ -131,12 +131,8 @@ defmodule Samgita.Platform do
   end
 
   def legacy_jobs do
-    Enum.flat_map(["oban_jobs", "styx_jobs"], &legacy_jobs/1)
-  end
-
-  defp legacy_jobs(table) do
     query =
-      from j in table,
+      from j in "styx_jobs",
         where: j.state not in ["completed", "cancelled", "discarded"],
         order_by: j.id,
         select: %{id: j.id, worker: j.worker, queue: j.queue, state: j.state}
@@ -152,7 +148,7 @@ defmodule Samgita.Platform do
     |> Enum.map(fn job ->
       job
       |> Map.new(fn {key, value} -> {to_string(key), value} end)
-      |> Map.put("store", table)
+      |> Map.put("store", "styx_jobs")
     end)
   end
 

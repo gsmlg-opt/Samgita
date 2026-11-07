@@ -70,7 +70,7 @@ defmodule Samgita.GitHub.HTTP do
         connect_timeout: 3_000,
         timeout: remaining(deadline),
         http_version: :http1,
-        tls_backend: :ssl,
+        tls_backend: :ex_ssl,
         http1_reuse: false,
         redirect: :manual,
         decode_body: false,

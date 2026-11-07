@@ -5,7 +5,8 @@ does not establish real Agent-service integration or platform production readine
 
 This standalone Mix package carries `samgita_protocol` JSON text frames over RFC
 6455 WebSockets at `/app-server`. It uses Gaoxy and the Gaoxy-compatible WebSockAdapter for the server
-and MintWebSocket for the client. It has no Phoenix, Repo, provider or Backplane
+and `http_web_socket` 1.0.0-rc.5 for the client. MintWebSocket remains test-only
+for the independent raw-wire oracle. It has no Phoenix, Repo, provider or Backplane
 dependency and starts no listener or Agent automatically. Requiring this package
 does not start another Sigma/Synapsis service.
 
@@ -156,12 +157,13 @@ to emit into a one-message buffer. It never silently drops a notification while 
 connected. When forwarding fails, the unforwarded notification does not advance
 the core cursor; reconnect and replay from the processed checkpoint can recover
 it. An entire replay batch must fit the core and owner buffers or the connection
-closes with its prior cursors intact. Mint's incomplete frame buffer plus the next
-socket read is capped conservatively at the frame limit plus RFC frame overhead;
-a larger aggregate socket read is closed even if it contains multiple individually
-valid messages. Fragmented message payloads have a separate bound at the message
-limit. Consumed ping/pong frames spend neither retained budget, and receiving a
-complete text frame preserves any following incomplete frame's accounting.
+closes with its prior cursors intact. The HTTP.WebSocket client caps retained
+read bytes at the frame limit plus RFC frame overhead. Frame and assembled
+message limits are enforced independently; consumed frames do not spend the next
+read's retained budget. Automatic ping/pong and the standard Close handshake are
+owned by the transport. Local writes use send acknowledgements; received messages
+use ACK delivery. Explicit close awaits a durable cleanup receipt for at most one
+second; unconfirmed cleanup raises an error instead of permitting reconnect.
 Use replay/status reconciliation after any disconnect.
 
 Server frame and fragmented-message limits default to 1 MiB. The fake caps each

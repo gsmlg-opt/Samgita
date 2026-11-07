@@ -46,8 +46,8 @@ defmodule SamgitaWeb.MixProject do
       {:phoenix_ecto, "~> 4.5"},
       {:lazy_html, ">= 0.1.13"},
       # TODO(upstream): duskmoon-dev/duskmoon-bundler#9 - qualify assets on a glibc 2.43+ builder.
-      {:duskmoon_bundler, "~> 10.0.9", runtime: Mix.env() in [:dev, :test]},
-      {:duskmoon_bundler_runtime, "~> 10.0.9"},
+      {:duskmoon_bundler, "~> 10.1.2", runtime: Mix.env() in [:dev, :test]},
+      {:duskmoon_bundler_runtime, "~> 10.1.2"},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -55,11 +55,10 @@ defmodule SamgitaWeb.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:phoenix_duskmoon, "~> 9.12"},
-      {:gaoxy_http, "~> 0.14.1"},
-      {:websock_adapter, "~> 0.14.1", hex: :gaoxy_websock_adapter, override: true},
-      # Retained historical raw-HTTP telemetry evidence; never used by the Endpoint.
-      {:bandit, "~> 1.13", only: :test},
+      {:phoenix_duskmoon, "~> 10.1.0"},
+      # TODO(upstream): gsmlg-dev/gaoxy#22 - adopt the published Abyss/Hell RC cohort refresh.
+      {:gaoxy_http, "~> 0.15.1"},
+      {:websock_adapter, "~> 0.15.1", hex: :gaoxy_websock_adapter, override: true},
       {:telemetry_metrics, "~> 1.2"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 1.0"},

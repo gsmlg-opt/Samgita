@@ -30,7 +30,7 @@ defmodule SamgitaProtocolWebSocket.ClientControlFramesTest do
       ping(peer)
       state = :sys.get_state(client)
       assert state.conn != nil
-      assert state.unread_bytes == 0
+      refute_receive {:samgita_protocol, ^client, {:notification, _}}, 0
     end
   end
 
@@ -43,13 +43,13 @@ defmodule SamgitaProtocolWebSocket.ClientControlFramesTest do
     <<first::binary-size(40), rest::binary>> = text
     send_bytes(peer, frame(1, first, 0))
     ping(peer)
-    assert :sys.get_state(client).unread_bytes == byte_size(first)
+    refute_receive {:samgita_protocol, ^client, {:notification, _}}, 0
     tail = frame(0, rest)
     <<header::binary-size(1), remaining::binary>> = tail
     send_bytes(peer, header)
     send_bytes(peer, remaining)
     assert_receive {:samgita_protocol, ^client, {:notification, %{"method" => "thread/started"}}}
-    assert :sys.get_state(client).unread_bytes == 0
+    assert :sys.get_state(client).conn != nil
   end
 
   test "a text frame cannot erase a following incomplete frame's budget", %{
@@ -57,11 +57,14 @@ defmodule SamgitaProtocolWebSocket.ClientControlFramesTest do
     peer: peer
   } do
     ready(client)
-    partial = frame(1, String.duplicate("x", 1_000))
-    <<partial::binary-size(900), _::binary>> = partial
+    second = frame(1, String.pad_trailing(notification(), 1_000))
+    <<partial::binary-size(900), remaining::binary>> = second
     send_bytes(peer, frame(1, notification()) <> partial)
     assert_receive {:samgita_protocol, ^client, {:notification, _}}
-    assert :sys.get_state(client).unread_bytes == byte_size(partial)
+    refute_receive {:samgita_protocol, ^client, {:notification, _}}, 0
+    send_bytes(peer, remaining)
+    assert_receive {:samgita_protocol, ^client, {:notification, _}}
+    assert :sys.get_state(client).conn != nil
   end
 
   test "control frames fit alongside a fragmented message near its size limit", %{
@@ -72,12 +75,12 @@ defmodule SamgitaProtocolWebSocket.ClientControlFramesTest do
     text = String.pad_trailing(notification(), 1_024)
     <<first::binary-size(1_000), rest::binary>> = text
     send_bytes(peer, frame(1, first, 0))
-    assert eventually(fn -> :sys.get_state(client).unread_bytes == 1_000 end, 100)
+    refute_receive {:samgita_protocol, ^client, {:notification, _}}, 0
     ping(peer)
-    assert :sys.get_state(client).unread_bytes == 1_000
+    assert :sys.get_state(client).conn != nil
     send_bytes(peer, frame(0, rest))
     assert_receive {:samgita_protocol, ^client, {:notification, _}}
-    assert :sys.get_state(client).unread_bytes == 0
+    assert :sys.get_state(client).conn != nil
   end
 
   for opcode <- [9, 10] do
@@ -92,7 +95,7 @@ defmodule SamgitaProtocolWebSocket.ClientControlFramesTest do
     peer: peer
   } do
     send_bytes(peer, frame(1, String.duplicate("x", 1_000), 0))
-    assert eventually(fn -> :sys.get_state(client).unread_bytes == 1_000 end, 100)
+    refute_receive {:samgita_protocol, ^client, {:notification, _}}, 0
     ping(peer)
     send_bytes(peer, frame(0, String.duplicate("x", 30), 0))
     assert_disconnected(client)

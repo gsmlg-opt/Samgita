@@ -16,7 +16,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
       {acc, state}
     else
       receive do
-        message ->
+        message when is_tuple(message) and elem(message, 0) == HTTP.WebSocket ->
           case WebSocket.handle_info(message, state) do
             {:ok, events, next} -> pump(next, count, acc ++ events)
             :unknown -> pump(state, count, acc)
@@ -64,7 +64,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
         Wire.write(socket, Wire.frame(9, "ping") <> Wire.frame(0, "1}"))
         {:ok, 10, "ping", _} = Wire.read_frame(socket)
         Wire.write(socket, Wire.frame(8, <<1000::16, "private-reason">>))
-        {:ok, 8, <<1000::16>>, _} = Wire.read_frame(socket)
+        {:ok, 8, <<1000::16, "private-reason">>, _} = Wire.read_frame(socket)
       end)
 
     {:ok, state} = WebSocket.open(url: url)
@@ -85,20 +85,15 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
         {:ok, 10, "ping", _} = Wire.read_frame(socket)
         send(owner, :received_pong)
         Wire.write(socket, Wire.frame(8, <<1000::16, "private-reason">>))
-        {:ok, 8, <<1000::16>>, _} = Wire.read_frame(socket)
+        {:ok, 8, <<1000::16, "private-reason">>, _} = Wire.read_frame(socket)
         send(owner, :received_close)
       end)
 
     {:ok, state} = WebSocket.open(url: url)
     assert_receive {:upgrade_request, _}
     send(server.pid, :continue)
-    socket = Mint.HTTP.get_socket(state.conn)
-
-    # Select the later socket message while the upgrade wakeup is still queued.
-    assert_receive {:tcp, ^socket, _} = message, 5_000
-
-    assert {:ok, [{:message, ~s({"value":1})}], state} =
-             WebSocket.handle_info(message, state)
+    # Upgrade and later reads are ordered by the public event stream.
+    assert {[{:message, ~s({"value":1})}], state} = pump(state, 1)
 
     assert_receive :received_pong
     assert {[{:closed, %{"close_code" => 1000}}], %{conn: nil}} = pump(state, 1)
@@ -125,21 +120,14 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
     on_exit(fn -> WebSocket.close(state) end)
     assert_receive {:upgrade_request, _}
     send(server.pid, :continue)
-    socket = Mint.HTTP.get_socket(state.conn)
-    assert_receive {:tcp, ^socket, _} = message, 5_000
-
-    assert {:ok, [{:message, "first"}, {:message, "second"}], state} =
-             WebSocket.handle_info(message, state)
-
-    assert_receive wakeup
-                   when is_tuple(wakeup) and elem(wakeup, 0) == :codex_websocket_prebuffer
-
-    assert {:ok, [], ^state} = WebSocket.handle_info(wakeup, state)
+    assert {[{:message, "first"}, {:message, "second"}], state} = pump(state, 2)
+    refute_receive {HTTP.WebSocket, _, %HTTP.WebSocket.Event.Message{}, _}
+    assert :ok = WebSocket.close(state)
   end
 
   test "upgrade bytes retain frame and fragmented message bounds when socket data arrives first" do
     for {initial, later, code} <- [
-          {<<129, 126, 65_000::16>>, Wire.frame(1, "ok"), :frame_too_large},
+          {<<129, 126, 65_000::16>>, Wire.frame(1, "ok"), :message_too_large},
           {Wire.frame(1, "12345678", false), Wire.frame(0, "9"), :message_too_large}
         ] do
       {server, url} =
@@ -160,11 +148,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
       {:ok, state} = WebSocket.open(url: url, max_message_bytes: 8)
       assert_receive {:upgrade_request, _}
       send(server.pid, :continue)
-      socket = Mint.HTTP.get_socket(state.conn)
-      assert_receive {:tcp, ^socket, _} = message, 5_000
-
-      assert {:error, %Error{code: ^code}, %{conn: nil}} =
-               WebSocket.handle_info(message, state)
+      assert {:error, %Error{code: ^code}, %{conn: nil}} = pump(state, 1)
     end
   end
 
@@ -197,6 +181,22 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
       end)
 
     {:ok, state} = WebSocket.open(url: url, max_message_bytes: 16)
+    assert_receive {:upgrade_request, _}
+    assert {:error, %Error{code: :message_too_large}, %{conn: nil}} = pump(state, 1)
+  end
+
+  test "frame limit rejects an advertised frame while the message limit still fits" do
+    {_server, url} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner)
+        Wire.write(socket, <<129, 126, 1_000::16>>)
+
+        receive do
+          :stop -> :ok
+        end
+      end)
+
+    {:ok, state} = WebSocket.open(url: url, max_frame_bytes: 16, max_message_bytes: 2_000)
     assert_receive {:upgrade_request, _}
     assert {:error, %Error{code: :frame_too_large}, %{conn: nil}} = pump(state, 1)
   end
@@ -234,6 +234,102 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
       assert {:error, %Error{code: code}, %{conn: nil}} = pump(state, 1)
       assert code in [:unsupported_binary_frame, :invalid_websocket_frame]
     end
+  end
+
+  test "close confirms owned client cleanup while the borrowed peer stays alive" do
+    {server, url} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner)
+
+        receive do
+          :stop -> :ok
+        end
+      end)
+
+    url = String.replace_suffix(url, "/app-server", "")
+    {:ok, state} = WebSocket.open(url: url)
+    assert_receive {:upgrade_request, request}
+    assert String.starts_with?(request, "GET /app-server HTTP/1.1\r\n")
+    socket = state.conn
+    receipt = HTTP.WebSocket.completion(socket)
+    assert WebSocket.metadata(state)["owned_process"]
+    assert {:ok, state} = WebSocket.send(state, "{}")
+    assert :ok = WebSocket.close(state)
+    assert :ok = HTTP.ClientCompletion.await(receipt, 0)
+    refute Process.alive?(socket.pid)
+    assert Process.alive?(server.pid)
+    assert :ok = WebSocket.close(state)
+  end
+
+  test "owner death closes the client without stopping or reconnecting the borrowed peer" do
+    {server, url} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner)
+
+        receive do
+          :stop -> :ok
+        end
+      end)
+
+    owner = self()
+
+    {client_owner, monitor} =
+      spawn_monitor(fn ->
+        {:ok, state} = WebSocket.open(url: url)
+        send(owner, {:opened, state.conn})
+
+        receive do
+          :finish -> :ok
+        end
+      end)
+
+    assert_receive {:opened, socket}
+    send(client_owner, :finish)
+    assert_receive {:DOWN, ^monitor, :process, ^client_owner, :normal}
+    assert :ok = HTTP.ClientCompletion.await(HTTP.WebSocket.completion(socket), 1_000)
+    refute Process.alive?(socket.pid)
+    assert Process.alive?(server.pid)
+  end
+
+  test "Unix sockets preserve the peer cap and confirm cleanup of the client only" do
+    dir = Path.join(System.tmp_dir!(), "codex-http-ws-#{System.unique_integer([:positive])}")
+    File.mkdir_p!(dir)
+    path = Path.join(dir, "server.sock")
+
+    server =
+      Wire.listen(
+        fn socket, owner ->
+          Wire.upgrade(socket, owner,
+            extra_headers: "x-codex-websocket-max-unfragmented-message-bytes: 8\r\n"
+          )
+
+          {:ok, 1, "{}", _} = Wire.read_frame(socket)
+          Wire.write(socket, Wire.frame(1, "{}"))
+
+          receive do
+            :stop -> :ok
+          end
+        end,
+        listen_opts: [ip: {:local, path}]
+      )
+
+    on_exit(fn ->
+      Wire.stop(server)
+      File.rm_rf!(dir)
+    end)
+
+    assert {:ok, state} = UnixSocket.open(socket_path: path)
+
+    assert {:error, %Error{code: :message_too_large}, ^state} =
+             UnixSocket.send(state, "123456789")
+
+    assert {:ok, state} = UnixSocket.send(state, "{}")
+    assert {[{:message, "{}"}], state} = pump(state, 1)
+    receipt = HTTP.WebSocket.completion(state.conn)
+    assert :ok = UnixSocket.close(state)
+    assert :ok = HTTP.ClientCompletion.await(receipt, 0)
+    assert File.exists?(path)
+    assert Process.alive?(server.pid)
   end
 
   test "401, 403 and 429 remain failures with safe status and retry metadata" do

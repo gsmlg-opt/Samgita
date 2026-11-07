@@ -9,9 +9,6 @@ import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 import topbar from "topbar"
 
-// Register the custom elements used by the Agent Hub.
-import "./custom-elements"
-
 // DuskMoon theme controls for the operator shell.
 import { ThemeSwitcher } from "phoenix_duskmoon/hooks"
 

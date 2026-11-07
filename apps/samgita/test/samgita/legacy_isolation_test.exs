@@ -49,11 +49,10 @@ defmodule Samgita.LegacyIsolationTest do
 
     job =
       Repo.insert!(
-        Ecto.Changeset.change(%Oban.Job{},
+        Styx.Job.new(%{"historical" => "preserve"},
           worker: "Samgita.Workers.BootstrapWorker",
           queue: "agent_tasks",
-          state: "scheduled",
-          args: %{"historical" => "preserve"},
+          priority: 0,
           scheduled_at: DateTime.add(DateTime.utc_now(), 3600)
         )
       )
@@ -71,7 +70,7 @@ defmodule Samgita.LegacyIsolationTest do
     assert {:error, %Error{code: :execution_closed}} =
              Platform.activate(Principal.operator(), attrs)
 
-    assert Repo.get!(Oban.Job, job.id).args == job.args
-    assert Repo.get!(Oban.Job, job.id).state == "scheduled"
+    assert Repo.get!(Styx.Job, job.id).args == job.args
+    assert Repo.get!(Styx.Job, job.id).state == "scheduled"
   end
 end

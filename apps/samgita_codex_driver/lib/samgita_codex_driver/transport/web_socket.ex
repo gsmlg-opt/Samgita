@@ -11,10 +11,13 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
   `:tls_opts` permits trust/client-certificate settings, never verify-none.
   """
   @behaviour SamgitaCodexDriver.Transport
-  alias SamgitaProtocolCodex.Error
-  # TODO(upstream): gsmlg-dev/http_fetch#152 — preserve Mint's pinned dials,
-  # upgrade metadata/peer cap and separate frame/message/read limits until upstream supports them.
+  alias HTTP.WebSocket, as: Socket
+  alias HTTP.WebSocket.Event.{Close, Error, Message, Open}
+  alias SamgitaProtocolCodex.Error, as: DriverError
+
   @limit 8_388_608
+  @cleanup_timeout 1_000
+  @close_timeout 100
   @tls_keys ~w(cacertfile cacerts certfile keyfile password versions depth)a
 
   @impl true
@@ -22,19 +25,11 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
     with {:ok, uri} <- url(opts[:url], opts),
          :ok <- options(opts),
          {:ok, headers} <- headers(opts) do
-      address = Keyword.get(opts, :connect_address, uri.host)
-
-      open_connection(
-        uri,
-        address,
-        uri.port || if(uri.scheme == "wss", do: 443, else: 80),
-        headers,
-        opts,
-        "websocket"
-      )
+      open_connection(uri, headers, opts, "websocket")
     end
   rescue
-    _ -> {:error, Error.new(:invalid_transport_options)}
+    error in DriverError -> {:error, error}
+    _ -> {:error, DriverError.new(:invalid_transport_options)}
   end
 
   @doc false
@@ -49,170 +44,102 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
              not String.contains?(request_path, ["?", "#", "\r", "\n"]) and
              request_path != "/daemon/shutdown" do
       uri = %URI{scheme: "ws", host: "localhost", path: request_path}
-      open_connection(uri, {:local, String.to_charlist(path)}, 0, headers, opts, "unix_websocket")
+
+      open_connection(
+        uri,
+        headers,
+        opts |> Keyword.delete(:connect_address) |> Keyword.put(:unix_socket, path),
+        "unix_websocket"
+      )
     else
-      {:error, %Error{}} = error -> error
-      _ -> {:error, Error.new(:invalid_transport_options)}
+      {:error, %DriverError{}} = error -> error
+      _ -> {:error, DriverError.new(:invalid_transport_options)}
     end
   rescue
-    _ -> {:error, Error.new(:invalid_transport_options)}
+    error in DriverError -> {:error, error}
+    _ -> {:error, DriverError.new(:invalid_transport_options)}
   end
 
-  defp open_connection(uri, address, port, headers, opts, kind) do
+  defp open_connection(uri, headers, opts, kind) do
     timeout = Keyword.get(opts, :connect_timeout_ms, 5_000)
-    transport_opts = transport_options(address, opts, timeout)
-    scheme = if uri.scheme == "wss", do: :https, else: :http
+    message_limit = Keyword.get(opts, :max_message_bytes, @limit)
+    uri = %{uri | path: uri.path || "/app-server"}
 
-    case Mint.HTTP.connect(scheme, address, port,
-           hostname: uri.host,
-           mode: :passive,
-           protocols: [:http1],
-           transport_opts: transport_opts
-         ) do
-      {:ok, conn} ->
-        state = initial_state(conn, opts, kind)
-        upgrade_connection(uri, headers, state, timeout)
-
-      {:error, _} ->
-        {:error, Error.new(:transport_connect_failed)}
-    end
-  end
-
-  defp transport_options(address, opts, timeout) do
-    transport_opts = [
-      timeout: timeout,
-      send_timeout: Keyword.get(opts, :send_timeout_ms, 5_000),
-      send_timeout_close: true
+    socket_options = [
+      owner: self(),
+      headers: headers,
+      http_version: :http1,
+      tls_backend: :ex_ssl,
+      ssl: Keyword.get(opts, :tls_opts, []),
+      connect_address: Keyword.get(opts, :connect_address),
+      unix_socket: Keyword.get(opts, :unix_socket),
+      connect_timeout: timeout,
+      opening_timeout: timeout,
+      write_timeout: Keyword.get(opts, :send_timeout_ms, 5_000),
+      close_timeout: @close_timeout,
+      max_message_size: message_limit,
+      max_frame_bytes: Keyword.get(opts, :max_frame_bytes, message_limit),
+      max_read_bytes: Keyword.get(opts, :max_read_bytes, max(65_536, message_limit + 14)),
+      max_send_queue: message_limit,
+      max_queue_bytes: message_limit + 7,
+      delivery: :ack,
+      telemetry_url: nil
     ]
 
-    transport_opts =
-      if is_tuple(address) and tuple_size(address) == 8,
-        do: transport_opts ++ [inet6: true, inet4: false],
-        else: transport_opts
+    case Socket.new(uri, [], socket_options) do
+      %Socket{} = socket ->
+        state = %{
+          conn: socket,
+          max_message_bytes: message_limit,
+          max_frame_bytes: socket_options[:max_frame_bytes],
+          max_read_bytes: socket_options[:max_read_bytes],
+          send_timeout_ms: socket_options[:write_timeout],
+          kind: kind,
+          peer_max_frame_bytes: nil
+        }
 
-    transport_opts ++ Keyword.get(opts, :tls_opts, [])
-  end
+        await_open(state, timeout)
 
-  defp initial_state(conn, opts, kind) do
-    %{
-      conn: conn,
-      websocket: nil,
-      ref: nil,
-      max_message_bytes: Keyword.get(opts, :max_message_bytes, @limit),
-      max_frame_bytes:
-        Keyword.get(opts, :max_frame_bytes, Keyword.get(opts, :max_message_bytes, @limit)),
-      max_read_bytes:
-        Keyword.get(
-          opts,
-          :max_read_bytes,
-          max(65_536, Keyword.get(opts, :max_message_bytes, @limit) + 14)
-        ),
-      kind: kind,
-      prebuffer_ref: make_ref(),
-      prebuffer: [],
-      peer_max_frame_bytes: nil
-    }
-  end
-
-  defp upgrade_connection(uri, headers, state, timeout) do
-    scheme = if uri.scheme == "wss", do: :wss, else: :ws
-
-    case Mint.WebSocket.upgrade(scheme, state.conn, uri.path || "/app-server", headers) do
-      {:ok, conn, ref} ->
-        handshake(%{state | conn: conn, ref: ref}, now() + timeout, nil, [], [])
-
-      {:error, conn, _} ->
-        Mint.HTTP.close(conn)
-        {:error, Error.new(:websocket_upgrade_failed)}
+      {:error, _} ->
+        {:error, DriverError.new(:transport_connect_failed)}
     end
   end
 
-  defp handshake(state, deadline, status, headers, data) do
-    case Mint.WebSocket.recv(state.conn, 0, max(deadline - now(), 0)) do
-      {:ok, conn, responses} ->
-        status = response_value(responses, :status, state.ref, status)
-        headers = response_value(responses, :headers, state.ref, headers)
+  defp await_open(%{conn: socket} = state, timeout) do
+    receive do
+      {Socket, ^socket, %Open{handshake: handshake}} ->
+        {:ok, %{state | peer_max_frame_bytes: peer_frame_limit(handshake)}}
 
-        incoming = for {:data, ref, bytes} <- responses, ref == state.ref, do: bytes
-        data = data ++ incoming
-        state = %{state | conn: conn}
+      {Socket, ^socket, %Error{handshake: handshake, reason: reason}} ->
+        close(state)
+        upgrade_error(handshake, reason)
 
-        handshake_progress(state, deadline, status, headers, data, responses)
-
-      {:error, conn, _, _} ->
-        Mint.HTTP.close(conn)
-        {:error, Error.new(:websocket_upgrade_failed)}
+      {Socket, ^socket, %Close{}} ->
+        close(state)
+        {:error, DriverError.new(:websocket_upgrade_failed)}
+    after
+      timeout ->
+        close(state)
+        {:error, DriverError.new(:transport_connect_timeout)}
     end
   end
 
-  defp handshake_progress(state, deadline, status, headers, data, responses) do
-    cond do
-      status && status != 101 ->
-        upgrade_error(state, status, headers)
+  defp peer_frame_limit(%{headers: headers}) do
+    case HTTP.Headers.get(headers, "x-codex-websocket-max-unfragmented-message-bytes") do
+      value when is_binary(value) ->
+        case Integer.parse(value) do
+          {number, ""} when number > 0 -> number
+          _ -> nil
+        end
 
-      Enum.reduce(data, 0, &(byte_size(&1) + &2)) > state.max_read_bytes ->
-        Mint.HTTP.close(state.conn)
-        {:error, Error.new(:read_too_large)}
-
-      Enum.member?(responses, {:done, state.ref}) ->
-        finish_handshake(state, status, headers, data)
-
-      now() >= deadline ->
-        Mint.HTTP.close(state.conn)
-        {:error, Error.new(:transport_connect_timeout)}
-
-      true ->
-        handshake(state, deadline, status, headers, data)
+      _ ->
+        nil
     end
   end
 
-  defp response_value(responses, kind, request_ref, default) do
-    Enum.find_value(responses, default, fn
-      {^kind, ^request_ref, value} -> value
-      _ -> nil
-    end)
-  end
+  defp peer_frame_limit(_), do: nil
 
-  defp finish_handshake(state, status, headers, data) do
-    with {:ok, conn, websocket} <- Mint.WebSocket.new(state.conn, state.ref, status, headers),
-         {:ok, conn} <- Mint.HTTP.set_mode(conn, :active) do
-      prebuffer = Enum.reject(data, &(&1 == <<>>))
-
-      if prebuffer != [],
-        do: Kernel.send(self(), {:codex_websocket_prebuffer, state.prebuffer_ref})
-
-      peer_limit = peer_frame_limit(headers)
-
-      {:ok,
-       %{
-         state
-         | conn: conn,
-           websocket: websocket,
-           prebuffer: prebuffer,
-           peer_max_frame_bytes: peer_limit
-       }}
-    else
-      _ -> upgrade_error(state, status, headers)
-    end
-  end
-
-  defp peer_frame_limit(headers) do
-    Enum.find_value(headers, fn
-      {"x-codex-websocket-max-unfragmented-message-bytes", value} -> positive_integer(value)
-      _ -> nil
-    end)
-  end
-
-  defp positive_integer(value) do
-    case Integer.parse(value) do
-      {number, ""} when number > 0 -> number
-      _ -> nil
-    end
-  end
-
-  defp upgrade_error(state, status, headers) do
-    Mint.HTTP.close(state.conn)
-
+  defp upgrade_error(%{status: status, headers: headers}, _reason) do
     code =
       cond do
         status in [401, 403] -> :transport_unauthorized
@@ -220,219 +147,120 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
         true -> :websocket_upgrade_failed
       end
 
-    retry_after =
-      Enum.find_value(headers, fn
-        {"retry-after", value} when byte_size(value) <= 64 ->
-          if Regex.match?(
-               ~r/\A(?:[0-9]+|[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} [0-9:]{8} GMT)\z/,
-               value
-             ),
-             do: value
-
-        _ ->
-          nil
-      end)
-
     details =
-      %{"http_status" => status, "retry_after" => retry_after}
+      %{"http_status" => status, "retry_after" => retry_after(headers)}
       |> Map.reject(fn {_, value} -> is_nil(value) end)
 
-    {:error, Error.new(code, details)}
+    {:error, DriverError.new(code, details)}
+  end
+
+  defp upgrade_error(_, reason) do
+    code =
+      if reason in [:timeout, :opening_timeout],
+        do: :transport_connect_timeout,
+        else: :transport_connect_failed
+
+    {:error, DriverError.new(code)}
+  end
+
+  defp retry_after(headers) do
+    case HTTP.Headers.get(headers, "retry-after") do
+      value when is_binary(value) and byte_size(value) <= 64 ->
+        if Regex.match?(
+             ~r/\A(?:[0-9]+|[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} [0-9:]{8} GMT)\z/,
+             value
+           ),
+           do: value
+
+      _ ->
+        nil
+    end
   end
 
   @impl true
-  def send(%{conn: nil} = state, _), do: {:error, Error.new(:transport_closed), state}
+  def send(%{conn: nil} = state, _), do: {:error, DriverError.new(:transport_closed), state}
 
   def send(state, json) when is_binary(json) do
     limit = min(state.max_message_bytes, state.peer_max_frame_bytes || state.max_message_bytes)
 
-    if byte_size(json) > limit,
-      do: {:error, Error.new(:message_too_large), state},
-      else: send_frame(state, {:text, json})
+    cond do
+      byte_size(json) > limit ->
+        {:error, DriverError.new(:message_too_large), state}
+
+      true ->
+        case Socket.send_ack(state.conn, json) do
+          {:ok, ref} -> await_send(state, ref)
+          {:error, _} -> failure(state, :transport_send_failed)
+        end
+    end
   end
 
-  def send(state, _), do: {:error, Error.new(:invalid_message), state}
+  def send(state, _), do: {:error, DriverError.new(:invalid_message), state}
 
-  defp send_frame(state, frame) do
-    with {:ok, websocket, data} <- Mint.WebSocket.encode(state.websocket, frame),
-         {:ok, conn} <- Mint.WebSocket.stream_request_body(state.conn, state.ref, data) do
-      {:ok, %{state | websocket: websocket, conn: conn}}
-    else
-      _ -> failure(state, :transport_send_failed)
+  defp await_send(%{conn: socket} = state, ref) do
+    receive do
+      {Socket, ^socket, {:send_result, ^ref, :ok}} ->
+        {:ok, state}
+
+      {Socket, ^socket, {:send_result, ^ref, {:error, _}}} ->
+        failure(state, :transport_send_failed)
+    after
+      state.send_timeout_ms -> failure(state, :transport_send_failed)
     end
   end
 
   @impl true
-  def handle_info({:codex_websocket_prebuffer, ref}, %{prebuffer_ref: ref} = state),
-    do: responses(state, [], [])
-
   def handle_info(_, %{conn: nil}), do: :unknown
 
-  def handle_info(message, state) do
-    case Mint.WebSocket.stream(state.conn, message) do
-      :unknown ->
-        :unknown
+  def handle_info({Socket, socket, %Message{data: json}, ref}, %{conn: socket} = state) do
+    :ok = Socket.acknowledge(socket, ref)
 
-      {:ok, conn, responses} ->
-        responses(%{state | conn: conn}, responses, [])
-
-      {:error, conn, _, responses} ->
-        case responses(%{state | conn: conn}, responses, []) do
-          {:ok, events, %{conn: nil} = next} ->
-            {:ok, events, next}
-
-          {:ok, events, next} ->
-            close(next)
-            {:ok, events ++ [{:closed, %{}}], %{next | conn: nil}}
-
-          other ->
-            other
-        end
-    end
+    if is_binary(json),
+      do: {:ok, [{:message, json}], state},
+      else: failure(state, :unsupported_binary_frame)
   end
 
-  # Active socket messages can arrive before the upgrade wakeup. Keep the bytes
-  # in state so every response path consumes them first, exactly once.
-  defp responses(%{prebuffer: [_ | _] = data} = state, responses, acc) do
-    pending = Enum.map(data, &{:data, state.ref, &1})
-    responses(%{state | prebuffer: []}, pending ++ responses, acc)
-  end
-
-  defp responses(state, [], acc), do: {:ok, acc, state}
-
-  defp responses(state, [{:data, ref, bytes} | rest], acc) when ref == state.ref do
-    case decode(state, bytes) do
-      {:ok, events, next} -> responses(next, rest, acc ++ events)
-      other -> other
-    end
-  end
-
-  defp responses(state, [_ | rest], acc), do: responses(state, rest, acc)
-
-  defp decode(%{conn: nil} = state, _), do: {:ok, [], state}
-
-  defp decode(state, data) do
-    buffered = byte_size(state.websocket.buffer)
-
-    if byte_size(data) > state.max_read_bytes or buffered + byte_size(data) > state.max_read_bytes do
-      failure(state, :read_too_large)
-    else
-      case check_frames(state.websocket.buffer <> data, state.max_frame_bytes) do
-        :ok -> decode_frames(state, data)
-        {:error, code} -> failure(state, code)
+  def handle_info({Socket, socket, %Error{reason: reason}}, %{conn: socket} = state) do
+    code =
+      case reason do
+        :frame_too_big -> :frame_too_large
+        :message_too_big -> :message_too_large
+        :read_buffer_too_big -> :read_too_large
+        _ -> :invalid_websocket_frame
       end
-    end
+
+    failure(state, code)
   end
 
-  defp decode_frames(state, data) do
-    case Mint.WebSocket.decode(state.websocket, data) do
-      {:ok, websocket, frames} ->
-        fragment = if websocket.fragment, do: byte_size(elem(websocket.fragment, 3)), else: 0
-
-        cond do
-          fragment > state.max_message_bytes ->
-            failure(state, :message_too_large)
-
-          byte_size(websocket.buffer) > state.max_frame_bytes + 14 ->
-            failure(state, :frame_too_large)
-
-          true ->
-            frames(%{state | websocket: websocket}, frames, [])
-        end
-
-      {:error, _, _} ->
-        failure(state, :invalid_websocket_frame)
-    end
+  def handle_info({Socket, socket, %Close{code: code}}, %{conn: socket} = state) do
+    close(state)
+    {:ok, [{:closed, %{"close_code" => code}}], %{state | conn: nil}}
   end
 
-  # Reject an oversized advertised frame before accumulating its payload. Each
-  # read may contain several complete frames, so count per frame, not per read.
-  defp check_frames(
-         <<final::1, reserved::3, opcode::4, masked::1, length::7, rest::binary>>,
-         limit
-       ) do
-    cond do
-      reserved != 0 or masked != 0 or opcode not in [0, 1, 2, 8, 9, 10] ->
-        {:error, :invalid_websocket_frame}
-
-      opcode >= 8 and (final != 1 or length > 125) ->
-        {:error, :invalid_websocket_frame}
-
-      true ->
-        check_frame_payload(frame_length(length, rest), limit)
-    end
-  end
-
-  defp check_frames(_, _), do: :ok
-
-  defp check_frame_payload({:ok, bytes, payload}, limit) when bytes <= limit do
-    if byte_size(payload) >= bytes do
-      <<_::binary-size(bytes), tail::binary>> = payload
-      check_frames(tail, limit)
-    else
-      :ok
-    end
-  end
-
-  defp check_frame_payload({:ok, _, _}, _), do: {:error, :frame_too_large}
-  defp check_frame_payload(:partial, _), do: :ok
-  defp frame_length(126, <<length::16, rest::binary>>), do: {:ok, length, rest}
-  defp frame_length(127, <<length::64, rest::binary>>), do: {:ok, length, rest}
-  defp frame_length(length, rest) when length < 126, do: {:ok, length, rest}
-  defp frame_length(_, _), do: :partial
-
-  defp frames(state, [], acc), do: {:ok, Enum.reverse(acc), state}
-
-  defp frames(state, [{:text, json} | rest], acc) do
-    if byte_size(json) <= state.max_message_bytes,
-      do: frames(state, rest, [{:message, json} | acc]),
-      else: failure(state, :message_too_large)
-  end
-
-  defp frames(state, [{:ping, payload} | rest], acc) do
-    case send_frame(state, {:pong, payload}) do
-      {:ok, state} -> frames(state, rest, acc)
-      other -> other
-    end
-  end
-
-  defp frames(state, [{:pong, _} | rest], acc), do: frames(state, rest, acc)
-
-  defp frames(state, [{:close, code, _reason} | _], acc) do
-    _ = send_frame(state, {:close, code, ""})
-    close(%{state | websocket: nil})
-    {:ok, Enum.reverse([{:closed, %{"close_code" => code}} | acc]), %{state | conn: nil}}
-  end
-
-  defp frames(state, [{:binary, _} | _], _), do: failure(state, :unsupported_binary_frame)
-  defp frames(state, [_ | _], _), do: failure(state, :invalid_websocket_frame)
+  def handle_info(_, _state), do: :unknown
 
   defp failure(state, code) do
     close(state)
-    {:error, Error.new(code), %{state | conn: nil}}
+    {:error, DriverError.new(code), %{state | conn: nil}}
   end
 
   @impl true
   def close(%{conn: nil}), do: :ok
 
-  def close(state) do
-    if state.websocket do
-      with {:ok, _, data} <- Mint.WebSocket.encode(state.websocket, {:close, 1000, ""}) do
-        Mint.WebSocket.stream_request_body(state.conn, state.ref, data)
-      end
-    end
+  def close(%{conn: socket}) do
+    _ = Socket.close(socket, 1000, "")
 
-    Mint.HTTP.close(state.conn)
-    :ok
-  rescue
-    _ -> :ok
+    case HTTP.ClientCompletion.await(Socket.completion(socket), @cleanup_timeout) do
+      :ok -> :ok
+      _ -> raise DriverError.new(:owned_process_shutdown_unconfirmed)
+    end
   end
 
   @impl true
   def metadata(state),
     do: %{
       "transport" => state.kind,
-      "owned_process" => false,
+      "owned_process" => true,
       "max_message_bytes" => state.max_message_bytes,
       "max_frame_bytes" => state.max_frame_bytes,
       "max_read_bytes" => state.max_read_bytes,
@@ -447,10 +275,10 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
 
     if valid and secure_destination?(uri, address, opts),
       do: {:ok, uri},
-      else: {:error, Error.new(:invalid_transport_options)}
+      else: {:error, DriverError.new(:invalid_transport_options)}
   end
 
-  defp url(_, _), do: {:error, Error.new(:invalid_transport_options)}
+  defp url(_, _), do: {:error, DriverError.new(:invalid_transport_options)}
 
   defp valid_uri?(uri),
     do:
@@ -492,7 +320,7 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
        end) and
          Keyword.keyword?(tls) and Enum.all?(Keyword.keys(tls), &(&1 in @tls_keys)),
        do: :ok,
-       else: {:error, Error.new(:invalid_transport_options)}
+       else: {:error, DriverError.new(:invalid_transport_options)}
   end
 
   defp headers(opts) do
@@ -505,7 +333,7 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
       {:ok,
        if(is_binary(token), do: [{"authorization", "Bearer " <> token} | headers], else: headers)}
     else
-      {:error, Error.new(:invalid_transport_options)}
+      {:error, DriverError.new(:invalid_transport_options)}
     end
   end
 
@@ -531,6 +359,4 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
     do:
       is_binary(token) and
         Enum.any?(headers, fn {name, _} -> String.downcase(name) == "authorization" end)
-
-  defp now, do: System.monotonic_time(:millisecond)
 end

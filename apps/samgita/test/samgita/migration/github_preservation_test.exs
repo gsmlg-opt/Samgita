@@ -52,7 +52,7 @@ defmodule Samgita.Migration.GitHubPreservationTest do
 
     before = manifest()
     versions = query("SELECT version FROM schema_migrations ORDER BY version").rows
-    assert query("SELECT count(*) FROM oban_jobs").rows == [[0]]
+    assert query("SELECT to_regclass('public.styx_jobs')").rows == [[nil]]
     assert Ecto.Migrator.run(MigrationRepo, modules, :up, to: @github, log: false) == [@github]
     assert manifest() == before
 
@@ -109,7 +109,7 @@ defmodule Samgita.Migration.GitHubPreservationTest do
   end
 
   defp assert_no_side_effects do
-    assert query("SELECT count(*) FROM oban_jobs").rows == [[0]]
+    assert query("SELECT to_regclass('public.styx_jobs')").rows == [[nil]]
     for table <- @github_tables, do: assert(query("SELECT count(*) FROM " <> table).rows == [[0]])
     assert query("SELECT count(*) FROM task_attempts").rows == [[0]]
     assert query("SELECT owner,admission_open FROM platform_authority").rows == [["none", false]]

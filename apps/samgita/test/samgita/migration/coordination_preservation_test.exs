@@ -79,7 +79,7 @@ defmodule Samgita.Migration.CoordinationPreservationTest do
              [[uuid(delivery), uuid(event), uuid(subscription), "legacy_unreviewed", nil]]
 
     assert query("SELECT correlation_id FROM domain_events").rows == [[uuid(command)]]
-    assert query("SELECT count(*) FROM oban_jobs").rows == [[0]]
+    assert query("SELECT count(*) FROM styx_jobs").rows == [[0]]
     Ecto.Migrator.run(MigrationRepo, modules, :up, all: true, log: false)
     assert query("SELECT count(*) FROM event_deliveries").rows == [[1]]
 

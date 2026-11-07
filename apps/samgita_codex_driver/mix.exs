@@ -20,7 +20,7 @@ defmodule SamgitaCodexDriver.MixProject do
       elixirc_paths: if(Mix.env() == :test, do: ["lib", "test/support"], else: ["lib"]),
       deps: [
         {:samgita_protocol_codex, "~> 0.2.0", path: "../samgita_protocol_codex"},
-        {:mint_web_socket, "~> 1.0"}
+        {:http_web_socket, "~> 1.0.0-rc.5"}
       ]
     ]
   end

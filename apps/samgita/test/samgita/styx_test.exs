@@ -35,14 +35,12 @@ defmodule Samgita.StyxTest do
     assert other.id != first.id
   end
 
-  test "new jobs never rewrite or consume historical Oban jobs" do
-    legacy =
-      %Oban.Job{}
-      |> change(
+  test "schedule wakeups leave quarantined jobs unchanged" do
+    quarantined =
+      Styx.Job.new(%{"historical" => "retain"},
         worker: "Samgita.Workers.BootstrapWorker",
         queue: "agent_tasks",
-        state: "scheduled",
-        args: %{"historical" => "retain"},
+        priority: 0,
         scheduled_at: DateTime.add(DateTime.utc_now(), 3600)
       )
       |> Repo.insert!()
@@ -50,8 +48,19 @@ defmodule Samgita.StyxTest do
 
     assert {:ok, current} = Styx.insert(ScheduleTickWorker.new(%{}))
     assert Repo.get!(Styx.Job, current.id).queue == "hub_schedules"
-    assert Repo.get!(Oban.Job, legacy.id) == legacy
-    refute Process.whereis(Oban)
+    assert Repo.get!(Styx.Job, quarantined.id) == quarantined
+
+    jobs = Samgita.Platform.legacy_jobs()
+
+    assert %{
+             "id" => quarantined.id,
+             "worker" => quarantined.worker,
+             "queue" => quarantined.queue,
+             "state" => quarantined.state,
+             "store" => "styx_jobs"
+           } in jobs
+
+    refute Enum.any?(jobs, &(&1["id"] == current.id))
   end
 
   test "only the four existing queues and three periodic scanners are configured" do

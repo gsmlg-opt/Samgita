@@ -37,11 +37,6 @@
       "active": true
     },
     {
-      "source": "apps/samgita/priv/repo/migrations/20260129100006_setup_oban.exs",
-      "sha256": "2226514a2eb685b4fa1f4cd0a74e43257f70401e4e20a732d42817383dc6354a",
-      "active": true
-    },
-    {
       "source": "apps/samgita/priv/repo/migrations/20260129100007_create_webhooks.exs",
       "sha256": "c23c18cd15ea2da0e792a2f7b57dc9d2305543c8b59ba1805f10e9b5ac5614df",
       "active": true

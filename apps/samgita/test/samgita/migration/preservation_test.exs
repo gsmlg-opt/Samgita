@@ -16,7 +16,7 @@ defmodule Samgita.Migration.PreservationTest do
       |> Jason.decode!()
 
     assert manifest["source_revision"] == "2bc3765ac94e1faea50f061b6938c0ef51e6f92b"
-    assert length(manifest["files"]) == 21
+    assert length(manifest["files"]) == 20
 
     for file <- manifest["files"] do
       path =

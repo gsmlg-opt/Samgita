@@ -18,9 +18,18 @@ owned cleanup. Scripted fault tests cover uncertainty separately. These scoped
 checks do not establish the remaining full-compatibility or platform gates.
 
 The package depends on the reusable `samgita_protocol_codex` schema/wire package
-and Mint WebSocket transport. It has no Repo, project schema, orchestration,
+and `http_web_socket` 1.0.0-rc.5 transport. It has no Repo, project schema, orchestration,
 Phoenix or application configuration inheritance. Loading it starts no listener,
 provider or Codex process; the consumer explicitly starts a Session.
+
+WebSocket and Unix WebSocket clients own their HTTP client process while the
+remote server remains borrowed. Writes await local send acknowledgements; close
+awaits a durable cleanup receipt and reports `owned_process_shutdown_unconfirmed`
+if completion is uncertain. The default request path remains `/app-server`.
+Standard Close handshakes echo the peer code and reason; returned metadata omits
+the reason. When a frame exceeds both frame and message limits, the RC transport
+reports the message limit first. Selected functional checks pass; pin/TLS/auth
+runtime qualification remains unrun under the current verification restriction.
 
 ```elixir
 alias SamgitaCodexDriver.Session
