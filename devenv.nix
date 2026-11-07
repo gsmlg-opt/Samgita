@@ -41,7 +41,7 @@ in {
   };
 
   processes.samgita = {
-    exec = "mix phx.server";
+    exec = "mix samgita.run";
     process-compose = {
       depends_on.postgres.condition = "process_healthy";
     };
@@ -62,6 +62,7 @@ in {
     echo ""
     echo "Commands:"
     echo "  devenv up   — start PostgreSQL + Phoenix server"
+    echo "  mix samgita.run — start Phoenix server (port 3110)"
     echo "  setup       — first-time DB setup (mix ecto.setup)"
     echo "  mix test    — run tests"
   '';

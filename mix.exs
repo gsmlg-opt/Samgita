@@ -31,6 +31,7 @@ defmodule Samgita.Umbrella.MixProject do
 
   defp aliases do
     [
+      "samgita.run": ["phx.server"],
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": [
         "ecto.create",

@@ -66,9 +66,11 @@ devenv shell --no-tui -- mix ecto.create
 devenv shell --no-tui -- mix ecto.migrate
 devenv shell --no-tui -- mix assets.setup
 devenv shell --no-tui -- mix assets.build
-devenv shell --no-tui -- mix phx.server
+devenv shell --no-tui -- mix samgita.run
 ```
 
+Run `mix samgita.run` from the repository root when the required environment is
+already available. This entry point delegates to Phoenix's `phx.server`.
 The default development database is `samgita_hub_dev`; HTTP listens on port
 3110. Inspect database and runtime configuration before running migrations.
 Existing/shared databases require the separate preservation and cutover gates.
