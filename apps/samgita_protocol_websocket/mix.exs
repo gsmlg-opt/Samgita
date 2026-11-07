@@ -23,7 +23,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
         {:gaoxy_http, "~> 0.15.1"},
         {:plug, "~> 1.19"},
         {:plug_crypto, "~> 2.2.1"},
-        {:websock_adapter, "~> 0.15.1", hex: :gaoxy_websock_adapter, override: true},
+        {:websock_adapter, "~> 0.15.1", hex: :gaoxy_websock_adapter},
         {:http_web_socket, "~> 1.0.0-rc.5"},
         # Independent raw/malformed-frame oracle for the retained protocol tests.
         {:mint_web_socket, "~> 1.0", only: :test}
