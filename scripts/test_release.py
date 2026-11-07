@@ -20,6 +20,7 @@ class ReleaseTest(unittest.TestCase):
         self.current = release.VERSION.search((self.root / "mix.exs").read_text()).group(2)
         asset_manifest = Path("apps/samgita_web/package.json")
         shutil.copy2(release.ROOT / asset_manifest, self.root / asset_manifest)
+        shutil.copy2(release.ROOT / "package-lock.json", self.root / "package-lock.json")
         for name, files in release.PACKAGE_FILES.items():
             for item in files:
                 source = release.ROOT / "apps" / name / item
@@ -73,6 +74,25 @@ class ReleaseTest(unittest.TestCase):
         before = json.loads(path.read_text())
         release.prepare(self.root, self.next_version, self.output)
         self.assertEqual(json.loads(path.read_text()), {**before, "version": self.next_version})
+
+    def test_asset_lockfile_workspace_version_matches_release_without_changing_dependencies(self):
+        path = self.root / "package-lock.json"
+        expected = json.loads(path.read_text())
+        expected["packages"]["apps/samgita_web"]["version"] = self.next_version
+        release.prepare(self.root, self.next_version, self.output)
+        self.assertEqual(json.loads(path.read_text()), expected)
+
+    def test_inconsistent_asset_lock_version_does_not_partially_update_manifests(self):
+        path = self.root / "package-lock.json"
+        metadata = json.loads(path.read_text())
+        metadata["packages"]["apps/samgita_web"]["version"] = "999.0.0"
+        path.write_text(json.dumps(metadata, indent=2) + "\n")
+        paths = (*release.manifests(self.root), Path("apps/samgita_web/package.json"), Path("package-lock.json"))
+        before = {path: (self.root / path).read_bytes() for path in paths}
+        with self.assertRaisesRegex(ValueError, "unexpected asset lock version"):
+            release.prepare(self.root, self.next_version, self.output)
+        self.assertEqual(before, {path: (self.root / path).read_bytes() for path in paths})
+        self.assertFalse(self.output.exists())
 
     def test_new_top_level_app_is_included_without_changing_nested_consumers(self):
         app = self.root / "apps/samgita_extra"

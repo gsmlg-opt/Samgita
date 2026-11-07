@@ -60,6 +60,8 @@ def version_changes(root, version):
         if versions != [canonical] * expected_count:
             raise ValueError(f"unexpected version declarations in {path}: {versions}")
         updated[path] = VERSION.sub(lambda m: m.group(1) + version + m.group(3), source)
+    lock_path = Path("package-lock.json")
+    lock_metadata = json.loads((root / lock_path).read_text())
     for manifest in manifests(root)[1:]:
         path = manifest.with_name("package.json")
         if not (root / path).exists():
@@ -69,8 +71,14 @@ def version_changes(root, version):
             continue
         if metadata["version"] != canonical:
             raise ValueError(f"unexpected asset version in {path}: {metadata['version']}")
+        location = path.parent.as_posix()
+        locked = lock_metadata.get("packages", {}).get(location, {})
+        if locked.get("version") != canonical:
+            raise ValueError(f"unexpected asset lock version in {location}: {locked.get('version')}")
+        locked["version"] = version
         metadata["version"] = version
         updated[path] = json.dumps(metadata, indent=2) + "\n"
+    updated[lock_path] = json.dumps(lock_metadata, indent=2) + "\n"
     for name, dependency in SIBLINGS.items():
         path = Path("apps") / name / "mix.exs"
         old = f'{{:{dependency}, "~> {canonical}", path: "../{dependency}"}}'
