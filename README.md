@@ -9,9 +9,9 @@ implementation label does not change its authorization rules.
 The [approved redesign](docs/redesign/design.md),
 [implementation plan](docs/redesign/implementation-plan.md) and
 [acceptance ledger](docs/redesign/acceptance.md) define the requirements and
-delivery boundaries. The older PRD, plan, rebuild design and removal inventory
-are historical proposals; their clean-start and deletion checklists do not
-authorize deleting data or migrations.
+delivery boundaries. The superseded clean-start PRD, plan, rebuild design and
+removal inventory were removed from `docs/` and remain only in Git history; their
+deletion checklists never authorized deleting data or migrations.
 
 ## Current implementation
 

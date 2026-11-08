@@ -1,109 +1,115 @@
 # Repository Guidelines
 
-## Approved Product Direction
+## Product
 
-Samgita is becoming an agent-neutral, single-tenant project and task management platform. It registers Agents and Projects, connects repositories and GitHub, validates authoritative task state, and emits scheduled and external events. Registered Agents own reasoning, planning, delegation, and execution. Synapsis, Sigma, and Codex have the same registration and authorization rules.
+Samgita is an agent-neutral, single-tenant project and task management platform. It registers Agents and Projects, connects repositories and GitHub, validates authoritative Task/Attempt state, and emits scheduled and external events. Registered Agents own reasoning, planning, delegation and execution. Synapsis, Sigma and Codex follow the same registration and authorization rules; an implementation label grants nothing.
 
-The authoritative requirements are:
+Samgita does not run LLMs, embedded providers, local workers, PRD orchestration or a central reasoning loop. Do not infer compatibility requirements from removed legacy code.
 
-- `docs/redesign/design.md`: domain ownership, protocol boundaries, subsystem inventory, migration mapping, and security contracts.
-- `docs/redesign/implementation-plan.md`: bounded stages, file ownership, rollback, blockers, and verification gates.
+## Documentation Map
+
+Authoritative:
+
+- `docs/redesign/design.md`: domain ownership, protocol boundaries, subsystem inventory, migration mapping and security contracts.
+- `docs/redesign/implementation-plan.md`: bounded stages, file ownership, rollback, blockers and verification gates.
 - `docs/redesign/acceptance.md`: review checklist and executable acceptance scenarios.
+- `docs/redesign/dependency-modernization.md`: approved infrastructure amendment (see below).
+- `docs/architecture.md`: the current implementation.
 
-The approved infrastructure amendment is `docs/redesign/dependency-modernization.md`:
-DuskmoonBundler replaces Bun/Tailwind CLI, Gaoxy replaces Bandit,
-Styx replaces Oban; http_fetch and http_web_socket replace production
-Mint HTTP/WebSocket clients using the published 1.0.0-rc.5 APIs. Mint remains
-test-only for the independent raw-wire oracle. Functional verification does not
-qualify the unrun pin/TLS/authentication/security checks. Gaoxy's pinned
-Abyss/Hell RC refresh is tracked by gsmlg-dev/gaoxy#22; do not override it.
-The 2026-11-08 user clarification requires complete Oban/Bandit removal from
-production, test and release dependencies. Do not retain migration shims,
-test-only dependencies or the old Bandit raw-HTTP telemetry test. Remove the
-two Oban migration sources rather than retaining their runtime dependency;
-their original source and evidence remain in Git and historical phase records.
-Platform job admission/status reads Styx only. Existing database rows are not
-deleted, migrated or replayed by this source removal; deployment inventory and
-old-writer exclusion remain separate cutover obligations. Historical phase
-records do not establish qualification of the replacement libraries. A11
-remains unverified; removing the old test does not establish telemetry safety.
+Reference and phase records: `docs/redesign/{management-api,capability-matrix,migration-rollback}.md`, phase records (`protocol-phase-2`, `domain-phase-3`, `coordination-phase-4`, `github-phase-4`, `qualification`), and Agent setup guides in `docs/redesign/integrations/`. Phase records describe their recorded revision; later amendments take precedence.
 
-These documents supersede conflicting clean-start, deletion, unique-`git_url`, fixed-lifecycle, and centralized-transport requirements in `docs/prd.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those files remain historical proposals; do not execute their removal checklists. `docs/architecture.md` describes the current implementation and links to its historical version.
+Codex client/driver work lives in `docs/codex-app-server/`: `goal.md`, `design.md`, `implementation-plan.md`, `ordinary-functional-delivery.md`, `platform-integration.md`, per-topic qualification records, and `compatibility-manifest.json` (consumed by `scripts/codex/`).
 
-P5 management UI, local redesign qualification and the subsequent scoped reliability repair are recorded in `docs/redesign/qualification.md`. This repair includes fake-Agent journeys, isolated consumers, restart/rollback, populated-database repeats and required aggregate release checks. Commit and push the scoped result. Raw LiveView telemetry exposes secret parameters; real HTTP evidence also shows credential-bearing Bandit metadata before application Plugs. A11 remains blocked even when build checks pass; see `docs/codex-app-server/repair-qualification.md`. Moving a form into a controller or early Plug cannot close that boundary. Release only if applicable gates pass and an existing normal publication workflow succeeds; do not tag a failing build. See the phase records for the existing domain, coordination and read/event-only GitHub contracts. Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services, migrate production, delete historical data or deploy. Existing records and references must be preserved. Retiring legacy execution behavior does not authorize deleting its data or migration history.
+The former clean-start PRD, plan, rebuild design and removal inventory were removed; they survive only in Git history and never authorized deleting data or migrations.
 
-Merged baseline: `d6e9eca` combines redesign documentation `3a344f5` with the separately authorized clean-start source refactor `811eeb9`. That refactor removed legacy source and migration files, leaving a two-app foundation. This merge is not evidence of a database migration, historical-data deletion, or history continuity. P3 restored main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, accounted for memory migration sources in fixtures, and added the neutral domain. The two Oban migration sources are subsequently removed under the explicit 2026-11-08 amendment. Restore no legacy runtime. P3 clears B0 for its local fixture scope; actual deployment inventory, legacy-writer exclusion and full memory/backup rehearsal remain cutover gates. Do not apply the historical P1 callsite list to absent modules.
+## Infrastructure
 
-The ordinary Codex client/driver milestone is recorded in `docs/codex-app-server/ordinary-functional-delivery.md`, explicitly amended by the user's `prompt.md` on 2026-10-30. Do not resume rare-branch producer searches without a new concrete prerequisite. The original complete compatibility goal and plan (`samgita-codex-full-compatibility-goal.txt` and `samgita-codex-full-compatibility-plan.txt`) are preserved in Git history through `933cbca`. Deleting these planning files does not close or cancel the separate incomplete target against immutable Codex `rust-v0.163.0`; retain its entire native surface, inventory, strict full compatibility gate, blockers and A11. Ordinary delivery does not establish full compatibility or platform readiness. Use the existing branch; do not create branches/worktrees. Commit and push scoped units with prohibited automatic CI suppressed. Only explicitly owned disposable Codex processes and isolated synthetic fixtures are authorized; no paid or production tasks or deployment. Preserve the neutral platform and reliability contracts, unavailable external/platform profiles and A11.
+Per `docs/redesign/dependency-modernization.md`: DuskmoonBundler replaces Bun/Tailwind CLI, Gaoxy replaces Bandit, Styx replaces Oban, and http_fetch/http_web_socket (published 1.0.0-rc.5 APIs) replace production Mint HTTP/WebSocket clients. Mint remains test-only as the independent raw-wire oracle.
 
-The user authorized experimental publication on 2026-10-30: every version below 1.0 is a test release. The manual Release workflow may publish the four reusable Hex packages, application archive and `ghcr.io/gsmlg-dev/samgita` images after its reviewed release-helper functional checks, outside-consumer compilation and all builds pass. All first-party app and artifact versions must match. GitHub marks 0.x releases as prereleases; Hex uses the numeric 0.x version with experimental status documented in package READMEs. This policy permits pre-1.0 publication while retaining the recorded full compatibility, A11 and aggregate-check failures as incomplete and disclosing them in release notes. Stable versions at 1.0 or above retain successful CI/Tests/Codex conformance, strict inventory and platform release-blocker gates. The earlier stable-release-only condition does not block the explicitly authorized pre-1.0 publication. Do not run prohibited security/permission tests or mixed broad suites for either channel, and do not deploy.
+The 2026-11-08 clarification removes Oban and Bandit completely from production, test and release dependencies, with no migration shims or test-only retention. The two Oban migration sources are removed; their source and evidence stay in Git history. Platform job admission/status reads Styx only. Existing database rows (including `oban_jobs`) are not deleted, migrated or replayed; deployment inventory and old-writer exclusion remain separate cutover obligations. Gaoxy's pinned Abyss/Hell RC refresh is tracked by gsmlg-dev/gaoxy#22; do not override it.
 
-Current verification restriction from the user: do not run any security or permission-related tests. This includes credential/authentication/authorization/approval tests, audits and broad suites or automatic hosted workflows that execute them. Run only reviewed functional checks; preserve existing tests and required gates, record prohibited checks as unrun/incomplete, and suppress automatic CI when pushing under this restriction. It does not authorize weakening access controls or claiming blocked acceptance complete.
+Functional verification does not qualify the unrun pin/TLS/authentication/security checks. Historical phase records do not qualify the replacement libraries.
 
-The reproducible reviewed selection is `python3 -B scripts/codex/check_ordinary.py --list`; execute with `--output <new-evidence-directory>` in the verified Elixir/OTP environment. Its source fingerprint, named tests and expected case counts require review before modification. See `docs/codex-app-server/mcp-status-detail-qualification.md`. This subset does not replace the full compatibility or release matrix.
+## Umbrella Layout
 
-Ordinary owned Codex functional qualification launches default to fixed yolo configuration: `approval_policy="never"` and `sandbox_mode="danger-full-access"`. Keep permission behavior outside these checks; the verification restriction above still applies.
-
-## Target Umbrella
-
-- `apps/samgita_protocol`: independently reusable protocol core, versioned schemas, capability negotiation, correlation, client dispatch, handler contracts and bounded replay. No platform/Repo/Phoenix/Backplane dependency, configuration inheritance or automatic listener/runtime startup.
+- `apps/samgita_protocol`: independently reusable protocol core, versioned schemas, capability negotiation, correlation, client dispatch, handler contracts and bounded replay. No platform/Repo/Phoenix dependency, configuration inheritance or automatic listener/runtime startup.
 - `apps/samgita_protocol_websocket`: optional standalone authenticated WebSocket transport and explicitly started in-memory fake Agent at `/app-server`.
-- `apps/samgita_protocol_codex`: independently reusable pinned Codex native wire/schema layer plus the existing neutral convenience adapter. Full behavior qualification is tracked separately; source/schema conformance does not establish full compatibility.
-- `apps/samgita_codex_driver`: independently reusable, explicitly started Codex sessions and transports under implementation. No Repo, Phoenix, platform configuration, automatic execution or listener dependency. Borrowed service resources remain owned by their service.
+- `apps/samgita_protocol_codex`: pinned Codex `rust-v0.163.0` native wire/schema layer plus the neutral convenience adapter. Source/schema conformance does not establish full compatibility.
+- `apps/samgita_codex_driver`: explicitly started Codex sessions and transports. No Repo, Phoenix, platform configuration, automatic execution or listener dependency. Borrowed service resources remain owned by their service.
 - `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Styx. No Oban dependency, compatibility module or historical-job reader.
-- `apps/samgita_web`: existing Phoenix endpoint, REST API, protocol host adapter, GitHub ingress, and DuskMoon LiveView operator UI.
+- `apps/samgita_web`: Phoenix endpoint, REST API, protocol host adapter, GitHub ingress and DuskMoon LiveView operator UI.
 
-Dependency direction is web -> core -> protocol, with optional web -> transport integration. Core must never depend on web. The protocol and driver projects intentionally omit umbrella build/dependency/config inheritance; run their commands from their own directories. The root's explicit two-app list remains unchanged; core consumes the protocol as a path dependency. Protocol consumers can build outside this repository without starting Samgita. Actual Sigma/Synapsis endpoints remain in their existing services; do not create another Sigma server process or require all traffic to pass through Samgita.
+Dependency direction is web -> core -> protocol, with optional web -> transport integration. Core never depends on web. The root umbrella lists only `samgita` and `samgita_web`; core consumes the protocol as a path dependency. The protocol and driver projects omit umbrella build/dependency/config inheritance; run their commands from their own directories. Protocol consumers can build outside this repository without starting Samgita. Actual Sigma/Synapsis endpoints remain in their existing services; do not create another Sigma server process or require all traffic to pass through Samgita.
 
-The redesign inventory describes the historical baseline. Its runtime stays absent; its main migration restoration excludes the two Oban files removed by the 2026-11-08 amendment. P4 enables only `hub_events`, `hub_schedules`, `hub_maintenance` and `hub_github`, with schedule/coordination/GitHub-read Cron wakeups. Legacy workers/queues remain excluded; old hooks enter a disabled quarantine queue and enqueue failures propagate. P3 intents without P4 approval remain inert. Where a deployment still runs legacy code, fence and drain its producers and external effects before cutover. Preserve historical PRDs, runs, messages, artifacts, snapshots, memory records and references; do not copy dead runtime source into archives.
+Enabled Styx queues are exactly `hub_events`, `hub_schedules`, `hub_maintenance` and `hub_github`, with schedule/coordination/GitHub-read Cron wakeups. Legacy workers/queues stay excluded; old hooks enter a disabled quarantine queue and enqueue failures propagate. Where a deployment still runs legacy code, fence and drain its producers and external effects before cutover. Preserve historical PRDs, runs, messages, artifacts, snapshots, memory records and references; do not copy dead runtime source into archives.
 
 ## Architecture Rules
 
 - PostgreSQL is authoritative for durable state. Channels and PubSub cannot confer work ownership.
 - A Task is logical work; an Attempt is one execution. Keep their states separate.
-- Attempt success submits a Task to `awaiting_review`; explicit review and acceptance decisions produce `accepted`. Reports, artifacts and capabilities cannot confer acceptance.
+- Attempt success submits a Task to `awaiting_review`; explicit review and acceptance decisions produce `accepted`. Reports, artifacts and capabilities cannot confer acceptance. Unresolved effects leave the Task `blocked` with an execution hold.
 - Stable Agent identity, authenticated connection generation and external execution session are separate records. Roles belong to Project membership; capabilities never grant authorization.
 - Samgita enforces ownership and legal management transitions; it does not prescribe development phases, choose an Agent's reasoning loop, or automatically decompose PRDs.
-- Use pure functions for transitions, capability matching, and retry calculations. Create processes only for a runtime need.
+- Use pure functions for transitions, capability matching and retry calculations. Create processes only for a runtime need.
 - Claims serialize Agent capacity and lock eligible Tasks. Use leases and monotonic fencing tokens, with database uniqueness for active Attempts.
 - Follow the authority fence and global lock order in `docs/redesign/design.md` for all competing commands. Legacy and new execution must never be active simultaneously.
-- Commit aggregate changes, audit events, and protocol receipts atomically. Broadcast only after commit.
+- Commit aggregate changes, audit events and protocol receipts atomically. Broadcast only after commit.
 - Delivery is at least once. Lost ACKs/handler leases require stable-operation status reconciliation; no reconnect/timeout may launch execution. Explicit recovery keeps event identity/time and records duplicate-effect risk. Transport receipt, durable notification acceptance, processing completion and Task acceptance are separate.
-- Use Styx for durable scheduling, delivery, and expiry maintenance; PubSub is best-effort notification. The 2026-11-08 amendment removes Oban migration sources and dependencies without touching existing database tables or replaying jobs. A scheduled or external event does not itself authorize execution or a Task transition.
+- Use Styx for durable scheduling, delivery and expiry maintenance; PubSub is best-effort notification. A scheduled or external event does not itself authorize execution or a Task transition.
 - Keep core commands out of Channel/controller callbacks. Transport delegates to contexts.
-- Keep existing Project UUIDs canonical and unchanged. Repository identity and URL aliases belong to separate repository associations; `git_url` is preserved legacy provenance, not the new Project identity.
-- Use additive migrations and resumable, audited mappings. The expressly authorized removal of the two Oban migration sources is the only exception to retaining initial migration sources. Do not rekey Projects, merge Projects by URL, or silently replay legacy work.
-- Future integration gates require an operator journey, a real-WebSocket fake Agent, protocol-package isolation, and migration/rollback rehearsals. No external LLM is needed for those checks.
+- Keep existing Project UUIDs canonical and unchanged. Repository identity and URL aliases belong to separate repository associations; `git_url` is preserved legacy provenance, not Project identity.
+- Use additive migrations and resumable, audited mappings. Removing the two Oban migration sources is the only exception to retaining initial migration sources. Do not rekey Projects, merge Projects by URL, or silently replay legacy work.
+- Integration gates require an operator journey, a real-WebSocket fake Agent, protocol-package isolation, and migration/rollback rehearsals. No external LLM is needed for those checks.
 
 ## Security and Scope
 
-The deployment is single-tenant. Do not add browser accounts, authentication, organizations, or RBAC. Browser access is protected by infrastructure; retain REST API key protection and rate limits. Agent transport always requires machine credentials.
+The deployment is single-tenant. Do not add browser accounts, authentication, organizations or RBAC. Browser access is protected by infrastructure; retain REST API key protection and rate limits. Agent transport always requires machine credentials.
 
-Never persist or log plaintext Agent credentials or lease proofs. P3 accepts operator-supplied credentials and returns only metadata, with `no-store`; there is no plaintext credential response. P4 outbound service credentials are external runtime references, separate from inbound machine credentials. Approve exact Agent URLs and pinned destination addresses; use WSS remotely. Credential reference names must be immutable/versioned; rotation requires a new reference and reviewed routing/replay. Proof retrieval is explicit, owner-authorized and non-cacheable; proofs never enter receipts/events. Runtime lease keys are external to the database. Protocol/audit logging uses allowlisted metadata. Validate current credentials, connection ownership, membership and execution epoch before replay.
+Never persist or log plaintext Agent credentials or lease proofs. Operator-supplied credentials return only metadata with `no-store`. Outbound service credentials are external runtime references, separate from inbound machine credentials. Approve exact Agent URLs and pinned destination addresses; use WSS remotely. Credential reference names are immutable/versioned; rotation requires a new reference and reviewed routing/replay. Proof retrieval is explicit, owner-authorized and non-cacheable; proofs never enter receipts/events. Runtime lease keys are external to the database. Protocol/audit logging uses allowlisted metadata. Validate current credentials, connection ownership, membership and execution epoch before replay.
 
-GitHub integration verifies raw-body signatures and approved installation/repository-to-Project mappings before atomic inbox/event/job persistence. Payload Project/Agent IDs cannot select routing. Current external projections and immutable source evidence are separate; Issue/PR/check state never confers Task acceptance. Treat text as untrusted input. Keep GitHub code outside protocol packages. GitHub uses versioned external secret references and approved pinned API destinations; only token authentication may POST remotely, with repository-restricted read-only tokens. Comments, PR creation, merge and workflow execution remain disabled. Real GitHub/Agent-service integration requires explicit security/conformance gates. Embedded providers/execution, memory retrieval, new artifact storage, and a browser account system are outside this redesign. Historical records remain accessible under existing infrastructure boundaries.
+GitHub integration verifies raw-body signatures and approved installation/repository-to-Project mappings before atomic inbox/event/job persistence. Payload Project/Agent IDs cannot select routing. Current external projections and immutable source evidence are separate; Issue/PR/check state never confers Task acceptance. Treat text as untrusted input. Keep GitHub code outside protocol packages. GitHub uses versioned external secret references and approved pinned API destinations; only token authentication may POST remotely, with repository-restricted read-only tokens. Comments, PR creation, merge and workflow execution remain disabled.
+
+Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services, migrate production, delete historical data or deploy. Real GitHub/Agent-service integration requires explicit security/conformance gates. Embedded providers/execution, memory retrieval, new artifact storage and a browser account system are out of scope.
+
+## Open Gates
+
+- **A11**: raw LiveView telemetry exposes secret parameters, and real HTTP evidence shows credential-bearing server metadata before application Plugs. It remains blocked even when build checks pass; moving a form into a controller or early Plug does not close it. See `docs/codex-app-server/repair-qualification.md` and `docs/codex-app-server/a11-ingress-boundary.md`.
+- **Full Codex compatibility** against immutable `rust-v0.163.0` remains an incomplete target (see `docs/codex-app-server/goal.md`). Retain its entire native surface, inventory, strict full compatibility gate and blockers. Ordinary functional delivery (`docs/codex-app-server/ordinary-functional-delivery.md`) does not establish full compatibility or platform readiness. Do not resume rare-branch producer searches without a new concrete prerequisite.
+- Real GitHub App (B5), live Sigma/Synapsis/Codex conformance, deployment inventory, legacy-writer exclusion, full memory/backup rehearsal and production cutover remain open.
+
+## Verification Restrictions
+
+Do not run any security or permission-related tests: credential/authentication/authorization/approval tests, audits, and broad suites or automatic hosted workflows that execute them. Run only reviewed functional checks; preserve existing tests and required gates, record prohibited checks as unrun/incomplete, and suppress automatic CI (`[skip ci]`) when pushing under this restriction. This never authorizes weakening access controls or claiming blocked acceptance complete.
+
+The reviewed Codex functional selection is `python3 -B scripts/codex/check_ordinary.py --list`; execute it with `--output <new-evidence-directory>` in the verified Elixir/OTP environment. Its source fingerprint, named tests and expected case counts require review before modification. This subset does not replace the full compatibility or release matrix.
+
+Owned Codex functional qualification launches default to `approval_policy="never"` and `sandbox_mode="danger-full-access"`. Only explicitly owned disposable Codex processes and isolated synthetic fixtures are authorized; no paid or production tasks.
+
+## Release Policy
+
+Every version below 1.0 is an experimental test release. The manual Release workflow may publish the four reusable Hex packages, the application archive and `ghcr.io/gsmlg-dev/samgita` images after its reviewed release-helper functional checks, outside-consumer compilation and all builds pass. All first-party app and artifact versions must match. GitHub marks 0.x releases as prereleases; package READMEs document experimental status. Release notes must disclose the open gates above. Stable versions (1.0+) additionally require successful CI/Tests/Codex conformance, strict inventory and platform release-blocker gates. Do not tag a failing build, and never deploy.
 
 ## Frontend
 
-Use Phoenix LiveView, DuskmoonBundler (including its integrated Tailwind CSS pipeline), TypeScript, and the existing DuskMoon family. Use Mix npm tasks and the root workspace lockfile instead of Bun or standalone Tailwind executables.
+Use Phoenix LiveView, DuskmoonBundler (including its integrated Tailwind CSS pipeline), TypeScript and the existing DuskMoon family. Use Mix npm tasks and the root workspace lockfile instead of Bun or standalone Tailwind executables.
 
 - Prefer `phoenix_duskmoon` components and existing `@duskmoon-dev/*` assets.
 - Do not introduce DaisyUI or another component library.
 - Do not vendor or patch DuskMoon internals.
-- Keep views operational, accessible, responsive, and consistent.
-- Use pagination, preloads, empty/error states, and visible form validation.
+- Keep views operational, accessible, responsive and consistent.
+- Use pagination, preloads, empty/error states and visible form validation.
 - Verify UI changes with focused LiveView tests and `mix assets.build`; perform browser proof for the full operator journey.
 
 ## Commands and Tests
 
-Run from the repository/worktree root. Use `devenv shell --` when the host lacks the required Elixir/OTP environment.
+Run from the repository root. Use `devenv shell --` when the host lacks the required Elixir/OTP environment.
 
 ```bash
 mix deps.get
 mix compile --warnings-as-errors
 mix ecto.create
 mix ecto.migrate
-mix phx.server
+mix samgita.run            # delegates to phx.server; HTTP on port 4870
 mix test apps/samgita/test/samgita/projects_test.exs
 mix test apps/samgita_web/test/samgita_web/live/dashboard_live_test.exs
 mix assets.build
@@ -112,37 +118,35 @@ mix credo --strict
 mix dialyzer
 ```
 
-The redesign plan defines stage-specific tests. P3's scope is in `docs/redesign/domain-phase-3.md`; P4's scoped checks are in `coordination-phase-4.md` and `github-phase-4.md`. GitHub checks use deterministic signed fixtures, a loopback fake server and isolated PostgreSQL. Protocol tests still run independently from their own directories, with no database/platform/config dependency; the core's `scripts/verify_standalone.py` proves an outside consumer. This qualification phase also runs the retained aggregate CI/release checks against final code. Report unrelated failures without repairing them or weakening gates. Format changed Elixir files in the verified test environment, excluding the verbatim pinned migration sources.
+Stage-specific tests are defined in the redesign plan and phase records. GitHub checks use deterministic signed fixtures, a loopback fake server and isolated PostgreSQL. Protocol and driver tests run from their own directories with no database/platform/config dependency; `apps/samgita_protocol/scripts/verify_standalone.py` proves an outside consumer. Report unrelated failures without repairing them or weakening gates. Format changed Elixir files, excluding the verbatim pinned migration sources.
 
-The audited legacy system had main and memory Repos sharing a database; the current application has only the main Repo. P3's source hash manifest accounts for both migration sets. Its history rehearsal includes an opaque memory sentinel; it does not certify a real pgvector/dual-Repo deployment. Concurrency tests use independent transactions and verify distinct PostgreSQL backend PIDs. WebSocket/restart/migration tests use explicitly isolated databases/endpoints with legacy side effects disabled.
+The current application has only the main Repo. The legacy system's main and memory migration sets are accounted for by P3's source hash manifest; its history rehearsal does not certify a real pgvector/dual-Repo deployment. Concurrency tests use independent transactions and verify distinct PostgreSQL backend PIDs. WebSocket/restart/migration tests use explicitly isolated databases/endpoints with legacy side effects disabled.
 
-Use explicitly named scratch databases and sanitized legacy fixtures/copies for migration rehearsals. `SAMGITA_TEST_DATABASE` overrides must match `samgita_redesign_*_test` (optional numeric partition). Never run `mix ecto.reset` against an unresolved/shared target. All redesign phases authorize only isolated local test databases, with no production migration or historical-data deletion.
+Use explicitly named scratch databases and sanitized legacy fixtures for migration rehearsals. `SAMGITA_TEST_DATABASE` overrides must match `samgita_redesign_*_test` (optional numeric partition). Never run `mix ecto.reset` against an unresolved/shared target. Only isolated local test databases are authorized; no production migration or historical-data deletion.
 
-For each scoped stage, modify only listed files, run scoped tests, and stop when its checklist and tests pass. Report unrelated failures and stop rather than repairing outside scope. Remove obsolete tests only when their owning product behavior is removed; do not delete failing tests for retained behavior.
+For each scoped stage, modify only listed files, run scoped tests, and stop when its checklist and tests pass. Remove obsolete tests only when their owning product behavior is removed; do not delete failing tests for retained behavior.
 
 ## Delivery and Parallelism
 
-- Default to parallel agents for independent work, after shared contracts are fixed.
+- Use parallel agents for independent work after shared contracts are fixed, with non-overlapping file ownership.
 - Keep migrations/shared configuration under one owner.
-- Give each agent non-overlapping file ownership.
-- Use small bounded stages and logical commits; do not combine the rebuild into one opaque change.
-- Keep the application bootable at integration checkpoints.
-- Use `apply_patch` for edits and resolve tracked-file deletion targets before removing them.
-- Preserve user changes, ignored local data, and unrelated worktrees.
+- Use small bounded stages and logical commits; keep the application bootable at integration checkpoints.
+- Resolve tracked-file deletion targets before removing them.
+- Preserve user changes, ignored local data and unrelated worktrees.
 
-## Git and Worktrees
+## Git
 
-Place worktrees in this project's `.trees/<branch-name>` directory; use the `codex/` branch prefix unless instructed otherwise. Base the redesign on the current local HEAD, including its documentation commits.
+Work on the existing branch. Create branches or worktrees only when explicitly requested; place worktrees in `.trees/<branch-name>`.
 
-Use Conventional Commits. Do not include "Generated with Claude Code" or a "Co-Authored-By: Claude" trailer. Stage explicit logical units. Do not push, publish PRs, or deploy unless requested.
+Use Conventional Commits. Do not include "Generated with Claude Code" or a "Co-Authored-By: Claude" trailer. Stage explicit logical units. Do not push, publish PRs or deploy unless requested.
 
 ## Upstream Dependency Issue Routing
 
-For dependency bugs or missing features in GitHub organizations `gsmlgorg`, `gsmlg-dev`, `duskmoon-dev`, `gsmlg-app`, `Gao-OS`, `gsmlg-opt`, `gsmlg-ci`, `gsmlg-games`, or `gsmlg-com`:
+For dependency bugs or missing features in GitHub organizations `gsmlgorg`, `gsmlg-dev`, `duskmoon-dev`, `gsmlg-app`, `Gao-OS`, `gsmlg-opt`, `gsmlg-ci`, `gsmlg-games` or `gsmlg-com`:
 
 1. Identify the source repository from the package manifest or lockfile.
 2. Create an issue with `gh issue create`, type `Bug` or `Feature`, label `internal request` (create if missing), and title `[internal] <concise description>`.
-3. Include requesting repo and branch from Git, the need and reason, reproduction or expected behavior, and severity: `blocker`, `needed`, or `nice-to-have`.
+3. Include requesting repo and branch from Git, the need and reason, reproduction or expected behavior, and severity: `blocker`, `needed` or `nice-to-have`.
 4. For blockers, add `# TODO(upstream): org/repo#issue_number` at the callsite and stop that task. Continue only independently unblocked work; resume after the dependency is fixed and updated.
 5. For non-blockers, mark a narrow temporary solution with `# WORKAROUND(upstream): org/repo#issue_number`.
 
@@ -150,22 +154,12 @@ Do not silently work around upstream defects.
 
 ## Coding Discipline
 
-State assumptions, keep changes scoped, and prefer the smallest implementation satisfying the approved requirements. No speculative abstractions or unrelated refactoring. Format changed Elixir files. Remove only infrastructure/dependencies made obsolete by this rebuild; inspect shared consumers before deletion.
+State assumptions, keep changes scoped, and prefer the smallest implementation satisfying the approved requirements. No speculative abstractions or unrelated refactoring. Format changed Elixir files. Inspect shared consumers before deleting infrastructure or dependencies.
 
-Verification must demonstrate behavior: state transitions, database effects, real protocol responses, and UI results. A successful compilation or running process alone does not establish milestone completion.
+Verification must demonstrate behavior: state transitions, database effects, real protocol responses and UI results. A successful compilation or running process alone does not establish milestone completion.
 
 ## Agent Note
 
 Agent Note project: samgita
 
-Use the shared `agent-note` skill for reviewer-first project engineering knowledge.
-Before substantial design or debugging, recall relevant project notes.
-At accepted decisions, significant implementation boundaries, or reproducible
-blocker handoffs, evaluate durable findings and create/update notes only when the
-skill's quality gate passes. For meaningful implementations, maintain a coherent
-human-reviewable explanation of architecture, design rationale, actual behavior,
-verification and limits; do not save a separate task-status note after each fix. This authorizes scoped capture, not whole-project curation or deletion.
-No note is required for an ordinary completed task.
-Contributors return candidates; the coordinating agent writes shared notes.
-Apply recalled guidance only after checking its sources and target-version scope.
-If the skill or MCP is unavailable, report the limitation without claiming a write.
+Use the shared `agent-note` skill for reviewer-first project engineering knowledge. Before substantial design or debugging, recall relevant project notes. At accepted decisions, significant implementation boundaries or reproducible blocker handoffs, evaluate durable findings and create/update notes only when the skill's quality gate passes. For meaningful implementations, maintain a coherent human-reviewable explanation of architecture, design rationale, actual behavior, verification and limits; do not save a separate task-status note after each fix. This authorizes scoped capture, not whole-project curation or deletion. No note is required for an ordinary completed task. Contributors return candidates; the coordinating agent writes shared notes. Apply recalled guidance only after checking its sources and target-version scope. If the skill or MCP is unavailable, report the limitation without claiming a write.

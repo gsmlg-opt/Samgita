@@ -2,7 +2,7 @@
 
 Date: 2026-10-23. This separates P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation, persisted P5 UI/local qualification and target-specific cutover acceptance. A scenario passes only for evidenced assertions. [P4 coordination](coordination-phase-4.md) covers manual/external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. [Qualification](qualification.md) records UI/integration/browser/consumer checks and the subsequent reliability repair. Aggregate build gates now pass locally; raw-telemetry A11, real App/service conformance, full historical backup/readers and production cutover remain open.
 
-Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
+Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The removed clean-start proposals (preserved in Git history) cannot waive preservation or cutover tests.
 
 The 2026-11-05 [dependency modernization](dependency-modernization.md) adds
 separate asset, Gaoxy, Styx and HTTP functional qualification. Earlier Oban,

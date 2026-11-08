@@ -7,8 +7,8 @@ original full goal below. Preserve that goal, inventory and strict gate as
 incomplete; after ordinary delivery, stop rather than reopen deferred producers.
 
 The accepted inputs are the user-provided
-[`samgita-codex-full-compatibility-goal.txt`](../../samgita-codex-full-compatibility-goal.txt)
-and [`samgita-codex-full-compatibility-plan.txt`](../../samgita-codex-full-compatibility-plan.txt).
+[`samgita-codex-full-compatibility-goal.txt`](https://github.com/gsmlg-opt/Samgita/blob/933cbca/samgita-codex-full-compatibility-goal.txt)
+and [`samgita-codex-full-compatibility-plan.txt`](https://github.com/gsmlg-opt/Samgita/blob/933cbca/samgita-codex-full-compatibility-plan.txt).
 They supersede the previous Codex subset as the final target. They do not replace
 the neutral platform's authorization, preservation, task review or security rules.
 
