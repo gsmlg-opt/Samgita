@@ -12,6 +12,12 @@ http_web_socket 1.0.0-rc.5 APIs; Mint remains a test-only raw-wire oracle.
 Pin/TLS/authentication/security runtime qualification remains unrun under the
 current restriction. Domain, preservation and security contracts remain authoritative.
 
+Product amendment, 2026-11-09: the user confirmed the coordinated delegation
+workflow in [§10](#10-coordinated-delegation-amendment-2026-11-09): a
+coordinator Agent decomposes work and explicitly assigns Tasks to executor
+Agents; executors write to GitHub with their own credentials; acceptance is a
+per-Project role grant. §10 is a proposed contract and is not implemented yet.
+
 Infrastructure clarification, 2026-11-08: remove Oban and Bandit completely,
 including production/test/release dependencies, Oban compatibility code and the
 old Bandit raw-HTTP telemetry test. The two Oban migration sources are expressly
@@ -26,7 +32,7 @@ and release checks must qualify the changed baseline. A11 remains unverified.
 
 Samgita registers Projects and Agents, connects repositories/GitHub, owns validated project/task management state, and emits durable scheduled and external events. Agents decide how to reason, plan, delegate, and execute. No Samgita RARV loop, mandatory PRD, swarm taxonomy, development phase pipeline, or preferred Agent implementation remains in the target.
 
-This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those historical documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract. [Current architecture](../architecture.md) describes the implemented boundaries.
+This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede the former clean-start PRD, plan, rebuild design and removal inventory. Those documents were removed from `docs/` on 2026-11-09 and remain in Git history, where they also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract. [Current architecture](../architecture.md) describes the implemented boundaries.
 
 P0 changed only these three documents and conflicting sections of `AGENTS.md`. P2 implements independent protocol packages; its bounded evidence is in [protocol phase 2](protocol-phase-2.md). P3 adds persistent models, scoped APIs and additive local migration tests, reconciled in [domain phase 3](domain-phase-3.md). P4 coordination and GitHub records define durable routing and read-only source ingestion. The current authorization adds persisted UI, fake-Agent/browser/isolated-consumer qualification, required aggregate checks and commit/push. It authorizes release only after applicable gates and the normal workflow pass. Historical-data deletion, sibling service changes, production migration, live credential changes and deployment remain excluded.
 
@@ -370,3 +376,67 @@ The [plan](implementation-plan.md) assigns one owner per shared contract/migrati
 | B6 | Exact versioned protocol subset/lease derivation fixtures; protocol owner | P2 supplies native schemas, pinned Codex subset/provenance/license and independent fake-transport/consumer tests. P3 adds scoped receipts, proof derivation, rebind/rotation, epoch and credential-race tests. Live/full Codex compatibility, actual-service integration and production key-management/release evidence remain unverified; only the local Hub contract portion is cleared. |
 
 These are implementation/integration gates, not reasons to leave this design phase incomplete. Current source facts and proposed future contracts are deliberately distinguished. Missing capabilities in an actual dependency must follow AGENTS.md upstream issue routing when encountered in implementation; do not hide them behind a local compatibility shim.
+
+## 10. Coordinated delegation amendment (2026-11-09)
+
+Status: proposed contract, approved in direction by the user; not implemented. It narrows how the Agent-owned delegation in §1 and §3 reaches executors. Sections 1–9 remain authoritative where this section is silent.
+
+### Target workflow
+
+1. A verified GitHub source event (for example `github.issues` with `opened`) is routed to the Project's `responsible` subscription, whose Agent holds the `manager` role. This is the coordinator (for example Synapsis). Nothing names Synapsis specially.
+2. The coordinator reasons about the work and creates a Task tree with the existing `create` command (`parent_task_id`, relationships, `required_capabilities`). Samgita validates same-Project references and cycles; it never decomposes, plans or chooses an executor.
+3. The coordinator **assigns** each executable Task to a named executor Agent (for example Codex or Sigma). Samgita validates the assignment and notifies the executor.
+4. The executor claims, starts, renews, reports and resolves the Attempt through the unchanged fenced commands.
+5. The coordinator observes outcomes through its `responsible` subscription and GitHub facts, then reassigns, reopens, creates follow-up Tasks or submits decisions.
+6. Executors open PRs, merge and publish releases with their own GitHub credentials. Samgita remains read-only toward GitHub (§5) and only observes.
+7. Acceptance follows the Project's reviewer grants.
+
+### Decisions
+
+| Decision | Reason and tradeoff |
+| --- | --- |
+| The coordinator decomposes; Samgita stores and enforces | Preserves §1: no reasoning in Samgita. Task trees already exist (`parent_task_id`, relationships). |
+| Explicit assignment is required before claim | The coordinator, not capability matching, picks the executor. An unassigned Task is not claimable. Existing capability checks still apply to the assignee. This changes the current claim behavior and its tests. |
+| Executors use their own GitHub credentials | Keeps Samgita's GitHub App read-only and B5 narrow. Samgita monitors PR/check/workflow/release facts as evidence only; it never accepts a Task from GitHub state. |
+| Acceptance policy is a Project role grant | Granting the coordinator `reviewer` enables automated acceptance; withholding it leaves acceptance to the human operator. No separate policy field is needed. |
+
+### Assignment
+
+Add nullable `tasks.assignee_agent_id` (UUID, FK `agents`) and `tasks.assigned_at` in an additive migration. The legacy string `tasks.agent_id` stays historical provenance and is never reused.
+
+New command `assign` (operation `task.assign:<id>`, role `manager`, `expected_version`, `command_id`):
+
+- Preconditions: Project active; Task adopted and `open`; no active Attempt; no execution hold.
+- A non-null assignee must be enabled, an enabled member of the Project with the `worker` role, and have approved and advertised capabilities covering `required_capabilities`. Capacity is not reserved; it is enforced at claim.
+- A null assignee unassigns the Task.
+- Commit the Task version, receipt and `task.assigned` event (`assignee_agent_id`, `previous_assignee_agent_id`) atomically.
+- Reassignment follows the same preconditions. Active or unresolved work must first be closed through existing commands, so assignment never transfers a live Attempt.
+
+`claim` adds one check after `validate_claim_task!`: `task.assignee_agent_id` must equal the claiming Agent. Lock order is unchanged (Agents, then Tasks).
+
+`Tasks.list` gains an `assignee_agent_id` filter so an executor can poll its work without event delivery.
+
+### Assignment notification
+
+Add subscription purpose `assignee`, configured by an operator per executor Agent exactly like `responsible` routing: explicit, revisioned, with `project_events.v1` and an approved endpoint. Event fan-out delivers `task.assigned` to an `assignee` subscription only when its Agent is the event's current or previous assignee, and `task.transitioned` only for that Agent's assigned Tasks. Without such a subscription the assignment is still valid and the executor polls. Delivery remains at least once and confers no ownership; only `claim` does.
+
+### Coordinator outcome notification
+
+Already supported: every Project event fans out to the enabled `responsible` subscription whose `types` is empty or includes the type. Coordinators should subscribe to at least `task.assigned`, `task.transitioned`, `attempt.reported`, `attempt.expired`, `attempt.effects_resolved` and the GitHub source types. The required change is acceptance coverage for this flow, not new routing.
+
+### Release observation
+
+Add the GitHub `release` event (`published`, `released`, `prereleased`, `edited`, `deleted`, `unpublished`) as source event `github.release` with a `release` object kind and immutable observations, following the existing ingestion, deduplication and reconciliation rules. GitHub sends `release` webhooks only with the **Contents: read** permission. This widens the read-only App profile in §5 and must be recorded under B5 before real use. Until then, coordinators can observe release workflows through the existing `github.workflow_run` facts.
+
+### Acceptance policy and separation of duties
+
+`decide` keeps requiring the `reviewer` role (or an operator). Add one rule: an Agent may not record a review or acceptance decision for a Task when it owned the Attempt that submitted the Task to `awaiting_review`. Operators are exempt. A coordinator that is not also the executor can therefore accept automatically when granted `reviewer`. The Project UI shows which members hold `reviewer`, so the acceptance mode is visible.
+
+### Acceptance scenarios to add
+
+- Assignment validation: non-member, missing `worker` role, missing capability, disabled Agent, active Attempt and execution hold each refuse with no state change; a stale `expected_version` conflicts; an identical retry replays its receipt.
+- Claim: an unassigned Task and a Task assigned to another Agent refuse claim; the assignee claims within capacity.
+- Notification: `task.assigned` reaches only the current/previous assignee's `assignee` subscription and the `responsible` subscription; redelivery keeps the event identity.
+- Outcome loop: with a fake coordinator and a fake executor over real WebSockets, issue event → child Tasks → assignment → claim → report → coordinator receives `attempt.reported` → reviewer decision → `accepted`.
+- Separation of duties: the executor holding `reviewer` cannot accept its own submitted Task; a separate reviewer Agent or operator can.
+- Release: a signed `release` delivery creates one `github.release` event and observation; a duplicate delivery does not.

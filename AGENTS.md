@@ -17,7 +17,7 @@ Samgita connects external Agents and manages their collaborative development wor
 5. Executor Agents open PRs, merge and release with their own GitHub credentials. Samgita stays read-only toward GitHub and only observes.
 6. Acceptance (`awaiting_review` -> `accepted`) is configurable per Project: either the coordinator Agent holds the `reviewer` role and accepts automatically, or only a human operator accepts.
 
-Not yet implemented: explicit executor assignment and assignment notification (today executors claim by capability), coordinator notification of executor outcomes, release-event ingestion, and a per-Project acceptance policy beyond `reviewer` role membership. Changes to these require updating `docs/redesign/design.md` first.
+Not yet implemented: explicit executor assignment and assignment notification (today executors claim by capability), release-event ingestion, and the rule that an executor cannot accept its own work. Coordinator outcome notification already works through the `responsible` subscription but lacks acceptance coverage. The proposed contract for these is `docs/redesign/design.md` §10; extend the implementation plan and acceptance ledger before coding.
 
 ## Documentation Map
 
