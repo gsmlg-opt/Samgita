@@ -51,7 +51,7 @@ Functional verification does not qualify the unrun pin/TLS/authentication/securi
 
 - `apps/samgita_protocol`: independently reusable protocol core, versioned schemas, capability negotiation, correlation, client dispatch, handler contracts and bounded replay. No platform/Repo/Phoenix dependency, configuration inheritance or automatic listener/runtime startup.
 - `apps/samgita_protocol_websocket`: optional standalone authenticated WebSocket transport and explicitly started in-memory fake Agent at `/app-server`.
-- `apps/samgita_protocol_codex`: pinned Codex `rust-v0.163.0` native wire/schema layer plus the neutral convenience adapter. Source/schema conformance does not establish full compatibility.
+- `apps/samgita_protocol_codex`: Codex native wire/schema layer built from the current schema snapshot of the latest Codex release, plus the neutral convenience adapter.
 - `apps/samgita_codex_driver`: explicitly started Codex sessions and transports. No Repo, Phoenix, platform configuration, automatic execution or listener dependency. Borrowed service resources remain owned by their service.
 - `apps/samgita`: Ecto Repo, Projects, repositories/GitHub, Agents, Tasks/Attempts, events, schedules, and durable delivery/maintenance with Styx. No Oban dependency, compatibility module or historical-job reader.
 - `apps/samgita_web`: Phoenix endpoint, REST API, protocol host adapter, GitHub ingress and DuskMoon LiveView operator UI.
@@ -91,7 +91,7 @@ Do not provision a real GitHub App, enter real credentials, change remote permis
 ## Open Gates
 
 - **A11**: raw LiveView telemetry exposes secret parameters, and real HTTP evidence shows credential-bearing server metadata before application Plugs. It remains blocked even when build checks pass; moving a form into a controller or early Plug does not close it. See `docs/codex-app-server/repair-qualification.md` and `docs/codex-app-server/a11-ingress-boundary.md`.
-- **Full Codex compatibility** against immutable `rust-v0.163.0` remains an incomplete target (see `docs/codex-app-server/goal.md`). Retain its entire native surface, inventory, strict full compatibility gate and blockers. Ordinary functional delivery (`docs/codex-app-server/ordinary-functional-delivery.md`) does not establish full compatibility or platform readiness. Do not resume rare-branch producer searches without a new concrete prerequisite.
+- **Codex is not pinned** (user decision 2026-11-09, design §11 version policy). Track the latest Codex release by refreshing the schema snapshot; do not add version literals or exact-version checks. The former full-compatibility target against `rust-v0.163.0` is retired; its records in `docs/codex-app-server/` are historical evidence only.
 - Real GitHub App (B5), live Sigma/Synapsis/Codex conformance, deployment inventory, legacy-writer exclusion, full memory/backup rehearsal and production cutover remain open.
 
 ## Verification Restrictions

@@ -4,7 +4,9 @@
 > makes Samgita connect to operator-configured Codex hosts itself, over WebSocket
 > or SSH to the Codex app-server daemon. The "no auto-launched CLI" and
 > "existing separate Agent service" statements below describe the current
-> implementation and will be replaced when §11 ships.
+> implementation and will be replaced when §11 ships. Codex is no longer
+> pinned: the 0.163.0 references below are historical; Samgita tracks the latest
+> Codex release.
 
 Codex is an ordinary Agent implementation label, with the same registration,
 membership, capacity and acceptance rules as Sigma, Synapsis or another service.

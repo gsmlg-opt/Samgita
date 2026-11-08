@@ -21,7 +21,8 @@ per-Project role grant. §10 is a proposed contract and is not implemented yet.
 Codex host amendment, 2026-11-09: Samgita connects to configured Codex hosts at
 startup over WebSocket or SSH (`codex app-server proxy` to the daemon). See
 [§11](#11-codex-host-connections-amendment-2026-11-09); it is the first delivery
-priority and is not implemented yet.
+priority and is not implemented yet. Codex is no longer pinned: Samgita tracks
+the latest Codex release (§11, version policy).
 
 Infrastructure clarification, 2026-11-08: remove Oban and Bandit completely,
 including production/test/release dependencies, Oban compatibility code and the
@@ -492,7 +493,7 @@ Create/update/enable/disable are operator commands with `command_id`, `expected_
 
 - `Samgita.CodexHosts` starts in `Samgita.Application` after the Repo: a `Registry` plus a `DynamicSupervisor` with one `Samgita.CodexHosts.Connection` process per enabled host. A process is justified here because each one owns a live transport and Session.
 - On boot, and when a host is enabled or reconfigured, the supervisor starts or restarts its connection. Disabling stops it and closes the session.
-- A connection opens the transport, calls `initialize` with Samgita's client info, sends `initialized` and reads the reported server version. A version other than the pinned `0.163.0` runs in the driver's `compatible` schema mode and is shown as a warning, not a failure.
+- A connection opens the transport, calls `initialize` with Samgita's client info, sends `initialized` and reads the reported server version. Any server version is accepted; the driver runs in `compatible` schema mode, and the reported version is recorded and shown. A version newer than the bundled schema snapshot is shown as a notice, not a failure.
 - Each established session records an `agent_connections` row with a new connection generation. That generation fences later runtime operations exactly like an authenticated machine connection; a reconnect gets a new generation.
 - Failures reconnect with bounded exponential backoff (1 s doubling to 60 s, with jitter). Status (`connecting`, `connected`, `backoff`, `failed`, `disabled`, last safe error code, server version, connected-at) is runtime state published through PubSub. It is not proof that work stopped or succeeded.
 - A configuration flag (`config :samgita, :codex_hosts, enabled: true`) lets tests and maintenance runs boot without connecting.
@@ -510,7 +511,17 @@ Create/update/enable/disable are operator commands with `command_id`, `expected_
 - With `codex_hosts.enabled: false` the application boots without opening any connection.
 - A manual check against a real local daemon (`codex app-server daemon start` + `ssh localhost codex app-server proxy`) confirms the proxy byte stream framing before the transport is called complete.
 
+### Codex version policy (user decision, 2026-11-09)
+
+Codex is not pinned. Samgita tracks the latest official Codex release, because Codex updates frequently and Samgita must update with it. This supersedes the immutable `rust-v0.163.0` pin and its full-compatibility target.
+
+- `samgita_protocol_codex` bundles one **current schema snapshot** in a version-neutral directory (`priv/upstream/current/`), whose `source.json` records the Codex version, commit and digests it was generated from. A refresh script fetches the latest release, verifies its published checksum, regenerates the snapshot (`codex app-server generate-json-schema` plus the source files the schema modules read), and replaces the previous snapshot. Older snapshots live only in Git history.
+- Modules read the snapshot version from `source.json`; no Codex version literal remains in code.
+- Sessions default to `compatible` schema mode, which already tolerates newer fields and unknown variants without inventing success. `strict` mode validates against the current snapshot only and runs in conformance CI after a refresh.
+- `runtime_driver: "codex"` accepts any non-empty `runtime_version`; runtime bindings record the server version observed at `initialize`. The exact `"0.163.0"` checks in `Agents`, `CodexRuntime.Authorization` and `NativeRuntimeBinding` are removed.
+- Updating Codex is a routine change: refresh the snapshot, run the reviewed functional checks, and fix any breakage in the same change.
+- The existing `docs/codex-app-server/` qualification records remain historical evidence for 0.163.0. They are not a gate for newer versions.
+
 ### Open items
 
-- Confirm that pinned Codex `0.163.0` provides `app-server proxy` and `app-server daemon`; the local development binary is `0.167.0`. A pin upgrade, if needed, is a separate decision.
-- Confirm the proxy's framing (WebSocket over the forwarded control socket) against a real daemon.
+- Confirm the `app-server proxy` framing (WebSocket over the forwarded control socket) against a real local daemon.

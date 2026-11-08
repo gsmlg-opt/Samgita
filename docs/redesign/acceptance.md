@@ -211,6 +211,16 @@ For every stage, compare changed paths and behavior to its owning scope. Run sco
 
 Pass when each active checklist is evidenced, applicable gates pass and blockers B0–B6 are honestly open/cleared. Cross-stage scenarios are checked only for current assertions. P0–P4 phase records remain historical evidence. The current scope completes persisted management/local qualification, commits and pushes; release requires all applicable gates and an existing successful publication workflow. Failing aggregate gates block release rather than being reclassified as passing. No live GitHub setup, repository writes, sibling-service changes, production migration, live credentials or deployment are authorized. Local qualification labels unresolved target manifests **not deployable**. Real cutover clears every applicable target-specific gate and requires separate authorization.
 
+### A16 — Codex host connections (P7.1/P7.2)
+
+Configure one enabled WebSocket host and one enabled SSH host (through the test `ssh` substitute) against local fake app-servers, then boot the application. Each connection initializes, reports `connected` with the server version, and records a new `agent_connections` generation. Stop a fake server: the connection enters backoff and reconnects with a new generation. Disable a host: its process stops and no reconnect follows. With `codex_hosts.enabled: false` the application boots without opening any connection.
+
+Pass when configuration commands are idempotent by `command_id`, stale `expected_version` conflicts, secret values are rejected, an unknown SSH host key or missing credential reference leaves the host `failed` with a safe error code, and no token, key or native payload appears in logs, status or events. A recorded manual check against a real local daemon confirms the SSH proxy framing.
+
+### A17 — Latest-Codex tracking (P7.0)
+
+Run the refresh script against the latest official release. Pass when the snapshot under `priv/upstream/current/` carries the new version and digests, no live code contains a Codex version literal or exact-version check, Agents register with any non-empty Codex `runtime_version`, protocol and driver suites pass in `compatible` mode, and the conformance workflow validates against the refreshed snapshot.
+
 ## 4. P2/P3/P4 and future gate records
 
 For a later stage, record: stage/commit; database/endpoint/build/profile; exact scoped commands/results; preservation and external-effect evidence; each blocker's evidence or remaining owner/action; and the next unexecuted stage. Keep real credentials and sensitive payloads out of the record.

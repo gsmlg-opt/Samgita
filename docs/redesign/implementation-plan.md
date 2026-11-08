@@ -268,3 +268,42 @@ Real integration/live cutover gate: remeasure B1/B2/B4 for the actual target, cl
 B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the blocker ledger. P2 reconciled its independent package scope; P3 locally reconciles B0 for the restored main migration sources, neutral schema and fixture tests. Neither clears target-specific history/storage drift, backup/reader coverage, old-writer exclusion or other cutover gates. Clear each applicable gate only with its specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
 
 For every authorized stage, report changed paths/commit, scoped checks and results, preserved data/effect evidence, remaining blockers and the next unexecuted gate. If an out-of-scope test fails, list it and stop without repair. When the in-scope checklist and tests pass, stop at that stage boundary.
+
+## 10. P7 — Codex host connections (design §11)
+
+Authorized 2026-11-09 as the first delivery priority, ahead of the §10 delegation work. Work on the existing branch in three ordered stages; each stage ends with its scoped checks passing and a logical commit. Acceptance scenarios are A16 and A17.
+
+### P7.0 Unpin Codex and track the latest release
+
+Owner files: `apps/samgita_protocol_codex/{lib,priv,test,README.md}`, `apps/samgita_codex_driver/{lib,test,README.md}` where they name a version, `scripts/codex/fetch_pin.py` (renamed to a refresh script), `.github/workflows/codex-conformance.yml`, `apps/samgita/lib/samgita/{agents.ex,codex_runtime/authorization.ex,codex_runtime/native.ex,domain/native_runtime_binding.ex}` and their tests.
+
+- [ ] Move the bundled snapshot to `priv/upstream/current/` with `source.json` recording version, commit and digests; read the version from it everywhere.
+- [ ] Replace the pinned fetch with a refresh script that resolves the latest official release, verifies the published checksum, regenerates the schema with `codex app-server generate-json-schema` and copies the source files the schema modules read.
+- [ ] Refresh the snapshot to the latest release (currently `0.167.0` locally) and fix compile/test breakage in the protocol and driver packages.
+- [ ] Accept any non-empty `runtime_version` for `runtime_driver: "codex"`; record the observed server version on bindings; remove exact `"0.163.0"` checks. Add a forward-only migration only if a column default must change.
+- [ ] Point the conformance workflow at the current snapshot.
+
+Checks: protocol and driver test suites from their own directories; `apps/samgita/test/samgita/codex_runtime*` and `agents_test.exs`; `rg '0\.163'` finds no live code (historical docs excepted).
+
+### P7.1 WebSocket Codex hosts
+
+Owner files: new migration `*_create_codex_hosts.exs`; `apps/samgita/lib/samgita/{codex_hosts.ex,codex_hosts/}` (context, schema, supervisor, connection, status); `apps/samgita/lib/samgita/application.ex`; `config/{config,dev,test,runtime}.exs`; web controller/routes and the Codex section of `AgentsLive.Show`; their tests.
+
+- [ ] Additive `codex_hosts` table and schema with WebSocket and SSH fields (SSH fields unused until P7.2).
+- [ ] Operator commands configure/enable/disable with `command_id`, `expected_version`, receipts and `codex_host.*` audit events; secret values rejected, reference names only.
+- [ ] `Samgita.CodexHosts` Registry + DynamicSupervisor; one connection process per enabled host; boot-time start gated by `config :samgita, :codex_hosts, enabled:`.
+- [ ] Connection: open `Transport.WebSocket`, `initialize` + `initialized`, record server version and a new `agent_connections` generation, bounded backoff reconnect, PubSub status.
+- [ ] Operator REST endpoints and `/agents/:id` status panel with enable, disable and reconnect.
+
+Checks: context/command tests, connection tests against a local fake app-server WebSocket (connect, reconnect with new generation, disable stops, auth rejection), application boot with the flag on and off, LiveView test for the status panel, `mix compile --warnings-as-errors`, `mix format --check-formatted`.
+
+### P7.2 SSH Codex hosts
+
+Owner files: `apps/samgita_codex_driver/lib/samgita_codex_driver/transport/ssh_proxy.ex` and tests; SSH branches of the P7.1 connection and configuration; a test `ssh` substitute script under the driver's test support.
+
+- [ ] `Transport.SshProxy`: owned `ssh` subprocess with a fixed argument list, `BatchMode`, strict host-key checking against a Samgita-owned known-hosts file, forwarding disabled and minimal environment; WebSocket framing over its stdio; closing never stops the remote daemon.
+- [ ] Private key resolved from a credential reference into a private temporary file for the subprocess lifetime only.
+- [ ] Optional `ensure_daemon` runs `codex app-server daemon start` before the proxy session.
+- [ ] Manual verification against a real local daemon through `ssh localhost codex app-server proxy`, recorded with the Codex version.
+
+Checks: driver transport tests with the `ssh` substitute bridging to a local UDS fake; connection tests for host-key refusal, missing key reference and remote exit; the manual real-daemon check.
