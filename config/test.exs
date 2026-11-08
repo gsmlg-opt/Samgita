@@ -30,6 +30,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
   server: false
 
 config :samgita, Styx, testing: :manual
+config :samgita, :codex_hosts, enabled: false, min_backoff_ms: 50, max_backoff_ms: 200
 config :samgita, :lease_key_id, "test-v1"
 config :samgita, :lease_keys, %{"test-v1" => "p3-isolated-test-key-never-use-in-production"}
 config :samgita, :native_payload_key_id, "test-native-v1"

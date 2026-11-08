@@ -22,6 +22,20 @@ if encoded = System.get_env("SAMGITA_GITHUB_SECRETS") do
   end
 end
 
+# Codex host credential references (design §11): {"reference": "token", ...}.
+if encoded = System.get_env("SAMGITA_CODEX_HOST_SECRETS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded),
+       true <-
+         Enum.all?(values, fn {reference, value} ->
+           is_binary(reference) && byte_size(reference) in 1..200 && is_binary(value) &&
+             byte_size(value) in 1..8192
+         end) do
+    config :samgita, :codex_host_secrets, values
+  else
+    _ -> raise "SAMGITA_CODEX_HOST_SECRETS must map reference names to secret values"
+  end
+end
+
 if encoded = System.get_env("SAMGITA_GITHUB_HOSTS") do
   with {:ok, values} when is_map(values) <- Jason.decode(encoded) do
     hosts =

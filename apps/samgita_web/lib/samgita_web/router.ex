@@ -79,6 +79,11 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/members", ProjectController, :put_member
 
     resources "/agents", AgentController, only: [:index, :show, :create, :update]
+
+    resources "/codex-hosts", CodexHostController, only: [:index, :show, :create]
+    post "/codex-hosts/:codex_host_id/enable", CodexHostController, :enable
+    post "/codex-hosts/:codex_host_id/disable", CodexHostController, :disable
+    post "/codex-hosts/:codex_host_id/reconnect", CodexHostController, :reconnect
     post "/agents/:agent_id/credentials", AgentController, :put_credential
 
     post "/agents/:agent_id/credentials/:credential_id/revoke",

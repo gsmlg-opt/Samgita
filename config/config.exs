@@ -63,6 +63,9 @@ config :tzdata, :autoupdate, :disabled
 
 config :samgita, :api_keys, []
 
+# Codex app-server host connections (design §11).
+config :samgita, :codex_hosts, enabled: true
+
 config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]

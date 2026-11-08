@@ -5,11 +5,16 @@ defmodule SamgitaTest do
     assert Samgita.health_checks() == %{samgita_repo: :ok}
   end
 
-  test "the foundation supervises only Repo, PubSub and durable maintenance" do
+  test "the foundation supervises Repo, PubSub, durable maintenance and Codex host connections" do
     children = Supervisor.which_children(Samgita.Supervisor)
 
     assert Enum.sort(Enum.map(children, &elem(&1, 0))) ==
-             Enum.sort([Samgita.Repo, Phoenix.PubSub.Supervisor, Styx])
+             Enum.sort([
+               Samgita.Repo,
+               Phoenix.PubSub.Supervisor,
+               Styx,
+               Samgita.CodexHosts.Runtime
+             ])
 
     assert Application.fetch_env!(:samgita, :ecto_repos) == [Samgita.Repo]
     assert Styx.config().testing == :manual

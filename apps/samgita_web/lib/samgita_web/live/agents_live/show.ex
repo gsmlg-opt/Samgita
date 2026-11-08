@@ -1,15 +1,20 @@
 defmodule SamgitaWeb.AgentsLive.Show do
   use SamgitaWeb, :live_view
-  alias Samgita.{Agents, Management, Principal}
+  alias Samgita.{Agents, CodexHosts, Management, Principal}
   alias SamgitaWeb.AgentsLive.Components
   import SamgitaWeb.AgentsLive.Components, only: [agent_fields: 1]
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket),
+      do: Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
+
     {:ok,
      assign(socket,
        page_title: "Agent",
        detail: nil,
+       codex_host: nil,
+       codex_form: nil,
        error: nil,
        load_error: nil,
        credential_reset: 0
@@ -74,6 +79,48 @@ defmodule SamgitaWeb.AgentsLive.Show do
     end
   end
 
+  def handle_event("save_codex_host", %{"codex_host" => params}, socket) do
+    attrs =
+      params
+      |> Map.take(~w(command_id expected_version url token_ref connect_address allow_insecure))
+      |> Map.reject(fn {_key, value} -> value == "" end)
+      |> Map.update("allow_insecure", false, &(&1 == "true"))
+      |> Map.merge(%{"agent_id" => socket.assigns.agent_id, "transport" => "websocket"})
+      |> Components.version_attrs()
+
+    case CodexHosts.configure(Principal.operator(), attrs) do
+      {:ok, _} ->
+        {:noreply, socket |> load() |> put_flash(:info, "Codex host saved.")}
+
+      {:error, error} ->
+        {:noreply,
+         assign(socket,
+           codex_form: to_form(params, as: :codex_host),
+           error: Components.error_message(error)
+         )}
+    end
+  end
+
+  def handle_event(event, _params, %{assigns: %{codex_host: host}} = socket)
+      when event in ~w(enable_codex_host disable_codex_host) and is_map(host) do
+    fun = if event == "enable_codex_host", do: &CodexHosts.enable/3, else: &CodexHosts.disable/3
+
+    attrs = %{"command_id" => Ecto.UUID.generate(), "expected_version" => host["version"]}
+
+    case fun.(Principal.operator(), host["id"], attrs) do
+      {:ok, _} -> {:noreply, load(socket)}
+      {:error, error} -> {:noreply, assign(socket, error: Components.error_message(error))}
+    end
+  end
+
+  def handle_event("reconnect_codex_host", _params, %{assigns: %{codex_host: host}} = socket)
+      when is_map(host) do
+    case CodexHosts.reconnect(Principal.operator(), host["id"]) do
+      :ok -> {:noreply, put_flash(socket, :info, "Reconnecting to the Codex host.")}
+      {:error, error} -> {:noreply, assign(socket, error: Components.error_message(error))}
+    end
+  end
+
   def handle_event("revoke_credential", %{"revoke" => params}, socket) do
     attrs =
       params
@@ -91,6 +138,32 @@ defmodule SamgitaWeb.AgentsLive.Show do
         {:noreply, assign(socket, error: Components.error_message(error))}
     end
   end
+
+  @impl true
+  def handle_info(
+        {:codex_host_status, id, status},
+        %{assigns: %{codex_host: %{"id" => id}}} = socket
+      ),
+      do: {:noreply, update(socket, :codex_host, &Map.put(&1, "status", status))}
+
+  def handle_info(_message, socket), do: {:noreply, socket}
+
+  defp load_codex_host(socket, %{"runtime_driver" => "codex"} = agent) do
+    {:ok, host} = CodexHosts.for_agent(Principal.operator(), agent["id"])
+
+    values =
+      Map.merge(
+        %{"url" => "", "token_ref" => "", "connect_address" => "", "allow_insecure" => false},
+        Map.take(host || %{}, ~w(url token_ref connect_address allow_insecure))
+      )
+      |> Map.new(fn {key, value} -> {key, value || ""} end)
+      |> Map.put("command_id", Ecto.UUID.generate())
+      |> Map.put("expected_version", host && host["version"])
+
+    assign(socket, codex_host: host, codex_form: to_form(values, as: :codex_host))
+  end
+
+  defp load_codex_host(socket, _agent), do: assign(socket, codex_host: nil, codex_form: nil)
 
   defp load(socket) do
     case Management.agent(Principal.operator(), socket.assigns.agent_id, %{
@@ -129,7 +202,9 @@ defmodule SamgitaWeb.AgentsLive.Show do
 
         total = detail["totals"] |> Map.values() |> Enum.max(fn -> 0 end)
 
-        assign(socket,
+        socket
+        |> load_codex_host(agent)
+        |> assign(
           detail: detail,
           page_title: agent["name"],
           form: to_form(form, as: :agent),

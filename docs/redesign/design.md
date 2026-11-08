@@ -494,7 +494,7 @@ Create/update/enable/disable are operator commands with `command_id`, `expected_
 - `Samgita.CodexHosts` starts in `Samgita.Application` after the Repo: a `Registry` plus a `DynamicSupervisor` with one `Samgita.CodexHosts.Connection` process per enabled host. A process is justified here because each one owns a live transport and Session.
 - On boot, and when a host is enabled or reconfigured, the supervisor starts or restarts its connection. Disabling stops it and closes the session.
 - A connection opens the transport, calls `initialize` with Samgita's client info, sends `initialized` and reads the reported server version. Any server version is accepted; the driver runs in `compatible` schema mode, and the reported version is recorded and shown. A version newer than the bundled schema snapshot is shown as a notice, not a failure.
-- Each established session records an `agent_connections` row with a new connection generation. That generation fences later runtime operations exactly like an authenticated machine connection; a reconnect gets a new generation.
+- Each established session increments `codex_hosts.generation` and records `server_version` and `last_connected_at`, with `codex_host.connected` and `codex_host.disconnected` audit events. A reconnect gets a new generation, which later runtime operations use as their fence. `agent_connections` is not used: it models inbound authenticated machine connections with a credential, and an outbound host session has none.
 - Failures reconnect with bounded exponential backoff (1 s doubling to 60 s, with jitter). Status (`connecting`, `connected`, `backoff`, `failed`, `disabled`, last safe error code, server version, connected-at) is runtime state published through PubSub. It is not proof that work stopped or succeeded.
 - A configuration flag (`config :samgita, :codex_hosts, enabled: true`) lets tests and maintenance runs boot without connecting.
 
@@ -504,7 +504,7 @@ Create/update/enable/disable are operator commands with `command_id`, `expected_
 
 ### First-step acceptance
 
-- Boot with one enabled `websocket` host pointing at a local fake app-server: the session initializes, status becomes `connected` and an `agent_connections` generation is recorded.
+- Boot with one enabled `websocket` host pointing at a local fake app-server: the session initializes, status becomes `connected` and a new host generation is recorded.
 - Boot with one enabled `ssh` host using a test `ssh` substitute that bridges stdio to a local daemon-style UDS fake: same outcome, through the real `SshProxy` transport.
 - Stopping the fake server causes backoff and a later reconnect with a new generation; disabling the host stops reconnecting.
 - An unknown host key, a missing credential reference or a rejected token leaves the host `failed` with a safe error code and no secret in logs or status.

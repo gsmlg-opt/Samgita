@@ -294,11 +294,13 @@ Checks: protocol and driver test suites from their own directories; `apps/samgit
 
 Owner files: new migration `*_create_codex_hosts.exs`; `apps/samgita/lib/samgita/{codex_hosts.ex,codex_hosts/}` (context, schema, supervisor, connection, status); `apps/samgita/lib/samgita/application.ex`; `config/{config,dev,test,runtime}.exs`; web controller/routes and the Codex section of `AgentsLive.Show`; their tests.
 
-- [ ] Additive `codex_hosts` table and schema with WebSocket and SSH fields (SSH fields unused until P7.2).
-- [ ] Operator commands configure/enable/disable with `command_id`, `expected_version`, receipts and `codex_host.*` audit events; secret values rejected, reference names only.
-- [ ] `Samgita.CodexHosts` Registry + DynamicSupervisor; one connection process per enabled host; boot-time start gated by `config :samgita, :codex_hosts, enabled:`.
-- [ ] Connection: open `Transport.WebSocket`, `initialize` + `initialized`, record server version and a new `agent_connections` generation, bounded backoff reconnect, PubSub status.
-- [ ] Operator REST endpoints and `/agents/:id` status panel with enable, disable and reconnect.
+- [x] Additive `codex_hosts` table and schema with WebSocket and SSH fields (SSH fields unused until P7.2).
+- [x] Operator commands configure/enable/disable with `command_id`, `expected_version`, receipts and `codex_host.*` audit events; secret values rejected, reference names only (`SAMGITA_CODEX_HOST_SECRETS` supplies token values).
+- [x] `Samgita.CodexHosts.Runtime` Registry + DynamicSupervisor; one connection process per enabled host; boot-time start gated by `config :samgita, :codex_hosts, enabled:`.
+- [x] Connection: open `Transport.WebSocket`, `initialize` + `initialized`, record server version and a new host generation, bounded backoff reconnect, PubSub status. Server notifications are drained and discarded until task bridging journals them.
+- [x] Operator REST endpoints (`/api/codex-hosts`) and `/agents/:id` status panel with enable, disable and reconnect.
+
+Result (2026-11-09): 14 core and 4 web tests pass against a loopback fake app-server; a manual check against a real isolated `codex app-server --listen ws://127.0.0.1:…` (Codex 0.167.0) reached `connected`, generation 1, server version `0.167.0`. Permission/forbidden-caller cases were not run under the verification restriction.
 
 Checks: context/command tests, connection tests against a local fake app-server WebSocket (connect, reconnect with new generation, disable stops, auth rejection), application boot with the flag on and off, LiveView test for the status panel, `mix compile --warnings-as-errors`, `mix format --check-formatted`.
 
