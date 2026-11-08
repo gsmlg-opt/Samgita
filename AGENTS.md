@@ -19,6 +19,10 @@ Samgita connects external Agents and manages their collaborative development wor
 
 Not yet implemented: explicit executor assignment and assignment notification (today executors claim by capability), release-event ingestion, and the rule that an executor cannot accept its own work. Coordinator outcome notification already works through the `responsible` subscription but lacks acceptance coverage. The proposed contract for these is `docs/redesign/design.md` §10; extend the implementation plan and acceptance ledger before coding.
 
+### Current priority: Codex host connections
+
+The first delivery is `docs/redesign/design.md` §11: when the service starts, Samgita connects to operator-configured Codex hosts and keeps an initialized app-server session to each, over WebSocket (`codex app-server --listen ws://...`) or SSH (`ssh <host> codex app-server proxy` to the Codex daemon, like the Codex desktop app). This supersedes the earlier rule that a separate Agent service must own the Codex driver. Samgita never spawns a local `codex` binary, and it still runs no reasoning. §11 is designed but not implemented; §10 follows it.
+
 ## Documentation Map
 
 Authoritative:

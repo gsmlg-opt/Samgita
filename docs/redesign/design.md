@@ -18,6 +18,11 @@ coordinator Agent decomposes work and explicitly assigns Tasks to executor
 Agents; executors write to GitHub with their own credentials; acceptance is a
 per-Project role grant. §10 is a proposed contract and is not implemented yet.
 
+Codex host amendment, 2026-11-09: Samgita connects to configured Codex hosts at
+startup over WebSocket or SSH (`codex app-server proxy` to the daemon). See
+[§11](#11-codex-host-connections-amendment-2026-11-09); it is the first delivery
+priority and is not implemented yet.
+
 Infrastructure clarification, 2026-11-08: remove Oban and Bandit completely,
 including production/test/release dependencies, Oban compatibility code and the
 old Bandit raw-HTTP telemetry test. The two Oban migration sources are expressly
@@ -440,3 +445,72 @@ Add the GitHub `release` event (`published`, `released`, `prereleased`, `edited`
 - Outcome loop: with a fake coordinator and a fake executor over real WebSockets, issue event → child Tasks → assignment → claim → report → coordinator receives `attempt.reported` → reviewer decision → `accepted`.
 - Separation of duties: the executor holding `reviewer` cannot accept its own submitted Task; a separate reviewer Agent or operator can.
 - Release: a signed `release` delivery creates one `github.release` event and observation; a duplicate delivery does not.
+
+## 11. Codex host connections amendment (2026-11-09)
+
+Status: proposed contract, approved in direction by the user; not implemented. This is the first delivery priority, ahead of §10. It supersedes the earlier rule that Samgita never connects to Codex itself and requires a separate Agent service to own the driver. Samgita still runs no reasoning: Codex reasons and executes; Samgita owns the connection, identity and management state.
+
+### Goal
+
+When the Samgita service starts, it connects to every enabled, operator-configured Codex host and keeps an initialized app-server session to it. Each Codex host appears as an ordinary registered Agent (implementation label `codex`) with visible connection status. Later stages bridge assigned Tasks (§10) to Codex threads and turns over this session through the existing `Samgita.CodexRuntime` journal.
+
+### Transports
+
+Two transports are supported. Samgita never spawns a local `codex` binary.
+
+| Transport | Codex host side | Samgita side |
+| --- | --- | --- |
+| `websocket` | `codex app-server --listen ws://IP:PORT`, local or remote | Existing `SamgitaCodexDriver.Transport.WebSocket`: configured URL, optional Bearer token from a credential reference, optional pinned connect address. Remote endpoints use WSS; plaintext is allowed only for loopback or an explicit `allow_insecure` for a tunnelled address. |
+| `ssh` | The Codex app-server daemon (`codex app-server daemon start`/`bootstrap`) with its Unix control socket | Samgita runs the system OpenSSH client as an owned subprocess: `ssh -T <target> codex app-server proxy [--sock PATH]`. The proxy forwards raw bytes to the daemon control socket, so Samgita speaks the same WebSocket-over-UDS framing as `Transport.UnixSocket`, carried over the SSH process's stdio. This matches how the Codex desktop app drives remote hosts. |
+
+The `ssh` transport is a new driver transport, `SamgitaCodexDriver.Transport.SshProxy`. It reuses the WebSocket framing, limits and close semantics of the UDS transport over a subprocess byte stream, and the process-group ownership/cleanup of `Transport.Stdio`. Closing the transport ends only the SSH process; it never stops the remote daemon or its threads.
+
+An optional per-host `ensure_daemon` flag runs `ssh <target> codex app-server daemon start` (idempotent) before the proxy session. It is off by default, so Samgita does not manage a remote daemon unless the operator asks for it.
+
+### SSH safety
+
+- Invoke `ssh` with a fixed argument list, never a shell string. Host, user, port and remote socket path are validated values.
+- Always use `BatchMode=yes`, `StrictHostKeyChecking=yes` and a Samgita-owned `UserKnownHostsFile` built from the host's configured known-host entries. An unknown or changed host key refuses the connection.
+- Disable agent, X11 and port forwarding (`-a -x -o ClearAllForwardings=yes`). Use a minimal environment.
+- The private key comes from a versioned external credential reference, resolved at use time like GitHub secrets, and is written only to a private temporary file for the subprocess lifetime. No private key, token or passphrase is stored in the database or logged.
+
+### Durable configuration
+
+Add an additive `codex_hosts` table, one row per Codex Agent:
+
+| Field | Meaning |
+| --- | --- |
+| `id`, `agent_id` | UUID; unique FK to `agents` (implementation label `codex`) |
+| `transport` | `websocket` or `ssh` |
+| `url`, `connect_address`, `token_ref`, `allow_insecure` | WebSocket settings |
+| `ssh_user`, `ssh_host`, `ssh_port`, `ssh_key_ref`, `known_hosts`, `remote_codex_path`, `remote_socket_path`, `ensure_daemon` | SSH settings |
+| `enabled`, `version`, timestamps | Operator control with optimistic versioning |
+
+Create/update/enable/disable are operator commands with `command_id`, `expected_version`, receipt and audit events (`codex_host.configured`, `codex_host.enabled`, `codex_host.disabled`). Configuration never contains secret values, only reference names.
+
+### Runtime supervision
+
+- `Samgita.CodexHosts` starts in `Samgita.Application` after the Repo: a `Registry` plus a `DynamicSupervisor` with one `Samgita.CodexHosts.Connection` process per enabled host. A process is justified here because each one owns a live transport and Session.
+- On boot, and when a host is enabled or reconfigured, the supervisor starts or restarts its connection. Disabling stops it and closes the session.
+- A connection opens the transport, calls `initialize` with Samgita's client info, sends `initialized` and reads the reported server version. A version other than the pinned `0.163.0` runs in the driver's `compatible` schema mode and is shown as a warning, not a failure.
+- Each established session records an `agent_connections` row with a new connection generation. That generation fences later runtime operations exactly like an authenticated machine connection; a reconnect gets a new generation.
+- Failures reconnect with bounded exponential backoff (1 s doubling to 60 s, with jitter). Status (`connecting`, `connected`, `backoff`, `failed`, `disabled`, last safe error code, server version, connected-at) is runtime state published through PubSub. It is not proof that work stopped or succeeded.
+- A configuration flag (`config :samgita, :codex_hosts, enabled: true`) lets tests and maintenance runs boot without connecting.
+
+### Operator UI and API
+
+`/agents/:id` for a Codex Agent shows its host configuration (without secrets), live status, server version and recent connection history, with enable, disable and reconnect actions. The REST operator API exposes the same configure/enable/disable/status operations.
+
+### First-step acceptance
+
+- Boot with one enabled `websocket` host pointing at a local fake app-server: the session initializes, status becomes `connected` and an `agent_connections` generation is recorded.
+- Boot with one enabled `ssh` host using a test `ssh` substitute that bridges stdio to a local daemon-style UDS fake: same outcome, through the real `SshProxy` transport.
+- Stopping the fake server causes backoff and a later reconnect with a new generation; disabling the host stops reconnecting.
+- An unknown host key, a missing credential reference or a rejected token leaves the host `failed` with a safe error code and no secret in logs or status.
+- With `codex_hosts.enabled: false` the application boots without opening any connection.
+- A manual check against a real local daemon (`codex app-server daemon start` + `ssh localhost codex app-server proxy`) confirms the proxy byte stream framing before the transport is called complete.
+
+### Open items
+
+- Confirm that pinned Codex `0.163.0` provides `app-server proxy` and `app-server daemon`; the local development binary is `0.167.0`. A pin upgrade, if needed, is a separate decision.
+- Confirm the proxy's framing (WebSocket over the forwarded control socket) against a real daemon.
