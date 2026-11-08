@@ -11,7 +11,8 @@ defmodule Samgita.CodexHosts.Connection do
   alias Samgita.CodexHosts
   alias Samgita.CodexHosts.Runtime
   alias SamgitaCodexDriver.Session
-  alias SamgitaCodexDriver.Transport.WebSocket
+  alias Samgita.CodexHosts.Ssh
+  alias SamgitaCodexDriver.Transport.{Command, WebSocket}
 
   @min_backoff 1_000
   @max_backoff 60_000
@@ -37,6 +38,7 @@ defmodule Samgita.CodexHosts.Connection do
     state = %{
       host: host,
       session: nil,
+      files: nil,
       generation: nil,
       backoff: backoff_config(:min),
       timer: nil,
@@ -83,14 +85,21 @@ defmodule Samgita.CodexHosts.Connection do
     :ok
   end
 
+  # Each step records what it acquired in the state, so a failure at any step
+  # releases the session and private files acquired so far.
   defp connect(state) do
     host = state.host
 
-    with {:ok, opts} <- transport_opts(host),
-         {:ok, session} <- start_session(opts),
-         state = %{state | session: session},
-         {:ok, version} <- initialize(session),
-         {:ok, recorded} <- CodexHosts.record_connected(host.id, version) do
+    with {:ok, transport, files} <- transport(host),
+         state = %{state | files: files},
+         {:ok, state} <- step(state, ensure_daemon(host, files)),
+         {:ok, state} <- step(state, start_session(transport), :session),
+         {:ok, state} <- step(state, initialize(state.session), :server_version),
+         {:ok, state} <-
+           step(state, CodexHosts.record_connected(host.id, state.server_version), :recorded) do
+      {version, recorded} = {state.server_version, state.recorded}
+      state = Map.drop(state, [:server_version, :recorded])
+
       %{
         state
         | generation: recorded.generation,
@@ -104,9 +113,21 @@ defmodule Samgita.CodexHosts.Connection do
       }
       |> publish()
     else
-      {:error, error} -> state |> close_session(:connect_failed) |> retry(code(error))
+      {:error, error} ->
+        state |> close_session(:connect_failed) |> retry(code(error))
+
+      {:error, error, state} ->
+        state
+        |> Map.drop([:server_version, :recorded])
+        |> close_session(:connect_failed)
+        |> retry(code(error))
     end
   end
+
+  defp step(state, :ok), do: {:ok, state}
+  defp step(state, {:error, error}), do: {:error, error, state}
+  defp step(state, {:ok, value}, key), do: {:ok, Map.put(state, key, value)}
+  defp step(state, {:error, error}, _key), do: {:error, error, state}
 
   defp disconnected(state, reason) do
     if state.generation,
@@ -134,9 +155,27 @@ defmodule Samgita.CodexHosts.Connection do
     |> publish()
   end
 
-  defp start_session(opts) do
-    Session.start_link(owner: self(), schema_mode: :compatible, transport: {WebSocket, opts})
+  defp start_session(transport),
+    do: Session.start_link(owner: self(), schema_mode: :compatible, transport: transport)
+
+  defp transport(%{transport: "ssh"} = host) do
+    case Ssh.prepare(host) do
+      {:ok, prepared} -> {:ok, {Command, prepared.transport}, prepared}
+      {:error, _} = error -> error
+    end
   end
+
+  defp transport(host) do
+    case transport_opts(host) do
+      {:ok, opts} -> {:ok, {WebSocket, opts}, nil}
+      {:error, _} = error -> error
+    end
+  end
+
+  defp ensure_daemon(%{transport: "ssh", ensure_daemon: true} = host, prepared),
+    do: Ssh.ensure_daemon(host, prepared)
+
+  defp ensure_daemon(_host, _files), do: :ok
 
   defp initialize(session) do
     info = %{"name" => "samgita", "version" => app_version()}
@@ -208,7 +247,7 @@ defmodule Samgita.CodexHosts.Connection do
     :exit, _ -> :ok
   end
 
-  defp close_session(%{session: nil} = state, _reason), do: state
+  defp close_session(%{session: nil} = state, _reason), do: release_files(state)
 
   defp close_session(%{session: session} = state, _reason) do
     try do
@@ -217,7 +256,15 @@ defmodule Samgita.CodexHosts.Connection do
       :exit, _ -> :ok
     end
 
-    %{state | session: nil}
+    release_files(%{state | session: nil})
+  end
+
+  # Private SSH files live exactly as long as one session attempt.
+  defp release_files(%{files: nil} = state), do: state
+
+  defp release_files(%{files: files} = state) do
+    Ssh.cleanup(files.dir)
+    %{state | files: nil}
   end
 
   defp cancel_timer(%{timer: nil} = state), do: state

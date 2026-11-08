@@ -12,10 +12,14 @@ defmodule Samgita.CodexHosts do
   alias Samgita.CodexHosts.Runtime
   alias Samgita.Domain.{Agent, CodexHost}
 
-  @websocket_fields ~w(url connect_address token_ref allow_insecure)
+  @websocket_fields ~w(url connect_address token_ref allow_insecure)a
+  @ssh_fields ~w(ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon)a
+  @ssh_host ~r/\A[A-Za-z0-9][A-Za-z0-9.:-]{0,252}\z/
+  @ssh_user ~r/\A[A-Za-z_][A-Za-z0-9_.-]{0,31}\z/
+  @remote_path ~r/\A[A-Za-z0-9_.\/~+-]{1,512}\z/
   @secret_keys ~w(token password secret private_key key passphrase authorization)
   @reference ~r/\A[A-Za-z0-9][A-Za-z0-9._:\/-]{0,199}\z/
-  @projection ~w(id agent_id transport url connect_address token_ref allow_insecure enabled generation server_version last_connected_at version inserted_at updated_at)a
+  @projection ~w(id agent_id transport url connect_address token_ref allow_insecure ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon enabled generation server_version last_connected_at version inserted_at updated_at)a
 
   def list(principal) do
     with :ok <- operator(principal) do
@@ -180,12 +184,54 @@ defmodule Samgita.CodexHosts do
   defp after_commit(result), do: result
 
   defp settings(host, attrs) do
-    host
-    |> cast(attrs, ~w(transport)a ++ Enum.map(@websocket_fields, &String.to_existing_atom/1))
-    |> validate_required([:transport])
-    |> validate_inclusion(:transport, ["websocket"])
-    |> validate_websocket()
+    changeset =
+      host
+      |> cast(attrs, [:transport | @websocket_fields ++ @ssh_fields])
+      |> validate_required([:transport])
+      |> validate_inclusion(:transport, ["websocket", "ssh"])
+
+    # A host uses exactly one transport; the other transport's settings are cleared.
+    case get_field(changeset, :transport) do
+      "websocket" -> changeset |> clear(@ssh_fields) |> validate_websocket()
+      "ssh" -> changeset |> clear(@websocket_fields) |> validate_ssh()
+      _ -> changeset
+    end
   end
+
+  defp clear(changeset, fields) do
+    Enum.reduce(fields, changeset, fn field, acc ->
+      default = if field in [:allow_insecure, :ensure_daemon], do: false
+      put_change(acc, field, default)
+    end)
+  end
+
+  defp validate_ssh(changeset) do
+    changeset
+    |> validate_required([:ssh_host, :known_hosts])
+    |> validate_format(:ssh_host, @ssh_host)
+    |> validate_format(:ssh_user, @ssh_user)
+    |> validate_number(:ssh_port, greater_than: 0, less_than: 65_536)
+    |> validate_format(:ssh_key_ref, @reference)
+    |> validate_format(:remote_codex_path, @remote_path)
+    |> validate_format(:remote_socket_path, @remote_path)
+    |> validate_change(:known_hosts, fn :known_hosts, value ->
+      if valid_known_hosts?(value), do: [], else: [known_hosts: "invalid"]
+    end)
+  end
+
+  # OpenSSH known_hosts lines: "<hosts> <key-type> <base64>" with no options or
+  # control characters. Private keys are rejected by this shape check.
+  defp valid_known_hosts?(value) when byte_size(value) in 1..16_384 do
+    lines = value |> String.split("\n", trim: true) |> Enum.map(&String.trim/1)
+
+    lines != [] and
+      Enum.all?(lines, fn line ->
+        line =~
+          ~r/\A[^\s@#][^\s]* (ssh-[a-z0-9-]+|ecdsa-sha2-[a-z0-9-]+|sk-[a-z0-9@.-]+) [A-Za-z0-9+\/]+={0,2}( [^\x00-\x1f]*)?\z/
+      end)
+  end
+
+  defp valid_known_hosts?(_), do: false
 
   defp validate_websocket(changeset) do
     changeset

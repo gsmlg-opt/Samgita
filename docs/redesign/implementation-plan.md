@@ -306,11 +306,13 @@ Checks: context/command tests, connection tests against a local fake app-server 
 
 ### P7.2 SSH Codex hosts
 
-Owner files: `apps/samgita_codex_driver/lib/samgita_codex_driver/transport/ssh_proxy.ex` and tests; SSH branches of the P7.1 connection and configuration; a test `ssh` substitute script under the driver's test support.
+Owner files: `apps/samgita_codex_driver/lib/samgita_codex_driver/transport/command.ex` and tests; `apps/samgita/lib/samgita/codex_hosts/ssh.ex`; SSH branches of the P7.1 connection, configuration and UI; their tests.
 
-- [ ] `Transport.SshProxy`: owned `ssh` subprocess with a fixed argument list, `BatchMode`, strict host-key checking against a Samgita-owned known-hosts file, forwarding disabled and minimal environment; WebSocket framing over its stdio; closing never stops the remote daemon.
-- [ ] Private key resolved from a credential reference into a private temporary file for the subprocess lifetime only.
-- [ ] Optional `ensure_daemon` runs `codex app-server daemon start` before the proxy session.
-- [ ] Manual verification against a real local daemon through `ssh localhost codex app-server proxy`, recorded with the Codex version.
+- [x] Verify the proxy framing: `codex app-server proxy --sock` to a foreground `codex app-server --listen unix://…` (Codex 0.167.0) answers an HTTP WebSocket upgrade and a framed `initialize`. No daemon was installed for this check.
+- [x] `Transport.Command` in the driver: WebSocket over an owned command's stdio via a private relay socket; exact environment; command killed after a grace period if it ignores EOF.
+- [x] `Samgita.CodexHosts.Ssh`: fixed argument list, `-F /dev/null`, `BatchMode`, strict host-key checking against a private known-hosts file, forwarding and connection sharing disabled, minimal environment, shell-quoted remote command.
+- [x] Private key resolved from a credential reference into a 0600 file in a 0700 directory for one connection attempt only.
+- [x] Optional `ensure_daemon` runs `codex app-server daemon start` before the proxy session.
+- [x] SSH settings validation (host, user, port, paths, public-key-only known hosts) and the transport switch in the `/agents/:id` form.
 
-Checks: driver transport tests with the `ssh` substitute bridging to a local UDS fake; connection tests for host-key refusal, missing key reference and remote exit; the manual real-daemon check.
+Result (2026-11-09): driver `transport_command_test.exs` 5 tests; core SSH tests 8 (including a regression for a Session leak when `initialize` fails, found and fixed in P7.1 code); web 5 Codex host tests; all affected suites pass. Real OpenSSH against local sshd: a wrong host key is refused before authentication ("REMOTE HOST IDENTIFICATION HAS CHANGED"), the correct key passes host verification and fails authentication without prompting (`BatchMode`). Unverified: a full real-SSH session to a real Codex daemon (needs authorized SSH credentials). Out-of-scope pre-existing failures recorded, not fixed: `transport_web_socket_test.exs` expects a lowercase `authorization` header but the updated `http_web_socket` sends `Authorization`; 9 `initialized_transport_test.exs` cases need the pinned `CODEX_BINARY` environment.

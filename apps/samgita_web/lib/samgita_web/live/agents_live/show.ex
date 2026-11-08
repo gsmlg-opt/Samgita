@@ -4,6 +4,8 @@ defmodule SamgitaWeb.AgentsLive.Show do
   alias SamgitaWeb.AgentsLive.Components
   import SamgitaWeb.AgentsLive.Components, only: [agent_fields: 1]
 
+  @codex_fields ~w(url token_ref connect_address allow_insecure ssh_host ssh_port ssh_user ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon)
+
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket),
@@ -79,13 +81,17 @@ defmodule SamgitaWeb.AgentsLive.Show do
     end
   end
 
+  def handle_event("change_codex_host", %{"codex_host" => params}, socket),
+    do: {:noreply, assign(socket, codex_form: to_form(params, as: :codex_host))}
+
   def handle_event("save_codex_host", %{"codex_host" => params}, socket) do
     attrs =
       params
-      |> Map.take(~w(command_id expected_version url token_ref connect_address allow_insecure))
+      |> Map.take(["command_id", "expected_version", "transport" | @codex_fields])
       |> Map.reject(fn {_key, value} -> value == "" end)
       |> Map.update("allow_insecure", false, &(&1 == "true"))
-      |> Map.merge(%{"agent_id" => socket.assigns.agent_id, "transport" => "websocket"})
+      |> Map.update("ensure_daemon", false, &(&1 == "true"))
+      |> Map.put("agent_id", socket.assigns.agent_id)
       |> Components.version_attrs()
 
     case CodexHosts.configure(Principal.operator(), attrs) do
@@ -152,11 +158,14 @@ defmodule SamgitaWeb.AgentsLive.Show do
     {:ok, host} = CodexHosts.for_agent(Principal.operator(), agent["id"])
 
     values =
-      Map.merge(
-        %{"url" => "", "token_ref" => "", "connect_address" => "", "allow_insecure" => false},
-        Map.take(host || %{}, ~w(url token_ref connect_address allow_insecure))
-      )
-      |> Map.new(fn {key, value} -> {key, value || ""} end)
+      Map.new(@codex_fields, &{&1, ""})
+      |> Map.merge(%{
+        "transport" => "websocket",
+        "allow_insecure" => false,
+        "ensure_daemon" => false
+      })
+      |> Map.merge(Map.take(host || %{}, ["transport" | @codex_fields]))
+      |> Map.new(fn {key, value} -> {key, if(is_nil(value), do: "", else: value)} end)
       |> Map.put("command_id", Ecto.UUID.generate())
       |> Map.put("expected_version", host && host["version"])
 

@@ -107,6 +107,11 @@ defmodule Samgita.FakeCodexServer do
     end
   end
 
+  defp handle(socket, owner, %{initialize: :error}, %{"id" => id, "method" => "initialize"}) do
+    send(owner, {:fake_codex, :request, "initialize"})
+    reply(socket, %{"id" => id, "error" => %{"code" => -32_603, "message" => "not ready"}})
+  end
+
   defp handle(socket, owner, opts, %{"id" => id, "method" => "initialize"}) do
     send(owner, {:fake_codex, :request, "initialize"})
     version = Map.get(opts, :version, "0.167.0")

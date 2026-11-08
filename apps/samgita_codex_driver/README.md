@@ -243,6 +243,7 @@ inference, sandbox enforcement, live authentication or Samgita Task acceptance.
 | `Transport.Stdio` | `:executable`, `:args`, `:cwd`, explicit absolute `:codex_home` or `:env` CODEX_HOME. Owns the spawned process group. Python 3 handles group cleanup on port/owner death; stderr is drained separately. Ambient HOME/Codex/auth/proxy environment is excluded unless explicitly opted in. |
 | `Transport.WebSocket` | `:url`, optional Bearer `:token` or explicit `:headers`, optional pinned `:connect_address`. WSS validates trust, hostname and SNI. Plaintext remote WS needs explicit `:allow_insecure`; no redirects or Origin header. Owns only the client connection. |
 | `Transport.UnixSocket` | Absolute `:socket_path`, optional `:path` default `/app-server`. Uses WebSocket over UDS, never JSONL; never unlinks the borrowed socket or invokes `/daemon/shutdown`. |
+| `Transport.Command` | Absolute `:executable`, `:args` (no shell), exact `:env`, optional `:path` default `/app-server`, `:connect_timeout_ms`, `:cleanup_timeout_ms`. WebSocket over the command's stdio, relayed through a private per-connection Unix socket; intended for `ssh <host> codex app-server proxy` to a Codex daemon. Owns and stops the command (killed after the grace period if it ignores EOF); never stops the remote daemon. |
 
 Set `:max_message_bytes` on the Session. Transport options separately bound frames,
 reads, connect and send deadlines. Sessions bound pending requests, interactions,

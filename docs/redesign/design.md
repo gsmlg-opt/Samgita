@@ -462,9 +462,9 @@ Two transports are supported. Samgita never spawns a local `codex` binary.
 | Transport | Codex host side | Samgita side |
 | --- | --- | --- |
 | `websocket` | `codex app-server --listen ws://IP:PORT`, local or remote | Existing `SamgitaCodexDriver.Transport.WebSocket`: configured URL, optional Bearer token from a credential reference, optional pinned connect address. Remote endpoints use WSS; plaintext is allowed only for loopback or an explicit `allow_insecure` for a tunnelled address. |
-| `ssh` | The Codex app-server daemon (`codex app-server daemon start`/`bootstrap`) with its Unix control socket | Samgita runs the system OpenSSH client as an owned subprocess: `ssh -T <target> codex app-server proxy [--sock PATH]`. The proxy forwards raw bytes to the daemon control socket, so Samgita speaks the same WebSocket-over-UDS framing as `Transport.UnixSocket`, carried over the SSH process's stdio. This matches how the Codex desktop app drives remote hosts. |
+| `ssh` | The Codex app-server daemon (`codex app-server daemon start`/`bootstrap`) with its Unix control socket | Samgita runs the system OpenSSH client as an owned subprocess: `ssh -T <target> codex app-server proxy [--sock PATH]`. The proxy forwards raw bytes to the daemon control socket, which speaks WebSocket (verified 2026-11-09 against Codex 0.167.0: HTTP `101 Switching Protocols`, then WebSocket frames). This matches how the Codex desktop app drives remote hosts. |
 
-The `ssh` transport is a new driver transport, `SamgitaCodexDriver.Transport.SshProxy`. It reuses the WebSocket framing, limits and close semantics of the UDS transport over a subprocess byte stream, and the process-group ownership/cleanup of `Transport.Stdio`. Closing the transport ends only the SSH process; it never stops the remote daemon or its threads.
+The driver transport `SamgitaCodexDriver.Transport.Command` carries WebSocket over any owned command's stdio: it relays the command's stdio through a private per-connection Unix socket, so the existing `Transport.WebSocket` client provides framing, limits and close semantics unchanged. `Samgita.CodexHosts.Ssh` builds the OpenSSH command. Closing the transport ends only the SSH process (killed after a grace period if it ignores stdin EOF); it never stops the remote daemon or its threads.
 
 An optional per-host `ensure_daemon` flag runs `ssh <target> codex app-server daemon start` (idempotent) before the proxy session. It is off by default, so Samgita does not manage a remote daemon unless the operator asks for it.
 
@@ -472,7 +472,7 @@ An optional per-host `ensure_daemon` flag runs `ssh <target> codex app-server da
 
 - Invoke `ssh` with a fixed argument list, never a shell string. Host, user, port and remote socket path are validated values.
 - Always use `BatchMode=yes`, `StrictHostKeyChecking=yes` and a Samgita-owned `UserKnownHostsFile` built from the host's configured known-host entries. An unknown or changed host key refuses the connection.
-- Disable agent, X11 and port forwarding (`-a -x -o ClearAllForwardings=yes`). Use a minimal environment.
+- Ignore user SSH configuration (`-F /dev/null`), disable agent, X11 and port forwarding (`-a -x -o ClearAllForwardings=yes`) and connection sharing (`ControlPath=none`). Use a minimal environment (`PATH`, `HOME` set to the private directory, `LANG`; `SSH_AUTH_SOCK` only when no key reference is configured).
 - The private key comes from a versioned external credential reference, resolved at use time like GitHub secrets, and is written only to a private temporary file for the subprocess lifetime. No private key, token or passphrase is stored in the database or logged.
 
 ### Durable configuration
@@ -524,4 +524,4 @@ Codex is not pinned. Samgita tracks the latest official Codex release, because C
 
 ### Open items
 
-- Confirm the `app-server proxy` framing (WebSocket over the forwarded control socket) against a real local daemon.
+- None for the transport contract. A full real-SSH session to a real Codex daemon needs authorized SSH credentials and remains unverified (see P7.2 results).

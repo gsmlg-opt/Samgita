@@ -113,10 +113,16 @@
       </div>
       <p class="mb-4 text-sm text-on-surface-variant">
         {gettext(
-          "Samgita connects to this Codex app-server over WebSocket. Store only a credential reference name; its token is supplied by runtime configuration. Connection state is evidence of reachability only."
+          "Samgita connects to this Codex app-server over WebSocket, or over SSH through `codex app-server proxy` to the Codex daemon. Store only credential reference names; tokens and private keys are supplied by runtime configuration. Connection state is evidence of reachability only."
         )}
       </p>
-      <.form for={@codex_form} id="codex-host-form" phx-submit="save_codex_host" class="space-y-4">
+      <.form
+        for={@codex_form}
+        id="codex-host-form"
+        phx-change="change_codex_host"
+        phx-submit="save_codex_host"
+        class="space-y-4"
+      >
         <input type="hidden" name="codex_host[command_id]" value={@codex_form[:command_id].value} />
         <input
           :if={@codex_form[:expected_version].value}
@@ -124,7 +130,55 @@
           name="codex_host[expected_version]"
           value={@codex_form[:expected_version].value}
         />
-        <div class="grid gap-4 sm:grid-cols-2">
+        <.dm_input
+          field={@codex_form[:transport]}
+          type="select"
+          label={gettext("Transport")}
+          options={[
+            {gettext("WebSocket"), "websocket"},
+            {gettext("SSH to the Codex daemon"), "ssh"}
+          ]}
+        />
+        <div :if={@codex_form[:transport].value == "ssh"} class="grid gap-4 sm:grid-cols-2">
+          <.dm_input field={@codex_form[:ssh_host]} label={gettext("SSH host")} required />
+          <.dm_input
+            field={@codex_form[:ssh_port]}
+            type="number"
+            label={gettext("SSH port")}
+            min="1"
+            max="65535"
+            placeholder="22"
+          />
+          <.dm_input field={@codex_form[:ssh_user]} label={gettext("SSH user")} />
+          <.dm_input
+            field={@codex_form[:ssh_key_ref]}
+            label={gettext("Private key reference (no secret)")}
+            maxlength="200"
+          />
+          <.dm_input
+            field={@codex_form[:remote_codex_path]}
+            label={gettext("Remote codex path")}
+            placeholder="codex"
+          />
+          <.dm_input
+            field={@codex_form[:remote_socket_path]}
+            label={gettext("Remote daemon socket (optional)")}
+          />
+          <div class="sm:col-span-2">
+            <.dm_input
+              field={@codex_form[:known_hosts]}
+              type="textarea"
+              label={gettext("Known host keys (ssh-keyscan output, public keys only)")}
+              required
+            />
+          </div>
+          <.dm_input
+            field={@codex_form[:ensure_daemon]}
+            type="checkbox"
+            label={gettext("Run `codex app-server daemon start` before connecting")}
+          />
+        </div>
+        <div :if={@codex_form[:transport].value != "ssh"} class="grid gap-4 sm:grid-cols-2">
           <.dm_input
             field={@codex_form[:url]}
             label={gettext("App-server URL (ws:// or wss://)")}
