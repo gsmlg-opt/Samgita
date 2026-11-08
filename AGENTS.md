@@ -6,6 +6,19 @@ Samgita is an agent-neutral, single-tenant project and task management platform.
 
 Samgita does not run LLMs, embedded providers, local workers, PRD orchestration or a central reasoning loop. Do not infer compatibility requirements from removed legacy code.
 
+### Target workflow (confirmed 2026-11-09)
+
+Samgita connects external Agents and manages their collaborative development work:
+
+1. A GitHub event (for example a new issue) is ingested and routed as a Project event to the Project's responsible coordinator Agent (for example Synapsis, with the `manager` role).
+2. The coordinator Agent reasons about the work and decomposes it into a Task tree (`parent_task_id`, `depends_on_ids`) through Samgita's API. Decomposition is the coordinator's job; Samgita stores, validates and enforces the tree but never decomposes on its own.
+3. The coordinator explicitly assigns each Task to a named executor Agent (for example Codex or Sigma). Samgita validates membership, capability and capacity, then notifies the assigned Agent, which claims and runs it as a fenced Attempt.
+4. Samgita monitors execution through Attempt leases, progress and reports, plus observed GitHub PR/check/workflow/release facts, and notifies the coordinator of outcomes.
+5. Executor Agents open PRs, merge and release with their own GitHub credentials. Samgita stays read-only toward GitHub and only observes.
+6. Acceptance (`awaiting_review` -> `accepted`) is configurable per Project: either the coordinator Agent holds the `reviewer` role and accepts automatically, or only a human operator accepts.
+
+Not yet implemented: explicit executor assignment and assignment notification (today executors claim by capability), coordinator notification of executor outcomes, release-event ingestion, and a per-Project acceptance policy beyond `reviewer` role membership. Changes to these require updating `docs/redesign/design.md` first.
+
 ## Documentation Map
 
 Authoritative:
