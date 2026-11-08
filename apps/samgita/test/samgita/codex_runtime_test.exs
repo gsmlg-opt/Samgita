@@ -39,7 +39,7 @@ defmodule Samgita.CodexRuntimeTest do
   setup do
     activate_fixture()
     project = project_fixture()
-    agent = agent_fixture(%{"runtime_driver" => "codex", "runtime_version" => "0.163.0"})
+    agent = agent_fixture(%{"runtime_driver" => "codex", "runtime_version" => "0.167.0"})
     member_fixture(project, agent, ["worker"])
     {principal, connection, credential} = connection_fixture(agent)
 
@@ -82,6 +82,7 @@ defmodule Samgita.CodexRuntimeTest do
       })
 
     assert {:ok, runtime} = CodexRuntime.bind(principal, project["id"], binding)
+    assert runtime["driver_version"] == "0.167.0"
 
     %{
       project: project,

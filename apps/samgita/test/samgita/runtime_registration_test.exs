@@ -22,17 +22,45 @@ defmodule Samgita.RuntimeRegistrationTest do
     refute Repo.exists?(from a in Samgita.Domain.TaskAttempt, where: a.agent_id == ^agent["id"])
   end
 
-  test "runtime versions are pinned and metadata is an operator command" do
+  test "Codex runtime versions are not pinned but must be well formed" do
+    for version <- ["0.163.0", "0.167.0", "1.0.0-alpha.1"] do
+      assert {:ok, agent} =
+               Agents.register(
+                 Principal.operator(),
+                 command(%{
+                   "name" => "Codex " <> version,
+                   "runtime_driver" => "codex",
+                   "runtime_version" => version
+                 })
+               )
+
+      assert agent["runtime_version"] == version
+    end
+
+    for version <- ["", "bad version", "-1", String.duplicate("9", 65)] do
+      assert {:error, %{code: :invalid}} =
+               Agents.register(
+                 Principal.operator(),
+                 command(%{
+                   "name" => "Malformed version",
+                   "runtime_driver" => "codex",
+                   "runtime_version" => version
+                 })
+               )
+    end
+
     assert {:error, %{code: :invalid}} =
              Agents.register(
                Principal.operator(),
                command(%{
-                 "name" => "Wrong version",
-                 "runtime_driver" => "codex",
-                 "runtime_version" => "future"
+                 "name" => "Unknown driver",
+                 "runtime_driver" => "other",
+                 "runtime_version" => "1.0.0"
                })
              )
+  end
 
+  test "runtime metadata is an operator command" do
     agent = agent_fixture()
     {principal, _, _} = connection_fixture(agent)
 

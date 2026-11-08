@@ -54,6 +54,7 @@ defmodule Samgita.CodexRuntime do
           runtime_ref: attrs["runtime_ref"],
           instance_id: attrs["instance_id"],
           driver_generation: attrs["driver_generation"],
+          driver_version: ctx.agent.runtime_version,
           experimental: attrs["experimental"] == true,
           fingerprint_key_id: key_id
         }

@@ -25,10 +25,10 @@ defmodule Samgita.CodexRuntime.Authorization do
     current_task!(ctx, task, attempt)
     agent = Repo.get!(Agent, attempt.agent_id)
 
-    if agent.runtime_driver != "codex" || agent.runtime_version != "0.163.0",
+    if agent.runtime_driver != "codex" || is_nil(agent.runtime_version),
       do: Commands.fail!(:invalid, %{reason: "runtime_not_registered"})
 
-    Map.merge(ctx, %{task: task, attempt: attempt})
+    Map.merge(ctx, %{task: task, attempt: attempt, agent: agent})
   end
 
   def context(ctx, id, proof, opts \\ []) do

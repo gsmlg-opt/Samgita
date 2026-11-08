@@ -5,6 +5,8 @@ defmodule Samgita.Agents do
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
   alias Samgita.Domain.{Agent, AgentConnection, AgentCredential, ExecutionSession}
   @read_roles ~w(observer worker manager reviewer)
+  # Codex is not pinned (design §11): any well-formed version string is accepted.
+  @runtime_version ~r/\A[0-9A-Za-z][0-9A-Za-z.+-]{0,63}\z/
   @fields ~w(name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata credential_ref runtime_driver runtime_version)a
 
   def register(principal, attrs) do
@@ -334,9 +336,16 @@ defmodule Samgita.Agents do
 
   defp validate_runtime(changeset) do
     case {get_field(changeset, :runtime_driver), get_field(changeset, :runtime_version)} do
-      {nil, nil} -> changeset
-      {"codex", "0.163.0"} -> changeset
-      _ -> add_error(changeset, :runtime_driver, "unsupported runtime/version")
+      {nil, nil} ->
+        changeset
+
+      {"codex", version} when is_binary(version) ->
+        if Regex.match?(@runtime_version, version),
+          do: changeset,
+          else: add_error(changeset, :runtime_version, "invalid version")
+
+      _ ->
+        add_error(changeset, :runtime_driver, "unsupported runtime/version")
     end
   end
 

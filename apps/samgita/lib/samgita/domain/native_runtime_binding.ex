@@ -16,7 +16,7 @@ defmodule Samgita.Domain.NativeRuntimeBinding do
     field :instance_id, Ecto.UUID
     field :driver_generation, :integer
     field :driver, :string, default: "codex"
-    field :driver_version, :string, default: "0.163.0"
+    field :driver_version, :string
     field :fingerprint_key_id, :string
     field :experimental, :boolean, default: false
     field :state, :string, default: "open"
