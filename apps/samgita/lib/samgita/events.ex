@@ -1,5 +1,9 @@
 defmodule Samgita.Events do
-  @moduledoc "Transactional source events, explicit responsible-Agent routing and durable cursors."
+  @moduledoc """
+  Transactional source events, explicit responsible- and assignee-Agent routing
+  and durable cursors. An `assignee` subscription receives only events about
+  Tasks assigned to its Agent (design §10); delivery confers no ownership.
+  """
   import Ecto.Query
   import Ecto.Changeset
   alias Samgita.{Commands, Params, Projection, Repo}
@@ -66,11 +70,37 @@ defmodule Samgita.Events do
 
     if project_id && Map.get(ctx, :notify, true) do
       Repo.all(from(s in EventSubscription, where: s.project_id == ^project_id and s.enabled))
-      |> Enum.filter(&(&1.types == [] || type in &1.types))
+      |> Enum.filter(&routes?(&1, event))
       |> Enum.each(&subscribe_event!(event, &1))
     end
 
     event
+  end
+
+  defp routes?(subscription, event) do
+    (subscription.types == [] || event.type in subscription.types) &&
+      (subscription.purpose != "assignee" || assigned_to?(subscription.agent_id, event))
+  end
+
+  # A reassignment notifies both the new and the previous assignee.
+  defp assigned_to?(agent_id, %DomainEvent{type: "task.assigned", data: data}),
+    do: agent_id in [data["assignee_agent_id"], data["previous_assignee_agent_id"]]
+
+  defp assigned_to?(agent_id, event) do
+    task_id = if event.resource_type == "task", do: event.resource_id, else: event.data["task_id"]
+
+    Params.uuid?(task_id) &&
+      Repo.exists?(from(t in Task, where: t.id == ^task_id and t.assignee_agent_id == ^agent_id))
+  end
+
+  @doc "Whether a subscription's Agent still holds the membership its routing purpose requires."
+  def routable?(subscription, agent, member) do
+    role = if subscription.purpose == "assignee", do: "worker", else: "manager"
+
+    subscription.purpose in ~w(responsible assignee) && !!agent && agent.enabled && !!member &&
+      member.enabled && role in member.roles &&
+      "project_events.v1" in agent.approved_capabilities &&
+      "project_events.v1" in agent.advertised_capabilities
   end
 
   defp subscribe_event!(event, subscription) do
@@ -146,6 +176,76 @@ defmodule Samgita.Events do
           "subscription",
           subscription.id,
           %{"agent_id" => agent.id, "previous_subscription_id" => old && old.id}
+        )
+
+        Map.put(subscription_projection(subscription), "project_version", project.version)
+      end
+    )
+  end
+
+  @doc "Explicitly route assignment notifications to one executor Agent (design §10)."
+  def configure_assignee(principal, project_id, attrs) do
+    attrs = Params.strings(attrs)
+    agent_id = attrs["agent_id"]
+
+    Commands.run(
+      principal,
+      project_id,
+      attrs,
+      [operation: "events.configure_assignee:#{agent_id}", agent_ids: [agent_id]],
+      fn ctx ->
+        Commands.operator!(principal)
+        Commands.expect!(ctx.project, attrs)
+        if !Params.uuid?(agent_id), do: Commands.fail!(:invalid, %{field: "agent_id"})
+        agent = Repo.get(Agent, agent_id) || Commands.fail!(:not_found)
+        member = Repo.get_by(ProjectAgent, project_id: project_id, agent_id: agent.id)
+
+        if !agent.enabled || !member || !member.enabled || "worker" not in member.roles,
+          do: Commands.fail!(:forbidden)
+
+        if "project_events.v1" not in agent.approved_capabilities ||
+             "project_events.v1" not in agent.advertised_capabilities,
+           do: Commands.fail!(:invalid, %{reason: "project_events_required"})
+
+        types = subscription_types!(attrs)
+
+        old =
+          Repo.one(
+            from(s in EventSubscription,
+              where:
+                s.project_id == ^project_id and s.agent_id == ^agent.id and
+                  s.purpose == "assignee" and s.enabled
+            )
+          )
+
+        if old,
+          do: old |> change(enabled: false, revision: old.revision + 1) |> Commands.update!()
+
+        subscription =
+          %EventSubscription{}
+          |> change(
+            project_id: project_id,
+            agent_id: agent.id,
+            purpose: "assignee",
+            types: types,
+            target_digest: target_digest(agent),
+            idempotency_guaranteed: attrs["idempotency_guaranteed"] == true
+          )
+          |> Commands.insert!()
+
+        project = ctx.project |> change(version: ctx.project.version + 1) |> Commands.update!()
+
+        append!(
+          project_id,
+          "event.routing_configured",
+          Map.put(ctx, :notify, false),
+          "subscription",
+          subscription.id,
+          %{
+            "agent_id" => agent.id,
+            "purpose" => "assignee",
+            "previous_subscription_id" => old && old.id
+          }
         )
 
         Map.put(subscription_projection(subscription), "project_version", project.version)
@@ -266,17 +366,12 @@ defmodule Samgita.Events do
 
   defp require_redelivery_target!(target, agent, member, attrs) do
     current_target =
-      target.enabled && target.purpose == "responsible" &&
-        attrs["expected_subscription_revision"] == target.revision &&
+      target.enabled && attrs["expected_subscription_revision"] == target.revision &&
         target.target_digest == target_digest(agent)
 
-    if !current_target || !responsible_member?(agent, member) ||
-         "project_events.v1" not in agent.approved_capabilities,
-       do: Commands.fail!(:ownership_lost)
+    if !current_target || !routable?(target, agent, member),
+      do: Commands.fail!(:ownership_lost)
   end
-
-  defp responsible_member?(agent, member),
-    do: agent.enabled && member && member.enabled && "manager" in member.roles
 
   defp require_redelivery_evidence!(attrs) do
     if !bounded_text?(attrs["reason"], 1..2000) || !bounded_text?(attrs["evidence_ref"], 1..2000),
@@ -415,13 +510,25 @@ defmodule Samgita.Events do
 
   def routing(principal, project_id) do
     Commands.read(principal, project_id, @read_roles, fn _ ->
+      assignees =
+        Repo.all(
+          from(s in EventSubscription,
+            where: s.project_id == ^project_id and s.purpose == "assignee" and s.enabled,
+            order_by: s.agent_id
+          )
+        )
+        |> Enum.map(&subscription_projection/1)
+
       case Repo.one(
              from(s in EventSubscription,
                where: s.project_id == ^project_id and s.purpose == "responsible" and s.enabled
              )
            ) do
-        nil -> %{"subscription" => nil}
-        subscription -> subscription_projection(subscription)
+        nil ->
+          %{"subscription" => nil, "assignees" => assignees}
+
+        subscription ->
+          subscription |> subscription_projection() |> Map.put("assignees", assignees)
       end
     end)
   end
@@ -433,7 +540,7 @@ defmodule Samgita.Events do
       principal,
       project_id,
       attrs,
-      [operation: "events.cursor:#{id}", roles: ["manager"]],
+      [operation: "events.cursor:#{id}", roles: ~w(manager worker)],
       fn ctx ->
         subscription = subscription!(project_id, id)
 

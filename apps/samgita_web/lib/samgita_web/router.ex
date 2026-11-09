@@ -140,6 +140,7 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/events/:event_id/redeliver", EventController, :redeliver
     get "/projects/:project_id/event-routing", EventController, :routing
     put "/projects/:project_id/event-routing", EventController, :configure
+    put "/projects/:project_id/event-routing/assignees", EventController, :configure_assignee
     get "/projects/:project_id/deliveries", EventController, :deliveries
     get "/projects/:project_id/deliveries/:id", EventController, :delivery
     post "/projects/:project_id/deliveries/:id/recover", EventController, :recover

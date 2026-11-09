@@ -93,6 +93,8 @@ defmodule SamgitaWeb.ProjectsLive.Show do
       "member" =>
         UI.new_form("member", %{"roles" => "observer", "enabled" => true}, p["version"]),
       "routing" => UI.new_form("routing", %{"idempotency_guaranteed" => false}, p["version"]),
+      "assignee_routing" =>
+        UI.new_form("assignee_routing", %{"idempotency_guaranteed" => false}, p["version"]),
       "task" => UI.new_form("task"),
       "schedule" =>
         UI.new_form("schedule", %{
@@ -108,7 +110,7 @@ defmodule SamgitaWeb.ProjectsLive.Show do
 
   @impl true
   def handle_event("toggle_section", %{"name" => name}, socket)
-      when name in ~w(state repository choices member routing task schedule recovery) do
+      when name in ~w(state repository choices member routing assignee_routing task schedule recovery) do
     expanded = socket.assigns.expanded
 
     expanded =
@@ -258,8 +260,9 @@ defmodule SamgitaWeb.ProjectsLive.Show do
 
   defp version(socket, "recovery", _), do: socket.assigns.delivery["version"]
 
-  defp version(socket, name, _) when name in ~w(project state repository member routing),
-    do: socket.assigns.page["project"]["version"]
+  defp version(socket, name, _)
+       when name in ~w(project state repository member routing assignee_routing),
+       do: socket.assigns.page["project"]["version"]
 
   defp version(_, _, _), do: nil
 
@@ -288,10 +291,19 @@ defmodule SamgitaWeb.ProjectsLive.Show do
       "repository" -> Repositories.associate(operator, id, a)
       "member" -> Projects.put_member(operator, id, a)
       "routing" -> Events.configure(operator, id, a)
+      "assignee_routing" -> Events.configure_assignee(operator, id, a)
       "task" -> Tasks.create(operator, id, a)
       "recovery" -> EventDelivery.recover(operator, id, a["delivery_id"], a)
     end
   end
+
+  defp reviewers(memberships),
+    do:
+      for(
+        m <- memberships || [],
+        m["enabled"] && "reviewer" in m["roles"],
+        do: m["agent_name"] || m["agent_id"]
+      )
 
   defp max_total(page), do: page["totals"] |> Map.values() |> Enum.max(fn -> 0 end)
 
@@ -382,6 +394,19 @@ defmodule SamgitaWeb.ProjectsLive.Show do
                 do: @page["routing"]["agent_id"],
                 else: "Not configured"}
             </p>
+            <p id="acceptance-mode" class="my-3">
+              Acceptance: {if reviewers(@page["memberships"]) == [],
+                do: "operator only (no Agent holds reviewer)",
+                else:
+                  "reviewer Agents " <>
+                    Enum.join(reviewers(@page["memberships"]), ", ") <>
+                    " or the operator; an executor cannot accept its own work"}
+            </p>
+            <p id="assignee-routing" class="my-3">
+              Assignee notifications: {if @page["assignee_routing"] in [nil, []],
+                do: "None (executors poll assigned Tasks)",
+                else: Enum.map_join(@page["assignee_routing"], ", ", & &1["agent_id"])}
+            </p>
             <details id="choices-section" open={MapSet.member?(@expanded, "choices")}>
               <summary phx-click="toggle_section" phx-value-name="choices">
                 Registered Agent choices
@@ -420,6 +445,27 @@ defmodule SamgitaWeb.ProjectsLive.Show do
                 label="Save routing"
                 fields={[
                   {"agent_id", "Agent UUID", "text"},
+                  {"types", "Event types (comma separated; empty means all)", "text"},
+                  {"idempotency_guaranteed", "Reviewed idempotency guarantee", "boolean"}
+                ]}
+              />
+            </details>
+            <details
+              id="assignee-routing-section"
+              class="mt-4"
+              open={MapSet.member?(@expanded, "assignee_routing")}
+            >
+              <summary phx-click="toggle_section" phx-value-name="assignee_routing">
+                Configure assignee notifications
+              </summary><p>
+                Delivers events about Tasks assigned to one executor. Requires an enabled worker with approved and advertised project_events.v1.
+              </p><UI.command_form
+                form={@forms["assignee_routing"]}
+                error={@errors["assignee_routing"]}
+                event="save:assignee_routing"
+                label="Save assignee notifications"
+                fields={[
+                  {"agent_id", "Executor Agent UUID", "text"},
                   {"types", "Event types (comma separated; empty means all)", "text"},
                   {"idempotency_guaranteed", "Reviewed idempotency guarantee", "boolean"}
                 ]}

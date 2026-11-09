@@ -161,6 +161,38 @@ defmodule SamgitaWeb.ProjectsLiveTest do
     assert has_element?(fresh, "h1", "Concurrent edit")
   end
 
+  test "assignee notifications and the acceptance mode are configured and shown", %{conn: conn} do
+    p = project_fixture()
+    executor = agent_fixture(%{"name" => "Executor Agent"})
+    {:ok, view, _} = live(conn, "/projects/#{p["id"]}")
+    assert has_element?(view, "#acceptance-mode", "operator only")
+    assert has_element?(view, "#assignee-routing", "None")
+
+    view
+    |> form("#member-form", member: %{agent_id: executor["id"], roles: "worker", enabled: "true"})
+    |> render_submit()
+
+    view
+    |> form("#assignee_routing-form",
+      assignee_routing: %{agent_id: executor["id"], types: "", idempotency_guaranteed: "false"}
+    )
+    |> render_submit()
+
+    assert {:ok, %{"assignees" => [routed]}} = Events.routing(Principal.operator(), p["id"])
+    assert routed["agent_id"] == executor["id"]
+    assert has_element?(view, "#assignee-routing", executor["id"])
+
+    reviewer = agent_fixture(%{"name" => "Reviewer Agent"})
+
+    view
+    |> form("#member-form",
+      member: %{agent_id: reviewer["id"], roles: "reviewer", enabled: "true"}
+    )
+    |> render_submit()
+
+    assert has_element?(view, "#acceptance-mode", "Reviewer Agent")
+  end
+
   test "membership repository association and routing are real commands", %{conn: conn} do
     p = project_fixture()
     a = agent_fixture(%{"name" => "Operator-selected Agent"})

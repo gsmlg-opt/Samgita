@@ -27,6 +27,9 @@ defmodule SamgitaWeb.EventController do
   def configure(conn, %{"project_id" => id}),
     do: API.result(conn, Events.configure(API.principal(conn), id, API.attrs(conn)))
 
+  def configure_assignee(conn, %{"project_id" => id}),
+    do: API.result(conn, Events.configure_assignee(API.principal(conn), id, API.attrs(conn)))
+
   def ack_cursor(conn, %{"project_id" => id, "subscription_id" => subscription}),
     do:
       API.result(conn, Events.ack_cursor(API.principal(conn), id, subscription, API.attrs(conn)))

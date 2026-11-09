@@ -75,7 +75,7 @@ relative to `/api`; route availability does not waive command preconditions.
 | Task decisions and evidence | `POST /projects/:project_id/tasks/:task_id/transition`, `/assign`, `/adopt`, `/decisions`, `/artifacts` |
 | Effect resolution | `POST /projects/:project_id/attempts/:id/resolve` |
 | Events | `GET /projects/:project_id/events`, `POST /projects/:project_id/events/trigger`, `/external`, `POST /projects/:project_id/events/:event_id/redeliver` |
-| Responsible routing | `GET/PUT /projects/:project_id/event-routing` |
+| Responsible and assignee routing | `GET/PUT /projects/:project_id/event-routing`, `PUT /projects/:project_id/event-routing/assignees` (one `assignee` subscription per executor `worker`; delivers only events about Tasks assigned to it) |
 | Delivery | `GET /projects/:project_id/deliveries`, `GET /projects/:project_id/deliveries/:id`, `POST /projects/:project_id/deliveries/:id/recover` |
 | Schedules | `GET/POST /projects/:project_id/schedules`, `PATCH /projects/:project_id/schedules/:id` |
 | Authority fence | `GET /platform`, `POST /platform/activate`, `POST /platform/close` |
@@ -116,8 +116,8 @@ while each command performs its own authoritative validation.
 | `POST /projects/:project_id/attempts/:id/resolve` | Former-owner reconciliation with former proof and evidence |
 | `GET /projects/:project_id/attempts/:id/proof` | Explicit current-owner proof read with `no-store` |
 | `GET /projects/:project_id/events`, `POST /projects/:project_id/events/trigger` | Scoped events and manual attention request |
-| `GET /projects/:project_id/event-routing`, `POST /projects/:project_id/event-routing/:subscription_id/ack` | Responsible subscription and durable cursor acknowledgement |
-| `GET /projects/:project_id/deliveries`, `GET /projects/:project_id/deliveries/:id`, `POST /projects/:project_id/deliveries/:id/report` | Delivery reads and authorized responsible-Agent report |
+| `GET /projects/:project_id/event-routing`, `POST /projects/:project_id/event-routing/:subscription_id/ack` | Responsible subscription, enabled `assignee` subscriptions and durable cursor acknowledgement |
+| `GET /projects/:project_id/deliveries`, `GET /projects/:project_id/deliveries/:id`, `POST /projects/:project_id/deliveries/:id/report` | Delivery reads and report by the delivery's responsible (`manager`) or assignee (`worker`) Agent |
 | `GET /projects/:project_id/schedules` | Scoped schedule read |
 | `GET /projects/:project_id/github/repositories`, `GET /projects/:project_id/github/repositories/:id/facts`, `/observations/:observation_id`, `/deliveries/:delivery_id` | Read approved GitHub facts/evidence |
 

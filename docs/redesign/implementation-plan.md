@@ -340,9 +340,12 @@ Result (2026-11-09): migration `20261109000002_add_task_assignment.exs`; new `ta
 
 Owner files: `apps/samgita/lib/samgita/{events.ex,event_delivery.ex}`; the routing controller/routes and the Project LiveView routing section; new `apps/samgita/test/samgita/events/assignee_routing_test.exs`; `docs/redesign/management-api.md`.
 
-- [ ] Operator command configures one `assignee` subscription per (Project, Agent): explicit, revisioned, `project_events.v1` required, approved endpoint digest, `worker` role; reconfiguring disables the previous revision. Additive partial unique index.
-- [ ] Fan-out delivers `task.assigned` to an `assignee` subscription only when its Agent is the event's current or previous assignee, and other Task events only for Tasks assigned to that Agent. `responsible` fan-out is unchanged.
-- [ ] Delivery target checks accept an `assignee` subscription whose Agent is still an enabled `worker` member; its report and cursor commands accept the `worker` role for that subscription only.
+- [x] Operator command configures one `assignee` subscription per (Project, Agent): explicit, revisioned, `project_events.v1` required, approved endpoint digest, `worker` role; reconfiguring disables the previous revision. Additive partial unique index.
+- [x] Fan-out delivers `task.assigned` to an `assignee` subscription only when its Agent is the event's current or previous assignee, and other Task events only for Tasks assigned to that Agent. `responsible` fan-out is unchanged.
+- [x] Delivery target checks accept an `assignee` subscription whose Agent is still an enabled `worker` member; its report and cursor commands accept the `worker` role for that subscription only.
+- [x] Project page: assignee-notification form and list (Owner files extended to `apps/samgita/lib/samgita/management.ex`).
+
+Result (2026-11-09): migration `20261109000003_add_assignee_subscriptions.exs`; `PUT .../event-routing/assignees`; `GET .../event-routing` adds `assignees`. New `events/assignee_routing_test.exs` 4 functional tests pass (revisioned configuration, current/previous-assignee fan-out with responsible unchanged, Attempt event delivery through dispatch/report/cursor by a `worker`, redelivery keeping the event identity); its 2 authorization cases are written and unrun. Filtered event/delivery/management/projects/coordination-preservation tests (32) and the affected web tests (12, including a new LiveView test) pass.
 
 ### P8.3 Separation of duties and acceptance visibility
 

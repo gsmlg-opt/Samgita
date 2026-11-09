@@ -482,7 +482,8 @@ defmodule Samgita.EventDelivery do
         attrs,
         [
           operation: "delivery.#{operation}:#{id}",
-          roles: ["manager"],
+          # Each command checks the subscription purpose's role for its Agent.
+          roles: ~w(manager worker),
           agent_ids: [initial.agent_id]
         ],
         fn ctx ->
@@ -521,22 +522,15 @@ defmodule Samgita.EventDelivery do
     member =
       Repo.get_by(ProjectAgent, project_id: delivery.project_id, agent_id: delivery.agent_id)
 
-    current_subscription?(delivery, subscription) && responsible_agent?(agent, member) &&
+    current_subscription?(delivery, subscription) && Events.routable?(subscription, agent, member) &&
       delivery.target_digest == subscription.target_digest &&
       delivery.target_digest == Events.target_digest(agent)
   end
 
   defp current_subscription?(delivery, subscription),
     do:
-      subscription.enabled && subscription.purpose == "responsible" &&
-        subscription.revision == delivery.subscription_revision &&
+      subscription.enabled && subscription.revision == delivery.subscription_revision &&
         subscription.agent_id == delivery.agent_id
-
-  defp responsible_agent?(agent, member),
-    do:
-      agent && agent.enabled && member && member.enabled && "manager" in member.roles &&
-        "project_events.v1" in agent.approved_capabilities &&
-        "project_events.v1" in agent.advertised_capabilities
 
   defp owner!(ctx, delivery, subscription, proof, now) do
     Commands.require_hub!(ctx)

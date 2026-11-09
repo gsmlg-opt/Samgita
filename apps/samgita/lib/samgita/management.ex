@@ -156,6 +156,14 @@ defmodule Samgita.Management do
           rows(queries["deliveries"], limit, offset) |> Enum.map(&Samgita.EventDelivery.project/1),
         "github_mappings" => github_mappings(queries["github_mappings"], limit, offset),
         "routing" => if(routing, do: Events.subscription_projection(routing)),
+        "assignee_routing" =>
+          Repo.all(
+            from(s in EventSubscription,
+              where: s.project_id == ^id and s.purpose == "assignee" and s.enabled,
+              order_by: s.agent_id
+            )
+          )
+          |> Enum.map(&Events.subscription_projection/1),
         "agent_choices" =>
           Repo.all(from(a in Agent, order_by: a.id, limit: 100))
           |> Enum.map(&Projection.fields(&1, ~w(id name enabled)a)),
