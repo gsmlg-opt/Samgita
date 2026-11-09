@@ -17,7 +17,7 @@ Samgita connects external Agents and manages their collaborative development wor
 5. Executor Agents open PRs, merge and release with their own GitHub credentials. Samgita stays read-only toward GitHub and only observes.
 6. Acceptance (`awaiting_review` -> `accepted`) is configurable per Project: either the coordinator Agent holds the `reviewer` role and accepts automatically, or only a human operator accepts.
 
-Implemented as P8 (`docs/redesign/design.md` §10, plan §11, acceptance A18): explicit `assign` before claim (only the assignee claims), operator-configured `assignee` notification subscriptions, the rule that an Agent cannot review or accept work its own Attempt submitted, and a two-Agent real-WebSocket outcome-loop test. Not yet implemented: GitHub `release` ingestion (P8.4), which needs the App's `contents: read` permission and a B5 decision.
+Implemented as P8 (`docs/redesign/design.md` §10, plan §11, acceptance A18): explicit `assign` before claim (only the assignee claims), operator-configured `assignee` notification subscriptions, the rule that an Agent cannot review or accept work its own Attempt submitted, and a two-Agent real-WebSocket outcome-loop test. GitHub `release` ingestion (P8.4) is deferred; see the GitHub TODO under Open Gates.
 
 ### Current priority: Codex host connections
 
@@ -90,6 +90,7 @@ Do not provision a real GitHub App, enter real credentials, change remote permis
 
 ## Open Gates
 
+- **GitHub is a future TODO** (user decision 2026-11-09). Do not connect, design or develop new GitHub features now, including release observation and any App permission change. Existing GitHub ingestion code stays as is; resume only when the user asks.
 - **A11**: raw LiveView telemetry exposes secret parameters, and real HTTP evidence shows credential-bearing server metadata before application Plugs. It remains blocked even when build checks pass; moving a form into a controller or early Plug does not close it. See `docs/codex-app-server/repair-qualification.md` and `docs/codex-app-server/a11-ingress-boundary.md`.
 - **Codex is not pinned** (user decision 2026-11-09, design §11 version policy). Track the latest Codex release with `python3 scripts/codex/refresh_snapshot.py` (snapshot in `apps/samgita_protocol_codex/priv/upstream/current/`, release and digests in its `source.json`); do not add version literals or exact-version checks. When a refresh stops on a changed reviewed source or schema hash, review the upstream diff against the derived contract before updating the hash. The former full-compatibility target against `rust-v0.163.0` is retired; its records in `docs/codex-app-server/` are historical evidence only.
 - Real GitHub App (B5), live Sigma/Synapsis/Codex conformance, deployment inventory, legacy-writer exclusion, full memory/backup rehearsal and production cutover remain open.

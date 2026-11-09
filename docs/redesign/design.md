@@ -385,7 +385,7 @@ These are implementation/integration gates, not reasons to leave this design pha
 
 ## 10. Coordinated delegation amendment (2026-11-09)
 
-Status: implemented as P8 (2026-11-09) except release observation, which awaits the B5 permission decision. It narrows how the Agent-owned delegation in §1 and §3 reaches executors. Sections 1–9 remain authoritative where this section is silent.
+Status: implemented as P8 (2026-11-09). Release observation is deferred (see below). It narrows how the Agent-owned delegation in §1 and §3 reaches executors. Sections 1–9 remain authoritative where this section is silent.
 
 ### Target workflow
 
@@ -430,9 +430,9 @@ Add subscription purpose `assignee`, configured by an operator per executor Agen
 
 Already supported: every Project event fans out to the enabled `responsible` subscription whose `types` is empty or includes the type. Coordinators should subscribe to at least `task.assigned`, `task.transitioned`, `attempt.reported`, `attempt.expired`, `attempt.effects_resolved` and the GitHub source types. The required change is acceptance coverage for this flow, not new routing.
 
-### Release observation
+### Release observation (future TODO)
 
-Add the GitHub `release` event (`published`, `released`, `prereleased`, `edited`, `deleted`, `unpublished`) as source event `github.release` with a `release` object kind and immutable observations, following the existing ingestion, deduplication and reconciliation rules. GitHub sends `release` webhooks only with the **Contents: read** permission. This widens the read-only App profile in §5 and must be recorded under B5 before real use. Until then, coordinators can observe release workflows through the existing `github.workflow_run` facts.
+Deferred by user decision (2026-11-09): do not connect further GitHub features now, and do not design or develop them. GitHub `release` observation and any change to the App permission profile are a future TODO, to be designed when GitHub work resumes. Coordinators observe outcomes through Task and Attempt events.
 
 ### Acceptance policy and separation of duties
 
@@ -445,7 +445,6 @@ Add the GitHub `release` event (`published`, `released`, `prereleased`, `edited`
 - Notification: `task.assigned` reaches only the current/previous assignee's `assignee` subscription and the `responsible` subscription; redelivery keeps the event identity.
 - Outcome loop: with a fake coordinator and a fake executor over real WebSockets, issue event → child Tasks → assignment → claim → report → coordinator receives `attempt.reported` → reviewer decision → `accepted`.
 - Separation of duties: the executor holding `reviewer` cannot accept its own submitted Task; a separate reviewer Agent or operator can.
-- Release: a signed `release` delivery creates one `github.release` event and observation; a duplicate delivery does not.
 
 ## 11. Codex host connections amendment (2026-11-09)
 

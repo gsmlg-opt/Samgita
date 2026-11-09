@@ -356,12 +356,9 @@ Owner files: `apps/samgita/lib/samgita/tasks.ex`; the Project LiveView member li
 
 Result (2026-11-09): `decide` refuses an Agent whose Attempt submitted the Task (`forbidden`, reason `own_submission`), after the existing review-order check. New `tasks/separation_of_duties_test.exs`: a separate reviewer Agent reviews and accepts (passes); the executor-holding-`reviewer` refusal is written and unrun. The Project page shows the acceptance mode (`#acceptance-mode`, delivered with P8.2). Filtered Task/Attempt/Codex runtime tests (28) and the journey/Task LiveView tests (8) pass.
 
-### P8.4 Release observation
+### P8.4 Release observation — deferred (future TODO)
 
-Owner files: `apps/samgita/lib/samgita/github/{payload.ex,client.ex,reconciliation.ex}`, `apps/samgita/lib/samgita/github.ex`; GitHub fixtures and tests; `docs/redesign/design.md` §5/§9 (B5 note), `docs/redesign/integrations/` GitHub setup.
-
-- [ ] Normalize the `release` webhook (`published released prereleased edited deleted unpublished`) into source event `github.release` with a `release` object kind and immutable observation; duplicate deliveries deduplicate as today.
-- [ ] Per-resource reconciliation fetches `/releases/{id}`; the required installation permission profile adds `contents: read`, recorded under B5. Release lists are not scanned.
+Deferred by user decision (2026-11-09): no further GitHub integration now; do not design or develop GitHub features. Release ingestion, its reconciliation and the `contents: read` permission change are a future TODO with no owner files in P8.
 
 ### P8.5 Outcome loop
 

@@ -305,6 +305,6 @@ A coordinator creates a Task tree and assigns each executable Task to a named ex
 - `task.assigned` reaches only the current/previous assignee's `assignee` subscription and the `responsible` subscription; redelivery keeps the event identity.
 - The outcome loop in P8.5 completes over real WebSockets with a fake coordinator and a fake executor.
 - The executor holding `reviewer` cannot accept its own submitted Task; a separate reviewer Agent or an operator can.
-- A signed `release` delivery creates one `github.release` event and observation; a duplicate delivery does not.
+- Future TODO (not part of A18 now): GitHub `release` observation, deferred by user decision 2026-11-09.
 
 Refusal cases for roles, membership and separation of duties are authorization checks; under the verification restriction they are recorded as unrun until a permitted run.
