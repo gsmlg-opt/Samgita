@@ -355,6 +355,14 @@ Owner files: additive migration `20261110000000_add_codex_host_identity.exs` (`c
 
 Result (2026-11-10): Agent and Codex LiveView tests (16) and filtered Codex host/management/preservation core tests (10) pass, including a regression for an unreachable probe (no installation ID) that crashed the duplicate query. Browser check: the local Mac shows as `mbp2021` and raven (reached through `ssh -L 47813:127.0.0.1:47811 raven`) as `raven`; adding `ws://127.0.0.1:47811` again warned "mbp2021 is already added as Codex local A" and was not created.
 
+### P7.6 Agent page as settings sections
+
+Requested 2026-11-10: the Agent page showed everything at once. It now follows a settings layout: a left "Agent settings" navigation and one section at a time (`?section=`), with a "Back to Agents" link. Codex Agents have Overview (machine, connection state, version, Start/Stop/Reconnect), Projects, Connection (settings form), General and Activity; other Agents have Overview, General, Credentials and Activity. Inactive sections stay in the DOM with `hidden`, so forms keep their state while switching.
+
+Owner files: `apps/samgita_web/lib/samgita_web/live/agents_live/show.{ex,html.heex}`, `agents_codex_projects_live_test.exs`.
+
+Result (2026-11-10): LiveView suites for Agents, Codex hosts, projects, dashboard and Projects pass (29 run, 7 authorization/credential cases skipped), including a new section-switching test. Browser check on raven and the local Mac (`mbp2021`).
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

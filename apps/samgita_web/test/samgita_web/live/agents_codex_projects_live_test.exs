@@ -121,4 +121,22 @@ defmodule SamgitaWeb.AgentsCodexProjectsLiveTest do
     assert has_element?(view, "#codex-project-error")
     refute_received {:fake_codex, :params, "project/create", _}
   end
+
+  test "the Agent page shows one settings section at a time", %{conn: conn, agent: agent} do
+    {:ok, view, _} = live(conn, ~p"/agents/#{agent["id"]}")
+    assert has_element?(view, "#agent-section-overview[aria-current=page]")
+    refute has_element?(view, "#section-overview[hidden]")
+    assert has_element?(view, "#section-projects[hidden]")
+    assert has_element?(view, "#section-connection[hidden]")
+    refute has_element?(view, "#section-credentials")
+
+    view |> element("#agent-section-projects") |> render_click()
+    assert_patch(view, ~p"/agents/#{agent["id"]}?section=projects")
+    refute has_element?(view, "#section-projects[hidden]")
+    assert has_element?(view, "#section-overview[hidden]")
+
+    {:ok, direct, _} = live(conn, ~p"/agents/#{agent["id"]}?section=connection")
+    refute has_element?(direct, "#section-connection[hidden]")
+    assert has_element?(direct, "#codex-host-form")
+  end
 end

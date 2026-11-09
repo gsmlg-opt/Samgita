@@ -1,433 +1,524 @@
 <section class="space-y-6" aria-labelledby="agent-title">
-  <.dm_link navigate={~p"/agents"}>{gettext("All Agents")}</.dm_link>
   <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
+  <.dm_link :if={!@detail} navigate={~p"/agents"}>{gettext("All Agents")}</.dm_link>
   <div :if={@detail} class="space-y-6">
-    <header>
-      <h1 id="agent-title" class="text-3xl font-bold">{@detail["agent"]["name"]}</h1>
-      <p class="break-all text-sm text-on-surface-variant">{@detail["agent"]["id"]}</p>
+    <header class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <h1 id="agent-title" class="text-3xl font-bold">{@detail["agent"]["name"]}</h1>
+        <p class="text-on-surface-variant">
+          {if @codex_host,
+            do:
+              "Codex · " <> (@codex_host["machine_name"] || gettext("machine not identified yet")),
+            else: gettext("Samgita protocol Agent")}
+        </p>
+      </div>
+      <.dm_link navigate={~p"/agents"} class="font-semibold">{gettext("Back to Agents")}</.dm_link>
     </header>
     <p :if={@error} id="agent-error" role="alert" class="text-error">{@error}</p>
-    <.dm_card id="agent-status" variant="bordered">
-      <:title>{gettext("Recorded status")}</:title>
-      <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <dt class="font-semibold">{gettext("Availability")}</dt><dd>
-            {@detail["agent"]["availability"]}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Connection record")}</dt><dd>
-            {@detail["agent"]["connection_state"]}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Last recorded activity")}</dt><dd>
-            {@detail["agent"]["last_activity_at"] || gettext("None recorded")}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Last delivery state")}</dt><dd>
-            {@detail["agent"]["last_delivery_state"] || gettext("None recorded")}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Protocol")}</dt><dd>
-            {@detail["agent"]["protocol"]} {@detail["agent"]["protocol_version"]}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Version / generation")}</dt><dd>
-            {@detail["agent"]["version"]} / {@detail["agent"]["generation"]}
-          </dd>
-        </div>
-      </dl>
-      <p class="mt-4 text-sm text-on-surface-variant">
-        {gettext(
-          "Health unverified. Connection records and observed activity are evidence only; there is no heartbeat or guarantee that an Agent is ready to execute."
-        )}
-      </p>
-    </.dm_card>
-    <.dm_card :if={@codex_host} id="codex-projects" variant="bordered">
-      <:title>{gettext("Projects")}</:title>
-      <p class="mb-4 text-sm text-on-surface-variant">
-        {gettext("Projects open in Codex on this machine, read live from Codex.")}
-        <.dm_link phx-click="refresh_projects" id="codex-projects-refresh">
-          {gettext("Refresh")}
-        </.dm_link>
-      </p>
-      <%= case @codex_projects do %>
-        <% nil -> %>
-          <p id="codex-projects-loading">{gettext("Loading projects…")}</p>
-        <% {:error, message} -> %>
-          <p id="codex-projects-error" role="alert" class="text-error">{message}</p>
-        <% {:ok, []} -> %>
-          <p id="codex-projects-empty">{gettext("Codex has no projects on this machine yet.")}</p>
-        <% {:ok, projects} -> %>
-          <div class="overflow-x-auto">
-            <.dm_table id="codex-projects-list" data={projects}>
-              <:col :let={project} label={gettext("Project")}>{project["name"]}</:col>
-              <:col :let={project} label={gettext("Folder")}>
-                <code :for={root <- project["roots"]} class="block break-all text-sm">{root}</code>
-              </:col>
-            </.dm_table>
-          </div>
-      <% end %>
-      <p :if={@project_error} id="codex-project-error" role="alert" class="mt-4 text-error">
-        {@project_error}
-      </p>
-      <.form
-        for={@project_form}
-        id="codex-project-add"
-        phx-change="change_project"
-        phx-submit="add_project"
-        class="mt-4 grid items-end gap-4 sm:grid-cols-3"
-      >
-        <input
-          type="hidden"
-          name="project[command_id]"
-          value={@project_form.params["command_id"]}
-        />
-        <.dm_input field={@project_form[:name]} label={gettext("Project name")} required />
-        <.dm_input
-          field={@project_form[:path]}
-          label={gettext("Folder on that machine")}
-          placeholder="/Users/me/code/app"
-          required
-        />
-        <.dm_btn
-          native_submit
-          type="submit"
-          variant="primary"
-          phx-disable-with={gettext("Adding…")}
-        >
-          {gettext("Add project")}
-        </.dm_btn>
-      </.form>
-    </.dm_card>
-    <.dm_card :if={@codex_form} id="codex-host" variant="bordered">
-      <:title>{gettext("Codex host")}</:title>
-      <dl :if={@codex_host} class="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <dt class="font-semibold">{gettext("Connection")}</dt>
-          <dd id="codex-host-state">{@codex_host["status"]["state"]}</dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Server version")}</dt>
-          <dd id="codex-host-version">
-            {@codex_host["status"]["server_version"] || @codex_host["server_version"] ||
-              gettext("Not connected yet")}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Generation")}</dt>
-          <dd>{@codex_host["status"]["generation"] || @codex_host["generation"]}</dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Configuration")}</dt>
-          <dd>
-            {if @codex_host["enabled"], do: gettext("Enabled"), else: gettext("Disabled")} · v{@codex_host[
-              "version"
-            ]}
-          </dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{gettext("Last connected")}</dt>
-          <dd>{@codex_host["last_connected_at"] || gettext("Never")}</dd>
-        </div>
-        <div :if={@codex_host["status"]["error"]}>
-          <dt class="font-semibold">{gettext("Last error")}</dt>
-          <dd id="codex-host-error" class="text-error">
-            {@codex_host["status"]["error"]} ({gettext("retry at %{at}",
-              at: @codex_host["status"]["retry_at"]
-            )})
-          </dd>
-        </div>
-      </dl>
-      <div :if={@codex_host} class="mb-4 flex flex-wrap gap-2">
-        <.dm_btn
-          :if={!@codex_host["enabled"]}
-          id="codex-host-enable"
-          variant="primary"
-          phx-click="enable_codex_host"
-        >
-          {gettext("Enable")}
-        </.dm_btn>
-        <.dm_btn
-          :if={@codex_host["enabled"]}
-          id="codex-host-disable"
-          variant="error"
-          phx-click="disable_codex_host"
-        >
-          {gettext("Disable")}
-        </.dm_btn>
-        <.dm_btn
-          :if={@codex_host["enabled"]}
-          id="codex-host-reconnect"
-          phx-click="reconnect_codex_host"
-        >
-          {gettext("Reconnect now")}
-        </.dm_btn>
-      </div>
-      <p class="mb-4 text-sm text-on-surface-variant">
-        {gettext(
-          "Samgita connects to this Codex app-server over WebSocket, or over SSH through `codex app-server proxy` to the Codex daemon. Store only credential reference names; tokens and private keys are supplied by runtime configuration. Connection state is evidence of reachability only."
-        )}
-      </p>
-      <.form
-        for={@codex_form}
-        id="codex-host-form"
-        phx-change="change_codex_host"
-        phx-submit="save_codex_host"
-        class="space-y-4"
-      >
-        <input type="hidden" name="codex_host[command_id]" value={@codex_form[:command_id].value} />
-        <input
-          :if={@codex_form[:expected_version].value}
-          type="hidden"
-          name="codex_host[expected_version]"
-          value={@codex_form[:expected_version].value}
-        />
-        <.dm_input
-          field={@codex_form[:transport]}
-          type="select"
-          label={gettext("Transport")}
-          options={[
-            {gettext("WebSocket"), "websocket"},
-            {gettext("SSH to the Codex daemon"), "ssh"}
+    <div class="grid items-start gap-6 lg:grid-cols-[16rem_1fr]">
+      <nav id="agent-sections" aria-label={gettext("Agent settings")} class="card card-bordered">
+        <h2 class="border-b border-outline-variant px-5 py-4 text-lg font-semibold">
+          {gettext("Agent settings")}
+        </h2>
+        <.link
+          :for={{key, label} <- @sections}
+          id={"agent-section-#{key}"}
+          patch={~p"/agents/#{@agent_id}?section=#{key}"}
+          aria-current={@section == key && "page"}
+          class={[
+            "block border-b border-outline-variant px-5 py-3 font-semibold last:border-b-0",
+            @section == key && "bg-surface-container-high"
           ]}
-        />
-        <div :if={@codex_form[:transport].value == "ssh"} class="grid gap-4 sm:grid-cols-2">
-          <.dm_input field={@codex_form[:ssh_host]} label={gettext("SSH host")} required />
-          <.dm_input
-            field={@codex_form[:ssh_port]}
-            type="number"
-            label={gettext("SSH port")}
-            min="1"
-            max="65535"
-            placeholder="22"
-          />
-          <.dm_input field={@codex_form[:ssh_user]} label={gettext("SSH user")} />
-          <.dm_input
-            field={@codex_form[:ssh_key_ref]}
-            label={gettext("Private key reference (no secret)")}
-            maxlength="200"
-          />
-          <.dm_input
-            field={@codex_form[:remote_codex_path]}
-            label={gettext("Remote codex path")}
-            placeholder="codex"
-          />
-          <.dm_input
-            field={@codex_form[:remote_socket_path]}
-            label={gettext("Remote daemon socket (optional)")}
-          />
-          <div class="sm:col-span-2">
-            <.dm_input
-              field={@codex_form[:known_hosts]}
-              type="textarea"
-              label={gettext("Known host keys (ssh-keyscan output, public keys only)")}
-              required
-            />
+        >
+          {label}
+        </.link>
+      </nav>
+      <div class="min-w-0">
+        <div id="section-overview" hidden={@section != "overview"} class="space-y-6">
+          <.dm_card :if={@codex_host} id="codex-overview" variant="bordered">
+            <:title>{gettext("Codex connection")}</:title>
+
+            <dl :if={@codex_host} class="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div>
+                <dt class="font-semibold">{gettext("Machine")}</dt>
+                <dd id="codex-host-machine">
+                  {@codex_host["machine_name"] || gettext("Shown after connecting")}
+                </dd>
+              </div>
+              <div>
+                <dt class="font-semibold">{gettext("Connection")}</dt>
+                <dd id="codex-host-state">{@codex_host["status"]["state"]}</dd>
+              </div>
+              <div>
+                <dt class="font-semibold">{gettext("Server version")}</dt>
+                <dd id="codex-host-version">
+                  {@codex_host["status"]["server_version"] || @codex_host["server_version"] ||
+                    gettext("Not connected yet")}
+                </dd>
+              </div>
+              <div>
+                <dt class="font-semibold">{gettext("Generation")}</dt>
+                <dd>{@codex_host["status"]["generation"] || @codex_host["generation"]}</dd>
+              </div>
+              <div>
+                <dt class="font-semibold">{gettext("Configuration")}</dt>
+                <dd>
+                  {if @codex_host["enabled"], do: gettext("Enabled"), else: gettext("Disabled")} · v{@codex_host[
+                    "version"
+                  ]}
+                </dd>
+              </div>
+              <div>
+                <dt class="font-semibold">{gettext("Last connected")}</dt>
+                <dd>{timestamp(@codex_host["last_connected_at"])}</dd>
+              </div>
+              <div :if={@codex_host["status"]["error"]}>
+                <dt class="font-semibold">{gettext("Last error")}</dt>
+                <dd id="codex-host-error" class="text-error">
+                  {@codex_host["status"]["error"]} ({gettext("retry at %{at}",
+                    at: @codex_host["status"]["retry_at"]
+                  )})
+                </dd>
+              </div>
+            </dl>
+            <div :if={@codex_host} class="mb-4 flex flex-wrap gap-2">
+              <.dm_btn
+                :if={!@codex_host["enabled"]}
+                id="codex-host-enable"
+                variant="primary"
+                phx-click="enable_codex_host"
+              >
+                {gettext("Start")}
+              </.dm_btn>
+              <.dm_btn
+                :if={@codex_host["enabled"]}
+                id="codex-host-disable"
+                variant="error"
+                phx-click="disable_codex_host"
+              >
+                {gettext("Stop")}
+              </.dm_btn>
+              <.dm_btn
+                :if={@codex_host["enabled"]}
+                id="codex-host-reconnect"
+                phx-click="reconnect_codex_host"
+              >
+                {gettext("Reconnect")}
+              </.dm_btn>
+            </div>
+          </.dm_card>
+          <div :if={!@codex_host}>
+            <.dm_card id="agent-status" variant="bordered">
+              <:title>{gettext("Recorded status")}</:title>
+              <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div>
+                  <dt class="font-semibold">{gettext("Availability")}</dt><dd>
+                    {@detail["agent"]["availability"]}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">{gettext("Connection record")}</dt><dd>
+                    {@detail["agent"]["connection_state"]}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">{gettext("Last recorded activity")}</dt><dd>
+                    {@detail["agent"]["last_activity_at"] || gettext("None recorded")}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">{gettext("Last delivery state")}</dt><dd>
+                    {@detail["agent"]["last_delivery_state"] || gettext("None recorded")}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">{gettext("Protocol")}</dt><dd>
+                    {@detail["agent"]["protocol"]} {@detail["agent"]["protocol_version"]}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold">{gettext("Version / generation")}</dt><dd>
+                    {@detail["agent"]["version"]} / {@detail["agent"]["generation"]}
+                  </dd>
+                </div>
+              </dl>
+              <p class="mt-4 text-sm text-on-surface-variant">
+                {gettext(
+                  "Health unverified. Connection records and observed activity are evidence only; there is no heartbeat or guarantee that an Agent is ready to execute."
+                )}
+              </p>
+            </.dm_card>
           </div>
-          <.dm_input
-            field={@codex_form[:ensure_daemon]}
-            type="checkbox"
-            label={gettext("Run `codex app-server daemon start` before connecting")}
-          />
         </div>
-        <div :if={@codex_form[:transport].value != "ssh"} class="grid gap-4 sm:grid-cols-2">
-          <.dm_input
-            field={@codex_form[:url]}
-            label={gettext("App-server URL (ws:// or wss://)")}
-            placeholder="wss://codex.example/app-server"
-            required
-          />
-          <.dm_input
-            field={@codex_form[:token_ref]}
-            label={gettext("Token reference (no secret)")}
-            maxlength="200"
-          />
-          <.dm_input
-            field={@codex_form[:connect_address]}
-            label={gettext("Pinned connect address (optional IP)")}
-          />
-          <.dm_input
-            field={@codex_form[:allow_insecure]}
-            type="checkbox"
-            label={gettext("Allow plaintext ws:// to a non-loopback host")}
-          />
+        <div
+          :if={@codex_host}
+          id="section-projects"
+          hidden={@section != "projects"}
+          class="space-y-6"
+        >
+          <.dm_card :if={@codex_host} id="codex-projects" variant="bordered">
+            <:title>{gettext("Projects")}</:title>
+            <p class="mb-4 text-sm text-on-surface-variant">
+              {gettext("Projects open in Codex on this machine, read live from Codex.")}
+              <.dm_link phx-click="refresh_projects" id="codex-projects-refresh">
+                {gettext("Refresh")}
+              </.dm_link>
+            </p>
+            <%= case @codex_projects do %>
+              <% nil -> %>
+                <p id="codex-projects-loading">{gettext("Loading projects…")}</p>
+              <% {:error, message} -> %>
+                <p id="codex-projects-error" role="alert" class="text-error">{message}</p>
+              <% {:ok, []} -> %>
+                <p id="codex-projects-empty">
+                  {gettext("Codex has no projects on this machine yet.")}
+                </p>
+              <% {:ok, projects} -> %>
+                <div class="overflow-x-auto">
+                  <.dm_table id="codex-projects-list" data={projects}>
+                    <:col :let={project} label={gettext("Project")}>{project["name"]}</:col>
+                    <:col :let={project} label={gettext("Folder")}>
+                      <code :for={root <- project["roots"]} class="block break-all text-sm">{root}</code>
+                    </:col>
+                  </.dm_table>
+                </div>
+            <% end %>
+            <p :if={@project_error} id="codex-project-error" role="alert" class="mt-4 text-error">
+              {@project_error}
+            </p>
+            <.form
+              for={@project_form}
+              id="codex-project-add"
+              phx-change="change_project"
+              phx-submit="add_project"
+              class="mt-4 grid items-end gap-4 sm:grid-cols-3"
+            >
+              <input
+                type="hidden"
+                name="project[command_id]"
+                value={@project_form.params["command_id"]}
+              />
+              <.dm_input field={@project_form[:name]} label={gettext("Project name")} required />
+              <.dm_input
+                field={@project_form[:path]}
+                label={gettext("Folder on that machine")}
+                placeholder="/Users/me/code/app"
+                required
+              />
+              <.dm_btn
+                native_submit
+                type="submit"
+                variant="primary"
+                phx-disable-with={gettext("Adding…")}
+              >
+                {gettext("Add project")}
+              </.dm_btn>
+            </.form>
+          </.dm_card>
         </div>
-        <.dm_btn
-          native_submit
-          type="submit"
-          variant="primary"
-          phx-disable-with={gettext("Saving…")}
+        <div
+          :if={@codex_form}
+          id="section-connection"
+          hidden={@section != "connection"}
+          class="space-y-6"
         >
-          {gettext("Save Codex host")}
-        </.dm_btn>
-      </.form>
-    </.dm_card>
-    <.dm_card variant="bordered">
-      <:title>{gettext("Registration and approvals")}</:title>
-      <.form for={@form} id="agent-update" phx-submit="save" phx-change="change" class="space-y-4">
-        <.agent_fields form={@form} />
-        <.dm_btn
-          native_submit
-          type="submit"
-          variant="primary"
-          phx-disable-with={gettext("Saving…")}
+          <.dm_card :if={@codex_form} id="codex-host" variant="bordered">
+            <:title>{gettext("Connection settings")}</:title>
+            <p class="mb-4 text-sm text-on-surface-variant">
+              {gettext(
+                "Samgita connects to this Codex app-server over WebSocket, or over SSH through `codex app-server proxy` to the Codex daemon. Store only credential reference names; tokens and private keys are supplied by runtime configuration. Connection state is evidence of reachability only."
+              )}
+            </p>
+            <.form
+              for={@codex_form}
+              id="codex-host-form"
+              phx-change="change_codex_host"
+              phx-submit="save_codex_host"
+              class="space-y-4"
+            >
+              <input
+                type="hidden"
+                name="codex_host[command_id]"
+                value={@codex_form[:command_id].value}
+              />
+              <input
+                :if={@codex_form[:expected_version].value}
+                type="hidden"
+                name="codex_host[expected_version]"
+                value={@codex_form[:expected_version].value}
+              />
+              <.dm_input
+                field={@codex_form[:transport]}
+                type="select"
+                label={gettext("Transport")}
+                options={[
+                  {gettext("WebSocket"), "websocket"},
+                  {gettext("SSH to the Codex daemon"), "ssh"}
+                ]}
+              />
+              <div :if={@codex_form[:transport].value == "ssh"} class="grid gap-4 sm:grid-cols-2">
+                <.dm_input field={@codex_form[:ssh_host]} label={gettext("SSH host")} required />
+                <.dm_input
+                  field={@codex_form[:ssh_port]}
+                  type="number"
+                  label={gettext("SSH port")}
+                  min="1"
+                  max="65535"
+                  placeholder="22"
+                />
+                <.dm_input field={@codex_form[:ssh_user]} label={gettext("SSH user")} />
+                <.dm_input
+                  field={@codex_form[:ssh_key_ref]}
+                  label={gettext("Private key reference (no secret)")}
+                  maxlength="200"
+                />
+                <.dm_input
+                  field={@codex_form[:remote_codex_path]}
+                  label={gettext("Remote codex path")}
+                  placeholder="codex"
+                />
+                <.dm_input
+                  field={@codex_form[:remote_socket_path]}
+                  label={gettext("Remote daemon socket (optional)")}
+                />
+                <div class="sm:col-span-2">
+                  <.dm_input
+                    field={@codex_form[:known_hosts]}
+                    type="textarea"
+                    label={gettext("Known host keys (ssh-keyscan output, public keys only)")}
+                    required
+                  />
+                </div>
+                <.dm_input
+                  field={@codex_form[:ensure_daemon]}
+                  type="checkbox"
+                  label={gettext("Run `codex app-server daemon start` before connecting")}
+                />
+              </div>
+              <div :if={@codex_form[:transport].value != "ssh"} class="grid gap-4 sm:grid-cols-2">
+                <.dm_input
+                  field={@codex_form[:url]}
+                  label={gettext("App-server URL (ws:// or wss://)")}
+                  placeholder="wss://codex.example/app-server"
+                  required
+                />
+                <.dm_input
+                  field={@codex_form[:token_ref]}
+                  label={gettext("Token reference (no secret)")}
+                  maxlength="200"
+                />
+                <.dm_input
+                  field={@codex_form[:connect_address]}
+                  label={gettext("Pinned connect address (optional IP)")}
+                />
+                <.dm_input
+                  field={@codex_form[:allow_insecure]}
+                  type="checkbox"
+                  label={gettext("Allow plaintext ws:// to a non-loopback host")}
+                />
+              </div>
+              <.dm_btn
+                native_submit
+                type="submit"
+                variant="primary"
+                phx-disable-with={gettext("Saving…")}
+              >
+                {gettext("Save Codex host")}
+              </.dm_btn>
+            </.form>
+          </.dm_card>
+        </div>
+        <div id="section-general" hidden={@section != "general"} class="space-y-6">
+          <.dm_card variant="bordered">
+            <:title>{gettext("Registration and approvals")}</:title>
+            <.form
+              for={@form}
+              id="agent-update"
+              phx-submit="save"
+              phx-change="change"
+              class="space-y-4"
+            >
+              <.agent_fields form={@form} />
+              <.dm_btn
+                native_submit
+                type="submit"
+                variant="primary"
+                phx-disable-with={gettext("Saving…")}
+              >
+                {gettext("Save Agent")}
+              </.dm_btn>
+            </.form>
+          </.dm_card>
+        </div>
+        <div
+          :if={!@codex_host}
+          id="section-credentials"
+          hidden={@section != "credentials"}
+          class="space-y-6"
         >
-          {gettext("Save Agent")}
-        </.dm_btn>
-      </.form>
-    </.dm_card>
-    <.dm_card variant="bordered">
-      <:title>{gettext("Machine credentials")}</:title>
-      <p class="mb-4 text-sm text-on-surface-variant">
-        {gettext(
-          "Supply an independently generated credential of at least 32 bytes and provision it in the Agent separately. Samgita stores its digest, never returns the credential, and clears this field after submission. Project membership is still required."
-        )}
-      </p>
-      <p class="mb-4 text-sm text-on-surface-variant">
-        {gettext(
-          "Credentials are not recovered after reconnect. If submission was interrupted, reconcile the credential metadata below before re-entering a credential and retrying."
-        )}
-      </p>
-      <.form
-        for={@credential_form}
-        id="agent-credential"
-        phx-submit="put_credential"
-        class="space-y-4"
-      >
-        <input
-          type="hidden"
-          name="credential[command_id]"
-          value={@credential_form[:command_id].value}
-        />
-        <input
-          type="hidden"
-          name="credential[expected_version]"
-          value={@credential_form[:expected_version].value}
-        />
-        <.dm_input
-          field={@credential_form[:credential]}
-          id={"credential-value-#{@credential_reset}"}
-          type="password"
-          label={gettext("Write-only credential")}
-          autocomplete="new-password"
-          minlength="32"
-          maxlength="4096"
-          required
-        />
-        <.dm_input
-          field={@credential_form[:reference]}
-          label={gettext("Reference label (no secret)")}
-          maxlength="512"
-        />
-        <.dm_input
-          field={@credential_form[:expires_at]}
-          label={gettext("Expires at (optional ISO 8601 UTC)")}
-          placeholder="2027-01-01T00:00:00Z"
-        />
-        <.dm_btn
-          native_submit
-          type="submit"
-          variant="primary"
-          phx-disable-with={gettext("Registering…")}
-        >
-          {gettext("Register credential")}
-        </.dm_btn>
-      </.form>
-      <p :if={@detail["credentials"] == []} class="mt-4">
-        {gettext("No credentials on this page.")}
-      </p>
-      <ul class="mt-4 space-y-4">
-        <li
-          :for={credential <- @detail["credentials"]}
-          id={"credential-#{credential["id"]}"}
-          class="rounded border border-outline p-3"
-        >
-          <p class="break-all">
-            {credential["reference"] || gettext("Unlabelled credential")} · {credential["id"]}
-          </p>
-          <p class="text-sm">
-            {if credential["revoked_at"], do: gettext("Revoked"), else: gettext("Not revoked")} · {gettext(
-              "Expires"
-            )}: {credential["expires_at"] || gettext("No expiry")}
-          </p>
-          <.form
-            :if={!credential["revoked_at"]}
-            for={@revoke_forms[credential["id"]]}
-            id={"revoke-#{credential["id"]}"}
-            phx-submit="revoke_credential"
-            class="mt-2"
-          >
-            <input
-              type="hidden"
-              name="revoke[command_id]"
-              value={@revoke_forms[credential["id"]][:command_id].value}
-            />
-            <input
-              type="hidden"
-              name="revoke[expected_version]"
-              value={@revoke_forms[credential["id"]][:expected_version].value}
-            />
-            <input type="hidden" name="revoke[credential_id]" value={credential["id"]} />
-            <.dm_btn native_submit type="submit" variant="error">
-              {gettext("Revoke credential")}
-            </.dm_btn>
-          </.form>
-        </li>
-      </ul>
-    </.dm_card>
-    <.dm_card variant="bordered">
-      <:title>{gettext("Project memberships")}</:title>
-      <p :if={@detail["memberships"] == []}>
-        {gettext(
-          "No Project memberships on this page. Open a Project to bind this Agent and assign roles."
-        )}
-      </p>
-      <ul class="space-y-3">
-        <li :for={member <- @detail["memberships"]}>
-          <.dm_link navigate={~p"/projects/#{member["project_id"]}"}>{member["project_name"] ||
-            member["project_id"]}</.dm_link>
-          <span> · {Enum.join(member["roles"], ", ")} · {if member["enabled"],
-            do: gettext("Enabled"),
-            else: gettext("Disabled")}</span>
-        </li>
-      </ul>
-    </.dm_card>
-    <.dm_card variant="bordered">
-      <:title>{gettext("Connection history")}</:title>
-      <p :if={@detail["connections"] == []}>{gettext("No connection records on this page.")}</p>
-      <div class="overflow-x-auto">
-        <.dm_table :if={@detail["connections"] != []} data={@detail["connections"]}>
-          <:col :let={c} label={gettext("Connection")}>{c["id"]}</:col>
-          <:col :let={c} label={gettext("Generation")}>{c["generation"]}</:col>
-          <:col :let={c} label={gettext("State")}>{c["state"]}</:col>
-          <:col :let={c} label={gettext("Expires")}>{c["expires_at"]}</:col>
-        </.dm_table>
+          <.dm_card variant="bordered">
+            <:title>{gettext("Machine credentials")}</:title>
+            <p class="mb-4 text-sm text-on-surface-variant">
+              {gettext(
+                "Supply an independently generated credential of at least 32 bytes and provision it in the Agent separately. Samgita stores its digest, never returns the credential, and clears this field after submission. Project membership is still required."
+              )}
+            </p>
+            <p class="mb-4 text-sm text-on-surface-variant">
+              {gettext(
+                "Credentials are not recovered after reconnect. If submission was interrupted, reconcile the credential metadata below before re-entering a credential and retrying."
+              )}
+            </p>
+            <.form
+              for={@credential_form}
+              id="agent-credential"
+              phx-submit="put_credential"
+              class="space-y-4"
+            >
+              <input
+                type="hidden"
+                name="credential[command_id]"
+                value={@credential_form[:command_id].value}
+              />
+              <input
+                type="hidden"
+                name="credential[expected_version]"
+                value={@credential_form[:expected_version].value}
+              />
+              <.dm_input
+                field={@credential_form[:credential]}
+                id={"credential-value-#{@credential_reset}"}
+                type="password"
+                label={gettext("Write-only credential")}
+                autocomplete="new-password"
+                minlength="32"
+                maxlength="4096"
+                required
+              />
+              <.dm_input
+                field={@credential_form[:reference]}
+                label={gettext("Reference label (no secret)")}
+                maxlength="512"
+              />
+              <.dm_input
+                field={@credential_form[:expires_at]}
+                label={gettext("Expires at (optional ISO 8601 UTC)")}
+                placeholder="2027-01-01T00:00:00Z"
+              />
+              <.dm_btn
+                native_submit
+                type="submit"
+                variant="primary"
+                phx-disable-with={gettext("Registering…")}
+              >
+                {gettext("Register credential")}
+              </.dm_btn>
+            </.form>
+            <p :if={@detail["credentials"] == []} class="mt-4">
+              {gettext("No credentials on this page.")}
+            </p>
+            <ul class="mt-4 space-y-4">
+              <li
+                :for={credential <- @detail["credentials"]}
+                id={"credential-#{credential["id"]}"}
+                class="rounded border border-outline p-3"
+              >
+                <p class="break-all">
+                  {credential["reference"] || gettext("Unlabelled credential")} · {credential[
+                    "id"
+                  ]}
+                </p>
+                <p class="text-sm">
+                  {if credential["revoked_at"],
+                    do: gettext("Revoked"),
+                    else: gettext("Not revoked")} · {gettext("Expires")}: {credential[
+                    "expires_at"
+                  ] || gettext("No expiry")}
+                </p>
+                <.form
+                  :if={!credential["revoked_at"]}
+                  for={@revoke_forms[credential["id"]]}
+                  id={"revoke-#{credential["id"]}"}
+                  phx-submit="revoke_credential"
+                  class="mt-2"
+                >
+                  <input
+                    type="hidden"
+                    name="revoke[command_id]"
+                    value={@revoke_forms[credential["id"]][:command_id].value}
+                  />
+                  <input
+                    type="hidden"
+                    name="revoke[expected_version]"
+                    value={@revoke_forms[credential["id"]][:expected_version].value}
+                  />
+                  <input type="hidden" name="revoke[credential_id]" value={credential["id"]} />
+                  <.dm_btn native_submit type="submit" variant="error">
+                    {gettext("Revoke credential")}
+                  </.dm_btn>
+                </.form>
+              </li>
+            </ul>
+          </.dm_card>
+        </div>
+        <div id="section-activity" hidden={@section != "activity"} class="space-y-6">
+          <.dm_card variant="bordered">
+            <:title>{gettext("Project memberships")}</:title>
+            <p :if={@detail["memberships"] == []}>
+              {gettext(
+                "No Project memberships on this page. Open a Project to bind this Agent and assign roles."
+              )}
+            </p>
+            <ul class="space-y-3">
+              <li :for={member <- @detail["memberships"]}>
+                <.dm_link navigate={~p"/projects/#{member["project_id"]}"}>{member["project_name"] ||
+                  member["project_id"]}</.dm_link>
+                <span> · {Enum.join(member["roles"], ", ")} · {if member["enabled"],
+                  do: gettext("Enabled"),
+                  else: gettext("Disabled")}</span>
+              </li>
+            </ul>
+          </.dm_card>
+          <.dm_card variant="bordered">
+            <:title>{gettext("Connection history")}</:title>
+            <p :if={@detail["connections"] == []}>
+              {gettext("No connection records on this page.")}
+            </p>
+            <div class="overflow-x-auto">
+              <.dm_table :if={@detail["connections"] != []} data={@detail["connections"]}>
+                <:col :let={c} label={gettext("Connection")}>{c["id"]}</:col>
+                <:col :let={c} label={gettext("Generation")}>{c["generation"]}</:col>
+                <:col :let={c} label={gettext("State")}>{c["state"]}</:col>
+                <:col :let={c} label={gettext("Expires")}>{c["expires_at"]}</:col>
+              </.dm_table>
+            </div>
+          </.dm_card>
+          <.dm_card variant="bordered">
+            <:title>{gettext("External execution sessions")}</:title>
+            <p :if={@detail["sessions"] == []}>
+              {gettext("No execution sessions on this page.")}
+            </p>
+            <ul class="space-y-3">
+              <li :for={session <- @detail["sessions"]} class="break-all">
+                <.dm_link navigate={~p"/projects/#{session["project_id"]}"}>{session["project_id"]}</.dm_link>
+                <span> · {session["external_id"]} · {session["state"]}</span>
+              </li>
+            </ul>
+          </.dm_card>
+          <nav aria-label={gettext("Agent history pages")} class="flex items-center gap-4">
+            <.dm_link
+              :if={@offset > 0}
+              patch={~p"/agents/#{@agent_id}?section=activity&offset=#{max(@offset - 25, 0)}"}
+            >{gettext("Previous history")}</.dm_link>
+            <span>{gettext("Each section shows up to 25 records; offset %{offset}.",
+              offset: @offset
+            )}</span>
+            <.dm_link
+              :if={@offset + 25 < @total}
+              patch={~p"/agents/#{@agent_id}?section=activity&offset=#{@offset + 25}"}
+            >{gettext("Next history")}</.dm_link>
+          </nav>
+        </div>
       </div>
-    </.dm_card>
-    <.dm_card variant="bordered">
-      <:title>{gettext("External execution sessions")}</:title>
-      <p :if={@detail["sessions"] == []}>{gettext("No execution sessions on this page.")}</p>
-      <ul class="space-y-3">
-        <li :for={session <- @detail["sessions"]} class="break-all">
-          <.dm_link navigate={~p"/projects/#{session["project_id"]}"}>{session["project_id"]}</.dm_link>
-          <span> · {session["external_id"]} · {session["state"]}</span>
-        </li>
-      </ul>
-    </.dm_card>
-    <nav aria-label={gettext("Agent history pages")} class="flex items-center gap-4">
-      <.dm_link :if={@offset > 0} patch={~p"/agents/#{@agent_id}?offset=#{max(@offset - 25, 0)}"}>{gettext(
-        "Previous history"
-      )}</.dm_link>
-      <span>{gettext("Each section shows up to 25 records; offset %{offset}.", offset: @offset)}</span>
-      <.dm_link
-        :if={@offset + 25 < @total}
-        patch={~p"/agents/#{@agent_id}?offset=#{@offset + 25}"}
-      >{gettext("Next history")}</.dm_link>
-    </nav>
+    </div>
   </div>
 </section>

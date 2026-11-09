@@ -28,7 +28,45 @@ defmodule SamgitaWeb.AgentsLive.Show do
 
   @impl true
   def handle_params(%{"id" => id} = params, _uri, socket) do
-    {:noreply, socket |> assign(agent_id: id, offset: Components.offset(params)) |> load()}
+    socket = assign(socket, agent_id: id, offset: Components.offset(params))
+    # Switching sections re-renders only; the record is loaded once per Agent.
+    socket =
+      if socket.assigns[:loaded] == {id, socket.assigns.offset},
+        do: socket,
+        else: socket |> load() |> assign(loaded: {id, socket.assigns.offset})
+
+    sections = sections(socket.assigns.codex_host)
+    keys = Enum.map(sections, &elem(&1, 0))
+    section = if params["section"] in keys, do: params["section"], else: "overview"
+    {:noreply, assign(socket, sections: sections, section: section)}
+  end
+
+  defp timestamp(nil), do: gettext("Never")
+
+  defp timestamp(value) when is_binary(value) do
+    case DateTime.from_iso8601(value) do
+      {:ok, time, _} -> Calendar.strftime(time, "%Y-%m-%d %H:%M:%S UTC")
+      _ -> value
+    end
+  end
+
+  defp sections(codex_host) do
+    if codex_host do
+      [
+        {"overview", "Overview"},
+        {"projects", "Projects"},
+        {"connection", "Connection"},
+        {"general", "General"},
+        {"activity", "Activity"}
+      ]
+    else
+      [
+        {"overview", "Overview"},
+        {"general", "General"},
+        {"credentials", "Credentials"},
+        {"activity", "Activity"}
+      ]
+    end
   end
 
   @impl true
