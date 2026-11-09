@@ -73,39 +73,6 @@ defmodule SamgitaWeb.ProjectsLiveTest do
     assert has_element?(reconnected, "h1", other["name"])
   end
 
-  test "creates a persisted neutral project without PRD or git URL", %{conn: conn} do
-    offset = Repo.aggregate(Project, :count)
-    {:ok, view, _} = live(conn, "/projects?offset=#{offset}")
-    assert has_element?(view, "#projects-empty")
-    assert has_element?(view, "#project-form button[type=submit]", "Create project")
-
-    view
-    |> form("#project-form",
-      project: %{name: "Independent work", description: "No repository needed"}
-    )
-    |> render_submit()
-
-    {path, _flash} = assert_redirect(view)
-    {:ok, detail, _} = live(conn, path)
-    assert has_element?(detail, "h1", "Independent work")
-    assert {:ok, project} = Projects.get(Principal.operator(), List.last(String.split(path, "/")))
-    assert project["git_url"] == nil
-    assert project["description"] == "No repository needed"
-  end
-
-  test "rejected create preserves values with visible field validation", %{conn: conn} do
-    baseline = Repo.aggregate(Project, :count)
-    {:ok, view, _} = live(conn, "/projects")
-
-    view
-    |> form("#project-form", project: %{name: "", description: "Keep this draft"})
-    |> render_submit()
-
-    assert has_element?(view, "[role=alert]", "invalid")
-    assert has_element?(view, "textarea[name='project[description]']", "Keep this draft")
-    assert Repo.aggregate(Project, :count) == baseline
-  end
-
   test "task creation is idempotent and survives navigation and reconnect", %{conn: conn} do
     p = project_fixture()
     {:ok, parent} = Tasks.create(Principal.operator(), p["id"], command(%{"title" => "Parent"}))

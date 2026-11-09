@@ -376,7 +376,7 @@ Result (2026-11-10): Agent/Codex LiveView tests (14) and filtered Codex host cor
 
 ### P7.8 Projects page: hosts → projects → sessions
 
-Requested 2026-11-10: the Projects page shows each Codex machine, its Codex projects and each project's sessions, read live from Codex. Samgita projects (tasks and delegation) stay below under "Samgita projects".
+Requested 2026-11-10: the Projects page shows each Codex machine, its Codex projects and each project's sessions, read live from Codex. Revised the same day: the Samgita project list and create form were removed from this page (not needed now); Samgita projects remain available through the REST API and `/projects/:id`.
 
 Owner files: `codex_hosts.ex` (`sessions/3`), `apps/samgita_web/lib/samgita_web/live/projects_live/index.ex`, `projects_codex_live_test.exs`.
 
