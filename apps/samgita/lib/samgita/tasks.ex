@@ -401,6 +401,10 @@ defmodule Samgita.Tasks do
     if kind == "acceptance" && verdict == "approve", do: require_review!(task, id)
 
     attempt = latest_attempt(task.id)
+    # Separation of duties (design §10): the Agent whose Attempt submitted the
+    # Task for review cannot review or accept it. Operators are exempt.
+    if ctx.principal.kind == :agent && attempt && attempt.agent_id == ctx.principal.agent_id,
+      do: Commands.fail!(:forbidden, %{reason: "own_submission"})
 
     decision = %DecisionRecord{
       project_id: project_id,

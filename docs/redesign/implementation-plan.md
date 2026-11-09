@@ -351,8 +351,10 @@ Result (2026-11-09): migration `20261109000003_add_assignee_subscriptions.exs`; 
 
 Owner files: `apps/samgita/lib/samgita/tasks.ex`; the Project LiveView member list; their tests.
 
-- [ ] `decide` refuses an Agent that owned the Attempt that submitted the Task to `awaiting_review` (`forbidden`); operators are exempt.
-- [ ] The Project page shows which members hold `reviewer`, so automated versus human acceptance is visible.
+- [x] `decide` refuses an Agent that owned the Attempt that submitted the Task to `awaiting_review` (`forbidden`); operators are exempt.
+- [x] The Project page shows which members hold `reviewer`, so automated versus human acceptance is visible.
+
+Result (2026-11-09): `decide` refuses an Agent whose Attempt submitted the Task (`forbidden`, reason `own_submission`), after the existing review-order check. New `tasks/separation_of_duties_test.exs`: a separate reviewer Agent reviews and accepts (passes); the executor-holding-`reviewer` refusal is written and unrun. The Project page shows the acceptance mode (`#acceptance-mode`, delivered with P8.2). Filtered Task/Attempt/Codex runtime tests (28) and the journey/Task LiveView tests (8) pass.
 
 ### P8.4 Release observation
 
