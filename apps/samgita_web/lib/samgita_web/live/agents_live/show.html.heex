@@ -188,16 +188,17 @@
             </p>
             <.dm_modal id="project-folder-modal" size="lg">
               <:trigger :let={id}>
-                <.dm_btn
-                  id="project-add-open"
-                  variant="primary"
-                  class="mt-4"
-                  command="show-modal"
-                  commandfor={id}
-                  phx-click="browse_open"
-                >
-                  {gettext("Add project")}
-                </.dm_btn>
+                <div class="mt-4 flex">
+                  <.dm_btn
+                    id="project-add-open"
+                    variant="primary"
+                    command="show-modal"
+                    commandfor={id}
+                    phx-click="browse_open"
+                  >
+                    {gettext("Add project")}
+                  </.dm_btn>
+                </div>
               </:trigger>
               <:title>{gettext("Choose a source folder")}</:title>
               <:body>
