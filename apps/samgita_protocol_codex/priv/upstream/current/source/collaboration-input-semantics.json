@@ -106,16 +106,16 @@
     "turn/start"
   ],
   "schemas_sha256": {
-    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
     "v2/ThreadSettingsUpdateParams.json": "749419634bb7ed66216d72bf9d8734ecf0e6efaa8cd46fe51a117d1b42ed9657",
-    "v2/TurnStartParams.json": "abf0d6d29d223b38c650ff1155cb9c9f9b4211e6d0e20c57d750a9e1babfdb41"
+    "v2/TurnStartParams.json": "d13cb408b906669e8d3e8694b42148a75180d4dcd0eeac6867271add8dfa1864"
   },
   "semantics": "Accept the four pinned Default string aliases and externally tagged unit objects for plan/default and those aliases only in the two reachable request graphs. The internally tagged ClientRequest buffers nested params; its pinned serde decoder accepts null or empty-map unit payloads with exactly one known key. Preserve caller values, settings constraints, negotiation and canonical output schemas. Native owns canonical string normalization, parser behavior and persistence.",
   "source_sha256": {
     "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8",
     "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "source/serde-1.0.228/origin.json": "ee2d8c62121c9a3e32ef77c4c01605330a06d8b85562e0708bc6107daaf9191c",
+    "source/serde-1.0.228/origin.json": "a19c5d691a01bc605191ea7b5a19630ce3a85d9faebba785e6fbcf59f1e9457f",
     "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
   },
-  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
 }

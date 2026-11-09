@@ -91,7 +91,7 @@ Do not provision a real GitHub App, enter real credentials, change remote permis
 ## Open Gates
 
 - **A11**: raw LiveView telemetry exposes secret parameters, and real HTTP evidence shows credential-bearing server metadata before application Plugs. It remains blocked even when build checks pass; moving a form into a controller or early Plug does not close it. See `docs/codex-app-server/repair-qualification.md` and `docs/codex-app-server/a11-ingress-boundary.md`.
-- **Codex is not pinned** (user decision 2026-11-09, design §11 version policy). Track the latest Codex release by refreshing the schema snapshot; do not add version literals or exact-version checks. The former full-compatibility target against `rust-v0.163.0` is retired; its records in `docs/codex-app-server/` are historical evidence only.
+- **Codex is not pinned** (user decision 2026-11-09, design §11 version policy). Track the latest Codex release with `python3 scripts/codex/refresh_snapshot.py` (snapshot in `apps/samgita_protocol_codex/priv/upstream/current/`, release and digests in its `source.json`); do not add version literals or exact-version checks. When a refresh stops on a changed reviewed source or schema hash, review the upstream diff against the derived contract before updating the hash. The former full-compatibility target against `rust-v0.163.0` is retired; its records in `docs/codex-app-server/` are historical evidence only.
 - Real GitHub App (B5), live Sigma/Synapsis/Codex conformance, deployment inventory, legacy-writer exclusion, full memory/backup rehearsal and production cutover remain open.
 
 ## Verification Restrictions

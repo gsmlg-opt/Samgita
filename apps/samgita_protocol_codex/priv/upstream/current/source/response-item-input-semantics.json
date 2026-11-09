@@ -8,13 +8,13 @@
   "kind": "locally-derived-input-contract-not-official-export",
   "method": "thread/resume",
   "schemas_sha256": {
-    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
-    "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32"
+    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+    "v2/ThreadResumeParams.json": "9642460eb42e9a6e8fa8e12b4381e8ed939d10b1ad8690e694d84467ea76d41a"
   },
   "semantics": "Accept the pinned serde input alias only on the canonical Compaction input branch, retaining every original property/type constraint. Never rewrite the caller's tag or change output contracts; native decoding, serialization and history persistence own canonicalization.",
   "source_sha256": {
-    "source/models.rs": "df9a3da250376d86203a8a1219b2e4b5353a62274d094bb36998560433bd58eb",
-    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+    "source/models.rs": "daeb5bd499ed49b364be4c031e3c754f7fb39945531214c0b8fe00896eb3da82",
+    "source/thread.rs": "f5a99bd250950ddaa3a07a8cae84e434c77d645650c11ec037e140945fa2c500"
   },
-  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
 }

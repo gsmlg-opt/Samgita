@@ -5,8 +5,9 @@ neutral protocol and Mint dependencies. It needs no Samgita Repo, database,
 Phoenix endpoint, umbrella configuration or running Samgita service.
 
 Use Elixir 1.18.5 / OTP 27, Python 3.11+, Linux `/proc`, `/bin/sh`, and the
-official pinned Linux musl Codex **rust-v0.163.0**. `Workflows.run/4` verifies the
-binary SHA256 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`.
+official Linux musl Codex release of the current schema snapshot
+(`scripts/codex/fetch_pin.py`). `Workflows.run/4` verifies the binary SHA256
+recorded in `SamgitaProtocolCodex.source()["binary_sha256"]`.
 Missing prerequisites fail; tests never skip them.
 
 From this directory in the repository's Devenv environment:

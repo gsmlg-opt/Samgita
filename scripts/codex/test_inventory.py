@@ -107,7 +107,7 @@ class InventoryTest(unittest.TestCase):
             path.parent.mkdir(parents=True)
             path.write_text(source)
             notifications = inventory.source_notifications(root, "server_notification_definitions")
-            self.assertEqual(len(notifications), 87)
+            self.assertEqual(len(notifications), 88)
             self.assertEqual(notifications["account/login/completed"]["variant"], "AccountLoginCompleted")
             self.assertEqual(inventory.source_notifications(root, "client_notification_definitions"),
                              {"initialized": {"variant": "Initialized", "params_rust": None}})
@@ -261,7 +261,7 @@ class InventoryTest(unittest.TestCase):
             schema = json.loads((inventory.VENDOR / profile / "ServerNotification.json").read_text())
             profiles.append({inventory.method_name(variant) for variant in schema["oneOf"]})
         self.assertEqual(profiles[0], profiles[1])
-        self.assertEqual(len(profiles[0]), 85)
+        self.assertEqual(len(profiles[0]), 86)
 
         manifest = json.loads(inventory.MANIFEST.read_text())
         notifications = {row["wire_name"]: row for row in manifest["entries"]

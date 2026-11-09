@@ -19,7 +19,7 @@ it. Older snapshots live only in Git history. Apache-2.0 LICENSE and NOTICE are
 preserved byte for byte. These describe Codex independently of Samgita's
 neutral event/session protocol.
 
-A refresh replaces the snapshot with a newer release;
+`scripts/codex/refresh_snapshot.py` replaces the snapshot with the latest release;
 `scripts/codex/inventory.py --check` verifies it offline. `scripts/codex/fetch_pin.py`
 fetches the snapshot's release into ignored scratch storage for conformance runs;
 the executable is never installed globally or included in this package.
@@ -27,8 +27,8 @@ the executable is never installed globally or included in this package.
 The official JSON exporter omits three legacy requests/results and two raw
 notifications. A separately labeled locally derived supplement uses the pinned
 TypeScript export and matching Rust/serde declarations. Its origins/hashes are
-recorded separately; the original 318 stable and 452 experimental JSON artifacts
-remain unchanged. The full source inventory contains 485 requirements and 6,621
+recorded separately; the original 322 stable and 470 experimental JSON artifacts
+remain unchanged. The full source inventory contains 502 requirements and 6,877
 field/variant contracts; generated examples do not verify their runtime behavior.
 
 The same pin's timeline JSON export disagrees with its native serializer on two

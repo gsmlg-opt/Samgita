@@ -1,13 +1,14 @@
 # Samgita Codex driver
 
 All package versions below 1.0 are experimental releases for testing. The package
-version is separate from the pinned Codex version; publication does not establish
+version is separate from the Codex release of the schema snapshot; publication does not establish
 complete native behavioral compatibility or platform production readiness.
 
-An independently reusable supervised Elixir client for the immutable official
-Codex app-server **0.163.0**, source
-`83086188ae0614bd882818ff1aa23f3194962012`. Native schemas, binary provenance and
-the full compatibility ledger live in `docs/codex-app-server/`. Schema coverage
+An independently reusable supervised Elixir client for the official Codex
+app-server. Codex is not pinned: the schema snapshot in `samgita_protocol_codex`
+tracks the latest release, and `SamgitaProtocolCodex.source/0` names its version,
+commit and binary digests. The compatibility ledger and the qualification records
+for 0.163.0 live in `docs/codex-app-server/`. Schema coverage
 and the journeys below do not establish complete behavioral compatibility.
 
 The current [ordinary functional milestone](../../docs/codex-app-server/ordinary-functional-delivery.md)

@@ -18,12 +18,12 @@ RUST = "source/dynamic-tools.rs"
 THREAD = "source/thread.rs"
 SOURCES = {
     RUST: "d73d51aa0cd0e6318d6fc1faa890a3524301af0c3ba2b2dc0d071728b2caa402",
-    THREAD: "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502",
+    THREAD: "f5a99bd250950ddaa3a07a8cae84e434c77d645650c11ec037e140945fa2c500",
 }
 SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 RESPONSE_SEMANTICS = "source/response-item-input-semantics.json"
 MODELS = "source/models.rs"
-MODELS_SHA256 = "df9a3da250376d86203a8a1219b2e4b5353a62274d094bb36998560433bd58eb"
+MODELS_SHA256 = "daeb5bd499ed49b364be4c031e3c754f7fb39945531214c0b8fe00896eb3da82"
 RESPONSE_SCHEMAS = ("ClientRequest.json", "v2/ThreadResumeParams.json")
 COLLABORATION_SEMANTICS = "source/collaboration-input-semantics.json"
 CONFIG_TYPES = "source/config_types.rs"
@@ -41,9 +41,9 @@ PERSONALITY_METHODS = ("thread/resume", "thread/settings/update", "thread/start"
 PERSONALITY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json", "v2/ThreadResumeParams.json")
 HISTORY_MODE_SEMANTICS = "source/history-mode-input-semantics.json"
 THREAD_DATA = "source/thread_data.rs"
-THREAD_DATA_SHA256 = "293359f14a1a11da8d54acce7bc69b5756c1d30b5a59e8768f5ce6b4e02edeb1"
+THREAD_DATA_SHA256 = "dfb06fcc2722c6742f5989b93be0662079a3c059b18d5c82dc261e65c1fa7cb0"
 COMMON = "source/common.rs"
-COMMON_SHA256 = "ee03e7b76763ac658f4af3d36c0c1a26c00dff6ee9256d474dd85fa740143cc3"
+COMMON_SHA256 = "4c449f1da399848c714c780fc1304ba566d0089aeaef8c33c3a9c7eb986e4272"
 HISTORY_MODE_METHODS = ("thread/start",)
 HISTORY_MODE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 START_SOURCE_SEMANTICS = "source/thread-start-source-input-semantics.json"
@@ -52,19 +52,19 @@ START_SOURCE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 SEARCH_SORT_SEMANTICS = "source/thread-search-sort-key-input-semantics.json"
 SEARCH_SORT_METHODS = ("thread/search",)
 SEARCH_SORT_SCHEMAS = {
-    "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
     "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
 }
 LIST_SORT_SEMANTICS = "source/thread-sort-key-input-semantics.json"
 LIST_SORT_METHODS = ("thread/list",)
 LIST_SORT_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
         "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
-        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
     },
 }
 DIRECTION_SEMANTICS = "source/sort-direction-input-semantics.json"
@@ -83,17 +83,17 @@ DIRECTION_FIELDS = {
 }
 DIRECTION_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
         "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
         "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
-        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
         "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
-        "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+        "v2/ThreadResumeParams.json": "9642460eb42e9a6e8fa8e12b4381e8ed939d10b1ad8690e694d84467ea76d41a",
         "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
         "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
     },
@@ -102,10 +102,10 @@ PROJECT_SORT_SEMANTICS = "source/project-sort-key-input-semantics.json"
 PROJECT_SORT_METHODS = ("project/list",)
 PROJECT_SORT_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
         "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
     },
 }
@@ -117,28 +117,28 @@ ITEMS_VIEW_PATHS = {
 }
 ITEMS_VIEW_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
-        "v2/ThreadResumeParams.json": "8152ea774ace4eb5623081abd64a1135f28cbff1e73ca641cfb80ac16f6eed32",
+        "v2/ThreadResumeParams.json": "9642460eb42e9a6e8fa8e12b4381e8ed939d10b1ad8690e694d84467ea76d41a",
     },
 }
 MERGE_STRATEGY_SEMANTICS = "source/merge-strategy-input-semantics.json"
 CONFIG = "source/config.rs"
-CONFIG_SHA256 = "93f7493dba38114e4be349e6d327605cfd88b8eb8454db6f5173d329e87fb9af"
+CONFIG_SHA256 = "a50d4abcd7ea13486e622845f7987720658cb80ac3c15b3c374207659989eb65"
 MERGE_STRATEGY_PATHS = (("config/batchWrite", ("edits", "[]", "mergeStrategy")),
                         ("config/value/write", ("mergeStrategy",)))
 MERGE_STRATEGY_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
         "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
         "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
         "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
         "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
     },
@@ -151,12 +151,12 @@ SOURCE_KIND_PATHS = {
 }
 SOURCE_KIND_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "6b10888f163f569922d42c41e94a98b4261258abc7581c14eca867c3b125dc6f",
+        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
         "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
     },
     "experimental": {
-        "ClientRequest.json": "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352",
-        "v2/ThreadListParams.json": "158dc75c077662b181191dd258d2670d505505e84c40c62214bf20d3364a5520",
+        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
         "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
     },
 }
@@ -166,7 +166,6 @@ DECODER_LICENSE = "source/serde-1.0.228/LICENSE-MIT"
 DECODER_LICENSE_SHA256 = "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
 DECODER_CRATE_SHA256 = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
 DECODER_ORIGIN = "source/serde-1.0.228/origin.json"
-CARGO_LOCK_SHA256 = "17cdd862471774ba7aef836aaf0a0a3ed76bd23e503b1fc7278c89d1f2719d03"
 
 
 def derive(vendor):
@@ -1318,7 +1317,7 @@ def decoder_origin():
         "included_license": "LICENSE-MIT",
         "crate_url": "https://static.crates.io/crates/serde/serde-1.0.228.crate",
         "crate_sha256": DECODER_CRATE_SHA256,
-        "upstream_commit": COMMIT, "codex_cargo_lock_sha256": CARGO_LOCK_SHA256,
+        "upstream_commit": COMMIT,
         "source_member": "serde-1.0.228/src/private/de.rs",
         "source_sha256": DECODER_SHA256, "license_sha256": DECODER_LICENSE_SHA256,
         "semantics": "Complete source reference only, never compiled. The internally tagged ClientRequest buffers nested params through ContentDeserializer; its enum decoder requires one map entry and unit decoder accepts null or an empty map. These are actual nested request-input semantics, not a change to outgoing JSON or canonical output values.",
@@ -1326,11 +1325,12 @@ def decoder_origin():
 
 
 def verify_decoder_lock(path):
-    if digest(path) != CARGO_LOCK_SHA256 or (
-            'name = "serde"\nversion = "1.0.228"\n'
+    # Only the serde entry backs the vendored decoder; other lock changes are
+    # irrelevant to it and occur in nearly every release.
+    if ('name = "serde"\nversion = "1.0.228"\n'
             'source = "registry+https://github.com/rust-lang/crates.io-index"\n'
             f'checksum = "{DECODER_CRATE_SHA256}"') not in path.read_text():
-        raise ValueError("Pinned Codex dependency lock changed")
+        raise ValueError("Codex serde dependency changed; re-derive the buffered decoder")
 
 
 def corrections(vendor):

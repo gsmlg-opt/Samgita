@@ -107,9 +107,9 @@ defmodule SamgitaProtocolCodex.SchemaTest do
   end
 
   test "all message directions expose the exact full release surface" do
-    assert length(Schema.methods(:client_request, experimental: true)) == 175
+    assert length(Schema.methods(:client_request, experimental: true)) == 183
     assert length(Schema.methods(:server_request, experimental: true)) == 11
-    assert length(Schema.methods(:server_notification, experimental: true)) == 87
+    assert length(Schema.methods(:server_notification, experimental: true)) == 88
     assert Schema.methods(:client_notification) == ["initialized"]
     assert "server/diagnostics" not in Schema.methods(:client_request)
 
@@ -281,7 +281,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
     assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_notification(:server_notification, "thread/settings/updated", %{})
 
-    assert length(Schema.methods(:server_notification)) == 63
+    assert length(Schema.methods(:server_notification)) == 64
 
     for method <- ["thread/settings/updated", "process/outputDelta", "thread/realtime/started"] do
       refute method in Schema.methods(:server_notification)

@@ -97,7 +97,7 @@
         "hooks": {
           "presence": "non_null",
           "reason": "configRequirements/read.hooks",
-          "rust_type": "Option<ManagedHooksRequirements>",
+          "rust_type": "Option<Box<ManagedHooksRequirements>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
         },
         "network": {
@@ -213,6 +213,12 @@
           "rust_type": "Option<AskForApproval>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
+        "attachToSource": {
+          "presence": "true",
+          "reason": "thread/fork.attachToSource",
+          "rust_type": "bool",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
         "beforeTurnId": {
           "presence": "non_null",
           "reason": "thread/fork.beforeTurnId",
@@ -222,6 +228,12 @@
         "deferGoalContinuation": {
           "presence": "true",
           "reason": "thread/fork.deferGoalContinuation",
+          "rust_type": "bool",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "experimentalDisablePredictionMcp": {
+          "presence": "true",
+          "reason": "thread/fork.experimentalDisablePredictionMcp",
           "rust_type": "bool",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
@@ -286,6 +298,12 @@
         "ancestorThreadId": {
           "presence": "non_null",
           "reason": "thread/list.ancestorThreadId",
+          "rust_type": "Option<String>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "attachedToThreadId": {
+          "presence": "non_null",
+          "reason": "thread/list.attachedToThreadId",
           "rust_type": "Option<String>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
@@ -621,6 +639,12 @@
           "rust_type": "Option<HashMap<String, String>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
         },
+        "responsesapiClientMetadataPatch": {
+          "presence": "non_null",
+          "reason": "turn/start.responsesapiClientMetadataPatch",
+          "rust_type": "Option<HashMap<String, String>>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
+        },
         "runtimeWorkspaceRoots": {
           "presence": "non_null",
           "reason": "turn/start.runtimeWorkspaceRoots",
@@ -643,10 +667,16 @@
           "reason": "turn/steer.responsesapiClientMetadata",
           "rust_type": "Option<HashMap<String, String>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
+        },
+        "responsesapiClientMetadataPatch": {
+          "presence": "non_null",
+          "reason": "turn/steer.responsesapiClientMetadataPatch",
+          "rust_type": "Option<HashMap<String, String>>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
         }
       },
       "variants": []
     }
   },
-  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
 }

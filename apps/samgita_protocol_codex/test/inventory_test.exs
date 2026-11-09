@@ -9,7 +9,7 @@ defmodule SamgitaProtocolCodex.InventoryTest do
   test "every advertised request, response and notification has a valid synthetic example" do
     corpus = @fixture |> File.read!() |> JSON.decode!()
     assert corpus["evidence_kind"] == "synthetic-schema-only"
-    assert length(corpus["messages"]) == 460
+    assert length(corpus["messages"]) == 477
 
     directions = %{
       "client_request" => :client_request,
@@ -48,7 +48,7 @@ defmodule SamgitaProtocolCodex.InventoryTest do
   @tag timeout: 120_000
   test "every inventoried field and union/enum alternative is interpreted against pinned schemas" do
     corpus = @fixture |> File.read!() |> JSON.decode!()
-    assert length(corpus["contracts"]) == 6621
+    assert length(corpus["contracts"]) == 6877
 
     documents =
       [Path.join(@root, "experimental/**/*.json"), Path.join(@root, "supplemental/**/*.json")]

@@ -12,7 +12,7 @@ The three standalone Mix projects follow this repository's `apps/` layout but de
 | --- | --- |
 | `samgita_protocol` | Native schema/codec, capabilities, pure bidirectional connection state, handler interface and bounded replay log |
 | [samgita_protocol_websocket](../samgita_protocol_websocket/README.md) | Optional authenticated RFC 6455 text transport at `/app-server`, explicit listener/client, fake Agent |
-| [samgita_protocol_codex](../samgita_protocol_codex/README.md) | Optional, limited translation to pinned official Codex 0.163.0 schemas |
+| [samgita_protocol_codex](../samgita_protocol_codex/README.md) | Optional, limited translation to the latest official Codex schema snapshot |
 
 Run checks **from this package directory**, with Elixir on PATH (or prefix each command with `devenv shell --no-tui --no-reload --` in this repository):
 

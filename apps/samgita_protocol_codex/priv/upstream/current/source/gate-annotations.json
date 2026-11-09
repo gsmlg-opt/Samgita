@@ -66,7 +66,7 @@
       "                params: $(#[$params_meta:meta])* $params:ty,",
       "                $(inspect_params: $inspect_params:tt,)?"
     ],
-    "line": 215,
+    "line": 218,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -80,7 +80,7 @@
       "                            )",
       "                        }"
     ],
-    "line": 393,
+    "line": 396,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -94,7 +94,7 @@
       "        #[cfg(test)]",
       "        pub(crate) const EXPERIMENTAL_CLIENT_METHOD_PARAM_TYPES: &[&str] = &["
     ],
-    "line": 406,
+    "line": 409,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -108,7 +108,7 @@
       "        #[cfg(test)]",
       "        pub(crate) const EXPERIMENTAL_CLIENT_METHOD_RESPONSE_TYPES: &[&str] = &["
     ],
-    "line": 412,
+    "line": 415,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -122,7 +122,7 @@
       "",
       "        #[cfg(test)]"
     ],
-    "line": 418,
+    "line": 421,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -136,7 +136,7 @@
       "        params: v2::ServerDiagnosticsParams,",
       "        serialization: None,"
     ],
-    "line": 506,
+    "line": 509,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -150,7 +150,7 @@
       "        serialization: None,",
       "        response: v2::UserVerificationStatusResponse,"
     ],
-    "line": 514,
+    "line": 517,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -164,7 +164,7 @@
       "        serialization: None,",
       "        response: v2::UserVerificationEnrollResponse,"
     ],
-    "line": 521,
+    "line": 524,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -178,7 +178,7 @@
       "        serialization: None,",
       "        response: v2::UserVerificationDeleteResponse,"
     ],
-    "line": 528,
+    "line": 531,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -192,7 +192,7 @@
       "        serialization: None,",
       "        response: v2::UserVerificationVerifyResponse,"
     ],
-    "line": 535,
+    "line": 538,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -206,7 +206,35 @@
       "        serialization: None,",
       "        response: v2::UserVerificationCancelResponse,"
     ],
-    "line": 542,
+    "line": 545,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/sample\")]",
+    "context": [
+      "        response: v2::ThreadForkResponse,",
+      "    },",
+      "    #[experimental(\"thread/sample\")]",
+      "    ThreadSample => \"thread/sample\" {",
+      "        params: v2::ThreadSampleParams,",
+      "        // Waiting for a sample must not block requests on its parent thread.",
+      "        serialization: None,"
+    ],
+    "line": 573,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/sample/cancel\")]",
+    "context": [
+      "        response: v2::ThreadSampleResponse,",
+      "    },",
+      "    #[experimental(\"thread/sample/cancel\")]",
+      "    ThreadSampleCancel => \"thread/sample/cancel\" {",
+      "        params: v2::ThreadSampleCancelParams,",
+      "        serialization: None,",
+      "        response: v2::ThreadSampleCancelResponse,"
+    ],
+    "line": 580,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -220,7 +248,7 @@
       "    /// This is used by external helpers to pause timeout accounting while a user",
       "    /// approval or other elicitation is pending outside the app-server request flow."
     ],
-    "line": 585,
+    "line": 601,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -234,7 +262,7 @@
       "    /// When the count reaches zero, timeout accounting resumes for the thread.",
       "    ThreadDecrementElicitation => \"thread/decrement_elicitation\" {"
     ],
-    "line": 595,
+    "line": 611,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -248,7 +276,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadPredictionRequestResponse,"
     ],
-    "line": 609,
+    "line": 625,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -262,7 +290,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueAddResponse,"
     ],
-    "line": 630,
+    "line": 646,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -276,7 +304,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueListResponse,"
     ],
-    "line": 636,
+    "line": 652,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -290,7 +318,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueUpdateResponse,"
     ],
-    "line": 642,
+    "line": 658,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -304,7 +332,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueDeleteResponse,"
     ],
-    "line": 648,
+    "line": 664,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -318,7 +346,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueReorderResponse,"
     ],
-    "line": 654,
+    "line": 670,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -332,7 +360,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadQueueStartResponse,"
     ],
-    "line": 660,
+    "line": 676,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -346,7 +374,7 @@
       "        inspect_params: true,",
       "        serialization: thread_id(params.thread_id),"
     ],
-    "line": 697,
+    "line": 713,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -360,13 +388,27 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadMemoryModeSetResponse,"
     ],
-    "line": 704,
+    "line": 720,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/memory/read\")]",
+    "context": [
+      "        response: v2::ThreadMemoryModeSetResponse,",
+      "    },",
+      "    #[experimental(\"thread/memory/read\")]",
+      "    ThreadMemoryRead => \"thread/memory/read\" {",
+      "        params: v2::ThreadMemoryReadParams,",
+      "        serialization: thread_id(params.thread_id),",
+      "        response: v2::ThreadMemoryReadResponse,"
+    ],
+    "line": 726,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
     "annotation": "#[experimental(\"memory/status\")]",
     "context": [
-      "        response: v2::ThreadMemoryModeSetResponse,",
+      "        response: v2::ThreadMemoryReadResponse,",
       "    },",
       "    #[experimental(\"memory/status\")]",
       "    MemoryStatus => \"memory/status\" {",
@@ -374,7 +416,7 @@
       "        serialization: global(\"memory\"),",
       "        response: v2::MemoryStatusResponse,"
     ],
-    "line": 710,
+    "line": 732,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -388,7 +430,7 @@
       "        serialization: global(\"memory\"),",
       "        response: v2::MemoryResetResponse,"
     ],
-    "line": 716,
+    "line": 738,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -402,7 +444,7 @@
       "        params: #[ts(type = \"undefined\")] #[serde(skip_serializing_if = \"Option::is_none\")] Option<()>,",
       "        serialization: None,"
     ],
-    "line": 722,
+    "line": 744,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -416,7 +458,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadBackgroundTerminalsCleanResponse,"
     ],
-    "line": 749,
+    "line": 771,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -430,7 +472,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadBackgroundTerminalsListResponse,"
     ],
-    "line": 755,
+    "line": 777,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -444,7 +486,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadBackgroundTerminalsTerminateResponse,"
     ],
-    "line": 761,
+    "line": 783,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -458,7 +500,7 @@
       "        serialization: global_shared_read(\"projects\"),",
       "        response: v2::ProjectListResponse,"
     ],
-    "line": 778,
+    "line": 800,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -472,7 +514,7 @@
       "        serialization: global_shared_read(\"projects\"),",
       "        response: v2::ProjectReadResponse,"
     ],
-    "line": 784,
+    "line": 806,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -486,7 +528,7 @@
       "        serialization: global(\"projects\"),",
       "        response: v2::ProjectCreateResponse,"
     ],
-    "line": 790,
+    "line": 812,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -500,7 +542,7 @@
       "        serialization: global(\"projects\"),",
       "        response: v2::ProjectImportResponse,"
     ],
-    "line": 796,
+    "line": 818,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -514,7 +556,7 @@
       "        serialization: global(\"projects\"),",
       "        response: v2::ProjectUpdateResponse,"
     ],
-    "line": 802,
+    "line": 824,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -528,7 +570,7 @@
       "        serialization: global(\"projects\"),",
       "        response: v2::ProjectMoveResponse,"
     ],
-    "line": 808,
+    "line": 830,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -542,7 +584,7 @@
       "        serialization: global(\"projects\"),",
       "        response: v2::ProjectDeleteResponse,"
     ],
-    "line": 814,
+    "line": 836,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -556,7 +598,7 @@
       "        serialization: None,",
       "        response: v2::ThreadSearchResponse,"
     ],
-    "line": 840,
+    "line": 862,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -570,7 +612,7 @@
       "        // Explicitly concurrent: this reads persisted paginated history.",
       "        serialization: None,"
     ],
-    "line": 846,
+    "line": 868,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -584,7 +626,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadReadStateUpdateResponse,"
     ],
-    "line": 863,
+    "line": 885,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -598,7 +640,21 @@
       "        // Explicitly concurrent: this primarily reads append-only rollout storage.",
       "        serialization: None,"
     ],
-    "line": 881,
+    "line": 903,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/guardianReview\")]",
+    "context": [
+      "        response: v2::ThreadItemsReadResponse,",
+      "    },",
+      "    #[experimental(\"thread/guardianReview\")]",
+      "    /// Review the idle thread's final injected exec_command without executing it.",
+      "    ThreadGuardianReview => \"thread/guardianReview\" {",
+      "        params: v2::ThreadGuardianReviewParams,",
+      "        serialization: thread_id(params.thread_id),"
+    ],
+    "line": 910,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -612,7 +668,7 @@
       "        serialization: None,",
       "        response: v2::PluginSearchResponse,"
     ],
-    "line": 929,
+    "line": 958,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -626,7 +682,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::TurnSettingsUpdateResponse,"
     ],
-    "line": 1063,
+    "line": 1092,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -640,7 +696,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadRealtimeStartResponse,"
     ],
-    "line": 1080,
+    "line": 1109,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -654,7 +710,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadRealtimeAppendAudioResponse,"
     ],
-    "line": 1086,
+    "line": 1115,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -668,7 +724,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadRealtimeAppendTextResponse,"
     ],
-    "line": 1092,
+    "line": 1121,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -682,7 +738,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadRealtimeAppendSpeechResponse,"
     ],
-    "line": 1098,
+    "line": 1127,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -696,7 +752,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadRealtimeStopResponse,"
     ],
-    "line": 1104,
+    "line": 1133,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -710,7 +766,7 @@
       "        serialization: thread_id(params.thread_id),",
       "        response: v2::ThreadTimelineListResponse,"
     ],
-    "line": 1110,
+    "line": 1139,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -724,7 +780,7 @@
       "        serialization: None,",
       "        response: v2::ThreadRealtimeListVoicesResponse,"
     ],
-    "line": 1116,
+    "line": 1145,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -738,7 +794,7 @@
       "        serialization: global(\"remote-control\"),",
       "        response: v2::RemoteControlEnableResponse,"
     ],
-    "line": 1168,
+    "line": 1197,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -752,7 +808,7 @@
       "        serialization: global(\"remote-control\"),",
       "        response: v2::RemoteControlDisableResponse,"
     ],
-    "line": 1174,
+    "line": 1203,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -766,7 +822,7 @@
       "        serialization: global_shared_read(\"remote-control\"),",
       "        response: v2::RemoteControlStatusReadResponse,"
     ],
-    "line": 1180,
+    "line": 1209,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -780,7 +836,7 @@
       "        serialization: global(\"remote-control-pairing\"),",
       "        response: v2::RemoteControlPairingStartResponse,"
     ],
-    "line": 1186,
+    "line": 1215,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -794,7 +850,7 @@
       "        serialization: global_shared_read(\"remote-control-pairing\"),",
       "        response: v2::RemoteControlPairingStatusResponse,"
     ],
-    "line": 1192,
+    "line": 1221,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -808,7 +864,7 @@
       "        serialization: global_shared_read(\"remote-control-clients\"),",
       "        response: v2::RemoteControlClientsListResponse,"
     ],
-    "line": 1198,
+    "line": 1227,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -822,7 +878,7 @@
       "        serialization: global(\"remote-control-clients\"),",
       "        response: v2::RemoteControlClientsRevokeResponse,"
     ],
-    "line": 1204,
+    "line": 1233,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -836,7 +892,7 @@
       "        params: v2::CollaborationModeListParams,",
       "        serialization: None,"
     ],
-    "line": 1210,
+    "line": 1239,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -850,7 +906,7 @@
       "        params: v2::MockExperimentalMethodParams,",
       "        serialization: None,"
     ],
-    "line": 1217,
+    "line": 1246,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -864,7 +920,7 @@
       "        params: v2::EnvironmentAddParams,",
       "        serialization: global(\"environment\"),"
     ],
-    "line": 1224,
+    "line": 1253,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -878,7 +934,7 @@
       "        params: v2::EnvironmentInfoParams,",
       "        serialization: global_shared_read(\"environment\"),"
     ],
-    "line": 1231,
+    "line": 1260,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -892,7 +948,7 @@
       "        params: v2::EnvironmentStatusParams,",
       "        serialization: global_shared_read(\"environment\"),"
     ],
-    "line": 1238,
+    "line": 1267,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -906,7 +962,7 @@
       "        serialization: None,",
       "        response: v2::McpServerEventStreamStartResponse,"
     ],
-    "line": 1270,
+    "line": 1299,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -920,7 +976,7 @@
       "        serialization: None,",
       "        response: v2::McpServerEventStreamStopResponse,"
     ],
-    "line": 1277,
+    "line": 1306,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -934,7 +990,7 @@
       "        serialization: global_shared_read(\"account-auth\"),",
       "        response: v2::BedrockDiscoverResponse,"
     ],
-    "line": 1308,
+    "line": 1337,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -948,7 +1004,21 @@
       "        serialization: global(\"account-auth\"),",
       "        response: v2::BedrockSetupResponse,"
     ],
-    "line": 1315,
+    "line": 1344,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"account/gcp/setup\")]",
+    "context": [
+      "    },",
+      "",
+      "    #[experimental(\"account/gcp/setup\")]",
+      "    GcpSetup => \"account/gcp/setup\" {",
+      "        params: v2::GcpSetupParams,",
+      "        serialization: global(\"account-auth\"),",
+      "        response: v2::GcpSetupResponse,"
+    ],
+    "line": 1351,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -962,7 +1032,35 @@
       "        serialization: global(\"account-auth\"),",
       "        response: v2::BedrockCheckGovCloudRequirementsResponse,"
     ],
-    "line": 1322,
+    "line": 1358,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"accountSession/list\")]",
+    "context": [
+      "    },",
+      "",
+      "    #[experimental(\"accountSession/list\")]",
+      "    AccountSessionsList => \"accountSession/list\" {",
+      "        params: v2::AccountSessionsListParams,",
+      "        serialization: global(\"account-auth\"),",
+      "        manual_payload_conversion: manual,"
+    ],
+    "line": 1371,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[experimental(\"accountSession/switch\")]",
+    "context": [
+      "    },",
+      "",
+      "    #[experimental(\"accountSession/switch\")]",
+      "    AccountSessionsSwitch => \"accountSession/switch\" {",
+      "        params: v2::AccountSessionsSwitchParams,",
+      "        serialization: global(\"account-auth\"),",
+      "        manual_payload_conversion: manual,"
+    ],
+    "line": 1379,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -976,7 +1074,7 @@
       "    },",
       ""
     ],
-    "line": 1342,
+    "line": 1394,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -990,7 +1088,7 @@
       "    },",
       ""
     ],
-    "line": 1354,
+    "line": 1406,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1004,7 +1102,7 @@
       "        params: v2::ProcessSpawnParams,",
       "        serialization: process_handle(params.process_handle),"
     ],
-    "line": 1402,
+    "line": 1460,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1018,7 +1116,7 @@
       "        params: v2::ProcessWriteStdinParams,",
       "        serialization: process_handle(params.process_handle),"
     ],
-    "line": 1409,
+    "line": 1467,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1032,7 +1130,7 @@
       "        params: v2::ProcessKillParams,",
       "        serialization: process_handle(params.process_handle),"
     ],
-    "line": 1416,
+    "line": 1474,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1046,7 +1144,7 @@
       "        params: v2::ProcessResizePtyParams,",
       "        serialization: process_handle(params.process_handle),"
     ],
-    "line": 1423,
+    "line": 1481,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1060,7 +1158,7 @@
       "        serialization: fuzzy_session_id(params.session_id),",
       "        response: FuzzyFileSearchSessionStartResponse,"
     ],
-    "line": 1505,
+    "line": 1563,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1074,7 +1172,7 @@
       "        serialization: fuzzy_session_id(params.session_id),",
       "        response: FuzzyFileSearchSessionUpdateResponse,"
     ],
-    "line": 1511,
+    "line": 1569,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1088,7 +1186,7 @@
       "        serialization: fuzzy_session_id(params.session_id),",
       "        response: FuzzyFileSearchSessionStopResponse,"
     ],
-    "line": 1517,
+    "line": 1575,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1102,7 +1200,7 @@
       "                params: $params:ty,",
       "                response: $response:ty,"
     ],
-    "line": 1532,
+    "line": 1590,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1116,7 +1214,7 @@
       "        #[cfg(test)]",
       "        pub(crate) const EXPERIMENTAL_SERVER_METHOD_PARAM_TYPES: &[&str] = &["
     ],
-    "line": 1633,
+    "line": 1691,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1130,7 +1228,7 @@
       "        #[cfg(test)]",
       "        pub(crate) const EXPERIMENTAL_SERVER_METHOD_RESPONSE_TYPES: &[&str] = &["
     ],
-    "line": 1639,
+    "line": 1697,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1144,7 +1242,7 @@
       "",
       "        #[cfg(test)]"
     ],
-    "line": 1645,
+    "line": 1703,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1158,7 +1256,7 @@
       "        params: v2::CurrentTimeReadParams,",
       "        response: v2::CurrentTimeReadResponse,"
     ],
-    "line": 1844,
+    "line": 1902,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1172,7 +1270,7 @@
       "    ThreadDeleted => \"thread/deleted\" (v2::ThreadDeletedNotification),",
       "    ThreadUnarchived => \"thread/unarchived\" (v2::ThreadUnarchivedNotification),"
     ],
-    "line": 1953,
+    "line": 2011,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1186,7 +1284,7 @@
       "    #[experimental(\"thread/queue/changed\")]",
       "    ThreadQueueChanged => \"thread/queue/changed\" (v2::ThreadQueueChangedNotification),"
     ],
-    "line": 1964,
+    "line": 2023,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1200,7 +1298,7 @@
       "    ProjectChanged => \"project/changed\" (v2::ProjectChangedNotification),",
       "    #[experimental(\"thread/project/updated\")]"
     ],
-    "line": 1967,
+    "line": 2026,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1214,7 +1312,7 @@
       "    ThreadProjectUpdated => \"thread/project/updated\" (v2::ThreadProjectUpdatedNotification),",
       "    #[experimental(\"thread/environment/connected\")]"
     ],
-    "line": 1969,
+    "line": 2028,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1228,7 +1326,7 @@
       "    EnvironmentConnected => \"thread/environment/connected\" (v2::EnvironmentConnectionNotification),",
       "    #[experimental(\"thread/environment/disconnected\")]"
     ],
-    "line": 1971,
+    "line": 2030,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1242,7 +1340,7 @@
       "    EnvironmentDisconnected => \"thread/environment/disconnected\" (v2::EnvironmentConnectionNotification),",
       "    #[experimental(\"thread/settings/updated\")]"
     ],
-    "line": 1973,
+    "line": 2032,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1256,7 +1354,7 @@
       "    ThreadSettingsUpdated => \"thread/settings/updated\" (v2::ThreadSettingsUpdatedNotification),",
       "    ThreadTokenUsageUpdated => \"thread/tokenUsage/updated\" (v2::ThreadTokenUsageUpdatedNotification),"
     ],
-    "line": 1975,
+    "line": 2034,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1270,7 +1368,7 @@
       "    TurnStarted => \"turn/started\" (v2::TurnStartedNotification),",
       "    HookStarted => \"hook/started\" (v2::HookStartedNotification),"
     ],
-    "line": 1977,
+    "line": 2036,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1284,7 +1382,7 @@
       "    /// This event is internal-only. Used by Codex Cloud.",
       "    RawResponseItemCompleted => \"rawResponseItem/completed\" (v2::RawResponseItemCompletedNotification),"
     ],
-    "line": 1989,
+    "line": 2048,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1298,7 +1396,7 @@
       "    #[experimental(\"process/exited\")]",
       "    ProcessExited => \"process/exited\" (v2::ProcessExitedNotification),"
     ],
-    "line": 2002,
+    "line": 2061,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1312,7 +1410,7 @@
       "    TerminalInteraction => \"item/commandExecution/terminalInteraction\" (v2::TerminalInteractionNotification),",
       "    /// Deprecated legacy apply_patch output stream notification."
     ],
-    "line": 2005,
+    "line": 2064,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1326,7 +1424,7 @@
       "    GatewayOAuthChanged => \"account/gatewayOAuth/changed\" (v2::GatewayOAuthChangedNotification),",
       "    AccountRateLimitsUpdated => \"account/rateLimits/updated\" (v2::AccountRateLimitsUpdatedNotification),"
     ],
-    "line": 2016,
+    "line": 2075,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1340,7 +1438,7 @@
       "    Warning => \"warning\" (v2::WarningNotification),",
       "    GuardianWarning => \"guardianWarning\" (v2::GuardianWarningNotification),"
     ],
-    "line": 2035,
+    "line": 2094,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1354,7 +1452,7 @@
       "    ThreadRealtimeItemAdded => \"thread/realtime/itemAdded\" (v2::ThreadRealtimeItemAddedNotification),",
       "    #[experimental(\"thread/realtime/item/started\")]"
     ],
-    "line": 2044,
+    "line": 2103,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1368,7 +1466,7 @@
       "    ThreadRealtimeItemStarted => \"thread/realtime/item/started\" (v2::ThreadRealtimeItemStartedNotification),",
       "    #[experimental(\"thread/realtime/item/transcript/delta\")]"
     ],
-    "line": 2046,
+    "line": 2105,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1382,7 +1480,7 @@
       "    ThreadRealtimeItemTranscriptDelta => \"thread/realtime/item/transcript/delta\" (v2::ThreadRealtimeItemTranscriptDeltaNotification),",
       "    #[experimental(\"thread/realtime/item/completed\")]"
     ],
-    "line": 2048,
+    "line": 2107,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1396,7 +1494,7 @@
       "    ThreadRealtimeItemCompleted => \"thread/realtime/item/completed\" (v2::ThreadRealtimeItemCompletedNotification),",
       "    #[experimental(\"thread/realtime/transcript/delta\")]"
     ],
-    "line": 2050,
+    "line": 2109,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1410,7 +1508,7 @@
       "    ThreadRealtimeTranscriptDelta => \"thread/realtime/transcript/delta\" (v2::ThreadRealtimeTranscriptDeltaNotification),",
       "    #[experimental(\"thread/realtime/transcript/done\")]"
     ],
-    "line": 2052,
+    "line": 2111,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1424,7 +1522,7 @@
       "    ThreadRealtimeTranscriptDone => \"thread/realtime/transcript/done\" (v2::ThreadRealtimeTranscriptDoneNotification),",
       "    #[experimental(\"thread/realtime/outputAudio/delta\")]"
     ],
-    "line": 2054,
+    "line": 2113,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1438,7 +1536,7 @@
       "    ThreadRealtimeOutputAudioDelta => \"thread/realtime/outputAudio/delta\" (v2::ThreadRealtimeOutputAudioDeltaNotification),",
       "    #[experimental(\"thread/realtime/sdp\")]"
     ],
-    "line": 2056,
+    "line": 2115,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1452,7 +1550,7 @@
       "    ThreadRealtimeSdp => \"thread/realtime/sdp\" (v2::ThreadRealtimeSdpNotification),",
       "    #[experimental(\"thread/realtime/error\")]"
     ],
-    "line": 2058,
+    "line": 2117,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1466,7 +1564,7 @@
       "    ThreadRealtimeError => \"thread/realtime/error\" (v2::ThreadRealtimeErrorNotification),",
       "    #[experimental(\"thread/realtime/closed\")]"
     ],
-    "line": 2060,
+    "line": 2119,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1480,7 +1578,7 @@
       "    ThreadRealtimeClosed => \"thread/realtime/closed\" (v2::ThreadRealtimeClosedNotification),",
       ""
     ],
-    "line": 2062,
+    "line": 2121,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1494,7 +1592,7 @@
       "    /// Notifies the user of world-writable directories on Windows, which cannot be protected by the sandbox.",
       "    WindowsWorldWritableWarning => \"windows/worldWritableWarning\" (v2::WindowsWorldWritableWarningNotification),"
     ],
-    "line": 2064,
+    "line": 2123,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
   },
   {
@@ -1508,8 +1606,22 @@
       "    pub emitted_at_ms: Option<i64>,",
       "}"
     ],
-    "line": 2091,
+    "line": 2150,
     "source_path": "codex-rs/app-server-protocol/src/protocol/common.rs"
+  },
+  {
+    "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+    "context": [
+      "    /// Present `humanCommand` approvals to a person and return only a one-time decision.",
+      "    /// Requires `experimentalApi`. Pending requests can be replayed to compatible clients.",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub required_human_approval: bool,",
+      "    /// Use explicit gateway OAuth login instead of automatic browser authorization.",
+      "    /// Applies to this app-server's gateway runtime; later connections cannot undo it.",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]"
+    ],
+    "line": 49,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
     "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
@@ -1522,7 +1634,7 @@
       "    #[serde(default)]",
       "    pub experimental_api: bool,"
     ],
-    "line": 49,
+    "line": 53,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
@@ -1536,7 +1648,7 @@
       "    #[serde(default)]",
       "    pub request_attestation: bool,"
     ],
-    "line": 52,
+    "line": 56,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
@@ -1550,7 +1662,7 @@
       "    ///",
       "    /// New clients should declare `openai/form` in [`Self::extensions`]."
     ],
-    "line": 55,
+    "line": 59,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
@@ -1564,7 +1676,7 @@
       "    /// connection (for example `thread/started`).",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 60,
+    "line": 64,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
@@ -1578,7 +1690,7 @@
       "    pub exclude_tmpdir_env_var: Option<bool>,",
       "    pub exclude_slash_tmp: Option<bool>,"
     ],
-    "line": 236,
+    "line": 240,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v1.rs"
   },
   {
@@ -1589,10 +1701,10 @@
       "        #[serde(default)]",
       "        uses_codex_managed_credentials: bool,",
       "    },",
-      "}",
-      ""
+      "",
+      "    /// Google Cloud Vertex AI with externally managed credentials."
     ],
-    "line": 41,
+    "line": 43,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1606,7 +1718,7 @@
       "        use_hosted_login_success_page: bool,",
       "        #[serde(default)]"
     ],
-    "line": 75,
+    "line": 87,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1620,7 +1732,7 @@
       "        #[ts(optional = nullable)]",
       "        app_brand: Option<LoginAppBrand>,"
     ],
-    "line": 77,
+    "line": 89,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1634,7 +1746,7 @@
       "    },",
       "    #[serde(rename = \"chatgptDeviceCode\")]"
     ],
-    "line": 79,
+    "line": 91,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1648,7 +1760,7 @@
       "    ChatgptAuthTokens {",
       "        /// Access token (JWT) supplied by the client."
     ],
-    "line": 88,
+    "line": 100,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1662,7 +1774,7 @@
       "    AmazonBedrock { api_key: String, region: String },",
       "    /// [UNSTABLE] Managed Amazon Bedrock AWS access key login is experimental."
     ],
-    "line": 105,
+    "line": 117,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1676,7 +1788,7 @@
       "    AmazonBedrockAccessKeys {",
       "        access_key_id: String,"
     ],
-    "line": 110,
+    "line": 122,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1690,7 +1802,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 195,
+    "line": 207,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1704,7 +1816,21 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 203,
+    "line": 215,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
+  },
+  {
+    "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+    "context": [
+      "    pub account_id: String,",
+      "    /// Allow Core to start browser sign-in if this session needs SSO for the workspace.",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    #[ts(optional, as = \"Option<bool>\")]",
+      "    pub allow_browser_login: bool,",
+      "}",
+      ""
+    ],
+    "line": 235,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1718,7 +1844,7 @@
       "    /// response still includes the available count; omitted/false preserves detailed reads.",
       "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]"
     ],
-    "line": 318,
+    "line": 348,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1732,7 +1858,7 @@
       "",
       "pub type NullableGetAccountRateLimitsParams = Option<GetAccountRateLimitsParams>;"
     ],
-    "line": 322,
+    "line": 352,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1746,7 +1872,7 @@
       "}",
       ""
     ],
-    "line": 452,
+    "line": 482,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1760,7 +1886,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS, ExperimentalApi)]"
     ],
-    "line": 550,
+    "line": 580,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -1774,7 +1900,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 560,
+    "line": 590,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs"
   },
   {
@@ -2012,7 +2138,7 @@
       "    pub network_access: bool,",
       "    #[serde(default)]"
     ],
-    "line": 148,
+    "line": 149,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2026,7 +2152,7 @@
       "    pub exclude_tmpdir_env_var: bool,",
       "    #[serde(default)]"
     ],
-    "line": 150,
+    "line": 151,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2040,7 +2166,7 @@
       "    pub exclude_slash_tmp: bool,",
       "}"
     ],
-    "line": 152,
+    "line": 153,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2054,7 +2180,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 154,
+    "line": 155,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2068,7 +2194,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 170,
+    "line": 171,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2082,7 +2208,7 @@
       "    #[serde(default = \"default_enabled\")]",
       "    pub destructive_enabled: bool,"
     ],
-    "line": 188,
+    "line": 189,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2096,7 +2222,7 @@
       "    pub open_world_enabled: bool,",
       "    pub default_tools_approval_mode: Option<AppToolApproval>,"
     ],
-    "line": 191,
+    "line": 192,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2110,7 +2236,7 @@
       "}",
       ""
     ],
-    "line": 193,
+    "line": 194,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2124,7 +2250,7 @@
       "",
       "/// Approval settings for a connected account within an app."
     ],
-    "line": 210,
+    "line": 211,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2138,7 +2264,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 228,
+    "line": 229,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2152,7 +2278,7 @@
       "    pub omit_tools_from: Option<Vec<ToolExposureSurface>>,",
       "    pub approvals_reviewer: Option<ApprovalsReviewer>,"
     ],
-    "line": 236,
+    "line": 237,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2166,7 +2292,7 @@
       "    pub apps: HashMap<String, AppConfig>,",
       "}"
     ],
-    "line": 254,
+    "line": 255,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2180,7 +2306,7 @@
       "",
       "/// Backward-compatible API shape for ChatGPT workspace login restrictions."
     ],
-    "line": 256,
+    "line": 257,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2194,7 +2320,7 @@
       "    /// review.",
       "    #[experimental(\"config/read.approvalsReviewer\")]"
     ],
-    "line": 288,
+    "line": 289,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2208,7 +2334,7 @@
       "    pub sandbox_workspace_write: Option<SandboxWorkspaceWrite>,",
       "    pub forced_chatgpt_workspace_id: Option<ForcedChatgptWorkspaceIds>,"
     ],
-    "line": 292,
+    "line": 293,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2222,7 +2348,7 @@
       "    pub browser_use: Option<BrowserUseConfig>,",
       "    pub computer_use: Option<ComputerUseConfig>,"
     ],
-    "line": 308,
+    "line": 309,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2236,7 +2362,7 @@
       "    pub computer_use: Option<ComputerUseConfig>,",
       "    pub desktop: Option<HashMap<String, JsonValue>>,"
     ],
-    "line": 309,
+    "line": 310,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2250,7 +2376,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 314,
+    "line": 315,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2264,7 +2390,7 @@
       "    /// return the effective config as seen from that directory (i.e., including any",
       "    /// project layers between `cwd` and the project/repo root)."
     ],
-    "line": 390,
+    "line": 391,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2278,7 +2404,7 @@
       "    #[serde(skip_serializing_if = \"Option::is_none\")]",
       "    pub layers: Option<Vec<ConfigLayer>>,"
     ],
-    "line": 403,
+    "line": 404,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2292,7 +2418,7 @@
       "    pub allowed_approvals_reviewers: Option<Vec<ApprovalsReviewer>>,",
       "    pub allowed_sandbox_modes: Option<Vec<SandboxMode>>,"
     ],
-    "line": 424,
+    "line": 425,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2306,7 +2432,7 @@
       "    pub allowed_windows_sandbox_implementations: Option<Vec<WindowsSandboxImplementation>>,",
       "    pub allowed_permission_profiles: Option<BTreeMap<String, bool>>,"
     ],
-    "line": 426,
+    "line": 427,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2315,18 +2441,18 @@
       "    pub in_app_browser: Option<InAppBrowserRequirements>,",
       "    pub feature_requirements: Option<BTreeMap<String, bool>>,",
       "    #[experimental(\"configRequirements/read.hooks\")]",
-      "    pub hooks: Option<ManagedHooksRequirements>,",
+      "    pub hooks: Option<Box<ManagedHooksRequirements>>,",
       "    pub enforce_residency: Option<ResidencyRequirement>,",
       "    #[experimental(\"configRequirements/read.network\")]",
       "    pub network: Option<NetworkRequirements>,"
     ],
-    "line": 441,
+    "line": 442,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
     "annotation": "#[experimental(\"configRequirements/read.network\")]",
     "context": [
-      "    pub hooks: Option<ManagedHooksRequirements>,",
+      "    pub hooks: Option<Box<ManagedHooksRequirements>>,",
       "    pub enforce_residency: Option<ResidencyRequirement>,",
       "    #[experimental(\"configRequirements/read.network\")]",
       "    pub network: Option<NetworkRequirements>,",
@@ -2334,7 +2460,7 @@
       "    pub application: Option<ApplicationRequirements>,",
       "    pub auto_review: Option<AutoReviewRequirements>,"
     ],
-    "line": 444,
+    "line": 445,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2348,7 +2474,7 @@
       "    pub models: Option<ModelsRequirements>,",
       "    #[schemars(with = \"Option<String>\")]"
     ],
-    "line": 446,
+    "line": 447,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2362,7 +2488,7 @@
       "    #[experimental(nested)]",
       "    pub requirements: Option<ConfigRequirements>,"
     ],
-    "line": 765,
+    "line": 841,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2376,7 +2502,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash, JsonSchema, TS)]"
     ],
-    "line": 768,
+    "line": 844,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2390,7 +2516,7 @@
       "    pub skills: Vec<SkillMigration>,",
       "    #[serde(default)]"
     ],
-    "line": 867,
+    "line": 943,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2404,7 +2530,7 @@
       "    pub sessions: Vec<SessionMigration>,",
       "    #[serde(default)]"
     ],
-    "line": 869,
+    "line": 945,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2418,7 +2544,7 @@
       "    pub mcp_servers: Vec<McpServerMigration>,",
       "    #[serde(default)]"
     ],
-    "line": 871,
+    "line": 947,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2432,7 +2558,7 @@
       "    pub hooks: Vec<HookMigration>,",
       "    #[serde(default)]"
     ],
-    "line": 873,
+    "line": 949,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2446,7 +2572,7 @@
       "    pub subagents: Vec<SubagentMigration>,",
       "    #[serde(default)]"
     ],
-    "line": 875,
+    "line": 951,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2460,7 +2586,7 @@
       "    pub commands: Vec<CommandMigration>,",
       "    #[serde(default, skip_serializing_if = \"Vec::is_empty\")]"
     ],
-    "line": 877,
+    "line": 953,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2474,7 +2600,7 @@
       "    pub memory: Vec<String>,",
       "}"
     ],
-    "line": 879,
+    "line": 955,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2488,7 +2614,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 881,
+    "line": 957,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2502,7 +2628,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 901,
+    "line": 977,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2516,7 +2642,7 @@
       "    #[ts(optional = nullable)]",
       "    pub cwds: Option<Vec<PathBuf>>,"
     ],
-    "line": 910,
+    "line": 986,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2530,7 +2656,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 977,
+    "line": 1053,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2544,7 +2670,7 @@
       "}",
       ""
     ],
-    "line": 999,
+    "line": 1075,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2558,7 +2684,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 1125,
+    "line": 1201,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2572,7 +2698,7 @@
       "    /// Optional range for the error location inside the config file.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1165,
+    "line": 1241,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2586,7 +2712,7 @@
       "}",
       ""
     ],
-    "line": 1169,
+    "line": 1245,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs"
   },
   {
@@ -2614,7 +2740,7 @@
       "    pub extra_log_files: Option<Vec<PathBuf>>,",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 17,
+    "line": 18,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/feedback.rs"
   },
   {
@@ -2624,9 +2750,11 @@
       "    /// Null when the reported rollout has no prompt metadata.",
       "    #[serde(default)]",
       "    pub prompt_hash: Option<String>,",
-      "}"
+      "}",
+      "",
+      "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 33,
+    "line": 34,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/feedback.rs"
   },
   {
@@ -2647,7 +2775,7 @@
     "annotation": "#[serde(default = \"default_hook_source\")]",
     "context": [
       "    pub scope: HookScope,",
-      "    pub source_path: AbsolutePathBuf,",
+      "    pub source_path: LegacyAppPathString,",
       "    #[serde(default = \"default_hook_source\")]",
       "    pub source: HookSource,",
       "    pub display_order: i64,",
@@ -2660,6 +2788,34 @@
   {
     "annotation": "#[serde(default)]",
     "context": [
+      "    pub payload: ThreadItemPayload,",
+      "    /// Unix timestamp in milliseconds when the item started, if recorded.",
+      "    #[serde(default)]",
+      "    #[ts(type = \"number | null\", optional)]",
+      "    pub started_at_ms: Option<i64>,",
+      "    /// Unix timestamp in milliseconds when the item completed, if recorded.",
+      "    #[serde(default)]"
+    ],
+    "line": 242,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
+  },
+  {
+    "annotation": "#[serde(default)]",
+    "context": [
+      "    pub started_at_ms: Option<i64>,",
+      "    /// Unix timestamp in milliseconds when the item completed, if recorded.",
+      "    #[serde(default)]",
+      "    #[ts(type = \"number | null\", optional)]",
+      "    pub completed_at_ms: Option<i64>,",
+      "}",
+      ""
+    ],
+    "line": 246,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
+  },
+  {
+    "annotation": "#[serde(default)]",
+    "context": [
       "        id: String,",
       "        text: String,",
       "        #[serde(default)]",
@@ -2668,7 +2824,7 @@
       "        memory_citation: Option<MemoryCitation>,",
       "        #[serde(default)]"
     ],
-    "line": 255,
+    "line": 318,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2682,7 +2838,7 @@
       "        delivery: Option<AgentMessageDelivery>,",
       "        #[serde(default)]"
     ],
-    "line": 257,
+    "line": 320,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2696,7 +2852,7 @@
       "        questions: Option<Vec<AsyncUserInputQuestion>>,",
       "    },"
     ],
-    "line": 259,
+    "line": 322,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2710,7 +2866,7 @@
       "    #[serde(rename_all = \"camelCase\")]",
       "    #[ts(rename_all = \"camelCase\")]"
     ],
-    "line": 261,
+    "line": 324,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2724,7 +2880,7 @@
       "        content: Vec<String>,",
       "    },"
     ],
-    "line": 284,
+    "line": 347,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2738,7 +2894,7 @@
       "    #[serde(rename_all = \"camelCase\")]",
       "    #[ts(rename_all = \"camelCase\")]"
     ],
-    "line": 286,
+    "line": 349,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2752,7 +2908,7 @@
       "        #[serde(default)]",
       "        script_path: Option<String>,"
     ],
-    "line": 302,
+    "line": 365,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2766,7 +2922,7 @@
       "        command: String,",
       "        /// The command's working directory."
     ],
-    "line": 305,
+    "line": 368,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2780,7 +2936,7 @@
       "        /// A best-effort parsing of the command to understand the action(s) it will perform.",
       "        /// This returns a list of CommandAction objects because a single shell command may"
     ],
-    "line": 313,
+    "line": 376,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2794,7 +2950,7 @@
       "        mcp_app_resource_uri: Option<String>,",
       "        /// Presentation captured from the invoked descriptor; absent in older history."
     ],
-    "line": 344,
+    "line": 407,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2808,7 +2964,7 @@
       "    pub turn_id: String,",
       "    pub item_id: String,"
     ],
-    "line": 1557,
+    "line": 1660,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2822,7 +2978,7 @@
       "    /// Environment in which the command will run.",
       "    #[serde(default)]"
     ],
-    "line": 1573,
+    "line": 1676,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2836,7 +2992,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 1577,
+    "line": 1680,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2850,7 +3006,7 @@
       "    /// Optional context for a managed-network approval prompt.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1580,
+    "line": 1683,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2864,7 +3020,7 @@
       "    /// The command to be executed.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1584,
+    "line": 1687,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2878,7 +3034,7 @@
       "    /// The command's working directory.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1588,
+    "line": 1691,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2892,7 +3048,7 @@
       "    /// Best-effort parsed command actions for friendly display.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1592,
+    "line": 1695,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2906,7 +3062,7 @@
       "    /// Optional additional permissions requested for this command.",
       "    #[experimental(\"item/commandExecution/requestApproval.additionalPermissions\")]"
     ],
-    "line": 1596,
+    "line": 1699,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2920,7 +3076,7 @@
       "    pub additional_permissions: Option<AdditionalPermissionProfile>,",
       "    /// Optional proposed execpolicy amendment to allow similar commands without prompting."
     ],
-    "line": 1600,
+    "line": 1703,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2934,7 +3090,7 @@
       "    /// Optional proposed execpolicy amendment to allow similar commands without prompting.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1601,
+    "line": 1704,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2948,7 +3104,7 @@
       "    /// Optional proposed network policy amendments (allow/deny host) for future requests.",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 1605,
+    "line": 1708,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2962,7 +3118,7 @@
       "    /// Ordered list of decisions the client may present for this prompt.",
       "    #[experimental(\"item/commandExecution/requestApproval.availableDecisions\")]"
     ],
-    "line": 1609,
+    "line": 1712,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2976,7 +3132,7 @@
       "    pub available_decisions: Option<Vec<CommandExecutionApprovalDecision>>,",
       "}"
     ],
-    "line": 1613,
+    "line": 1716,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -2990,7 +3146,7 @@
       "}",
       ""
     ],
-    "line": 1614,
+    "line": 1717,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -3004,7 +3160,7 @@
       "    pub is_secret: bool,",
       "    pub options: Option<Vec<ToolRequestUserInputOption>>,"
     ],
-    "line": 1744,
+    "line": 1847,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -3018,7 +3174,7 @@
       "}",
       ""
     ],
-    "line": 1746,
+    "line": 1849,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -3032,7 +3188,7 @@
       "}",
       ""
     ],
-    "line": 1762,
+    "line": 1865,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/item.rs"
   },
   {
@@ -3046,7 +3202,7 @@
       "    #[serde(rename = \"_meta\", default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 205,
+    "line": 207,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3060,7 +3216,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 218,
+    "line": 220,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3074,7 +3230,7 @@
       "    #[serde(rename = \"_meta\", default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 221,
+    "line": 223,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3088,7 +3244,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 301,
+    "line": 303,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3102,7 +3258,7 @@
       "}",
       ""
     ],
-    "line": 304,
+    "line": 306,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3116,7 +3272,7 @@
       "}",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 326,
+    "line": 328,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3130,7 +3286,7 @@
       "}",
       ""
     ],
-    "line": 350,
+    "line": 352,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3144,7 +3300,7 @@
       "    // McpToolCall item id here as an optional field. The current core event does not carry that",
       "    // association."
     ],
-    "line": 431,
+    "line": 433,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3158,7 +3314,7 @@
       "    UserVerification {",
       "        #[serde(rename = \"_meta\")]"
     ],
-    "line": 789,
+    "line": 791,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs"
   },
   {
@@ -3598,12 +3754,12 @@
     "annotation": "#[serde(default, skip_serializing_if = \"Vec::is_empty\")]",
     "context": [
       "pub struct HooksListParams {",
-      "    /// When empty, defaults to the current session working directory.",
+      "    /// Working directories to inspect when no thread is specified. An empty list uses the session cwd.",
       "    #[serde(default, skip_serializing_if = \"Vec::is_empty\")]",
       "    pub cwds: Vec<PathBuf>,",
-      "}",
-      "",
-      "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
+      "    /// List a loaded thread's hooks, including its selected environments. Omit `cwds` in this mode.",
+      "    #[ts(optional = nullable)]",
+      "    pub thread_id: Option<String>,"
     ],
     "line": 55,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
@@ -3619,7 +3775,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 139,
+    "line": 142,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3633,7 +3789,7 @@
       "    pub featured_plugin_ids: Vec<String>,",
       "}"
     ],
-    "line": 181,
+    "line": 184,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3647,7 +3803,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 183,
+    "line": 186,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3661,7 +3817,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, Default, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 192,
+    "line": 195,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3675,7 +3831,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 301,
+    "line": 304,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3689,7 +3845,7 @@
       "    pub short_description: Option<String>,",
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]"
     ],
-    "line": 471,
+    "line": 474,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3703,7 +3859,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 475,
+    "line": 478,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3717,7 +3873,7 @@
       "    pub path: LegacyAppPathString,",
       "    pub scope: SkillScope,"
     ],
-    "line": 478,
+    "line": 481,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3731,7 +3887,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 525,
+    "line": 528,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3745,7 +3901,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 528,
+    "line": 531,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3759,7 +3915,7 @@
       "    #[serde(default, skip_serializing_if = \"Option::is_none\")]",
       "    #[ts(optional)]"
     ],
-    "line": 531,
+    "line": 534,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3773,7 +3929,7 @@
       "}",
       ""
     ],
-    "line": 534,
+    "line": 537,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3787,7 +3943,7 @@
       "    McpTool {",
       "        server: String,"
     ],
-    "line": 572,
+    "line": 575,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3801,7 +3957,7 @@
       "    #[serde(default)]",
       "    pub local_version: Option<String>,"
     ],
-    "line": 704,
+    "line": 709,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3815,7 +3971,7 @@
       "    /// Remote sharing context associated with this plugin when available.",
       "    pub share_context: Option<PluginShareContext>,"
     ],
-    "line": 707,
+    "line": 712,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3829,7 +3985,7 @@
       "    pub enabled: bool,",
       "    pub install_policy: PluginInstallPolicy,"
     ],
-    "line": 715,
+    "line": 720,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3843,7 +3999,7 @@
       "    /// Availability state for installing and using the plugin.",
       "    #[serde(default)]"
     ],
-    "line": 721,
+    "line": 726,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3857,7 +4013,7 @@
       "    #[serde(default)]",
       "    pub disabled_reason: Option<PluginDisabledReason>,"
     ],
-    "line": 725,
+    "line": 730,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3871,7 +4027,7 @@
       "    #[serde(default)]",
       "    pub eligible_plan_types: Option<Vec<String>>,"
     ],
-    "line": 728,
+    "line": 733,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3885,7 +4041,7 @@
       "    #[serde(default)]",
       "    pub keywords: Vec<String>,"
     ],
-    "line": 731,
+    "line": 736,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3899,7 +4055,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 734,
+    "line": 739,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3913,7 +4069,7 @@
       "    pub share_url: Option<String>,",
       "    pub creator_account_user_id: Option<String>,"
     ],
-    "line": 744,
+    "line": 749,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3927,7 +4083,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
     ],
-    "line": 751,
+    "line": 756,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -3941,7 +4097,7 @@
       "    pub apps: Vec<AppSummary>,",
       "    pub app_templates: Vec<AppTemplateSummary>,"
     ],
-    "line": 766,
+    "line": 771,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs"
   },
   {
@@ -4025,7 +4181,7 @@
       "",
       "/// EXPERIMENTAL - response for appending realtime text input."
     ],
-    "line": 325,
+    "line": 329,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/realtime.rs"
   },
   {
@@ -4073,15 +4229,15 @@
   {
     "annotation": "#[serde(default)]",
     "context": [
-      "    /// Detached delivery is deprecated and emits `deprecationNotice`.",
-      "    /// Use `thread/start` followed by an inline review for a separate review thread.",
+      "    /// Reviews run inline on the supplied thread. Omit this field or pass `inline`.",
+      "    /// To review on a separate thread, start a thread first and use its id.",
       "    #[serde(default)]",
       "    #[ts(optional = nullable)]",
       "    pub delivery: Option<ReviewDelivery>,",
       "}",
       ""
     ],
-    "line": 25,
+    "line": 23,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/review.rs"
   },
   {
@@ -4095,7 +4251,7 @@
       "        rules: bool,",
       "        #[serde(default)]"
     ],
-    "line": 211,
+    "line": 218,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/shared.rs"
   },
   {
@@ -4109,7 +4265,7 @@
       "        request_permissions: bool,",
       "        mcp_elicitations: bool,"
     ],
-    "line": 215,
+    "line": 222,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/shared.rs"
   },
   {
@@ -4123,7 +4279,7 @@
       "    },",
       "    Never,"
     ],
-    "line": 217,
+    "line": 224,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/shared.rs"
   },
   {
@@ -4843,13 +4999,13 @@
   {
     "annotation": "#[experimental(\"thread/fork.experimentalPredictionMode\")]",
     "context": [
-      "    /// on the fork. Cannot be combined with configuration overrides, `path`, `lastTurnId`,",
-      "    /// or `beforeTurnId`.",
+      "    /// on the fork. Only `config.thread_unload_delay_secs` may override the inherited",
+      "    /// config. Cannot be combined with `path`, `lastTurnId`, or `beforeTurnId`.",
       "    #[experimental(\"thread/fork.experimentalPredictionMode\")]",
       "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
       "    pub experimental_prediction_mode: bool,",
       "",
-      "    /// Optional last turn id to fork through, inclusive."
+      "    /// Disable MCP servers in prediction mode when the inherited window uses incremental tools on Responses Lite."
     ],
     "line": 552,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
@@ -4857,15 +5013,43 @@
   {
     "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
     "context": [
-      "    /// or `beforeTurnId`.",
+      "    /// config. Cannot be combined with `path`, `lastTurnId`, or `beforeTurnId`.",
       "    #[experimental(\"thread/fork.experimentalPredictionMode\")]",
       "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
       "    pub experimental_prediction_mode: bool,",
       "",
+      "    /// Disable MCP servers in prediction mode when the inherited window uses incremental tools on Responses Lite.",
+      "    /// Requires `experimentalPredictionMode: true`."
+    ],
+    "line": 553,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/fork.experimentalDisablePredictionMcp\")]",
+    "context": [
+      "    /// Disable MCP servers in prediction mode when the inherited window uses incremental tools on Responses Lite.",
+      "    /// Requires `experimentalPredictionMode: true`.",
+      "    #[experimental(\"thread/fork.experimentalDisablePredictionMcp\")]",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub experimental_disable_prediction_mcp: bool,",
+      "",
+      "    /// Optional last turn id to fork through, inclusive."
+    ],
+    "line": 558,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+  },
+  {
+    "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+    "context": [
+      "    /// Requires `experimentalPredictionMode: true`.",
+      "    #[experimental(\"thread/fork.experimentalDisablePredictionMcp\")]",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub experimental_disable_prediction_mcp: bool,",
+      "",
       "    /// Optional last turn id to fork through, inclusive.",
       "    ///"
     ],
-    "line": 553,
+    "line": 559,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4879,7 +5063,7 @@
       "",
       "    /// [UNSTABLE] Specify the rollout path to fork from."
     ],
-    "line": 565,
+    "line": 571,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4893,7 +5077,7 @@
       "        deserialize_with = \"crate::protocol::serde_helpers::deserialize_empty_path_as_none\"",
       "    )]"
     ],
-    "line": 571,
+    "line": 577,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4907,7 +5091,7 @@
       "    #[experimental(nested)]",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 595,
+    "line": 601,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4921,7 +5105,7 @@
       "    /// Override where approval requests are routed for review on this thread",
       "    /// and subsequent turns."
     ],
-    "line": 598,
+    "line": 604,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4935,7 +5119,7 @@
       "    #[ts(optional = nullable)]",
       "    pub config: Option<HashMap<String, serde_json::Value>>,"
     ],
-    "line": 609,
+    "line": 615,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4945,11 +5129,39 @@
       "    pub developer_instructions: Option<String>,",
       "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
       "    pub ephemeral: bool,",
+      "    /// Persist the fork as an attached thread of its resolved source, hidden from ordinary",
+      "    /// lists. The source cannot be deleted while attached threads exist. Requires a paginated source and local storage;",
+      "    /// incompatible with ephemeral and deferGoalContinuation. Omitted or false creates an ordinary fork."
+    ],
+    "line": 624,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/fork.attachToSource\")]",
+    "context": [
+      "    /// lists. The source cannot be deleted while attached threads exist. Requires a paginated source and local storage;",
+      "    /// incompatible with ephemeral and deferGoalContinuation. Omitted or false creates an ordinary fork.",
+      "    #[experimental(\"thread/fork.attachToSource\")]",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub attach_to_source: bool,",
+      "    /// Optional client-supplied analytics source classification for this forked thread.",
+      "    #[ts(optional = nullable)]"
+    ],
+    "line": 629,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+  },
+  {
+    "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+    "context": [
+      "    /// incompatible with ephemeral and deferGoalContinuation. Omitted or false creates an ordinary fork.",
+      "    #[experimental(\"thread/fork.attachToSource\")]",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub attach_to_source: bool,",
       "    /// Optional client-supplied analytics source classification for this forked thread.",
       "    #[ts(optional = nullable)]",
       "    pub thread_source: Option<ThreadSource>,"
     ],
-    "line": 618,
+    "line": 630,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4963,7 +5175,7 @@
       "    /// starting its initial automatic continuation. The next explicit turn owns",
       "    /// the goal lifecycle, and normal automatic continuation resumes after it."
     ],
-    "line": 628,
+    "line": 640,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4977,7 +5189,7 @@
       "}",
       ""
     ],
-    "line": 633,
+    "line": 645,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -4991,7 +5203,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS, ExperimentalApi)]"
     ],
-    "line": 634,
+    "line": 646,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5005,7 +5217,7 @@
       "    /// Thread-scoped runtime workspace roots used to materialize",
       "    /// `:workspace_roots`."
     ],
-    "line": 647,
+    "line": 659,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5019,7 +5231,7 @@
       "    /// Environment-native paths to instruction source files currently loaded for this thread.",
       "    #[serde(default)]"
     ],
-    "line": 652,
+    "line": 664,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5033,7 +5245,7 @@
       "    #[serde(default)]",
       "    pub instruction_sources: Vec<LegacyAppPathString>,"
     ],
-    "line": 653,
+    "line": 665,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5047,7 +5259,7 @@
       "    pub approval_policy: AskForApproval,",
       "    /// Reviewer currently used for approval requests on this thread."
     ],
-    "line": 656,
+    "line": 668,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5061,7 +5273,7 @@
       "    pub approvals_reviewer: ApprovalsReviewer,",
       "    /// Legacy sandbox policy retained for compatibility. Experimental clients"
     ],
-    "line": 658,
+    "line": 670,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5075,7 +5287,7 @@
       "    pub reasoning_effort: Option<ReasoningEffort>,",
       "    /// @deprecated Always `explicitRequestOnly`. Use `reasoningEffort` for Ultra behavior."
     ],
-    "line": 667,
+    "line": 679,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5089,7 +5301,7 @@
       "    /// @deprecated Always `explicitRequestOnly`. Use `reasoningEffort` for Ultra behavior.",
       "    #[experimental(\"thread/fork.multiAgentMode\")]"
     ],
-    "line": 668,
+    "line": 680,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5103,7 +5315,7 @@
       "}",
       ""
     ],
-    "line": 672,
+    "line": 684,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5117,7 +5329,7 @@
       "",
       "impl ThreadForkResponse {"
     ],
-    "line": 673,
+    "line": 685,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5131,7 +5343,7 @@
       "    /// Patch the stored Git metadata for this thread.",
       "    /// Omit a field to leave it unchanged, set it to `null` to clear it, or"
     ],
-    "line": 1037,
+    "line": 1049,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5145,7 +5357,7 @@
       "}",
       ""
     ],
-    "line": 1048,
+    "line": 1060,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5159,7 +5371,7 @@
       "}",
       ""
     ],
-    "line": 1343,
+    "line": 1369,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5173,7 +5385,7 @@
       "        skip_serializing_if = \"Option::is_none\",",
       "        serialize_with = \"crate::protocol::serde_helpers::serialize_double_option\","
     ],
-    "line": 1450,
+    "line": 1476,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5187,7 +5399,7 @@
       "    #[ts(optional = nullable)]",
       "    pub search_term: Option<String>,"
     ],
-    "line": 1466,
+    "line": 1492,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5201,7 +5413,7 @@
       "    /// Optional ancestor thread filter. Returns spawned descendants at any depth, excluding the",
       "    /// ancestor itself. Mutually exclusive with `parentThreadId`."
     ],
-    "line": 1472,
+    "line": 1498,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5212,10 +5424,24 @@
       "    #[experimental(\"thread/list.ancestorThreadId\")]",
       "    #[ts(optional = nullable)]",
       "    pub ancestor_thread_id: Option<String>,",
+      "    /// Return only persistent threads attached to this thread, including empty threads.",
+      "    /// Mutually exclusive with parentThreadId and ancestorThreadId."
+    ],
+    "line": 1503,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+  },
+  {
+    "annotation": "#[experimental(\"thread/list.attachedToThreadId\")]",
+    "context": [
+      "    /// Mutually exclusive with parentThreadId and ancestorThreadId.",
+      "    /// Omitting this filter keeps attached threads hidden from ordinary listings.",
+      "    #[experimental(\"thread/list.attachedToThreadId\")]",
+      "    #[ts(optional = nullable)]",
+      "    pub attached_to_thread_id: Option<String>,",
       "}",
       ""
     ],
-    "line": 1477,
+    "line": 1509,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5229,7 +5455,7 @@
       "    /// if None, there are no more items to return.",
       "    pub next_cursor: Option<String>,"
     ],
-    "line": 1569,
+    "line": 1601,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5243,7 +5469,7 @@
       "",
       "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS, ExperimentalApi)]"
     ],
-    "line": 1711,
+    "line": 1743,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5255,9 +5481,9 @@
       "    pub read_state: Option<ThreadReadState>,",
       "}",
       "",
-      "#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]"
+      "/// Calling `thread/guardianReview` subscribes the connection to the thread."
     ],
-    "line": 1721,
+    "line": 1753,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5271,7 +5497,7 @@
       "    #[ts(type = \"number\")]",
       "    pub output_tokens: i64,"
     ],
-    "line": 2002,
+    "line": 2073,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5285,7 +5511,7 @@
       "}",
       ""
     ],
-    "line": 2140,
+    "line": 2211,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
   },
   {
@@ -5299,7 +5525,7 @@
       "",
       "/// Extensible visual presentation for a custom thread section."
     ],
-    "line": 188,
+    "line": 189,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5313,7 +5539,7 @@
       "    /// Optional implementation-specific thread data.",
       "    #[experimental(\"thread.extra\")]"
     ],
-    "line": 210,
+    "line": 211,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5327,7 +5553,7 @@
       "    #[experimental(\"thread.extra\")]",
       "    pub extra: Option<ThreadExtra>,"
     ],
-    "line": 211,
+    "line": 212,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5341,7 +5567,7 @@
       "    pub session_id: String,",
       "    /// Source thread id when this thread was created by forking another thread."
     ],
-    "line": 214,
+    "line": 215,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5355,7 +5581,7 @@
       "    #[serde(default)]",
       "    #[ts(type = \"number | null\")]"
     ],
-    "line": 227,
+    "line": 228,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5369,7 +5595,7 @@
       "    /// Canonical project assignment owned by app-server, if any.",
       "    #[schemars("
     ],
-    "line": 230,
+    "line": 231,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5383,7 +5609,7 @@
       "    pub model_provider: String,",
       "    /// Current configured model when loaded, otherwise the latest persisted model."
     ],
-    "line": 240,
+    "line": 241,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5397,7 +5623,7 @@
       "    pub thread_source: Option<ThreadSource>,",
       "    /// Optional random unique nickname assigned to an AgentControl-spawned sub-agent."
     ],
-    "line": 274,
+    "line": 275,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5411,7 +5637,7 @@
       "    /// (when `includeTurns` is true) responses.",
       "    /// For all other responses and notifications returning a Thread,"
     ],
-    "line": 287,
+    "line": 288,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5425,7 +5651,7 @@
       "    session_id: String,",
       "    forked_from_id: Option<String>,"
     ],
-    "line": 302,
+    "line": 303,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5439,7 +5665,7 @@
       "    section_entered_at: Option<i64>,",
       "    #[serde(default)]"
     ],
-    "line": 310,
+    "line": 311,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5453,7 +5679,7 @@
       "    project_id: Option<String>,",
       "    #[serde(default)]"
     ],
-    "line": 312,
+    "line": 313,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5467,7 +5693,7 @@
       "    history_mode: ThreadHistoryMode,",
       "    model_provider: String,"
     ],
-    "line": 314,
+    "line": 315,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5481,7 +5707,7 @@
       "    model: Option<String>,",
       "    reasoning_effort: Option<ReasoningEffort>,"
     ],
-    "line": 316,
+    "line": 317,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5495,7 +5721,7 @@
       "    /// Error associated with a failed or interrupted turn.",
       "    pub error: Option<TurnError>,"
     ],
-    "line": 396,
+    "line": 397,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5509,7 +5735,7 @@
       "    #[serde(default)]",
       "    pub misalignment: Option<MisalignmentErrorDetails>,"
     ],
-    "line": 432,
+    "line": 442,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
   },
   {
@@ -5523,8 +5749,22 @@
       "",
       "#[derive(Serialize, Deserialize, Clone, PartialEq, Eq, JsonSchema, TS)]"
     ],
-    "line": 435,
+    "line": 445,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
+  },
+  {
+    "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+    "context": [
+      "    pub responsesapi_client_metadata: Option<HashMap<String, String>>,",
+      "    /// Disable MCP servers when the inherited window uses incremental tools on Responses Lite.",
+      "    #[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
+      "    pub disable_mcp: bool,",
+      "    /// Override upstream interruption on cancellation for this sample; otherwise inherit the parent.",
+      "    #[ts(optional = nullable)]",
+      "    pub interrupt_on_cancel: Option<bool>,"
+    ],
+    "line": 32,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_sample.rs"
   },
   {
     "annotation": "#[serde(default, skip_serializing_if = \"std::ops::Not::not\")]",
@@ -5537,7 +5777,7 @@
       "",
       "#[derive("
     ],
-    "line": 161,
+    "line": 165,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5548,16 +5788,30 @@
       "    #[experimental(\"turn/start.responsesapiClientMetadata\")]",
       "    #[ts(optional = nullable)]",
       "    pub responsesapi_client_metadata: Option<HashMap<String, String>>,",
+      "    /// Merge entries into the ResponsesAPI turn metadata without removing existing entries.",
+      "    /// Applied after `responsesapiClientMetadata` if both are provided; reserved keys remain protected."
+    ],
+    "line": 212,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
+  },
+  {
+    "annotation": "#[experimental(\"turn/start.responsesapiClientMetadataPatch\")]",
+    "context": [
+      "    /// Merge entries into the ResponsesAPI turn metadata without removing existing entries.",
+      "    /// Applied after `responsesapiClientMetadata` if both are provided; reserved keys remain protected.",
+      "    #[experimental(\"turn/start.responsesapiClientMetadataPatch\")]",
+      "    #[ts(optional = nullable)]",
+      "    pub responsesapi_client_metadata_patch: Option<HashMap<String, String>>,",
       "    /// Optional client-provided context fragments keyed by an opaque source identifier.",
       "    #[experimental(\"turn/start.additionalContext\")]"
     ],
-    "line": 207,
+    "line": 217,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
     "annotation": "#[experimental(\"turn/start.additionalContext\")]",
     "context": [
-      "    pub responsesapi_client_metadata: Option<HashMap<String, String>>,",
+      "    pub responsesapi_client_metadata_patch: Option<HashMap<String, String>>,",
       "    /// Optional client-provided context fragments keyed by an opaque source identifier.",
       "    #[experimental(\"turn/start.additionalContext\")]",
       "    #[ts(optional = nullable)]",
@@ -5565,7 +5819,7 @@
       "    /// Optional environments for this turn and subsequent turns.",
       "    ///"
     ],
-    "line": 211,
+    "line": 221,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5579,7 +5833,7 @@
       "    /// Override the working directory for this turn and subsequent turns.",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 219,
+    "line": 229,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5593,7 +5847,7 @@
       "    /// Override the approval policy for this turn and subsequent turns.",
       "    #[experimental(nested)]"
     ],
-    "line": 227,
+    "line": 237,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5607,7 +5861,7 @@
       "    /// Override where approval requests are routed for review on this turn and",
       "    /// subsequent turns."
     ],
-    "line": 231,
+    "line": 241,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5621,7 +5875,7 @@
       "    /// Override the model for this turn and subsequent turns.",
       "    #[ts(optional = nullable)]"
     ],
-    "line": 243,
+    "line": 253,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5635,7 +5889,7 @@
       "",
       "    /// @deprecated Ignored. Use `effort: \"ultra\"` for proactive multi-agent behavior."
     ],
-    "line": 283,
+    "line": 293,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5649,7 +5903,7 @@
       "",
       "    /// EXPERIMENTAL - Request an authorized cyber program for this"
     ],
-    "line": 288,
+    "line": 298,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5663,7 +5917,7 @@
       "}",
       ""
     ],
-    "line": 294,
+    "line": 304,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5674,16 +5928,30 @@
       "    #[experimental(\"turn/steer.responsesapiClientMetadata\")]",
       "    #[ts(optional = nullable)]",
       "    pub responsesapi_client_metadata: Option<HashMap<String, String>>,",
+      "    /// Merge entries into the ResponsesAPI turn metadata without removing existing entries.",
+      "    /// Applied after `responsesapiClientMetadata` if both are provided; reserved keys remain protected."
+    ],
+    "line": 334,
+    "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
+  },
+  {
+    "annotation": "#[experimental(\"turn/steer.responsesapiClientMetadataPatch\")]",
+    "context": [
+      "    /// Merge entries into the ResponsesAPI turn metadata without removing existing entries.",
+      "    /// Applied after `responsesapiClientMetadata` if both are provided; reserved keys remain protected.",
+      "    #[experimental(\"turn/steer.responsesapiClientMetadataPatch\")]",
+      "    #[ts(optional = nullable)]",
+      "    pub responsesapi_client_metadata_patch: Option<HashMap<String, String>>,",
       "    /// Optional client-provided context fragments keyed by an opaque source identifier.",
       "    #[experimental(\"turn/steer.additionalContext\")]"
     ],
-    "line": 323,
+    "line": 339,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
     "annotation": "#[experimental(\"turn/steer.additionalContext\")]",
     "context": [
-      "    pub responsesapi_client_metadata: Option<HashMap<String, String>>,",
+      "    pub responsesapi_client_metadata_patch: Option<HashMap<String, String>>,",
       "    /// Optional client-provided context fragments keyed by an opaque source identifier.",
       "    #[experimental(\"turn/steer.additionalContext\")]",
       "    #[ts(optional = nullable)]",
@@ -5691,7 +5959,7 @@
       "    /// Required active turn id precondition. The request fails when it does not",
       "    /// match the currently active turn."
     ],
-    "line": 327,
+    "line": 343,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5705,7 +5973,7 @@
       "    Image {",
       "        #[serde(flatten)]"
     ],
-    "line": 447,
+    "line": 478,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5719,7 +5987,7 @@
       "    },",
       "    LocalImage {"
     ],
-    "line": 453,
+    "line": 484,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   },
   {
@@ -5733,7 +6001,7 @@
       "        path: PathBuf,",
       "    },"
     ],
-    "line": 458,
+    "line": 489,
     "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
   }
 ]

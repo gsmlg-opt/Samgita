@@ -278,17 +278,19 @@ Authorized 2026-11-09 as the first delivery priority, ahead of the §10 delegati
 Split on 2026-11-09 after evidence: the existing driver in `compatible` mode initializes and lists threads against the local Codex `0.167.0`, so connecting to the latest Codex does not depend on a snapshot refresh. The bundled snapshot also contains about twenty source-derived semantics files and many tests assert 0.163.0 specifics, so the refresh is a larger separate job.
 
 - **P7.0a (done)**: remove exact-version checks and record the observed version. Additive migration `20261109000000_unpin_codex_runtime_version.exs` relaxes the `known_native_runtime` and `native_runtime_contract` constraints to any well-formed version and drops the `0.163.0` default; `Agents` accepts any well-formed Codex `runtime_version`; bindings record the Agent's `runtime_version`.
-- **P7.0b (after P7.2)**: the snapshot refresh pipeline below.
+- **P7.0b (done)**: the snapshot refresh pipeline below.
 
 Owner files: `apps/samgita_protocol_codex/{lib,priv,test,README.md}`, `apps/samgita_codex_driver/{lib,test,README.md}` where they name a version, `scripts/codex/fetch_pin.py` (renamed to a refresh script), `.github/workflows/codex-conformance.yml`, `apps/samgita/lib/samgita/{agents.ex,codex_runtime/authorization.ex,codex_runtime/native.ex,domain/native_runtime_binding.ex}` and their tests.
 
-- [ ] Move the bundled snapshot to `priv/upstream/current/` with `source.json` recording version, commit and digests; read the version from it everywhere.
-- [ ] Replace the pinned fetch with a refresh script that resolves the latest official release, verifies the published checksum, regenerates the schema with `codex app-server generate-json-schema` and copies the source files the schema modules read.
-- [ ] Refresh the snapshot to the latest release (currently `0.167.0` locally) and fix compile/test breakage in the protocol and driver packages.
+- [x] Move the bundled snapshot to `priv/upstream/current/` with `source.json` recording version, commit and digests; read the version from it everywhere.
+- [x] Add a refresh script (`scripts/codex/refresh_snapshot.py`) that resolves the latest official release, verifies the published checksums, regenerates the schema with `codex app-server generate-json-schema` and copies the source files the schema modules read. `fetch_pin.py` stays and fetches the snapshot's release for conformance runs.
+- [x] Refresh the snapshot to the latest release (`0.167.0`) and fix compile/test breakage in the protocol and driver packages.
 - [x] Accept any well-formed `runtime_version` for `runtime_driver: "codex"`; record the version on bindings; remove exact `"0.163.0"` checks (P7.0a).
-- [ ] Point the conformance workflow at the current snapshot.
+- [x] Point the conformance workflow at the current snapshot.
 
 Checks: protocol and driver test suites from their own directories; `apps/samgita/test/samgita/codex_runtime*` and `agents_test.exs`; `rg '0\.163'` finds no live code (historical docs excepted).
+
+Result (2026-11-09): relocation committed first with the 0.163.0 content unchanged (protocol 119 tests, `inventory.py --check`, script tests, and an identical driver failure set). Refresh to `rust-v0.167.0` (commit `086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a`): 502 requirements, 6,877 field/variant contracts, 477 synthetic messages. Reviewed upstream diffs of every guarded source (`common.rs`, `v1.rs`, `export.rs`, `v2/thread.rs`, `v2/thread_data.rs`, `v2/config.rs`, `v2/realtime.rs`, `models.rs`) and the parameter closures of every guarded method schema; the changes are new methods/fields, internal helpers and the `input_audio`/`UserInput` `fileId` variant, none of which alter a derived contract, so the guards were updated. The whole-file `Cargo.lock` guard was narrowed to the serde entry the decoder depends on. Protocol tests 119 pass after updating the surface counts (183 client requests, 88 server notifications, 64 stable); script tests and `inventory.py --check` pass; a strict-schema-mode session against the local Codex 0.167.0 initializes and answers `thread/list`/`model/list`. The driver suite (security-related files excluded) has the same 905 failures as before: 875 need the Linux `CODEX_BINARY`, the rest are Linux-only or the recorded macOS/header issues. Unverified: the native actual-binary driver and conformance suites against 0.167.0 (Linux CI, not run). The manifest kept implementation progress for 177 of 502 requirements; the rest returned to `missing` because their schema hash changed. `scripts/codex/check_ordinary.py`'s reviewed source fingerprint is stale and needs a reviewer before that selection runs again.
 
 ### P7.1 WebSocket Codex hosts
 

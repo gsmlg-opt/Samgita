@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate/check the exhaustive pinned Codex schema inventory, without Mix.
 
---generate executes the hash-pinned official binary in an empty CODEX_HOME,
-vendors stable and experimental schema bundles, and regenerates the manifest.
+--generate executes the snapshot release's verified official binary in an empty
+CODEX_HOME, vendors stable and experimental schema bundles, and regenerates the
+manifest (refresh_snapshot.py runs it after replacing the snapshot pin).
 --check is offline: it checks all pinned artifacts and the generated inventory.
 --require-verified additionally fails if any requirement lacks real evidence.
 Progress fields survive regeneration; schema additions cannot inherit old evidence.
@@ -19,8 +20,8 @@ import shutil
 import subprocess
 import tempfile
 
-from fetch_pin import (ROOT, SNAPSHOT, VERSION, COMMIT, TAG_OBJECT, ASSET, ARCHIVE_SHA256,
-                       BINARY_SHA256, SOURCE_SHA256, CACHE, digest)
+from fetch_pin import (ROOT, SNAPSHOT, PIN, VERSION, COMMIT, ASSET, BINARY_SHA256, CACHE,
+                       digest)
 
 VENDOR = SNAPSHOT
 MANIFEST = ROOT / "docs/codex-app-server/compatibility-manifest.json"
@@ -374,10 +375,15 @@ def annotations(source):
     return records
 
 
-def generate(source):
-    binary = CACHE / ASSET.removesuffix(".tar.gz")
-    if digest(binary) != BINARY_SHA256:
-        raise SystemExit("Run fetch_pin.py first; binary does not match immutable pin")
+def generate(source, binary=None):
+    # The schema export is platform-independent; a refresh may generate with the
+    # host's verified release binary, recorded as generation_binary_sha256.
+    if binary is None:
+        binary, expected = CACHE / ASSET.removesuffix(".tar.gz"), BINARY_SHA256
+    else:
+        expected = PIN.get("generation_binary_sha256")
+    if digest(binary) != expected:
+        raise SystemExit("Run fetch_pin.py first; binary does not match the snapshot release")
     with tempfile.TemporaryDirectory(prefix="samgita-codex-schema-") as directory:
         home = Path(directory) / "home"
         home.mkdir()
@@ -413,6 +419,8 @@ def generate(source):
         shutil.copyfile(origin, VENDOR / "source" / name)
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
     shutil.copyfile(source / PROTOCOL / "v2/thread_data.rs", VENDOR / "source/thread_data.rs")
+    shutil.copyfile(source / PROTOCOL / "v2/project.rs", VENDOR / "source/project.rs")
+    shutil.copyfile(source / PROTOCOL / "v2/config.rs", VENDOR / "source/config.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/dynamic_tools.rs", VENDOR / "source/dynamic-tools.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/models.rs", VENDOR / "source/models.rs")
     shutil.copyfile(source / "codex-rs/protocol/src/config_types.rs", VENDOR / "source/config_types.rs")
@@ -441,18 +449,8 @@ def generate(source):
     shutil.copyfile(source / "codex-rs/codex-experimental-api-macros/src/lib.rs",
                     VENDOR / "source/experimental-api-macros.rs")
     hashes = {str(path.relative_to(VENDOR)): digest(path) for path in sorted(VENDOR.rglob("*")) if path.is_file() and path.name != "source.json"}
-    provenance = {"repository": "https://github.com/openai/codex", "version": VERSION,
-                  "tag": "rust-v" + VERSION, "tag_object": TAG_OBJECT, "commit": COMMIT,
-                  "source_archive_sha256": SOURCE_SHA256, "release_asset": ASSET,
-                  "source_archive_url": f"https://codeload.github.com/openai/codex/tar.gz/{COMMIT}",
-                  "release_asset_url": f"https://github.com/openai/codex/releases/download/rust-v{VERSION}/{ASSET}",
-                  "artifact_digest_authority": f"https://api.github.com/repos/openai/codex/releases/tags/rust-v{VERSION}",
-                  "build_platform": "x86_64-unknown-linux-musl",
-                  "release_asset_sha256": ARCHIVE_SHA256, "binary_sha256": BINARY_SHA256,
-                  "binary_version_output": "codex-cli " + VERSION,
-                  "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental", "codex app-server generate-ts --experimental --out typescript", "python3 scripts/codex/generate_supplement.py", "python3 scripts/codex/generate_input_semantics.py"],
-                  "reproduce": ["python3 scripts/codex/fetch_pin.py", "python3 scripts/codex/inventory.py --generate", "python3 scripts/codex/inventory.py --check"],
-                  "files_sha256": hashes}
+    provenance = {key: value for key, value in PIN.items() if key != "files_sha256"}
+    provenance["files_sha256"] = hashes
     (VENDOR / "source.json").write_text(encode(provenance))
 
 
@@ -475,10 +473,11 @@ def main():
     parser.add_argument("--generate", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--require-verified", action="store_true")
+    parser.add_argument("--binary", type=Path, help="verified generation binary (refresh only)")
     args = parser.parse_args()
     source = CACHE / f"codex-{COMMIT}"
     if args.generate:
-        generate(source)
+        generate(source, args.binary)
     # Offline checks need only the vendored macro source, never the source cache.
     with tempfile.TemporaryDirectory(prefix="codex-source-check-") as temp:
         source_root = Path(temp)
