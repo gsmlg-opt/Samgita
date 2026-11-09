@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginShareSaveTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_plugin_share_save_fixture.py", __DIR__)
   @script_sha "939317eee012ed7d1ef3c84e42c088e2322236cf52454d35b280a4cbfe289376"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
@@ -539,7 +539,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginShareSaveTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> Path.join("upstream/current/experimental/ClientRequest.json")
 
   defp request_id, do: "owned-share-save-#{System.unique_integer([:positive, :monotonic])}"
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)

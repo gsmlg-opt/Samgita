@@ -18,7 +18,7 @@ defmodule SamgitaProtocolCodexTest do
     assert Codex.initialized() == %{"method" => "initialized"}
 
     result = %{
-      "userAgent" => "codex/0.163.0",
+      "userAgent" => "codex/" <> SamgitaProtocolCodex.source()["version"],
       "platformFamily" => "unix",
       "platformOs" => "linux",
       "codexHome" => "/tmp/codex"

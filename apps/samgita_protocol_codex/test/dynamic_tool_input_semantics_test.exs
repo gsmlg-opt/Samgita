@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.DynamicToolInputSemanticsTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @export Path.expand("../priv/upstream/0.163.0/experimental/ClientRequest.json", __DIR__)
+  @export Path.expand("../priv/upstream/current/experimental/ClientRequest.json", __DIR__)
 
   test "native legacy declarations retain absent, null and boolean input fields losslessly" do
     variants = [

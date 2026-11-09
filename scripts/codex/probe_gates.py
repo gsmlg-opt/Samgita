@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 import time
 
-from fetch_pin import ASSET, BINARY_SHA256, CACHE, digest
+from fetch_pin import ASSET, BINARY_SHA256, CACHE, VERSION, digest
 
 
 def main():
@@ -84,7 +84,7 @@ def main():
                 rows.append({"name": name, "method": method, "expected": expected, "passed": passed,
                              "result_fields": sorted(response.get("result", {})),
                              "error": error or None})
-            report = {"version": "0.163.0", "binary_sha256": BINARY_SHA256,
+            report = {"version": VERSION, "binary_sha256": BINARY_SHA256,
                       "profile": "experimentalApi=false; isolated HOME/CODEX_HOME; unavailable loopback provider; no valid turn execution",
                       "probes": rows}
             print(json.dumps(report, indent=2))

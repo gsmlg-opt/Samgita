@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpFormLifecycleTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_mcp_form_fixture.py", __DIR__)
   @script_sha "2f0eb4e91e42bd1c7d665c559ff4c5d39af61ed6a5d0d30f0bb8e3d3bcc142f3"
   @message "Choose an ordinary display label"
@@ -363,7 +363,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpFormLifecycleTest do
     schema =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/McpServerElicitationRequestParams.json")
+      |> Path.join("upstream/current/experimental/McpServerElicitationRequestParams.json")
       |> File.read!()
       |> JSON.decode!()
 

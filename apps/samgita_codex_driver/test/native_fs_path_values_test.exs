@@ -12,7 +12,7 @@ defmodule SamgitaCodexDriver.NativeFsPathValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @subject_bytes <<0, 255, 1, 195, 169, 10>>
   @control_bytes <<254, 0, 2, 10>>
   @watch_bytes "Owned native fs path notification λ"

@@ -5,7 +5,7 @@ defmodule SamgitaProtocolCodex.TimelineSchemaTest do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @export Path.expand(
-            "../priv/upstream/0.163.0/experimental/v2/ThreadTimelineListResponse.json",
+            "../priv/upstream/current/experimental/v2/ThreadTimelineListResponse.json",
             __DIR__
           )
 

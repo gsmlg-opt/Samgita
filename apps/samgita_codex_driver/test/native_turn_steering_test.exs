@@ -86,7 +86,7 @@ defmodule SamgitaCodexDriver.NativeTurnSteeringTest do
   test "native search projects the pending dynamic-tool turn as active and cold history as notLoaded",
        context do
     assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
-             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+             SamgitaProtocolCodex.source()["binary_sha256"]
 
     {context, pid, thread, turn, tool, events} = active_turn(context)
     rg = System.find_executable("rg")

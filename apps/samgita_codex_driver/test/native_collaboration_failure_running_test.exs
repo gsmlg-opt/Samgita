@@ -13,7 +13,7 @@ defmodule SamgitaCodexDriver.NativeCollaborationFailureRunningTest do
   @script_sha "7ebf31807ea44629ecae248870e0211d0a8057d65e5242f8772c5e51b76461f6"
   @base_script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @base_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @root "OWNED_V359_ROOT"
   @child_a "OWNED_V359_CHILD_FAILURE"
   @child_b "OWNED_V359_CHILD_HELD"
@@ -435,7 +435,7 @@ defmodule SamgitaCodexDriver.NativeCollaborationFailureRunningTest do
   defp schema(relative) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> Path.join("upstream/current/experimental/" <> relative)
     |> File.read!()
     |> JSON.decode!()
   end

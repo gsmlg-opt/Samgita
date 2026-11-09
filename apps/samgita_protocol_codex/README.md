@@ -1,29 +1,28 @@
 # SamgitaProtocolCodex
 
 All package versions below 1.0 are experimental releases for testing. The package
-version is separate from the pinned Codex version; publication does not establish
+version is separate from the Codex release of its schema snapshot; publication does not establish
 complete native behavioral compatibility or platform production readiness.
 
-A standalone native wire/schema library for official Codex **0.163.0**, with a
+A standalone native wire/schema library for the latest official Codex release, with a
 retained convenience adapter for selected Samgita protocol operations. It opens no listener, starts no runtime, and
 depends only on the sibling `samgita_protocol` library. It does not depend on
 Phoenix, Samgita persistence, providers, Backplane, or umbrella configuration.
 
 ## Reference and compatibility boundary
 
-The reference is the official [OpenAI Codex release rust-v0.163.0](https://github.com/openai/codex/releases/tag/rust-v0.163.0),
-commit [`83086188ae0614bd882818ff1aa23f3194962012`](https://github.com/openai/codex/tree/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol).
-The GitHub release/tag and official [app-server documentation](https://learn.chatgpt.com/docs/app-server)
-were verified on 2026-10-22. `priv/upstream/source.json` records immutable source
-paths, upstream SHA-256 hashes and vendored SHA-256 hashes. Schemas have only an
-added terminal newline; Apache-2.0 LICENSE and NOTICE are preserved byte for byte.
-These describe Codex independently of Samgita's neutral event/session protocol.
+Codex is not pinned: Samgita tracks the latest official release. The package
+bundles one schema snapshot in `priv/upstream/current/`; its `source.json`
+records the release tag, tag object, commit, release asset and binary digests,
+and the SHA-256 of every snapshot file. `SamgitaProtocolCodex.source/0` returns
+it. Older snapshots live only in Git history. Apache-2.0 LICENSE and NOTICE are
+preserved byte for byte. These describe Codex independently of Samgita's
+neutral event/session protocol.
 
-The complete generated stable and experimental bundles, source gate metadata and
-per-file hashes now live in `priv/upstream/0.163.0/`. Generate/check them with
-`scripts/codex/inventory.py` from the repository root. The executable is fetched
-into ignored scratch storage by `scripts/codex/fetch_pin.py`; it is never installed
-globally or included in this package.
+A refresh replaces the snapshot with a newer release;
+`scripts/codex/inventory.py --check` verifies it offline. `scripts/codex/fetch_pin.py`
+fetches the snapshot's release into ignored scratch storage for conformance runs;
+the executable is never installed globally or included in this package.
 
 The official JSON exporter omits three legacy requests/results and two raw
 notifications. A separately labeled locally derived supplement uses the pinned

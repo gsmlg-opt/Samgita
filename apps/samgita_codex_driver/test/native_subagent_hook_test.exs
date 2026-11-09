@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeSubagentHookTest do
   @script Path.expand("../../../scripts/codex/subagent_hook_fixture.py", __DIR__)
   @script_sha "23580ce78bd11659e5062e6822b40dc904c04153c23a6c0dfd410a929e7e352c"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @root_marker "OWNED_V495_HOOK_ROOT"
   @child_marker "OWNED_V495_HOOK_CHILD"
   @child_path "/root/hook_child"
@@ -858,7 +858,7 @@ defmodule SamgitaCodexDriver.NativeSubagentHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

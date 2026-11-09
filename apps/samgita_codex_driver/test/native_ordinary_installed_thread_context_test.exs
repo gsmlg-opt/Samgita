@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledThreadContextTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_installed_apps_fixture.py", __DIR__)
   @script_sha "e20306dd396d517a2f4f9bf75356052c442490b15f39c75d98a9e714ab19a706"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
@@ -577,7 +577,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledThreadContextTest do
   defp schema_path(name),
     do:
       Path.expand(
-        "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/" <> name,
+        "../../samgita_protocol_codex/priv/upstream/current/experimental/" <> name,
         __DIR__
       )
 

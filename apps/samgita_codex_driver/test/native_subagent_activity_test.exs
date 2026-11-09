@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeSubagentActivityTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("support/native_subagent_activity_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @spawn "owned-v39-spawn-activity"
   @wait "owned-v39-wait-activity"
   @child_path "/root/activity_child"

@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeInterruptHookTest do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/interrupt_hook_fixture.py", __DIR__)
   @script_sha "f44e7ccfd880b076090ece70735582fa7512fc71541c5ec66f2721590c2cc2d4"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @marker "OWNED_V428_INTERRUPT_ROOT"
   @status_message "Owned ordinary Interrupt λ🙂"
   @lifecycle ~w(turn/started hook/started hook/completed turn/completed)
@@ -597,7 +597,7 @@ defmodule SamgitaCodexDriver.NativeInterruptHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

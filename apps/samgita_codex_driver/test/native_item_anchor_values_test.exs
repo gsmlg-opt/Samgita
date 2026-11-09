@@ -12,7 +12,7 @@ defmodule SamgitaCodexDriver.NativeItemAnchorValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 100_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @instructions "Owned fixed item-anchor fixture instructions."
   @markers ["owned-item-anchor-first λ", "owned-item-anchor-middle 🙂", "owned-item-anchor-last"]
   @answer "Deterministic local fixture answer"

@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInitializeExtensions219Test do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @peer Path.expand("../../../scripts/codex/ordinary_initialize_extensions_fixture.py", __DIR__)
   @peer_sha "0fd5100f8f5340439b5b1a50c65c4a3cad895fc9f038c90941889826f4a32fb2"
   @schemas %{
@@ -604,7 +604,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInitializeExtensions219Test do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id,
     do: "owned-extension219-control-#{System.unique_integer([:positive, :monotonic])}"

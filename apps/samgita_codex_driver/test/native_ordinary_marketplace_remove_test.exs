@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMarketplaceRemoveTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @configured ~w(owned-config-only owned-combined owned-cold owned-retained)
@@ -445,7 +445,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMarketplaceRemoveTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id,
     do: "owned-marketplace-remove-#{System.unique_integer([:positive, :monotonic])}"

@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativePluginHookTest do
   @script Path.expand("../../../scripts/codex/plugin_hook_fixture.py", __DIR__)
   @script_sha "c53c41c18947e0170e58a7ef0dda2d63f1398960b5bc4c70203a0b11f5a8f567"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @seed "OWNED_V502_TOOL_TURN"
   @followup "OWNED_V502_TOOL_FOLLOWUP"
   @call_id "owned-v502-exec-call"
@@ -869,7 +869,7 @@ defmodule SamgitaCodexDriver.NativePluginHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

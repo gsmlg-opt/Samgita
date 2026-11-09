@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeRateLimitsTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/rate_limits_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @canary "OWNED_RATE_LIMITS_PRIVATE_CANARY"
   @method "account/rateLimits/updated"
   @empty_snapshot %{

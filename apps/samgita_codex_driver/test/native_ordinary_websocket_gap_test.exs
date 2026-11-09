@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryWebsocketGapTest do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/ordinary_websocket_gap_fixture.py", __DIR__)
   @script_sha "902b9c19a7fded7a11d4050de94b6fe7bb7855aba8218889be7aa7d84eaca233"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @input "Owned ordinary WebSocket detached stream λ🙂"
   @first "Owned visible λ "
   @answer @first <> "detached completion β🙂"

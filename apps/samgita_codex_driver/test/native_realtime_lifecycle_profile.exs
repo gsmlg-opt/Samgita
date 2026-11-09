@@ -838,7 +838,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeLifecycleProfileTest do
 
   defp assert_realtime_voice_selections(ctx, selections) do
     assert Base.encode16(:crypto.hash(:sha256, File.read!(ctx.binary)), case: :lower) ==
-             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+             SamgitaProtocolCodex.source()["binary_sha256"]
 
     pid = start(ctx)
 

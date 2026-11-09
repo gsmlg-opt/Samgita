@@ -1,6 +1,7 @@
 defmodule SamgitaProtocolCodex do
   @moduledoc """
-  Pure, explicitly limited Codex 0.163.0 app-server translation.
+  Pure, explicitly limited Codex app-server translation for the current schema
+  snapshot (see `source/0`).
 
   The caller owns transport authentication, initialization order, pending requests,
   execution uncertainty and event retention. See the package README for omissions.
@@ -19,11 +20,11 @@ defmodule SamgitaProtocolCodex do
   @doc "The exact upstream notification subset. No replay support is implied."
   def supported_notifications, do: @notifications
 
-  @doc "Pinned official source and schema provenance."
+  @doc "Official release, commit and per-file digests of the current schema snapshot."
   def source do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/source.json")
+    |> Path.join("upstream/current/source.json")
     |> File.read!()
     |> JSON.decode!()
   end

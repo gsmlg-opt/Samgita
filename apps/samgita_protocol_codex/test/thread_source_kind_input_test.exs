@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
   @kinds ~w(cli vscode exec appServer subAgent subAgentReview subAgentCompact subAgentThreadSpawn subAgentOther unknown)
   @forms [
     {%{"cli" => nil}, ~s({"cli":null})},

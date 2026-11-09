@@ -1,22 +1,30 @@
 defmodule SamgitaProtocolCodex.SourceTest do
   use ExUnit.Case, async: true
 
-  @root Path.expand("../priv/upstream", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
 
-  test "every vendored official reference matches its pinned upstream and local hash" do
-    manifest = @root |> Path.join("source.json") |> File.read!() |> JSON.decode!()
-    assert manifest["commit"] == "83086188ae0614bd882818ff1aa23f3194962012"
-    assert manifest["release"] == "rust-v0.163.0"
+  test "the snapshot records its release and every file matches its digest" do
+    manifest = SamgitaProtocolCodex.source()
+    assert manifest["tag"] == "rust-v" <> manifest["version"]
+    assert manifest["commit"] =~ ~r/\A[0-9a-f]{40}\z/
+    assert manifest["binary_version_output"] == "codex-cli " <> manifest["version"]
 
-    for {path, entry} <- manifest["files"] do
+    files =
+      @root
+      |> Path.join("**")
+      |> Path.wildcard(match_dot: true)
+      |> Enum.filter(&File.regular?/1)
+      |> Enum.map(&Path.relative_to(&1, @root))
+      |> Kernel.--(["source.json"])
+
+    assert Enum.sort(files) == Enum.sort(Map.keys(manifest["files_sha256"]))
+
+    for {path, sha} <- manifest["files_sha256"] do
       body = File.read!(Path.join(@root, path))
-      assert sha(body) == entry["vendored_sha256"], path
+      assert sha(body) == sha, path
 
-      original =
-        if String.ends_with?(path, ".json"), do: String.trim_trailing(body, "\n"), else: body
-
-      assert sha(original) == entry["upstream_sha256"], path
-      if String.ends_with?(path, ".json"), do: assert(is_map(JSON.decode!(body)))
+      if String.ends_with?(path, ".json"),
+        do: assert(is_map(JSON.decode!(body)) or is_list(JSON.decode!(body)))
     end
   end
 
@@ -49,7 +57,7 @@ defmodule SamgitaProtocolCodex.SourceTest do
       }
 
       assert {:ok, wire} = SamgitaProtocolCodex.encode_request(request)
-      schema = @root |> Path.join("schema/" <> source) |> File.read!() |> JSON.decode!()
+      schema = @root |> Path.join("stable/" <> source) |> File.read!() |> JSON.decode!()
       assert Enum.all?(Map.get(schema, "required", []), &Map.has_key?(wire["params"], &1))
       assert Enum.all?(Map.keys(wire["params"]), &Map.has_key?(schema["properties"], &1))
     end

@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativePluginMcpProfile do
   @launcher Path.expand("../../../scripts/codex/isolated_plugin_fixture.py", __DIR__)
   @fixture_sha "a28705ee5a69837f317129df1f1586240bfec064583762f635867eb89a04b858"
   @launcher_sha "f2ba1e6f507d2e26e58cea4498cb8b73c46f92ce636266d525af705760e97122"
-  @native_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @native_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @market "fixture-mcp-lifecycle"
   @plugin "fixture-orbit"
   @id "#{@plugin}@#{@market}"

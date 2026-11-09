@@ -10,7 +10,7 @@ defmodule SamgitaProtocolCodex.InitializedNotificationTest do
       profile = if context.experimental, do: "experimental", else: "stable"
 
       schema =
-        Path.expand("../priv/upstream/0.163.0/#{profile}/ClientNotification.json", __DIR__)
+        Path.expand("../priv/upstream/current/#{profile}/ClientNotification.json", __DIR__)
         |> File.read!()
         |> JSON.decode!()
 

@@ -5,7 +5,7 @@ defmodule SamgitaProtocolCodex.RealtimeSchemaTest do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @methods ["thread/realtime/item/started", "thread/realtime/item/completed"]
-  @export Path.expand("../priv/upstream/0.163.0/experimental/ServerNotification.json", __DIR__)
+  @export Path.expand("../priv/upstream/current/experimental/ServerNotification.json", __DIR__)
 
   test "timeline accepts an embedded native promoted realtime item" do
     assert :ok = validate_timeline(promoted())

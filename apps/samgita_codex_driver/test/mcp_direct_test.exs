@@ -161,7 +161,7 @@ defmodule SamgitaCodexDriver.McpDirectTest do
   test "resource reads omit absent and null optional fields while preserving distinct content URIs",
        context do
     assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
-             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+             SamgitaProtocolCodex.source()["binary_sha256"]
 
     for {{modern, _protocol}, index} <- Enum.with_index(@protocols) do
       {pid, thread} = configured(context, modern)
@@ -266,7 +266,7 @@ defmodule SamgitaCodexDriver.McpDirectTest do
   test "mixed resource normalization preserves order and recovers from an independent protocol error",
        context do
     assert Base.encode16(:crypto.hash(:sha256, File.read!(context.binary)), case: :lower) ==
-             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+             SamgitaProtocolCodex.source()["binary_sha256"]
 
     File.write!(Path.join(context.root, "mcp-direct.jsonl"), "", [:exclusive])
 

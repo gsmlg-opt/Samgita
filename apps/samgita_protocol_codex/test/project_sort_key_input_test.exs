@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.ProjectSortKeyInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
   @forms [
     {%{"position" => nil}, ~s({"position":null})},
     {%{"position" => %{}}, ~s({"position":{}})},

@@ -13,7 +13,7 @@ defmodule SamgitaCodexDriver.NativeSubagentSearchProvenanceTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/subagent_search_provenance_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @needle "Owned source provenance"
   @root_marker @needle <> " root λ"
   @child_marker @needle <> " child 🙂"

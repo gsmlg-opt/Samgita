@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch the immutable official Codex reference into repository-ignored tmp/.
+"""Fetch the official Codex release named by the current schema snapshot into tmp/.
 
 No global installation, user configuration, credentials, or service is touched.
 Downloads must match the recorded SHA-256 before extraction or execution.
@@ -15,17 +15,20 @@ import tempfile
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
-VERSION = "0.163.0"
-COMMIT = "83086188ae0614bd882818ff1aa23f3194962012"
-TAG_OBJECT = "129b8ec7ee6f4511557a4856279f529025c25af4"
-ASSET = "codex-x86_64-unknown-linux-musl.tar.gz"
-ARCHIVE_SHA256 = "beb339e8ecd9ba057a6bb2dc81ad8ca474812edfbf0fc5056ca818797648dde4"
-BINARY_SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+SNAPSHOT = ROOT / "apps/samgita_protocol_codex/priv/upstream/current"
+# The current schema snapshot names the release; refresh_snapshot.py replaces it.
+PIN = json.loads((SNAPSHOT / "source.json").read_text())
+VERSION = PIN["version"]
+COMMIT = PIN["commit"]
+TAG_OBJECT = PIN["tag_object"]
+ASSET = PIN["release_asset"]
+ARCHIVE_SHA256 = PIN["release_asset_sha256"]
+BINARY_SHA256 = PIN["binary_sha256"]
 BWRAP_ASSET = "bwrap-x86_64-unknown-linux-musl.tar.gz"
 BWRAP_MEMBER = "bwrap-x86_64-unknown-linux-musl"
-BWRAP_ARCHIVE_SHA256 = "bcc196b1d25dc2c2b912dcedf780b562deb0552f3c50648761ced145c3466a23"
-BWRAP_SHA256 = "77360cb751ccedc5971391444ac86a8a33c15b04d6b4a6fe45f5d25496e62c4c"
-SOURCE_SHA256 = "e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567"
+BWRAP_ARCHIVE_SHA256 = PIN["bwrap_asset_sha256"]
+BWRAP_SHA256 = PIN["bwrap_sha256"]
+SOURCE_SHA256 = PIN["source_archive_sha256"]
 CACHE = ROOT / "tmp/codex" / VERSION
 
 

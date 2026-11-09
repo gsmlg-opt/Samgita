@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativePredictionBoundaryTest do
   @moduletag timeout: 60_000
   @method "thread/prediction/request"
   @params %{"threadId" => "synthetic-unknown-thread", "sourceTurnId" => "synthetic-turn"}
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
 
   setup {TurnFixture, :setup}
 

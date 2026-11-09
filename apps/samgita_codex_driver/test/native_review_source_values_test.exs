@@ -2,6 +2,8 @@ defmodule SamgitaCodexDriver.NativeReviewSourceValuesTest do
   @moduledoc false
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -14,7 +16,7 @@ defmodule SamgitaCodexDriver.NativeReviewSourceValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @needle "Owned genuine Review source discovery 163 λ"
@@ -484,7 +486,7 @@ defmodule SamgitaCodexDriver.NativeReviewSourceValuesTest do
     assert first["id"] === id and first["source"] === source
     assert first["history_mode"] === "paginated"
     assert first["cwd"] === ctx.fixture.workspace
-    assert first["model_provider"] === "fixture" and first["cli_version"] === "0.163.0"
+    assert first["model_provider"] === "fixture" and first["cli_version"] === @codex_version
     assert Map.get(first, "forked_from_id") === nil
 
     if source == @review_source do

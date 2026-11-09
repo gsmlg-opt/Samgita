@@ -2,6 +2,8 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
   @moduledoc false
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -14,7 +16,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @prompt "Owned imported history λ"
@@ -1079,7 +1081,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
       "createdAt" => ctx.created,
       "updatedAt" => ctx.updated,
       "recencyAt" => ctx.updated,
-      "cliVersion" => "0.163.0",
+      "cliVersion" => @codex_version,
       "turns" => []
     }
 
@@ -1099,7 +1101,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
              "modelProvider" => "fixture",
              "path" => path,
              "historyMode" => "legacy",
-             "cliVersion" => "0.163.0"
+             "cliVersion" => @codex_version
            }
 
     assert Map.fetch!(read, "turns") === [expected_turn(ctx)]
@@ -1163,7 +1165,7 @@ defmodule SamgitaCodexDriver.NativeSessionImportSuccessTest do
                "cwd" => expected_cwd(ctx),
                "source" => "vscode",
                "model_provider" => "fixture",
-               "cli_version" => "0.163.0",
+               "cli_version" => @codex_version,
                "history_mode" => "legacy"
              }
 

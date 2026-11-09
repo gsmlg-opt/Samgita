@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @system_config "/etc/codex/config.toml"
   @feature_args [
     "-c",

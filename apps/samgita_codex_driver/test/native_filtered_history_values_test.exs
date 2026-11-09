@@ -13,7 +13,7 @@ defmodule SamgitaCodexDriver.NativeFilteredHistoryValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/filtered_history_fixture.py", __DIR__)
   @script_sha "2a96fea0fd80ea61cff2c32a5dee7b2c3de420cd4f43131a71bccd20209c27b4"
   @original_script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)

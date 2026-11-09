@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_queue_image_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @materialize "Owned queue image materialization"
   @enqueue "Owned immutable queue image"
   @replacement "Owned replacement queue image"

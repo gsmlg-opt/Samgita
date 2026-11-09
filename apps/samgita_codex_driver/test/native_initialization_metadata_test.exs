@@ -1,6 +1,8 @@
 defmodule SamgitaCodexDriver.NativeInitializationMetadataTest do
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -15,7 +17,7 @@ defmodule SamgitaCodexDriver.NativeInitializationMetadataTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
 
   setup tags do
     ctx = TurnFixture.setup(tags)
@@ -143,7 +145,7 @@ defmodule SamgitaCodexDriver.NativeInitializationMetadataTest do
     assert Map.fetch!(response, "platformFamily") == "unix"
     assert Map.fetch!(response, "platformOs") == "linux"
     agent = Map.fetch!(response, "userAgent")
-    assert String.starts_with?(agent, name <> "/0.163.0 (")
+    assert String.starts_with?(agent, name <> "/" <> @codex_version <> " (")
     assert String.ends_with?(agent, " (#{name}; #{version})")
     assert call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
     assert ModelFixture.requests(ctx.fixture) == []

@@ -7,13 +7,13 @@ defmodule SamgitaCodexDriver.NativeOrdinaryInstalledNullTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_installed_null_fixture.py", __DIR__)
   @script_sha "420480edbac94f69dce752a2bf191fbf2d403971c8b728b1b11d152ca027ecb2"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @schema Path.expand(
-            "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/PluginInstalledResponse.json",
+            "../../samgita_protocol_codex/priv/upstream/current/experimental/v2/PluginInstalledResponse.json",
             __DIR__
           )
   @schema_sha "8afc8a16fa5c21d67f66d1855bf29890bad10a6229bafc960b3503281fc878e2"

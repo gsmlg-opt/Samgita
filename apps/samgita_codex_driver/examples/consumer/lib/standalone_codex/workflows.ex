@@ -4,7 +4,7 @@ defmodule StandaloneCodex.Workflows do
   alias SamgitaCodexDriver.Session
   alias StandaloneCodex.ProviderFixture
 
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @answer "Deterministic local fixture answer"
   @lookup %{
     "type" => "function",

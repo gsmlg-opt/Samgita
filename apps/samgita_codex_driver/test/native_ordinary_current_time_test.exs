@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCurrentTimeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_current_time_fixture.py", __DIR__)
   @script_sha "8c42ff9f3adeaf87b2c1469913714dca3492fe7e8681aece2d7ab490fb09d0d3"
   @reply %{"currentTimeAt" => 1_781_717_655}
@@ -285,7 +285,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryCurrentTimeTest do
     root =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ServerRequest.json")
+      |> Path.join("upstream/current/experimental/ServerRequest.json")
       |> File.read!()
       |> JSON.decode!()
 

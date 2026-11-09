@@ -20,7 +20,7 @@ import threading
 import time
 
 sys.dont_write_bytecode = True
-NATIVE_SHA = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+NATIVE_SHA = json.loads((Path(__file__).resolve().parents[3] / "samgita_protocol_codex/priv/upstream/current/source.json").read_text())["binary_sha256"]
 MAX_BODY = 1_048_576
 INPUTS = {
     "owned.txt": b"owned read contents v119\n",

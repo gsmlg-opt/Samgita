@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryHookSessionFlagsTest do
   @script Path.expand("../../../scripts/codex/tool_hook_fixture.py", __DIR__)
   @script_sha "b3448710bdfe713247ed3390ffc9ab0bd5d3f2d0ef850df682ddbc1e9c4ac88e"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @seed "OWNED_V496_TOOL_TURN"
   @followup "OWNED_V496_TOOL_FOLLOWUP"
   @call_id "owned-v496-exec-call"
@@ -956,7 +956,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryHookSessionFlagsTest do
   defp schema_path do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
   end
 
   defp read_json(profile, name) do

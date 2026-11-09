@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeCompactHookTest do
   @script Path.expand("../../../scripts/codex/compact_hook_fixture.py", __DIR__)
   @script_sha "e21d445526958d78f464aef97b06336620726cf7e601bf2d3901858cfd407e50"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @seed "OWNED_V493_BEFORE_COMPACT"
   @followup "OWNED_V493_AFTER_COMPACT"
   @checkpoint "SYNTHETIC_V493_COMPACT_HOOK_CHECKPOINT"
@@ -759,7 +759,7 @@ defmodule SamgitaCodexDriver.NativeCompactHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

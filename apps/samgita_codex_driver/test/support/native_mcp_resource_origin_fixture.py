@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts/codex"))
 from isolated_apps_fixture import Fixture as AppsFixture
 from model_fixture import response_events
 
-NATIVE_SHA = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+NATIVE_SHA = json.loads((Path(__file__).resolve().parents[3] / "samgita_protocol_codex/priv/upstream/current/source.json").read_text())["binary_sha256"]
 URI = "ui://widget/checkout-session.html"
 MARKER = "OWNED_MCP_ORIGIN_V43"
 CALLS = [("owned-origin-best-buy", "best_buy"), ("owned-origin-walmart", "walmart")]

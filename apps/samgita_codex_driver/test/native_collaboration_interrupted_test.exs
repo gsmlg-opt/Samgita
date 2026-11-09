@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeCollaborationInterruptedTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/collaboration_interrupted_fixture.py", __DIR__)
   @script_sha "baccf44853bd7b0daf029f21e993bf6d3e7744fc3990554260b92d556b521a55"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
@@ -847,7 +847,7 @@ defmodule SamgitaCodexDriver.NativeCollaborationInterruptedTest do
   defp schema(relative) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> Path.join("upstream/current/experimental/" <> relative)
     |> File.read!()
     |> JSON.decode!()
   end

@@ -17,7 +17,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryActivePageRecoveryTest do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/ordinary_active_page_fixture.py", __DIR__)
   @script_sha "d0db342363b622096bb5f7b8bfe798339ffd7cfc98fd4659828ce11f7e922b22"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @prefix "Owned active-page completed prefix λ"
   @active "Owned active-page interrupted turn 🙂"
   @answers ["Owned persisted prefix answer β", "Owned interrupted assistant answer γ🙂"]

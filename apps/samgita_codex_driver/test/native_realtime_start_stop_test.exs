@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_realtime_fixture.py", __DIR__)
   @script_sha "b881b45392d7d18243f88ce3f6b7f5f9f72849236412eebb994864a0331bab38"
   @session "owned-v432-realtime-session"
@@ -2172,7 +2172,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> relative)
+      |> Path.join("upstream/current/experimental/" <> relative)
       |> File.read!()
       |> JSON.decode!()
 
@@ -2703,7 +2703,7 @@ defmodule SamgitaCodexDriver.NativeRealtimeStartStopTest do
     path =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> Path.join("upstream/current/experimental/ClientRequest.json")
 
     bytes = File.read!(path)
     assert hash(bytes) === @existing_client_schema_sha

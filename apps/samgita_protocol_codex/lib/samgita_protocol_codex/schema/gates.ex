@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @semantics_path Path.expand(
-                    "../../../priv/upstream/0.163.0/source/experimental-semantics.json",
+                    "../../../priv/upstream/current/source/experimental-semantics.json",
                     __DIR__
                   )
   @external_resource @semantics_path

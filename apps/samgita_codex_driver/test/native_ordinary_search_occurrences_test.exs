@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeOrdinarySearchOccurrencesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @script_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @schema_hashes %{
@@ -710,7 +710,7 @@ defmodule SamgitaCodexDriver.NativeOrdinarySearchOccurrencesTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id, do: "owned-occurrence-id-#{System.unique_integer([:positive, :monotonic])}"
   defp deadline(ms), do: System.monotonic_time(:millisecond) + ms

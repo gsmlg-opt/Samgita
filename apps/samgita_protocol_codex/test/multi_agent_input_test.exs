@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.MultiAgentInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @export Path.expand("../priv/upstream/0.163.0/experimental/ClientRequest.json", __DIR__)
+  @export Path.expand("../priv/upstream/current/experimental/ClientRequest.json", __DIR__)
   @methods ["thread/start", "thread/settings/update", "turn/start"]
   @unit_objects for name <- ~w(none explicitRequestOnly proactive),
                     payload <- [nil, %{}],

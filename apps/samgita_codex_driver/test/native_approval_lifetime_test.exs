@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeApprovalLifetimeTest do
   @moduletag timeout: 60_000
   @lifetime Path.expand("../../../scripts/codex/approval_lifetime_fixture.py", __DIR__)
   @interactions Path.expand("../../../scripts/codex/server_interaction_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")

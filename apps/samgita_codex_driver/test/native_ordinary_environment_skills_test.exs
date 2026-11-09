@@ -7,18 +7,18 @@ defmodule SamgitaCodexDriver.NativeOrdinaryEnvironmentSkillsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_environment_skills_fixture.py", __DIR__)
   @script_sha "551c9397ec1755b96b1179e82ca621f4f10019f16b1e64c56c9d9a2306910711"
   @base Path.expand("../../../scripts/codex/ordinary_environment_connection_fixture.py", __DIR__)
   @base_sha "239f96ea487ae43eac710a9ddf40e7240abd462bcdc3cfb511552a48108d087c"
   @schema Path.expand(
-            "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/EnvironmentAddParams.json",
+            "../../samgita_protocol_codex/priv/upstream/current/experimental/v2/EnvironmentAddParams.json",
             __DIR__
           )
   @schema_sha "0ae0f9528196ee34205ac3003306924d57ec9cc77b05ce1ce7b4966b6187a106"
   @client_schema Path.expand(
-                   "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/ClientRequest.json",
+                   "../../samgita_protocol_codex/priv/upstream/current/experimental/ClientRequest.json",
                    __DIR__
                  )
   @client_schema_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"

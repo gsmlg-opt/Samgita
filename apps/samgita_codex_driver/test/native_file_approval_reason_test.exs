@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeFileApprovalReasonTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/file_approval_reason_fixture.py", __DIR__)
-  @binary_sha256 "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha256 SamgitaProtocolCodex.source()["binary_sha256"]
   @canary "OWNED_UNCHANGED_FILE_REASON_CANARY\n"
 
   setup do

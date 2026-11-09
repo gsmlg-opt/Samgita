@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
   @values ~w(created_at updated_at recency_at)
   @forms [
     {%{"created_at" => nil}, ~s({"created_at":null})},

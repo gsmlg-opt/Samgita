@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_plugin_template_fixture.py", __DIR__)
   @script_sha "8853fd4c91aa4b0c2d2004e96cc397c806e19c9332d3e0927a7da981a2cc839a"
   @read_params_sha "f15952a2828c90501cc32f347c1e1691ea65cd2d97f503ab40e7be08757de74d"
@@ -581,7 +581,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryPluginTemplateMetadataTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id, do: "owned-plugin-template-#{System.unique_integer([:positive, :monotonic])}"
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)

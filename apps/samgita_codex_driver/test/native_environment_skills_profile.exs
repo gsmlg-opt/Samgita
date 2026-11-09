@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeEnvironmentSkillsProfile do
   @moduletag :isolated_environment_skills
   @moduletag timeout: 90_000
   @script Path.expand("../../../scripts/codex/isolated_environment_skills_fixture.py", __DIR__)
-  @sha256 "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha256 SamgitaProtocolCodex.source()["binary_sha256"]
   @token "synthetic-isolated-executor-credential-canary"
   @available "skills-available"
   @missing "skills-missing"

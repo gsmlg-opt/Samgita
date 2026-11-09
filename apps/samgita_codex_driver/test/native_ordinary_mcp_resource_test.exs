@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpResourceTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @peer Path.expand("../../../scripts/codex/ordinary_mcp_resource_fixture.py", __DIR__)
   @peer_sha "db73b73e84a4ca14dbef753d93045f765d71f7240d543344495de97c5a0540eb"
   @schemas %{
@@ -575,7 +575,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpResourceTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id, do: "owned-resource-control-#{System.unique_integer([:positive, :monotonic])}"
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)

@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpFormValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_mcp_form_values_fixture.py", __DIR__)
   @script_sha "fcff9d2186dcdb574f250e994403fb64658e259231bf52c6e7ed93b5c09806ea"
   @message "Choose an ordinary display label"
@@ -376,7 +376,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpFormValuesTest do
     schema =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/McpServerElicitationRequestParams.json")
+      |> Path.join("upstream/current/experimental/McpServerElicitationRequestParams.json")
       |> File.read!()
       |> JSON.decode!()
 
@@ -423,7 +423,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpFormValuesTest do
     envelope_schema =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ServerRequest.json")
+      |> Path.join("upstream/current/experimental/ServerRequest.json")
       |> File.read!()
       |> JSON.decode!()
 

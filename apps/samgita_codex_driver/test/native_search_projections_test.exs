@@ -1,6 +1,8 @@
 defmodule SamgitaCodexDriver.NativeSearchProjectionsTest do
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -14,7 +16,7 @@ defmodule SamgitaCodexDriver.NativeSearchProjectionsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @needle "Owned search projection λ marker"
 
   setup tags do
@@ -597,7 +599,7 @@ defmodule SamgitaCodexDriver.NativeSearchProjectionsTest do
       assert Map.fetch!(thread, "modelProvider") == "fixture"
       assert Map.fetch!(thread, "sessionId") == id
       assert Map.fetch!(thread, "preview") == source.text
-      assert Map.fetch!(thread, "cliVersion") == "0.163.0"
+      assert Map.fetch!(thread, "cliVersion") == @codex_version
       assert Map.fetch!(thread, "model") == "mock-model"
 
       expected_environments =

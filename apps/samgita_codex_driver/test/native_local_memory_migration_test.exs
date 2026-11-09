@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeLocalMemoryMigrationTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   # Literal EXTENSION_INSTRUCTIONS from pinned external-agent-migration/src/memory_import.rs.
   @instructions_sha "d4ad3f79866e712d390783953470d9d00686ef72fbaddcb8d6706e1753a349e7"
   @memory_a "Owned project A memory λ.\n"

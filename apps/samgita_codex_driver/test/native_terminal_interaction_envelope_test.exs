@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeTerminalInteractionEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_terminal_interaction_fixture.py", __DIR__)
   @script_sha "f0750739ee76f66023e95dac447579b77e462e6271b799536f52d82a4bff86fd"
   @prompt "Owned ordinary terminal interaction only"
@@ -799,7 +799,7 @@ defmodule SamgitaCodexDriver.NativeTerminalInteractionEnvelopeTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> relative)
+      |> Path.join("upstream/current/experimental/" <> relative)
       |> File.read!()
       |> JSON.decode!()
 

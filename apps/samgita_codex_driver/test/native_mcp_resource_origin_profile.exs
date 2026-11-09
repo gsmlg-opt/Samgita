@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeMcpResourceOriginProfile do
   @moduletag :isolated_mcp_origin
   @moduletag timeout: 60_000
   @script Path.expand("support/native_mcp_resource_origin_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @uri "ui://widget/checkout-session.html"
   @calls [{"owned-origin-best-buy", "best_buy"}, {"owned-origin-walmart", "walmart"}]
   @not_found %{

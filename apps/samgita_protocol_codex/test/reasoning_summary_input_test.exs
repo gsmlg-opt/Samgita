@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.ReasoningSummaryInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @export Path.expand("../priv/upstream/0.163.0/experimental/ClientRequest.json", __DIR__)
+  @export Path.expand("../priv/upstream/current/experimental/ClientRequest.json", __DIR__)
   @methods ["thread/settings/update", "turn/start", "turn/settings/update"]
   @values ~w(auto concise detailed none)
   @objects for value <- @values, payload <- [nil, %{}], do: %{value => payload}

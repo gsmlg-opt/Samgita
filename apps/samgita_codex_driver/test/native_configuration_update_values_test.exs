@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeConfigurationUpdateValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/configuration_update_fixture.py", __DIR__)
   @script_sha "754f9c49e236707f4605a699ce230b0e772f3411016ddd23f161027164733d38"
   @original_script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)

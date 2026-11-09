@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeInitializeExperimentalDefaultTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @config """
   check_for_update_on_startup = false
   allow_login_shell = false
@@ -242,7 +242,7 @@ defmodule SamgitaCodexDriver.NativeInitializeExperimentalDefaultTest do
     schema_path =
       Path.join(
         :code.priv_dir(:samgita_protocol_codex),
-        "upstream/0.163.0/experimental/ClientRequest.json"
+        "upstream/current/experimental/ClientRequest.json"
       )
 
     original = File.read!(schema_path)

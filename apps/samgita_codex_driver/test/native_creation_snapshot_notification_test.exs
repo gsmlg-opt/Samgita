@@ -2,6 +2,8 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
   @moduledoc false
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.{Schema, Wire}
@@ -9,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @script_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @client "owned_creation_snapshot"
@@ -363,7 +365,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
            )
 
     assert Map.fetch!(snapshot, "source") === "vscode"
-    assert Map.fetch!(snapshot, "cliVersion") === "0.163.0"
+    assert Map.fetch!(snapshot, "cliVersion") === @codex_version
     assert Map.fetch!(snapshot, "daybreakEnabled") === false
     assert Map.fetch!(snapshot, "historyMode") === row.history
     assert Map.fetch!(snapshot, "model") === "mock-model"
@@ -422,7 +424,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
       "cwd" => row.cwd,
       "modelProvider" => "fixture",
       "model" => "mock-model",
-      "cliVersion" => "0.163.0",
+      "cliVersion" => @codex_version,
       "originator" => @client,
       "source" => "vscode",
       "canAcceptDirectInput" => true,
@@ -585,7 +587,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
     bytes =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+      |> Path.join("upstream/current/experimental/ServerNotification.json")
       |> File.read!()
 
     assert hash(bytes) === @thread_extra_root_sha
@@ -615,7 +617,7 @@ defmodule SamgitaCodexDriver.NativeCreationSnapshotNotificationTest do
   defp notification_schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

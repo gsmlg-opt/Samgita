@@ -3,6 +3,8 @@
   "binary_sha256": "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215",
   "binary_version_output": "codex-cli 0.163.0",
   "build_platform": "x86_64-unknown-linux-musl",
+  "bwrap_asset_sha256": "bcc196b1d25dc2c2b912dcedf780b562deb0552f3c50648761ced145c3466a23",
+  "bwrap_sha256": "77360cb751ccedc5971391444ac86a8a33c15b04d6b4a6fe45f5d25496e62c4c",
   "commit": "83086188ae0614bd882818ff1aa23f3194962012",
   "files_sha256": {
     "LICENSE": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
@@ -857,6 +859,10 @@
   ],
   "source_archive_sha256": "e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567",
   "source_archive_url": "https://codeload.github.com/openai/codex/tar.gz/83086188ae0614bd882818ff1aa23f3194962012",
+  "standalone_asset_bytes": 87120300,
+  "standalone_asset_sha256": "bd587a5419f9b6fa488e4950b065c9127f7db0989388210a3785294b460cdf09",
+  "standalone_binary_bytes": 228736728,
+  "standalone_binary_sha256": "528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e",
   "tag": "rust-v0.163.0",
   "tag_object": "129b8ec7ee6f4511557a4856279f529025c25af4",
   "version": "0.163.0"

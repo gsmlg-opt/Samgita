@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOutputNoticeLifecycleTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/output_notice_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @before_text "owned before\n"
   @after_text "owned after λ🙂\n"
 

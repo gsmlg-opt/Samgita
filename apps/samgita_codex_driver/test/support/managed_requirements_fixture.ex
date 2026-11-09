@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.ManagedRequirementsFixture do
   import TurnFixture, only: [call: 3]
 
   @script Path.expand("../../../../scripts/codex/managed_requirements_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
 
   def start(ctx, client_name) do
     parents = Map.new(~w(user mnt net), &{&1, File.read_link!("/proc/self/ns/" <> &1)})

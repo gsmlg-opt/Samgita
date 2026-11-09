@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeCompactSteeringErrorTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/compaction_control_fixture.py", __DIR__)
   @model_script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @script_sha "e3c10ec249849d45ff4341b2766b4629316ffb0e290134bf501fcfecc9d07b17"

@@ -12,7 +12,7 @@ defmodule SamgitaCodexDriver.NativeExternalConnectorValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @detect "externalAgentConfig/detect"
   @histories "externalAgentConfig/import/readHistories"
   @atlas %{"name" => "Owned Atlas", "sessionCount" => 2, "source" => "remoteMcpServersConfig"}

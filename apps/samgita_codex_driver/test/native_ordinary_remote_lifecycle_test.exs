@@ -7,18 +7,18 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRemoteLifecycleTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_remote_lifecycle_fixture.py", __DIR__)
   @script_sha "4b16350a181fa2bd002cd4d90380e6797dd7d8ed3e36f2fb36570db32a2b37ca"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @base_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @schema Path.expand(
-            "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/PluginInstallParams.json",
+            "../../samgita_protocol_codex/priv/upstream/current/experimental/v2/PluginInstallParams.json",
             __DIR__
           )
   @schema_sha "d6a8ff6356aed22c916cfd5a791ecce34ee2ac509750f690e7d0ef483fec7472"
   @uninstall_schema Path.expand(
-                      "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/PluginUninstallParams.json",
+                      "../../samgita_protocol_codex/priv/upstream/current/experimental/v2/PluginUninstallParams.json",
                       __DIR__
                     )
   @uninstall_schema_sha "4c9e1da7048fc99ef5269d4c3f4c6c3297dac01992c2756340fa210ae8f800cc"

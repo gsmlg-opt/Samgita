@@ -7,14 +7,14 @@ defmodule SamgitaCodexDriver.NativeEnvironmentConnectionEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand(
             "../../../scripts/codex/ordinary_environment_connection_fixture.py",
             __DIR__
           )
   @script_sha "239f96ea487ae43eac710a9ddf40e7240abd462bcdc3cfb511552a48108d087c"
   @schema Path.expand(
-            "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/ServerNotification.json",
+            "../../samgita_protocol_codex/priv/upstream/current/experimental/ServerNotification.json",
             __DIR__
           )
   @schema_sha "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1"

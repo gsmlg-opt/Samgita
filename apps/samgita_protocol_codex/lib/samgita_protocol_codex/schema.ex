@@ -1,10 +1,11 @@
 defmodule SamgitaProtocolCodex.Schema do
   @moduledoc """
-  Native method contracts from the pinned Codex 0.163.0 executable and source.
+  Native method contracts from the current Codex schema snapshot
+  (`priv/upstream/current`, whose `source.json` names the release and commit).
 
   Official JSON exports remain unchanged. A separately labelled, source-derived
   supplement covers the three omitted legacy requests/results and two internal
-  raw-response notifications. Its provenance is shipped with the pinned source.
+  raw-response notifications. Its provenance is shipped with the snapshot source.
   Separately source-checked timeline and realtime output corrections follow the native
   serializer's camelCase fields where that release's JSON exporter disagrees.
   A pinned input supplement covers thread/start's legacy dynamic-tool decoder;
@@ -30,8 +31,7 @@ defmodule SamgitaProtocolCodex.Schema do
   alias SamgitaProtocolCodex.{Error, Wire}
   alias SamgitaProtocolCodex.Schema.{Gates, Input, Output, Validator}
 
-  @version "0.163.0"
-  @source Path.expand("../../priv/upstream/0.163.0/source/common.rs", __DIR__)
+  @source Path.expand("../../priv/upstream/current/source/common.rs", __DIR__)
   @external_resource @source
   @source_text File.read!(@source)
   # Both exported notification profiles include every method. The runtime uses
@@ -196,7 +196,7 @@ defmodule SamgitaProtocolCodex.Schema do
         root =
           :samgita_protocol_codex
           |> :code.priv_dir()
-          |> Path.join("upstream/" <> @version)
+          |> Path.join("upstream/current")
 
         filename =
           Enum.find([filename, Path.basename(filename), "supplemental/" <> filename], fn path ->
@@ -235,7 +235,7 @@ defmodule SamgitaProtocolCodex.Schema do
   defp read(filename, profile) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/" <> @version)
+    |> Path.join("upstream/current")
     |> schema_path(filename, profile)
     |> File.read!()
     |> JSON.decode!()

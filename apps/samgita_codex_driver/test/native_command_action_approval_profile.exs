@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeCommandActionApprovalProfile do
   @moduletag :isolated_command_action_approval
   @moduletag timeout: 60_000
   @script Path.expand("support/native_command_action_approval_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @inputs %{
     "owned.txt" => "owned read contents v119\n",
     "owned-dir/alpha.txt" => "owned alpha contents v119\n",

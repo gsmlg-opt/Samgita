@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeSessionEndHookTest do
   @script Path.expand("../../../scripts/codex/session_end_hook_fixture.py", __DIR__)
   @script_sha "e5476fa1c3f5d07228ad6c384a9d27cf40e98ff92e3a1acc41f30672b2cea00f"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @first "OWNED_V494_RETAINED_FIRST"
   @second "OWNED_V494_REVERTED_SECOND"
   @followup "OWNED_V494_AFTER_REVERT"
@@ -703,7 +703,7 @@ defmodule SamgitaCodexDriver.NativeSessionEndHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

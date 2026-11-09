@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeAccountMetadataProfile do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_account_metadata_fixture.py", __DIR__)
   @thread_id "019fc8ab-1fb2-7000-8000-000000000123"
-  @plan_binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @plan_binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")

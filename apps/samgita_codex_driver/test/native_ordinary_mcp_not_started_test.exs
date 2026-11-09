@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpNotStartedTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/ordinary_mcp_not_started_fixture.py", __DIR__)
   @provider_sha "45f6a1c723f8ca8eeb4d8558c8198c3e11104bbde9efb02ae79be0c3137417e7"
   @peer Path.expand("../../../scripts/codex/ordinary_mcp_not_started_peer.py", __DIR__)
@@ -582,7 +582,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryMcpNotStartedTest do
   defp schema_path,
     do:
       Path.expand(
-        "../../samgita_protocol_codex/priv/upstream/0.163.0/experimental/v2/ListMcpServerStatusResponse.json",
+        "../../samgita_protocol_codex/priv/upstream/current/experimental/v2/ListMcpServerStatusResponse.json",
         __DIR__
       )
 

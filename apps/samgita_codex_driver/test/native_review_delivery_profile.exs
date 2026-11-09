@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeReviewDeliveryProfileTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_review_delivery_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @instructions "Review the owned synthetic change λ🙂"
   @raw_instructions " \n\tReview the owned synthetic change λ🙂\t\n "
   @parent_input "Owned review parent context λ"

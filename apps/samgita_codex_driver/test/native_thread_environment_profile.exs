@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeThreadEnvironmentProfile do
   @moduletag :isolated_thread_environment
   @moduletag timeout: 90_000
   @script Path.expand("../../../scripts/codex/isolated_thread_environment_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @token "synthetic-isolated-executor-credential-canary"
   @selected "selected-环境λ"
   @connected "thread/environment/connected"

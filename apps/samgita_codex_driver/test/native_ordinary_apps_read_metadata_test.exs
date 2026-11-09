@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_app_metadata_fixture.py", __DIR__)
   @script_sha "39b9d8c7bba1934139c9234533de47e225e7d4863c0dddbb5a266757d6a5e6a3"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
@@ -514,7 +514,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppsReadMetadataTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp request_id, do: "owned-app-metadata-#{System.unique_integer([:positive, :monotonic])}"
   defp hash(bytes), do: Base.encode16(:crypto.hash(:sha256, bytes), case: :lower)

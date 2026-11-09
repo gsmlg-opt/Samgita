@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 import re
 
+from fetch_pin import VERSION
 from inventory import MANIFEST, ROOT, encode, schema_documents
 
 OUT = ROOT / "apps/samgita_protocol_codex/test/fixtures/native/contracts.json"
@@ -84,7 +85,7 @@ def main():
         contracts.append({"id": row["id"], "schema": row["schema"], "pointer": path,
                           "value": value, "valid": schema is not False})
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(encode({"upstream_version": "0.163.0", "evidence_kind": "synthetic-schema-only",
+    OUT.write_text(encode({"upstream_version": VERSION, "evidence_kind": "synthetic-schema-only",
                           "messages": fixtures, "contracts": contracts}))
     print(f"Generated {len(fixtures)} message examples and {len(contracts)} field/variant examples")
 

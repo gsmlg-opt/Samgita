@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeThreadListModesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @observer Path.expand("../../../scripts/codex/thread_list_io_fixture.py", __DIR__)
   @marker "Owned list mode input λ🙂"
   @name "Owned literal list mode title λ🙂"

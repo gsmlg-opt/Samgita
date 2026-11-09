@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.ThreadStartSourceInputTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
   @values ~w(startup clear)
   @profiles [[], [experimental: true]]
   @forms [

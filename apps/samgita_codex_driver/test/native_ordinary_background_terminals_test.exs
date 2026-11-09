@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryBackgroundTerminalsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_background_terminals_fixture.py", __DIR__)
   @script_sha "b149a92976fedfd1f7989f11dfe7111767bf57ecb161b060505e5be4a575d299"
   @schemas %{
@@ -838,7 +838,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryBackgroundTerminalsTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> relative)
+      |> Path.join("upstream/current/experimental/" <> relative)
 
   defp request_id, do: "owned-background-#{System.unique_integer([:positive, :monotonic])}"
   defp now, do: System.monotonic_time(:millisecond)

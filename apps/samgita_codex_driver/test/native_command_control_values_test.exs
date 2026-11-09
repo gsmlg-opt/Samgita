@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/command_control_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @methods ~w(command/exec command/exec/resize command/exec/write command/exec/terminate)
   @input "Owned command stdin λ\n"
 
@@ -388,7 +388,7 @@ defmodule SamgitaCodexDriver.NativeCommandControlValuesTest do
     bytes =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> Path.join("upstream/current/experimental/ClientRequest.json")
       |> File.read!()
 
     assert hash(bytes) == "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"

@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeThreadFutureSettingsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha256 "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha256 SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/active_turn_settings_fixture.py", __DIR__)
   @model_a "step-settings-a"
   @model_b "step-settings-b"

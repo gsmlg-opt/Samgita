@@ -10,7 +10,7 @@ defmodule SamgitaCodexDriver.NativeMcpResourceTargetProfile do
   @moduletag :isolated_mcp_target
   @moduletag timeout: 60_000
   @script Path.expand("support/native_mcp_resource_target_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @uri "test://codex/resource"
   @private_uri "test://codex/private"
   @invalid_target %{

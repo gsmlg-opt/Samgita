@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_rate_limit_metadata_fixture.py", __DIR__)
   @script_sha "f64f18603635d448e9981e1a20d8793c1f1a75820bedac30666fb8c8e2465b5f"
   @cleanup Path.join(__DIR__, "support/stdio_session_fixture.ex")
@@ -437,7 +437,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
     bytes =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/stable/ServerNotification.json")
+      |> Path.join("upstream/current/stable/ServerNotification.json")
       |> File.read!()
 
     assert hash(bytes) === @quota_wrapper_root_sha
@@ -799,7 +799,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRateLimitMetadataTest do
   defp schema(path), do: schema_path(path) |> File.read!() |> JSON.decode!()
 
   defp schema_path(path),
-    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/0.163.0/" <> path)
+    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/current/" <> path)
 
   defp request_id,
     do: "owned-ordinary-rate-metadata-#{System.unique_integer([:positive, :monotonic])}"

@@ -4,7 +4,13 @@ defmodule SamgitaProtocolCodex.Schema.Output do
   # schemars in the immutable release omits serde's rename_all_fields on timeline
   # boundaries and realtime promotions. Separate descriptors are checked against the
   # exact Rust source, executable-generated TypeScript and original JSON export.
-  @root Path.expand("../../../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../../../priv/upstream/current", __DIR__)
+  @external_resource Path.join(@root, "source.json")
+  @commit @root
+          |> Path.join("source.json")
+          |> File.read!()
+          |> JSON.decode!()
+          |> Map.fetch!("commit")
   @corrections (for relative <- [
                       "source/output-semantics.json",
                       "source/realtime-output-semantics.json"
@@ -15,7 +21,7 @@ defmodule SamgitaProtocolCodex.Schema.Output do
                 end)
 
   for correction <- @corrections do
-    unless correction["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
+    unless correction["upstream_commit"] == @commit do
       raise "pinned output contract commit changed"
     end
 

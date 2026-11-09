@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/reasoning_checklist_envelope_fixture.py", __DIR__)
   @script_sha "d42e156eb535595d63140870db8414f9cde90298c349d378a1d413dd2c2ba5ff"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
@@ -480,7 +480,7 @@ defmodule SamgitaCodexDriver.NativeUnclassifiedTurnErrorTest do
   defp schema(relative) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> Path.join("upstream/current/experimental/" <> relative)
     |> File.read!()
     |> JSON.decode!()
   end

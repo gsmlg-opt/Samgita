@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @model "owned-config-warning-model"
   @summary "Ignoring invalid `otel.span_attributes` config: configured span attribute key must not be empty"
   @params %{"summary" => @summary, "details" => nil}
@@ -579,7 +579,7 @@ defmodule SamgitaCodexDriver.NativeConfigWarningEnvelopeTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> relative)
+      |> Path.join("upstream/current/experimental/" <> relative)
       |> File.read!()
       |> JSON.decode!()
 

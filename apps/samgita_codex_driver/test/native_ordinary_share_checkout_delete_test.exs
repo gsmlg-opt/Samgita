@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryShareCheckoutDeleteTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_share_checkout_delete_fixture.py", __DIR__)
   @script_sha "2f0faa131dc0802e9f6075c6d39c373ebe197796ac62e6ddf9f209cf6c0d9797"
   @base Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
@@ -779,7 +779,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryShareCheckoutDeleteTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> relative)
+      |> Path.join("upstream/current/experimental/" <> relative)
 
   defp request_id,
     do: "owned-share-checkout-delete-#{System.unique_integer([:positive, :monotonic])}"

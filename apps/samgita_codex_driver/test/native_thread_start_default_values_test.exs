@@ -14,7 +14,7 @@ defmodule SamgitaCodexDriver.NativeThreadStartDefaultValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @answer "Deterministic local fixture answer"
   @global "Owned global thread-start instructions λ. Preserve this fixture marker.\n"
   @literal """

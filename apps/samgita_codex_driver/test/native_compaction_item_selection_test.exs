@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeCompactionItemSelectionTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @instructions "Owned compaction item fixture instructions."
   @marker "Owned compaction seed λ🙂"
   @compact_prompt "Owned explicit compaction summary prompt λ🙂"

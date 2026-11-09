@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeFeatureStageValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @catalog_count 175
   # Independent literals and indices from the immutable FEATURES declaration.
   # No expected stage, metadata or ordering comes from a response under test.

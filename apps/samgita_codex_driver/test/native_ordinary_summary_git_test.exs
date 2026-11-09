@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinarySummaryGitTest do
 
   @moduletag :real_codex
   @moduletag timeout: 90_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_summary_git_fixture.py", __DIR__)
   @script_sha "d0c6f2a6e2466757a43c6f44f6c94a82a3285564214870e3f5843aefa7e67ecd"
   @cleanup Path.join(__DIR__, "support/stdio_session_fixture.ex")
@@ -633,7 +633,7 @@ defmodule SamgitaCodexDriver.NativeOrdinarySummaryGitTest do
   defp schema(path), do: schema_path(path) |> File.read!() |> JSON.decode!()
 
   defp schema_path(path),
-    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/0.163.0/" <> path)
+    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/current/" <> path)
 
   defp request_id,
     do: "owned-ordinary-summary-git-#{System.unique_integer([:positive, :monotonic])}"

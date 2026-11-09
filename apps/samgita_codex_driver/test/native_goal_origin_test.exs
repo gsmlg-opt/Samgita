@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeGoalOriginTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @sentinel "Unrelated paused goal must remain unchanged."
   @prompt "Report synthetic clear provenance only."
   @cases [

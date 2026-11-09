@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.InventoryTest do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @fixture Path.expand("fixtures/native/contracts.json", __DIR__)
-  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../priv/upstream/current", __DIR__)
 
   test "every advertised request, response and notification has a valid synthetic example" do
     corpus = @fixture |> File.read!() |> JSON.decode!()

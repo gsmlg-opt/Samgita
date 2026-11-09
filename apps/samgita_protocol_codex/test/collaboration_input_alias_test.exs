@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.CollaborationInputAliasTest do
   alias SamgitaProtocolCodex.{Error, Schema, Wire}
   alias SamgitaProtocolCodex.Schema.Validator
 
-  @export Path.expand("../priv/upstream/0.163.0/experimental/ClientRequest.json", __DIR__)
+  @export Path.expand("../priv/upstream/current/experimental/ClientRequest.json", __DIR__)
   @aliases ~w(code pair_programming execute custom)
   @methods ["turn/start", "thread/settings/update"]
 

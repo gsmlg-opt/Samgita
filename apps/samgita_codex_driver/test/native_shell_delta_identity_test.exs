@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @request_schema_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
   @request_ids ["owned-v447-shell-alpha", 447_002]
   @effects "owned-shell-effects.log"
@@ -238,7 +238,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     bytes =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> Path.join("upstream/current/experimental/ClientRequest.json")
       |> File.read!()
 
     assert Base.encode16(:crypto.hash(:sha256, bytes), case: :lower) === @request_schema_sha
@@ -304,7 +304,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
   defp notification_schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

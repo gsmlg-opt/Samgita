@@ -113,7 +113,7 @@ def generate(source):
     (VENDOR / "source/experimental-semantics.json").write_text(encode(result))
     shutil.copyfile(source / "codex-rs/codex-experimental-api-macros/src/lib.rs",
                     VENDOR / "source/experimental-api-macros.rs")
-    provenance_path = VENDOR / "provenance.json"
+    provenance_path = VENDOR / "source.json"
     provenance = json.loads(provenance_path.read_text())
     for relative in ("source/experimental-semantics.json", "source/experimental-api-macros.rs"):
         provenance["files_sha256"][relative] = digest(VENDOR / relative)

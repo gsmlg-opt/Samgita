@@ -16,7 +16,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/plan_item_events_fixture.py", __DIR__)
   @streamed_script Path.expand("../../../scripts/codex/streamed_plan_events_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @instructions "Owned Plan item fixture instructions."
   @marker "Owned proposed Plan event λ🙂"
   @plan "# Owned next plan λ🙂\n- first\n- second\n"

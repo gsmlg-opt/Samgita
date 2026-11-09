@@ -2,6 +2,8 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
   @moduledoc false
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -362,7 +364,7 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
     path =
       Path.join(
         :code.priv_dir(:samgita_protocol_codex),
-        "upstream/0.163.0/experimental/ServerNotification.json"
+        "upstream/current/experimental/ServerNotification.json"
       )
 
     bytes = bounded_file(path)
@@ -618,7 +620,7 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
              "cwd" => ctx.fixture.workspace,
              "model_provider" => "fixture",
              "history_mode" => "paginated",
-             "cli_version" => "0.163.0",
+             "cli_version" => @codex_version,
              "thread_source" => "user",
              "session_id" => source.id
            }
@@ -1105,7 +1107,7 @@ defmodule SamgitaCodexDriver.NativeStandaloneSourceSelectorTest do
     do:
       Path.join(
         :code.priv_dir(:samgita_protocol_codex),
-        "upstream/0.163.0/experimental/v2/" <> name
+        "upstream/current/experimental/v2/" <> name
       )
 
   defp schema(name), do: schema_path(name) |> File.read!() |> JSON.decode!()

@@ -6,7 +6,7 @@ defmodule SamgitaCodexDriver.NativeMcpStatusDetailTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @peer Path.expand("support/native_mcp_status_catalog_fixture.py", __DIR__)
   @peer_sha "0993a305c8ab0749af7bf8a397fd743799b0757c4374b03ea71087db5feaa9f5"
   @projection %{

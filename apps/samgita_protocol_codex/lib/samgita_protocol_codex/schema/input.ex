@@ -5,7 +5,13 @@ defmodule SamgitaProtocolCodex.Schema.Input do
 
   # The exporter omits a custom decoder and serde input aliases. Source-derived
   # contracts remain separate from official exports and caller wire values.
-  @root Path.expand("../../../priv/upstream/0.163.0", __DIR__)
+  @root Path.expand("../../../priv/upstream/current", __DIR__)
+  @external_resource Path.join(@root, "source.json")
+  @commit @root
+          |> Path.join("source.json")
+          |> File.read!()
+          |> JSON.decode!()
+          |> Map.fetch!("commit")
   @corrections (for relative <- [
                       "source/input-semantics.json",
                       "source/response-item-input-semantics.json",
@@ -46,7 +52,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @source_kind Enum.find(@corrections, &(&1["definition"] == "ThreadSourceKind"))
 
   for semantics <- @corrections do
-    unless semantics["upstream_commit"] == "83086188ae0614bd882818ff1aa23f3194962012" do
+    unless semantics["upstream_commit"] == @commit do
       raise "pinned input contract commit changed"
     end
 

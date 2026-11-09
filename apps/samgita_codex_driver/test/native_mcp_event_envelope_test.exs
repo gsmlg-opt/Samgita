@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/mcp_event_stream_fixture.py", __DIR__)
   @stream_method "mcpServer/event/stream/notification"
   @subscription "owned-native-envelope-subscription"
@@ -602,7 +602,7 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
   defp request_schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+    |> Path.join("upstream/current/experimental/ClientRequest.json")
     |> File.read!()
     |> JSON.decode!()
   end
@@ -610,7 +610,7 @@ defmodule SamgitaCodexDriver.NativeMcpEventEnvelopeTest do
   defp notification_schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

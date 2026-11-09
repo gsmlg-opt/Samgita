@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeAdminSkillsProfileTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_admin_skills_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @skill_sha "bb2b50bc56418c06bd450b1ef6d6ae48d202951f5a243a132cbe0a31ae0f1501"
   @system_config "[skills.bundled]\nenabled = false\n"
   @skill_path "/etc/codex/skills/owned-admin-discovery/SKILL.md"

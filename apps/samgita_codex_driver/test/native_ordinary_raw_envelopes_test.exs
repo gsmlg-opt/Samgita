@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRawEnvelopesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_raw_envelope_fixture.py", __DIR__)
   @script_sha "de78fc6ce406337f15159b67c892f06d14912039adb5f4f61877ca925dab5f86"
   @encoder Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
@@ -724,7 +724,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryRawEnvelopesTest do
   defp schema(path), do: schema_path(path) |> File.read!() |> JSON.decode!()
 
   defp schema_path(path),
-    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/0.163.0/" <> path)
+    do: :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/current/" <> path)
 
   defp request_id, do: "owned-ordinary-raw-#{System.unique_integer([:positive, :monotonic])}"
   defp now, do: System.monotonic_time(:millisecond)

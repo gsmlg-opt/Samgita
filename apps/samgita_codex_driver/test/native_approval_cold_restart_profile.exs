@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeApprovalColdRestartProfileTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_approval_cold_restart_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @command "echo 'owned cold command' >> cold-command.txt; printf samgita_cold_command"
   @first "Owned unanswered cold approval"
   @second "Owned explicit post-crash command"

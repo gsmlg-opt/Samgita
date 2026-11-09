@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeFileChangeEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/file_change_envelope_fixture.py", __DIR__)
   @script_sha "95fca287be034b34a40519377a24d8a7385d7b4c5b2ac1c207f5c410f2ae02b5"
   @provider_base Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
@@ -791,7 +791,7 @@ defmodule SamgitaCodexDriver.NativeFileChangeEnvelopeTest do
   defp notification_schema(flavor \\ "experimental") do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/#{flavor}/ServerNotification.json")
+    |> Path.join("upstream/current/#{flavor}/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

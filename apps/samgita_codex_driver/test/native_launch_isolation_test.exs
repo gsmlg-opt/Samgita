@@ -1,14 +1,16 @@
 defmodule SamgitaCodexDriver.NativeLaunchIsolationTest do
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{ModelFixture, Session, TurnFixture}
   import TurnFixture, except: [setup: 1]
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
-  @source_archive_sha "e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567"
-  @source_archive Path.expand("../../../tmp/codex/0.163.0/source.tar.gz", __DIR__)
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
+  @source_archive_sha SamgitaProtocolCodex.source()["source_archive_sha256"]
+  @source_archive Path.expand("../../../tmp/codex/#{@codex_version}/source.tar.gz", __DIR__)
 
   setup context do
     binary = System.get_env("CODEX_BINARY")
@@ -21,7 +23,7 @@ defmodule SamgitaCodexDriver.NativeLaunchIsolationTest do
     source_archive = System.get_env("CODEX_SOURCE_ARCHIVE", @source_archive)
 
     assert File.regular?(source_archive),
-           "BLOCKED_ENV: verified rust-v0.163.0 source archive required"
+           "BLOCKED_ENV: verified rust-v#{@codex_version} source archive required"
 
     assert Base.encode16(:crypto.hash(:sha256, File.read!(source_archive)), case: :lower) ==
              @source_archive_sha

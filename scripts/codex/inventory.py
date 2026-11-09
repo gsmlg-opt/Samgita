@@ -19,10 +19,10 @@ import shutil
 import subprocess
 import tempfile
 
-from fetch_pin import (ROOT, VERSION, COMMIT, TAG_OBJECT, ASSET, ARCHIVE_SHA256,
+from fetch_pin import (ROOT, SNAPSHOT, VERSION, COMMIT, TAG_OBJECT, ASSET, ARCHIVE_SHA256,
                        BINARY_SHA256, SOURCE_SHA256, CACHE, digest)
 
-VENDOR = ROOT / "apps/samgita_protocol_codex/priv/upstream" / VERSION
+VENDOR = SNAPSHOT
 MANIFEST = ROOT / "docs/codex-app-server/compatibility-manifest.json"
 PROTOCOL = "codex-rs/app-server-protocol/src/protocol"
 DIRECTIONS = {"ClientRequest": "client_request", "ServerRequest": "server_request",
@@ -440,7 +440,7 @@ def generate(source):
     (VENDOR / "source/experimental-semantics.json").write_text(encode(extract(source)))
     shutil.copyfile(source / "codex-rs/codex-experimental-api-macros/src/lib.rs",
                     VENDOR / "source/experimental-api-macros.rs")
-    hashes = {str(path.relative_to(VENDOR)): digest(path) for path in sorted(VENDOR.rglob("*")) if path.is_file() and path.name != "provenance.json"}
+    hashes = {str(path.relative_to(VENDOR)): digest(path) for path in sorted(VENDOR.rglob("*")) if path.is_file() and path.name != "source.json"}
     provenance = {"repository": "https://github.com/openai/codex", "version": VERSION,
                   "tag": "rust-v" + VERSION, "tag_object": TAG_OBJECT, "commit": COMMIT,
                   "source_archive_sha256": SOURCE_SHA256, "release_asset": ASSET,
@@ -453,7 +453,7 @@ def generate(source):
                   "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental", "codex app-server generate-ts --experimental --out typescript", "python3 scripts/codex/generate_supplement.py", "python3 scripts/codex/generate_input_semantics.py"],
                   "reproduce": ["python3 scripts/codex/fetch_pin.py", "python3 scripts/codex/inventory.py --generate", "python3 scripts/codex/inventory.py --check"],
                   "files_sha256": hashes}
-    (VENDOR / "provenance.json").write_text(encode(provenance))
+    (VENDOR / "source.json").write_text(encode(provenance))
 
 
 def merge_progress(expected, actual):
@@ -500,9 +500,9 @@ def main():
         for relative, schema in supplemental_contracts(VENDOR).items():
             if (VENDOR / "supplemental" / relative).read_text() != encode(schema):
                 raise SystemExit("Source-derived supplemental contract changed: " + relative)
-        provenance = json.loads((VENDOR / "provenance.json").read_text())
+        provenance = json.loads((VENDOR / "source.json").read_text())
         actual_paths = {str(path.relative_to(VENDOR)) for path in VENDOR.rglob("*")
-                        if path.is_file() and path.name != "provenance.json"}
+                        if path.is_file() and path.name != "source.json"}
         if actual_paths != set(provenance["files_sha256"]):
             raise SystemExit("Pinned artifact set changed")
         for relative, sha in provenance["files_sha256"].items():

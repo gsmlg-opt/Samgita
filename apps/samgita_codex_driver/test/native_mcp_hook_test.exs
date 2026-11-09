@@ -11,7 +11,7 @@ defmodule SamgitaCodexDriver.NativeMcpHookTest do
   @script Path.expand("../../../scripts/codex/mcp_hook_fixture.py", __DIR__)
   @script_sha "f91c1c2cf1af02d9aca0013f083de5b11f9440b9f6550e1cdd44303fb3c59c83"
   @response_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @seed "OWNED_V501_TOOL_TURN"
   @followup "OWNED_V501_TOOL_FOLLOWUP"
   @call_id "owned-v501-exec-call"
@@ -1044,7 +1044,7 @@ defmodule SamgitaCodexDriver.NativeMcpHookTest do
   defp schema do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/ServerNotification.json")
+    |> Path.join("upstream/current/experimental/ServerNotification.json")
     |> File.read!()
     |> JSON.decode!()
   end

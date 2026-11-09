@@ -1,4 +1,4 @@
-name: Pinned Codex conformance
+name: Codex conformance (current snapshot)
 
 on:
   workflow_dispatch:
@@ -27,8 +27,6 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 30
     env:
-      CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
-      CODEX_APP_SERVER_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/standalone/codex-app-server-x86_64-unknown-linux-musl
       POSTGRES_HOST: localhost
       POSTGRES_PORT: "5432"
       POSTGRES_USER: postgres
@@ -50,6 +48,11 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v7
+      - name: Resolve the Codex release of the current schema snapshot
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("apps/samgita_protocol_codex/priv/upstream/current/source.json"))["version"])')
+          echo "CODEX_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/codex-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
+          echo "CODEX_APP_SERVER_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/standalone/codex-app-server-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
       - name: Isolate the verified native artifact cache
         run: echo "RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH=$RUNNER_TEMP/samgita-conformance-nifs" >> "$GITHUB_ENV"
       - name: Required native content-search executable
@@ -155,9 +158,13 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 20
     env:
-      CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
     steps:
       - uses: actions/checkout@v7
+      - name: Resolve the Codex release of the current schema snapshot
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("apps/samgita_protocol_codex/priv/upstream/current/source.json"))["version"])')
+          echo "CODEX_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/codex-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
+          echo "CODEX_APP_SERVER_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/standalone/codex-app-server-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
       - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
@@ -415,6 +422,11 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
+      - name: Resolve the Codex release of the current schema snapshot
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("apps/samgita_protocol_codex/priv/upstream/current/source.json"))["version"])')
+          echo "CODEX_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/codex-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
+          echo "CODEX_APP_SERVER_BINARY=$GITHUB_WORKSPACE/tmp/codex/$version/standalone/codex-app-server-x86_64-unknown-linux-musl" >> "$GITHUB_ENV"
       - name: Inventory regressions and source consistency
         run: |
           python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v

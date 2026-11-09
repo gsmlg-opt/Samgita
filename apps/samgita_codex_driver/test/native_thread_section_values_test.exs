@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.NativeThreadSectionValuesTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @pinned %{
     "id" => "01984de2-8f74-7c91-a3b2-5c5e937cf318",
     "name" => "Pinned",

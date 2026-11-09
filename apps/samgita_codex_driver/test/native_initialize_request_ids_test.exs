@@ -2,6 +2,8 @@ defmodule SamgitaCodexDriver.NativeInitializeRequestIdsTest do
   @moduledoc false
   use ExUnit.Case, async: false
 
+  @codex_version SamgitaProtocolCodex.source()["version"]
+
   alias SamgitaCodexDriver.{
     ModelFixture,
     NativeLaunchFixture,
@@ -15,7 +17,7 @@ defmodule SamgitaCodexDriver.NativeInitializeRequestIdsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)
   @provider_sha "a18341e8c05ecec4ffe4b685f37dc0b8a123f81704a34f84a92cda0b4cbddbd8"
   @request_schema_sha "92d920b10b9ce7871e21f49573275bb931a58ad7fd367ab71b3716edbb6a0352"
@@ -325,7 +327,12 @@ defmodule SamgitaCodexDriver.NativeInitializeRequestIdsTest do
     assert result["codexHome"] === ctx.fixture.codex_home
     assert result["platformFamily"] === "unix"
     assert result["platformOs"] === "linux"
-    assert String.starts_with?(result["userAgent"], "owned_initialize_ids/0.163.0 (")
+
+    assert String.starts_with?(
+             result["userAgent"],
+             "owned_initialize_ids/" <> @codex_version <> " ("
+           )
+
     assert String.ends_with?(result["userAgent"], " (owned_initialize_ids; 0.1.0)")
     response
   end
@@ -506,5 +513,5 @@ defmodule SamgitaCodexDriver.NativeInitializeRequestIdsTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/ClientRequest.json")
+      |> Path.join("upstream/current/experimental/ClientRequest.json")
 end

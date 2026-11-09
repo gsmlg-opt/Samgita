@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryFeedbackTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_feedback_fixture.py", __DIR__)
   @script_sha "ead685953206c9904bb57917e163099ef73990b5a512cd4b79ab1d64c888f5c9"
   @schemas %{
@@ -602,7 +602,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryFeedbackTest do
 
   defp schema_path(name),
     do:
-      :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/0.163.0/stable/" <> name)
+      :samgita_protocol_codex |> :code.priv_dir() |> Path.join("upstream/current/stable/" <> name)
 
   defp request_id, do: "ordinary-feedback-#{System.unique_integer([:positive, :monotonic])}"
   defp deadline, do: System.monotonic_time(:millisecond) + 5_000

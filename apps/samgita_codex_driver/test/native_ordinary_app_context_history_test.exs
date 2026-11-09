@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppContextHistoryTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @script Path.expand("../../../scripts/codex/ordinary_app_context_fixture.py", __DIR__)
   @script_sha "2f25436a2b5694390d64305b9566ce3859eea5cb81f8b212c125eb05db4126e1"
   @call "owned-app-context-call-532"
@@ -390,7 +390,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppContextHistoryTest do
     bytes =
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/stable/ServerNotification.json")
+      |> Path.join("upstream/current/stable/ServerNotification.json")
       |> File.read!()
 
     assert hash(bytes) === @notification_context_root_sha
@@ -702,7 +702,7 @@ defmodule SamgitaCodexDriver.NativeOrdinaryAppContextHistoryTest do
     do:
       :samgita_protocol_codex
       |> :code.priv_dir()
-      |> Path.join("upstream/0.163.0/experimental/" <> name)
+      |> Path.join("upstream/current/experimental/" <> name)
 
   defp assert_id(value), do: assert(is_binary(value) and byte_size(value) > 0)
   defp request_id, do: "owned-app-context-#{System.unique_integer([:positive, :monotonic])}"

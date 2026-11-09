@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/response_metadata_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @canary "OWNED_RESPONSE_METADATA_PRIVATE_CANARY"
   @metadata_methods [
     "model/rerouted",

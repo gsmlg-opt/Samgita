@@ -9,7 +9,7 @@ defmodule SamgitaCodexDriver.NativeRemoteControlProfile do
   @moduletag :isolated_remote_control
   @moduletag timeout: 90_000
   @script Path.expand("../../../scripts/codex/isolated_remote_control_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @installation "11111111-2222-4333-8444-555555555555"
   @environment "owned-environment"
   @encoded_environment "owned/环境 λ"

@@ -26,6 +26,8 @@ import threading
 import time
 from urllib.parse import parse_qs, quote, unquote, urlparse
 
+SNAPSHOT_VERSION = json.loads((Path(__file__).resolve().parents[2] / "apps/samgita_protocol_codex/priv/upstream/current/source.json").read_text())["version"]
+
 
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
 ACCESS = "synthetic-owned-remote-control-access"
@@ -342,7 +344,7 @@ class Fixture:
     def validate(resource, body, query, ids):
         if resource == "enroll":
             expected = {"name": socket.gethostname().strip(), "os": "linux", "arch": "x86_64",
-                        "app_server_version": "0.163.0", "installation_id": INSTALLATION}
+                        "app_server_version": SNAPSHOT_VERSION, "installation_id": INSTALLATION}
             return body == expected and not query, {"installation_verified": body == expected}
         if resource == "refresh":
             return body == {"server_id": SERVER, "installation_id": INSTALLATION} and not query, {}

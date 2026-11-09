@@ -12,7 +12,7 @@ defmodule SamgitaCodexDriver.NativeGoalQueueNotificationEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @provider Path.expand("../../../scripts/codex/queued_model_fixture.py", __DIR__)
   @provider_sha "989d614f92d08cd2fe43798e144cf2a533a5a1082be118e902da63fd0087df16"
   @base_provider Path.expand("../../../scripts/codex/model_fixture.py", __DIR__)

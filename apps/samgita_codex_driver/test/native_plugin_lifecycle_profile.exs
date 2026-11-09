@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_plugin_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @market "fixture-lifecycle"
   @plugin "fixture-orbit"
   @id "#{@plugin}@#{@market}"

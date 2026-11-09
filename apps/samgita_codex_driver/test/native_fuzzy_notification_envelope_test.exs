@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeFuzzyNotificationEnvelopeTest do
 
   @moduletag :real_codex
   @moduletag timeout: 30_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @updated "fuzzyFileSearch/sessionUpdated"
   @completed "fuzzyFileSearch/sessionCompleted"
   @paths ~w(abc abcde abexy zzz.txt sub/abce)
@@ -350,7 +350,7 @@ defmodule SamgitaCodexDriver.NativeFuzzyNotificationEnvelopeTest do
   defp protocol_schema(relative) do
     :samgita_protocol_codex
     |> :code.priv_dir()
-    |> Path.join("upstream/0.163.0/experimental/" <> relative)
+    |> Path.join("upstream/current/experimental/" <> relative)
     |> File.read!()
     |> JSON.decode!()
   end

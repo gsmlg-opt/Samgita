@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeSystemSkillsProfileTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_system_skills_fixture.py", __DIR__)
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   # Immutable rust-v0.163.0 skills/src/assets/samples/review-agent/SKILL.md.
   @skill_sha "07079efd0dc76f05fade424e5dfb048dce1de2df7626e1a4f56292a4f3f92228"
   @description "Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions."

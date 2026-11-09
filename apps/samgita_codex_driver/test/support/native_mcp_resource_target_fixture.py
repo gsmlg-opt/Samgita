@@ -18,7 +18,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts/codex"))
 from isolated_apps_fixture import Fixture as AppsFixture
 
-NATIVE_SHA = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+NATIVE_SHA = json.loads((Path(__file__).resolve().parents[3] / "samgita_protocol_codex/priv/upstream/current/source.json").read_text())["binary_sha256"]
 URI = "test://codex/resource"
 PRIVATE_URI = "test://codex/private"
 MCP_PATH = "/backend-api/ps/mcp"

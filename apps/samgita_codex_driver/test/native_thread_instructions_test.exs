@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeThreadInstructionsTest do
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
-  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @binary_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @default_base "Owned config base λ🙂\nKeep this exact base."
   @default_developer "Owned config developer λ🙂\nKeep this exact policy."
   @explicit_base "Owned explicit base λ🙂\nUse this exact base."

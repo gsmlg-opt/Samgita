@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeBedrockRecoveryProfile do
   @moduletag :isolated_bedrock_recovery
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_bedrock_recovery_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @started "modelProvider/authRecoveryStarted"
   @completed "modelProvider/authRecoveryCompleted"
   @started_message "AWS session has expired. Reauthenticating..."

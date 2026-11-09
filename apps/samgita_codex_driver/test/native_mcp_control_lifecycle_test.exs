@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_mcp_control_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @missing "00000000-0000-4000-8000-000000000000"
   @stream_method "mcpServer/event/stream/notification"
 

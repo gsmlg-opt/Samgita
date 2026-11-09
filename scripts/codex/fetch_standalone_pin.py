@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch the separately pinned official standalone app-server, without starting it.
+"""Fetch the standalone app-server of the current snapshot release, without starting it.
 
 The combined Codex executable and its pin remain unchanged. This additional
 Linux musl profile owns a separate ignored cache and requires no platform app.
@@ -12,14 +12,14 @@ from pathlib import Path
 import tarfile
 import tempfile
 
-from fetch_pin import CACHE, COMMIT, TAG_OBJECT, VERSION, digest, fetch
+from fetch_pin import CACHE, COMMIT, PIN, TAG_OBJECT, VERSION, digest, fetch
 
 ASSET = "codex-app-server-x86_64-unknown-linux-musl.tar.gz"
 MEMBER = "codex-app-server-x86_64-unknown-linux-musl"
-ARCHIVE_SHA256 = "bd587a5419f9b6fa488e4950b065c9127f7db0989388210a3785294b460cdf09"
-BINARY_SHA256 = "528c11baca43b3be05112c0be1fb1c4a3d5c53f1b6d628f5bf42ebd7803e7a9e"
-ARCHIVE_BYTES = 87_120_300
-BINARY_BYTES = 228_736_728
+ARCHIVE_SHA256 = PIN["standalone_asset_sha256"]
+BINARY_SHA256 = PIN["standalone_binary_sha256"]
+ARCHIVE_BYTES = PIN["standalone_asset_bytes"]
+BINARY_BYTES = PIN["standalone_binary_bytes"]
 STANDALONE_CACHE = CACHE / "standalone"
 BINARY = STANDALONE_CACHE / MEMBER
 

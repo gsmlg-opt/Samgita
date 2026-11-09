@@ -7,7 +7,7 @@ defmodule SamgitaCodexDriver.NativeMcpCatalogProfile do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/mcp_catalog_fixture.py", __DIR__)
-  @native_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @native_sha SamgitaProtocolCodex.source()["binary_sha256"]
   @fixture_sha "b8b85e329652efd8124577f79980a0f6919359af502e52863242557dd5a2dbc7"
   @protocols [{false, "2025-06-18"}, {true, "2026-07-28"}]
 

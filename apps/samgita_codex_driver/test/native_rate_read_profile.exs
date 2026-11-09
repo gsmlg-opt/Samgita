@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeRateReadProfile do
   @moduletag :isolated_rate_read
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_rate_read_fixture.py", __DIR__)
-  @sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @sha SamgitaProtocolCodex.source()["binary_sha256"]
   @method "account/rateLimits/read"
   @account "isolated-auth-account"
   @plans ~w(free go plus pro prolite promax team self_serve_business_prolite self_serve_business_usage_based business ent26 enterprise_cbp_automation enterprise_cbp_usage_based enterprise edu edu_plus edu_pro unknown)
