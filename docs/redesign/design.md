@@ -385,7 +385,7 @@ These are implementation/integration gates, not reasons to leave this design pha
 
 ## 10. Coordinated delegation amendment (2026-11-09)
 
-Status: proposed contract, approved in direction by the user; not implemented. It narrows how the Agent-owned delegation in §1 and §3 reaches executors. Sections 1–9 remain authoritative where this section is silent.
+Status: implemented as P8 (2026-11-09) except release observation, which awaits the B5 permission decision. It narrows how the Agent-owned delegation in §1 and §3 reaches executors. Sections 1–9 remain authoritative where this section is silent.
 
 ### Target workflow
 
@@ -449,7 +449,7 @@ Add the GitHub `release` event (`published`, `released`, `prereleased`, `edited`
 
 ## 11. Codex host connections amendment (2026-11-09)
 
-Status: proposed contract, approved in direction by the user; not implemented. This is the first delivery priority, ahead of §10. It supersedes the earlier rule that Samgita never connects to Codex itself and requires a separate Agent service to own the driver. Samgita still runs no reasoning: Codex reasons and executes; Samgita owns the connection, identity and management state.
+Status: implemented as P7 (2026-11-09). This is the first delivery priority, ahead of §10. It supersedes the earlier rule that Samgita never connects to Codex itself and requires a separate Agent service to own the driver. Samgita still runs no reasoning: Codex reasons and executes; Samgita owns the connection, identity and management state.
 
 ### Goal
 

@@ -17,11 +17,11 @@ Samgita connects external Agents and manages their collaborative development wor
 5. Executor Agents open PRs, merge and release with their own GitHub credentials. Samgita stays read-only toward GitHub and only observes.
 6. Acceptance (`awaiting_review` -> `accepted`) is configurable per Project: either the coordinator Agent holds the `reviewer` role and accepts automatically, or only a human operator accepts.
 
-Not yet implemented: explicit executor assignment and assignment notification (today executors claim by capability), release-event ingestion, and the rule that an executor cannot accept its own work. Coordinator outcome notification already works through the `responsible` subscription but lacks acceptance coverage. The proposed contract for these is `docs/redesign/design.md` §10; extend the implementation plan and acceptance ledger before coding.
+Implemented as P8 (`docs/redesign/design.md` §10, plan §11, acceptance A18): explicit `assign` before claim (only the assignee claims), operator-configured `assignee` notification subscriptions, the rule that an Agent cannot review or accept work its own Attempt submitted, and a two-Agent real-WebSocket outcome-loop test. Not yet implemented: GitHub `release` ingestion (P8.4), which needs the App's `contents: read` permission and a B5 decision.
 
 ### Current priority: Codex host connections
 
-The first delivery is `docs/redesign/design.md` §11: when the service starts, Samgita connects to operator-configured Codex hosts and keeps an initialized app-server session to each, over WebSocket (`codex app-server --listen ws://...`) or SSH (`ssh <host> codex app-server proxy` to the Codex daemon, like the Codex desktop app). This supersedes the earlier rule that a separate Agent service must own the Codex driver. Samgita never spawns a local `codex` binary, and it still runs no reasoning. §11 is designed but not implemented; §10 follows it.
+The first delivery is `docs/redesign/design.md` §11: when the service starts, Samgita connects to operator-configured Codex hosts and keeps an initialized app-server session to each, over WebSocket (`codex app-server --listen ws://...`) or SSH (`ssh <host> codex app-server proxy` to the Codex daemon, like the Codex desktop app). This supersedes the earlier rule that a separate Agent service must own the Codex driver. Samgita never spawns a local `codex` binary, and it still runs no reasoning. §11 (P7) is implemented; §10 (P8) followed it.
 
 ## Documentation Map
 

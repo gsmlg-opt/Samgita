@@ -367,4 +367,6 @@ Owner files: `apps/samgita/lib/samgita/github/{payload.ex,client.ex,reconciliati
 
 Owner files: new `apps/samgita_web/test/samgita_web/integration/delegation_journey_test.exs`; `AGENTS.md` target-workflow status; `docs/redesign/design.md` §10 status.
 
-- [ ] With a fake coordinator and a fake executor over real WebSockets: issue event → coordinator creates child Tasks → assigns → executor is notified, claims, starts, reports → coordinator receives `attempt.reported` → a reviewer decision → `accepted`.
+- [x] With a fake coordinator and a fake executor over real WebSockets: issue event → coordinator creates child Tasks → assigns → executor is notified, claims, starts, reports → coordinator receives `attempt.reported` → a reviewer decision → `accepted`.
+
+Result (2026-11-09): new `integration/delegation_journey_test.exs` passes: two `FakeAgent` endpoints (coordinator "Synapsis" with `manager reviewer`, executor "Codex" with `worker`) over real authenticated WebSockets; a signed `issues` delivery reaches only the coordinator; the coordinator creates parent and child Tasks and assigns the child; `task.assigned` reaches both; the executor finds the Task through the assignee filter, claims, starts and reports; `attempt.reported` reaches only the coordinator, which reviews and accepts.
