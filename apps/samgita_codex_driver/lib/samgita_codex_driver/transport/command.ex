@@ -18,6 +18,9 @@ defmodule SamgitaCodexDriver.Transport.Command do
     * `:path` - WebSocket request path, default `/app-server`
     * `:connect_timeout_ms` - time to accept the relayed connection
     * `:cleanup_timeout_ms` - grace period before the command is killed on close
+    * `:stdout_marker` - when set, stdout before this byte sequence is discarded
+      and client bytes are held until it appears (a login shell may print
+      banners before the command starts); at most 64 KiB is scanned
 
   Closing ends only the command. It never stops the remote daemon or its threads.
   The command's stderr is not part of the byte stream; it goes to the BEAM's
@@ -29,6 +32,7 @@ defmodule SamgitaCodexDriver.Transport.Command do
   alias SamgitaProtocolCodex.Error
 
   @cleanup_timeout 5_000
+  @marker_scan_limit 65_536
 
   defp cleanup_timeout(opts), do: Keyword.get(opts, :cleanup_timeout_ms, @cleanup_timeout)
 
@@ -91,9 +95,12 @@ defmodule SamgitaCodexDriver.Transport.Command do
     args = Keyword.get(opts, :args, [])
     env = Keyword.get(opts, :env, [])
 
+    marker = opts[:stdout_marker]
+
     if is_binary(executable) and Path.type(executable) == :absolute and
          File.regular?(executable) and is_list(args) and Enum.all?(args, &safe_arg?/1) and
-         is_list(env) and Enum.all?(env, &safe_env?/1),
+         is_list(env) and Enum.all?(env, &safe_env?/1) and
+         (is_nil(marker) or (is_binary(marker) and byte_size(marker) in 1..256)),
        do: {:ok, executable, args, env},
        else: {:error, Error.new(:invalid_transport_options)}
   end
@@ -129,7 +136,7 @@ defmodule SamgitaCodexDriver.Transport.Command do
   defp open_websocket(path, opts, relay, dir) do
     ws_opts =
       opts
-      |> Keyword.drop([:executable, :args, :env])
+      |> Keyword.drop([:executable, :args, :env, :stdout_marker])
       |> Keyword.put_new(:path, "/app-server")
 
     case WebSocket.open_unix(path, ws_opts) do
@@ -148,7 +155,6 @@ defmodule SamgitaCodexDriver.Transport.Command do
   defp start_relay(listener, executable, args, env, opts) do
     timeout = Keyword.get(opts, :connect_timeout_ms, 10_000)
     cleanup = cleanup_timeout(opts)
-    owner = self()
 
     spawn_link(fn ->
       port =
@@ -165,7 +171,15 @@ defmodule SamgitaCodexDriver.Transport.Command do
         {:ok, client} ->
           :gen_tcp.close(listener)
           :ok = :inet.setopts(client, active: true)
-          relay(port, client, owner, cleanup)
+
+          relay(%{
+            port: port,
+            client: client,
+            cleanup: cleanup,
+            marker: opts[:stdout_marker],
+            seen: "",
+            held: []
+          })
 
         {:error, _} ->
           :gen_tcp.close(listener)
@@ -174,25 +188,57 @@ defmodule SamgitaCodexDriver.Transport.Command do
     end)
   end
 
-  defp relay(port, client, owner, cleanup) do
+  defp relay(%{port: port, client: client} = state) do
     receive do
       {^port, {:data, data}} ->
-        :gen_tcp.send(client, data)
-        relay(port, client, owner, cleanup)
+        case from_command(state, data) do
+          {:ok, state} ->
+            relay(state)
+
+          :error ->
+            :gen_tcp.close(client)
+            stop_port(port, state.cleanup)
+        end
 
       {:tcp, ^client, data} ->
-        Port.command(port, data)
-        relay(port, client, owner, cleanup)
+        if state.marker do
+          relay(%{state | held: [state.held, data]})
+        else
+          Port.command(port, data)
+          relay(state)
+        end
 
       {:tcp_closed, ^client} ->
-        stop_port(port, cleanup)
+        stop_port(port, state.cleanup)
 
       {^port, {:exit_status, _}} ->
         :gen_tcp.close(client)
 
       {:stop, from, ref} ->
         :gen_tcp.close(client)
-        Kernel.send(from, {ref, stop_port(port, cleanup)})
+        Kernel.send(from, {ref, stop_port(port, state.cleanup)})
+    end
+  end
+
+  defp from_command(%{marker: nil} = state, data) do
+    :gen_tcp.send(state.client, data)
+    {:ok, state}
+  end
+
+  defp from_command(state, data) do
+    seen = state.seen <> data
+
+    case :binary.split(seen, state.marker) do
+      [_noise, rest] ->
+        if rest != "", do: :gen_tcp.send(state.client, rest)
+        if state.held != [], do: Port.command(state.port, state.held)
+        {:ok, %{state | marker: nil, seen: "", held: []}}
+
+      [_] when byte_size(seen) > @marker_scan_limit ->
+        :error
+
+      [_] ->
+        {:ok, %{state | seen: seen}}
     end
   end
 

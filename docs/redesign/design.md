@@ -466,11 +466,13 @@ Two transports are supported. Samgita never spawns a local `codex` binary.
 
 The driver transport `SamgitaCodexDriver.Transport.Command` carries WebSocket over any owned command's stdio: it relays the command's stdio through a private per-connection Unix socket, so the existing `Transport.WebSocket` client provides framing, limits and close semantics unchanged. `Samgita.CodexHosts.Ssh` builds the OpenSSH command. Closing the transport ends only the SSH process (killed after a grace period if it ignores stdin EOF); it never stops the remote daemon or its threads.
 
+Like the Codex desktop app, the remote command runs in the remote user's login shell: `sh -c <launcher> sh <payload>`, where the launcher execs `$SHELL -l -i` (with csh/tcsh, nu, fish and xonsh variants) and the payload, run by `/bin/sh`, prepends `${CODEX_INSTALL_DIR:-$HOME/.local/bin}` to `PATH` and `exec`s `codex` (or `remote_codex_path`). Profile-managed installs therefore resolve without an absolute path. A login shell may print banners, so the payload first prints a random per-connection marker; `Transport.Command` (`stdout_marker`) discards stdout before it, holds client bytes until it appears and fails the open after 64 KiB without it. The desktop app's reverse port forward and SSH-agent socket link are not reproduced.
+
 An optional per-host `ensure_daemon` flag runs `ssh <target> codex app-server daemon start` (idempotent) before the proxy session. It is off by default, so Samgita does not manage a remote daemon unless the operator asks for it.
 
 ### SSH safety
 
-- Invoke `ssh` with a fixed argument list, never a shell string. Host, user, port and remote socket path are validated values.
+- Invoke `ssh` with a fixed argument list, never a shell string. Host, user, port and remote socket path are validated values. Every word of the remote command is single-quoted for the remote shells.
 - Always use `BatchMode=yes`, `StrictHostKeyChecking=yes` and a Samgita-owned `UserKnownHostsFile` built from the host's configured known-host entries. An unknown or changed host key refuses the connection.
 - Ignore user SSH configuration (`-F /dev/null`), disable agent, X11 and port forwarding (`-a -x -o ClearAllForwardings=yes`) and connection sharing (`ControlPath=none`). Use a minimal environment (`PATH`, `HOME` set to the private directory, `LANG`; `SSH_AUTH_SOCK` only when no key reference is configured).
 - The private key comes from a versioned external credential reference, resolved at use time like GitHub secrets, and is written only to a private temporary file for the subprocess lifetime. No private key, token or passphrase is stored in the database or logged.

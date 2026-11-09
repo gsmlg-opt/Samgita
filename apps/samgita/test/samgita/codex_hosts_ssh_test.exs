@@ -6,31 +6,32 @@ defmodule Samgita.CodexHostsSshTest do
 
   @known_hosts "127.0.0.1 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl"
 
-  # Stands in for OpenSSH: records argv and the identity file mode, runs
-  # `daemon start` as a no-op, and relays `app-server proxy` stdio to the fake
-  # app-server at 127.0.0.1:<-p port>.
+  # Stands in for OpenSSH plus the remote account: records argv, then runs the
+  # remote command with /bin/sh as sshd would, in a home whose login profile
+  # prints a banner. The `codex` found through CODEX_INSTALL_DIR records its
+  # arguments, runs `daemon start` as a no-op and relays `app-server proxy`
+  # stdio to the fake app-server at 127.0.0.1:<-p port>.
   defp fake_ssh(dir, opts \\ []) do
     log = Path.join(dir, "ssh.log")
+    codex_log = Path.join(dir, "codex.log")
     daemon_exit = Keyword.get(opts, :daemon_exit, 0)
-    script = Path.join(dir, "fake-ssh")
+    python = System.find_executable("python3")
+    home = Path.join(dir, "home")
+    bin = Path.join(dir, "bin")
+    File.mkdir_p!(home)
+    File.mkdir_p!(bin)
+    File.write!(Path.join(home, ".profile"), "echo 'Welcome to the remote host'\n")
 
-    File.write!(script, """
-    #!#{System.find_executable("python3")} -I
-    import json, os, socket, stat, sys, threading
-    argv = sys.argv[1:]
-    record = {"argv": argv, "env": sorted(os.environ.keys())}
-    if "-i" in argv:
-        key = argv[argv.index("-i") + 1]
-        record["key_mode"] = oct(stat.S_IMODE(os.stat(key).st_mode))
-    kh = [a for a in argv if a.startswith("UserKnownHostsFile=")][0].split("=", 1)[1]
-    record["known_hosts"] = open(kh).read()
-    with open(#{inspect(log)}, "a") as f:
-        f.write(json.dumps(record) + "\\n")
-    command = argv[-1]
-    if "'daemon'" in command:
+    codex = Path.join(bin, "codex")
+
+    File.write!(codex, """
+    #!#{python} -I
+    import json, os, socket, sys, threading
+    with open(#{inspect(codex_log)}, "a") as f:
+        f.write(json.dumps({"args": sys.argv[1:], "path": os.environ.get("PATH")}) + "\\n")
+    if sys.argv[1:3] == ["app-server", "daemon"]:
         sys.exit(#{daemon_exit})
-    port = int(argv[argv.index("-p") + 1])
-    s = socket.create_connection(("127.0.0.1", port))
+    s = socket.create_connection(("127.0.0.1", int(os.environ["FAKE_CODEX_PORT"])))
     def pump_in():
         while True:
             data = os.read(0, 65536)
@@ -45,8 +46,28 @@ defmodule Samgita.CodexHostsSshTest do
         os.write(1, data)
     """)
 
-    File.chmod!(script, 0o755)
-    {script, log}
+    script = Path.join(dir, "fake-ssh")
+
+    File.write!(script, """
+    #!#{python} -I
+    import json, os, stat, sys
+    argv = sys.argv[1:]
+    record = {"argv": argv, "env": sorted(os.environ.keys())}
+    if "-i" in argv:
+        key = argv[argv.index("-i") + 1]
+        record["key_mode"] = oct(stat.S_IMODE(os.stat(key).st_mode))
+    kh = [a for a in argv if a.startswith("UserKnownHostsFile=")][0].split("=", 1)[1]
+    record["known_hosts"] = open(kh).read()
+    with open(#{inspect(log)}, "a") as f:
+        f.write(json.dumps(record) + "\\n")
+    env = {"SHELL": "/bin/sh", "HOME": #{inspect(home)}, "PATH": "/usr/bin:/bin",
+           "CODEX_INSTALL_DIR": #{inspect(bin)},
+           "FAKE_CODEX_PORT": argv[argv.index("-p") + 1]}
+    os.execve("/bin/sh", ["sh", "-c", argv[-1]], env)
+    """)
+
+    for file <- [codex, script], do: File.chmod!(file, 0o755)
+    {script, log, codex_log}
   end
 
   defp calls(log) do
@@ -60,7 +81,7 @@ defmodule Samgita.CodexHostsSshTest do
     agent = agent_fixture(%{"runtime_driver" => "codex", "runtime_version" => "0.167.0"})
     dir = Path.join(System.tmp_dir!(), "samgita-ssh-test-#{System.unique_integer([:positive])}")
     File.mkdir_p!(dir)
-    {script, log} = fake_ssh(dir)
+    {script, log, codex_log} = fake_ssh(dir)
 
     previous = Application.get_env(:samgita, :codex_hosts)
     previous_secrets = Application.get_env(:samgita, :codex_host_secrets)
@@ -84,10 +105,10 @@ defmodule Samgita.CodexHostsSshTest do
       File.rm_rf!(dir)
     end)
 
-    %{server: server, agent: agent, dir: dir, log: log}
+    %{server: server, agent: agent, dir: dir, log: log, codex_log: codex_log}
   end
 
-  defp configure(agent, server, attrs \\ %{}) do
+  defp configure(agent, server, attrs) do
     CodexHosts.configure(
       Principal.operator(),
       command(
@@ -161,7 +182,7 @@ defmodule Samgita.CodexHostsSshTest do
   end
 
   test "connects through the SSH proxy command with strict, forwarding-free options",
-       %{agent: agent, server: server, log: log} do
+       %{agent: agent, server: server, log: log, codex_log: codex_log} do
     System.put_env("SAMGITA_LEAK_PROBE", "1")
     on_exit(fn -> System.delete_env("SAMGITA_LEAK_PROBE") end)
     {:ok, host} = configure(agent, server, %{"remote_socket_path" => "/run/codex/app.sock"})
@@ -181,11 +202,13 @@ defmodule Samgita.CodexHostsSshTest do
     assert "-a" in argv and "-x" in argv and "-T" in argv
     assert Enum.slice(argv, Enum.find_index(argv, &(&1 == "-l")), 2) == ["-l", "codex"]
 
-    assert Enum.take(argv, -3) == [
-             "--",
-             "127.0.0.1",
-             "'codex' 'app-server' 'proxy' '--sock' '/run/codex/app.sock'"
-           ]
+    assert ["--", "127.0.0.1", "'sh' '-c' " <> _] = Enum.take(argv, -3)
+
+    # The banner printed by the login profile was skipped before the handshake;
+    # codex was found through CODEX_INSTALL_DIR.
+    assert [%{"args" => args, "path" => path}] = calls(codex_log)
+    assert args == ["app-server", "proxy", "--sock", "/run/codex/app.sock"]
+    assert String.starts_with?(path, Path.dirname(codex_log) <> "/bin:")
 
     assert known_hosts == @known_hosts <> "\n"
 
@@ -239,32 +262,32 @@ defmodule Samgita.CodexHostsSshTest do
   end
 
   test "ensure_daemon starts the remote daemon before the proxy session",
-       %{agent: agent, server: server, log: log} do
+       %{agent: agent, server: server, log: log, codex_log: codex_log} do
     {:ok, host} = configure(agent, server, %{"ensure_daemon" => true})
     {:ok, _} = enable(host)
     await_status(host["id"], "connected")
 
-    assert [daemon, proxy] = calls(log)
-    assert List.last(daemon["argv"]) == "'codex' 'app-server' 'daemon' 'start'"
-    assert List.last(proxy["argv"]) == "'codex' 'app-server' 'proxy'"
+    assert [_daemon, _proxy] = calls(log)
+
+    assert Enum.map(calls(codex_log), & &1["args"]) == [
+             ["app-server", "daemon", "start"],
+             ["app-server", "proxy"]
+           ]
   end
 
   test "a failed daemon start backs off and cleans up", %{agent: agent, server: server, dir: dir} do
-    {script, log} = fake_ssh(Path.join(dir, "failing") |> tap(&File.mkdir_p!/1), daemon_exit: 1)
+    {script, log, codex_log} =
+      fake_ssh(Path.join(dir, "failing") |> tap(&File.mkdir_p!/1), daemon_exit: 1)
+
     config = Application.get_env(:samgita, :codex_hosts)
     Application.put_env(:samgita, :codex_hosts, Keyword.put(config, :ssh_executable, script))
 
-    {:ok, host} =
-      configure(agent, server, %{
-        "ensure_daemon" => true,
-        "remote_codex_path" => "/opt/codex/bin/codex"
-      })
-
+    {:ok, host} = configure(agent, server, %{"ensure_daemon" => true})
     {:ok, _} = enable(host)
 
     assert %{"error" => "daemon_start_failed"} = await_status(host["id"], "backoff")
     [call | _] = calls(log)
-    assert List.last(call["argv"]) == "'/opt/codex/bin/codex' 'app-server' 'daemon' 'start'"
+    assert [%{"args" => ["app-server", "daemon", "start"]} | _] = calls(codex_log)
 
     private_dir =
       call["argv"]
@@ -291,10 +314,27 @@ defmodule Samgita.CodexHostsSshTest do
     assert_receive {:fake_codex, :closed}, 3_000
   end
 
-  test "remote command words are shell-quoted" do
-    host = %{remote_codex_path: "/opt/it's/codex"}
+  test "the remote command runs codex through the login shell with quoted words" do
+    dir = Path.join(System.tmp_dir!(), "samgita-ssh-quote-#{System.unique_integer([:positive])}")
+    codex = Path.join([dir, "it's here", "codex"])
+    home = Path.join(dir, "home")
+    File.mkdir_p!(Path.dirname(codex))
+    File.mkdir_p!(home)
+    on_exit(fn -> File.rm_rf!(dir) end)
+    File.write!(Path.join(home, ".profile"), "echo banner\n")
+    File.write!(codex, "#!/bin/sh\nfor a in \"$@\"; do printf '<%s>' \"$a\"; done\n")
+    File.chmod!(codex, 0o755)
 
-    assert Ssh.remote_command(host, ["app-server", "proxy"]) ==
-             "'/opt/it'\\''s/codex' 'app-server' 'proxy'"
+    command =
+      Ssh.remote_command(%{remote_codex_path: codex}, ["app-server", "a b", "$(id)"], "MARK")
+
+    {output, 0} =
+      System.cmd("/bin/sh", ["-c", command],
+        env: [{"SHELL", "/bin/sh"}, {"HOME", home}],
+        stderr_to_stdout: false
+      )
+
+    assert [banner, "<app-server><a b><$(id)>"] = String.split(output, "MARK")
+    assert banner =~ "banner"
   end
 end

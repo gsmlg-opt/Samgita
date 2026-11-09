@@ -8,9 +8,21 @@ defmodule Samgita.CodexHosts.Ssh do
   written from the host's configuration, no forwarding and a minimal
   environment. A private key comes from a credential reference and exists only
   in a private directory for the lifetime of one connection.
+
+  Like the Codex desktop app, the remote command runs in the remote user's
+  login shell (`$SHELL -l -i`), so profile-managed PATH entries resolve, and
+  `${CODEX_INSTALL_DIR:-$HOME/.local/bin}` is prepended to PATH. A login shell
+  may print banners, so the proxy session first prints a random per-connection
+  marker and the transport discards stdout before it.
   """
 
   @ensure_daemon_timeout 30_000
+
+  # Runs `$1` with /bin/sh inside the remote user's login shell. Mirrors the
+  # Codex desktop app launcher, including csh/tcsh, nu, fish and xonsh.
+  @launcher String.trim(~S"""
+            if [ -z "$SHELL" ] || [ ! -x "$SHELL" ]; then echo "Codex remote SSH requires SHELL to point to an executable login shell" >&2; exit 127; fi; SAMGITA_REMOTE_PAYLOAD="$1"; export SAMGITA_REMOTE_PAYLOAD; case "${SHELL##*/}" in csh|tcsh) exec "$SHELL" -i -c 'set loginsh=1; if ( -r /etc/csh.login ) source /etc/csh.login; if ( -r ~/.login ) source ~/.login; exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; nu) exec "$SHELL" -l -i -c 'exec /bin/sh -c $env.SAMGITA_REMOTE_PAYLOAD' ;; fish|xonsh) exec "$SHELL" -l -i -c 'exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; *) exec "$SHELL" -l -i -c 'CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"; export CODEX_HOME; exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; esac
+            """)
 
   @doc "Prepare private files and transport options. The caller must `cleanup/1` the dir."
   def prepare(host) do
@@ -29,6 +41,7 @@ defmodule Samgita.CodexHosts.Ssh do
 
       base = options(host, known_hosts, key_file)
       env = env(dir, key_file)
+      marker = "samgita-ready:" <> Base.encode16(:crypto.strong_rand_bytes(16), case: :lower)
 
       {:ok,
        %{
@@ -38,8 +51,10 @@ defmodule Samgita.CodexHosts.Ssh do
          env: env,
          transport: [
            executable: ssh,
-           args: base ++ [remote_command(host, ["app-server", "proxy"] ++ socket_args(host))],
-           env: env
+           args:
+             base ++ [remote_command(host, ["app-server", "proxy"] ++ socket_args(host), marker)],
+           env: env,
+           stdout_marker: marker
          ]
        }}
     end
@@ -65,9 +80,15 @@ defmodule Samgita.CodexHosts.Ssh do
   def cleanup(dir), do: File.rm_rf(dir) && :ok
 
   @doc false
-  def remote_command(host, args) do
-    [host.remote_codex_path || "codex" | args]
-    |> Enum.map_join(" ", &quote_arg/1)
+  def remote_command(host, args, marker \\ nil) do
+    codex = Enum.map_join([host.remote_codex_path || "codex" | args], " ", &quote_arg/1)
+    ready = if marker, do: "printf '%s' " <> quote_arg(marker) <> "; ", else: ""
+
+    payload =
+      ready <>
+        ~S|PATH="${CODEX_INSTALL_DIR:-$HOME/.local/bin}:$PATH"; export PATH; exec | <> codex
+
+    Enum.map_join(["sh", "-c", @launcher, "sh", payload], " ", &quote_arg/1)
   end
 
   defp options(host, known_hosts, key_file) do

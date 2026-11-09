@@ -130,6 +130,62 @@ defmodule SamgitaCodexDriver.TransportCommandTest do
     refute Process.alive?(state.relay)
   end
 
+  test "stdout before the marker is discarded and client bytes wait for it" do
+    # Prints login-shell noise and a marker split across writes; exits if any
+    # client byte reaches stdin before the marker was printed.
+    noisy =
+      String.replace(
+        @proxy,
+        "s = socket.create_connection",
+        """
+        import select, time
+        os.write(1, b"Welcome banner\\nMA")
+        if select.select([0], [], [], 0.3)[0]:
+            sys.exit(4)
+        time.sleep(0.1)
+        os.write(1, b"RK")
+        s = socket.create_connection\
+        """
+      )
+
+    {_server, port} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner)
+        {:ok, 1, json, _} = Wire.read_frame(socket)
+        send(owner, {:client_json, json})
+
+        receive do
+          :stop -> :ok
+        end
+      end)
+
+    assert {:ok, state} =
+             Command.open(
+               executable: python(),
+               args: ["-I", "-c", noisy, "127.0.0.1", Integer.to_string(port)],
+               env: [],
+               stdout_marker: "MARK"
+             )
+
+    assert_receive {:upgrade_request, request}, 5_000
+    assert request =~ "GET /app-server HTTP/1.1"
+    assert {:ok, state} = Command.send(state, ~s({"id":1}))
+    assert_receive {:client_json, ~s({"id":1})}, 5_000
+    assert :ok = Command.close(state)
+  end
+
+  test "a command that never prints the marker fails to open" do
+    assert {:error, %Error{}} =
+             Command.open(
+               executable: python(),
+               args: ["-I", "-c", "import time; print('motd'); time.sleep(5)"],
+               env: [],
+               stdout_marker: "MARK",
+               connect_timeout_ms: 2_000,
+               cleanup_timeout_ms: 200
+             )
+  end
+
   test "rejects relative executables and unsafe arguments or environment" do
     assert {:error, %Error{code: :invalid_transport_options}} =
              Command.open(executable: "python3", args: [])
@@ -139,6 +195,9 @@ defmodule SamgitaCodexDriver.TransportCommandTest do
 
     assert {:error, %Error{code: :invalid_transport_options}} =
              Command.open(executable: python(), args: [], env: [{"BAD NAME", "x"}])
+
+    assert {:error, %Error{code: :invalid_transport_options}} =
+             Command.open(executable: python(), args: [], stdout_marker: "")
   end
 
   test "a command that never connects fails to open without leaking resources" do
