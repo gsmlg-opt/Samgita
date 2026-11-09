@@ -78,6 +78,7 @@ defmodule Samgita.RecoveryActivationTest do
       Agents.open_session(actor, project["id"], command(%{"external_id" => Ecto.UUID.generate()}))
 
     {:ok, task} = Tasks.create(actor, project["id"], command(%{"title" => "Unresolved recovery"}))
+    task = assign_fixture(project, task, agent)
 
     {:ok, attempt} =
       Attempts.claim(

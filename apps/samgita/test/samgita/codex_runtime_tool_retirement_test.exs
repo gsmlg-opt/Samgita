@@ -33,6 +33,8 @@ defmodule Samgita.CodexRuntimeToolRetirementTest do
         command(%{"title" => "Native tool retirement"})
       )
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,

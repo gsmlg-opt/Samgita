@@ -29,6 +29,8 @@ defmodule Samgita.Attempts do
     Commands.expect!(task, attrs)
 
     validate_claim_task!(ctx, task)
+    # Only the explicitly assigned executor may claim (design §10).
+    if task.assignee_agent_id != ctx.principal.agent_id, do: Commands.fail!(:invalid_transition)
 
     agent = Repo.get!(Agent, ctx.principal.agent_id)
     validate_capabilities!(agent, task)

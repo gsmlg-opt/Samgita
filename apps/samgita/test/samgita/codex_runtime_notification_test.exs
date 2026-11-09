@@ -60,6 +60,8 @@ defmodule Samgita.CodexRuntimeNotificationTest do
         command(%{"title" => "Notification proof"})
       )
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,

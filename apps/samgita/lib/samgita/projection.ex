@@ -31,7 +31,7 @@ defmodule Samgita.Projection do
   def task(r) do
     fields(
       r,
-      ~w(id project_id parent_task_id title description state version adopted execution_hold required_capabilities accepted_at inserted_at updated_at)a
+      ~w(id project_id parent_task_id title description state version adopted execution_hold required_capabilities assignee_agent_id assigned_at accepted_at inserted_at updated_at)a
     )
     |> Map.put(
       "legacy",

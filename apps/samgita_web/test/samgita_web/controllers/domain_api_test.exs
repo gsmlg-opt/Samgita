@@ -444,7 +444,20 @@ defmodule SamgitaWeb.DomainAPITest do
       |> post(prefix <> "/tasks", command(%{"title" => "Agent owned execution"}))
       |> json_response(201)
 
-    task = created["data"]
+    task =
+      conn
+      |> machine(credential, connection)
+      |> post(
+        prefix <> "/tasks/#{created["data"]["id"]}/assign",
+        command(%{
+          "expected_version" => created["data"]["version"],
+          "assignee_agent_id" => agent["id"]
+        })
+      )
+      |> json_response(200)
+      |> Map.fetch!("data")
+
+    assert task["assignee_agent_id"] == agent["id"]
 
     session =
       conn

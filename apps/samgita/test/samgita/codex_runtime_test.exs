@@ -53,6 +53,8 @@ defmodule Samgita.CodexRuntimeTest do
     {:ok, task} =
       Tasks.create(Principal.operator(), project["id"], command(%{"title" => "Native execution"}))
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,

@@ -322,6 +322,8 @@ defmodule SamgitaWeb.TasksLiveTest do
     {:ok, session} =
       Agents.open_session(principal, p["id"], command(%{"external_id" => Ecto.UUID.generate()}))
 
+    t = assign_fixture(p, t, a)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,

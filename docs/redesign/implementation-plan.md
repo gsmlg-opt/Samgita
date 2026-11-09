@@ -319,3 +319,47 @@ Owner files: `apps/samgita_codex_driver/lib/samgita_codex_driver/transport/comma
 - [x] Remote command runs through the remote login shell like the Codex desktop app (`$SHELL -l -i`, `CODEX_INSTALL_DIR`/`~/.local/bin` on `PATH`), with a per-connection stdout marker that `Transport.Command` uses to skip login-shell output.
 
 Result (2026-11-09): driver `transport_command_test.exs` 5 tests; core SSH tests 8 (including a regression for a Session leak when `initialize` fails, found and fixed in P7.1 code); web 5 Codex host tests; all affected suites pass. Real OpenSSH against local sshd: a wrong host key is refused before authentication ("REMOTE HOST IDENTIFICATION HAS CHANGED"), the correct key passes host verification and fails authentication without prompting (`BatchMode`). Login-shell follow-up: driver Command tests 7 (marker split across writes, client bytes held until the marker, missing marker fails); core SSH tests now execute the generated remote command with `/bin/sh` and a banner-printing profile; the launcher was also run locally under zsh, bash and tcsh with a stub `codex` (fish not installed). Unverified: a full real-SSH session to a real Codex daemon (needs authorized SSH credentials). Out-of-scope pre-existing failures recorded, not fixed: `transport_web_socket_test.exs` expects a lowercase `authorization` header but the updated `http_web_socket` sends `Authorization`; 9 `initialized_transport_test.exs` cases need the pinned `CODEX_BINARY` environment.
+
+## 11. P8 — Coordinated delegation (design §10)
+
+Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.
+
+### P8.1 Assignment and assigned claim
+
+Owner files: additive migration `*_add_task_assignment.exs`; `apps/samgita/lib/samgita/{domain/task.ex,tasks.ex,attempts.ex,projection.ex}`; `apps/samgita_web/lib/samgita_web/{router.ex,controllers/task_controller.ex}` and the Task LiveView where it shows Task fields; new `apps/samgita/test/samgita/tasks/assignment_test.exs`; existing tests that claim a Task (assign it first; their assertions are otherwise unchanged); `docs/redesign/management-api.md`, `docs/architecture.md`.
+
+- [x] Nullable `tasks.assignee_agent_id` (FK `agents`) and `tasks.assigned_at`, plus an index for the assignee filter.
+- [x] `Tasks.assign/4` (`task.assign:<id>`, `manager`, `expected_version`, `command_id`): Project active, Task adopted and `open`, no active Attempt, no execution hold; a non-null assignee is enabled, an enabled `worker` member, with approved and advertised capabilities covering `required_capabilities`; null unassigns. Atomic Task version, receipt and `task.assigned` event (`assignee_agent_id`, `previous_assignee_agent_id`).
+- [x] `claim` refuses unless `task.assignee_agent_id` is the claiming Agent (`invalid_transition`; existing capability and capacity checks unchanged).
+- [x] `Tasks.list` accepts an `assignee_agent_id` filter; projections include `assignee_agent_id` and `assigned_at`.
+- [x] `POST /api/.../tasks/:task_id/assign` in the operator and Agent scopes.
+
+Result (2026-11-09): migration `20261109000002_add_task_assignment.exs`; new `tasks/assignment_test.exs` 5 functional tests pass (assignment receipt/event/replay, stale version, unassignment, state preconditions, assignee-only claim, list filter); its 2 authorization cases (membership/role/capability/disabled refusal, claim of another Agent's Task) are written and unrun. Existing claim tests now assign first; the same-Task race now races one assignee through two sessions. The filtered core suite (181 tests) and affected web tests pass except recorded pre-existing failures: `CODEX_BINARY` unset for one notification test and the Gaoxy `:invalid_endpoint` 429 connector test. The preservation rehearsal excludes the two new neutral columns and asserts they are null on historical rows.
+
+### P8.2 Assignee notification
+
+Owner files: `apps/samgita/lib/samgita/{events.ex,event_delivery.ex}`; the routing controller/routes and the Project LiveView routing section; new `apps/samgita/test/samgita/events/assignee_routing_test.exs`; `docs/redesign/management-api.md`.
+
+- [ ] Operator command configures one `assignee` subscription per (Project, Agent): explicit, revisioned, `project_events.v1` required, approved endpoint digest, `worker` role; reconfiguring disables the previous revision. Additive partial unique index.
+- [ ] Fan-out delivers `task.assigned` to an `assignee` subscription only when its Agent is the event's current or previous assignee, and other Task events only for Tasks assigned to that Agent. `responsible` fan-out is unchanged.
+- [ ] Delivery target checks accept an `assignee` subscription whose Agent is still an enabled `worker` member; its report and cursor commands accept the `worker` role for that subscription only.
+
+### P8.3 Separation of duties and acceptance visibility
+
+Owner files: `apps/samgita/lib/samgita/tasks.ex`; the Project LiveView member list; their tests.
+
+- [ ] `decide` refuses an Agent that owned the Attempt that submitted the Task to `awaiting_review` (`forbidden`); operators are exempt.
+- [ ] The Project page shows which members hold `reviewer`, so automated versus human acceptance is visible.
+
+### P8.4 Release observation
+
+Owner files: `apps/samgita/lib/samgita/github/{payload.ex,client.ex,reconciliation.ex}`, `apps/samgita/lib/samgita/github.ex`; GitHub fixtures and tests; `docs/redesign/design.md` §5/§9 (B5 note), `docs/redesign/integrations/` GitHub setup.
+
+- [ ] Normalize the `release` webhook (`published released prereleased edited deleted unpublished`) into source event `github.release` with a `release` object kind and immutable observation; duplicate deliveries deduplicate as today.
+- [ ] Per-resource reconciliation fetches `/releases/{id}`; the required installation permission profile adds `contents: read`, recorded under B5. Release lists are not scanned.
+
+### P8.5 Outcome loop
+
+Owner files: new `apps/samgita_web/test/samgita_web/integration/delegation_journey_test.exs`; `AGENTS.md` target-workflow status; `docs/redesign/design.md` §10 status.
+
+- [ ] With a fake coordinator and a fake executor over real WebSockets: issue event → coordinator creates child Tasks → assigns → executor is notified, claims, starts, reports → coordinator receives `attempt.reported` → a reviewer decision → `accepted`.

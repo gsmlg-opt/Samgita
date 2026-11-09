@@ -99,6 +99,7 @@ defmodule SamgitaWeb.Router do
       only: [:index, :show, :create, :update]
 
     post "/projects/:project_id/tasks/:task_id/transition", TaskController, :transition
+    post "/projects/:project_id/tasks/:task_id/assign", TaskController, :assign
     post "/projects/:project_id/tasks/:task_id/adopt", TaskController, :adopt
     post "/projects/:project_id/tasks/:task_id/decisions", TaskController, :decide
     post "/projects/:project_id/tasks/:task_id/artifacts", TaskController, :add_artifact
@@ -182,6 +183,7 @@ defmodule SamgitaWeb.Router do
       only: [:index, :show, :create, :update]
 
     post "/projects/:project_id/tasks/:task_id/transition", TaskController, :transition
+    post "/projects/:project_id/tasks/:task_id/assign", TaskController, :assign
     post "/projects/:project_id/tasks/:task_id/decisions", TaskController, :decide
     post "/projects/:project_id/tasks/:task_id/artifacts", TaskController, :add_artifact
     post "/projects/:project_id/tasks/:task_id/claim", AttemptController, :claim

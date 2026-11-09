@@ -71,6 +71,12 @@ authenticated connection generation, external execution session and execution
 Attempt are separate records. Project memberships grant roles; capabilities
 advertise supported operations and never grant authority.
 
+A `manager` (the coordinator Agent or an operator) explicitly assigns an open
+Task to a named executor with `assign` (`tasks.assignee_agent_id`, event
+`task.assigned`); only that assignee can claim it, and `GET .../tasks?assignee_agent_id=`
+lets an executor poll its work. Samgita validates the assignee's membership,
+`worker` role and capabilities but never chooses an executor.
+
 PostgreSQL is authoritative. Claims serialize capacity and eligible Tasks,
 enforce unique active Attempts, and use leases with monotonic fencing. Domain
 changes, audit events and command receipts commit atomically. PubSub may notify

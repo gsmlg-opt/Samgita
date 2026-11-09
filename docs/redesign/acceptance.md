@@ -295,3 +295,16 @@ The first hosted repair run passed through assets, then exposed a missing-ripgre
 | A15 | Prior static/security/install issues repaired without exclusions, sleeps, production-limit changes or fresh-only evidence; scoped commits and push authorized | A11 prevents release; no normal publication workflow, real integration or production cutover acceptance |
 
 No tag, publication or deployment is justified by these local checks. The original six-hour Bun cancellation remains **not reproduced/cause unknown**; a separate reproduced Bun 1.4.4 asset-wrapper incompatibility is avoided by the verified 1.3.13 pin and matching frozen lock. No historical migration/data was deleted or applied to production.
+
+### A18 — Coordinated delegation (P8)
+
+A coordinator creates a Task tree and assigns each executable Task to a named executor. Pass when:
+
+- Assignment succeeds only for an open, adopted Task without an active Attempt or execution hold, to an enabled `worker` member covering `required_capabilities`; each refusal leaves no state change; a stale `expected_version` conflicts; an identical retry replays its receipt; unassignment works.
+- An unassigned Task and a Task assigned to another Agent refuse claim; the assignee claims within capacity; `Tasks.list` filters by assignee.
+- `task.assigned` reaches only the current/previous assignee's `assignee` subscription and the `responsible` subscription; redelivery keeps the event identity.
+- The outcome loop in P8.5 completes over real WebSockets with a fake coordinator and a fake executor.
+- The executor holding `reviewer` cannot accept its own submitted Task; a separate reviewer Agent or an operator can.
+- A signed `release` delivery creates one `github.release` event and observation; a duplicate delivery does not.
+
+Refusal cases for roles, membership and separation of duties are authorization checks; under the verification restriction they are recorded as unrun until a permitted run.

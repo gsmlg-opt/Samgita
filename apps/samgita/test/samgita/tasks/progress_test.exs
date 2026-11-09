@@ -20,6 +20,8 @@ defmodule Samgita.Tasks.ProgressTest do
         command(%{"title" => "Progress evidence"})
       )
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         actor,

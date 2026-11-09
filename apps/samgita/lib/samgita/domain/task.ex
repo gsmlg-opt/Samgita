@@ -34,6 +34,8 @@ defmodule Samgita.Domain.Task do
     field :migration_metadata, :map, default: %{}
     field :accepted_at, :utc_datetime_usec
     field :fence_counter, :integer, default: 0
+    field :assignee_agent_id, :binary_id
+    field :assigned_at, :utc_datetime_usec
     timestamps(type: :utc_datetime)
   end
 end

@@ -193,7 +193,9 @@ defmodule SamgitaWeb.TasksLive.Show do
           <.dm_card>
             <:title>Task details</:title><p class="whitespace-pre-wrap">
               {@page["task"]["description"]}
-            </p><p>Parent: {@page["task"]["parent_task_id"] || "None"}</p><p>
+            </p><p>Parent: {@page["task"]["parent_task_id"] || "None"}</p><p id="task-assignee">
+              Assignee: {@page["task"]["assignee_agent_id"] || "Unassigned (not claimable)"}
+            </p><p>
               Required capabilities: {Enum.join(@page["task"]["required_capabilities"], ", ")}
             </p>
             <details

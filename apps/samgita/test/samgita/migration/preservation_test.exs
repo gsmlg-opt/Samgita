@@ -5,7 +5,7 @@ defmodule Samgita.Migration.PreservationTest do
   @root Path.expand("../../../../..", __DIR__)
   @migrations Path.join(@root, "apps/samgita/priv/repo/migrations")
   @neutral_projects ~w(description state version event_sequence migration_metadata)
-  @neutral_tasks ~w(title description state version adopted execution_hold required_capabilities migration_metadata accepted_at fence_counter)
+  @neutral_tasks ~w(title description state version adopted execution_hold required_capabilities migration_metadata accepted_at fence_counter assignee_agent_id assigned_at)
   @history ~w(projects tasks agent_runs artifacts memories snapshots webhooks prds chat_messages features notifications task_dependencies agent_messages sm_memories)
 
   test "restored migration sources match the pinned revision including memory provenance" do
@@ -102,6 +102,7 @@ defmodule Samgita.Migration.PreservationTest do
 
     assert query("SELECT owner,admission_open FROM platform_authority").rows == [["none", false]]
     assert query("SELECT count(*) FROM task_attempts").rows == [[0]]
+    assert query("SELECT count(*) FROM tasks WHERE assignee_agent_id IS NOT NULL").rows == [[0]]
     Ecto.Migrator.run(MigrationRepo, migrations, :up, all: true, log: false)
     assert manifest() == before
 

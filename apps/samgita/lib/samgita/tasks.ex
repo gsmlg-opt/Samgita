@@ -3,7 +3,7 @@ defmodule Samgita.Tasks do
   import Ecto.Query
   import Ecto.Changeset
   alias Samgita.{Commands, Events, LegacyMapping, Params, Projection, Repo, TaskTransitions}
-  alias Samgita.Domain.{ArtifactReference, DecisionRecord, Task, TaskAttempt}
+  alias Samgita.Domain.{Agent, ArtifactReference, DecisionRecord, ProjectAgent, Task, TaskAttempt}
   @read_roles ~w(observer worker manager reviewer)
 
   def create(principal, project_id, attrs) do
@@ -105,17 +105,32 @@ defmodule Samgita.Tasks do
     {limit, offset} = Params.page(params)
 
     Commands.read(principal, project_id, @read_roles, fn _ctx ->
-      tasks =
-        Repo.all(
-          from t in Task,
-            where: t.project_id == ^project_id,
-            order_by: [desc: t.inserted_at, asc: t.id],
-            limit: ^limit,
-            offset: ^offset
-        )
+      query =
+        from t in Task,
+          where: t.project_id == ^project_id,
+          order_by: [desc: t.inserted_at, asc: t.id],
+          limit: ^limit,
+          offset: ^offset
+
+      tasks = query |> assignee_filter(Params.strings(params)) |> Repo.all()
 
       %{"data" => Enum.map(tasks, &Projection.task/1), "limit" => limit, "offset" => offset}
     end)
+  end
+
+  @doc "Explicitly assign an open Task to a named executor Agent, or unassign it with nil (design §10)."
+  def assign(principal, project_id, id, attrs) do
+    attrs = Params.strings(attrs)
+    assignee = attrs["assignee_agent_id"]
+    agent_ids = if Params.uuid?(assignee), do: [assignee], else: []
+
+    Commands.run(
+      principal,
+      project_id,
+      attrs,
+      [operation: "task.assign:" <> to_string(id), roles: ["manager"], agent_ids: agent_ids],
+      fn ctx -> assign_task!(ctx, project_id, id, attrs) end
+    )
   end
 
   def transition(principal, project_id, id, attrs) do
@@ -245,6 +260,75 @@ defmodule Samgita.Tasks do
 
     Projection.task(task)
   end
+
+  defp assign_task!(ctx, project_id, id, attrs) do
+    if !Map.has_key?(attrs, "assignee_agent_id"),
+      do: Commands.fail!(:invalid, %{field: "assignee_agent_id"})
+
+    task = lock!(project_id, id)
+    Commands.expect!(task, attrs)
+
+    if ctx.project.state != "active" || task.state != "open" || !task.adopted ||
+         task.execution_hold,
+       do: Commands.fail!(:invalid_transition)
+
+    if Repo.exists?(
+         from a in TaskAttempt, where: a.task_id == ^task.id and a.state in ["leased", "running"]
+       ),
+       do: Commands.fail!(:invalid_transition)
+
+    assignee = attrs["assignee_agent_id"]
+    if assignee, do: assignable!(project_id, assignee, task)
+    previous = task
+
+    task =
+      task
+      |> change(
+        assignee_agent_id: assignee,
+        assigned_at: if(assignee, do: DateTime.utc_now()),
+        version: task.version + 1
+      )
+      |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "task.assigned",
+      ctx,
+      "task",
+      task.id,
+      %{
+        "assignee_agent_id" => assignee,
+        "previous_assignee_agent_id" => previous.assignee_agent_id
+      },
+      previous: previous,
+      current: task
+    )
+
+    Projection.task(task)
+  end
+
+  # Capacity is not reserved here; claim enforces it.
+  defp assignable!(project_id, assignee, task) do
+    if !Params.uuid?(assignee), do: Commands.fail!(:invalid, %{field: "assignee_agent_id"})
+    agent = Repo.get(Agent, assignee) || Commands.fail!(:not_found)
+    member = Repo.get_by(ProjectAgent, project_id: project_id, agent_id: agent.id)
+
+    if !agent.enabled || !member || !member.enabled || "worker" not in member.roles,
+      do: Commands.fail!(:forbidden)
+
+    if !Enum.all?(
+         task.required_capabilities || [],
+         &(&1 in agent.approved_capabilities && &1 in agent.advertised_capabilities)
+       ),
+       do: Commands.fail!(:forbidden)
+  end
+
+  defp assignee_filter(query, %{"assignee_agent_id" => id}) when is_binary(id) do
+    if !Params.uuid?(id), do: Commands.fail!(:invalid, %{field: "assignee_agent_id"})
+    where(query, [t], t.assignee_agent_id == ^id)
+  end
+
+  defp assignee_filter(query, _), do: query
 
   defp adopt_task!(ctx, project_id, id, attrs, agent_ids) do
     writable_project!(ctx)

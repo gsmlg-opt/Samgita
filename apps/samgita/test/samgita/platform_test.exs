@@ -18,6 +18,7 @@ defmodule Samgita.PlatformTest do
       )
 
     {:ok, task} = Tasks.create(principal, project["id"], command(%{"title" => "test execution"}))
+    task = assign_fixture(project, task, agent)
     claim = command(%{"expected_version" => task["version"], "session_id" => session["id"]})
     {:ok, attempt} = Attempts.claim(principal, project["id"], task["id"], claim)
 

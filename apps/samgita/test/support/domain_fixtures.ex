@@ -1,6 +1,6 @@
 defmodule Samgita.DomainFixtures do
   @moduledoc false
-  alias Samgita.{Agents, Params, Platform, Principal, Projects}
+  alias Samgita.{Agents, Params, Platform, Principal, Projects, Tasks}
 
   def command(attrs \\ %{}),
     do: Map.merge(%{"command_id" => Ecto.UUID.generate()}, Params.strings(attrs))
@@ -69,6 +69,22 @@ defmodule Samgita.DomainFixtures do
     {:ok, connection} = Agents.connect(principal, command())
     {:ok, bound} = Agents.bind_connection(principal, connection["id"])
     {bound, connection, raw}
+  end
+
+  @doc "Assign a Task to an executor as the operator; returns the updated Task."
+  def assign_fixture(project, task, agent) do
+    {:ok, assigned} =
+      Tasks.assign(
+        Principal.operator(),
+        project["id"],
+        task["id"],
+        command(%{
+          "assignee_agent_id" => agent && agent["id"],
+          "expected_version" => task["version"]
+        })
+      )
+
+    assigned
   end
 
   def activate_fixture do

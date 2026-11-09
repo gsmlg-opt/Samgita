@@ -142,6 +142,7 @@ defmodule Samgita.SecurityRaceTest do
       Agents.open_session(actor, p["id"], command(%{"external_id" => Ecto.UUID.generate()}))
 
     {:ok, task} = Tasks.create(actor, p["id"], command(%{"title" => "concurrent authorization"}))
+    task = assign_fixture(p, task, a)
     {p, a, actor, session, task}
   end
 

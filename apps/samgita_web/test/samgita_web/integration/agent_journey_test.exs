@@ -202,6 +202,14 @@ defmodule SamgitaWeb.AgentJourneyTest do
           command(%{"external_id" => "journal-thread-1"})
         )
 
+      task =
+        post_data(
+          machine,
+          machine_base <> "/tasks/#{task["id"]}/assign",
+          command(%{"expected_version" => task["version"], "assignee_agent_id" => agent["id"]}),
+          200
+        )
+
       claim_attrs =
         command(%{"expected_version" => task["version"], "session_id" => session["id"]})
 

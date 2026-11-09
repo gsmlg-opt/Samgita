@@ -26,6 +26,9 @@ defmodule SamgitaWeb.TaskController do
   def transition(conn, %{"project_id" => project_id, "task_id" => id}),
     do: API.result(conn, Tasks.transition(API.principal(conn), project_id, id, API.attrs(conn)))
 
+  def assign(conn, %{"project_id" => project_id, "task_id" => id}),
+    do: API.result(conn, Tasks.assign(API.principal(conn), project_id, id, API.attrs(conn)))
+
   def adopt(conn, %{"project_id" => project_id, "task_id" => id}),
     do: API.result(conn, Tasks.adopt(API.principal(conn), project_id, id, API.attrs(conn)))
 

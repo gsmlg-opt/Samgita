@@ -20,12 +20,14 @@ defmodule SamgitaWeb.CodexRuntimeControllerTest do
     {:ok, task} =
       Tasks.create(Principal.operator(), project["id"], command(%{"title" => "Native API"}))
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,
         project["id"],
         task["id"],
-        command(%{"expected_version" => 1, "session_id" => session["id"]})
+        command(%{"expected_version" => task["version"], "session_id" => session["id"]})
       )
 
     {:ok, %{"proof" => proof}} = Attempts.proof(principal, project["id"], attempt["id"])

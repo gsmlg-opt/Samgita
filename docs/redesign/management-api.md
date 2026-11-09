@@ -72,7 +72,7 @@ relative to `/api`; route availability does not waive command preconditions.
 | Repositories | `GET/POST /projects/:project_id/repositories` |
 | External sessions | `GET/POST /projects/:project_id/sessions` |
 | Tasks | `GET/POST /projects/:project_id/tasks`, `GET/PATCH /projects/:project_id/tasks/:id` |
-| Task decisions and evidence | `POST /projects/:project_id/tasks/:task_id/transition`, `/adopt`, `/decisions`, `/artifacts` |
+| Task decisions and evidence | `POST /projects/:project_id/tasks/:task_id/transition`, `/assign`, `/adopt`, `/decisions`, `/artifacts` |
 | Effect resolution | `POST /projects/:project_id/attempts/:id/resolve` |
 | Events | `GET /projects/:project_id/events`, `POST /projects/:project_id/events/trigger`, `/external`, `POST /projects/:project_id/events/:event_id/redeliver` |
 | Responsible routing | `GET/PUT /projects/:project_id/event-routing` |
@@ -111,7 +111,7 @@ while each command performs its own authoritative validation.
 | `GET /projects`, `GET/PATCH /projects/:id`, `POST /projects/:project_id/transition`, `GET /projects/:project_id/context` | Role-scoped Project reads and management |
 | `GET/POST /projects/:project_id/repositories`, `/sessions`, `/tasks` | Read/create authorized repository, session and Task records |
 | `GET/PATCH /projects/:project_id/tasks/:id` | Scoped Task read/update |
-| `POST /projects/:project_id/tasks/:task_id/transition`, `/decisions`, `/artifacts`, `/claim` | Legal management, decisions/evidence and execution claim |
+| `POST /projects/:project_id/tasks/:task_id/transition`, `/assign`, `/decisions`, `/artifacts`, `/claim` | Legal management, explicit executor assignment (`manager`), decisions/evidence and execution claim (assignee only) |
 | `POST /projects/:project_id/attempts/:id/start`, `/renew`, `/progress`, `/report`, `/rebind` | Current-owner fenced execution callbacks |
 | `POST /projects/:project_id/attempts/:id/resolve` | Former-owner reconciliation with former proof and evidence |
 | `GET /projects/:project_id/attempts/:id/proof` | Explicit current-owner proof read with `no-store` |

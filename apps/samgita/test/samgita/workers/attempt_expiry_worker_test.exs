@@ -22,6 +22,8 @@ defmodule Samgita.Workers.AttemptExpiryWorkerTest do
     {:ok, task} =
       Tasks.create(Principal.operator(), p["id"], command(%{"title" => "do not retry"}))
 
+    task = assign_fixture(p, task, a)
+
     {:ok, attempt} =
       Attempts.claim(
         actor,

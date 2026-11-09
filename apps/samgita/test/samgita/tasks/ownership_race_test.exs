@@ -49,7 +49,7 @@ defmodule Samgita.OwnershipRaceTest do
                 command(%{"title" => "Race #{n}"})
               )
 
-            task
+            assign_fixture(project, task, agent)
           end
 
         {project, principal, session, tasks}
@@ -63,7 +63,7 @@ defmodule Samgita.OwnershipRaceTest do
               principal,
               project["id"],
               task["id"],
-              command(%{"expected_version" => 1, "session_id" => session["id"]})
+              command(%{"expected_version" => task["version"], "session_id" => session["id"]})
             )
           end
         end)
@@ -87,12 +87,14 @@ defmodule Samgita.OwnershipRaceTest do
             command(%{"title" => "One logical Task"})
           )
 
+        # Only the assignee may claim; it races itself through two sessions.
+        agent = agent_fixture(%{"capacity" => 2})
+        member_fixture(project, agent, ["worker"])
+        {principal, _, _} = connection_fixture(agent)
+        task = assign_fixture(project, task, agent)
+
         owners =
           for _ <- 1..2 do
-            agent = agent_fixture()
-            member_fixture(project, agent, ["worker"])
-            {principal, _, _} = connection_fixture(agent)
-
             {:ok, session} =
               Agents.open_session(
                 principal,
@@ -114,7 +116,7 @@ defmodule Samgita.OwnershipRaceTest do
               principal,
               project["id"],
               task["id"],
-              command(%{"expected_version" => 1, "session_id" => session["id"]})
+              command(%{"expected_version" => task["version"], "session_id" => session["id"]})
             )
           end
         end)

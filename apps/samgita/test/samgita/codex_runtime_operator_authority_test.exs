@@ -42,6 +42,8 @@ defmodule Samgita.CodexRuntimeOperatorAuthorityTest do
         command(%{"title" => "Operator reply authority fixture"})
       )
 
+    task = assign_fixture(project, task, agent)
+
     {:ok, attempt} =
       Attempts.claim(
         principal,

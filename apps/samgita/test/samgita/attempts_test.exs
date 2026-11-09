@@ -21,6 +21,8 @@ defmodule Samgita.AttemptsTest do
     {:ok, task} =
       Tasks.create(Principal.operator(), project["id"], command(%{"title" => "Execution test"}))
 
+    task = assign_fixture(project, task, agent)
+
     %{project: project, agent: agent, principal: principal, session: session, task: task}
   end
 
@@ -185,12 +187,14 @@ defmodule Samgita.AttemptsTest do
     {:ok, other} =
       Tasks.create(Principal.operator(), p["id"], command(%{"title" => "Other work"}))
 
+    other = assign_fixture(p, other, ctx.agent)
+
     assert {:error, %{code: :capacity_exceeded}} =
              Attempts.claim(
                principal,
                p["id"],
                other["id"],
-               command(%{"expected_version" => 1, "session_id" => session["id"]})
+               command(%{"expected_version" => other["version"], "session_id" => session["id"]})
              )
 
     assert {:ok, _resolved} =
@@ -213,7 +217,7 @@ defmodule Samgita.AttemptsTest do
                principal,
                p["id"],
                other["id"],
-               command(%{"expected_version" => 1, "session_id" => session["id"]})
+               command(%{"expected_version" => other["version"], "session_id" => session["id"]})
              )
   end
 
@@ -424,7 +428,7 @@ defmodule Samgita.AttemptsTest do
                principal,
                p["id"],
                task["id"],
-               command(%{"expected_version" => 1, "session_id" => session["id"]})
+               command(%{"expected_version" => task["version"], "session_id" => session["id"]})
              )
 
     Repo.update!(
@@ -439,7 +443,7 @@ defmodule Samgita.AttemptsTest do
                principal,
                p["id"],
                task["id"],
-               command(%{"expected_version" => 1, "session_id" => session["id"]})
+               command(%{"expected_version" => task["version"], "session_id" => session["id"]})
              )
 
     Repo.update!(Ecto.Changeset.change(Repo.get!(Task, task["id"]), required_capabilities: []))
@@ -449,7 +453,10 @@ defmodule Samgita.AttemptsTest do
                principal,
                p["id"],
                task["id"],
-               command(%{"expected_version" => 1, "session_id" => Ecto.UUID.generate()})
+               command(%{
+                 "expected_version" => task["version"],
+                 "session_id" => Ecto.UUID.generate()
+               })
              )
   end
 

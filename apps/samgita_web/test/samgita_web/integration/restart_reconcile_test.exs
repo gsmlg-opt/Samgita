@@ -90,6 +90,8 @@ defmodule SamgitaWeb.RestartReconcileTest do
             command(%{"title" => "Remote simulation remains active"})
           )
 
+        task = assign_fixture(p, task, a)
+
         {:ok, leased} =
           Attempts.claim(
             actor,
