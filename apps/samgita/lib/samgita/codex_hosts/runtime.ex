@@ -21,6 +21,7 @@ defmodule Samgita.CodexHosts.Runtime do
     children = [
       {Registry, keys: :unique, name: @registry},
       {DynamicSupervisor, name: @connections, strategy: :one_for_one},
+      {Task.Supervisor, name: Samgita.CodexHosts.ProbeSupervisor},
       Supervisor.child_spec({Task, &sync_all/0}, id: :boot_sync, restart: :temporary)
     ]
 

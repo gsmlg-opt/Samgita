@@ -20,6 +20,8 @@ defmodule Samgita.Domain.CodexHost do
     field :enabled, :boolean, default: false
     field :generation, :integer, default: 0
     field :server_version, :string
+    field :installation_id, :string
+    field :machine_name, :string
     field :last_connected_at, :utc_datetime_usec
     field :version, :integer, default: 1
     timestamps()

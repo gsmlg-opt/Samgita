@@ -100,8 +100,13 @@ defmodule Samgita.CodexHosts.Connection do
          {:ok, state} <- step(state, ensure_daemon(host, files)),
          {:ok, state} <- step(state, start_session(transport), :session),
          {:ok, state} <- step(state, initialize(state.session), :server_version),
+         identity = identity(state.session),
          {:ok, state} <-
-           step(state, CodexHosts.record_connected(host.id, state.server_version), :recorded) do
+           step(
+             state,
+             CodexHosts.record_connected(host.id, state.server_version, identity),
+             :recorded
+           ) do
       {version, recorded} = {state.server_version, state.recorded}
       state = Map.drop(state, [:server_version, :recorded])
 
@@ -192,6 +197,42 @@ defmodule Samgita.CodexHosts.Connection do
     end
   catch
     :exit, _ -> {:error, :session_exited}
+  end
+
+  @doc """
+  Connect once, read the Codex identity and close. Used before adding a host to
+  detect a machine that is already configured. Never starts a connection process.
+  """
+  def identify(host) do
+    with {:ok, transport, files} <- transport(host) do
+      try do
+        with {:ok, session} <- start_session(transport) do
+          try do
+            with {:ok, _version} <- initialize(session), do: {:ok, identity(session)}
+          after
+            Session.close(session)
+          end
+        end
+      after
+        if files, do: Ssh.cleanup(files.dir)
+      end
+    end
+  catch
+    :exit, _ -> {:error, :unreachable}
+  end
+
+  # One machine (one Codex home) has one installation ID. Failure is tolerated:
+  # older or restricted servers simply report no identity.
+  defp identity(session) do
+    case Session.request(session, "remoteControl/status/read", nil, timeout_ms: 5_000) do
+      {:ok, %{"result" => %{"installationId" => id} = result}} when is_binary(id) ->
+        %{installation_id: id, machine_name: result["serverName"]}
+
+      _ ->
+        %{installation_id: nil, machine_name: nil}
+    end
+  catch
+    :exit, _ -> %{installation_id: nil, machine_name: nil}
   end
 
   @doc false

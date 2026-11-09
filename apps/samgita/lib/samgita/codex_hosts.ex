@@ -20,7 +20,7 @@ defmodule Samgita.CodexHosts do
   @remote_path ~r/\A[A-Za-z0-9_.\/~+-]{1,512}\z/
   @secret_keys ~w(token password secret private_key key passphrase authorization)
   @reference ~r/\A[A-Za-z0-9][A-Za-z0-9._:\/-]{0,199}\z/
-  @projection ~w(id agent_id transport url connect_address token_ref allow_insecure ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon enabled generation server_version last_connected_at version inserted_at updated_at)a
+  @projection ~w(id agent_id installation_id machine_name transport url connect_address token_ref allow_insecure ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon enabled generation server_version last_connected_at version inserted_at updated_at)a
 
   def list(principal) do
     with :ok <- operator(principal) do
@@ -33,8 +33,17 @@ defmodule Samgita.CodexHosts do
             select: {h, a.name}
         )
 
+      names = Map.new(rows, fn {host, name} -> {host.id, name} end)
+
       {:ok,
-       Enum.map(rows, fn {host, name} -> host |> projection() |> Map.put("agent_name", name) end)}
+       Enum.map(rows, fn {host, name} ->
+         same = for {other, _} <- rows, same_machine?(host, other), do: names[other.id]
+
+         host
+         |> projection()
+         |> Map.put("agent_name", name)
+         |> Map.put("same_machine_as", same)
+       end)}
     end
   end
 
@@ -203,6 +212,69 @@ defmodule Samgita.CodexHosts do
     :exit, _ -> {:error, Error.new(:codex_unavailable)}
   end
 
+  @doc """
+  Before adding a WebSocket host, connect to it once and report the Codex
+  machine that answers, plus already configured Agents on the same machine
+  (same Codex installation) or the same address. One machine should be one
+  Agent; callers warn rather than create a duplicate silently.
+  """
+  def check_new(principal, attrs) do
+    attrs = Params.strings(attrs)
+
+    with :ok <- operator(principal),
+         :ok <- validate_settings(attrs) do
+      host = %CodexHost{} |> settings(attrs) |> apply_changes()
+
+      identity =
+        case probe(host) do
+          {:ok, identity} -> identity
+          _ -> %{installation_id: nil, machine_name: nil}
+        end
+
+      same =
+        case identity.installation_id do
+          nil -> dynamic([h], h.url == ^host.url)
+          id -> dynamic([h], h.url == ^host.url or h.installation_id == ^id)
+        end
+
+      existing =
+        Repo.all(
+          from h in CodexHost,
+            join: a in Agent,
+            on: a.id == h.agent_id,
+            where: ^same,
+            select: a.name
+        )
+
+      {:ok,
+       %{
+         "reachable" => identity.installation_id != nil,
+         "machine_name" => identity.machine_name,
+         "same_machine_as" => existing
+       }}
+    end
+  end
+
+  @probe_timeout 8_000
+
+  defp probe(host) do
+    task =
+      Task.Supervisor.async_nolink(Samgita.CodexHosts.ProbeSupervisor, fn ->
+        Samgita.CodexHosts.Connection.identify(host)
+      end)
+
+    case Task.yield(task, @probe_timeout) || Task.shutdown(task, :brutal_kill) do
+      {:ok, {:ok, identity}} -> {:ok, identity}
+      _ -> {:error, :unreachable}
+    end
+  end
+
+  defp same_machine?(host, other),
+    do:
+      other.id != host.id &&
+        ((host.installation_id != nil && other.installation_id == host.installation_id) ||
+           (host.url != nil && other.url == host.url))
+
   @doc "Validate host settings without writing, so a caller can check them before creating an Agent."
   def validate_settings(attrs) do
     changeset = settings(%CodexHost{}, Params.strings(attrs))
@@ -236,13 +308,15 @@ defmodule Samgita.CodexHosts do
   def load(id), do: fetch(id)
 
   @doc false
-  def record_connected(host_id, server_version) do
+  def record_connected(host_id, server_version, identity \\ %{}) do
     system(host_id, fn ctx, host ->
       host =
         host
         |> change(
           generation: host.generation + 1,
           server_version: server_version,
+          installation_id: identity[:installation_id] || host.installation_id,
+          machine_name: identity[:machine_name] || host.machine_name,
           last_connected_at: DateTime.utc_now()
         )
         |> Repo.update!()

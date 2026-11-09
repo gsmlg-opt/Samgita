@@ -20,6 +20,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
        page_title: "Agents",
        form: new_form("codex"),
        error: nil,
+       warning: nil,
        load_error: nil,
        hosts: %{}
      )}
@@ -33,34 +34,57 @@ defmodule SamgitaWeb.AgentsLive.Index do
 
   @impl true
   def handle_event("change", %{"agent" => params}, socket) do
-    params = Map.merge(socket.assigns.form.params, params)
+    previous = socket.assigns.form.params
+    params = Map.merge(previous, params)
+
+    # Changing what is being added requires a fresh duplicate check.
+    params =
+      if Map.take(params, ~w(kind address)) != Map.take(previous, ~w(kind address)),
+        do: Map.delete(params, "confirmed"),
+        else: params
 
     params =
       if params["kind"] != socket.assigns.form.params["kind"],
         do: Map.put(params, "address", default_address(params["kind"])),
         else: params
 
-    {:noreply, assign(socket, form: to_form(params, as: :agent), error: nil)}
+    {:noreply,
+     assign(socket,
+       form: to_form(params, as: :agent),
+       error: nil,
+       warning: if(params["confirmed"] == "true", do: socket.assigns.warning)
+     )}
   end
 
+  # One machine should be one Agent: probe the address first and ask for a
+  # second confirmation when that machine or address is already configured.
+  def handle_event(
+        "add",
+        %{"agent" => %{"kind" => "codex", "confirmed" => "true"} = params},
+        socket
+      ),
+      do: add_codex(params, socket)
+
   def handle_event("add", %{"agent" => %{"kind" => "codex"} = params}, socket) do
-    # Three commands with stable command IDs: a retry after a partial failure
-    # replays the completed steps from their receipts.
-    with :ok <- CodexHosts.validate_settings(host_attrs(params)),
-         {:ok, agent} <- register(params),
-         {:ok, host} <- configure(agent, params),
-         {:ok, _} <-
-           CodexHosts.enable(Principal.operator(), host["id"], %{
-             "command_id" => params["enable_command_id"],
-             "expected_version" => host["version"]
-           }) do
-      # Navigating back resets the page, which also closes the dialog.
-      {:noreply,
-       socket
-       |> put_flash(:info, "#{agent["name"]} added. Connecting to #{params["address"]}.")
-       |> push_navigate(to: ~p"/agents")}
-    else
-      {:error, error} -> {:noreply, failed(socket, params, error)}
+    case CodexHosts.check_new(Principal.operator(), host_attrs(params)) do
+      {:ok, %{"same_machine_as" => [_ | _] = same} = check} ->
+        warning =
+          "#{check["machine_name"] || params["address"]} is already added as " <>
+            Enum.join(same, ", ") <>
+            ". One machine should be one Agent. Add anyway only if this is intentional."
+
+        {:noreply,
+         assign(socket,
+           form: to_form(Map.put(params, "confirmed", "true"), as: :agent),
+           warning: warning,
+           error: nil
+         )}
+
+      {:ok, _} ->
+        add_codex(params, socket)
+
+      {:error, error} ->
+        {:noreply, failed(socket, params, error)}
     end
   end
 
@@ -96,6 +120,27 @@ defmodule SamgitaWeb.AgentsLive.Index do
   @impl true
   def handle_info({:codex_host_status, _id, _status}, socket), do: {:noreply, load(socket)}
   def handle_info(_message, socket), do: {:noreply, socket}
+
+  defp add_codex(params, socket) do
+    # Three commands with stable command IDs: a retry after a partial failure
+    # replays the completed steps from their receipts.
+    with :ok <- CodexHosts.validate_settings(host_attrs(params)),
+         {:ok, agent} <- register(params),
+         {:ok, host} <- configure(agent, params),
+         {:ok, _} <-
+           CodexHosts.enable(Principal.operator(), host["id"], %{
+             "command_id" => params["enable_command_id"],
+             "expected_version" => host["version"]
+           }) do
+      # Navigating back resets the page, which also closes the dialog.
+      {:noreply,
+       socket
+       |> put_flash(:info, "#{agent["name"]} added. Connecting to #{params["address"]}.")
+       |> push_navigate(to: ~p"/agents")}
+    else
+      {:error, error} -> {:noreply, failed(socket, params, error)}
+    end
+  end
 
   defp register(%{"kind" => "codex"} = params) do
     Agents.register(Principal.operator(), %{
@@ -171,6 +216,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
 
   @doc false
   def kind(agent), do: if(agent["runtime_driver"] == "codex", do: "Codex", else: "Agent")
+
+  # A Codex Agent is shown by the machine it runs on, never by the local
+  # forwarded ws:// address used to reach it.
+  @doc false
+  def address(nil, agent), do: agent["endpoint_metadata"]["url"] || "—"
+  def address(%{"machine_name" => name}, _) when is_binary(name), do: name
+  def address(_host, _), do: "Shown after connecting"
 
   @doc false
   def state(nil), do: nil

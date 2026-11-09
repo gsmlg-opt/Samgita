@@ -343,6 +343,18 @@ Owner files: `apps/samgita/lib/samgita/codex_hosts.ex` (`projects/2`, `create_pr
 
 Result (2026-11-10): `agents_codex_projects_live_test.exs` 2 tests pass (experimental initialize, listing, exact `project/create` params and audit event, relative folder refused before contacting Codex); Agent and Codex host LiveView tests (12) and filtered Codex host core tests (7) pass. Browser check against the local Codex 0.167.0 on 47811 listed its nine real projects. Adding a project was not exercised against the real Codex because it would change the user's Codex app project list.
 
+### P7.5 One machine, one Codex Agent
+
+Requested 2026-11-10: each machine should be one Agent; a duplicate must warn first. The Agents list shows the machine a Codex runs on, not the local forwarded `ws://` address.
+
+Owner files: additive migration `20261110000000_add_codex_host_identity.exs` (`codex_hosts.installation_id`, `machine_name`); `codex_hosts.ex` (`check_new/2`, `same_machine_as` in `list/1`), `codex_hosts/{connection,runtime}.ex` (identity read on connect, one-shot `identify/1` under a probe Task.Supervisor); the Agents list/modal; `agents_codex_live_test.exs`.
+
+- [x] On every connect, read `remoteControl/status/read` (experimental; `installationId` identifies one Codex home, `serverName` the machine) and record it; failure leaves the identity unset.
+- [x] The list's Address column shows the machine name only; Agents on the same machine (same installation or same address) are flagged "Same machine as …".
+- [x] Adding a Codex first probes the address; if that machine or address is already configured the modal warns and requires "Add anyway".
+
+Result (2026-11-10): Agent and Codex LiveView tests (16) and filtered Codex host/management/preservation core tests (10) pass, including a regression for an unreachable probe (no installation ID) that crashed the duplicate query. Browser check: the local Mac shows as `mbp2021` and raven (reached through `ssh -L 47813:127.0.0.1:47811 raven`) as `raven`; adding `ws://127.0.0.1:47811` again warned "mbp2021 is already added as Codex local A" and was not created.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

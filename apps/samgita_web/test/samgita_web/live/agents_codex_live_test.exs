@@ -78,4 +78,55 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     refute Repo.get_by(Agent, name: "Broken")
     assert Repo.aggregate(CodexHost, :count) == 0
   end
+
+  test "one machine is one Agent: a duplicate add warns first and the list flags it", %{
+    conn: conn
+  } do
+    identity = %{
+      "installationId" => "same-install",
+      "serverName" => "mbp",
+      "status" => "disabled"
+    }
+
+    first = FakeCodexServer.start(results: %{"remoteControl/status/read" => identity})
+    second = FakeCodexServer.start(results: %{"remoteControl/status/read" => identity})
+
+    on_exit(fn ->
+      FakeCodexServer.stop(first)
+      FakeCodexServer.stop(second)
+    end)
+
+    {:ok, view, _} = live(conn, ~p"/agents")
+
+    view
+    |> form("#agent-add", agent: %{"kind" => "codex", "name" => "Mac", "address" => first.url})
+    |> render_submit()
+
+    assert_redirect(view, ~p"/agents")
+    host = Repo.get_by!(CodexHost, url: first.url)
+    await(fn -> Repo.get!(CodexHost, host.id).installation_id == "same-install" end)
+
+    {:ok, view, _} = live(conn, ~p"/agents")
+    assert has_element?(view, "#agents-list", "mbp")
+    refute render(view) =~ first.url
+
+    view
+    |> form("#agent-add",
+      agent: %{"kind" => "codex", "name" => "Mac again", "address" => second.url}
+    )
+    |> render_submit()
+
+    assert has_element?(view, "#agent-warning", "already added as Mac")
+    refute Repo.get_by(Agent, name: "Mac again")
+
+    view |> form("#agent-add") |> render_submit()
+    assert_redirect(view, ~p"/agents")
+    assert Repo.get_by(Agent, name: "Mac again")
+    copy = Repo.get_by!(CodexHost, url: second.url)
+    await(fn -> Repo.get!(CodexHost, copy.id).installation_id == "same-install" end)
+
+    {:ok, view, _} = live(conn, ~p"/agents")
+    assert has_element?(view, ".agent-duplicate", "Same machine as Mac again")
+    assert has_element?(view, ".agent-duplicate", "Same machine as Mac")
+  end
 end

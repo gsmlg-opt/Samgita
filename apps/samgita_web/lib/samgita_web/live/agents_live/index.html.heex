@@ -20,9 +20,10 @@
           )}
         </p>
         <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
+        <p :if={@warning} id="agent-warning" role="alert" class="mb-4 text-warning">{@warning}</p>
         <.form for={@form} id="agent-add" phx-submit="add" phx-change="change" class="space-y-4">
           <input
-            :for={key <- ~w(agent_command_id host_command_id enable_command_id)}
+            :for={key <- ~w(agent_command_id host_command_id enable_command_id confirmed)}
             type="hidden"
             name={"agent[#{key}]"}
             value={@form.params[key]}
@@ -55,9 +56,9 @@
             native_submit
             type="submit"
             variant="primary"
-            phx-disable-with={gettext("Adding…")}
+            phx-disable-with={gettext("Checking…")}
           >
-            {gettext("Add")}
+            {if @warning, do: gettext("Add anyway"), else: gettext("Add")}
           </.dm_btn>
         </.form>
       </:body>
@@ -76,9 +77,15 @@
           <span class="block text-xs text-on-surface-variant">{kind(agent)}</span>
         </:col>
         <:col :let={agent} label={gettext("Address")}>
-          <code class="break-all text-sm">
-            {(@hosts[agent["id"]] || %{})["url"] || agent["endpoint_metadata"]["url"] || "—"}
-          </code>
+          <span class="break-all">{address(@hosts[agent["id"]], agent)}</span>
+          <span
+            :if={(@hosts[agent["id"]] || %{})["same_machine_as"] not in [nil, []]}
+            class="block text-xs text-warning agent-duplicate"
+          >
+            {gettext("Same machine as %{names}",
+              names: Enum.join(@hosts[agent["id"]]["same_machine_as"], ", ")
+            )}
+          </span>
         </:col>
         <:col :let={agent} label={gettext("Status")}>
           <%= if host = @hosts[agent["id"]] do %>
