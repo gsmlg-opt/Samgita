@@ -26,13 +26,6 @@
   >
     {gettext("Agents")}
   </:menu>
-  <:menu
-    to={~p"/codex"}
-    active={@socket.view == SamgitaWeb.CodexLive.Index}
-    class="max-sm:!px-1"
-  >
-    {gettext("Codex")}
-  </:menu>
   <:user_profile>
     <.dm_theme_switcher id="theme-toggle" />
   </:user_profile>

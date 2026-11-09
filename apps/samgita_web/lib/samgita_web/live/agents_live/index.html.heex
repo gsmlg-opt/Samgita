@@ -2,27 +2,72 @@
   <header>
     <h1 id="agents-title" class="text-3xl font-bold">{gettext("Agents")}</h1>
     <p class="text-on-surface-variant">
-      {gettext("Registered machine identities and operator approvals.")}
+      {gettext("Connected Agents, such as Codex, Synapsis and Sigma.")}
     </p>
   </header>
   <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
   <.dm_card variant="bordered">
-    <:title>{gettext("Registered Agents")}</:title>
+    <:title>{gettext("Agents")}</:title>
     <p :if={@page["data"] == []} id="agents-empty">
-      {gettext("No Agents on this page. Register an Agent below.")}
+      {gettext("No Agents on this page. Add one below.")}
     </p>
     <div class="overflow-x-auto">
       <.dm_table :if={@page["data"] != []} id="agents-list" data={@page["data"]}>
         <:col :let={agent} label={gettext("Agent")}>
           <.dm_link navigate={~p"/agents/#{agent["id"]}"}>{agent["name"]}</.dm_link>
+          <span class="block text-xs text-on-surface-variant">{kind(agent)}</span>
         </:col>
-        <:col :let={agent} label={gettext("Availability")}>
-          <span>{agent["availability"]}</span>
-          <span class="block text-xs">{gettext("Health unverified")}</span>
+        <:col :let={agent} label={gettext("Address")}>
+          <code class="break-all text-sm">
+            {(@hosts[agent["id"]] || %{})["url"] || agent["endpoint_metadata"]["url"] || "—"}
+          </code>
         </:col>
-        <:col :let={agent} label={gettext("Capacity")}>{agent["capacity"]}</:col>
-        <:col :let={agent} label={gettext("Last recorded activity")}>
-          {agent["last_activity_at"] || gettext("None recorded")}
+        <:col :let={agent} label={gettext("Status")}>
+          <%= if host = @hosts[agent["id"]] do %>
+            <.dm_badge variant={state_variant(state(host))} class="agent-state">
+              {state(host)}
+            </.dm_badge>
+            <span :if={host["server_version"]} class="block text-xs">
+              Codex {host["server_version"]}
+            </span>
+            <span :if={host["status"]["error"]} class="block text-xs text-error">
+              {host["status"]["error"]}
+            </span>
+          <% else %>
+            <span>{agent["availability"]}</span>
+          <% end %>
+        </:col>
+        <:col :let={agent} label={gettext("Actions")}>
+          <div :if={host = @hosts[agent["id"]]} class="flex flex-wrap gap-2">
+            <.dm_btn
+              :if={!host["enabled"]}
+              id={"agent-start-#{host["id"]}"}
+              size="sm"
+              variant="primary"
+              phx-click="start"
+              phx-value-id={host["id"]}
+            >
+              {gettext("Start")}
+            </.dm_btn>
+            <.dm_btn
+              :if={host["enabled"]}
+              id={"agent-stop-#{host["id"]}"}
+              size="sm"
+              phx-click="stop"
+              phx-value-id={host["id"]}
+            >
+              {gettext("Stop")}
+            </.dm_btn>
+            <.dm_btn
+              :if={host["enabled"]}
+              id={"agent-reconnect-#{host["id"]}"}
+              size="sm"
+              phx-click="reconnect"
+              phx-value-id={host["id"]}
+            >
+              {gettext("Reconnect")}
+            </.dm_btn>
+          </div>
         </:col>
       </.dm_table>
     </div>
@@ -39,33 +84,46 @@
     </nav>
   </.dm_card>
   <.dm_card variant="bordered">
-    <:title>{gettext("Register Agent")}</:title>
-    <p class="mb-4 text-sm text-on-surface-variant">
+    <:title>{gettext("Add Agent")}</:title>
+    <p :if={@form.params["kind"] == "codex"} class="mb-4 text-sm text-on-surface-variant">
       {gettext(
-        "Registration creates a stable identity. Configure its credential and Project membership separately; registration starts no execution."
+        "Run `codex app-server --listen ws://127.0.0.1:47811` on the machine. For another machine, forward its port first, for example `ssh -N -L 47812:127.0.0.1:47811 host`, and use ws://127.0.0.1:47812."
       )}
     </p>
     <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
-    <p class="mb-4 text-sm text-on-surface-variant">
-      {gettext(
-        "After reconnect, retry the recovered form unchanged. Reload this page before starting a different registration."
-      )}
-    </p>
-    <.form
-      for={@form}
-      id="agent-register"
-      phx-submit="register"
-      phx-change="change"
-      class="space-y-4"
-    >
-      <.agent_fields form={@form} />
-      <.dm_btn
-        native_submit
-        type="submit"
-        variant="primary"
-        phx-disable-with={gettext("Registering…")}
-      >
-        {gettext("Register Agent")}
+    <.form for={@form} id="agent-add" phx-submit="add" phx-change="change" class="space-y-4">
+      <input
+        :for={key <- ~w(agent_command_id host_command_id enable_command_id)}
+        type="hidden"
+        name={"agent[#{key}]"}
+        value={@form.params[key]}
+      />
+      <div class="grid gap-4 sm:grid-cols-3">
+        <.dm_input
+          field={@form[:kind]}
+          type="select"
+          label={gettext("Type")}
+          options={[{"Codex", "codex"}, {gettext("Samgita protocol Agent"), "agent"}]}
+        />
+        <.dm_input
+          field={@form[:name]}
+          label={gettext("Name")}
+          placeholder="Codex on mbp"
+          required
+        />
+        <.dm_input
+          field={@form[:address]}
+          label={gettext("Address")}
+          placeholder={
+            if @form.params["kind"] == "codex",
+              do: "ws://127.0.0.1:47811",
+              else: "wss://agent.example/app-server"
+          }
+          required={@form.params["kind"] == "codex"}
+        />
+      </div>
+      <.dm_btn native_submit type="submit" variant="primary" phx-disable-with={gettext("Adding…")}>
+        {gettext("Add")}
       </.dm_btn>
     </.form>
   </.dm_card>

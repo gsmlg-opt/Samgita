@@ -44,7 +44,6 @@ defmodule SamgitaWeb.Router do
     live "/", DashboardLive.Index, :index
     live "/agents", AgentsLive.Index, :index
     live "/agents/:id", AgentsLive.Show, :show
-    live "/codex", CodexLive.Index, :index
     live "/projects", ProjectsLive.Index, :index
     live "/projects/:id", ProjectsLive.Show, :show
     live "/projects/:project_id/tasks/:id", TasksLive.Show, :show

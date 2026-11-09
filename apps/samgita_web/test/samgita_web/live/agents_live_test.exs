@@ -7,52 +7,40 @@ defmodule SamgitaWeb.AgentsLiveTest do
   alias Samgita.{Agents, Principal, Repo}
   alias Samgita.Domain.{Agent, AgentCredential, CommandReceipt, DomainEvent}
 
-  test "registers a persisted neutral identity and replays the submitted command after reconnect",
+  test "adds a Samgita protocol Agent with a name and address and replays the submitted command",
        %{conn: conn} do
     baseline_count = Repo.aggregate(Agent, :count)
     {:ok, view, _} = live(conn, ~p"/agents")
-    command_id = input(view, "agent[command_id]")
+    render_change(view, "change", %{"agent" => %{"kind" => "agent"}})
+    command_id = input(view, "agent[agent_command_id]")
     name = "Neutral Agent #{Ecto.UUID.generate()}"
 
     params = %{
+      "kind" => "agent",
       "name" => name,
-      "implementation" => "",
-      "capacity" => "2",
-      "enabled" => "true",
-      "advertised_capabilities" => [],
-      "approved_capabilities" => [],
-      "protocol" => "samgita",
-      "protocol_version" => "1.0",
-      "endpoint_url" => "",
-      "endpoint_transport" => "",
-      "credential_ref" => "",
-      "command_id" => command_id
+      "address" => "wss://agent.example/app-server",
+      "agent_command_id" => command_id
     }
 
-    view |> form("#agent-register", agent: params) |> render_submit()
+    view |> form("#agent-add", agent: params) |> render_submit()
     assert [agent] = Repo.all(from(a in Agent, where: a.name == ^name))
     assert_redirect(view, ~p"/agents/#{agent.id}")
-    assert agent.capacity == 2
+    assert agent.endpoint_metadata == %{"transport" => "websocket", "url" => params["address"]}
     assert agent.approved_capabilities == []
 
     {:ok, retry, _} = live(conn, ~p"/agents")
-    render_change(retry, "change", %{"agent" => params})
-    assert input(retry, "agent[command_id]") == command_id
-    render_submit(retry, "register", %{"agent" => params})
+    render_submit(retry, "add", %{"agent" => params})
     assert_redirect(retry, ~p"/agents/#{agent.id}")
     assert Repo.aggregate(Agent, :count) == baseline_count + 1
 
     {:ok, conflicting, _} = live(conn, ~p"/agents")
-    changed = Map.put(params, "name", "Different recovered intent")
-    render_change(conflicting, "change", %{"agent" => changed})
-    conflicting |> form("#agent-register", agent: changed) |> render_submit()
+    render_submit(conflicting, "add", %{"agent" => Map.put(params, "name", "Different intent")})
     assert has_element?(conflicting, "#agent-error", "conflicts")
     assert Repo.aggregate(Agent, :count) == baseline_count + 1
 
     {:ok, detail, _} = live(conn, ~p"/agents/#{agent.id}")
     assert has_element?(detail, "h1", name)
     assert has_element?(detail, "#agent-status", "offline")
-    assert has_element?(detail, "#agent-status", "Health unverified")
   end
 
   test "approval and enablement changes persist and identical submissions do not increment twice",
