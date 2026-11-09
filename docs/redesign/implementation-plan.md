@@ -374,6 +374,18 @@ Owner files: `codex_hosts.ex` (`read_directory/3`, `home/1`), `codex_hosts/conne
 
 Result (2026-11-10): Agent/Codex LiveView tests (14) and filtered Codex host core tests (7) pass, including the picker flow (home start, ordering, files excluded, enter folder, exact `project/create` params) and relative-path refusal. Browser check on raven: the picker opened at `/home/gao`, navigated into `Workspace/gsmlg-dev` (ex_ssl, gsmlg-cli, yellow-dog) and back up; no project was created.
 
+### P7.8 Projects page: hosts → projects → sessions
+
+Requested 2026-11-10: the Projects page shows each Codex machine, its Codex projects and each project's sessions, read live from Codex. Samgita projects (tasks and delegation) stay below under "Samgita projects".
+
+Owner files: `codex_hosts.ex` (`sessions/3`), `apps/samgita_web/lib/samgita_web/live/projects_live/index.ex`, `projects_codex_live_test.exs`.
+
+- [x] One card per Codex host (Agent name, machine, live state); projects load per connected host and reload after a reconnect.
+- [x] Expanding a project lists its sessions with `thread/list` filtered by the project folders (`cwd`, stable API), newest updated first, up to 50, `useStateDbOnly`. Measured on the local Codex 0.167.0: none of 84 threads carries `projectId`, so `projectId` filtering returns nothing while `cwd` matches (for example gsmlg 20, web-terminal 4).
+- [x] Session rows show the thread name (or the first message), a readable state (idle/running/error) and last update time.
+
+Result (2026-11-10): `projects_codex_live_test.exs` passes (hosts, projects, exact `thread/list` params, sessions, collapse); LiveView suites (30) and filtered Codex host core tests (7) pass. Browser check: mbp2021 lists nine projects (web-terminal shows four sessions) and raven lists the user's new gsmlg-cli project with its two sessions.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

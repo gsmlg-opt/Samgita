@@ -182,6 +182,47 @@ defmodule Samgita.CodexHosts do
        else: {:error, Error.new(:invalid, %{fields: [:path]})}
   end
 
+  @doc """
+  Recent Codex sessions (threads) of one project on this host, newest first.
+  Codex leaves `projectId` unset on most threads, so sessions are matched by
+  their working directory against the project's folders (`thread/list` `cwd`).
+  """
+  def sessions(principal, id, roots) do
+    roots = Enum.filter(List.wrap(roots), &(is_binary(&1) and Path.type(&1) == :absolute))
+
+    with :ok <- operator(principal),
+         :ok <- if(roots == [], do: {:error, Error.new(:invalid, %{fields: [:roots]})}, else: :ok),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"data" => threads}}} when is_list(threads) <-
+           codex_request(session, "thread/list", %{
+             "cwd" => roots,
+             "limit" => 50,
+             "sortKey" => "updated_at",
+             "useStateDbOnly" => true
+           }) do
+      {:ok, Enum.map(threads, &thread/1)}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  defp thread(t) when is_map(t) do
+    title =
+      case t["name"] do
+        name when is_binary(name) and name != "" -> name
+        _ -> t["preview"] |> to_string() |> String.slice(0, 120)
+      end
+
+    %{
+      "id" => t["id"],
+      "title" => title,
+      "status" => get_in(t, ["status", "type"]),
+      "cwd" => t["cwd"],
+      "updated_at" => t["updatedAt"]
+    }
+  end
+
   @project_pages 10
 
   defp list_projects(session, cursor, acc) do
