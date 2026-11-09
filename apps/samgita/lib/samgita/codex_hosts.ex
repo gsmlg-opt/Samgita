@@ -23,8 +23,17 @@ defmodule Samgita.CodexHosts do
 
   def list(principal) do
     with :ok <- operator(principal) do
-      hosts = Repo.all(from h in CodexHost, order_by: [asc: h.inserted_at, asc: h.id])
-      {:ok, Enum.map(hosts, &projection/1)}
+      rows =
+        Repo.all(
+          from h in CodexHost,
+            join: a in Agent,
+            on: a.id == h.agent_id,
+            order_by: [asc: h.inserted_at, asc: h.id],
+            select: {h, a.name}
+        )
+
+      {:ok,
+       Enum.map(rows, fn {host, name} -> host |> projection() |> Map.put("agent_name", name) end)}
     end
   end
 
@@ -82,6 +91,15 @@ defmodule Samgita.CodexHosts do
       end
     )
     |> after_commit()
+  end
+
+  @doc "Validate host settings without writing, so a caller can check them before creating an Agent."
+  def validate_settings(attrs) do
+    changeset = settings(%CodexHost{}, Params.strings(attrs))
+
+    if changeset.valid?,
+      do: :ok,
+      else: {:error, Error.new(:invalid, %{fields: Keyword.keys(changeset.errors)})}
   end
 
   def enable(principal, id, attrs), do: set_enabled(principal, id, attrs, true)

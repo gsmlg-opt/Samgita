@@ -320,6 +320,17 @@ Owner files: `apps/samgita_codex_driver/lib/samgita_codex_driver/transport/comma
 
 Result (2026-11-09): driver `transport_command_test.exs` 5 tests; core SSH tests 8 (including a regression for a Session leak when `initialize` fails, found and fixed in P7.1 code); web 5 Codex host tests; all affected suites pass. Real OpenSSH against local sshd: a wrong host key is refused before authentication ("REMOTE HOST IDENTIFICATION HAS CHANGED"), the correct key passes host verification and fails authentication without prompting (`BatchMode`). Login-shell follow-up: driver Command tests 7 (marker split across writes, client bytes held until the marker, missing marker fails); core SSH tests now execute the generated remote command with `/bin/sh` and a banner-printing profile; the launcher was also run locally under zsh, bash and tcsh with a stub `codex` (fish not installed). Unverified: a full real-SSH session to a real Codex daemon (needs authorized SSH credentials). Out-of-scope pre-existing failures recorded, not fixed: `transport_web_socket_test.exs` expects a lowercase `authorization` header but the updated `http_web_socket` sends `Authorization`; 9 `initialized_transport_test.exs` cases need the pinned `CODEX_BINARY` environment.
 
+### P7.3 Codex management page
+
+Requested 2026-11-09: configure, watch and start/stop local Codex app-servers from the UI. Each machine runs `codex app-server --listen ws://127.0.0.1:PORT`; other machines are reached by forwarding their port over SSH to a local port. Samgita starts and stops its connection, never the Codex process.
+
+Owner files: `apps/samgita_web/lib/samgita_web/live/codex_live/index.ex`, router and app layout navigation, `apps/samgita/lib/samgita/codex_hosts.ex` (`list` adds the Agent name; `validate_settings/1`), `apps/samgita_web/test/samgita_web/live/codex_live_test.exs`.
+
+- [x] `/codex` lists every Codex host with live state, error, reported version, generation and last connection, with Start (enable), Stop (disable) and Reconnect.
+- [x] "Add Codex" (name, `ws://` URL, expected version, optional token reference) validates the connection settings first, then registers a Codex Agent, configures its WebSocket host and enables it, each with a stable `command_id`.
+
+Result (2026-11-09): `codex_live_test.exs` 2 tests and `codex_host_live_test.exs` pass; filtered Codex host core tests (7) pass. Browser check on an isolated dev database (`samgita_redesign_ui_dev`, port 4871) against two local `codex app-server` 0.167.0 processes on 47811/47812: both added from the page and reached `connected` (version 0.167.0, generation 1); Stop showed `stopped`, Start reconnected with generation 2; killing one Codex process showed `backoff` live and restarting it reconnected automatically with generation 3.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.
