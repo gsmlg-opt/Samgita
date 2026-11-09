@@ -363,6 +363,17 @@ Owner files: `apps/samgita_web/lib/samgita_web/live/agents_live/show.{ex,html.he
 
 Result (2026-11-10): LiveView suites for Agents, Codex hosts, projects, dashboard and Projects pass (29 run, 7 authorization/credential cases skipped), including a new section-switching test. Browser check on raven and the local Mac (`mbp2021`).
 
+### P7.7 Add a project by choosing a folder
+
+Requested 2026-11-10 after finding that the Codex desktop app keeps remote-host "projects" as client-side bookmarks (`~/.codex/.codex-global-state.json` `remote-projects` on the Mac), while raven's own Codex (both the daemon and a separate app-server) reports `project/list` empty. Samgita treats each machine's own Codex project store as authoritative and makes adding projects easy.
+
+Owner files: `codex_hosts.ex` (`read_directory/3`, `home/1`), `codex_hosts/connection.ex` (home = parent of the reported `codexHome`, kept in the live status), the Agent page Projects section, `agents_codex_projects_live_test.exs`.
+
+- [x] "Add project" button opens a "Choose a source folder" modal: parent-folder button, editable path, folder list from `fs/readDirectory` (stable API; folders only, visible before hidden), Cancel and Use folder.
+- [x] Starts at the user's home on that machine; Use folder creates the project named after the folder with `project/create` (idempotency key = a command ID that changes only after success).
+
+Result (2026-11-10): Agent/Codex LiveView tests (14) and filtered Codex host core tests (7) pass, including the picker flow (home start, ordering, files excluded, enter folder, exact `project/create` params) and relative-path refusal. Browser check on raven: the picker opened at `/home/gao`, navigated into `Workspace/gsmlg-dev` (ex_ssl, gsmlg-cli, yellow-dog) and back up; no project was created.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

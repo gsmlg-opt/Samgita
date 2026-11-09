@@ -29,7 +29,15 @@ defmodule SamgitaWeb.AgentsCodexProjectsLiveTest do
       FakeCodexServer.start(
         results: %{
           "project/list" => %{"data" => [@project], "nextCursor" => nil},
-          "project/create" => %{"project" => @created}
+          "project/create" => %{"project" => @created},
+          "fs/readDirectory" => %{
+            "entries" => [
+              %{"fileName" => ".cache", "isDirectory" => true, "isFile" => false},
+              %{"fileName" => "samgita", "isDirectory" => true, "isFile" => false},
+              %{"fileName" => "notes.txt", "isDirectory" => false, "isFile" => true},
+              %{"fileName" => "Apps", "isDirectory" => true, "isFile" => false}
+            ]
+          }
         }
       )
 
@@ -85,25 +93,22 @@ defmodule SamgitaWeb.AgentsCodexProjectsLiveTest do
     await(fn -> has_element?(view, "#codex-projects-list", "web-terminal") end)
     assert has_element?(view, "#codex-projects-list", "/work/web-terminal")
 
-    command_id =
-      view
-      |> render()
-      |> LazyHTML.from_fragment()
-      |> LazyHTML.query("input[name='project[command_id]']")
-      |> LazyHTML.attribute("value")
-      |> List.first()
+    # The picker starts at the user's home (parent of the reported Codex home).
+    view |> element("#project-add-open") |> render_click()
+    assert_receive {:fake_codex, :params, "fs/readDirectory", %{"path" => "/fake"}}, 3_000
+    await(fn -> has_element?(view, "#folder-list", "samgita") end)
+    html = view |> element("#folder-list") |> render()
+    refute html =~ "notes.txt"
+    assert :binary.match(html, "Apps") < :binary.match(html, "samgita")
+    assert :binary.match(html, "samgita") < :binary.match(html, ".cache")
 
-    view
-    |> form("#codex-project-add", project: %{"name" => "samgita", "path" => "/work/samgita"})
-    |> render_submit()
+    view |> element("#folder-list button", "samgita") |> render_click()
+    assert_receive {:fake_codex, :params, "fs/readDirectory", %{"path" => "/fake/samgita"}}, 3_000
+    view |> element("#folder-use") |> render_click()
 
     assert_receive {:fake_codex, :params, "project/create", params}, 3_000
-
-    assert params == %{
-             "idempotencyKey" => command_id,
-             "name" => "samgita",
-             "roots" => [%{"path" => "/work/samgita"}]
-           }
+    assert %{"name" => "samgita", "roots" => [%{"path" => "/fake/samgita"}]} = params
+    assert is_binary(params["idempotencyKey"])
 
     assert Repo.exists?(
              from e in DomainEvent,
@@ -111,15 +116,14 @@ defmodule SamgitaWeb.AgentsCodexProjectsLiveTest do
            )
   end
 
-  test "a relative folder is refused before contacting Codex", %{conn: conn, agent: agent} do
-    {:ok, view, _} = live(conn, ~p"/agents/#{agent["id"]}")
-
-    view
-    |> form("#codex-project-add", project: %{"name" => "x", "path" => "relative/path"})
-    |> render_submit()
-
-    assert has_element?(view, "#codex-project-error")
-    refute_received {:fake_codex, :params, "project/create", _}
+  test "a relative folder path is refused before contacting Codex", %{
+    conn: conn,
+    agent: agent
+  } do
+    {:ok, view, _} = live(conn, ~p"/agents/#{agent["id"]}?section=projects")
+    view |> element("#folder-path-form") |> render_submit(%{"path" => "relative/path"})
+    assert has_element?(view, "#folder-error")
+    refute_received {:fake_codex, :params, "fs/readDirectory", _}
   end
 
   test "the Agent page shows one settings section at a time", %{conn: conn, agent: agent} do

@@ -99,7 +99,9 @@ defmodule Samgita.CodexHosts.Connection do
          state = %{state | files: files},
          {:ok, state} <- step(state, ensure_daemon(host, files)),
          {:ok, state} <- step(state, start_session(transport), :session),
-         {:ok, state} <- step(state, initialize(state.session), :server_version),
+         {:ok, state} <- step(state, initialize(state.session), :init),
+         {version, home} = state.init,
+         state = Map.put(state, :server_version, version),
          identity = identity(state.session),
          {:ok, state} <-
            step(
@@ -108,7 +110,7 @@ defmodule Samgita.CodexHosts.Connection do
              :recorded
            ) do
       {version, recorded} = {state.server_version, state.recorded}
-      state = Map.drop(state, [:server_version, :recorded])
+      state = Map.drop(state, [:server_version, :recorded, :init])
 
       %{
         state
@@ -118,6 +120,7 @@ defmodule Samgita.CodexHosts.Connection do
             "state" => "connected",
             "generation" => recorded.generation,
             "server_version" => version,
+            "home" => home,
             "connected_at" => DateTime.to_iso8601(recorded.last_connected_at)
           }
       }
@@ -128,7 +131,7 @@ defmodule Samgita.CodexHosts.Connection do
 
       {:error, error, state} ->
         state
-        |> Map.drop([:server_version, :recorded])
+        |> Map.drop([:server_version, :recorded, :init])
         |> close_session(:connect_failed)
         |> retry(code(error))
     end
@@ -192,7 +195,9 @@ defmodule Samgita.CodexHosts.Connection do
 
     # Codex projects (`project/*`) are part of the experimental API.
     case Session.initialize(session, info, %{"experimentalApi" => true}) do
-      {:ok, wire} -> {:ok, server_version(wire)}
+      # The user's home on the Codex machine (parent of the reported Codex
+      # home, `~/.codex` by default) is the starting folder for choosing projects.
+      {:ok, wire} -> {:ok, {server_version(wire), home(wire)}}
       {:error, _} = error -> error
     end
   catch
@@ -234,6 +239,11 @@ defmodule Samgita.CodexHosts.Connection do
   catch
     :exit, _ -> %{installation_id: nil, machine_name: nil}
   end
+
+  defp home(%{"result" => %{"codexHome" => codex_home}}) when is_binary(codex_home),
+    do: Path.dirname(codex_home)
+
+  defp home(_), do: nil
 
   @doc false
   def server_version(%{"result" => %{"userAgent" => agent}}) when is_binary(agent) do

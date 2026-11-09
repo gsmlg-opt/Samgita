@@ -186,34 +186,86 @@
             <p :if={@project_error} id="codex-project-error" role="alert" class="mt-4 text-error">
               {@project_error}
             </p>
-            <.form
-              for={@project_form}
-              id="codex-project-add"
-              phx-change="change_project"
-              phx-submit="add_project"
-              class="mt-4 grid items-end gap-4 sm:grid-cols-3"
-            >
-              <input
-                type="hidden"
-                name="project[command_id]"
-                value={@project_form.params["command_id"]}
-              />
-              <.dm_input field={@project_form[:name]} label={gettext("Project name")} required />
-              <.dm_input
-                field={@project_form[:path]}
-                label={gettext("Folder on that machine")}
-                placeholder="/Users/me/code/app"
-                required
-              />
-              <.dm_btn
-                native_submit
-                type="submit"
-                variant="primary"
-                phx-disable-with={gettext("Adding…")}
-              >
-                {gettext("Add project")}
-              </.dm_btn>
-            </.form>
+            <.dm_modal id="project-folder-modal" size="lg">
+              <:trigger :let={id}>
+                <.dm_btn
+                  id="project-add-open"
+                  variant="primary"
+                  class="mt-4"
+                  command="show-modal"
+                  commandfor={id}
+                  phx-click="browse_open"
+                >
+                  {gettext("Add project")}
+                </.dm_btn>
+              </:trigger>
+              <:title>{gettext("Choose a source folder")}</:title>
+              <:body>
+                <form
+                  id="folder-path-form"
+                  phx-submit="browse_path"
+                  class="flex items-center gap-2"
+                >
+                  <button
+                    type="button"
+                    id="folder-up"
+                    class="btn btn-ghost btn-sm"
+                    phx-click="browse_up"
+                    aria-label={gettext("Parent folder")}
+                    disabled={@browse_path in [nil, "/"]}
+                  >
+                    <.dm_mdi name="arrow-up" class="h-5 w-5" />
+                  </button>
+                  <input
+                    id="folder-path"
+                    name="path"
+                    value={@browse_path}
+                    aria-label={gettext("Folder path")}
+                    class="input input-bordered w-full font-mono"
+                    autocomplete="off"
+                  />
+                </form>
+                <div
+                  id="folder-list"
+                  class="mt-3 h-72 overflow-y-auto rounded-lg border border-outline-variant"
+                >
+                  <%= case @browse_entries do %>
+                    <% nil -> %>
+                      <p class="p-4 text-on-surface-variant">{gettext("Loading…")}</p>
+                    <% {:error, message} -> %>
+                      <p id="folder-error" role="alert" class="p-4 text-error">{message}</p>
+                    <% {:ok, []} -> %>
+                      <p class="p-4 text-on-surface-variant">{gettext("No folders here.")}</p>
+                    <% {:ok, folders} -> %>
+                      <button
+                        :for={name <- folders}
+                        type="button"
+                        class="flex w-full items-center gap-3 px-4 py-2 text-left font-mono hover:bg-surface-container-high"
+                        phx-click="browse_into"
+                        phx-value-name={name}
+                      >
+                        <.dm_mdi name="folder-outline" class="h-5 w-5 text-on-surface-variant" />
+                        {name}
+                      </button>
+                  <% end %>
+                </div>
+              </:body>
+              <:footer>
+                <.dm_btn command="close" commandfor="project-folder-modal">
+                  {gettext("Cancel")}
+                </.dm_btn>
+                <.dm_btn
+                  id="folder-use"
+                  variant="primary"
+                  command="close"
+                  commandfor="project-folder-modal"
+                  phx-click="use_folder"
+                  disabled={@browse_path in [nil, "/"]}
+                >
+                  {gettext("Use folder")}
+                </.dm_btn>
+              </:footer>
+            </.dm_modal>
           </.dm_card>
         </div>
         <div

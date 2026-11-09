@@ -149,6 +149,39 @@ defmodule Samgita.CodexHosts do
     end
   end
 
+  @doc """
+  List the folders in one directory on the Codex machine (`fs/readDirectory`),
+  for choosing a project folder. Visible folders first, then hidden ones.
+  """
+  def read_directory(principal, id, path) do
+    path = String.trim(path || "")
+
+    with :ok <- operator(principal),
+         :ok <- absolute_path(path),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"entries" => entries}}} when is_list(entries) <-
+           codex_request(session, "fs/readDirectory", %{"path" => path}) do
+      folders =
+        for %{"fileName" => name, "isDirectory" => true} <- entries, is_binary(name), do: name
+
+      {hidden, visible} = Enum.split_with(folders, &String.starts_with?(&1, "."))
+      {:ok, Enum.sort_by(visible, &String.downcase/1) ++ Enum.sort_by(hidden, &String.downcase/1)}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "The user's home folder on a connected Codex machine, when Codex reported it."
+  def home(id), do: Runtime.status(id)["home"]
+
+  defp absolute_path(path) do
+    if Path.type(path) == :absolute and byte_size(path) <= 4096 and
+         not String.contains?(path, <<0>>),
+       do: :ok,
+       else: {:error, Error.new(:invalid, %{fields: [:path]})}
+  end
+
   @project_pages 10
 
   defp list_projects(session, cursor, acc) do

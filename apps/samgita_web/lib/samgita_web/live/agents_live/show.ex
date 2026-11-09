@@ -18,7 +18,9 @@ defmodule SamgitaWeb.AgentsLive.Show do
        codex_host: nil,
        codex_form: nil,
        codex_projects: nil,
-       project_form: new_project_form(),
+       browse_path: nil,
+       browse_entries: nil,
+       folder_command_id: Ecto.UUID.generate(),
        project_error: nil,
        error: nil,
        load_error: nil,
@@ -186,30 +188,47 @@ defmodule SamgitaWeb.AgentsLive.Show do
     end
   end
 
-  def handle_event("change_project", %{"project" => params}, socket),
-    do:
-      {:noreply, assign(socket, project_form: to_form(params, as: :project), project_error: nil)}
-
-  def handle_event(
-        "add_project",
-        %{"project" => params},
-        %{assigns: %{codex_host: host}} = socket
-      )
+  # Folder picker for a new project, browsing the Codex machine's file system.
+  def handle_event("browse_open", _params, %{assigns: %{codex_host: host}} = socket)
       when is_map(host) do
-    case CodexHosts.create_project(Principal.operator(), host["id"], params) do
+    path = socket.assigns.browse_path || CodexHosts.home(host["id"]) || "/"
+    {:noreply, socket |> assign(project_error: nil) |> browse(path)}
+  end
+
+  def handle_event("browse_path", %{"path" => path}, socket),
+    do: {:noreply, browse(socket, String.trim(path))}
+
+  def handle_event("browse_up", _params, %{assigns: %{browse_path: path}} = socket)
+      when is_binary(path),
+      do: {:noreply, browse(socket, Path.dirname(path))}
+
+  def handle_event("browse_into", %{"name" => name}, %{assigns: %{browse_path: path}} = socket)
+      when is_binary(path),
+      do: {:noreply, browse(socket, Path.join(path, name))}
+
+  # The command ID is the Codex idempotency key; it changes only after success.
+  def handle_event(
+        "use_folder",
+        _params,
+        %{assigns: %{codex_host: host, browse_path: path}} = socket
+      )
+      when is_map(host) and is_binary(path) do
+    attrs = %{
+      "command_id" => socket.assigns.folder_command_id,
+      "name" => Path.basename(path),
+      "path" => path
+    }
+
+    case CodexHosts.create_project(Principal.operator(), host["id"], attrs) do
       {:ok, project} ->
         {:noreply,
          socket
-         |> assign(project_form: new_project_form(), project_error: nil)
+         |> assign(folder_command_id: Ecto.UUID.generate(), project_error: nil)
          |> load_projects()
          |> put_flash(:info, "Project #{project["name"]} added to Codex.")}
 
       {:error, error} ->
-        {:noreply,
-         assign(socket,
-           project_form: to_form(params, as: :project),
-           project_error: codex_error(error)
-         )}
+        {:noreply, assign(socket, project_error: codex_error(error))}
     end
   end
 
@@ -220,7 +239,9 @@ defmodule SamgitaWeb.AgentsLive.Show do
         {:codex_host_status, id, status},
         %{assigns: %{codex_host: %{"id" => id}}} = socket
       ) do
-    socket = update(socket, :codex_host, &Map.put(&1, "status", status))
+    # Reconnects also change durable fields (generation, last connection, machine).
+    {:ok, host} = CodexHosts.for_agent(Principal.operator(), socket.assigns.agent_id)
+    socket = assign(socket, codex_host: Map.put(host, "status", status))
 
     if status["state"] == "connected",
       do: {:noreply, load_projects(socket)},
@@ -236,6 +257,24 @@ defmodule SamgitaWeb.AgentsLive.Show do
   def handle_async(:projects, {:ok, {:error, error}}, socket),
     do: {:noreply, assign(socket, codex_projects: {:error, codex_error(error)})}
 
+  def handle_async(:folders, {:ok, {path, result}}, socket) do
+    # Ignore a listing for a folder the user has already left.
+    if path == socket.assigns.browse_path do
+      entries =
+        case result do
+          {:ok, folders} -> {:ok, folders}
+          {:error, error} -> {:error, codex_error(error)}
+        end
+
+      {:noreply, assign(socket, browse_entries: entries)}
+    else
+      {:noreply, socket}
+    end
+  end
+
+  def handle_async(:folders, {:exit, _}, socket),
+    do: {:noreply, assign(socket, browse_entries: {:error, codex_error(nil)})}
+
   def handle_async(:projects, {:exit, _}, socket),
     do: {:noreply, assign(socket, codex_projects: {:error, codex_error(nil)})}
 
@@ -248,8 +287,16 @@ defmodule SamgitaWeb.AgentsLive.Show do
 
   defp load_projects(socket), do: socket
 
-  defp new_project_form,
-    do: to_form(%{"name" => "", "path" => "", "command_id" => Ecto.UUID.generate()}, as: :project)
+  defp browse(socket, path) do
+    id = socket.assigns.codex_host["id"]
+    path = if path == "", do: "/", else: path
+
+    socket
+    |> assign(browse_path: path, browse_entries: nil)
+    |> start_async(:folders, fn ->
+      {path, CodexHosts.read_directory(Principal.operator(), id, path)}
+    end)
+  end
 
   defp codex_error(%Samgita.Error{code: :codex_unavailable}),
     do: "Codex is not connected. Start the connection and try again."
