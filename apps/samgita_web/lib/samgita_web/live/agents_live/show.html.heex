@@ -47,6 +47,63 @@
         )}
       </p>
     </.dm_card>
+    <.dm_card :if={@codex_host} id="codex-projects" variant="bordered">
+      <:title>{gettext("Projects")}</:title>
+      <p class="mb-4 text-sm text-on-surface-variant">
+        {gettext("Projects open in Codex on this machine, read live from Codex.")}
+        <.dm_link phx-click="refresh_projects" id="codex-projects-refresh">
+          {gettext("Refresh")}
+        </.dm_link>
+      </p>
+      <%= case @codex_projects do %>
+        <% nil -> %>
+          <p id="codex-projects-loading">{gettext("Loading projects…")}</p>
+        <% {:error, message} -> %>
+          <p id="codex-projects-error" role="alert" class="text-error">{message}</p>
+        <% {:ok, []} -> %>
+          <p id="codex-projects-empty">{gettext("Codex has no projects on this machine yet.")}</p>
+        <% {:ok, projects} -> %>
+          <div class="overflow-x-auto">
+            <.dm_table id="codex-projects-list" data={projects}>
+              <:col :let={project} label={gettext("Project")}>{project["name"]}</:col>
+              <:col :let={project} label={gettext("Folder")}>
+                <code :for={root <- project["roots"]} class="block break-all text-sm">{root}</code>
+              </:col>
+            </.dm_table>
+          </div>
+      <% end %>
+      <p :if={@project_error} id="codex-project-error" role="alert" class="mt-4 text-error">
+        {@project_error}
+      </p>
+      <.form
+        for={@project_form}
+        id="codex-project-add"
+        phx-change="change_project"
+        phx-submit="add_project"
+        class="mt-4 grid items-end gap-4 sm:grid-cols-3"
+      >
+        <input
+          type="hidden"
+          name="project[command_id]"
+          value={@project_form.params["command_id"]}
+        />
+        <.dm_input field={@project_form[:name]} label={gettext("Project name")} required />
+        <.dm_input
+          field={@project_form[:path]}
+          label={gettext("Folder on that machine")}
+          placeholder="/Users/me/code/app"
+          required
+        />
+        <.dm_btn
+          native_submit
+          type="submit"
+          variant="primary"
+          phx-disable-with={gettext("Adding…")}
+        >
+          {gettext("Add project")}
+        </.dm_btn>
+      </.form>
+    </.dm_card>
     <.dm_card :if={@codex_form} id="codex-host" variant="bordered">
       <:title>{gettext("Codex host")}</:title>
       <dl :if={@codex_host} class="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -331,6 +331,17 @@ Owner files: `apps/samgita_web/lib/samgita_web/live/agents_live/index.{ex,html.h
 
 Result (2026-11-10): Agents and Codex host LiveView tests pass (13 run, 4 authorization/credential cases skipped). Browser check on an isolated dev database (`samgita_redesign_ui_dev`, port 4871) against two local `codex app-server` 0.167.0 processes on 47811/47812: both added from the page and reached `connected`; Stop showed `stopped`, Start reconnected with a new generation; killing one Codex process showed `backoff` live and restarting it reconnected automatically.
 
+### P7.4 Codex projects on the Agent page
+
+Requested 2026-11-10: a Codex Agent (one per host environment) shows the projects open in Codex on that machine and can add one. Codex owns its projects (the same list the Codex app shows); Samgita reads them live and keeps no copy.
+
+Owner files: `apps/samgita/lib/samgita/codex_hosts.ex` (`projects/2`, `create_project/3`), `codex_hosts/{connection,runtime}.ex` (live session access; initialize with `experimentalApi: true` because `project/*` is experimental in Codex 0.167.0), `apps/samgita_web/lib/samgita_web/live/agents_live/show.{ex,html.heex}`, `apps/samgita/test/support/fake_codex_server.ex`, `apps/samgita_web/test/samgita_web/live/agents_codex_projects_live_test.exs`.
+
+- [x] Projects card on a Codex Agent page: `project/list` (paged, up to 1,000), name and folder, refresh, reloaded when the connection reconnects.
+- [x] Add project: name and an absolute folder on that machine; `project/create` with the command ID as `idempotencyKey`, and a `codex_host.project_created` audit event.
+
+Result (2026-11-10): `agents_codex_projects_live_test.exs` 2 tests pass (experimental initialize, listing, exact `project/create` params and audit event, relative folder refused before contacting Codex); Agent and Codex host LiveView tests (12) and filtered Codex host core tests (7) pass. Browser check against the local Codex 0.167.0 on 47811 listed its nine real projects. Adding a project was not exercised against the real Codex because it would change the user's Codex app project list.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

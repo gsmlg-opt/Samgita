@@ -10,6 +10,7 @@ defmodule Samgita.CodexHosts do
   import Ecto.Changeset
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
   alias Samgita.CodexHosts.Runtime
+  alias SamgitaCodexDriver.Session
   alias Samgita.Domain.{Agent, CodexHost}
 
   @websocket_fields ~w(url connect_address token_ref allow_insecure)a
@@ -91,6 +92,115 @@ defmodule Samgita.CodexHosts do
       end
     )
     |> after_commit()
+  end
+
+  @doc """
+  The projects Codex reports on this host (its `project/list`). Codex owns them;
+  Samgita keeps no copy. Requires a connected host.
+  """
+  def projects(principal, id) do
+    with :ok <- operator(principal),
+         {:ok, session} <- live_session(id) do
+      list_projects(session, nil, [])
+    end
+  end
+
+  @doc """
+  Add a project to Codex on this host (`project/create`). The command ID is the
+  idempotency key, so a retry cannot create a second project.
+  """
+  def create_project(principal, id, attrs) do
+    attrs = Params.strings(attrs)
+    name = String.trim(attrs["name"] || "")
+    path = String.trim(attrs["path"] || "")
+
+    with :ok <- operator(principal),
+         :ok <- validate_project(attrs["command_id"], name, path),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"project" => created}}} <-
+           codex_request(session, "project/create", %{
+             "idempotencyKey" => attrs["command_id"],
+             "name" => name,
+             "roots" => [%{"path" => path}]
+           }) do
+      project = project(created)
+
+      system(id, fn ctx, host ->
+        Events.append!(nil, "codex_host.project_created", ctx, "codex_host", host.id, %{
+          "agent_id" => host.agent_id,
+          "project_id" => project["id"],
+          "name" => project["name"]
+        })
+      end)
+
+      {:ok, project}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @project_pages 10
+
+  defp list_projects(session, cursor, acc) do
+    params = if cursor, do: %{"limit" => 100, "cursor" => cursor}, else: %{"limit" => 100}
+
+    case codex_request(session, "project/list", params) do
+      {:ok, %{"result" => %{"data" => data} = result}} when is_list(data) ->
+        acc = acc ++ Enum.map(data, &project/1)
+        next = result["nextCursor"]
+
+        if is_binary(next) and length(acc) < 100 * @project_pages,
+          do: list_projects(session, next, acc),
+          else: {:ok, acc}
+
+      {:ok, _} ->
+        {:error, Error.new(:codex_request_failed)}
+
+      error ->
+        error
+    end
+  end
+
+  defp project(p) when is_map(p),
+    do: %{
+      "id" => p["id"],
+      "name" => p["name"],
+      "roots" => for(%{"path" => path} <- List.wrap(p["roots"]), is_binary(path), do: path),
+      "updated_at" => p["updatedAt"]
+    }
+
+  defp validate_project(command_id, name, path) do
+    cond do
+      !Params.uuid?(command_id) ->
+        {:error, Error.new(:invalid, %{fields: [:command_id]})}
+
+      name == "" or byte_size(name) > 200 ->
+        {:error, Error.new(:invalid, %{fields: [:name]})}
+
+      Path.type(path) != :absolute or byte_size(path) > 4096 or String.contains?(path, <<0>>) ->
+        {:error, Error.new(:invalid, %{fields: [:path]})}
+
+      true ->
+        :ok
+    end
+  end
+
+  defp live_session(id) do
+    case fetch(id) && Runtime.session(id) do
+      nil -> {:error, Error.new(:codex_unavailable)}
+      false -> {:error, Error.new(:not_found)}
+      session -> {:ok, session}
+    end
+  end
+
+  defp codex_request(session, method, params) do
+    case Session.request(session, method, params, timeout_ms: 15_000) do
+      {:ok, %{"result" => _} = wire} -> {:ok, wire}
+      _ -> {:error, Error.new(:codex_request_failed)}
+    end
+  catch
+    :exit, _ -> {:error, Error.new(:codex_unavailable)}
   end
 
   @doc "Validate host settings without writing, so a caller can check them before creating an Agent."

@@ -69,6 +69,16 @@ defmodule Samgita.CodexHosts.Runtime do
     end
   end
 
+  @doc "The live initialized Session of a connected host, or nil."
+  def session(id) do
+    case whereis(id) do
+      nil -> nil
+      pid -> Connection.session(pid)
+    end
+  catch
+    :exit, _ -> nil
+  end
+
   def whereis(id) do
     # Registry removes entries asynchronously after a process exits.
     case Registry.lookup(@registry, id) do

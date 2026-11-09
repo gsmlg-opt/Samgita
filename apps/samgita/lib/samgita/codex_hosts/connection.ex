@@ -30,6 +30,8 @@ defmodule Samgita.CodexHosts.Connection do
   def status(pid), do: GenServer.call(pid, :status)
   def config_version(pid), do: GenServer.call(pid, :config_version)
   def reconnect(pid), do: GenServer.call(pid, :reconnect)
+  @doc "The initialized Session while connected, otherwise nil."
+  def session(pid), do: GenServer.call(pid, :session)
 
   @impl true
   def init(host) do
@@ -54,6 +56,9 @@ defmodule Samgita.CodexHosts.Connection do
   @impl true
   def handle_call(:status, _from, state), do: {:reply, state.status, state}
   def handle_call(:config_version, _from, state), do: {:reply, state.host.version, state}
+
+  def handle_call(:session, _from, state),
+    do: {:reply, if(state.generation, do: state.session), state}
 
   def handle_call(:reconnect, _from, state) do
     state = state |> cancel_timer() |> close_session(:operator_reconnect)
@@ -180,7 +185,8 @@ defmodule Samgita.CodexHosts.Connection do
   defp initialize(session) do
     info = %{"name" => "samgita", "version" => app_version()}
 
-    case Session.initialize(session, info, %{"experimentalApi" => false}) do
+    # Codex projects (`project/*`) are part of the experimental API.
+    case Session.initialize(session, info, %{"experimentalApi" => true}) do
       {:ok, wire} -> {:ok, server_version(wire)}
       {:error, _} = error -> error
     end

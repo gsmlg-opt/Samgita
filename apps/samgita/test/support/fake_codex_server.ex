@@ -3,7 +3,8 @@ defmodule Samgita.FakeCodexServer do
   Minimal loopback Codex app-server over WebSocket for host-connection tests.
 
   Answers `initialize` with a schema-valid response, ignores notifications and
-  answers other requests with an empty result. `drop_connections/1` closes live
+  answers other requests with the `:results` option for that method (default
+  an empty result), reporting each request's params to the owner. `drop_connections/1` closes live
   sockets to simulate a server restart; the listener keeps accepting.
   """
   import Bitwise
@@ -112,8 +113,9 @@ defmodule Samgita.FakeCodexServer do
     reply(socket, %{"id" => id, "error" => %{"code" => -32_603, "message" => "not ready"}})
   end
 
-  defp handle(socket, owner, opts, %{"id" => id, "method" => "initialize"}) do
+  defp handle(socket, owner, opts, %{"id" => id, "method" => "initialize"} = wire) do
     send(owner, {:fake_codex, :request, "initialize"})
+    send(owner, {:fake_codex, :params, "initialize", wire["params"]})
     version = Map.get(opts, :version, "0.167.0")
 
     reply(socket, %{
@@ -127,9 +129,11 @@ defmodule Samgita.FakeCodexServer do
     })
   end
 
-  defp handle(socket, owner, _opts, %{"id" => id, "method" => method}) do
+  defp handle(socket, owner, opts, %{"id" => id, "method" => method} = wire) do
     send(owner, {:fake_codex, :request, method})
-    reply(socket, %{"id" => id, "result" => %{}})
+    send(owner, {:fake_codex, :params, method, wire["params"]})
+    result = opts |> Map.get(:results, %{}) |> Map.get(method, %{})
+    reply(socket, %{"id" => id, "result" => result})
   end
 
   defp handle(_socket, owner, _opts, %{"method" => method}),

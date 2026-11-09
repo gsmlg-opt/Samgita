@@ -17,6 +17,9 @@ defmodule SamgitaWeb.AgentsLive.Show do
        detail: nil,
        codex_host: nil,
        codex_form: nil,
+       codex_projects: nil,
+       project_form: new_project_form(),
+       project_error: nil,
        error: nil,
        load_error: nil,
        credential_reset: 0
@@ -145,14 +148,79 @@ defmodule SamgitaWeb.AgentsLive.Show do
     end
   end
 
+  def handle_event("change_project", %{"project" => params}, socket),
+    do:
+      {:noreply, assign(socket, project_form: to_form(params, as: :project), project_error: nil)}
+
+  def handle_event(
+        "add_project",
+        %{"project" => params},
+        %{assigns: %{codex_host: host}} = socket
+      )
+      when is_map(host) do
+    case CodexHosts.create_project(Principal.operator(), host["id"], params) do
+      {:ok, project} ->
+        {:noreply,
+         socket
+         |> assign(project_form: new_project_form(), project_error: nil)
+         |> load_projects()
+         |> put_flash(:info, "Project #{project["name"]} added to Codex.")}
+
+      {:error, error} ->
+        {:noreply,
+         assign(socket,
+           project_form: to_form(params, as: :project),
+           project_error: codex_error(error)
+         )}
+    end
+  end
+
+  def handle_event("refresh_projects", _params, socket), do: {:noreply, load_projects(socket)}
+
   @impl true
   def handle_info(
         {:codex_host_status, id, status},
         %{assigns: %{codex_host: %{"id" => id}}} = socket
-      ),
-      do: {:noreply, update(socket, :codex_host, &Map.put(&1, "status", status))}
+      ) do
+    socket = update(socket, :codex_host, &Map.put(&1, "status", status))
+
+    if status["state"] == "connected",
+      do: {:noreply, load_projects(socket)},
+      else: {:noreply, socket}
+  end
 
   def handle_info(_message, socket), do: {:noreply, socket}
+
+  @impl true
+  def handle_async(:projects, {:ok, {:ok, projects}}, socket),
+    do: {:noreply, assign(socket, codex_projects: {:ok, projects})}
+
+  def handle_async(:projects, {:ok, {:error, error}}, socket),
+    do: {:noreply, assign(socket, codex_projects: {:error, codex_error(error)})}
+
+  def handle_async(:projects, {:exit, _}, socket),
+    do: {:noreply, assign(socket, codex_projects: {:error, codex_error(nil)})}
+
+  # Codex owns its projects; they are read live from the connected host.
+  defp load_projects(%{assigns: %{codex_host: %{"id" => id}}} = socket) do
+    if connected?(socket),
+      do: start_async(socket, :projects, fn -> CodexHosts.projects(Principal.operator(), id) end),
+      else: socket
+  end
+
+  defp load_projects(socket), do: socket
+
+  defp new_project_form,
+    do: to_form(%{"name" => "", "path" => "", "command_id" => Ecto.UUID.generate()}, as: :project)
+
+  defp codex_error(%Samgita.Error{code: :codex_unavailable}),
+    do: "Codex is not connected. Start the connection and try again."
+
+  defp codex_error(%Samgita.Error{code: :codex_request_failed}),
+    do: "Codex rejected the request. Check the name and that the path exists on that machine."
+
+  defp codex_error(%Samgita.Error{code: :invalid} = error), do: Components.error_message(error)
+  defp codex_error(_), do: "Codex could not be reached."
 
   defp load_codex_host(socket, %{"runtime_driver" => "codex"} = agent) do
     {:ok, host} = CodexHosts.for_agent(Principal.operator(), agent["id"])
@@ -169,7 +237,9 @@ defmodule SamgitaWeb.AgentsLive.Show do
       |> Map.put("command_id", Ecto.UUID.generate())
       |> Map.put("expected_version", host && host["version"])
 
-    assign(socket, codex_host: host, codex_form: to_form(values, as: :codex_host))
+    socket
+    |> assign(codex_host: host, codex_form: to_form(values, as: :codex_host))
+    |> load_projects()
   end
 
   defp load_codex_host(socket, _agent), do: assign(socket, codex_host: nil, codex_form: nil)
