@@ -49,7 +49,16 @@ defmodule Samgita.Management do
   def agents(principal, params \\ %{}) do
     operator_read(principal, nil, fn _ ->
       {limit, offset} = page(params)
-      records = Repo.all(from(a in Agent, order_by: a.id, limit: ^limit, offset: ^offset))
+
+      records =
+        Repo.all(
+          from(a in Agent,
+            order_by: [desc: a.inserted_at, asc: a.id],
+            limit: ^limit,
+            offset: ^offset
+          )
+        )
+
       evidence = agent_evidence(Enum.map(records, & &1.id))
 
       %{

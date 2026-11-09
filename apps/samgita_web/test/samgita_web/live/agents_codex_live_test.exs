@@ -43,6 +43,9 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     )
     |> render_submit()
 
+    assert_redirect(view, ~p"/agents")
+    {:ok, view, _} = live(conn, ~p"/agents")
+    assert has_element?(view, "#agent-add-modal #agent-add")
     agent = Repo.get_by!(Agent, name: "Codex local")
     assert agent.runtime_driver == "codex"
     host = Repo.get_by!(CodexHost, agent_id: agent.id)
@@ -51,7 +54,7 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
 
     assert_receive {:fake_codex, :request, "initialize"}, 3_000
     await(fn -> Repo.get!(CodexHost, host.id).generation == 1 end)
-    await(fn -> render(view) =~ "connected" end)
+    await(fn -> has_element?(view, "#agents-list .agent-state", "connected") end)
 
     view |> element("#agent-stop-#{host.id}") |> render_click()
     refute Repo.get!(CodexHost, host.id).enabled

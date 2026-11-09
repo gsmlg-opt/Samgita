@@ -54,11 +54,11 @@ defmodule SamgitaWeb.AgentsLive.Index do
              "command_id" => params["enable_command_id"],
              "expected_version" => host["version"]
            }) do
+      # Navigating back resets the page, which also closes the dialog.
       {:noreply,
        socket
-       |> assign(form: new_form("codex"), error: nil)
-       |> load()
-       |> put_flash(:info, "#{agent["name"]} added. Connecting to #{params["address"]}.")}
+       |> put_flash(:info, "#{agent["name"]} added. Connecting to #{params["address"]}.")
+       |> push_navigate(to: ~p"/agents")}
     else
       {:error, error} -> {:noreply, failed(socket, params, error)}
     end

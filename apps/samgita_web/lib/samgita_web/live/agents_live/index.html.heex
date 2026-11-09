@@ -1,15 +1,73 @@
 <section class="space-y-6" aria-labelledby="agents-title">
-  <header>
-    <h1 id="agents-title" class="text-3xl font-bold">{gettext("Agents")}</h1>
-    <p class="text-on-surface-variant">
-      {gettext("Connected Agents, such as Codex, Synapsis and Sigma.")}
-    </p>
+  <header class="flex flex-wrap items-start justify-between gap-4">
+    <div>
+      <h1 id="agents-title" class="text-3xl font-bold">{gettext("Agents")}</h1>
+      <p class="text-on-surface-variant">
+        {gettext("Connected Agents, such as Codex, Synapsis and Sigma.")}
+      </p>
+    </div>
+    <.dm_modal id="agent-add-modal" size="lg">
+      <:trigger :let={id}>
+        <.dm_btn id="agent-add-open" variant="primary" command="show-modal" commandfor={id}>
+          {gettext("Add Agent")}
+        </.dm_btn>
+      </:trigger>
+      <:title>{gettext("Add Agent")}</:title>
+      <:body>
+        <p :if={@form.params["kind"] == "codex"} class="mb-4 text-sm text-on-surface-variant">
+          {gettext(
+            "Run `codex app-server --listen ws://127.0.0.1:47811` on the machine. For another machine, forward its port first, for example `ssh -N -L 47812:127.0.0.1:47811 host`, and use ws://127.0.0.1:47812."
+          )}
+        </p>
+        <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
+        <.form for={@form} id="agent-add" phx-submit="add" phx-change="change" class="space-y-4">
+          <input
+            :for={key <- ~w(agent_command_id host_command_id enable_command_id)}
+            type="hidden"
+            name={"agent[#{key}]"}
+            value={@form.params[key]}
+          />
+          <div class="grid gap-4">
+            <.dm_input
+              field={@form[:kind]}
+              type="select"
+              label={gettext("Type")}
+              options={[{"Codex", "codex"}, {gettext("Samgita protocol Agent"), "agent"}]}
+            />
+            <.dm_input
+              field={@form[:name]}
+              label={gettext("Name")}
+              placeholder="Codex on mbp"
+              required
+            />
+            <.dm_input
+              field={@form[:address]}
+              label={gettext("Address")}
+              placeholder={
+                if @form.params["kind"] == "codex",
+                  do: "ws://127.0.0.1:47811",
+                  else: "wss://agent.example/app-server"
+              }
+              required={@form.params["kind"] == "codex"}
+            />
+          </div>
+          <.dm_btn
+            native_submit
+            type="submit"
+            variant="primary"
+            phx-disable-with={gettext("Adding…")}
+          >
+            {gettext("Add")}
+          </.dm_btn>
+        </.form>
+      </:body>
+    </.dm_modal>
   </header>
   <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
   <.dm_card variant="bordered">
     <:title>{gettext("Agents")}</:title>
     <p :if={@page["data"] == []} id="agents-empty">
-      {gettext("No Agents on this page. Add one below.")}
+      {gettext("No Agents on this page. Use Add Agent to connect one.")}
     </p>
     <div class="overflow-x-auto">
       <.dm_table :if={@page["data"] != []} id="agents-list" data={@page["data"]}>
@@ -82,49 +140,5 @@
         patch={~p"/agents?offset=#{@page["offset"] + 25}"}
       >{gettext("Next")}</.dm_link>
     </nav>
-  </.dm_card>
-  <.dm_card variant="bordered">
-    <:title>{gettext("Add Agent")}</:title>
-    <p :if={@form.params["kind"] == "codex"} class="mb-4 text-sm text-on-surface-variant">
-      {gettext(
-        "Run `codex app-server --listen ws://127.0.0.1:47811` on the machine. For another machine, forward its port first, for example `ssh -N -L 47812:127.0.0.1:47811 host`, and use ws://127.0.0.1:47812."
-      )}
-    </p>
-    <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
-    <.form for={@form} id="agent-add" phx-submit="add" phx-change="change" class="space-y-4">
-      <input
-        :for={key <- ~w(agent_command_id host_command_id enable_command_id)}
-        type="hidden"
-        name={"agent[#{key}]"}
-        value={@form.params[key]}
-      />
-      <div class="grid gap-4 sm:grid-cols-3">
-        <.dm_input
-          field={@form[:kind]}
-          type="select"
-          label={gettext("Type")}
-          options={[{"Codex", "codex"}, {gettext("Samgita protocol Agent"), "agent"}]}
-        />
-        <.dm_input
-          field={@form[:name]}
-          label={gettext("Name")}
-          placeholder="Codex on mbp"
-          required
-        />
-        <.dm_input
-          field={@form[:address]}
-          label={gettext("Address")}
-          placeholder={
-            if @form.params["kind"] == "codex",
-              do: "ws://127.0.0.1:47811",
-              else: "wss://agent.example/app-server"
-          }
-          required={@form.params["kind"] == "codex"}
-        />
-      </div>
-      <.dm_btn native_submit type="submit" variant="primary" phx-disable-with={gettext("Adding…")}>
-        {gettext("Add")}
-      </.dm_btn>
-    </.form>
   </.dm_card>
 </section>

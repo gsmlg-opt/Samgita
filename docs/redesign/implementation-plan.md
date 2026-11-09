@@ -327,6 +327,7 @@ Requested 2026-11-09, revised 2026-11-10: Codex is one kind of Agent, managed on
 Owner files: `apps/samgita_web/lib/samgita_web/live/agents_live/index.{ex,html.heex}`, `apps/samgita/lib/samgita/codex_hosts.ex` (`list` adds the Agent name; `validate_settings/1`), `apps/samgita_web/test/samgita_web/live/{agents_live_test,agents_codex_live_test}.exs`.
 
 - [x] The Agents list shows each Agent's type and address; Codex rows show live connection state, reported Codex version and errors, with Start (enable), Stop (disable) and Reconnect.
+- [x] An "Add Agent" button opens a modal dialog (DuskMoon `dm_modal`); the list shows the newest Agents first.
 - [x] "Add Agent" asks only for type (Codex or Samgita protocol Agent), name and address. Codex validates the address first, then registers the Agent, configures its WebSocket host and enables it, each with a stable `command_id`; a Samgita protocol Agent is registered with its endpoint and opened for further setup. Capabilities, capacity, credentials and SSH daemon settings stay on the Agent page.
 
 Result (2026-11-10): Agents and Codex host LiveView tests pass (13 run, 4 authorization/credential cases skipped). Browser check on an isolated dev database (`samgita_redesign_ui_dev`, port 4871) against two local `codex app-server` 0.167.0 processes on 47811/47812: both added from the page and reached `connected`; Stop showed `stopped`, Start reconnected with a new generation; killing one Codex process showed `backoff` live and restarting it reconnected automatically.
