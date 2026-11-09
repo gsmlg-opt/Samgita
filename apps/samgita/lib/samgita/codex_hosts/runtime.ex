@@ -91,6 +91,22 @@ defmodule Samgita.CodexHosts.Runtime do
   @doc false
   def via(id), do: {:via, Registry, {@registry, id}}
 
+  @doc "PubSub topic carrying one Codex thread's live events on one host."
+  def thread_topic(host_id, thread_id), do: "codex_thread:" <> host_id <> ":" <> thread_id
+
+  def broadcast_thread(host_id, thread_id, message),
+    do: Phoenix.PubSub.broadcast(Samgita.PubSub, thread_topic(host_id, thread_id), message)
+
+  @doc "Call the live connection process of a host, or return `{:error, :not_connected}`."
+  def call(id, fun) do
+    case whereis(id) do
+      nil -> {:error, :not_connected}
+      pid -> fun.(pid)
+    end
+  catch
+    :exit, _ -> {:error, :not_connected}
+  end
+
   @doc false
   def broadcast(id, status),
     do: Phoenix.PubSub.broadcast(Samgita.PubSub, @topic, {:codex_host_status, id, status})

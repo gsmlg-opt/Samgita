@@ -204,6 +204,14 @@ defmodule SamgitaWeb.ProjectsLive.Index do
                   :if={MapSet.member?(@expanded, {host["id"], project["id"]})}
                   class="pb-3 pl-8"
                 >
+                  <.link
+                    :if={project["roots"] != []}
+                    id={"codex-new-session-" <> project["id"]}
+                    navigate={~p"/sessions/#{host["id"]}/new?#{%{cwd: hd(project["roots"])}}"}
+                    class="mb-2 inline-flex items-center gap-1 text-sm font-semibold text-primary"
+                  >
+                    <.dm_mdi name="plus" class="h-4 w-4" /> New session
+                  </.link>
                   <%= case @sessions[{host["id"], project["id"]}] do %>
                     <% nil -> %>
                       <p class="text-on-surface-variant">Loading sessions…</p>
@@ -219,7 +227,12 @@ defmodule SamgitaWeb.ProjectsLive.Index do
                           class="flex items-center gap-3"
                         >
                           <.dm_mdi name="message-outline" class="h-4 w-4 text-on-surface-variant" />
-                          <span class="truncate">{session["title"]}</span>
+                          <.link
+                            navigate={~p"/sessions/#{host["id"]}/#{session["id"]}"}
+                            class="truncate hover:underline"
+                          >
+                            {session["title"]}
+                          </.link>
                           <span class="ml-auto shrink-0 text-xs text-on-surface-variant">
                             {session_state(session["status"])} · {when_updated(session["updated_at"])}
                           </span>

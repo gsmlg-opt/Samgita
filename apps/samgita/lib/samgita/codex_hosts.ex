@@ -207,11 +207,123 @@ defmodule Samgita.CodexHosts do
     end
   end
 
+  # Interactive sessions use the Codex desktop app defaults: Codex may write in
+  # the project folder and asks before anything else.
+  @session_settings %{"approvalPolicy" => "on-request", "sandbox" => "workspace-write"}
+  @decisions ~w(accept acceptForSession decline cancel)
+
+  @doc "Start a new Codex session (thread) in a folder on this host."
+  def start_thread(principal, id, cwd) do
+    with :ok <- operator(principal),
+         :ok <- absolute_path(cwd || ""),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"thread" => thread}}} <-
+           codex_request(session, "thread/start", Map.put(@session_settings, "cwd", cwd)) do
+      {:ok, thread(thread)}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc """
+  Continue an existing session: `thread/resume` returns its turns and subscribes
+  this host connection to the thread's live events.
+  """
+  def resume_thread(principal, id, thread_id) do
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"thread" => thread}}} <-
+           codex_request(
+             session,
+             "thread/resume",
+             Map.put(@session_settings, "threadId", thread_id),
+             60_000
+           ) do
+      {:ok, thread |> thread() |> Map.put("turns", List.wrap(thread["turns"]))}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "Send a user message, starting a new turn in the session."
+  def send_message(principal, id, thread_id, text) do
+    text = String.trim(text || "")
+
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         :ok <-
+           if(text != "" and byte_size(text) <= 100_000,
+             do: :ok,
+             else: {:error, Error.new(:invalid, %{fields: [:message]})}
+           ),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"turn" => turn}}} <-
+           codex_request(session, "turn/start", %{
+             "threadId" => thread_id,
+             "input" => [%{"type" => "text", "text" => text}]
+           }) do
+      {:ok, turn["id"]}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "Stop the running turn."
+  def interrupt(principal, id, thread_id, turn_id) do
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         :ok <- thread_id!(turn_id),
+         {:ok, session} <- live_session(id),
+         {:ok, _} <-
+           codex_request(session, "turn/interrupt", %{
+             "threadId" => thread_id,
+             "turnId" => turn_id
+           }) do
+      :ok
+    end
+  end
+
+  @doc "Approval requests Codex is waiting on for this session."
+  def pending_requests(principal, id, thread_id) do
+    with :ok <- operator(principal),
+         requests when is_list(requests) <-
+           Runtime.call(id, &Samgita.CodexHosts.Connection.pending_requests(&1, thread_id)) do
+      {:ok, requests}
+    else
+      {:error, _} -> {:ok, []}
+      error -> error
+    end
+  end
+
+  @doc "Answer an approval request with a Codex decision (accept, acceptForSession, decline, cancel)."
+  def respond_request(principal, id, key, decision) do
+    with :ok <- operator(principal),
+         :ok <- if(decision in @decisions, do: :ok, else: {:error, Error.new(:invalid)}),
+         :ok <-
+           Runtime.call(
+             id,
+             &Samgita.CodexHosts.Connection.respond(&1, key, {:ok, %{"decision" => decision}})
+           ) do
+      :ok
+    else
+      {:error, %Error{}} = error -> error
+      {:error, _} -> {:error, Error.new(:codex_request_failed)}
+    end
+  end
+
+  defp thread_id!(value) when is_binary(value) and byte_size(value) in 1..200, do: :ok
+  defp thread_id!(_), do: {:error, Error.new(:invalid)}
+
   defp thread(t) when is_map(t) do
     title =
-      case t["name"] do
-        name when is_binary(name) and name != "" -> name
-        _ -> t["preview"] |> to_string() |> String.slice(0, 120)
+      case {t["name"], to_string(t["preview"])} do
+        {name, _} when is_binary(name) and name != "" -> name
+        {_, ""} -> nil
+        {_, preview} -> String.slice(preview, 0, 120)
       end
 
     %{
@@ -277,8 +389,8 @@ defmodule Samgita.CodexHosts do
     end
   end
 
-  defp codex_request(session, method, params) do
-    case Session.request(session, method, params, timeout_ms: 15_000) do
+  defp codex_request(session, method, params, timeout \\ 15_000) do
+    case Session.request(session, method, params, timeout_ms: timeout) do
       {:ok, %{"result" => _} = wire} -> {:ok, wire}
       _ -> {:error, Error.new(:codex_request_failed)}
     end

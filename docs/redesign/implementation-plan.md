@@ -386,6 +386,19 @@ Owner files: `codex_hosts.ex` (`sessions/3`), `apps/samgita_web/lib/samgita_web/
 
 Result (2026-11-10): `projects_codex_live_test.exs` passes (hosts, projects, exact `thread/list` params, sessions, collapse); LiveView suites (30) and filtered Codex host core tests (7) pass. Browser check: mbp2021 lists nine projects (web-terminal shows four sessions) and raven lists the user's new gsmlg-cli project with its two sessions.
 
+### P7.9 Interactive Codex sessions
+
+Requested 2026-11-10: from a Codex project, start a new session or continue an existing one and interact with Codex (send messages, watch replies and tool activity, answer approvals, stop a turn). This is an operator conversation with the user's own Codex, not Task execution; it does not create Attempts or affect Task state.
+
+Owner files: `codex_hosts/connection.ex` (route drained notifications by `threadId` to PubSub `codex_thread:<host>:<thread>`; keep server-request handles; respond on behalf of the page; 30-minute interaction timeout), `codex_hosts/runtime.ex`, `codex_hosts.ex` (`start_thread`, `resume_thread`, `send_message`, `interrupt`, `pending_requests`, `respond_request`), new `apps/samgita_web/lib/samgita_web/live/sessions_live/show.ex`, router, Projects page links, tests with the fake Codex server.
+
+- [x] New session: `thread/start` with the project folder as `cwd`, `approvalPolicy: "on-request"`, `sandbox: "workspace-write"` (the desktop app defaults), then `turn/start`.
+- [x] Existing session: `thread/resume` returns the history (turns) and subscribes this connection to live events.
+- [x] Live view: user and agent messages (agent text streamed from `item/agentMessage/delta`), command executions, file changes and reasoning summaries; running state from `turn/started`/`turn/completed`; Stop sends `turn/interrupt`.
+- [x] Approvals: command, file-change approval requests show Approve / Approve for session / Decline and answer with the Codex decision values; expired requests disappear.
+
+Result (2026-11-10): `sessions_live_test.exs` 2 tests pass against the fake Codex (exact `thread/start` and `turn/start` params, URL patch to the new thread, streamed agent deltas, running state until `turn/completed`, history from `thread/resume`, a pushed command approval answered with `acceptForSession` and removed); LiveView suites (29) and filtered Codex host core tests (7) pass. Browser check with the real local Codex 0.167.0 in a scratch folder: a new session answered "pong", reloading resumed its history, and a follow-up turn ran `ls -la` (command card with output, exit 0) and replied. Approvals were not triggered against the real Codex. Only command and file-change approvals can be answered here; other request kinds are shown with a note.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

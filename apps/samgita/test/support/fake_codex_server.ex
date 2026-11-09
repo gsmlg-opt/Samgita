@@ -30,6 +30,14 @@ defmodule Samgita.FakeCodexServer do
     }
   end
 
+  @doc "Push a server notification or request to every connected client."
+  def push(server, wire) do
+    for socket <- Agent.get(server.sockets, & &1),
+        do: :gen_tcp.send(socket, frame(1, Jason.encode!(wire)))
+
+    :ok
+  end
+
   def drop_connections(server) do
     server.sockets |> Agent.get_and_update(&{&1, []}) |> Enum.each(&:gen_tcp.close/1)
   end
@@ -138,6 +146,10 @@ defmodule Samgita.FakeCodexServer do
 
   defp handle(_socket, owner, _opts, %{"method" => method}),
     do: send(owner, {:fake_codex, :notification, method})
+
+  defp handle(_socket, owner, _opts, %{"id" => id} = wire)
+       when is_map_key(wire, "result") or is_map_key(wire, "error"),
+       do: send(owner, {:fake_codex, :response, id, wire["result"] || wire["error"]})
 
   defp handle(_socket, _owner, _opts, _wire), do: :ok
 
