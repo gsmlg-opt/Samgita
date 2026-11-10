@@ -3,7 +3,7 @@
 // single-line input; Chat.Composer is the multi-line composer of the DuskMoon
 // chat demo (Enter sends, Shift+Enter inserts a newline, Stop while working).
 import React, { useState } from "react"
-import { Chat } from "@duskmoon-dev/components/chat"
+import { Chat, ComposerSettings } from "@duskmoon-dev/components/chat"
 import { Markdown } from "@duskmoon-dev/components/markdown"
 import { createDuskmoonReactChat, useChatSubmission } from "phoenix_duskmoon/react-chat"
 
@@ -56,23 +56,44 @@ function Context({ metadata }) {
   )
 }
 
-// The session's access and model, shown next to Send.
-function Settings({ metadata }) {
+// Access, model and reasoning effort for the next message, next to Send. The
+// server validates each choice and pushes the new values back in `metadata`.
+function Settings({ metadata, bridge, conversationId }) {
+  const settings = metadata.settings || []
+  if (settings.length === 0) return null
   return h(
     React.Fragment,
     null,
-    metadata.access &&
-      h(
-        "span",
-        {
-          "data-session-access": true,
-          className: `flex items-center gap-1 text-sm ${metadata.full_access ? "text-warning" : "text-on-surface-variant"}`,
-        },
-        h(Icon, { path: metadata.full_access ? icons.shieldAlert : icons.shieldCheck }),
-        metadata.access,
-      ),
-    metadata.model &&
-      h("span", { "data-session-model": true, className: "ms-auto me-2 text-sm text-on-surface-variant" }, metadata.model),
+    h(
+      "span",
+      { className: metadata.full_access ? "text-warning" : "text-on-surface-variant" },
+      h(Icon, { path: metadata.full_access ? icons.shieldAlert : icons.shieldCheck }),
+    ),
+    h(ComposerSettings, {
+      className: `session-settings${metadata.full_access ? " full-access" : ""}`,
+      label: "Session settings",
+      scopeKey: conversationId,
+      revision: metadata.settings_revision || 0,
+      settings,
+      onRequest: async (request) => {
+        const reply = await bridge.send("setting", {
+          settingId: request.settingId,
+          value: request.value,
+          expectedRevision: request.expectedRevision,
+        })
+        return {
+          requestId: request.requestId,
+          scopeKey: request.scopeKey,
+          settingId: request.settingId,
+          revision: reply.revision,
+          outcome: "accepted",
+          value: reply.value,
+        }
+      },
+      onAcknowledged: () => {},
+    }),
+    metadata.pending &&
+      h("span", { "data-session-pending": true, className: "text-xs text-on-surface-variant" }, "Applies to your next message"),
   )
 }
 
@@ -129,7 +150,7 @@ function Composer(props) {
           }
         },
       },
-      h(Settings, { metadata }),
+      h(Settings, { metadata, bridge: props.bridge, conversationId: id }),
     ),
   )
 }

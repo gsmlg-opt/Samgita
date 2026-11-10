@@ -252,8 +252,66 @@ defmodule Samgita.CodexHosts do
     end
   end
 
-  @doc "Send a user message, starting a new turn in the session."
-  def send_message(principal, id, thread_id, text, running_turn \\ nil) do
+  # Access modes of the Codex app: sandbox plus when Codex asks for approval.
+  @access %{
+    "read_only" => {%{"type" => "readOnly"}, "on-request"},
+    "default" => {%{"type" => "workspaceWrite"}, "on-request"},
+    "full" => {%{"type" => "dangerFullAccess"}, "never"}
+  }
+  @model_pages 10
+  @setting_value ~r/\A[A-Za-z0-9][A-Za-z0-9._:\/-]{0,199}\z/
+
+  @doc "The access mode (`read_only`, `default`, `full`) of a sandbox type Codex reports."
+  def access_mode("readOnly"), do: "read_only"
+  def access_mode("dangerFullAccess"), do: "full"
+  def access_mode(_), do: "default"
+
+  @doc """
+  The models Codex offers on this host for the picker (`model/list`), with the
+  reasoning efforts each supports.
+  """
+  def models(principal, id) do
+    with :ok <- operator(principal),
+         {:ok, session} <- live_session(id) do
+      list_models(session, nil, [], 0)
+    end
+  end
+
+  defp list_models(session, cursor, acc, page) do
+    params = if cursor, do: %{"cursor" => cursor}, else: %{}
+
+    case codex_request(session, "model/list", params) do
+      {:ok, %{"result" => %{"data" => data} = result}} ->
+        acc = acc ++ for(m <- data, m["hidden"] != true, do: model(m))
+
+        if is_binary(result["nextCursor"]) and page < @model_pages,
+          do: list_models(session, result["nextCursor"], acc, page + 1),
+          else: {:ok, acc}
+
+      {:ok, _} ->
+        {:error, Error.new(:codex_request_failed)}
+
+      error ->
+        error
+    end
+  end
+
+  defp model(m),
+    do: %{
+      "id" => m["model"] || m["id"],
+      "name" => m["displayName"] || m["model"],
+      "default" => m["isDefault"] == true,
+      "default_effort" => m["defaultReasoningEffort"],
+      "efforts" =>
+        for(%{"reasoningEffort" => e} <- List.wrap(m["supportedReasoningEfforts"]), do: e)
+    }
+
+  @doc """
+  Send a user message. Without a running turn it starts a new turn, applying
+  `settings` (`"model"`, `"effort"`, `"access"`) to it and later turns, as the
+  Codex app does; while a turn runs the message steers it and settings wait.
+  """
+  def send_message(principal, id, thread_id, text, running_turn \\ nil, settings \\ %{}) do
     text = String.trim(text || "")
 
     with :ok <- operator(principal),
@@ -263,8 +321,9 @@ defmodule Samgita.CodexHosts do
              do: :ok,
              else: {:error, Error.new(:invalid, %{fields: [:message]})}
            ),
+         {:ok, overrides} <- turn_overrides(settings),
          {:ok, session} <- live_session(id),
-         {:ok, turn_id} <- start_or_steer(session, thread_id, text, running_turn) do
+         {:ok, turn_id} <- start_or_steer(session, thread_id, text, running_turn, overrides) do
       {:ok, turn_id}
     else
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
@@ -274,18 +333,40 @@ defmodule Samgita.CodexHosts do
 
   # A message sent while a turn runs joins that turn (`turn/steer`), as in the
   # Codex app; otherwise it starts a new turn.
-  defp start_or_steer(session, thread_id, text, nil) do
-    case codex_request(session, "turn/start", %{
-           "threadId" => thread_id,
-           "input" => [%{"type" => "text", "text" => text}]
-         }) do
+  defp turn_overrides(settings) do
+    Enum.reduce_while(settings || %{}, {:ok, %{}}, fn
+      {"access", mode}, {:ok, acc} when is_map_key(@access, mode) ->
+        {sandbox, approval} = @access[mode]
+
+        {:cont,
+         {:ok, Map.merge(acc, %{"sandboxPolicy" => sandbox, "approvalPolicy" => approval})}}
+
+      {key, value}, {:ok, acc} when key in ["model", "effort"] and is_binary(value) ->
+        if value =~ @setting_value,
+          do: {:cont, {:ok, Map.put(acc, key, value)}},
+          else: {:halt, {:error, Error.new(:invalid, %{fields: [String.to_atom(key)]})}}
+
+      {key, _}, _ ->
+        {:halt, {:error, Error.new(:invalid, %{fields: [key]})}}
+    end)
+  end
+
+  defp start_or_steer(session, thread_id, text, nil, overrides) do
+    case codex_request(
+           session,
+           "turn/start",
+           Map.merge(overrides, %{
+             "threadId" => thread_id,
+             "input" => [%{"type" => "text", "text" => text}]
+           })
+         ) do
       {:ok, %{"result" => %{"turn" => %{"id" => turn_id}}}} -> {:ok, turn_id}
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
       error -> error
     end
   end
 
-  defp start_or_steer(session, thread_id, text, running_turn) do
+  defp start_or_steer(session, thread_id, text, running_turn, _overrides) do
     case codex_request(session, "turn/steer", %{
            "threadId" => thread_id,
            "expectedTurnId" => running_turn,

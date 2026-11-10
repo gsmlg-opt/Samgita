@@ -26,6 +26,19 @@ defmodule SamgitaWeb.SessionsLiveTest do
       "turns" => turns
     }
 
+  defp model(id, default?, efforts),
+    do: %{
+      "id" => id,
+      "model" => id,
+      "displayName" => String.upcase(id),
+      "description" => "",
+      "hidden" => false,
+      "isDefault" => default?,
+      "defaultReasoningEffort" => hd(efforts),
+      "supportedReasoningEfforts" =>
+        for(e <- efforts, do: %{"reasoningEffort" => e, "description" => ""})
+    }
+
   defp thread_result(turns),
     do: %{
       "thread" => thread(turns),
@@ -62,6 +75,12 @@ defmodule SamgitaWeb.SessionsLiveTest do
             "turn" => %{"id" => @turn_id, "items" => [], "status" => "inProgress"}
           },
           "turn/steer" => %{"turnId" => @turn_id},
+          "model/list" => %{
+            "data" => [
+              model("gpt-test", true, ["low", "high"]),
+              model("gpt-mini", false, ["low"])
+            ]
+          },
           "turn/interrupt" => %{}
         }
       )
@@ -219,6 +238,45 @@ defmodule SamgitaWeb.SessionsLiveTest do
                    3_000
   end
 
+  test "composer choices are checked and apply to the next turn", %{conn: conn, host: host} do
+    {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
+    assert_receive {:fake_codex, :params, "thread/resume", _}, 3_000
+    assert_receive {:fake_codex, :params, "model/list", _}, 3_000
+    assert_push_event(view, "chat:event", %{type: "chat.snapshot"}, 3_000)
+
+    # Only offered values are accepted.
+    chat(view, "chat.setting", %{"settingId" => "model", "value" => "unknown-model"})
+    assert_reply(view, %{status: "error"})
+
+    # A model without the current effort falls back to its default effort.
+    chat(view, "chat.setting", %{"settingId" => "model", "value" => "gpt-mini"})
+    assert_reply(view, %{status: "ok", revision: 1, value: "gpt-mini"})
+
+    chat(view, "chat.setting", %{"settingId" => "access", "value" => "full"})
+    assert_reply(view, %{status: "ok", revision: 2})
+
+    assert_push_event(view, "chat:event", %{
+      type: "chat.snapshot",
+      metadata: %{model: "gpt-mini", effort: "low", access: "full", pending: true}
+    })
+
+    chat(view, "chat.send", %{"text" => "Go"})
+    assert_reply(view, %{status: "ok"})
+    assert_receive {:fake_codex, :params, "turn/start", turn}, 3_000
+
+    assert Map.take(turn, ~w(model effort sandboxPolicy approvalPolicy)) == %{
+             "model" => "gpt-mini",
+             "effort" => "low",
+             "sandboxPolicy" => %{"type" => "dangerFullAccess"},
+             "approvalPolicy" => "never"
+           }
+
+    # Codex keeps them for later turns; nothing is pending any more.
+    assert_push_event(view, "chat:event", %{
+      metadata: %{model: "gpt-mini", access: "full", pending: false}
+    })
+  end
+
   test "an existing session resumes with its history as chat messages", %{
     conn: conn,
     host: host
@@ -243,8 +301,9 @@ defmodule SamgitaWeb.SessionsLiveTest do
           location: "Remote",
           connected: true,
           model: "gpt-test",
-          access: "Read only",
-          full_access: false
+          access: "read_only",
+          full_access: false,
+          pending: false
         }
       },
       3_000

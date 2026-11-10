@@ -19,6 +19,9 @@
    tokens (for example --radius-full for circular buttons) and base styles. */
 @import "@duskmoon-dev/core/base.css";
 @import "@duskmoon-dev/core/components";
+/* Styles of the React components used by the session chat (for example the
+   Select dropdown of the composer settings); documented by @duskmoon-dev/components. */
+@import "@duskmoon-dev/components/styles.css";
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
@@ -48,3 +51,30 @@ code, pre, .font-mono { font-family: var(--font-mono); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Codex session composer settings: plain text with a chevron, as in the Codex
+   app. Access sits on the left; model and reasoning effort next to Send. */
+.session-settings {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.25rem;
+}
+.session-settings > div:nth-child(2) { margin-inline-start: auto; }
+.session-settings .select-container { width: auto; }
+.session-settings .select {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+  width: auto;
+  gap: 0.25rem;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: none;
+  padding-inline: 0.375rem;
+  color: var(--color-on-surface-variant);
+}
+.session-settings .select-icon { position: static; transform: none; display: inline-flex; }
+.session-settings .select:hover { background-color: var(--color-surface-container-high); }
+.session-settings.full-access > div:first-child .select { color: var(--color-warning); }

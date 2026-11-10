@@ -27,6 +27,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
     if connected?(socket),
       do: Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
 
+    socket =
+      if connected?(socket) and host,
+        do:
+          start_async(socket, :models, fn -> CodexHosts.models(Principal.operator(), host_id) end),
+        else: socket
+
     {:ok,
      assign(socket,
        page_title: "Session",
@@ -39,6 +45,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
        items: [],
        running_turn: nil,
        settings: nil,
+       # Model, effort and access chosen in the composer, applied by the next
+       # turn start (and then kept by Codex for later turns).
+       pending: %{},
+       models: [],
+       settings_revision: 0,
        requests: [],
        error: if(host, do: nil, else: "This Codex host does not exist."),
        # The chat's conversation is fixed for the life of its React root; a new
@@ -75,10 +86,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
              socket.assigns.host_id,
              socket.assigns.thread_id,
              text,
-             socket.assigns.running_turn
+             socket.assigns.running_turn,
+             if(socket.assigns.running_turn, do: %{}, else: socket.assigns.pending)
            ) do
       socket =
         socket
+        |> applied()
         |> assign(error: nil, running_turn: socket.assigns.running_turn || turn_id)
         |> publish()
 
@@ -102,6 +115,23 @@ defmodule SamgitaWeb.SessionsLive.Show do
   end
 
   def handle_event("chat.stop", _params, socket), do: {:reply, %{status: "ok"}, socket}
+
+  # A composer setting (access, model, reasoning effort) chosen for the next turn.
+  def handle_event("chat.setting", %{"settingId" => id, "value" => value}, socket) do
+    if Enum.any?(composer_settings(socket.assigns), fn setting ->
+         setting.id == id and Enum.any?(setting.choices, &(&1.value == value))
+       end) do
+      socket =
+        socket
+        |> update(:pending, &choose(&1, id, value, socket.assigns))
+        |> update(:settings_revision, &(&1 + 1))
+        |> snapshot()
+
+      {:reply, %{status: "ok", revision: socket.assigns.settings_revision, value: value}, socket}
+    else
+      {:reply, %{status: "error", message: "This choice is not available."}, socket}
+    end
+  end
 
   # After a reconnect the chat asks for the authoritative transcript.
   def handle_event("chat.sync", _params, socket),
@@ -150,6 +180,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
      )
      |> snapshot()}
   end
+
+  def handle_async(:models, {:ok, {:ok, models}}, socket),
+    do: {:noreply, socket |> assign(models: models) |> snapshot()}
+
+  def handle_async(:models, _result, socket), do: {:noreply, socket}
 
   def handle_async(:resume, {:ok, {{:error, error}, _}}, socket),
     do: {:noreply, assign(socket, error: message(error))}
@@ -219,34 +254,124 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   @doc false
   # The composer's context, as in the Codex app: project, where Codex runs and
-  # whether it is connected, and the session's model and access settings.
+  # whether it is connected, and the access, model and reasoning settings that
+  # the next message will use.
   def metadata(assigns) do
     host = assigns.host || %{}
-    settings = assigns.settings || %{}
+    current = current(assigns)
 
     %{
       project: assigns.cwd && Path.basename(assigns.cwd),
       host: host["machine_name"] || host["agent_name"],
       location: if(host["transport"] == "local", do: "Local", else: "Remote"),
       connected: get_in(host, ["status", "state"]) == "connected",
-      model:
-        [settings["model"], settings["reasoning_effort"]]
-        |> Enum.reject(&is_nil/1)
-        |> Enum.join(" ")
-        |> case do
-          "" -> nil
-          model -> model
-        end,
-      access: access(settings["sandbox"]),
-      full_access: settings["sandbox"] == "dangerFullAccess"
+      model: current["model"],
+      effort: current["effort"],
+      access: current["access"],
+      full_access: current["access"] == "full",
+      settings_revision: assigns.settings_revision,
+      settings: composer_settings(assigns),
+      # Chosen but not yet applied: takes effect with the next message.
+      pending: assigns.pending != %{}
     }
   end
 
-  defp access("dangerFullAccess"), do: "Full access"
-  defp access("workspaceWrite"), do: "Default access"
-  defp access("readOnly"), do: "Read only"
-  defp access(nil), do: "Default access"
-  defp access(other), do: other
+  @access_choices [
+    {"read_only", "Read only"},
+    {"default", "Default access"},
+    {"full", "Full access"}
+  ]
+
+  # What the session uses now (reported by Codex), overlaid with pending choices.
+  defp current(assigns) do
+    settings = assigns.settings || %{}
+    default = Enum.find(assigns.models, & &1["default"]) || %{}
+
+    Map.merge(
+      %{
+        "access" => CodexHosts.access_mode(settings["sandbox"]),
+        "model" => settings["model"] || default["id"],
+        "effort" => settings["reasoning_effort"] || default["default_effort"]
+      },
+      assigns.pending
+    )
+  end
+
+  defp composer_settings(assigns) do
+    current = current(assigns)
+    model = Enum.find(assigns.models, &(&1["id"] == current["model"]))
+
+    models =
+      for(m <- assigns.models, do: %{value: m["id"], label: m["name"]})
+      |> with_current(current["model"])
+
+    efforts =
+      for(e <- (model && model["efforts"]) || [], do: %{value: e, label: e})
+      |> with_current(current["effort"])
+
+    [
+      %{
+        id: "access",
+        label: "Access",
+        value: current["access"],
+        choices: for({value, label} <- @access_choices, do: %{value: value, label: label})
+      },
+      %{id: "model", label: "Model", value: current["model"] || "", choices: models},
+      %{id: "effort", label: "Reasoning", value: current["effort"] || "", choices: efforts}
+    ]
+  end
+
+  # The value in use stays selectable even when the list does not offer it.
+  defp with_current(choices, nil), do: choices
+
+  defp with_current(choices, value),
+    do:
+      if(Enum.any?(choices, &(&1.value == value)),
+        do: choices,
+        else: [%{value: value, label: value} | choices]
+      )
+
+  # A new model is sent with the effort shown for it: the current effort when
+  # the model supports it, otherwise the model's default.
+  defp choose(pending, "model", value, assigns) do
+    model = Enum.find(assigns.models, &(&1["id"] == value)) || %{}
+    effort = current(assigns)["effort"]
+
+    effort =
+      if effort in List.wrap(model["efforts"]), do: effort, else: model["default_effort"]
+
+    pending
+    |> Map.put("model", value)
+    |> put_present("effort", effort)
+  end
+
+  defp choose(pending, id, value, _assigns), do: Map.put(pending, id, value)
+
+  # After a turn starts with the pending choices, Codex keeps them.
+  defp applied(%{assigns: %{pending: pending}} = socket) when pending == %{}, do: socket
+
+  defp applied(%{assigns: %{running_turn: nil, pending: pending}} = socket) do
+    sandbox =
+      case pending["access"] do
+        "read_only" -> "readOnly"
+        "full" -> "dangerFullAccess"
+        "default" -> "workspaceWrite"
+        nil -> nil
+      end
+
+    settings =
+      (socket.assigns.settings || %{})
+      |> put_present("model", pending["model"])
+      |> put_present("reasoning_effort", pending["effort"])
+      |> put_present("sandbox", sandbox)
+
+    assign(socket, settings: settings, pending: %{})
+  end
+
+  defp applied(socket), do: socket
+
+  defp put_present(map, _key, nil), do: map
+  defp put_present(map, key, value), do: Map.put(map, key, value)
 
   # Stop shows while a turn runs; messages may still be sent to steer it.
   defp runtime(socket), do: %{active: socket.assigns.running_turn != nil}
@@ -383,6 +508,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
         messages={[]}
         runtime={%{active: false}}
         metadata={metadata(assigns)}
+        actions={%{setting: "chat.setting"}}
         admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}
         class="block h-[calc(100dvh-14rem)] min-h-96"
       />
