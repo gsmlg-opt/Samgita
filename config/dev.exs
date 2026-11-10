@@ -30,7 +30,9 @@ config :samgita,
        ] ++ db_socket_opts
 
 config :samgita_web, SamgitaWeb.Endpoint,
-  check_origin: ["//localhost", "//127.0.0.1", "//samgita.local"],
+  # The dev server listens on all interfaces; accept the socket from whatever
+  # host or LAN address the page was opened with (origin must match the host).
+  check_origin: :conn,
   http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 4870],
   code_reloader: true,
   debug_errors: true,
