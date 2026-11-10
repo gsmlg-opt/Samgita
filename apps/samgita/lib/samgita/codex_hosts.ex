@@ -217,9 +217,9 @@ defmodule Samgita.CodexHosts do
     with :ok <- operator(principal),
          :ok <- absolute_path(cwd || ""),
          {:ok, session} <- live_session(id),
-         {:ok, %{"result" => %{"thread" => thread}}} <-
+         {:ok, %{"result" => %{"thread" => thread} = result}} <-
            codex_request(session, "thread/start", Map.put(@session_settings, "cwd", cwd)) do
-      {:ok, thread(thread)}
+      {:ok, thread |> thread() |> Map.put("settings", settings_of(result))}
     else
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
       error -> error
@@ -234,14 +234,18 @@ defmodule Samgita.CodexHosts do
     with :ok <- operator(principal),
          :ok <- thread_id!(thread_id),
          {:ok, session} <- live_session(id),
-         {:ok, %{"result" => %{"thread" => thread}}} <-
+         {:ok, %{"result" => %{"thread" => thread} = result}} <-
            codex_request(
              session,
              "thread/resume",
              Map.put(@session_settings, "threadId", thread_id),
              60_000
            ) do
-      {:ok, thread |> thread() |> Map.put("turns", List.wrap(thread["turns"]))}
+      {:ok,
+       thread
+       |> thread()
+       |> Map.put("turns", List.wrap(thread["turns"]))
+       |> Map.put("settings", settings_of(result))}
     else
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
       error -> error
@@ -338,6 +342,15 @@ defmodule Samgita.CodexHosts do
 
   defp thread_id!(value) when is_binary(value) and byte_size(value) in 1..200, do: :ok
   defp thread_id!(_), do: {:error, Error.new(:invalid)}
+
+  # The effective session settings Codex reports for a started or resumed thread.
+  defp settings_of(result),
+    do: %{
+      "model" => result["model"],
+      "reasoning_effort" => result["reasoningEffort"],
+      "sandbox" => get_in(result, ["sandbox", "type"]),
+      "approval_policy" => result["approvalPolicy"]
+    }
 
   defp thread(t) when is_map(t) do
     title =

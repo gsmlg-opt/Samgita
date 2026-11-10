@@ -23,6 +23,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def mount(%{"host_id" => host_id} = params, _session, socket) do
     host = Enum.find(list_hosts(), &(&1["id"] == host_id))
 
+    # Connection state of the host drives the composer's status dot.
+    if connected?(socket),
+      do: Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
+
     {:ok,
      assign(socket,
        page_title: "Session",
@@ -34,6 +38,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
        cwd: params["cwd"],
        items: [],
        running_turn: nil,
+       settings: nil,
        requests: [],
        error: if(host, do: nil, else: "This Codex host does not exist."),
        # The chat's conversation is fixed for the life of its React root; a new
@@ -123,6 +128,9 @@ defmodule SamgitaWeb.SessionsLive.Show do
          Enum.reject(requests, &(&1["key"] == request["key"])) ++ [request]
        end)}
 
+  def handle_info({:codex_host_status, id, status}, %{assigns: %{host_id: id}} = socket),
+    do: {:noreply, socket |> update(:host, &(&1 && Map.put(&1, "status", status))) |> snapshot()}
+
   def handle_info({:codex_request_closed, key}, socket),
     do: {:noreply, update(socket, :requests, &Enum.reject(&1, fn r -> r["key"] == key end))}
 
@@ -137,6 +145,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
        cwd: thread["cwd"],
        items: Items.from_turns(thread["turns"]),
        running_turn: Items.running_turn(thread["turns"]),
+       settings: thread["settings"],
        requests: requests
      )
      |> snapshot()}
@@ -203,9 +212,41 @@ defmodule SamgitaWeb.SessionsLive.Show do
           conversation_id: socket.assigns.conversation_id,
           type: type,
           runtime: runtime(socket),
-          admission: admission(socket)
+          admission: admission(socket),
+          metadata: metadata(socket.assigns)
         })
       )
+
+  @doc false
+  # The composer's context, as in the Codex app: project, where Codex runs and
+  # whether it is connected, and the session's model and access settings.
+  def metadata(assigns) do
+    host = assigns.host || %{}
+    settings = assigns.settings || %{}
+
+    %{
+      project: assigns.cwd && Path.basename(assigns.cwd),
+      host: host["machine_name"] || host["agent_name"],
+      location: if(host["transport"] == "local", do: "Local", else: "Remote"),
+      connected: get_in(host, ["status", "state"]) == "connected",
+      model:
+        [settings["model"], settings["reasoning_effort"]]
+        |> Enum.reject(&is_nil/1)
+        |> Enum.join(" ")
+        |> case do
+          "" -> nil
+          model -> model
+        end,
+      access: access(settings["sandbox"]),
+      full_access: settings["sandbox"] == "dangerFullAccess"
+    }
+  end
+
+  defp access("dangerFullAccess"), do: "Full access"
+  defp access("workspaceWrite"), do: "Default access"
+  defp access("readOnly"), do: "Read only"
+  defp access(nil), do: "Default access"
+  defp access(other), do: other
 
   # Stop shows while a turn runs; messages may still be sent to steer it.
   defp runtime(socket), do: %{active: socket.assigns.running_turn != nil}
@@ -230,7 +271,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
       {:ok, thread} ->
         socket =
           socket
-          |> assign(thread_id: thread["id"], title: thread["title"] || socket.assigns.title)
+          |> assign(
+            thread_id: thread["id"],
+            title: thread["title"] || socket.assigns.title,
+            settings: thread["settings"]
+          )
           |> subscribe(thread["id"])
           |> push_patch(
             to: ~p"/sessions/#{socket.assigns.host_id}/#{thread["id"]}",
@@ -337,8 +382,9 @@ defmodule SamgitaWeb.SessionsLive.Show do
         label="Codex session"
         messages={[]}
         runtime={%{active: false}}
+        metadata={metadata(assigns)}
         admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}
-        class="block h-[calc(100dvh-14rem)] min-h-96 rounded-xl border border-outline-variant p-4"
+        class="block h-[calc(100dvh-14rem)] min-h-96"
       />
     </section>
     """

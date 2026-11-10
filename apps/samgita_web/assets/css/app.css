@@ -15,6 +15,9 @@
 
 /* @duskmoon-dev/core - CSS theme system and components */
 @plugin "@duskmoon-dev/core/plugin";
+/* Prerequisite of the individually imported components: radius/spacing/elevation
+   tokens (for example --radius-full for circular buttons) and base styles. */
+@import "@duskmoon-dev/core/base.css";
 @import "@duskmoon-dev/core/components";
 
 /* Add variants based on LiveView classes */

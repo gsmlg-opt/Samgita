@@ -236,7 +236,16 @@ defmodule SamgitaWeb.SessionsLiveTest do
           %{"id" => "a1", "role" => "assistant", "content" => "The build is fixed."}
         ],
         sequences: %{"u1" => 1, "a1" => 1},
-        runtime: %{active: false}
+        runtime: %{active: false},
+        # The composer's context: project, where Codex runs, model and access.
+        metadata: %{
+          project: "app",
+          location: "Remote",
+          connected: true,
+          model: "gpt-test",
+          access: "Read only",
+          full_access: false
+        }
       },
       3_000
     )
