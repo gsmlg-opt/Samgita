@@ -4,7 +4,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
   def project do
     [
       app: :samgita_protocol_websocket,
-      version: "0.3.0",
+      version: "0.4.0",
       description:
         "Optional WebSocket transport and explicitly started Agent hosts for SamgitaProtocol.",
       package: [
@@ -18,7 +18,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
       lockfile: "mix.lock",
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
-        {:samgita_protocol, "~> 0.3.0", path: "../samgita_protocol"},
+        {:samgita_protocol, "~> 0.4.0", path: "../samgita_protocol"},
         # TODO(upstream): gsmlg-dev/gaoxy#22 - adopt the published Abyss/Hell RC cohort refresh.
         {:gaoxy_http, "~> 0.15.1"},
         {:plug, "~> 1.19"},

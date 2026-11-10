@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.MixProject do
   def project do
     [
       app: :samgita_protocol_codex,
-      version: "0.3.0",
+      version: "0.4.0",
       description:
         "Pinned Codex app-server schemas and lossless native wire validation for Elixir clients.",
       package: [
@@ -17,7 +17,7 @@ defmodule SamgitaProtocolCodex.MixProject do
       deps_path: "deps",
       lockfile: "mix.lock",
       config_path: "config/config.exs",
-      deps: [{:samgita_protocol, "~> 0.3.0", path: "../samgita_protocol"}]
+      deps: [{:samgita_protocol, "~> 0.4.0", path: "../samgita_protocol"}]
     ]
   end
 
