@@ -32,7 +32,12 @@ config :duskmoon_bundler, :samgita_web,
     sources: [
       %{base: Path.expand("../apps/samgita_web/lib", __DIR__), pattern: "**/*.{ex,heex}"},
       %{base: Path.expand("../apps/samgita_web/assets", __DIR__), pattern: "**/*.{css,js,ts}"},
-      %{base: Path.expand("../deps/phoenix_duskmoon/lib", __DIR__), pattern: "**/*.{ex,heex}"}
+      %{base: Path.expand("../deps/phoenix_duskmoon/lib", __DIR__), pattern: "**/*.{ex,heex}"},
+      # Utility classes used by the DuskMoon React chat (dm_react_chat).
+      %{
+        base: Path.expand("../deps/phoenix_duskmoon/assets/js/react_chat", __DIR__),
+        pattern: "**/*.js"
+      }
     ]
   ],
   server: [

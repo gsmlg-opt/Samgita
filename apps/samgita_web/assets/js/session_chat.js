@@ -24,6 +24,9 @@ function Composer(props) {
   }
 
   return h(Chat.Composer, {
+    // The demo's look: borderless input, icon actions (Add menu, one send/stop).
+    compact: true,
+    className: "chat-composer-ghost",
     value,
     onValueChange: update,
     // While Codex works the message joins the running turn (server: turn/steer).
