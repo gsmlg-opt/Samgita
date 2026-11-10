@@ -2,7 +2,7 @@
 // (phoenix_duskmoon guides/react-chat.md). The default hook composer is a
 // single-line input; Chat.Composer is the multi-line composer of the DuskMoon
 // chat demo (Enter sends, Shift+Enter inserts a newline, Stop while working).
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Chat } from "@duskmoon-dev/components/chat"
 import { Markdown } from "@duskmoon-dev/components/markdown"
 import { createDuskmoonReactChat, useChatSubmission } from "phoenix_duskmoon/react-chat"
@@ -340,11 +340,11 @@ function Settings({ metadata, bridge, conversationId }) {
 }
 
 // The "+" Add menu of the Codex app: files and folders (inserted as paths, as
-// the Codex TUI does), a session goal, plan mode, and plugins and skills that
-// are attached to the next message. Plugins and skills come from the server
-// (`chat.catalog`), which only accepts attachments from that list.
+// the Codex TUI does), a session goal, plan mode, and plugins that are attached
+// to the next message. Plugins come from the server (`chat.catalog`), which
+// only accepts attachments from that list.
 function AddMenu({ metadata, bridge, conversationId, onInsertPath, onAttach }) {
-  const [catalog, setCatalog] = useState({ plugins: [], skills: [] })
+  const [catalog, setCatalog] = useState({ plugins: [] })
   const [notice, setNotice] = useState("")
   const base = `session-${conversationId}`.replace(/[^A-Za-z0-9_-]/g, "")
   const ids = { add: `${base}-add`, files: `${base}-files`, goal: `${base}-goal` }
@@ -353,7 +353,7 @@ function AddMenu({ metadata, bridge, conversationId, onInsertPath, onAttach }) {
   async function refresh() {
     try {
       const reply = await bridge.send("catalog", {})
-      setCatalog({ plugins: reply.plugins || [], skills: reply.skills || [] })
+      setCatalog({ plugins: reply.plugins || [] })
     } catch (error) {
       setNotice(error.message)
     }
@@ -426,12 +426,6 @@ function AddMenu({ metadata, bridge, conversationId, onInsertPath, onAttach }) {
       ...catalog.plugins.map((plugin) =>
         item(plugin.path, "plug", plugin.name, plugin.description, {
           onClick: (event) => attach(event, { type: "mention", name: plugin.name, path: plugin.path }),
-        }),
-      ),
-      catalog.skills.length > 0 && h("div", { className: "chat-composer-group" }, "Skills"),
-      ...catalog.skills.map((skill) =>
-        item(skill.path, "book", skill.name, skill.description, {
-          onClick: (event) => attach(event, { type: "skill", name: skill.name, path: skill.path }),
         }),
       ),
       notice && h("p", { role: "status", className: "chat-composer-menu-field text-error" }, notice),
@@ -607,6 +601,7 @@ function Composer(props) {
   const metadata = props.metadata || {}
   const [value, setValue] = useState(() => drafts.get(id) || "")
   const [attachments, setAttachments] = useState([])
+  const [skills, setSkills] = useState(null)
   const [error, setError] = useState()
   const { submit, busy, notice } = useChatSubmission(props)
 
@@ -624,6 +619,43 @@ function Composer(props) {
   const attach = (item) =>
     setAttachments((current) => (current.some((a) => a.path === item.path) ? current : [...current, item]))
 
+  // Skills are triggered as in Codex: `$` or `/` starts a word that names a
+  // skill. They are loaded from the server once, on the first trigger.
+  const trigger = /(^|\s)([/$])([^\s/$]*)$/.exec(value)
+  const triggered = trigger !== null
+  useEffect(() => {
+    if (!triggered || skills !== null) return
+    setSkills([])
+    props.bridge
+      .send("catalog", {})
+      .then((reply) => setSkills(reply.skills || []))
+      .catch(() => setSkills([]))
+  }, [triggered, skills])
+  const query = trigger ? trigger[3].toLowerCase() : null
+  const completion = {
+    label: "Skills",
+    items:
+      query === null
+        ? []
+        : (skills || [])
+            .filter((skill) => skill.name.toLowerCase().includes(query))
+            .slice(0, 8)
+            .map((skill) => ({
+              id: skill.path,
+              label: skill.name,
+              description: skill.description,
+              group: "Skills",
+            })),
+    onSelect: (item, context) => {
+      const skill = (skills || []).find((s) => s.path === item.id)
+      if (!skill) return
+      // Remove the typed `$name` / `/name` before the caret.
+      const before = context.value.slice(0, context.selectionStart).replace(/[/$][^\s/$]*$/, "")
+      update(before + context.value.slice(context.selectionEnd))
+      attach({ type: "skill", name: skill.name, path: skill.path })
+    },
+  }
+
   return h(
     "div",
     { className: "flex flex-col" },
@@ -637,6 +669,7 @@ function Composer(props) {
         className: "chat-composer-ghost rounded-3xl",
         value,
         onValueChange: update,
+        completion,
         // While Codex works the message joins the running turn (server: turn/steer).
         generating: props.active,
         canSubmit: props.canSubmit,
