@@ -17,6 +17,7 @@ defmodule Samgita.Domain.CodexHost do
     field :remote_codex_path, :string
     field :remote_socket_path, :string
     field :ensure_daemon, :boolean, default: false
+    field :use_ssh_config, :boolean, default: false
     field :enabled, :boolean, default: false
     field :generation, :integer, default: 0
     field :server_version, :string

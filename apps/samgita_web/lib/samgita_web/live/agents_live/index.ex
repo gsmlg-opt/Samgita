@@ -174,8 +174,29 @@ defmodule SamgitaWeb.AgentsLive.Index do
     )
   end
 
-  defp host_attrs(params),
-    do: %{"transport" => "websocket", "url" => String.trim(params["address"] || "")}
+  # A ws:// or wss:// address is a listening app-server; anything else is an
+  # SSH target (`host`, `user@host`, `host:port`) reached with the operator's
+  # own SSH configuration, starting the Codex daemon there if needed.
+  defp host_attrs(params) do
+    address = String.trim(params["address"] || "")
+
+    if String.match?(address, ~r/\A[a-z][a-z0-9+.-]*:\/\//i) and
+         not String.starts_with?(address, "ssh://") do
+      # ws:// and wss:// connect directly; any other scheme fails validation.
+      %{"transport" => "websocket", "url" => address}
+    else
+      uri = URI.parse("ssh://" <> String.replace_prefix(address, "ssh://", ""))
+
+      %{
+        "transport" => "ssh",
+        "ssh_host" => if(uri.path in [nil, ""], do: uri.host),
+        "ssh_user" => uri.userinfo,
+        "ssh_port" => uri.port,
+        "use_ssh_config" => true,
+        "ensure_daemon" => true
+      }
+    end
+  end
 
   defp failed(socket, params, error),
     do: assign(socket, form: to_form(params, as: :agent), error: Components.error_message(error))
@@ -222,6 +243,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
   @doc false
   def address(nil, agent), do: agent["endpoint_metadata"]["url"] || "—"
   def address(%{"machine_name" => name}, _) when is_binary(name), do: name
+  def address(%{"transport" => "ssh", "ssh_host" => host}, _), do: host
   def address(_host, _), do: "Shown after connecting"
 
   @doc false

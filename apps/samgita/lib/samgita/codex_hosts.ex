@@ -14,13 +14,13 @@ defmodule Samgita.CodexHosts do
   alias Samgita.Domain.{Agent, CodexHost}
 
   @websocket_fields ~w(url connect_address token_ref allow_insecure)a
-  @ssh_fields ~w(ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon)a
+  @ssh_fields ~w(ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon use_ssh_config)a
   @ssh_host ~r/\A[A-Za-z0-9][A-Za-z0-9.:-]{0,252}\z/
   @ssh_user ~r/\A[A-Za-z_][A-Za-z0-9_.-]{0,31}\z/
   @remote_path ~r/\A[A-Za-z0-9_.\/~+-]{1,512}\z/
   @secret_keys ~w(token password secret private_key key passphrase authorization)
   @reference ~r/\A[A-Za-z0-9][A-Za-z0-9._:\/-]{0,199}\z/
-  @projection ~w(id agent_id installation_id machine_name transport url connect_address token_ref allow_insecure ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon enabled generation server_version last_connected_at version inserted_at updated_at)a
+  @projection ~w(id agent_id installation_id machine_name transport url connect_address token_ref allow_insecure ssh_user ssh_host ssh_port ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon use_ssh_config enabled generation server_version last_connected_at version inserted_at updated_at)a
 
   def list(principal) do
     with :ok <- operator(principal) do
@@ -417,10 +417,15 @@ defmodule Samgita.CodexHosts do
           _ -> %{installation_id: nil, machine_name: nil}
         end
 
+      address =
+        if host.transport == "ssh",
+          do: dynamic([h], h.ssh_host == ^host.ssh_host),
+          else: dynamic([h], h.url == ^host.url)
+
       same =
         case identity.installation_id do
-          nil -> dynamic([h], h.url == ^host.url)
-          id -> dynamic([h], h.url == ^host.url or h.installation_id == ^id)
+          nil -> address
+          id -> dynamic([h], ^address or h.installation_id == ^id)
         end
 
       existing =
@@ -459,7 +464,8 @@ defmodule Samgita.CodexHosts do
     do:
       other.id != host.id &&
         ((host.installation_id != nil && other.installation_id == host.installation_id) ||
-           (host.url != nil && other.url == host.url))
+           (host.url != nil && other.url == host.url) ||
+           (host.ssh_host != nil && other.ssh_host == host.ssh_host))
 
   @doc "Validate host settings without writing, so a caller can check them before creating an Agent."
   def validate_settings(attrs) do
@@ -588,14 +594,19 @@ defmodule Samgita.CodexHosts do
 
   defp clear(changeset, fields) do
     Enum.reduce(fields, changeset, fn field, acc ->
-      default = if field in [:allow_insecure, :ensure_daemon], do: false
+      default = if field in [:allow_insecure, :ensure_daemon, :use_ssh_config], do: false
       put_change(acc, field, default)
     end)
   end
 
+  # With the operator's SSH configuration, OpenSSH resolves the host alias and
+  # checks the host key against the operator's own known_hosts.
   defp validate_ssh(changeset) do
+    required =
+      if get_field(changeset, :use_ssh_config), do: [:ssh_host], else: [:ssh_host, :known_hosts]
+
     changeset
-    |> validate_required([:ssh_host, :known_hosts])
+    |> validate_required(required)
     |> validate_format(:ssh_host, @ssh_host)
     |> validate_format(:ssh_user, @ssh_user)
     |> validate_number(:ssh_port, greater_than: 0, less_than: 65_536)

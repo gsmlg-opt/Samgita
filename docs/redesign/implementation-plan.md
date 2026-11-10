@@ -399,6 +399,14 @@ Owner files: `codex_hosts/connection.ex` (route drained notifications by `thread
 
 Result (2026-11-10): `sessions_live_test.exs` 2 tests pass against the fake Codex (exact `thread/start` and `turn/start` params, URL patch to the new thread, streamed agent deltas, running state until `turn/completed`, history from `thread/resume`, a pushed command approval answered with `acceptForSession` and removed); LiveView suites (29) and filtered Codex host core tests (7) pass. Browser check with the real local Codex 0.167.0 in a scratch folder: a new session answered "pong", reloading resumed its history, and a follow-up turn ran `ls -la` (command card with output, exit 0) and replied. Approvals were not triggered against the real Codex. Only command and file-change approvals can be answered here; other request kinds are shown with a note.
 
+### P7.10 SSH hosts with the operator's SSH configuration
+
+Requested 2026-11-10 after a manually started `ssh -L` forward to raven dropped on a network error and nothing restarted it (Samgita kept retrying a dead local port). The operator chose to let Samgita use their own SSH configuration (design §11 SSH safety).
+
+Owner files: migration `20261110000001_add_codex_host_use_ssh_config.exs` (column plus the transport check constraint allowing an SSH host without `known_hosts` when `use_ssh_config`), `domain/codex_host.ex`, `codex_hosts.ex` (validation; duplicate detection by `ssh_host`), `codex_hosts/ssh.ex`, Agents add form (`ws(s)://` stays WebSocket; anything else is an SSH target with `use_ssh_config` and `ensure_daemon`), Agent connection form checkbox, tests.
+
+Result (2026-11-10): new tests pass (SSH-config argv/environment through the fake ssh; Add Agent with `gao@raven` stores an SSH host), plus filtered SSH, Codex host and Agents LiveView suites. Unrun (restricted): host-key, credential-reference and secret-material tests in `codex_hosts_ssh_test.exs`, including the new "still requires host keys" case. Real check: raven switched to SSH on its Agent page, connected through `ssh raven … codex app-server proxy` to its Codex daemon, showed its project; killing the SSH process put it in backoff and it reconnected about 4 seconds later with a new SSH process.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

@@ -14,6 +14,11 @@ defmodule Samgita.CodexHosts.Ssh do
   `${CODEX_INSTALL_DIR:-$HOME/.local/bin}` is prepended to PATH. A login shell
   may print banners, so the proxy session first prints a random per-connection
   marker and the transport discards stdout before it.
+
+  With `use_ssh_config`, the operator chose to run OpenSSH like their own
+  terminal does: their `~/.ssh/config` (host aliases, users, ports, key files,
+  proxies), their known_hosts and their environment. Batch mode, strict
+  host-key checking, no forwarding and no connection sharing still apply.
   """
 
   @ensure_daemon_timeout 30_000
@@ -29,8 +34,12 @@ defmodule Samgita.CodexHosts.Ssh do
     with {:ok, ssh} <- executable(),
          {:ok, key} <- key(host.ssh_key_ref),
          {:ok, dir} <- private_dir() do
-      known_hosts = Path.join(dir, "known_hosts")
-      write_private!(known_hosts, normalize(host.known_hosts))
+      known_hosts =
+        if host.known_hosts do
+          path = Path.join(dir, "known_hosts")
+          write_private!(path, normalize(host.known_hosts))
+          path
+        end
 
       key_file =
         if key do
@@ -40,7 +49,7 @@ defmodule Samgita.CodexHosts.Ssh do
         end
 
       base = options(host, known_hosts, key_file)
-      env = env(dir, key_file)
+      env = env(host, dir, key_file)
       marker = "samgita-ready:" <> Base.encode16(:crypto.strong_rand_bytes(16), case: :lower)
 
       {:ok,
@@ -99,6 +108,37 @@ defmodule Samgita.CodexHosts.Ssh do
 
     user = if host.ssh_user, do: ["-l", host.ssh_user], else: []
 
+    common = [
+      "-T",
+      "-a",
+      "-x",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "ClearAllForwardings=yes",
+      "-o",
+      "ControlPath=none",
+      "-o",
+      "ConnectTimeout=10",
+      "-o",
+      "ServerAliveInterval=15",
+      "-o",
+      "ServerAliveCountMax=3",
+      "-o",
+      "LogLevel=ERROR"
+    ]
+
+    if host.use_ssh_config do
+      port = if host.ssh_port, do: ["-p", Integer.to_string(host.ssh_port)], else: []
+      common ++ port ++ identity ++ user ++ ["--", host.ssh_host]
+    else
+      isolated(host, known_hosts, key_file, identity, user)
+    end
+  end
+
+  defp isolated(host, known_hosts, key_file, identity, user) do
     [
       "-T",
       "-F",
@@ -140,7 +180,16 @@ defmodule Samgita.CodexHosts.Ssh do
   # Remote sshd passes the command to the user's shell; quote every word.
   defp quote_arg(arg), do: "'" <> String.replace(arg, "'", "'\\''") <> "'"
 
-  defp env(dir, key_file) do
+  # The operator's own environment, so their agent, config and keys resolve.
+  defp env(%{use_ssh_config: true}, _dir, _key_file),
+    do:
+      for(
+        name <- ~w(PATH HOME USER LOGNAME LANG SSH_AUTH_SOCK),
+        value = System.get_env(name),
+        do: {name, value}
+      )
+
+  defp env(_host, dir, key_file) do
     base = [{"PATH", "/usr/bin:/bin:/usr/sbin:/sbin"}, {"HOME", dir}, {"LANG", "C"}]
     agent = System.get_env("SSH_AUTH_SOCK")
 

@@ -51,6 +51,11 @@
               }
               required={@form.params["kind"] == "codex"}
             />
+            <p :if={@form.params["kind"] == "codex"} class="text-xs text-on-surface-variant">
+              {gettext(
+                "A ws:// address, or an SSH host from your SSH config such as raven or user@host. SSH reconnects by itself after network drops."
+              )}
+            </p>
           </div>
           <.dm_btn
             native_submit

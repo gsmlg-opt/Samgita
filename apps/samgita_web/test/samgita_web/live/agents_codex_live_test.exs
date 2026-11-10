@@ -65,6 +65,40 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     await(fn -> Repo.get!(CodexHost, host.id).generation == 2 end)
   end
 
+  test "an SSH host address uses the operator's SSH config and starts the daemon", %{
+    conn: conn
+  } do
+    # Stands in for an unreachable machine: the probe and connection fail fast.
+    config = Application.get_env(:samgita, :codex_hosts)
+
+    Application.put_env(
+      :samgita,
+      :codex_hosts,
+      Keyword.put(config, :ssh_executable, System.find_executable("false"))
+    )
+
+    {:ok, view, _} = live(conn, ~p"/agents")
+
+    view
+    |> form("#agent-add",
+      agent: %{"kind" => "codex", "name" => "Raven", "address" => "gao@raven"}
+    )
+    |> render_submit()
+
+    assert_redirect(view, ~p"/agents")
+    agent = Repo.get_by!(Agent, name: "Raven")
+    host = Repo.get_by!(CodexHost, agent_id: agent.id)
+
+    assert {host.transport, host.ssh_host, host.ssh_user, host.ssh_port} ==
+             {"ssh", "raven", "gao", nil}
+
+    assert host.use_ssh_config and host.ensure_daemon and host.enabled
+    assert host.url == nil and host.known_hosts == nil
+
+    {:ok, view, _} = live(conn, ~p"/agents")
+    assert has_element?(view, "#agents-list", "raven")
+  end
+
   test "an invalid Codex address shows an error and creates nothing", %{conn: conn} do
     {:ok, view, _} = live(conn, ~p"/agents")
 

@@ -4,7 +4,7 @@ defmodule SamgitaWeb.AgentsLive.Show do
   alias SamgitaWeb.AgentsLive.Components
   import SamgitaWeb.AgentsLive.Components, only: [agent_fields: 1]
 
-  @codex_fields ~w(url token_ref connect_address allow_insecure ssh_host ssh_port ssh_user ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon)
+  @codex_fields ~w(url token_ref connect_address allow_insecure ssh_host ssh_port ssh_user ssh_key_ref known_hosts remote_codex_path remote_socket_path ensure_daemon use_ssh_config)
 
   @impl true
   def mount(_params, _session, socket) do
@@ -315,7 +315,8 @@ defmodule SamgitaWeb.AgentsLive.Show do
       |> Map.merge(%{
         "transport" => "websocket",
         "allow_insecure" => false,
-        "ensure_daemon" => false
+        "ensure_daemon" => false,
+        "use_ssh_config" => false
       })
       |> Map.merge(Map.take(host || %{}, ["transport" | @codex_fields]))
       |> Map.new(fn {key, value} -> {key, if(is_nil(value), do: "", else: value)} end)

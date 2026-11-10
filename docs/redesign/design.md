@@ -475,6 +475,7 @@ An optional per-host `ensure_daemon` flag runs `ssh <target> codex app-server da
 - Always use `BatchMode=yes`, `StrictHostKeyChecking=yes` and a Samgita-owned `UserKnownHostsFile` built from the host's configured known-host entries. An unknown or changed host key refuses the connection.
 - Ignore user SSH configuration (`-F /dev/null`), disable agent, X11 and port forwarding (`-a -x -o ClearAllForwardings=yes`) and connection sharing (`ControlPath=none`). Use a minimal environment (`PATH`, `HOME` set to the private directory, `LANG`; `SSH_AUTH_SOCK` only when no key reference is configured).
 - The private key comes from a versioned external credential reference, resolved at use time like GitHub secrets, and is written only to a private temporary file for the subprocess lifetime. No private key, token or passphrase is stored in the database or logged.
+- **Operator SSH configuration (`use_ssh_config`, operator decision 2026-11-10).** A host may instead run OpenSSH like the operator's own terminal and the Codex desktop app: the operator's `~/.ssh/config` (aliases, users, ports, key files, proxies), their known_hosts and their `PATH`/`HOME`/`USER`/`LOGNAME`/`LANG`/`SSH_AUTH_SOCK`. No `known_hosts` is stored for such a host. `BatchMode`, `StrictHostKeyChecking=yes`, no agent/X11/port forwarding and no connection sharing still apply, and no secret is stored. This relaxes the isolated rules above for that host only; the Add Agent form uses it for any non-`ws(s)://` address (`host`, `user@host`, `host:port`) together with `ensure_daemon`. Every reconnect starts a new SSH process, so network drops recover by the normal backoff without a separately managed port forward.
 
 ### Durable configuration
 
@@ -485,7 +486,7 @@ Add an additive `codex_hosts` table, one row per Codex Agent:
 | `id`, `agent_id` | UUID; unique FK to `agents` (implementation label `codex`) |
 | `transport` | `websocket` or `ssh` |
 | `url`, `connect_address`, `token_ref`, `allow_insecure` | WebSocket settings |
-| `ssh_user`, `ssh_host`, `ssh_port`, `ssh_key_ref`, `known_hosts`, `remote_codex_path`, `remote_socket_path`, `ensure_daemon` | SSH settings |
+| `ssh_user`, `ssh_host`, `ssh_port`, `ssh_key_ref`, `known_hosts`, `remote_codex_path`, `remote_socket_path`, `ensure_daemon`, `use_ssh_config` | SSH settings |
 | `enabled`, `version`, timestamps | Operator control with optimistic versioning |
 
 Create/update/enable/disable are operator commands with `command_id`, `expected_version`, receipt and audit events (`codex_host.configured`, `codex_host.enabled`, `codex_host.disabled`). Configuration never contains secret values, only reference names.

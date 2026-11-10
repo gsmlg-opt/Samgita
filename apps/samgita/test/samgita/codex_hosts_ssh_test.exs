@@ -56,8 +56,8 @@ defmodule Samgita.CodexHostsSshTest do
     if "-i" in argv:
         key = argv[argv.index("-i") + 1]
         record["key_mode"] = oct(stat.S_IMODE(os.stat(key).st_mode))
-    kh = [a for a in argv if a.startswith("UserKnownHostsFile=")][0].split("=", 1)[1]
-    record["known_hosts"] = open(kh).read()
+    kh = [a for a in argv if a.startswith("UserKnownHostsFile=")]
+    record["known_hosts"] = open(kh[0].split("=", 1)[1]).read() if kh else None
     with open(#{inspect(log)}, "a") as f:
         f.write(json.dumps(record) + "\\n")
     env = {"SHELL": "/bin/sh", "HOME": #{inspect(home)}, "PATH": "/usr/bin:/bin",
@@ -225,6 +225,47 @@ defmodule Samgita.CodexHostsSshTest do
     {:ok, _} = disable(host["id"])
     await_status(host["id"], "stopped")
     refute File.exists?(private_dir)
+  end
+
+  test "uses the operator's own SSH configuration when chosen",
+       %{agent: agent, server: server, log: log} do
+    System.put_env("SAMGITA_LEAK_PROBE", "1")
+    on_exit(fn -> System.delete_env("SAMGITA_LEAK_PROBE") end)
+
+    {:ok, host} =
+      configure(agent, server, %{
+        "ssh_host" => "raven",
+        "ssh_user" => nil,
+        "known_hosts" => nil,
+        "use_ssh_config" => true
+      })
+
+    assert host["use_ssh_config"] == true
+    {:ok, _} = enable(host)
+    await_status(host["id"], "connected")
+
+    assert [%{"argv" => argv, "env" => env, "known_hosts" => nil}] = calls(log)
+
+    for option <-
+          ~w(BatchMode=yes StrictHostKeyChecking=yes ClearAllForwardings=yes ControlPath=none),
+        do: assert(option in argv, "missing #{option}")
+
+    refute "-F" in argv
+    refute "-l" in argv
+    refute Enum.any?(argv, &String.contains?(&1, ["KnownHostsFile", "IdentityAgent"]))
+    assert "-a" in argv and "-x" in argv
+    assert ["--", "raven", "'sh' '-c' " <> _] = Enum.take(argv, -3)
+
+    refute "SAMGITA_LEAK_PROBE" in env
+
+    assert env -- ~w(HOME LANG PATH SSH_AUTH_SOCK USER LOGNAME LC_CTYPE __CF_USER_TEXT_ENCODING) ==
+             []
+  end
+
+  test "an SSH host without the operator's config still requires host keys",
+       %{agent: agent, server: server} do
+    assert {:error, %{code: :invalid}} =
+             configure(agent, server, %{"known_hosts" => nil, "use_ssh_config" => false})
   end
 
   test "a private key from a credential reference exists only during the connection",
