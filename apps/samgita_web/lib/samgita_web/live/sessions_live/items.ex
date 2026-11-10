@@ -1,8 +1,8 @@
 defmodule SamgitaWeb.SessionsLive.Items do
   @moduledoc """
   Folds Codex thread items and live notifications into the rows a session page
-  renders with the DuskMoon chat elements (`@duskmoon-dev/el-chat`). Unknown
-  item types render as a short label; their contents are never interpreted.
+  renders with the DuskMoon React chat. Unknown item types render as a short
+  label; their contents are never interpreted.
   """
   use Phoenix.Component
 
@@ -156,7 +156,8 @@ defmodule SamgitaWeb.SessionsLive.Items do
   @doc """
   Group items into chat rows: each user message, and each Codex reply with the
   work (commands, file changes, reasoning, plans) done before it. Work after
-  the last reply forms a reply that has no text yet.
+  the last reply forms a reply that has no text yet. A reply is identified by
+  its first item, so its ID does not change when its text arrives later.
   """
   def rows(items) do
     {rows, work} =
@@ -165,8 +166,9 @@ defmodule SamgitaWeb.SessionsLive.Items do
           {[%{kind: :user, item: item} | flush(rows, work)], []}
 
         %{"kind" => "agent"} = item, {rows, work} ->
-          {[%{kind: :agent, id: item["id"], text: item["text"], work: Enum.reverse(work)} | rows],
-           []}
+          work = Enum.reverse(work)
+          id = if work == [], do: item["id"], else: hd(work)["id"]
+          {[%{kind: :agent, id: id, text: item["text"], work: work} | rows], []}
 
         item, {rows, work} ->
           {rows, [item | work]}
@@ -179,93 +181,84 @@ defmodule SamgitaWeb.SessionsLive.Items do
 
   defp flush(rows, work) do
     work = Enum.reverse(work)
-    [%{kind: :agent, id: "work-" <> hd(work)["id"], text: nil, work: work} | rows]
+    [%{kind: :agent, id: hd(work)["id"], text: nil, work: work} | rows]
   end
 
-  attr :row, :map, required: true
-  attr :streaming, :boolean, default: false
+  @doc """
+  The messages of the DuskMoon React chat (`dm_react_chat`). The last Codex
+  reply is streaming while a turn runs; Codex's work is shown as its tools.
+  """
+  def messages(items, running?) do
+    rows = rows(items)
+    last = length(rows) - 1
 
-  def row(%{row: %{kind: :user}} = assigns) do
-    ~H"""
-    <el-dm-chat
-      id={"item-" <> @row.item["id"]}
-      align="end"
-      collapsible
-      content={@row.item["text"]}
-    >
-    </el-dm-chat>
-    """
+    rows
+    |> Enum.with_index()
+    |> Enum.map(fn
+      {%{kind: :user, item: item}, _} ->
+        %{
+          "id" => item["id"],
+          "role" => "user",
+          "author" => "You",
+          "content" => item["text"] || "",
+          "status" => "complete"
+        }
+
+      {row, index} ->
+        %{
+          "id" => row.id,
+          "role" => "assistant",
+          "author" => "Codex",
+          "content" => row.text || "",
+          "status" => if(running? and index == last, do: "streaming", else: "complete"),
+          "tools" => for(item <- row.work, shown?(item), do: tool(item))
+        }
+    end)
   end
 
-  def row(assigns) do
-    ~H"""
-    <el-dm-chat id={"item-" <> @row.id} agent streaming={@streaming} content={@row.text || ""}>
-      <el-dm-chat-work :if={@row.work != []} slot="work" summary={work_summary(@row.work)}>
-        <.work :for={item <- @row.work} item={item} />
-      </el-dm-chat-work>
-    </el-dm-chat>
-    """
-  end
+  # Reasoning often has no summary text; an empty entry says nothing.
+  defp shown?(%{"kind" => kind, "text" => text}) when kind in ["reasoning", "plan"],
+    do: text not in [nil, ""]
 
-  defp work_summary(work) do
-    case length(work) do
-      1 -> "Worked · 1 step"
-      n -> "Worked · #{n} steps"
-    end
-  end
+  defp shown?(_item), do: true
 
-  attr :item, :map, required: true
+  defp tool(%{"kind" => "command"} = item),
+    do: %{
+      "id" => item["id"],
+      "name" => item["command"],
+      "status" => tool_status(item),
+      "input" => %{"command" => item["command"]},
+      "result" =>
+        if(item["status"] != "inProgress",
+          do: %{"exit_code" => item["exit_code"], "output" => lines(item["output"])}
+        )
+    }
 
-  defp work(%{item: %{"kind" => "command"}} = assigns) do
-    ~H"""
-    <el-dm-chat-tool
-      id={"item-" <> @item["id"]}
-      name={@item["command"]}
-      status={tool_status(@item)}
-    >
-      <div slot="result">
-        <p :if={@item["exit_code"]} class="text-xs text-on-surface-variant">
-          exit {@item["exit_code"]}
-        </p>
-        <pre
-          :if={@item["output"] not in [nil, ""]}
-          class="max-h-80 overflow-auto whitespace-pre-wrap text-xs"
-        >{@item["output"]}</pre>
-      </div>
-    </el-dm-chat-tool>
-    """
-  end
+  defp tool(%{"kind" => "file_change"} = item),
+    do: %{
+      "id" => item["id"],
+      "name" => "Edit files",
+      "status" => tool_status(item),
+      "input" => %{"paths" => item["paths"]},
+      "result" => if(item["status"] != "inProgress", do: %{"paths" => item["paths"]})
+    }
 
-  defp work(%{item: %{"kind" => "file_change"}} = assigns) do
-    ~H"""
-    <el-dm-chat-tool id={"item-" <> @item["id"]} name="Edited files" status={tool_status(@item)}>
-      <div slot="result">
-        <code :for={path <- @item["paths"]} class="block break-all text-xs">{path}</code>
-      </div>
-    </el-dm-chat-tool>
-    """
-  end
+  defp tool(%{"kind" => kind} = item) when kind in ["reasoning", "plan"],
+    do: %{
+      "id" => item["id"],
+      "name" => if(kind == "plan", do: "Plan", else: "Reasoning"),
+      "status" => "success",
+      "result" => %{"text" => lines(item["text"])}
+    }
 
-  defp work(%{item: %{"kind" => kind}} = assigns) when kind in ["reasoning", "plan"] do
-    ~H"""
-    <el-dm-chat-reasoning
-      :if={@item["text"] not in [nil, ""]}
-      id={"item-" <> @item["id"]}
-      summary={if @item["kind"] == "plan", do: "Plan", else: "Reasoning"}
-    >
-      <p class="whitespace-pre-wrap" phx-no-format>{@item["text"]}</p>
-    </el-dm-chat-reasoning>
-    """
-  end
+  defp tool(item),
+    do: %{"id" => item["id"], "name" => item["label"], "status" => "success", "result" => %{}}
 
-  defp work(assigns) do
-    ~H"""
-    <el-dm-chat-tool id={"item-" <> @item["id"]} name={@item["label"]} status="success">
-    </el-dm-chat-tool>
-    """
-  end
+  # The chat shows a tool result as JSON; one string per line stays readable.
+  defp lines(nil), do: []
+  defp lines(text), do: String.split(String.trim_trailing(text), "\n")
 
-  # Codex item status -> el-dm-chat-tool status.
+  # Codex item status -> chat tool status.
   defp tool_status(%{"status" => "inProgress"}), do: "running"
 
   defp tool_status(%{"status" => "completed", "exit_code" => code}) when code not in [nil, 0],

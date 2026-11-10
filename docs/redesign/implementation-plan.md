@@ -415,17 +415,17 @@ Owner files: migration `20261110000002_add_codex_host_local_transport.exs` (tran
 
 Result (2026-11-10): Codex Agents LiveView tests (4, through a symlinked fake daemon socket), related Agents/Codex/session LiveView tests (17) and filtered Codex host core tests (7) pass. Real check on the 4870 dev server: "This computer" connected to the Codex desktop app's daemon (`mbp2021`, Codex 0.167.0) and listed its projects; raven stayed connected over SSH. The first real attempt failed with `codex_daemon_not_running` because the socket path is a symlink and was checked with `lstat`; fixed and covered by the symlinked test socket.
 
-### P7.12 Session view with DuskMoon chat elements
+### P7.12 Session view with the DuskMoon React chat
 
-Requested 2026-11-10: the session page uses the DuskMoon chat UI built for talking to AI agents (`@duskmoon-dev/el-chat` 1.10.2, the version of phoenix_duskmoon's other DuskMoon elements, added to `apps/samgita_web/package.json` and the root lockfile; registered in `app.ts` with phoenix_duskmoon's `WebComponentHook`).
+Requested 2026-11-10: the session page uses the DuskMoon chat UI built for talking to AI agents. A first version used the `@duskmoon-dev/el-chat` custom elements; the operator then chose the React chat (`dm_react_chat` with phoenix_duskmoon's `DuskmoonReactChat` hook), and el-chat was removed. The hook's imports `react`, `react-dom` and `@duskmoon-dev/components` are added to `apps/samgita_web/package.json` at the versions phoenix_duskmoon pins (19.3.1, 19.3.1, 0.6.0), because npm does not install a `file:` package's dependencies.
 
 Owner files: `sessions_live/{show,items}.ex`, `codex_hosts.ex` (`send_message` steers a running turn with `turn/steer` and `expectedTurnId`), `app.ts`, package manifests, tests.
 
-- [x] `el-dm-chat-scroll` transcript; user messages `el-dm-chat align="end"`; Codex replies `el-dm-chat agent` with markdown `content`, `streaming` on the live reply.
-- [x] Work before a reply (commands, file changes, reasoning, plans) collapses into `el-dm-chat-work` with `el-dm-chat-tool` (status, exit code, output) and `el-dm-chat-reasoning`; trailing work forms a reply without text; `el-dm-chat-typing` until reply text arrives.
-- [x] `el-dm-chat-input` composer (Enter sends, Shift+Enter newline, `busy` while a turn runs); a message sent while busy steers the running turn; Stop stays a separate button. Attachments are not relayed and show a notice.
+- [x] React owns the transcript and composer. The view pushes `chat:event` events: `chat.message` (whole message, per-message sequence from 1) for new or changed messages, and `chat.snapshot` after resume, on `chat.sync`, or when only the runtime changed. Replies are identified by their first item so they are only appended or updated in place.
+- [x] Messages: user (`You`) and Codex replies (markdown, `streaming` on the last reply while a turn runs). Codex's commands, file changes, reasoning and plans before a reply are its tools; empty reasoning is omitted.
+- [x] Requests: `chat.send` (`{text}`; steers while a turn runs, `admission.allowWhileStreaming`), `chat.stop` (`turn/interrupt`; Stop shows from `runtime.active`), `chat.sync`; retry/action are rejected. Approval cards stay outside the chat.
 
-Result (2026-11-10): `sessions_live_test.exs` (new session with streaming, steer params, attachment notice; resumed history as chat messages) and `sessions_items_test.exs` pass, plus Projects and Codex Agents LiveView tests (8 total, 1 approval test unrun under the restriction) and filtered Codex host core tests. Browser check against the real local Codex on the 4870 dev server: a new session ran `ls -la`, the reply rendered as markdown with the command collapsed under "Worked · 1 step" (success, exit 0, output). The scroll element needs an explicit height; with `flex-1` its viewport was 0px and the transcript was invisible, fixed with a viewport-based height.
+Result (2026-11-10): `sessions_live_test.exs` (new session: reply ok, `thread/start`/`turn/start` params, snapshot with active runtime, streamed `chat.message` sequences 1–3, steer params, completion; Stop sends `turn/interrupt`; resumed history snapshot and `chat.sync`) and `sessions_items_test.exs` pass, plus Projects and Codex Agents LiveView tests (9 total; 1 approval test unrun under the restriction). Browser check on the 4870 dev server with the real local Codex: a resumed session showed its history with the `ls -la` command as a tool; a new message showed Stop, the user message, a streaming reply ("pong") and returned to idle; reload showed the full history.
 
 ## 11. P8 — Coordinated delegation (design §10)
 

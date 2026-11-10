@@ -110,6 +110,11 @@ defmodule SamgitaWeb.SessionsLiveTest do
   defp notify(server, method, params),
     do: FakeCodexServer.push(server, %{"method" => method, "params" => params})
 
+  # The React chat's request bridge: `chat.send` etc. with a reply.
+  defp chat(view, event, payload) do
+    render_hook(view, event, Map.merge(%{"id" => "session-chat"}, payload))
+  end
+
   test "a new session starts in the project folder and streams Codex's reply", %{
     conn: conn,
     server: server,
@@ -117,10 +122,10 @@ defmodule SamgitaWeb.SessionsLiveTest do
   } do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/new?cwd=/work/app")
     assert has_element?(view, "#session-title", "app")
+    assert has_element?(view, "#session-chat[phx-hook=DuskmoonReactChat][phx-update=ignore]")
 
-    # el-dm-chat-input sends `{value, files}` through the WebComponentHook bridge.
-    assert has_element?(view, "el-dm-chat-input#session-composer[duskmoon-send-send=send]")
-    render_hook(view, "send", %{"value" => "Fix the build", "files" => []})
+    chat(view, "chat.send", %{"text" => "Fix the build"})
+    assert_reply(view, %{status: "ok"})
 
     assert_receive {:fake_codex, :params, "thread/start", start}, 3_000
 
@@ -138,9 +143,15 @@ defmodule SamgitaWeb.SessionsLiveTest do
            }
 
     assert_patch(view, ~p"/sessions/#{host["id"]}/#{@thread_id}")
-    assert has_element?(view, "#session-stop")
-    assert has_element?(view, "#session-typing")
-    assert has_element?(view, "#session-composer[busy]")
+
+    # The running turn shows Stop in the chat (runtime.active) and still admits
+    # messages, which steer the turn.
+    assert_push_event(view, "chat:event", %{
+      type: "chat.snapshot",
+      id: "session-chat",
+      runtime: %{active: true},
+      admission: %{allowWhileStreaming: true}
+    })
 
     notify(server, "item/agentMessage/delta", %{
       "threadId" => @thread_id,
@@ -156,12 +167,23 @@ defmodule SamgitaWeb.SessionsLiveTest do
       "delta" => "on it."
     })
 
-    await(fn -> has_element?(view, "el-dm-chat#item-a2[agent][content='Working on it.']") end)
-    assert has_element?(view, "#item-a2[streaming]")
-    refute has_element?(view, "#session-typing")
+    assert_push_event(view, "chat:event", %{
+      type: "chat.message",
+      message_id: "a2",
+      sequence: 1,
+      message: %{"role" => "assistant", "content" => "Working ", "status" => "streaming"}
+    })
+
+    assert_push_event(view, "chat:event", %{
+      type: "chat.message",
+      message_id: "a2",
+      sequence: 2,
+      message: %{"content" => "Working on it.", "status" => "streaming"}
+    })
 
     # A message sent while Codex works joins the running turn.
-    render_hook(view, "send", %{"value" => "Also run the tests", "files" => [%{}]})
+    chat(view, "chat.send", %{"text" => "Also run the tests"})
+    assert_reply(view, %{status: "ok"})
     assert_receive {:fake_codex, :params, "turn/steer", steer}, 3_000
 
     assert steer == %{
@@ -170,16 +192,31 @@ defmodule SamgitaWeb.SessionsLiveTest do
              "input" => [%{"type" => "text", "text" => "Also run the tests"}]
            }
 
-    assert has_element?(view, "#session-error", "Attachments are not supported yet")
-
     notify(server, "turn/completed", %{
       "threadId" => @thread_id,
       "turn" => %{"id" => @turn_id, "items" => [], "status" => "completed"}
     })
 
-    await(fn -> not has_element?(view, "#session-stop") end)
-    refute has_element?(view, "#item-a2[streaming]")
-    refute has_element?(view, "#session-composer[busy]")
+    assert_push_event(view, "chat:event", %{
+      type: "chat.message",
+      message_id: "a2",
+      sequence: 3,
+      message: %{"content" => "Working on it.", "status" => "complete"},
+      runtime: %{active: false}
+    })
+  end
+
+  test "Stop interrupts the running turn", %{conn: conn, host: host} do
+    {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/new?cwd=/work/app")
+    chat(view, "chat.send", %{"text" => "Fix the build"})
+    assert_receive {:fake_codex, :params, "turn/start", _}, 3_000
+
+    chat(view, "chat.stop", %{})
+    assert_reply(view, %{status: "ok"})
+
+    assert_receive {:fake_codex, :params, "turn/interrupt",
+                    %{"threadId" => @thread_id, "turnId" => @turn_id}},
+                   3_000
   end
 
   test "an existing session resumes with its history as chat messages", %{
@@ -189,12 +226,25 @@ defmodule SamgitaWeb.SessionsLiveTest do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
     assert_receive {:fake_codex, :params, "thread/resume", %{"threadId" => @thread_id}}, 3_000
 
-    await(fn ->
-      has_element?(view, "el-dm-chat#item-a1[agent][content='The build is fixed.']")
-    end)
+    assert_push_event(
+      view,
+      "chat:event",
+      %{
+        type: "chat.snapshot",
+        messages: [
+          %{"id" => "u1", "role" => "user", "content" => "Fix the build"},
+          %{"id" => "a1", "role" => "assistant", "content" => "The build is fixed."}
+        ],
+        sequences: %{"u1" => 1, "a1" => 1},
+        runtime: %{active: false}
+      },
+      3_000
+    )
 
-    assert has_element?(view, "el-dm-chat#item-u1[align=end][content='Fix the build']")
-    refute has_element?(view, "#session-stop")
+    # After a reconnect the chat asks for the transcript again.
+    chat(view, "chat.sync", %{"sequences" => %{}})
+    assert_reply(view, %{status: "ok"})
+    assert_push_event(view, "chat:event", %{type: "chat.snapshot"})
   end
 
   test "an existing session shows its history and answers an approval request", %{
@@ -204,12 +254,7 @@ defmodule SamgitaWeb.SessionsLiveTest do
   } do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
     assert_receive {:fake_codex, :params, "thread/resume", %{"threadId" => @thread_id}}, 3_000
-
-    await(fn ->
-      has_element?(view, "el-dm-chat#item-a1[agent][content='The build is fixed.']")
-    end)
-
-    assert has_element?(view, "el-dm-chat#item-u1[align=end][content='Fix the build']")
+    assert_push_event(view, "chat:event", %{type: "chat.snapshot"}, 3_000)
 
     FakeCodexServer.push(server, %{
       "id" => 900,

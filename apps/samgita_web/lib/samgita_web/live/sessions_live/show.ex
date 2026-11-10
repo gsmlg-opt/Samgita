@@ -4,6 +4,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
   folder or continue an existing one, send messages, watch Codex reply and work,
   answer its approval requests and stop a running turn.
 
+  The conversation is the DuskMoon React chat (`dm_react_chat`): React owns the
+  transcript and composer; this view pushes `chat:event` events (whole-message
+  updates with per-message sequence numbers, or a snapshot) and answers the
+  chat's `chat.send`, `chat.stop` and `chat.sync` requests.
+
   Codex owns the session. Samgita relays the operator's messages and decisions
   and renders the thread's live events; it stores no conversation and creates
   no Task or Attempt.
@@ -11,6 +16,8 @@ defmodule SamgitaWeb.SessionsLive.Show do
   use SamgitaWeb, :live_view
   alias Samgita.{CodexHosts, Principal}
   alias SamgitaWeb.SessionsLive.Items
+
+  @chat "session-chat"
 
   @impl true
   def mount(%{"host_id" => host_id} = params, _session, socket) do
@@ -29,7 +36,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
        running_turn: nil,
        requests: [],
        error: if(host, do: nil, else: "This Codex host does not exist."),
-       loading: false
+       # The chat's conversation is fixed for the life of its React root; a new
+       # session keeps it when the URL changes to the created thread.
+       conversation_id: params["thread_id"] || "new-" <> Ecto.UUID.generate(),
+       chat: %{messages: [], sequences: %{}, runtime: nil}
      )}
   end
 
@@ -40,7 +50,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
     else
       {:noreply,
        socket
-       |> assign(thread_id: thread_id, loading: true, items: [])
+       |> assign(thread_id: thread_id, items: [])
        |> subscribe(thread_id)
        |> resume(thread_id)}
     end
@@ -49,10 +59,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def handle_params(_params, _uri, socket),
     do: {:noreply, assign(socket, title: socket.assigns.cwd && Path.basename(socket.assigns.cwd))}
 
-  # From `el-dm-chat-input`: Enter sends; while Codex works, the message steers
-  # the running turn. The composer keeps the draft when the reply is an error.
+  # The chat sends `{text}`; while Codex works, the message steers the running
+  # turn. An error reply keeps the draft in the composer.
   @impl true
-  def handle_event("send", %{"value" => text} = params, socket) do
+  def handle_event("chat.send", %{"text" => text}, socket) do
     with {:ok, socket} <- ensure_thread(socket),
          {:ok, turn_id} <-
            CodexHosts.send_message(
@@ -62,19 +72,18 @@ defmodule SamgitaWeb.SessionsLive.Show do
              text,
              socket.assigns.running_turn
            ) do
-      # Attachments are not relayed to Codex yet; say so instead of dropping them silently.
-      error =
-        if params["files"] not in [nil, []],
-          do: "Attachments are not supported yet; only the text was sent."
+      socket =
+        socket
+        |> assign(error: nil, running_turn: socket.assigns.running_turn || turn_id)
+        |> publish()
 
-      {:noreply,
-       assign(socket, error: error, running_turn: socket.assigns.running_turn || turn_id)}
+      {:reply, %{status: "ok"}, socket}
     else
-      {:error, error} -> {:noreply, assign(socket, error: message(error))}
+      {:error, error} -> {:reply, %{status: "error", message: message(error)}, socket}
     end
   end
 
-  def handle_event("stop", _params, %{assigns: %{running_turn: turn_id}} = socket)
+  def handle_event("chat.stop", _params, %{assigns: %{running_turn: turn_id}} = socket)
       when is_binary(turn_id) do
     case CodexHosts.interrupt(
            Principal.operator(),
@@ -82,10 +91,19 @@ defmodule SamgitaWeb.SessionsLive.Show do
            socket.assigns.thread_id,
            turn_id
          ) do
-      :ok -> {:noreply, socket}
-      {:error, error} -> {:noreply, assign(socket, error: message(error))}
+      :ok -> {:reply, %{status: "ok"}, socket}
+      {:error, error} -> {:reply, %{status: "error", message: message(error)}, socket}
     end
   end
+
+  def handle_event("chat.stop", _params, socket), do: {:reply, %{status: "ok"}, socket}
+
+  # After a reconnect the chat asks for the authoritative transcript.
+  def handle_event("chat.sync", _params, socket),
+    do: {:reply, %{status: "ok"}, snapshot(socket)}
+
+  def handle_event(event, _params, socket) when event in ["chat.retry", "chat.action"],
+    do: {:reply, %{status: "error", message: "Not supported for Codex sessions."}, socket}
 
   def handle_event("decide", %{"key" => key, "decision" => decision}, socket) do
     case CodexHosts.respond_request(Principal.operator(), socket.assigns.host_id, key, decision) do
@@ -95,7 +113,8 @@ defmodule SamgitaWeb.SessionsLive.Show do
   end
 
   @impl true
-  def handle_info({:codex_event, wire}, socket), do: {:noreply, Items.apply_event(socket, wire)}
+  def handle_info({:codex_event, wire}, socket),
+    do: {:noreply, socket |> Items.apply_event(wire) |> publish()}
 
   def handle_info({:codex_request, request}, socket),
     do:
@@ -112,21 +131,86 @@ defmodule SamgitaWeb.SessionsLive.Show do
   @impl true
   def handle_async(:resume, {:ok, {{:ok, thread}, requests}}, socket) do
     {:noreply,
-     assign(socket,
-       loading: false,
+     socket
+     |> assign(
        title: thread["title"],
        cwd: thread["cwd"],
        items: Items.from_turns(thread["turns"]),
        running_turn: Items.running_turn(thread["turns"]),
        requests: requests
-     )}
+     )
+     |> snapshot()}
   end
 
   def handle_async(:resume, {:ok, {{:error, error}, _}}, socket),
-    do: {:noreply, assign(socket, loading: false, error: message(error))}
+    do: {:noreply, assign(socket, error: message(error))}
 
   def handle_async(:resume, {:exit, _}, socket),
-    do: {:noreply, assign(socket, loading: false, error: message(nil))}
+    do: {:noreply, assign(socket, error: message(nil))}
+
+  # Push what changed since the last push: each new or changed message as a
+  # `chat.message` with its next sequence number. Messages are only appended or
+  # updated in place; anything else (or only a runtime change) is a snapshot.
+  defp publish(socket) do
+    %{chat: chat} = socket.assigns
+    messages = Items.messages(socket.assigns.items, socket.assigns.running_turn != nil)
+    previous = Enum.map(chat.messages, & &1["id"])
+    changed = Enum.reject(messages, &(&1 in chat.messages))
+
+    cond do
+      Enum.take(Enum.map(messages, & &1["id"]), length(previous)) != previous ->
+        snapshot(socket)
+
+      changed == [] and runtime(socket) == chat.runtime ->
+        socket
+
+      changed == [] ->
+        snapshot(socket)
+
+      true ->
+        Enum.reduce(changed, socket, fn message, socket ->
+          id = message["id"]
+          sequence = Map.get(socket.assigns.chat.sequences, id, 0) + 1
+
+          socket
+          |> push_chat("chat.message", %{
+            message_id: id,
+            sequence: sequence,
+            message: message
+          })
+          |> update(:chat, &put_in(&1, [:sequences, id], sequence))
+        end)
+        |> update(:chat, &%{&1 | messages: messages, runtime: runtime(socket)})
+    end
+  end
+
+  defp snapshot(socket) do
+    messages = Items.messages(socket.assigns.items, socket.assigns.running_turn != nil)
+    sequences = Map.new(messages, &{&1["id"], 1})
+
+    socket
+    |> push_chat("chat.snapshot", %{messages: messages, sequences: sequences})
+    |> assign(chat: %{messages: messages, sequences: sequences, runtime: runtime(socket)})
+  end
+
+  defp push_chat(socket, type, payload),
+    do:
+      push_event(
+        socket,
+        "chat:event",
+        Map.merge(payload, %{
+          id: @chat,
+          conversation_id: socket.assigns.conversation_id,
+          type: type,
+          runtime: runtime(socket),
+          admission: admission(socket)
+        })
+      )
+
+  # Stop shows while a turn runs; messages may still be sent to steer it.
+  defp runtime(socket), do: %{active: socket.assigns.running_turn != nil}
+
+  defp admission(socket), do: %{canSubmit: socket.assigns.host != nil, allowWhileStreaming: true}
 
   defp resume(socket, thread_id) do
     host_id = socket.assigns.host_id
@@ -189,10 +273,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   @impl true
   def render(assigns) do
-    assigns = assign(assigns, :rows, Items.rows(assigns.items))
+    assigns = assign(assigns, :chat_id, @chat)
 
     ~H"""
-    <section class="flex min-h-[calc(100vh-10rem)] flex-col gap-4" aria-labelledby="session-title">
+    <section class="flex flex-col gap-4" aria-labelledby="session-title">
       <header class="flex flex-wrap items-start justify-between gap-4">
         <div class="min-w-0">
           <h1 id="session-title" class="truncate text-2xl font-bold">
@@ -207,29 +291,6 @@ defmodule SamgitaWeb.SessionsLive.Show do
       </header>
 
       <p :if={@error} id="session-error" role="alert" class="text-error">{@error}</p>
-
-      <.dm_chat_scroll
-        id="session-items"
-        class="block h-[calc(100dvh-20rem)] min-h-80 rounded-xl border border-outline-variant p-4"
-        label="Codex session"
-        indicator_label="Codex replies"
-      >
-        <p :if={@loading} class="text-on-surface-variant">Loading session…</p>
-        <p :if={!@loading and @items == []} class="text-on-surface-variant">
-          {if @thread_id,
-            do: "No messages yet.",
-            else: "Describe what Codex should do in this project."}
-        </p>
-        <Items.row
-          :for={{row, index} <- Enum.with_index(@rows)}
-          row={row}
-          streaming={@running_turn != nil and index == length(@rows) - 1}
-        />
-        <.dm_chat_typing
-          :if={@running_turn && (@rows == [] || List.last(@rows)[:text] in [nil, ""])}
-          id="session-typing"
-        />
-      </.dm_chat_scroll>
 
       <div
         :for={request <- @requests}
@@ -269,30 +330,15 @@ defmodule SamgitaWeb.SessionsLive.Show do
         </div>
       </div>
 
-      <div class="flex items-end gap-2">
-        <el-dm-chat-input
-          id="session-composer"
-          class="flex-1"
-          phx-hook="WebComponentHook"
-          duskmoon-send-send="send"
-          duskmoon-send-steer="send"
-          busy={@running_turn != nil}
-          disabled={is_nil(@host)}
-          clear-on-send
-          auto-grow
-          placeholder={
-            cond do
-              @running_turn -> "Add to what Codex is doing…"
-              @thread_id -> "Reply to Codex…"
-              true -> "Ask Codex to do something…"
-            end
-          }
-        >
-        </el-dm-chat-input>
-        <.dm_btn :if={@running_turn} id="session-stop" type="button" phx-click="stop">
-          Stop
-        </.dm_btn>
-      </div>
+      <.dm_react_chat
+        id={@chat_id}
+        conversation_id={@conversation_id}
+        label="Codex session"
+        messages={[]}
+        runtime={%{active: false}}
+        admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}
+        class="block h-[calc(100dvh-14rem)] min-h-96 rounded-xl border border-outline-variant p-4"
+      />
     </section>
     """
   end
