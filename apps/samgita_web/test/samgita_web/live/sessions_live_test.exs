@@ -61,6 +61,7 @@ defmodule SamgitaWeb.SessionsLiveTest do
           "turn/start" => %{
             "turn" => %{"id" => @turn_id, "items" => [], "status" => "inProgress"}
           },
+          "turn/steer" => %{"turnId" => @turn_id},
           "turn/interrupt" => %{}
         }
       )
@@ -117,7 +118,9 @@ defmodule SamgitaWeb.SessionsLiveTest do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/new?cwd=/work/app")
     assert has_element?(view, "#session-title", "app")
 
-    view |> form("#session-composer", %{"message" => "Fix the build"}) |> render_submit()
+    # el-dm-chat-input sends `{value, files}` through the WebComponentHook bridge.
+    assert has_element?(view, "el-dm-chat-input#session-composer[duskmoon-send-send=send]")
+    render_hook(view, "send", %{"value" => "Fix the build", "files" => []})
 
     assert_receive {:fake_codex, :params, "thread/start", start}, 3_000
 
@@ -135,7 +138,9 @@ defmodule SamgitaWeb.SessionsLiveTest do
            }
 
     assert_patch(view, ~p"/sessions/#{host["id"]}/#{@thread_id}")
-    assert has_element?(view, "#session-running")
+    assert has_element?(view, "#session-stop")
+    assert has_element?(view, "#session-typing")
+    assert has_element?(view, "#session-composer[busy]")
 
     notify(server, "item/agentMessage/delta", %{
       "threadId" => @thread_id,
@@ -151,14 +156,45 @@ defmodule SamgitaWeb.SessionsLiveTest do
       "delta" => "on it."
     })
 
-    await(fn -> has_element?(view, "#item-a2", "Working on it.") end)
+    await(fn -> has_element?(view, "el-dm-chat#item-a2[agent][content='Working on it.']") end)
+    assert has_element?(view, "#item-a2[streaming]")
+    refute has_element?(view, "#session-typing")
+
+    # A message sent while Codex works joins the running turn.
+    render_hook(view, "send", %{"value" => "Also run the tests", "files" => [%{}]})
+    assert_receive {:fake_codex, :params, "turn/steer", steer}, 3_000
+
+    assert steer == %{
+             "threadId" => @thread_id,
+             "expectedTurnId" => @turn_id,
+             "input" => [%{"type" => "text", "text" => "Also run the tests"}]
+           }
+
+    assert has_element?(view, "#session-error", "Attachments are not supported yet")
 
     notify(server, "turn/completed", %{
       "threadId" => @thread_id,
       "turn" => %{"id" => @turn_id, "items" => [], "status" => "completed"}
     })
 
-    await(fn -> not has_element?(view, "#session-running") end)
+    await(fn -> not has_element?(view, "#session-stop") end)
+    refute has_element?(view, "#item-a2[streaming]")
+    refute has_element?(view, "#session-composer[busy]")
+  end
+
+  test "an existing session resumes with its history as chat messages", %{
+    conn: conn,
+    host: host
+  } do
+    {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
+    assert_receive {:fake_codex, :params, "thread/resume", %{"threadId" => @thread_id}}, 3_000
+
+    await(fn ->
+      has_element?(view, "el-dm-chat#item-a1[agent][content='The build is fixed.']")
+    end)
+
+    assert has_element?(view, "el-dm-chat#item-u1[align=end][content='Fix the build']")
+    refute has_element?(view, "#session-stop")
   end
 
   test "an existing session shows its history and answers an approval request", %{
@@ -168,8 +204,12 @@ defmodule SamgitaWeb.SessionsLiveTest do
   } do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
     assert_receive {:fake_codex, :params, "thread/resume", %{"threadId" => @thread_id}}, 3_000
-    await(fn -> has_element?(view, "#item-a1", "The build is fixed.") end)
-    assert has_element?(view, "#item-u1", "Fix the build")
+
+    await(fn ->
+      has_element?(view, "el-dm-chat#item-a1[agent][content='The build is fixed.']")
+    end)
+
+    assert has_element?(view, "el-dm-chat#item-u1[align=end][content='Fix the build']")
 
     FakeCodexServer.push(server, %{
       "id" => 900,

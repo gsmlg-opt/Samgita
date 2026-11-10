@@ -29,8 +29,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
        running_turn: nil,
        requests: [],
        error: if(host, do: nil, else: "This Codex host does not exist."),
-       loading: false,
-       message: ""
+       loading: false
      )}
   end
 
@@ -50,27 +49,28 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def handle_params(_params, _uri, socket),
     do: {:noreply, assign(socket, title: socket.assigns.cwd && Path.basename(socket.assigns.cwd))}
 
+  # From `el-dm-chat-input`: Enter sends; while Codex works, the message steers
+  # the running turn. The composer keeps the draft when the reply is an error.
   @impl true
-  def handle_event("change", %{"message" => text}, socket),
-    do: {:noreply, assign(socket, message: text)}
-
-  def handle_event("send", %{"message" => text}, socket) do
+  def handle_event("send", %{"value" => text} = params, socket) do
     with {:ok, socket} <- ensure_thread(socket),
          {:ok, turn_id} <-
            CodexHosts.send_message(
              Principal.operator(),
              socket.assigns.host_id,
              socket.assigns.thread_id,
-             text
+             text,
+             socket.assigns.running_turn
            ) do
+      # Attachments are not relayed to Codex yet; say so instead of dropping them silently.
+      error =
+        if params["files"] not in [nil, []],
+          do: "Attachments are not supported yet; only the text was sent."
+
       {:noreply,
-       assign(socket,
-         message: "",
-         error: nil,
-         running_turn: socket.assigns.running_turn || turn_id
-       )}
+       assign(socket, error: error, running_turn: socket.assigns.running_turn || turn_id)}
     else
-      {:error, error} -> {:noreply, assign(socket, message: text, error: message(error))}
+      {:error, error} -> {:noreply, assign(socket, error: message(error))}
     end
   end
 
@@ -189,6 +189,8 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   @impl true
   def render(assigns) do
+    assigns = assign(assigns, :rows, Items.rows(assigns.items))
+
     ~H"""
     <section class="flex min-h-[calc(100vh-10rem)] flex-col gap-4" aria-labelledby="session-title">
       <header class="flex flex-wrap items-start justify-between gap-4">
@@ -206,10 +208,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
       <p :if={@error} id="session-error" role="alert" class="text-error">{@error}</p>
 
-      <div
+      <.dm_chat_scroll
         id="session-items"
-        class="flex-1 space-y-4 rounded-xl border border-outline-variant p-4"
-        phx-hook={nil}
+        class="block h-[calc(100dvh-20rem)] min-h-80 rounded-xl border border-outline-variant p-4"
+        label="Codex session"
+        indicator_label="Codex replies"
       >
         <p :if={@loading} class="text-on-surface-variant">Loading session…</p>
         <p :if={!@loading and @items == []} class="text-on-surface-variant">
@@ -217,13 +220,16 @@ defmodule SamgitaWeb.SessionsLive.Show do
             do: "No messages yet.",
             else: "Describe what Codex should do in this project."}
         </p>
-        <div :for={item <- @items} id={"item-" <> item["id"]}>
-          <Items.item item={item} />
-        </div>
-        <div :if={@running_turn} id="session-running" class="text-sm text-on-surface-variant">
-          Codex is working…
-        </div>
-      </div>
+        <Items.row
+          :for={{row, index} <- Enum.with_index(@rows)}
+          row={row}
+          streaming={@running_turn != nil and index == length(@rows) - 1}
+        />
+        <.dm_chat_typing
+          :if={@running_turn && (@rows == [] || List.last(@rows)[:text] in [nil, ""])}
+          id="session-typing"
+        />
+      </.dm_chat_scroll>
 
       <div
         :for={request <- @requests}
@@ -263,31 +269,30 @@ defmodule SamgitaWeb.SessionsLive.Show do
         </div>
       </div>
 
-      <form id="session-composer" phx-submit="send" phx-change="change" class="space-y-2">
-        <textarea
-          id="session-message"
-          name="message"
-          rows="3"
-          class="textarea textarea-bordered w-full"
-          placeholder={if @thread_id, do: "Reply to Codex…", else: "Ask Codex to do something…"}
-          aria-label="Message"
+      <div class="flex items-end gap-2">
+        <el-dm-chat-input
+          id="session-composer"
+          class="flex-1"
+          phx-hook="WebComponentHook"
+          duskmoon-send-send="send"
+          duskmoon-send-steer="send"
+          busy={@running_turn != nil}
           disabled={is_nil(@host)}
-        >{@message}</textarea>
-        <div class="flex justify-end gap-2">
-          <.dm_btn :if={@running_turn} id="session-stop" type="button" phx-click="stop">
-            Stop
-          </.dm_btn>
-          <.dm_btn
-            id="session-send"
-            native_submit
-            type="submit"
-            variant="primary"
-            phx-disable-with="Sending…"
-          >
-            Send
-          </.dm_btn>
-        </div>
-      </form>
+          clear-on-send
+          auto-grow
+          placeholder={
+            cond do
+              @running_turn -> "Add to what Codex is doing…"
+              @thread_id -> "Reply to Codex…"
+              true -> "Ask Codex to do something…"
+            end
+          }
+        >
+        </el-dm-chat-input>
+        <.dm_btn :if={@running_turn} id="session-stop" type="button" phx-click="stop">
+          Stop
+        </.dm_btn>
+      </div>
     </section>
     """
   end

@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@duskmoon-dev/core": "1.21.0",
+    "@duskmoon-dev/el-chat": "1.10.2",
     "phoenix": "file:../../deps/phoenix",
     "phoenix_duskmoon": "file:../../deps/phoenix_duskmoon",
     "phoenix_html": "file:../../deps/phoenix_html",

@@ -1,11 +1,10 @@
 defmodule SamgitaWeb.SessionsLive.Items do
   @moduledoc """
   Folds Codex thread items and live notifications into the rows a session page
-  renders, and the components for those rows. Unknown item types render as a
-  short label; their contents are never interpreted.
+  renders with the DuskMoon chat elements (`@duskmoon-dev/el-chat`). Unknown
+  item types render as a short label; their contents are never interpreted.
   """
   use Phoenix.Component
-  import PhoenixDuskmoon.Component.Icon.Icons
 
   @doc "Rows from the turns returned by `thread/resume`."
   def from_turns(turns) do
@@ -154,71 +153,127 @@ defmodule SamgitaWeb.SessionsLive.Items do
 
   def normalize(_), do: nil
 
+  @doc """
+  Group items into chat rows: each user message, and each Codex reply with the
+  work (commands, file changes, reasoning, plans) done before it. Work after
+  the last reply forms a reply that has no text yet.
+  """
+  def rows(items) do
+    {rows, work} =
+      Enum.reduce(items, {[], []}, fn
+        %{"kind" => "user"} = item, {rows, work} ->
+          {[%{kind: :user, item: item} | flush(rows, work)], []}
+
+        %{"kind" => "agent"} = item, {rows, work} ->
+          {[%{kind: :agent, id: item["id"], text: item["text"], work: Enum.reverse(work)} | rows],
+           []}
+
+        item, {rows, work} ->
+          {rows, [item | work]}
+      end)
+
+    rows |> flush(work) |> Enum.reverse()
+  end
+
+  defp flush(rows, []), do: rows
+
+  defp flush(rows, work) do
+    work = Enum.reverse(work)
+    [%{kind: :agent, id: "work-" <> hd(work)["id"], text: nil, work: work} | rows]
+  end
+
+  attr :row, :map, required: true
+  attr :streaming, :boolean, default: false
+
+  def row(%{row: %{kind: :user}} = assigns) do
+    ~H"""
+    <el-dm-chat
+      id={"item-" <> @row.item["id"]}
+      align="end"
+      collapsible
+      content={@row.item["text"]}
+    >
+    </el-dm-chat>
+    """
+  end
+
+  def row(assigns) do
+    ~H"""
+    <el-dm-chat id={"item-" <> @row.id} agent streaming={@streaming} content={@row.text || ""}>
+      <el-dm-chat-work :if={@row.work != []} slot="work" summary={work_summary(@row.work)}>
+        <.work :for={item <- @row.work} item={item} />
+      </el-dm-chat-work>
+    </el-dm-chat>
+    """
+  end
+
+  defp work_summary(work) do
+    case length(work) do
+      1 -> "Worked · 1 step"
+      n -> "Worked · #{n} steps"
+    end
+  end
+
   attr :item, :map, required: true
 
-  def item(%{item: %{"kind" => "user"}} = assigns) do
+  defp work(%{item: %{"kind" => "command"}} = assigns) do
     ~H"""
-    <div class="flex justify-end">
-      <p
-        class="max-w-[80%] whitespace-pre-wrap rounded-xl bg-surface-container-high px-4 py-2"
-        phx-no-format
-      >{@item["text"]}</p>
-    </div>
-    """
-  end
-
-  def item(%{item: %{"kind" => kind}} = assigns) when kind in ["agent", "plan"] do
-    ~H"""
-    <p class="whitespace-pre-wrap" phx-no-format>{@item["text"]}</p>
-    """
-  end
-
-  def item(%{item: %{"kind" => "reasoning"}} = assigns) do
-    ~H"""
-    <p
-      :if={@item["text"] not in [nil, ""]}
-      class="whitespace-pre-wrap text-sm italic text-on-surface-variant"
-      phx-no-format
-    >{@item["text"]}</p>
-    """
-  end
-
-  def item(%{item: %{"kind" => "command"}} = assigns) do
-    ~H"""
-    <details class="rounded-lg border border-outline-variant">
-      <summary class="flex cursor-pointer items-center gap-2 px-3 py-2 font-mono text-sm">
-        <.dm_mdi name="console" class="h-4 w-4 shrink-0" />
-        <span class="truncate">{@item["command"]}</span>
-        <span class="ml-auto shrink-0 text-xs text-on-surface-variant">
-          {@item["status"]}{if @item["exit_code"], do: " · exit #{@item["exit_code"]}"}
-        </span>
-      </summary>
-      <pre
-        :if={@item["output"] not in [nil, ""]}
-        class="max-h-80 overflow-auto whitespace-pre-wrap border-t border-outline-variant px-3 py-2 text-xs"
-      >{@item["output"]}</pre>
-    </details>
-    """
-  end
-
-  def item(%{item: %{"kind" => "file_change"}} = assigns) do
-    ~H"""
-    <div class="rounded-lg border border-outline-variant px-3 py-2 text-sm">
-      <div class="flex items-center gap-2">
-        <.dm_mdi name="file-document-edit-outline" class="h-4 w-4" />
-        <span>Edited files</span>
-        <span class="ml-auto text-xs text-on-surface-variant">{@item["status"]}</span>
+    <el-dm-chat-tool
+      id={"item-" <> @item["id"]}
+      name={@item["command"]}
+      status={tool_status(@item)}
+    >
+      <div slot="result">
+        <p :if={@item["exit_code"]} class="text-xs text-on-surface-variant">
+          exit {@item["exit_code"]}
+        </p>
+        <pre
+          :if={@item["output"] not in [nil, ""]}
+          class="max-h-80 overflow-auto whitespace-pre-wrap text-xs"
+        >{@item["output"]}</pre>
       </div>
-      <code :for={path <- @item["paths"]} class="block break-all text-xs">{path}</code>
-    </div>
+    </el-dm-chat-tool>
     """
   end
 
-  def item(assigns) do
+  defp work(%{item: %{"kind" => "file_change"}} = assigns) do
     ~H"""
-    <p class="text-xs text-on-surface-variant">{@item["label"]}</p>
+    <el-dm-chat-tool id={"item-" <> @item["id"]} name="Edited files" status={tool_status(@item)}>
+      <div slot="result">
+        <code :for={path <- @item["paths"]} class="block break-all text-xs">{path}</code>
+      </div>
+    </el-dm-chat-tool>
     """
   end
+
+  defp work(%{item: %{"kind" => kind}} = assigns) when kind in ["reasoning", "plan"] do
+    ~H"""
+    <el-dm-chat-reasoning
+      :if={@item["text"] not in [nil, ""]}
+      id={"item-" <> @item["id"]}
+      summary={if @item["kind"] == "plan", do: "Plan", else: "Reasoning"}
+    >
+      <p class="whitespace-pre-wrap" phx-no-format>{@item["text"]}</p>
+    </el-dm-chat-reasoning>
+    """
+  end
+
+  defp work(assigns) do
+    ~H"""
+    <el-dm-chat-tool id={"item-" <> @item["id"]} name={@item["label"]} status="success">
+    </el-dm-chat-tool>
+    """
+  end
+
+  # Codex item status -> el-dm-chat-tool status.
+  defp tool_status(%{"status" => "inProgress"}), do: "running"
+
+  defp tool_status(%{"status" => "completed", "exit_code" => code}) when code not in [nil, 0],
+    do: "error"
+
+  defp tool_status(%{"status" => "completed"}), do: "success"
+  defp tool_status(%{"status" => status}) when status in ["failed", "declined"], do: "error"
+  defp tool_status(_), do: "pending"
 
   attr :request, :map, required: true
 

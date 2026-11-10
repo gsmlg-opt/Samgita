@@ -249,7 +249,7 @@ defmodule Samgita.CodexHosts do
   end
 
   @doc "Send a user message, starting a new turn in the session."
-  def send_message(principal, id, thread_id, text) do
+  def send_message(principal, id, thread_id, text, running_turn \\ nil) do
     text = String.trim(text || "")
 
     with :ok <- operator(principal),
@@ -260,13 +260,34 @@ defmodule Samgita.CodexHosts do
              else: {:error, Error.new(:invalid, %{fields: [:message]})}
            ),
          {:ok, session} <- live_session(id),
-         {:ok, %{"result" => %{"turn" => turn}}} <-
-           codex_request(session, "turn/start", %{
-             "threadId" => thread_id,
-             "input" => [%{"type" => "text", "text" => text}]
-           }) do
-      {:ok, turn["id"]}
+         {:ok, turn_id} <- start_or_steer(session, thread_id, text, running_turn) do
+      {:ok, turn_id}
     else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  # A message sent while a turn runs joins that turn (`turn/steer`), as in the
+  # Codex app; otherwise it starts a new turn.
+  defp start_or_steer(session, thread_id, text, nil) do
+    case codex_request(session, "turn/start", %{
+           "threadId" => thread_id,
+           "input" => [%{"type" => "text", "text" => text}]
+         }) do
+      {:ok, %{"result" => %{"turn" => %{"id" => turn_id}}}} -> {:ok, turn_id}
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  defp start_or_steer(session, thread_id, text, running_turn) do
+    case codex_request(session, "turn/steer", %{
+           "threadId" => thread_id,
+           "expectedTurnId" => running_turn,
+           "input" => [%{"type" => "text", "text" => text}]
+         }) do
+      {:ok, %{"result" => %{"turnId" => turn_id}}} -> {:ok, turn_id}
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
       error -> error
     end
