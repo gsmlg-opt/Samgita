@@ -172,6 +172,142 @@ defmodule Samgita.CodexHosts do
     end
   end
 
+  @doc """
+  Folders and files in one directory on the Codex machine (`fs/readDirectory`),
+  folders first, hidden entries last. Used to reference files in a message.
+  """
+  def list_entries(principal, id, path) do
+    path = String.trim(path || "")
+
+    with :ok <- operator(principal),
+         :ok <- absolute_path(path),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"entries" => entries}}} when is_list(entries) <-
+           codex_request(session, "fs/readDirectory", %{"path" => path}) do
+      entries =
+        for %{"fileName" => name} = entry <- entries, is_binary(name) do
+          %{
+            "name" => name,
+            "path" => Path.join(path, name),
+            "dir" => entry["isDirectory"] == true
+          }
+        end
+
+      {:ok,
+       Enum.sort_by(entries, fn e ->
+         {String.starts_with?(e["name"], "."), not e["dir"], String.downcase(e["name"])}
+       end)}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc """
+  Plugins installed in Codex on this host, as mention targets
+  (`plugin://<plugin-name>@<marketplace-name>`, the plugin ID).
+  """
+  def plugins(principal, id, cwd) do
+    with :ok <- operator(principal),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"marketplaces" => markets}}} when is_list(markets) <-
+           codex_request(session, "plugin/installed", %{"cwds" => List.wrap(cwd)}, 20_000) do
+      {:ok,
+       for market <- markets,
+           %{"id" => plugin_id} = plugin <- List.wrap(market["plugins"]),
+           plugin["installed"] == true and plugin["enabled"] == true do
+         interface = plugin["interface"] || %{}
+
+         %{
+           "name" => interface["displayName"] || plugin["name"],
+           "description" => interface["shortDescription"],
+           "path" => "plugin://" <> plugin_id
+         }
+       end}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "Enabled skills Codex finds for a working directory (`skills/list`)."
+  def skills(principal, id, cwd) do
+    with :ok <- operator(principal),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"data" => entries}}} when is_list(entries) <-
+           codex_request(session, "skills/list", %{"cwds" => List.wrap(cwd)}, 20_000) do
+      {:ok,
+       for entry <- entries,
+           %{"name" => name, "path" => path} = skill <- List.wrap(entry["skills"]),
+           skill["enabled"] == true do
+         %{"name" => name, "description" => skill["description"], "path" => path}
+       end
+       |> Enum.uniq_by(& &1["path"])}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "Set the goal Codex keeps pursuing in a session (`thread/goal/set`)."
+  def set_goal(principal, id, thread_id, objective) do
+    objective = String.trim(objective || "")
+
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         :ok <-
+           if(objective != "" and byte_size(objective) <= 4_000,
+             do: :ok,
+             else: {:error, Error.new(:invalid, %{fields: [:objective]})}
+           ),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => %{"goal" => goal}}} <-
+           codex_request(session, "thread/goal/set", %{
+             "threadId" => thread_id,
+             "objective" => objective,
+             # Set by the operator in the browser, an explicit user action.
+             "origin" => "user"
+           }) do
+      {:ok, goal(goal)}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "The session's current goal, or nil (`thread/goal/get`)."
+  def goal(principal, id, thread_id) do
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         {:ok, session} <- live_session(id),
+         {:ok, %{"result" => result}} <-
+           codex_request(session, "thread/goal/get", %{"threadId" => thread_id}) do
+      {:ok, goal(result["goal"])}
+    else
+      {:ok, _} -> {:error, Error.new(:codex_request_failed)}
+      error -> error
+    end
+  end
+
+  @doc "Remove the session's goal (`thread/goal/clear`)."
+  def clear_goal(principal, id, thread_id) do
+    with :ok <- operator(principal),
+         :ok <- thread_id!(thread_id),
+         {:ok, session} <- live_session(id),
+         {:ok, _} <-
+           codex_request(session, "thread/goal/clear", %{
+             "threadId" => thread_id,
+             "origin" => "user"
+           }) do
+      :ok
+    end
+  end
+
+  defp goal(%{"objective" => objective} = goal),
+    do: %{"objective" => objective, "status" => goal["status"]}
+
+  defp goal(_), do: nil
+
   @doc "The user's home folder on a connected Codex machine, when Codex reported it."
   def home(id), do: Runtime.status(id)["home"]
 
@@ -311,7 +447,15 @@ defmodule Samgita.CodexHosts do
   `settings` (`"model"`, `"effort"`, `"access"`) to it and later turns, as the
   Codex app does; while a turn runs the message steers it and settings wait.
   """
-  def send_message(principal, id, thread_id, text, running_turn \\ nil, settings \\ %{}) do
+  def send_message(
+        principal,
+        id,
+        thread_id,
+        text,
+        running_turn \\ nil,
+        settings \\ %{},
+        attachments \\ []
+      ) do
     text = String.trim(text || "")
 
     with :ok <- operator(principal),
@@ -322,8 +466,10 @@ defmodule Samgita.CodexHosts do
              else: {:error, Error.new(:invalid, %{fields: [:message]})}
            ),
          {:ok, overrides} <- turn_overrides(settings),
+         {:ok, extra} <- attachment_inputs(attachments),
+         input = [%{"type" => "text", "text" => text} | extra],
          {:ok, session} <- live_session(id),
-         {:ok, turn_id} <- start_or_steer(session, thread_id, text, running_turn, overrides) do
+         {:ok, turn_id} <- start_or_steer(session, thread_id, input, running_turn, overrides) do
       {:ok, turn_id}
     else
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
@@ -341,6 +487,25 @@ defmodule Samgita.CodexHosts do
         {:cont,
          {:ok, Map.merge(acc, %{"sandboxPolicy" => sandbox, "approvalPolicy" => approval})}}
 
+      # Plan mode (Codex collaboration mode) for this and later turns. It takes
+      # precedence over model and effort, so it carries them; `null`
+      # instructions select Codex's built-in ones for the mode.
+      {"mode", %{"mode" => mode, "model" => model} = m}, {:ok, acc}
+      when mode in ["plan", "default"] and is_binary(model) ->
+        if model =~ @setting_value and (is_nil(m["effort"]) or m["effort"] =~ @setting_value),
+          do:
+            {:cont,
+             {:ok,
+              Map.put(acc, "collaborationMode", %{
+                "mode" => mode,
+                "settings" => %{
+                  "model" => model,
+                  "reasoning_effort" => m["effort"],
+                  "developer_instructions" => nil
+                }
+              })}},
+          else: {:halt, {:error, Error.new(:invalid, %{fields: [:mode]})}}
+
       {key, value}, {:ok, acc} when key in ["model", "effort"] and is_binary(value) ->
         if value =~ @setting_value,
           do: {:cont, {:ok, Map.put(acc, key, value)}},
@@ -351,14 +516,32 @@ defmodule Samgita.CodexHosts do
     end)
   end
 
-  defp start_or_steer(session, thread_id, text, nil, overrides) do
+  # Plugins are mentioned by ID (`plugin://name@marketplace`), skills by the
+  # absolute path of their SKILL.md, as in the Codex app.
+  defp attachment_inputs(attachments) do
+    Enum.reduce_while(List.wrap(attachments), {:ok, []}, fn
+      %{"type" => "mention", "name" => name, "path" => "plugin://" <> plugin = path}, {:ok, acc}
+      when is_binary(name) and byte_size(name) in 1..200 ->
+        if plugin =~ ~r/\A[A-Za-z0-9][A-Za-z0-9._@:-]{0,199}\z/,
+          do: {:cont, {:ok, acc ++ [%{"type" => "mention", "name" => name, "path" => path}]}},
+          else: {:halt, {:error, Error.new(:invalid, %{fields: [:attachments]})}}
+
+      %{"type" => "skill", "name" => name, "path" => path}, {:ok, acc}
+      when is_binary(name) and byte_size(name) in 1..200 and is_binary(path) ->
+        if absolute_path(path) == :ok and Path.basename(path) == "SKILL.md",
+          do: {:cont, {:ok, acc ++ [%{"type" => "skill", "name" => name, "path" => path}]}},
+          else: {:halt, {:error, Error.new(:invalid, %{fields: [:attachments]})}}
+
+      _, _ ->
+        {:halt, {:error, Error.new(:invalid, %{fields: [:attachments]})}}
+    end)
+  end
+
+  defp start_or_steer(session, thread_id, input, nil, overrides) do
     case codex_request(
            session,
            "turn/start",
-           Map.merge(overrides, %{
-             "threadId" => thread_id,
-             "input" => [%{"type" => "text", "text" => text}]
-           })
+           Map.merge(overrides, %{"threadId" => thread_id, "input" => input})
          ) do
       {:ok, %{"result" => %{"turn" => %{"id" => turn_id}}}} -> {:ok, turn_id}
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
@@ -366,11 +549,11 @@ defmodule Samgita.CodexHosts do
     end
   end
 
-  defp start_or_steer(session, thread_id, text, running_turn, _overrides) do
+  defp start_or_steer(session, thread_id, input, running_turn, _overrides) do
     case codex_request(session, "turn/steer", %{
            "threadId" => thread_id,
            "expectedTurnId" => running_turn,
-           "input" => [%{"type" => "text", "text" => text}]
+           "input" => input
          }) do
       {:ok, %{"result" => %{"turnId" => turn_id}}} -> {:ok, turn_id}
       {:ok, _} -> {:error, Error.new(:codex_request_failed)}
@@ -430,7 +613,9 @@ defmodule Samgita.CodexHosts do
       "model" => result["model"],
       "reasoning_effort" => result["reasoningEffort"],
       "sandbox" => get_in(result, ["sandbox", "type"]),
-      "approval_policy" => result["approvalPolicy"]
+      "approval_policy" => result["approvalPolicy"],
+      # Experimental: plan or default collaboration mode, when reported.
+      "mode" => get_in(result, ["collaborationMode", "mode"])
     }
 
   defp thread(t) when is_map(t) do

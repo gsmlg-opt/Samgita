@@ -58,4 +58,9 @@ code, pre, .font-mono { font-family: var(--font-mono); }
 }
 .session-effort { color: var(--color-on-surface-variant); }
 .session-full-access { color: var(--color-warning); }
+.session-add-menu,
+.session-files { max-height: min(28rem, 70vh); overflow-y: auto; min-width: 22rem; }
+.session-files .session-file-row { display: flex; align-items: center; gap: 0.25rem; }
+.session-files .session-file-row > .popover-menu-item { flex: 1; min-width: 0; }
+.session-goal { min-width: 22rem; }
 

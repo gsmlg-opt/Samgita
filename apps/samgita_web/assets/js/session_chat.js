@@ -24,8 +24,8 @@ const Icon = ({ path }) =>
 
 // Where this session runs, as in the Codex app: project, local or remote, and
 // the host with its connection status.
-function Context({ metadata }) {
-  const { project, location, host, connected } = metadata
+function Context({ metadata, bridge }) {
+  const { project, location, host, connected, goal, plan } = metadata
   return h(
     "div",
     {
@@ -40,6 +40,25 @@ function Context({ metadata }) {
       h(Icon, { path: location === "Local" ? icons.laptop : icons.web }),
       location,
     ),
+    plan && h("span", { className: "flex items-center gap-2 text-primary", "data-session-plan": true }, h(Stroke, { kind: "bulb" }), "Plan mode"),
+    goal &&
+      h(
+        "span",
+        { className: "flex min-w-0 items-center gap-1", title: goal.objective, "data-session-goal": true },
+        h(Stroke, { kind: "target" }),
+        h("span", { className: "truncate" }, goal.objective),
+        h(
+          "button",
+          {
+            type: "button",
+            className: "btn btn-ghost btn-xs btn-circle",
+            "aria-label": "Clear goal",
+            title: "Clear goal",
+            onClick: () => bridge.send("goal_clear", {}).catch(() => {}),
+          },
+          h(Stroke, { kind: "x" }),
+        ),
+      ),
     host &&
       h(
         "span",
@@ -74,6 +93,16 @@ function Stroke({ kind }) {
     right: "m9 6 6 6-6 6",
     check: "m5 12 4 4L19 6",
     reset: "M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7",
+    plus: "M12 5v14M5 12h14",
+    paperclip: "m21 12-8.5 8.5a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8.5-8.5",
+    target: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z",
+    bulb: "M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z",
+    plug: "M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0ZM12 18v4",
+    book: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5ZM4 19.5V21h16",
+    folder: "M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z",
+    file: "M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9ZM14 3v6h6",
+    up: "m18 15-6-6-6 6",
+    x: "M18 6 6 18M6 6l12 12",
   }
   return h(
     "svg",
@@ -310,6 +339,266 @@ function Settings({ metadata, bridge, conversationId }) {
   )
 }
 
+// The "+" Add menu of the Codex app: files and folders (inserted as paths, as
+// the Codex TUI does), a session goal, plan mode, and plugins and skills that
+// are attached to the next message. Plugins and skills come from the server
+// (`chat.catalog`), which only accepts attachments from that list.
+function AddMenu({ metadata, bridge, conversationId, onInsertPath, onAttach }) {
+  const [catalog, setCatalog] = useState({ plugins: [], skills: [] })
+  const [notice, setNotice] = useState("")
+  const base = `session-${conversationId}`.replace(/[^A-Za-z0-9_-]/g, "")
+  const ids = { add: `${base}-add`, files: `${base}-files`, goal: `${base}-goal` }
+  const anchor = `--${base}-add`
+
+  async function refresh() {
+    try {
+      const reply = await bridge.send("catalog", {})
+      setCatalog({ plugins: reply.plugins || [], skills: reply.skills || [] })
+    } catch (error) {
+      setNotice(error.message)
+    }
+  }
+
+  async function togglePlan(event) {
+    event.currentTarget.closest("[popover]")?.hidePopover()
+    try {
+      await bridge.send("setting", { settingId: "mode", value: metadata.plan ? "default" : "plan" })
+    } catch (error) {
+      setNotice(error.message)
+    }
+  }
+
+  const item = (key, icon, label, description, props) =>
+    h(
+      "button",
+      { key, type: "button", className: "popover-menu-item", ...props },
+      h("span", { className: "popover-menu-item-icon" }, h(Stroke, { kind: icon })),
+      h(
+        "span",
+        { className: "chat-composer-label" },
+        label,
+        description && h("span", { className: "chat-composer-description" }, description),
+      ),
+    )
+
+  const attach = (event, attachment) => {
+    event.currentTarget.closest("[popover]")?.hidePopover()
+    onAttach(attachment)
+  }
+
+  return h(
+    React.Fragment,
+    null,
+    h(
+      "button",
+      {
+        type: "button",
+        className: "btn btn-ghost btn-sm btn-circle",
+        "aria-label": "Add files and more",
+        title: "Add files and more",
+        "data-session-add": true,
+        popoverTarget: ids.add,
+        style: { anchorName: anchor },
+      },
+      h(Stroke, { kind: "plus" }),
+    ),
+    h(
+      "div",
+      {
+        id: ids.add,
+        popover: "auto",
+        role: "group",
+        "aria-label": "Add files and more",
+        className: "popover popover-menu chat-composer-menu session-add-menu",
+        style: { positionAnchor: anchor },
+        onToggle: (event) => event.newState === "open" && refresh(),
+      },
+      h("div", { className: "chat-composer-group" }, "Add"),
+      item("files", "paperclip", "Files and folders", null, { popoverTarget: ids.files }),
+      item("goal", "target", "Goal", metadata.goal ? "Change the goal" : "Set a goal to keep pursuing", {
+        popoverTarget: ids.goal,
+      }),
+      item("plan", "bulb", "Plan mode", metadata.plan ? "Turn plan mode off" : "Turn plan mode on", {
+        "aria-pressed": !!metadata.plan,
+        onClick: togglePlan,
+      }),
+      catalog.plugins.length > 0 && h("div", { className: "chat-composer-group" }, "Plugins"),
+      ...catalog.plugins.map((plugin) =>
+        item(plugin.path, "plug", plugin.name, plugin.description, {
+          onClick: (event) => attach(event, { type: "mention", name: plugin.name, path: plugin.path }),
+        }),
+      ),
+      catalog.skills.length > 0 && h("div", { className: "chat-composer-group" }, "Skills"),
+      ...catalog.skills.map((skill) =>
+        item(skill.path, "book", skill.name, skill.description, {
+          onClick: (event) => attach(event, { type: "skill", name: skill.name, path: skill.path }),
+        }),
+      ),
+      notice && h("p", { role: "status", className: "chat-composer-menu-field text-error" }, notice),
+    ),
+    h(FilesPanel, { id: ids.files, anchor, bridge, onInsertPath }),
+    h(GoalPanel, { id: ids.goal, anchor, bridge, goal: metadata.goal }),
+  )
+}
+
+// Browse the Codex machine from the project folder; a file, or a folder's
+// "Add", inserts its path into the message.
+function FilesPanel({ id, anchor, bridge, onInsertPath }) {
+  const [listing, setListing] = useState(null)
+  const [notice, setNotice] = useState("")
+
+  async function open(path) {
+    setNotice("")
+    try {
+      setListing(await bridge.send("files", path ? { path } : {}))
+    } catch (error) {
+      setNotice(error.message)
+    }
+  }
+
+  function insert(event, path) {
+    event.currentTarget.closest("[popover]")?.hidePopover()
+    onInsertPath(path)
+  }
+
+  return h(
+    "div",
+    {
+      id,
+      popover: "auto",
+      role: "group",
+      "aria-label": "Files and folders",
+      className: "popover popover-menu chat-composer-menu session-files",
+      style: { positionAnchor: anchor },
+      onToggle: (event) => event.newState === "open" && open(listing?.path),
+    },
+    h(
+      "div",
+      { className: "chat-composer-menu-row" },
+      h("span", { className: "chat-composer-description truncate", title: listing?.path }, listing?.path || "Loading…"),
+      listing?.parent &&
+        h(
+          "button",
+          {
+            type: "button",
+            className: "btn btn-ghost btn-xs btn-circle",
+            "aria-label": "Parent folder",
+            title: "Parent folder",
+            onClick: () => open(listing.parent),
+          },
+          h(Stroke, { kind: "up" }),
+        ),
+    ),
+    ...(listing?.entries || []).map((entry) =>
+      h(
+        "div",
+        { key: entry.path, className: "session-file-row" },
+        h(
+          "button",
+          {
+            type: "button",
+            className: "popover-menu-item",
+            title: entry.path,
+            onClick: (event) => (entry.dir ? open(entry.path) : insert(event, entry.path)),
+          },
+          h("span", { className: "popover-menu-item-icon" }, h(Stroke, { kind: entry.dir ? "folder" : "file" })),
+          h("span", { className: "chat-composer-label truncate" }, entry.name),
+        ),
+        entry.dir &&
+          h(
+            "button",
+            {
+              type: "button",
+              className: "btn btn-ghost btn-xs",
+              "aria-label": `Add ${entry.name}`,
+              onClick: (event) => insert(event, entry.path),
+            },
+            "Add",
+          ),
+      ),
+    ),
+    listing && listing.entries.length === 0 && h("p", { className: "chat-composer-description chat-composer-menu-field" }, "Empty folder"),
+    notice && h("p", { role: "status", className: "chat-composer-menu-field text-error" }, notice),
+  )
+}
+
+// The goal Codex keeps pursuing in this session.
+function GoalPanel({ id, anchor, bridge, goal }) {
+  const [objective, setObjective] = useState(goal?.objective || "")
+  const [notice, setNotice] = useState("")
+
+  async function save(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    setNotice("")
+    try {
+      await bridge.send("goal", { objective })
+      form.closest("[popover]")?.hidePopover()
+    } catch (error) {
+      setNotice(error.message)
+    }
+  }
+
+  return h(
+    "div",
+    {
+      id,
+      popover: "auto",
+      role: "group",
+      "aria-label": "Goal",
+      className: "popover popover-menu chat-composer-menu session-goal",
+      style: { positionAnchor: anchor },
+      onToggle: (event) => event.newState === "open" && setObjective(goal?.objective || ""),
+    },
+    h("div", { className: "chat-composer-group" }, "Goal"),
+    h(
+      "form",
+      { className: "chat-composer-menu-field flex flex-col gap-2", onSubmit: save },
+      h("textarea", {
+        className: "textarea textarea-sm w-full",
+        rows: 3,
+        value: objective,
+        "aria-label": "Goal for Codex",
+        placeholder: "What should Codex keep working towards?",
+        onChange: (event) => setObjective(event.target.value),
+      }),
+      h(
+        "div",
+        { className: "flex justify-end gap-2" },
+        h("button", { type: "submit", className: "btn btn-primary btn-sm", disabled: !objective.trim() }, "Set goal"),
+      ),
+    ),
+    notice && h("p", { role: "status", className: "chat-composer-menu-field text-error" }, notice),
+  )
+}
+
+// Plugins and skills attached to the next message.
+function Attachments({ items, onRemove }) {
+  if (items.length === 0) return null
+  return h(
+    "div",
+    { className: "mx-4 flex flex-wrap gap-2 px-1 py-2", "data-session-attachments": true },
+    ...items.map((item) =>
+      h(
+        "span",
+        { key: item.path, className: "badge badge-outline gap-1" },
+        h(Stroke, { kind: item.type === "skill" ? "book" : "plug" }),
+        item.name,
+        h(
+          "button",
+          {
+            type: "button",
+            className: "btn btn-ghost btn-xs btn-circle",
+            "aria-label": `Remove ${item.name}`,
+            onClick: () => onRemove(item),
+          },
+          h(Stroke, { kind: "x" }),
+        ),
+      ),
+    ),
+  )
+}
+
 // Drafts survive a remount of the same conversation (for example a reconnect).
 const drafts = new Map()
 
@@ -317,6 +606,7 @@ function Composer(props) {
   const id = props.state.conversationId
   const metadata = props.metadata || {}
   const [value, setValue] = useState(() => drafts.get(id) || "")
+  const [attachments, setAttachments] = useState([])
   const [error, setError] = useState()
   const { submit, busy, notice } = useChatSubmission(props)
 
@@ -325,10 +615,20 @@ function Composer(props) {
     setValue(next)
   }
 
+  // As in the Codex TUI: a path with whitespace is quoted.
+  function insertPath(path) {
+    const text = /\s/.test(path) && !path.includes('"') ? `"${path}"` : path
+    update(value && !/\s$/.test(value) ? `${value} ${text} ` : `${value}${text} `)
+  }
+
+  const attach = (item) =>
+    setAttachments((current) => (current.some((a) => a.path === item.path) ? current : [...current, item]))
+
   return h(
     "div",
     { className: "flex flex-col" },
-    h(Context, { metadata }),
+    h(Context, { metadata, bridge: props.bridge }),
+    h(Attachments, { items: attachments, onRemove: (item) => setAttachments((c) => c.filter((a) => a !== item)) }),
     h(
       Chat.Composer,
       {
@@ -354,8 +654,9 @@ function Composer(props) {
         onSubmit: async ({ value }) => {
           setError(undefined)
           try {
-            await submit({ text: value })
+            await submit({ text: value, attachments: attachments.map(({ type, path }) => ({ type, path })) })
             drafts.delete(id)
+            setAttachments([])
             return true
           } catch {
             // useChatSubmission keeps the rejection in `notice`; the draft stays.
@@ -363,6 +664,7 @@ function Composer(props) {
           }
         },
       },
+      h(AddMenu, { metadata, bridge: props.bridge, conversationId: id, onInsertPath: insertPath, onAttach: attach }),
       h(Settings, { metadata, bridge: props.bridge, conversationId: id }),
     ),
   )

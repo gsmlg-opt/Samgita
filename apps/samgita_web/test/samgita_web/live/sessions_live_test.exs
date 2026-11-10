@@ -81,7 +81,62 @@ defmodule SamgitaWeb.SessionsLiveTest do
               model("gpt-mini", false, ["low"])
             ]
           },
-          "turn/interrupt" => %{}
+          "turn/interrupt" => %{},
+          "plugin/installed" => %{
+            "marketplaces" => [
+              %{
+                "name" => "local",
+                "path" => "/home/u/.agents/plugins/marketplace.json",
+                "plugins" => [
+                  %{
+                    "id" => "docs@local",
+                    "name" => "docs",
+                    "enabled" => true,
+                    "installed" => true,
+                    "authPolicy" => "ON_USE",
+                    "installPolicy" => "AVAILABLE",
+                    "source" => %{"type" => "local", "path" => "/home/u/plugins/docs"},
+                    "interface" => nil
+                  }
+                ]
+              }
+            ]
+          },
+          "skills/list" => %{
+            "data" => [
+              %{
+                "cwd" => "/work/app",
+                "errors" => [],
+                "skills" => [
+                  %{
+                    "name" => "review",
+                    "description" => "Review a change",
+                    "enabled" => true,
+                    "path" => "/work/app/.agents/skills/review/SKILL.md",
+                    "scope" => "repo"
+                  }
+                ]
+              }
+            ]
+          },
+          "fs/readDirectory" => %{
+            "entries" => [
+              %{"fileName" => "README.md", "isDirectory" => false, "isFile" => true},
+              %{"fileName" => "lib", "isDirectory" => true, "isFile" => false}
+            ]
+          },
+          "thread/goal/set" => %{
+            "goal" => %{
+              "threadId" => @thread_id,
+              "objective" => "Ship the build",
+              "status" => "active",
+              "createdAt" => 1_794_119_000,
+              "updatedAt" => 1_794_119_000,
+              "timeUsedSeconds" => 0,
+              "tokensUsed" => 0
+            }
+          },
+          "thread/goal/clear" => %{"cleared" => true}
         }
       )
 
@@ -275,6 +330,90 @@ defmodule SamgitaWeb.SessionsLiveTest do
     assert_push_event(view, "chat:event", %{
       metadata: %{model: "gpt-mini", access: "full", pending: false}
     })
+  end
+
+  test "the Add menu attaches plugins and skills, sets plan mode and a goal, and lists files",
+       %{conn: conn, host: host} do
+    {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
+    assert_receive {:fake_codex, :params, "thread/resume", _}, 3_000
+    assert_receive {:fake_codex, :params, "skills/list", %{"cwds" => ["/work/app"]}}, 3_000
+    # The catalog loads in the background after resume.
+    assert_push_event(view, "chat:event", %{metadata: %{can_attach: true}}, 3_000)
+
+    chat(view, "chat.catalog", %{})
+
+    assert_reply(view, %{
+      "status" => "ok",
+      "plugins" => [%{"name" => "docs", "path" => "plugin://docs@local"}],
+      "skills" => [%{"name" => "review", "path" => "/work/app/.agents/skills/review/SKILL.md"}]
+    })
+
+    chat(view, "chat.files", %{})
+
+    assert_reply(view, %{
+      status: "ok",
+      path: "/work/app",
+      parent: "/work",
+      entries: [%{"name" => "lib", "dir" => true}, %{"name" => "README.md", "dir" => false}]
+    })
+
+    # Only attachments from the catalog are accepted.
+    chat(view, "chat.send", %{
+      "text" => "Go",
+      "attachments" => [%{"type" => "skill", "path" => "/etc/SKILL.md"}]
+    })
+
+    assert_reply(view, %{status: "error"})
+
+    chat(view, "chat.setting", %{"settingId" => "mode", "value" => "plan"})
+    assert_reply(view, %{status: "ok"})
+
+    chat(view, "chat.send", %{
+      "text" => "Go",
+      "attachments" => [
+        %{"type" => "mention", "path" => "plugin://docs@local"},
+        %{"type" => "skill", "path" => "/work/app/.agents/skills/review/SKILL.md"}
+      ]
+    })
+
+    assert_reply(view, %{status: "ok"})
+    assert_receive {:fake_codex, :params, "turn/start", turn}, 3_000
+
+    assert turn["input"] == [
+             %{"type" => "text", "text" => "Go"},
+             %{"type" => "mention", "name" => "docs", "path" => "plugin://docs@local"},
+             %{
+               "type" => "skill",
+               "name" => "review",
+               "path" => "/work/app/.agents/skills/review/SKILL.md"
+             }
+           ]
+
+    assert turn["collaborationMode"] == %{
+             "mode" => "plan",
+             "settings" => %{
+               "model" => "gpt-test",
+               "reasoning_effort" => "low",
+               "developer_instructions" => nil
+             }
+           }
+
+    chat(view, "chat.goal", %{"objective" => "Ship the build"})
+    assert_reply(view, %{status: "ok"})
+
+    assert_receive {:fake_codex, :params, "thread/goal/set",
+                    %{
+                      "threadId" => @thread_id,
+                      "objective" => "Ship the build",
+                      "origin" => "user"
+                    }},
+                   3_000
+
+    assert_push_event(view, "chat:event", %{metadata: %{goal: %{"objective" => "Ship the build"}}})
+
+    chat(view, "chat.goal_clear", %{})
+    assert_reply(view, %{status: "ok"})
+    assert_receive {:fake_codex, :params, "thread/goal/clear", %{"threadId" => @thread_id}}, 3_000
   end
 
   test "an existing session resumes with its history as chat messages", %{

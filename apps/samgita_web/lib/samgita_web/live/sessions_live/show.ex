@@ -30,7 +30,9 @@ defmodule SamgitaWeb.SessionsLive.Show do
     socket =
       if connected?(socket) and host,
         do:
-          start_async(socket, :models, fn -> CodexHosts.models(Principal.operator(), host_id) end),
+          socket
+          |> start_async(:models, fn -> CodexHosts.models(Principal.operator(), host_id) end)
+          |> load_catalog(host_id, params["cwd"]),
         else: socket
 
     {:ok,
@@ -49,6 +51,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
        # turn start (and then kept by Codex for later turns).
        pending: %{},
        models: [],
+       # Plugins and skills offered by the composer's Add menu, and the
+       # session's goal.
+       catalog: %{"plugins" => [], "skills" => []},
+       goal: nil,
        settings_revision: 0,
        requests: [],
        error: if(host, do: nil, else: "This Codex host does not exist."),
@@ -78,8 +84,9 @@ defmodule SamgitaWeb.SessionsLive.Show do
   # The chat sends `{text}`; while Codex works, the message steers the running
   # turn. An error reply keeps the draft in the composer.
   @impl true
-  def handle_event("chat.send", %{"text" => text}, socket) do
-    with {:ok, socket} <- ensure_thread(socket),
+  def handle_event("chat.send", %{"text" => text} = params, socket) do
+    with {:ok, attachments} <- attachments(params["attachments"], socket.assigns.catalog),
+         {:ok, socket} <- ensure_thread(socket),
          {:ok, turn_id} <-
            CodexHosts.send_message(
              Principal.operator(),
@@ -87,7 +94,8 @@ defmodule SamgitaWeb.SessionsLive.Show do
              socket.assigns.thread_id,
              text,
              socket.assigns.running_turn,
-             if(socket.assigns.running_turn, do: %{}, else: socket.assigns.pending)
+             if(socket.assigns.running_turn, do: %{}, else: turn_settings(socket.assigns)),
+             attachments
            ) do
       socket =
         socket
@@ -133,6 +141,53 @@ defmodule SamgitaWeb.SessionsLive.Show do
     end
   end
 
+  # The Add menu's plugins and skills; loaded in the background, refreshed on request.
+  def handle_event("chat.catalog", _params, socket) do
+    socket = load_catalog(socket, socket.assigns.host_id, socket.assigns.cwd)
+    {:reply, Map.put(socket.assigns.catalog, "status", "ok"), socket}
+  end
+
+  # Files and folders on the Codex machine, starting at the project folder.
+  def handle_event("chat.files", params, socket) do
+    path = params["path"] || socket.assigns.cwd
+
+    case CodexHosts.list_entries(Principal.operator(), socket.assigns.host_id, path) do
+      {:ok, entries} ->
+        {:reply,
+         %{status: "ok", path: path, parent: parent(path), entries: Enum.take(entries, 500)},
+         socket}
+
+      {:error, error} ->
+        {:reply, %{status: "error", message: message(error)}, socket}
+    end
+  end
+
+  # A goal Codex keeps pursuing; a new session is created for it if needed.
+  def handle_event("chat.goal", %{"objective" => objective}, socket) do
+    with {:ok, socket} <- ensure_thread(socket),
+         {:ok, goal} <-
+           CodexHosts.set_goal(
+             Principal.operator(),
+             socket.assigns.host_id,
+             socket.assigns.thread_id,
+             objective
+           ) do
+      {:reply, %{status: "ok"}, socket |> assign(goal: goal) |> snapshot()}
+    else
+      {:error, error} -> {:reply, %{status: "error", message: message(error)}, socket}
+    end
+  end
+
+  def handle_event("chat.goal_clear", _params, %{assigns: %{thread_id: thread_id}} = socket)
+      when is_binary(thread_id) do
+    case CodexHosts.clear_goal(Principal.operator(), socket.assigns.host_id, thread_id) do
+      :ok -> {:reply, %{status: "ok"}, socket |> assign(goal: nil) |> snapshot()}
+      {:error, error} -> {:reply, %{status: "error", message: message(error)}, socket}
+    end
+  end
+
+  def handle_event("chat.goal_clear", _params, socket), do: {:reply, %{status: "ok"}, socket}
+
   # After a reconnect the chat asks for the authoritative transcript.
   def handle_event("chat.sync", _params, socket),
     do: {:reply, %{status: "ok"}, snapshot(socket)}
@@ -167,7 +222,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def handle_info(_message, socket), do: {:noreply, socket}
 
   @impl true
-  def handle_async(:resume, {:ok, {{:ok, thread}, requests}}, socket) do
+  def handle_async(:resume, {:ok, {{:ok, thread}, requests, goal}}, socket) do
     {:noreply,
      socket
      |> assign(
@@ -176,8 +231,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
        items: Items.from_turns(thread["turns"]),
        running_turn: Items.running_turn(thread["turns"]),
        settings: thread["settings"],
-       requests: requests
+       requests: requests,
+       goal: goal
      )
+     |> load_catalog(socket.assigns.host_id, thread["cwd"])
      |> snapshot()}
   end
 
@@ -186,7 +243,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   def handle_async(:models, _result, socket), do: {:noreply, socket}
 
-  def handle_async(:resume, {:ok, {{:error, error}, _}}, socket),
+  def handle_async(:catalog, {:ok, catalog}, socket),
+    do: {:noreply, socket |> assign(catalog: catalog) |> snapshot()}
+
+  def handle_async(:catalog, _result, socket), do: {:noreply, socket}
+
+  def handle_async(:resume, {:ok, {{:error, error}, _, _}}, socket),
     do: {:noreply, assign(socket, error: message(error))}
 
   def handle_async(:resume, {:exit, _}, socket),
@@ -272,7 +334,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
       settings_revision: assigns.settings_revision,
       settings: composer_settings(assigns),
       # Chosen but not yet applied: takes effect with the next message.
-      pending: assigns.pending != %{}
+      pending: assigns.pending != %{},
+      plan: current["mode"] == "plan",
+      goal: assigns.goal,
+      can_attach: assigns.catalog["plugins"] != [] or assigns.catalog["skills"] != []
     }
   end
 
@@ -291,6 +356,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
       %{
         "access" => CodexHosts.access_mode(settings["sandbox"]),
         "model" => settings["model"] || default["id"],
+        "mode" => settings["mode"] || "default",
         "effort" => settings["reasoning_effort"] || default["default_effort"]
       },
       assigns.pending
@@ -317,6 +383,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
         choices: for({value, label} <- @access_choices, do: %{value: value, label: label})
       },
       %{id: "model", label: "Model", value: current["model"] || "", choices: models},
+      %{
+        id: "mode",
+        label: "Plan mode",
+        value: current["mode"],
+        choices: [%{value: "default", label: "Off"}, %{value: "plan", label: "Plan"}]
+      },
       %{
         id: "effort",
         label: "Reasoning",
@@ -370,6 +442,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
       |> put_present("model", pending["model"])
       |> put_present("reasoning_effort", pending["effort"])
       |> put_present("sandbox", sandbox)
+      |> put_present("mode", pending["mode"])
 
     assign(socket, settings: settings, pending: %{})
   end
@@ -390,8 +463,92 @@ defmodule SamgitaWeb.SessionsLive.Show do
     start_async(socket, :resume, fn ->
       result = CodexHosts.resume_thread(Principal.operator(), host_id, thread_id)
       {:ok, requests} = CodexHosts.pending_requests(Principal.operator(), host_id, thread_id)
-      {result, requests}
+
+      goal =
+        case CodexHosts.goal(Principal.operator(), host_id, thread_id) do
+          {:ok, goal} -> goal
+          _ -> nil
+        end
+
+      {result, requests, goal}
     end)
+  end
+
+  defp load_catalog(socket, host_id, cwd) when is_binary(cwd) do
+    start_async(socket, :catalog, fn ->
+      plugins =
+        case CodexHosts.plugins(Principal.operator(), host_id, cwd) do
+          {:ok, plugins} -> plugins
+          _ -> []
+        end
+
+      skills =
+        case CodexHosts.skills(Principal.operator(), host_id, cwd) do
+          {:ok, skills} -> skills
+          _ -> []
+        end
+
+      %{"plugins" => plugins, "skills" => skills}
+    end)
+  end
+
+  defp load_catalog(socket, _host_id, _cwd), do: socket
+
+  # Plugins and skills attached in the composer must come from the catalog
+  # Codex reported for this session.
+  defp attachments(nil, _catalog), do: {:ok, []}
+
+  defp attachments(list, catalog) when is_list(list) and length(list) <= 20 do
+    Enum.reduce_while(list, {:ok, []}, fn
+      %{"type" => "mention", "path" => path}, {:ok, acc} ->
+        case Enum.find(catalog["plugins"], &(&1["path"] == path)) do
+          nil ->
+            {:halt, invalid(:attachments)}
+
+          plugin ->
+            {:cont,
+             {:ok, acc ++ [%{"type" => "mention", "name" => plugin["name"], "path" => path}]}}
+        end
+
+      %{"type" => "skill", "path" => path}, {:ok, acc} ->
+        case Enum.find(catalog["skills"], &(&1["path"] == path)) do
+          nil ->
+            {:halt, invalid(:attachments)}
+
+          skill ->
+            {:cont, {:ok, acc ++ [%{"type" => "skill", "name" => skill["name"], "path" => path}]}}
+        end
+
+      _, _ ->
+        {:halt, invalid(:attachments)}
+    end)
+  end
+
+  defp attachments(_list, _catalog), do: invalid(:attachments)
+
+  defp invalid(field), do: {:error, Samgita.Error.new(:invalid, %{fields: [field]})}
+
+  defp parent(path) do
+    case Path.dirname(path) do
+      ^path -> nil
+      parent -> parent
+    end
+  end
+
+  # Settings sent with the next turn. Plan mode overrides model and effort, so
+  # it is sent with them whenever it changes or while it is on and they change.
+  defp turn_settings(assigns) do
+    {mode, pending} = Map.pop(assigns.pending, "mode")
+    current = current(assigns)
+
+    if mode || (current["mode"] == "plan" and Map.take(pending, ["model", "effort"]) != %{}),
+      do:
+        Map.put(pending, "mode", %{
+          "mode" => current["mode"],
+          "model" => current["model"],
+          "effort" => current["effort"]
+        }),
+      else: pending
   end
 
   # A new session is created on the first message, in the chosen folder.
@@ -514,7 +671,15 @@ defmodule SamgitaWeb.SessionsLive.Show do
         messages={[]}
         runtime={%{active: false}}
         metadata={metadata(assigns)}
-        actions={%{setting: "chat.setting"}}
+        actions={
+          %{
+            setting: "chat.setting",
+            catalog: "chat.catalog",
+            files: "chat.files",
+            goal: "chat.goal",
+            goal_clear: "chat.goal_clear"
+          }
+        }
         admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}
         class="block h-[calc(100dvh-14rem)] min-h-96"
       />
