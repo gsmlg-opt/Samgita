@@ -222,41 +222,40 @@ defmodule SamgitaWeb.SessionsLive.Items do
 
   defp shown?(_item), do: true
 
+  # Rendered by `assets/js/session_chat.js` by kind: commands with their exit
+  # code and output, file changes with their paths, reasoning and plans as text.
   defp tool(%{"kind" => "command"} = item),
     do: %{
       "id" => item["id"],
+      "kind" => "command",
       "name" => item["command"],
       "status" => tool_status(item),
-      "input" => %{"command" => item["command"]},
       "result" =>
         if(item["status"] != "inProgress",
-          do: %{"exit_code" => item["exit_code"], "output" => lines(item["output"])}
+          do: %{"exit_code" => item["exit_code"], "output" => item["output"]}
         )
     }
 
   defp tool(%{"kind" => "file_change"} = item),
     do: %{
       "id" => item["id"],
-      "name" => "Edit files",
+      "kind" => "file_change",
+      "name" => "Edited files",
       "status" => tool_status(item),
-      "input" => %{"paths" => item["paths"]},
-      "result" => if(item["status"] != "inProgress", do: %{"paths" => item["paths"]})
+      "paths" => item["paths"]
     }
 
   defp tool(%{"kind" => kind} = item) when kind in ["reasoning", "plan"],
     do: %{
       "id" => item["id"],
+      "kind" => kind,
       "name" => if(kind == "plan", do: "Plan", else: "Reasoning"),
       "status" => "success",
-      "result" => %{"text" => lines(item["text"])}
+      "text" => item["text"]
     }
 
   defp tool(item),
-    do: %{"id" => item["id"], "name" => item["label"], "status" => "success", "result" => %{}}
-
-  # The chat shows a tool result as JSON; one string per line stays readable.
-  defp lines(nil), do: []
-  defp lines(text), do: String.split(String.trim_trailing(text), "\n")
+    do: %{"id" => item["id"], "kind" => "other", "name" => item["label"], "status" => "success"}
 
   # Codex item status -> chat tool status.
   defp tool_status(%{"status" => "inProgress"}), do: "running"

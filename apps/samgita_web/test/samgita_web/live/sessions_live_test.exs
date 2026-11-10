@@ -122,7 +122,7 @@ defmodule SamgitaWeb.SessionsLiveTest do
   } do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/new?cwd=/work/app")
     assert has_element?(view, "#session-title", "app")
-    assert has_element?(view, "#session-chat[phx-hook=DuskmoonReactChat][phx-update=ignore]")
+    assert has_element?(view, "#session-chat[phx-hook=SessionChat][phx-update=ignore]")
 
     chat(view, "chat.send", %{"text" => "Fix the build"})
     assert_reply(view, %{status: "ok"})

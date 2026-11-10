@@ -332,6 +332,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
       <.dm_react_chat
         id={@chat_id}
+        hook="SessionChat"
         conversation_id={@conversation_id}
         label="Codex session"
         messages={[]}

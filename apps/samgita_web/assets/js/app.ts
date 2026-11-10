@@ -11,8 +11,8 @@ import topbar from "topbar"
 
 // DuskMoon theme controls for the operator shell.
 import { ThemeSwitcher } from "phoenix_duskmoon/hooks"
-// DuskMoon React chat for Codex sessions (`dm_react_chat`).
-import { DuskmoonReactChat } from "phoenix_duskmoon/react-chat"
+// DuskMoon React chat for Codex sessions (`dm_react_chat hook="SessionChat"`).
+import { SessionChat } from "./session_chat.js"
 
 // Extend Window interface for custom properties
 declare global {
@@ -44,7 +44,7 @@ if (!csrfToken) {
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  hooks: { ThemeSwitcher, DuskmoonReactChat },
+  hooks: { ThemeSwitcher, SessionChat },
 })
 
 // Show progress bar on live navigation and form submits

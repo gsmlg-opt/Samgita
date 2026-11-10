@@ -41,8 +41,13 @@ defmodule SamgitaWeb.SessionsItemsTest do
                "content" => "Fixed.",
                "status" => "complete",
                "tools" => [
-                 %{"name" => "Reasoning", "result" => %{"text" => ["Look at the build"]}},
-                 %{"name" => "mix test", "status" => "success"}
+                 %{"kind" => "reasoning", "name" => "Reasoning", "text" => "Look at the build"},
+                 %{
+                   "kind" => "command",
+                   "name" => "mix test",
+                   "status" => "success",
+                   "result" => %{"exit_code" => 0, "output" => "ok\n"}
+                 }
                ]
              },
              %{"id" => "u2"},
