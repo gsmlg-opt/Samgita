@@ -12,7 +12,7 @@ defmodule Samgita.CodexHosts.Connection do
   alias Samgita.CodexHosts.Runtime
   alias SamgitaCodexDriver.Session
   alias Samgita.CodexHosts.Ssh
-  alias SamgitaCodexDriver.Transport.{Command, WebSocket}
+  alias SamgitaCodexDriver.Transport.{Command, UnixSocket, WebSocket}
 
   @min_backoff 1_000
   @max_backoff 60_000
@@ -223,6 +223,18 @@ defmodule Samgita.CodexHosts.Connection do
     end
   end
 
+  # The local Codex daemon (the one the Codex app uses) listens on a control
+  # socket under the Codex home. Samgita connects only; it never starts it.
+  defp transport(%{transport: "local"}) do
+    path = local_socket()
+
+    # The daemon publishes the socket as a symlink to its runtime directory.
+    case File.stat(path) do
+      {:ok, %{type: :other}} -> {:ok, {UnixSocket, [socket_path: path]}, nil}
+      _ -> {:error, :codex_daemon_not_running}
+    end
+  end
+
   defp transport(host) do
     case transport_opts(host) do
       {:ok, opts} -> {:ok, {WebSocket, opts}, nil}
@@ -299,6 +311,13 @@ defmodule Samgita.CodexHosts.Connection do
   end
 
   def server_version(_), do: nil
+
+  @doc false
+  def local_socket do
+    configured = Keyword.get(Application.get_env(:samgita, :codex_hosts, []), :local_socket)
+    home = System.get_env("CODEX_HOME") || Path.join(System.user_home!(), ".codex")
+    configured || Path.join([home, "app-server-control", "app-server-control.sock"])
+  end
 
   defp transport_opts(%{transport: "websocket"} = host) do
     with {:ok, token} <- token(host.token_ref),

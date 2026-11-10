@@ -456,12 +456,13 @@ When the Samgita service starts, it connects to every enabled, operator-configur
 
 ### Transports
 
-Two transports are supported. Samgita never spawns a local `codex` binary.
+Three transports are supported. Samgita never spawns a local `codex` binary. The Add Agent form offers only `local` (this computer) and `ssh` (another computer); `websocket` remains for existing hosts and the Agent connection page.
 
 | Transport | Codex host side | Samgita side |
 | --- | --- | --- |
 | `websocket` | `codex app-server --listen ws://IP:PORT`, local or remote | Existing `SamgitaCodexDriver.Transport.WebSocket`: configured URL, optional Bearer token from a credential reference, optional pinned connect address. Remote endpoints use WSS; plaintext is allowed only for loopback or an explicit `allow_insecure` for a tunnelled address. |
 | `ssh` | The Codex app-server daemon (`codex app-server daemon start`/`bootstrap`) with its Unix control socket | Samgita runs the system OpenSSH client as an owned subprocess: `ssh -T <target> codex app-server proxy [--sock PATH]`. The proxy forwards raw bytes to the daemon control socket, which speaks WebSocket (verified 2026-11-09 against Codex 0.167.0: HTTP `101 Switching Protocols`, then WebSocket frames). This matches how the Codex desktop app drives remote hosts. |
+| `local` | The Codex daemon of the computer running Samgita (the one the Codex app uses), at `$CODEX_HOME/app-server-control/app-server-control.sock` (default `~/.codex`; a symlink to the daemon's runtime directory) | Existing `SamgitaCodexDriver.Transport.UnixSocket` connects directly (WebSocket over the Unix socket); no address, process or port. Samgita only connects and never starts the daemon: a missing socket is `codex_daemon_not_running` and retried with backoff. Added 2026-11-10 at the operator's request. |
 
 The driver transport `SamgitaCodexDriver.Transport.Command` carries WebSocket over any owned command's stdio: it relays the command's stdio through a private per-connection Unix socket, so the existing `Transport.WebSocket` client provides framing, limits and close semantics unchanged. `Samgita.CodexHosts.Ssh` builds the OpenSSH command. Closing the transport ends only the SSH process (killed after a grace period if it ignores stdin EOF); it never stops the remote daemon or its threads.
 

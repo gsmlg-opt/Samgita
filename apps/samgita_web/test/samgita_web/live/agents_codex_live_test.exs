@@ -5,9 +5,26 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
   alias Samgita.Domain.{Agent, CodexHost}
 
   setup do
-    server = FakeCodexServer.start()
+    identity = %{"installationId" => "mac-install", "serverName" => "mbp", "status" => "disabled"}
+
+    # Stands in for the Codex daemon's control socket on this computer, which
+    # the daemon publishes as a symlink to its runtime directory.
+    id = System.unique_integer([:positive])
+    target = Path.join(System.tmp_dir!(), "sgc-#{id}.sock")
+    socket = Path.join(System.tmp_dir!(), "sgc-#{id}.link")
+
+    server =
+      FakeCodexServer.start(unix: target, results: %{"remoteControl/status/read" => identity})
+
+    File.ln_s!(target, socket)
+
     previous = Application.get_env(:samgita, :codex_hosts)
-    Application.put_env(:samgita, :codex_hosts, Keyword.put(previous, :enabled, true))
+
+    Application.put_env(
+      :samgita,
+      :codex_hosts,
+      previous |> Keyword.put(:enabled, true) |> Keyword.put(:local_socket, socket)
+    )
 
     on_exit(fn ->
       for {_, pid, _, _} <-
@@ -16,6 +33,8 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
 
       Application.put_env(:samgita, :codex_hosts, previous)
       FakeCodexServer.stop(server)
+      File.rm(socket)
+      File.rm(target)
     end)
 
     %{server: server}
@@ -31,30 +50,30 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     end
   end
 
-  test "adding a Codex Agent by address connects it; the list stops and starts it", %{
-    conn: conn,
-    server: server
+  defp add(view, attrs) do
+    view |> form("#agent-add", agent: Map.take(attrs, ["kind", "location"])) |> render_change()
+    view |> form("#agent-add", agent: attrs) |> render_submit()
+  end
+
+  test "Codex on this computer connects to its daemon socket; the list stops and starts it", %{
+    conn: conn
   } do
     {:ok, view, _} = live(conn, ~p"/agents")
-
-    view
-    |> form("#agent-add",
-      agent: %{"kind" => "codex", "name" => "Codex local", "address" => server.url}
-    )
-    |> render_submit()
+    refute has_element?(view, "#agent-add input[name='agent[address]']")
+    add(view, %{"kind" => "codex", "location" => "local", "name" => "Codex local"})
 
     assert_redirect(view, ~p"/agents")
     {:ok, view, _} = live(conn, ~p"/agents")
-    assert has_element?(view, "#agent-add-modal #agent-add")
     agent = Repo.get_by!(Agent, name: "Codex local")
     assert agent.runtime_driver == "codex"
     host = Repo.get_by!(CodexHost, agent_id: agent.id)
     assert host.enabled
-    assert host.url == server.url
+    assert {host.transport, host.url, host.ssh_host} == {"local", nil, nil}
 
     assert_receive {:fake_codex, :request, "initialize"}, 3_000
     await(fn -> Repo.get!(CodexHost, host.id).generation == 1 end)
     await(fn -> has_element?(view, "#agents-list .agent-state", "connected") end)
+    assert has_element?(view, "#agents-list", "mbp")
 
     view |> element("#agent-stop-#{host.id}") |> render_click()
     refute Repo.get!(CodexHost, host.id).enabled
@@ -65,7 +84,7 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     await(fn -> Repo.get!(CodexHost, host.id).generation == 2 end)
   end
 
-  test "an SSH host address uses the operator's SSH config and starts the daemon", %{
+  test "Codex on another computer is added by SSH host with the operator's SSH config", %{
     conn: conn
   } do
     # Stands in for an unreachable machine: the probe and connection fail fast.
@@ -79,11 +98,12 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
 
     {:ok, view, _} = live(conn, ~p"/agents")
 
-    view
-    |> form("#agent-add",
-      agent: %{"kind" => "codex", "name" => "Raven", "address" => "gao@raven"}
-    )
-    |> render_submit()
+    add(view, %{
+      "kind" => "codex",
+      "location" => "ssh",
+      "name" => "Raven",
+      "address" => "gao@raven"
+    })
 
     assert_redirect(view, ~p"/agents")
     agent = Repo.get_by!(Agent, name: "Raven")
@@ -99,14 +119,15 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     assert has_element?(view, "#agents-list", "raven")
   end
 
-  test "an invalid Codex address shows an error and creates nothing", %{conn: conn} do
+  test "an invalid SSH host shows an error and creates nothing", %{conn: conn} do
     {:ok, view, _} = live(conn, ~p"/agents")
 
-    view
-    |> form("#agent-add",
-      agent: %{"kind" => "codex", "name" => "Broken", "address" => "http://x"}
-    )
-    |> render_submit()
+    add(view, %{
+      "kind" => "codex",
+      "location" => "ssh",
+      "name" => "Broken",
+      "address" => "http://x"
+    })
 
     assert has_element?(view, "#agent-error")
     refute Repo.get_by(Agent, name: "Broken")
@@ -116,39 +137,16 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
   test "one machine is one Agent: a duplicate add warns first and the list flags it", %{
     conn: conn
   } do
-    identity = %{
-      "installationId" => "same-install",
-      "serverName" => "mbp",
-      "status" => "disabled"
-    }
-
-    first = FakeCodexServer.start(results: %{"remoteControl/status/read" => identity})
-    second = FakeCodexServer.start(results: %{"remoteControl/status/read" => identity})
-
-    on_exit(fn ->
-      FakeCodexServer.stop(first)
-      FakeCodexServer.stop(second)
-    end)
-
     {:ok, view, _} = live(conn, ~p"/agents")
-
-    view
-    |> form("#agent-add", agent: %{"kind" => "codex", "name" => "Mac", "address" => first.url})
-    |> render_submit()
+    add(view, %{"kind" => "codex", "location" => "local", "name" => "Mac"})
 
     assert_redirect(view, ~p"/agents")
-    host = Repo.get_by!(CodexHost, url: first.url)
-    await(fn -> Repo.get!(CodexHost, host.id).installation_id == "same-install" end)
+    agent = Repo.get_by!(Agent, name: "Mac")
+    host = Repo.get_by!(CodexHost, agent_id: agent.id)
+    await(fn -> Repo.get!(CodexHost, host.id).installation_id == "mac-install" end)
 
     {:ok, view, _} = live(conn, ~p"/agents")
-    assert has_element?(view, "#agents-list", "mbp")
-    refute render(view) =~ first.url
-
-    view
-    |> form("#agent-add",
-      agent: %{"kind" => "codex", "name" => "Mac again", "address" => second.url}
-    )
-    |> render_submit()
+    add(view, %{"kind" => "codex", "location" => "local", "name" => "Mac again"})
 
     assert has_element?(view, "#agent-warning", "already added as Mac")
     refute Repo.get_by(Agent, name: "Mac again")
@@ -156,8 +154,6 @@ defmodule SamgitaWeb.AgentsCodexLiveTest do
     view |> form("#agent-add") |> render_submit()
     assert_redirect(view, ~p"/agents")
     assert Repo.get_by(Agent, name: "Mac again")
-    copy = Repo.get_by!(CodexHost, url: second.url)
-    await(fn -> Repo.get!(CodexHost, copy.id).installation_id == "same-install" end)
 
     {:ok, view, _} = live(conn, ~p"/agents")
     assert has_element?(view, ".agent-duplicate", "Same machine as Mac again")

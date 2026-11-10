@@ -418,9 +418,11 @@ defmodule Samgita.CodexHosts do
         end
 
       address =
-        if host.transport == "ssh",
-          do: dynamic([h], h.ssh_host == ^host.ssh_host),
-          else: dynamic([h], h.url == ^host.url)
+        case host.transport do
+          "ssh" -> dynamic([h], h.ssh_host == ^host.ssh_host)
+          "local" -> dynamic([h], h.transport == "local")
+          _ -> dynamic([h], h.url == ^host.url)
+        end
 
       same =
         case identity.installation_id do
@@ -465,7 +467,8 @@ defmodule Samgita.CodexHosts do
       other.id != host.id &&
         ((host.installation_id != nil && other.installation_id == host.installation_id) ||
            (host.url != nil && other.url == host.url) ||
-           (host.ssh_host != nil && other.ssh_host == host.ssh_host))
+           (host.ssh_host != nil && other.ssh_host == host.ssh_host) ||
+           (host.transport == "local" && other.transport == "local"))
 
   @doc "Validate host settings without writing, so a caller can check them before creating an Agent."
   def validate_settings(attrs) do
@@ -582,12 +585,14 @@ defmodule Samgita.CodexHosts do
       host
       |> cast(attrs, [:transport | @websocket_fields ++ @ssh_fields])
       |> validate_required([:transport])
-      |> validate_inclusion(:transport, ["websocket", "ssh"])
+      |> validate_inclusion(:transport, ["websocket", "ssh", "local"])
 
     # A host uses exactly one transport; the other transport's settings are cleared.
     case get_field(changeset, :transport) do
       "websocket" -> changeset |> clear(@ssh_fields) |> validate_websocket()
       "ssh" -> changeset |> clear(@websocket_fields) |> validate_ssh()
+      # The Codex daemon of the machine Samgita runs on, through its control socket.
+      "local" -> changeset |> clear(@websocket_fields) |> clear(@ssh_fields)
       _ -> changeset
     end
   end

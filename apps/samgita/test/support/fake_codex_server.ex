@@ -5,7 +5,9 @@ defmodule Samgita.FakeCodexServer do
   Answers `initialize` with a schema-valid response, ignores notifications and
   answers other requests with the `:results` option for that method (default
   an empty result), reporting each request's params to the owner. `drop_connections/1` closes live
-  sockets to simulate a server restart; the listener keeps accepting.
+  sockets to simulate a server restart; the listener keeps accepting. With
+  `unix: path` it listens on that Unix socket instead, like the Codex daemon's
+  control socket.
   """
   import Bitwise
 
@@ -13,9 +15,17 @@ defmodule Samgita.FakeCodexServer do
     owner = self()
 
     {:ok, listener} =
-      :gen_tcp.listen(0, [:binary, active: false, reuseaddr: true, ip: {127, 0, 0, 1}])
+      case opts[:unix] do
+        nil -> :gen_tcp.listen(0, [:binary, active: false, reuseaddr: true, ip: {127, 0, 0, 1}])
+        path -> :gen_tcp.listen(0, [:binary, active: false, ifaddr: {:local, path}])
+      end
 
-    {:ok, {_, port}} = :inet.sockname(listener)
+    port =
+      case :inet.sockname(listener) do
+        {:ok, {_, port}} when is_integer(port) -> port
+        _ -> nil
+      end
+
     {:ok, table} = Agent.start_link(fn -> [] end)
 
     acceptor =

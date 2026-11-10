@@ -407,6 +407,14 @@ Owner files: migration `20261110000001_add_codex_host_use_ssh_config.exs` (colum
 
 Result (2026-11-10): new tests pass (SSH-config argv/environment through the fake ssh; Add Agent with `gao@raven` stores an SSH host), plus filtered SSH, Codex host and Agents LiveView suites. Unrun (restricted): host-key, credential-reference and secret-material tests in `codex_hosts_ssh_test.exs`, including the new "still requires host keys" case. Real check: raven switched to SSH on its Agent page, connected through `ssh raven … codex app-server proxy` to its Codex daemon, showed its project; killing the SSH process put it in backoff and it reconnected about 4 seconds later with a new SSH process.
 
+### P7.11 Codex on this computer without a ws address
+
+Requested 2026-11-10: adding a Codex Agent must not ask for or auto-fill a ws address; it is either this computer or another computer over SSH.
+
+Owner files: migration `20261110000002_add_codex_host_local_transport.exs` (transport check allows `local`), `codex_hosts.ex` (`local` clears address and SSH settings; one `local` host per Samgita counts as the same machine), `codex_hosts/connection.ex` (`Transport.UnixSocket` to the daemon control socket, following its symlink), Add Agent form (Where Codex runs: This computer / Another computer over SSH), Agent connection form option, `FakeCodexServer` `unix:` option, tests.
+
+Result (2026-11-10): Codex Agents LiveView tests (4, through a symlinked fake daemon socket), related Agents/Codex/session LiveView tests (17) and filtered Codex host core tests (7) pass. Real check on the 4870 dev server: "This computer" connected to the Codex desktop app's daemon (`mbp2021`, Codex 0.167.0) and listed its projects; raven stayed connected over SSH. The first real attempt failed with `codex_daemon_not_running` because the socket path is a symlink and was checked with `lstat`; fixed and covered by the symlinked test socket.
+
 ## 11. P8 — Coordinated delegation (design §10)
 
 Authorized 2026-11-09 after P7. Work on the existing branch in ordered stages; each stage ends with its scoped functional checks passing and a logical commit. Acceptance scenario is A18. Under the verification restriction, cases that exercise role, membership, credential or separation-of-duties refusals are written and kept but recorded as unrun; functional cases (successful assignment, claim by the assignee, routing, delivery, acceptance by a separate reviewer) run.

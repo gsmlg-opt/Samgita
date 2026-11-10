@@ -305,8 +305,9 @@
                 type="select"
                 label={gettext("Transport")}
                 options={[
-                  {gettext("WebSocket"), "websocket"},
-                  {gettext("SSH to the Codex daemon"), "ssh"}
+                  {gettext("This computer (Codex daemon socket)"), "local"},
+                  {gettext("SSH to the Codex daemon"), "ssh"},
+                  {gettext("WebSocket"), "websocket"}
                 ]}
               />
               <div :if={@codex_form[:transport].value == "ssh"} class="grid gap-4 sm:grid-cols-2">
@@ -355,7 +356,10 @@
                   label={gettext("Run `codex app-server daemon start` before connecting")}
                 />
               </div>
-              <div :if={@codex_form[:transport].value != "ssh"} class="grid gap-4 sm:grid-cols-2">
+              <div
+                :if={@codex_form[:transport].value == "websocket"}
+                class="grid gap-4 sm:grid-cols-2"
+              >
                 <.dm_input
                   field={@codex_form[:url]}
                   label={gettext("App-server URL (ws:// or wss://)")}

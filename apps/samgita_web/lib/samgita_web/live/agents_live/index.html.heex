@@ -14,11 +14,6 @@
       </:trigger>
       <:title>{gettext("Add Agent")}</:title>
       <:body>
-        <p :if={@form.params["kind"] == "codex"} class="mb-4 text-sm text-on-surface-variant">
-          {gettext(
-            "Run `codex app-server --listen ws://127.0.0.1:47811` on the machine. For another machine, forward its port first, for example `ssh -N -L 47812:127.0.0.1:47811 host`, and use ws://127.0.0.1:47812."
-          )}
-        </p>
         <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
         <p :if={@warning} id="agent-warning" role="alert" class="mb-4 text-warning">{@warning}</p>
         <.form for={@form} id="agent-add" phx-submit="add" phx-change="change" class="space-y-4">
@@ -42,20 +37,44 @@
               required
             />
             <.dm_input
-              field={@form[:address]}
-              label={gettext("Address")}
-              placeholder={
-                if @form.params["kind"] == "codex",
-                  do: "ws://127.0.0.1:47811",
-                  else: "wss://agent.example/app-server"
-              }
-              required={@form.params["kind"] == "codex"}
+              :if={@form.params["kind"] == "codex"}
+              field={@form[:location]}
+              type="select"
+              label={gettext("Where Codex runs")}
+              options={[
+                {gettext("This computer"), "local"},
+                {gettext("Another computer over SSH"), "ssh"}
+              ]}
             />
-            <p :if={@form.params["kind"] == "codex"} class="text-xs text-on-surface-variant">
+            <p
+              :if={@form.params["kind"] == "codex" and @form.params["location"] != "ssh"}
+              class="text-xs text-on-surface-variant"
+            >
               {gettext(
-                "A ws:// address, or an SSH host from your SSH config such as raven or user@host. SSH reconnects by itself after network drops."
+                "Connects to the Codex app's daemon on the computer running Samgita. If it is not running, open the Codex app or run `codex app-server daemon start`."
               )}
             </p>
+            <.dm_input
+              :if={@form.params["kind"] == "codex" and @form.params["location"] == "ssh"}
+              field={@form[:address]}
+              label={gettext("SSH host")}
+              placeholder="raven or user@host"
+              required
+            />
+            <p
+              :if={@form.params["kind"] == "codex" and @form.params["location"] == "ssh"}
+              class="text-xs text-on-surface-variant"
+            >
+              {gettext(
+                "Uses your SSH config, keys and known_hosts, and starts the Codex daemon there if needed. Reconnects by itself after network drops."
+              )}
+            </p>
+            <.dm_input
+              :if={@form.params["kind"] != "codex"}
+              field={@form[:address]}
+              label={gettext("Address")}
+              placeholder="wss://agent.example/app-server"
+            />
           </div>
           <.dm_btn
             native_submit

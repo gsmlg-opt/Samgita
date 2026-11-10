@@ -3,8 +3,9 @@ defmodule SamgitaWeb.AgentsLive.Index do
   Agent list and quick add.
 
   Codex is one kind of Agent: a Codex row shows its live app-server connection
-  and can start, stop or reconnect it. Adding asks only for the kind, a name and
-  an address; everything else is adjusted later on the Agent page.
+  and can start, stop or reconnect it. Adding a Codex Agent asks only for a
+  name and where Codex runs: this computer (its daemon socket) or another
+  computer over SSH; everything else is adjusted later on the Agent page.
   """
   use SamgitaWeb, :live_view
   alias Samgita.{Agents, CodexHosts, Management, Principal}
@@ -39,14 +40,10 @@ defmodule SamgitaWeb.AgentsLive.Index do
 
     # Changing what is being added requires a fresh duplicate check.
     params =
-      if Map.take(params, ~w(kind address)) != Map.take(previous, ~w(kind address)),
-        do: Map.delete(params, "confirmed"),
-        else: params
-
-    params =
-      if params["kind"] != socket.assigns.form.params["kind"],
-        do: Map.put(params, "address", default_address(params["kind"])),
-        else: params
+      if Map.take(params, ~w(kind location address)) !=
+           Map.take(previous, ~w(kind location address)),
+         do: Map.delete(params, "confirmed"),
+         else: params
 
     {:noreply,
      assign(socket,
@@ -69,7 +66,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
     case CodexHosts.check_new(Principal.operator(), host_attrs(params)) do
       {:ok, %{"same_machine_as" => [_ | _] = same} = check} ->
         warning =
-          "#{check["machine_name"] || params["address"]} is already added as " <>
+          "#{check["machine_name"] || machine(params)} is already added as " <>
             Enum.join(same, ", ") <>
             ". One machine should be one Agent. Add anyway only if this is intentional."
 
@@ -135,7 +132,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
       # Navigating back resets the page, which also closes the dialog.
       {:noreply,
        socket
-       |> put_flash(:info, "#{agent["name"]} added. Connecting to #{params["address"]}.")
+       |> put_flash(:info, "#{agent["name"]} added. Connecting.")
        |> push_navigate(to: ~p"/agents")}
     else
       {:error, error} -> {:noreply, failed(socket, params, error)}
@@ -174,16 +171,15 @@ defmodule SamgitaWeb.AgentsLive.Index do
     )
   end
 
-  # A ws:// or wss:// address is a listening app-server; anything else is an
-  # SSH target (`host`, `user@host`, `host:port`) reached with the operator's
-  # own SSH configuration, starting the Codex daemon there if needed.
-  defp host_attrs(params) do
+  # This computer: the local Codex daemon's control socket. Another computer:
+  # an SSH target (`host`, `user@host`, `host:port`) reached with the
+  # operator's own SSH configuration, starting the Codex daemon there if needed.
+  defp host_attrs(%{"location" => "ssh"} = params) do
     address = String.trim(params["address"] || "")
 
-    if String.match?(address, ~r/\A[a-z][a-z0-9+.-]*:\/\//i) and
-         not String.starts_with?(address, "ssh://") do
-      # ws:// and wss:// connect directly; any other scheme fails validation.
-      %{"transport" => "websocket", "url" => address}
+    if String.contains?(address, "://") and not String.starts_with?(address, "ssh://") do
+      # Not an SSH target; fails validation.
+      %{"transport" => "ssh", "ssh_host" => nil}
     else
       uri = URI.parse("ssh://" <> String.replace_prefix(address, "ssh://", ""))
 
@@ -197,6 +193,11 @@ defmodule SamgitaWeb.AgentsLive.Index do
       }
     end
   end
+
+  defp host_attrs(_params), do: %{"transport" => "local"}
+
+  defp machine(%{"location" => "ssh", "address" => address}), do: address
+  defp machine(_params), do: "This computer"
 
   defp failed(socket, params, error),
     do: assign(socket, form: to_form(params, as: :agent), error: Components.error_message(error))
@@ -223,7 +224,8 @@ defmodule SamgitaWeb.AgentsLive.Index do
       %{
         "kind" => kind,
         "name" => "",
-        "address" => default_address(kind),
+        "location" => "local",
+        "address" => "",
         "agent_command_id" => Ecto.UUID.generate(),
         "host_command_id" => Ecto.UUID.generate(),
         "enable_command_id" => Ecto.UUID.generate()
@@ -231,9 +233,6 @@ defmodule SamgitaWeb.AgentsLive.Index do
       as: :agent
     )
   end
-
-  defp default_address("codex"), do: "ws://127.0.0.1:47811"
-  defp default_address(_), do: ""
 
   @doc false
   def kind(agent), do: if(agent["runtime_driver"] == "codex", do: "Codex", else: "Agent")
@@ -244,6 +243,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
   def address(nil, agent), do: agent["endpoint_metadata"]["url"] || "—"
   def address(%{"machine_name" => name}, _) when is_binary(name), do: name
   def address(%{"transport" => "ssh", "ssh_host" => host}, _), do: host
+  def address(%{"transport" => "local"}, _), do: "This computer"
   def address(_host, _), do: "Shown after connecting"
 
   @doc false
