@@ -317,7 +317,13 @@ defmodule SamgitaWeb.SessionsLive.Show do
         choices: for({value, label} <- @access_choices, do: %{value: value, label: label})
       },
       %{id: "model", label: "Model", value: current["model"] || "", choices: models},
-      %{id: "effort", label: "Reasoning", value: current["effort"] || "", choices: efforts}
+      %{
+        id: "effort",
+        label: "Reasoning",
+        value: current["effort"] || "",
+        choices: efforts,
+        default: model && model["default_effort"]
+      }
     ]
   end
 
