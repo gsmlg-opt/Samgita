@@ -18,7 +18,8 @@ defmodule Samgita.CodexHosts.Connection do
   @max_backoff 60_000
   @drain_limit 1_000
 
-  def start_link(host), do: GenServer.start_link(__MODULE__, host, name: Runtime.via(host.id))
+  def start_link(host),
+    do: GenServer.start_link(__MODULE__, host, name: Runtime.via(host.id, host.version))
 
   def child_spec(host),
     do: %{
@@ -28,8 +29,8 @@ defmodule Samgita.CodexHosts.Connection do
     }
 
   def status(pid), do: GenServer.call(pid, :status)
-  def config_version(pid), do: GenServer.call(pid, :config_version)
-  def reconnect(pid), do: GenServer.call(pid, :reconnect)
+  @doc "Ask for a fresh connection. Never waits, even while a connect is in progress."
+  def reconnect(pid), do: GenServer.cast(pid, :reconnect)
   @doc "The initialized Session while connected, otherwise nil."
   def session(pid), do: GenServer.call(pid, :session)
 
@@ -62,7 +63,6 @@ defmodule Samgita.CodexHosts.Connection do
 
   @impl true
   def handle_call(:status, _from, state), do: {:reply, state.status, state}
-  def handle_call(:config_version, _from, state), do: {:reply, state.host.version, state}
 
   def handle_call(:session, _from, state),
     do: {:reply, if(state.generation, do: state.session), state}
@@ -98,9 +98,10 @@ defmodule Samgita.CodexHosts.Connection do
     :exit, _ -> {:reply, {:error, :session_exited}, state}
   end
 
-  def handle_call(:reconnect, _from, state) do
+  @impl true
+  def handle_cast(:reconnect, state) do
     state = state |> cancel_timer() |> close_session(:operator_reconnect)
-    {:reply, :ok, connect(%{state | backoff: backoff_config(:min)})}
+    {:noreply, connect(%{state | backoff: backoff_config(:min)})}
   end
 
   @impl true
@@ -276,7 +277,7 @@ defmodule Samgita.CodexHosts.Connection do
           end
         end
       after
-        if files, do: Ssh.cleanup(files.dir)
+        Ssh.cleanup(files)
       end
     end
   catch
@@ -432,7 +433,7 @@ defmodule Samgita.CodexHosts.Connection do
   defp release_files(%{files: nil} = state), do: state
 
   defp release_files(%{files: files} = state) do
-    Ssh.cleanup(files.dir)
+    Ssh.cleanup(files)
     %{state | files: nil}
   end
 

@@ -29,11 +29,17 @@ defmodule Samgita.CodexHosts.Ssh do
             if [ -z "$SHELL" ] || [ ! -x "$SHELL" ]; then echo "Codex remote SSH requires SHELL to point to an executable login shell" >&2; exit 127; fi; SAMGITA_REMOTE_PAYLOAD="$1"; export SAMGITA_REMOTE_PAYLOAD; case "${SHELL##*/}" in csh|tcsh) exec "$SHELL" -i -c 'set loginsh=1; if ( -r /etc/csh.login ) source /etc/csh.login; if ( -r ~/.login ) source ~/.login; exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; nu) exec "$SHELL" -l -i -c 'exec /bin/sh -c $env.SAMGITA_REMOTE_PAYLOAD' ;; fish|xonsh) exec "$SHELL" -l -i -c 'exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; *) exec "$SHELL" -l -i -c 'CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"; export CODEX_HOME; exec /bin/sh -c "$SAMGITA_REMOTE_PAYLOAD"' ;; esac
             """)
 
-  @doc "Prepare private files and transport options. The caller must `cleanup/1` the dir."
+  @doc """
+  Prepare private files and transport options. The caller must `cleanup/1` the
+  result; if the caller dies first (even by a kill that skips `after` and
+  `terminate`), a watcher removes the private directory.
+  """
   def prepare(host) do
     with {:ok, ssh} <- executable(),
          {:ok, key} <- key(host.ssh_key_ref),
          {:ok, dir} <- private_dir() do
+      guard = guard(dir)
+
       known_hosts =
         if host.known_hosts do
           path = Path.join(dir, "known_hosts")
@@ -55,6 +61,7 @@ defmodule Samgita.CodexHosts.Ssh do
       {:ok,
        %{
          dir: dir,
+         guard: guard,
          executable: ssh,
          base_args: base,
          env: env,
@@ -86,7 +93,26 @@ defmodule Samgita.CodexHosts.Ssh do
   end
 
   def cleanup(nil), do: :ok
-  def cleanup(dir), do: File.rm_rf(dir) && :ok
+
+  def cleanup(%{dir: dir, guard: guard}) do
+    send(guard, :release)
+    File.rm_rf(dir)
+    :ok
+  end
+
+  # Unlinked on purpose: it must outlive an owner that is killed.
+  defp guard(dir) do
+    owner = self()
+
+    spawn(fn ->
+      ref = Process.monitor(owner)
+
+      receive do
+        :release -> :ok
+        {:DOWN, ^ref, :process, _, _} -> File.rm_rf(dir)
+      end
+    end)
+  end
 
   @doc false
   def remote_command(host, args, marker \\ nil) do

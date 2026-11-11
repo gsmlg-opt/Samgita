@@ -39,17 +39,19 @@ defmodule Samgita.CodexHosts.Runtime do
   def sync(id) do
     host = CodexHosts.load(id)
 
-    case {host, whereis(id)} do
+    # The running configuration version is read from the Registry, never from
+    # the connection process, which may be busy connecting for many seconds.
+    case {host, lookup(id)} do
       {%{enabled: true} = host, nil} ->
         if enabled?(), do: start(host), else: :ok
 
-      {%{enabled: true, version: version}, pid} ->
-        if Connection.config_version(pid) != version, do: restart(id, pid), else: :ok
+      {%{enabled: true, version: version}, {pid, running}} ->
+        if running != version, do: restart(id, pid), else: :ok
 
       {_, nil} ->
         :ok
 
-      {_, pid} ->
+      {_, {pid, _}} ->
         stop(pid)
     end
   end
@@ -81,15 +83,22 @@ defmodule Samgita.CodexHosts.Runtime do
   end
 
   def whereis(id) do
-    # Registry removes entries asynchronously after a process exits.
+    case lookup(id) do
+      {pid, _version} -> pid
+      nil -> nil
+    end
+  end
+
+  # Registry removes entries asynchronously after a process exits.
+  defp lookup(id) do
     case Registry.lookup(@registry, id) do
-      [{pid, _}] -> if Process.alive?(pid), do: pid
+      [{pid, version}] -> if Process.alive?(pid), do: {pid, version}
       [] -> nil
     end
   end
 
   @doc false
-  def via(id), do: {:via, Registry, {@registry, id}}
+  def via(id, version), do: {:via, Registry, {@registry, id, version}}
 
   @doc "PubSub topic carrying one Codex thread's live events on one host."
   def thread_topic(host_id, thread_id), do: "codex_thread:" <> host_id <> ":" <> thread_id

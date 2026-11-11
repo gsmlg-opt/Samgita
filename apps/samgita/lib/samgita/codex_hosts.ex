@@ -327,7 +327,8 @@ defmodule Samgita.CodexHosts do
     roots = Enum.filter(List.wrap(roots), &(is_binary(&1) and Path.type(&1) == :absolute))
 
     with :ok <- operator(principal),
-         :ok <- if(roots == [], do: {:error, Error.new(:invalid, %{fields: [:roots]})}, else: :ok),
+         :ok <-
+           if(roots == [], do: {:error, Error.new(:invalid, %{fields: [:roots]})}, else: :ok),
          {:ok, session} <- live_session(id),
          {:ok, %{"result" => %{"data" => threads}}} when is_list(threads) <-
            codex_request(session, "thread/list", %{

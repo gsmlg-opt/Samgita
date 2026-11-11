@@ -15,6 +15,7 @@ defmodule Samgita.CodexHostsSshTest do
     log = Path.join(dir, "ssh.log")
     codex_log = Path.join(dir, "codex.log")
     daemon_exit = Keyword.get(opts, :daemon_exit, 0)
+    daemon_sleep = Keyword.get(opts, :daemon_sleep, 0)
     python = System.find_executable("python3")
     home = Path.join(dir, "home")
     bin = Path.join(dir, "bin")
@@ -26,10 +27,11 @@ defmodule Samgita.CodexHostsSshTest do
 
     File.write!(codex, """
     #!#{python} -I
-    import json, os, socket, sys, threading
+    import json, os, socket, sys, threading, time
     with open(#{inspect(codex_log)}, "a") as f:
         f.write(json.dumps({"args": sys.argv[1:], "path": os.environ.get("PATH")}) + "\\n")
     if sys.argv[1:3] == ["app-server", "daemon"]:
+        time.sleep(#{daemon_sleep})
         sys.exit(#{daemon_exit})
     s = socket.create_connection(("127.0.0.1", int(os.environ["FAKE_CODEX_PORT"])))
     def pump_in():
@@ -337,6 +339,54 @@ defmodule Samgita.CodexHostsSshTest do
       |> Path.dirname()
 
     refute File.exists?(private_dir)
+  end
+
+  test "reconnect and reconfiguration never wait on a host that is still connecting",
+       %{agent: agent, server: server, dir: dir} do
+    {script, log, codex_log} =
+      fake_ssh(Path.join(dir, "slow") |> tap(&File.mkdir_p!/1), daemon_sleep: 30)
+
+    config = Application.get_env(:samgita, :codex_hosts)
+    Application.put_env(:samgita, :codex_hosts, Keyword.put(config, :ssh_executable, script))
+
+    {:ok, host} = configure(agent, server, %{"ensure_daemon" => true})
+    {:ok, enabled} = enable(host)
+    id = host["id"]
+    wait_until(fn -> calls(codex_log) != [] end)
+
+    private_dir =
+      calls(log)
+      |> hd()
+      |> Map.fetch!("argv")
+      |> Enum.find(&String.starts_with?(&1, "UserKnownHostsFile="))
+      |> String.replace_prefix("UserKnownHostsFile=", "")
+      |> Path.dirname()
+
+    assert File.dir?(private_dir)
+
+    {elapsed, result} = :timer.tc(fn -> CodexHosts.reconnect(Principal.operator(), id) end)
+    assert result == :ok
+    assert elapsed < 1_000_000
+
+    # The busy connection is killed by its supervisor; its private files go too.
+    pid = Runtime.whereis(id)
+
+    {:ok, _} =
+      configure(agent, server, %{
+        "ensure_daemon" => true,
+        "expected_version" => enabled["version"]
+      })
+
+    refute Runtime.whereis(id) == pid
+    wait_until(fn -> not File.exists?(private_dir) end)
+  end
+
+  defp wait_until(fun, attempts \\ 100) do
+    cond do
+      fun.() -> :ok
+      attempts == 0 -> flunk("condition not reached")
+      true -> Process.sleep(50) && wait_until(fun, attempts - 1)
+    end
   end
 
   test "an initialize failure closes the session instead of leaking it", %{agent: agent} do
