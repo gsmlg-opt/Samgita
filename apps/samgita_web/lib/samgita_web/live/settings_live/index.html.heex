@@ -1,0 +1,42 @@
+<section class="space-y-6" aria-labelledby="settings-title">
+  <header>
+    <h1 id="settings-title" class="text-3xl font-bold">{gettext("Settings")}</h1>
+    <p class="text-on-surface-variant">{gettext("Preferences for this operator console.")}</p>
+  </header>
+  <div class="grid items-start gap-6 lg:grid-cols-[16rem_1fr]">
+    <nav id="settings-sections" aria-label={gettext("Settings")} class="card card-bordered">
+      <h2 class="border-b border-outline-variant px-5 py-4 text-lg font-semibold">
+        {gettext("Settings")}
+      </h2>
+      <.link
+        :for={{key, label} <- @sections}
+        id={"settings-section-#{key}"}
+        patch={~p"/settings?section=#{key}"}
+        aria-current={@section == key && "page"}
+        class={[
+          "block border-b border-outline-variant px-5 py-3 font-semibold last:border-b-0",
+          @section == key && "bg-surface-container-high"
+        ]}
+      >
+        {label}
+      </.link>
+    </nav>
+    <div class="min-w-0">
+      <div id="section-appearance" hidden={@section != "appearance"}>
+        <%!-- The theme menu drops below the card; the card must not clip it. --%>
+        <.dm_card id="appearance-card" variant="bordered" class="overflow-visible">
+          <:title>{gettext("Appearance")}</:title>
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p class="font-semibold">{gettext("Theme")}</p>
+              <p class="text-on-surface-variant">
+                {gettext("Saved in this browser. Auto follows the system light or dark setting.")}
+              </p>
+            </div>
+            <.dm_theme_switcher id="theme-toggle" />
+          </div>
+        </.dm_card>
+      </div>
+    </div>
+  </div>
+</section>

@@ -41,10 +41,12 @@ defmodule SamgitaWeb.DashboardLiveTest do
   test "browser shell exposes only available navigation", %{conn: conn} do
     html = conn |> get(~p"/") |> html_response(200)
     assert html =~ "csrf-token"
-    assert html =~ "theme-toggle"
+    # The theme switcher lives in Settings > Appearance, not in the shell.
+    refute html =~ "theme-toggle"
     assert html =~ "/images/favicon-32.png"
     refute html =~ "heavy-elements.js"
 
+    assert html =~ "href=\"/settings\""
     assert html =~ "href=\"/agents\""
     assert html =~ "href=\"/projects\""
 

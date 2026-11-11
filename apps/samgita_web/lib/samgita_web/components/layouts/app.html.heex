@@ -26,9 +26,13 @@
   >
     {gettext("Agents")}
   </:menu>
-  <:user_profile>
-    <.dm_theme_switcher id="theme-toggle" />
-  </:user_profile>
+  <:menu
+    to={~p"/settings"}
+    active={@socket.view == SamgitaWeb.SettingsLive.Index}
+    class="max-sm:!px-1"
+  >
+    {gettext("Settings")}
+  </:menu>
 </.dm_appbar>
 
 <main id="main-content" class="bg-surface text-on-surface px-4 py-6 sm:px-6 lg:px-8">

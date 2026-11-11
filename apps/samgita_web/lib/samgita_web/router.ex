@@ -42,6 +42,7 @@ defmodule SamgitaWeb.Router do
   scope "/", SamgitaWeb do
     pipe_through :browser
     live "/", DashboardLive.Index, :index
+    live "/settings", SettingsLive.Index, :index
     live "/agents", AgentsLive.Index, :index
     live "/agents/:id", AgentsLive.Show, :show
     live "/sessions/:host_id/new", SessionsLive.Show, :new
