@@ -206,22 +206,26 @@ defmodule Samgita.Attempts do
         )
         |> Commands.update!()
 
-      state =
-        cond do
-          !resolved -> "blocked"
-          attempt.state == "succeeded" -> "awaiting_review"
-          true -> "failed"
-        end
+      {state, hold} = reported_task(task, attempt.state, resolved)
 
       current_task =
         task
-        |> change(state: state, execution_hold: !resolved, version: task.version + 1)
+        |> change(state: state, execution_hold: hold, version: task.version + 1)
         |> Commands.update!()
 
       event!(ctx, attempt, "attempt.reported", previous, task, current_task)
       Projection.attempt(attempt)
     end)
   end
+
+  # A management block keeps ownership (design §3), so the owner may still
+  # report, but the outcome must not lift the block or its existing hold.
+  defp reported_task(%{state: "blocked", execution_hold: held}, _outcome, resolved),
+    do: {"blocked", held or !resolved}
+
+  defp reported_task(_task, _outcome, false), do: {"blocked", true}
+  defp reported_task(_task, "succeeded", true), do: {"awaiting_review", false}
+  defp reported_task(_task, _outcome, true), do: {"failed", false}
 
   def rebind(principal, project_id, id, attrs) do
     command(principal, project_id, id, attrs, "rebind", fn ctx, task, attempt, attrs ->

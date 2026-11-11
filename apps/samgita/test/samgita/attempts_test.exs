@@ -657,6 +657,44 @@ defmodule Samgita.AttemptsTest do
              )
   end
 
+  test "a report on a blocked Task records the outcome but keeps the block", ctx do
+    %{project: p, principal: principal, task: task} = ctx
+    {attempt, proof} = claimed(ctx)
+
+    {:ok, running} =
+      Attempts.start(
+        principal,
+        p["id"],
+        attempt["id"],
+        command(%{"expected_version" => 1, "proof" => proof})
+      )
+
+    current = Repo.get!(Task, task["id"])
+
+    {:ok, _blocked} =
+      Tasks.transition(
+        Principal.operator(),
+        p["id"],
+        task["id"],
+        command(%{"expected_version" => current.version, "state" => "blocked"})
+      )
+
+    assert {:ok, %{"state" => "succeeded"}} =
+             Attempts.report(
+               principal,
+               p["id"],
+               attempt["id"],
+               command(%{
+                 "expected_version" => running["version"],
+                 "proof" => proof,
+                 "outcome" => "succeeded",
+                 "effects_resolved" => true
+               })
+             )
+
+    assert %{state: "blocked", execution_hold: false} = Repo.get!(Task, task["id"])
+  end
+
   test "lease-key rotation and lost renew responses preserve ownership without storing a proof",
        ctx do
     %{project: p, principal: principal} = ctx
