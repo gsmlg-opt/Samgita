@@ -86,7 +86,7 @@ Never persist or log plaintext Agent credentials or lease proofs. Operator-suppl
 
 GitHub integration verifies raw-body signatures and approved installation/repository-to-Project mappings before atomic inbox/event/job persistence. Payload Project/Agent IDs cannot select routing. Current external projections and immutable source evidence are separate; Issue/PR/check state never confers Task acceptance. Treat text as untrusted input. Keep GitHub code outside protocol packages. GitHub uses versioned external secret references and approved pinned API destinations; only token authentication may POST remotely, with repository-restricted read-only tokens. Comments, PR creation, merge and workflow execution remain disabled.
 
-Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services, migrate production, delete historical data or deploy. Real GitHub/Agent-service integration requires explicit security/conformance gates. Embedded providers/execution, memory retrieval, new artifact storage and a browser account system are out of scope.
+Do not provision a real GitHub App, enter real credentials, change remote permissions, create live webhooks, enable GitHub writes, edit sibling services or delete historical data. Do not deploy or migrate production on your own initiative; do so only when the user requests it. Real GitHub/Agent-service integration requires explicit security/conformance gates. Embedded providers/execution, memory retrieval, new artifact storage and a browser account system are out of scope.
 
 ## Open Gates
 
@@ -105,7 +105,7 @@ Owned Codex functional qualification launches default to `approval_policy="never
 
 ## Release Policy
 
-Every version below 1.0 is an experimental test release. The manual Release workflow may publish the four reusable Hex packages, the application archive and `ghcr.io/gsmlg-dev/samgita` images after its reviewed release-helper functional checks, outside-consumer compilation and all builds pass. All first-party app and artifact versions must match. GitHub marks 0.x releases as prereleases; package READMEs document experimental status. Release notes must disclose the open gates above. Stable versions (1.0+) additionally require successful CI/Tests/Codex conformance, strict inventory and platform release-blocker gates. Do not tag a failing build, and never deploy.
+Every version below 1.0 is an experimental test release. The manual Release workflow may publish the four reusable Hex packages, the application archive and `ghcr.io/gsmlg-dev/samgita` images after its reviewed release-helper functional checks, outside-consumer compilation and all builds pass. All first-party app and artifact versions must match. GitHub marks 0.x releases as prereleases; package READMEs document experimental status. Release notes must disclose the open gates above. Stable versions (1.0+) additionally require successful CI/Tests/Codex conformance, strict inventory and platform release-blocker gates. Do not tag a failing build, and do not deploy unless the user requests it.
 
 ## Frontend
 
