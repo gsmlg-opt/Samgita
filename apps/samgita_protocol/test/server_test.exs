@@ -142,6 +142,35 @@ defmodule SamgitaProtocol.ServerTest do
     assert context["connection_id"] == "conn-1"
   end
 
+  test "the host context carries the groups this connection negotiated" do
+    {:ok, server} = Server.new(Host, %{owner: self(), mode: :normal}, connection_id: "conn-2")
+    {:ok, client} = Client.new(capabilities: ["project_events.v1"])
+
+    {:ok, init, client} =
+      Client.request(client, "connection/initialize", %{
+        "versions" => ["1.0"],
+        "capabilities" => ["project_events.v1"]
+      })
+
+    {:ok, [response], server} = Server.receive(server, init)
+    {:ok, _, client} = Client.receive(client, response)
+
+    {:ok, request, _client} =
+      Client.request(
+        client,
+        "project/event.receive",
+        %{
+          "event" => SamgitaProtocol.TestFixtures.event()
+        },
+        command_id: "delivery-command"
+      )
+
+    assert {:ok, [_], _} = Server.receive(server, request)
+
+    assert_received {:handled, "project/event.receive", _,
+                     %{"capabilities" => ["project_events.v1"]}}
+  end
+
   test "bidirectional approvals wait for the matching reply, with no automatic approval" do
     {server, client} = ready()
 

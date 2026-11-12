@@ -241,11 +241,14 @@ defmodule SamgitaProtocol.Server do
     end
   end
 
+  # The handler also sees the capability groups this connection negotiated,
+  # so it can decide which notifications the peer will accept.
   defp context(server, request) do
     request
     |> Map.take(~w(command_id correlation_id causation_id project_ref task_ref stream_id cursor))
     |> Map.put("request_id", request["id"])
     |> Map.put("connection_id", server.connection_id)
+    |> Map.put("capabilities", server.client.negotiated)
   end
 
   defp safe_callback(callback) do

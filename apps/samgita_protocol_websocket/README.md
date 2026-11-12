@@ -122,6 +122,13 @@ before upgrade and dispatch, including after reconnect. The host handler owns
 authorization, persistence, durable idempotency and lifecycle; the protocol
 cannot confer any of these.
 
+`Server.notify(socket, notification)` emits a host notification. A
+notification outside the groups this connection negotiated (or sent before
+initialization completes) is dropped and the connection stays open, so a host
+may advertise more groups than a client takes. A message that is not a
+notification closes the connection with 1008. Handler callbacks receive the
+negotiated groups as `context["capabilities"]`.
+
 Use WSS for remote connections and terminate server TLS at an existing endpoint
 or infrastructure proxy. The client rejects plaintext non-loopback targets
 unless `allow_insecure: true` is explicitly set. Userinfo, query strings and

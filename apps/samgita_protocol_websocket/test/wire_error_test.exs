@@ -90,7 +90,9 @@ defmodule SamgitaProtocolWebSocket.WireErrorTest do
     TestWire.close(wire)
   end
 
-  test "host notifications require initialization and a negotiated capability", %{url: url} do
+  test "a host notification the connection has not negotiated is dropped, not fatal", %{
+    url: url
+  } do
     for initialize? <- [false, true] do
       wire = TestWire.connect(url, "wire-token")
       assert_receive {:wire_socket, socket}
@@ -122,9 +124,35 @@ defmodule SamgitaProtocolWebSocket.WireErrorTest do
         "correlation_id" => "unnegotiated"
       })
 
-      assert {{:close, 1008, _}, wire} = TestWire.receive_frame(wire)
+      # The connection stays open: the next frame is the reply to a later
+      # request, not the dropped notification or a close.
+      probe = %{
+        "schema_version" => "1.0",
+        "type" => "request",
+        "id" => "probe",
+        "correlation_id" => "probe",
+        "method" => "unknown/method",
+        "params" => %{}
+      }
+
+      wire = TestWire.send_frame(wire, {:text, JSON.encode!(probe)})
+      assert {{:text, response}, wire} = TestWire.receive_frame(wire)
+
+      assert %{"id" => "probe", "error" => %{"code" => "unsupported_method"}} =
+               JSON.decode!(response)
+
       TestWire.close(wire)
     end
+  end
+
+  test "a host message that is not a notification still closes the connection", %{url: url} do
+    wire = TestWire.connect(url, "wire-token")
+    assert_receive {:wire_socket, socket}
+
+    Server.notify(socket, %{"type" => "request", "method" => "thread/start"})
+
+    assert {{:close, 1008, _}, wire} = TestWire.receive_frame(wire)
+    TestWire.close(wire)
   end
 
   defmodule Handler do

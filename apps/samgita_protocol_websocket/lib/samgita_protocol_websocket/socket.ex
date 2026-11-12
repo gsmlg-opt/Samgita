@@ -43,13 +43,19 @@ defmodule SamgitaProtocolWebSocket.Socket do
     end
   end
 
+  # The host filters its own notifications: one the connection has not (yet)
+  # negotiated is dropped, never a reason to close. A message that is not a
+  # notification at all is a host error and still closes.
   def handle_info({:protocol_notification, message}, state) do
-    with %{"type" => "notification", "method" => method} <- message,
-         true <- state.server.client.phase == :ready,
-         true <- Capabilities.supports?(state.server.client.negotiated, method) do
-      push([message], state)
-    else
-      _ -> stop(1008, state)
+    case message do
+      %{"type" => "notification", "method" => method} ->
+        if state.server.client.phase == :ready and
+             Capabilities.supports?(state.server.client.negotiated, method),
+           do: push([message], state),
+           else: {:ok, state}
+
+      _ ->
+        stop(1008, state)
     end
   end
 
@@ -87,6 +93,7 @@ defmodule SamgitaProtocolWebSocket.Socket do
         |> Map.take(~w(command_id correlation_id causation_id project_ref task_ref))
         |> Map.put("request_id", id)
         |> Map.put("connection_id", state.server.connection_id)
+        |> Map.put("capabilities", client.negotiated)
 
       notify_failure(state, request["method"], error, context)
     end)
