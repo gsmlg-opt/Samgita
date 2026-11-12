@@ -1,0 +1,3 @@
+# ms04 (LAN entry): allow only private networks. Copy to browser-gate.caddy.
+@outside not remote_ip private_ranges
+respond @outside 403

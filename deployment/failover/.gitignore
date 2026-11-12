@@ -1,0 +1,4 @@
+# Per-site secrets and runtime markers.
+/state/
+/caddy/site.d/*.caddy
+/caddy/site.d/certs/

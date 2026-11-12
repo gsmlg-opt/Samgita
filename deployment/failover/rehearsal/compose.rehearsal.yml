@@ -1,0 +1,30 @@
+# Rehearsal override: two sites on one host. A Docker network stands in for
+# WireGuard and a guard-only stub stands in for Samgita (no app image needed).
+services:
+  db:
+    ports: !reset []
+    networks:
+      default:
+      link:
+        ipv4_address: ${WG_ADDR}
+  web:
+    image: postgres:16
+    entrypoint: ["/failover/guard.sh"]
+    command: ["sleep", "infinity"]
+    ports: !reset []
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 2s
+      start_period: 0s
+    networks:
+      default:
+      link:
+        ipv4_address: ${WEB_LINK_ADDR}
+  proxy:
+    profiles: ["disabled"]
+
+networks:
+  link:
+    name: samgita-rehearsal-link
+    external: true

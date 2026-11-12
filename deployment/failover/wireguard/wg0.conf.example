@@ -1,0 +1,16 @@
+# /etc/wireguard/wg0.conf on ms04 (swap Address/peer values on the cloud host).
+# Start it before Docker so the published WireGuard addresses exist:
+#   systemctl enable --now wg-quick@wg0
+#   systemctl edit docker   ->  [Unit] After=wg-quick@wg0.service  Wants=wg-quick@wg0.service
+[Interface]
+Address = 10.88.0.1/24
+PrivateKey = <ms04-private-key>
+ListenPort = 51820
+
+[Peer]
+# cloud
+PublicKey = <cloud-public-key>
+AllowedIPs = 10.88.0.2/32
+Endpoint = <cloud-public-ip>:51820
+# ms04 is behind NAT; keep the tunnel open from this side.
+PersistentKeepalive = 25

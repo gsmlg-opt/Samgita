@@ -43,3 +43,4 @@ certificates and browser access protection. Forward WebSocket upgrades for
 LiveView and `/agent/socket`, and explicitly forward `Authorization`.
 Keep credentials out of URLs.
 See [systemd](systemd/README.md) and [scripts](scripts/README.md).
+For two sites with a manually switchable primary, see [failover](failover/README.md).

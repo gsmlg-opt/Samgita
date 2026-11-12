@@ -1,0 +1,14 @@
+# Cloud entry: pick ONE real access control and copy to browser-gate.caddy.
+# Samgita has no browser login, and gate A11 is open, so never leave this empty.
+#
+# A) Identity-aware proxy (oauth2-proxy, Authelia, ...):
+# forward_auth 127.0.0.1:4180 {
+# 	uri /oauth2/auth
+# }
+#
+# B) Fixed client addresses (office, VPN egress):
+# @outside not remote_ip 203.0.113.10/32
+# respond @outside 403
+#
+# Until one is chosen, deny everything:
+respond 403

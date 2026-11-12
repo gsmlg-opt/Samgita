@@ -1,0 +1,20 @@
+# Same file on both sites. Site-specific pieces live in caddy/site.d/:
+#   tls.caddy           TLS directive for this site (may be empty on the cloud site)
+#   browser-gate.caddy  REQUIRED browser access control; Caddy refuses to start without it
+# state/proxy/upstream.caddy names the current primary and is rewritten by site.sh.
+{$SAMGITA_HOST} {
+	import /etc/caddy/site.d/tls.caddy
+
+	# Machine-authenticated paths: Agent API/WebSocket (machine credentials),
+	# REST API (API key), GitHub ingress (signatures), health/info.
+	@machine path /api/*
+	handle @machine {
+		import /etc/caddy/state/upstream.caddy
+	}
+
+	# Browser UI and LiveView socket: Samgita has no browser accounts.
+	handle {
+		import /etc/caddy/site.d/browser-gate.caddy
+		import /etc/caddy/state/upstream.caddy
+	}
+}
