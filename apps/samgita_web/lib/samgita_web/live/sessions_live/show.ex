@@ -195,10 +195,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def handle_event(event, _params, socket) when event in ["chat.retry", "chat.action"],
     do: {:reply, %{status: "error", message: "Not supported for Codex sessions."}, socket}
 
-  def handle_event("decide", %{"key" => key, "decision" => decision}, socket) do
+  # A decision on a Codex request shown in the chat (`Chat.Request`). An error
+  # reply keeps the request open.
+  def handle_event("chat.decide", %{"key" => key, "decision" => decision}, socket) do
     case CodexHosts.respond_request(Principal.operator(), socket.assigns.host_id, key, decision) do
-      :ok -> {:noreply, update(socket, :requests, &Enum.reject(&1, fn r -> r["key"] == key end))}
-      {:error, error} -> {:noreply, assign(socket, error: message(error))}
+      :ok -> {:reply, %{status: "ok"}, close_request(socket, key)}
+      {:error, error} -> {:reply, %{status: "error", message: message(error)}, socket}
     end
   end
 
@@ -209,15 +211,17 @@ defmodule SamgitaWeb.SessionsLive.Show do
   def handle_info({:codex_request, request}, socket),
     do:
       {:noreply,
-       update(socket, :requests, fn requests ->
+       socket
+       |> update(:requests, fn requests ->
          Enum.reject(requests, &(&1["key"] == request["key"])) ++ [request]
-       end)}
+       end)
+       |> publish()}
 
   def handle_info({:codex_host_status, id, status}, %{assigns: %{host_id: id}} = socket),
     do: {:noreply, socket |> update(:host, &(&1 && Map.put(&1, "status", status))) |> snapshot()}
 
   def handle_info({:codex_request_closed, key}, socket),
-    do: {:noreply, update(socket, :requests, &Enum.reject(&1, fn r -> r["key"] == key end))}
+    do: {:noreply, close_request(socket, key)}
 
   def handle_info(_message, socket), do: {:noreply, socket}
 
@@ -259,7 +263,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
   # updated in place; anything else (or only a runtime change) is a snapshot.
   defp publish(socket) do
     %{chat: chat} = socket.assigns
-    messages = Items.messages(socket.assigns.items, socket.assigns.running_turn != nil)
+    messages = chat_messages(socket.assigns)
     previous = Enum.map(chat.messages, & &1["id"])
     changed = Enum.reject(messages, &(&1 in chat.messages))
 
@@ -290,8 +294,17 @@ defmodule SamgitaWeb.SessionsLive.Show do
     end
   end
 
+  defp chat_messages(assigns),
+    do: Items.messages(assigns.items, assigns.running_turn != nil, assigns.requests)
+
+  defp close_request(socket, key),
+    do:
+      socket
+      |> update(:requests, &Enum.reject(&1, fn r -> r["key"] == key end))
+      |> publish()
+
   defp snapshot(socket) do
-    messages = Items.messages(socket.assigns.items, socket.assigns.running_turn != nil)
+    messages = chat_messages(socket.assigns)
     sequences = Map.new(messages, &{&1["id"], 1})
 
     socket
@@ -341,10 +354,25 @@ defmodule SamgitaWeb.SessionsLive.Show do
     }
   end
 
+  # Shown by the composer's access menu (DuskMoon `ComposerSettings`); full
+  # access carries the warning tone.
   @access_choices [
-    {"read_only", "Read only"},
-    {"default", "Default access"},
-    {"full", "Full access"}
+    %{
+      value: "read_only",
+      label: "Read only",
+      description: "Codex can read files but not change them."
+    },
+    %{
+      value: "default",
+      label: "Default access",
+      description: "Edits in this project; asks before anything else."
+    },
+    %{
+      value: "full",
+      label: "Full access",
+      description: "Runs any command without asking. Use with care.",
+      tone: "warning"
+    }
   ]
 
   # What the session uses now (reported by Codex), overlaid with pending choices.
@@ -372,16 +400,11 @@ defmodule SamgitaWeb.SessionsLive.Show do
       |> with_current(current["model"])
 
     efforts =
-      for(e <- (model && model["efforts"]) || [], do: %{value: e, label: e})
+      for(e <- (model && model["efforts"]) || [], do: %{value: e, label: String.capitalize(e)})
       |> with_current(current["effort"])
 
     [
-      %{
-        id: "access",
-        label: "Access",
-        value: current["access"],
-        choices: for({value, label} <- @access_choices, do: %{value: value, label: label})
-      },
+      %{id: "access", label: "Access", value: current["access"], choices: @access_choices},
       %{id: "model", label: "Model", value: current["model"] || "", choices: models},
       %{
         id: "mode",
@@ -394,7 +417,9 @@ defmodule SamgitaWeb.SessionsLive.Show do
         label: "Reasoning",
         value: current["effort"] || "",
         choices: efforts,
-        default: model && model["default_effort"]
+        # Ordered choices render as a slider; the default enables its reset.
+        ordered: true,
+        defaultValue: model && model["default_effort"]
       }
     ]
   end
@@ -625,44 +650,6 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
       <p :if={@error} id="session-error" role="alert" class="text-error">{@error}</p>
 
-      <div
-        :for={request <- @requests}
-        id={"request-" <> request["key"]}
-        class="rounded-xl border border-warning p-4"
-      >
-        <Items.request request={request} />
-        <p :if={!Items.answerable?(request)} class="mt-2 text-sm text-on-surface-variant">
-          Answer this request in a Codex app; Samgita cannot answer it yet.
-        </p>
-        <div :if={Items.answerable?(request)} class="mt-3 flex flex-wrap gap-2">
-          <.dm_btn
-            size="sm"
-            variant="primary"
-            phx-click="decide"
-            phx-value-key={request["key"]}
-            phx-value-decision="accept"
-          >
-            Approve
-          </.dm_btn>
-          <.dm_btn
-            size="sm"
-            phx-click="decide"
-            phx-value-key={request["key"]}
-            phx-value-decision="acceptForSession"
-          >
-            Approve for this session
-          </.dm_btn>
-          <.dm_btn
-            size="sm"
-            phx-click="decide"
-            phx-value-key={request["key"]}
-            phx-value-decision="decline"
-          >
-            Decline
-          </.dm_btn>
-        </div>
-      </div>
-
       <.dm_react_chat
         id={@chat_id}
         hook="SessionChat"
@@ -677,7 +664,8 @@ defmodule SamgitaWeb.SessionsLive.Show do
             catalog: "chat.catalog",
             files: "chat.files",
             goal: "chat.goal",
-            goal_clear: "chat.goal_clear"
+            goal_clear: "chat.goal_clear",
+            decide: "chat.decide"
           }
         }
         admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}

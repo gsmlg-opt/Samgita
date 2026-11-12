@@ -49,15 +49,7 @@ code, pre, .font-mono { font-family: var(--font-mono); }
   * { transition: none !important; animation: none !important; }
 }
 
-/* Codex session composer controls, from the duskmoon-react chat demo
-   (packages/docs/src/styles/docs.css chat-demo-* rules). */
-.chat-composer-actions > .session-access { margin-inline-end: auto; }
-.session-model {
-  border-radius: 9999px;
-  background-color: var(--color-surface-container-highest);
-}
-.session-effort { color: var(--color-on-surface-variant); }
-.session-full-access { color: var(--color-warning); }
+/* Codex session composer: the Add menu's file browser and goal panels. */
 .session-add-menu,
 .session-files { max-height: min(28rem, 70vh); overflow-y: auto; min-width: 22rem; }
 .session-files .session-file-row { display: flex; align-items: center; gap: 0.25rem; }

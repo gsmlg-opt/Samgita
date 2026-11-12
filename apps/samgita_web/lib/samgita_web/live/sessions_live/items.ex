@@ -4,7 +4,6 @@ defmodule SamgitaWeb.SessionsLive.Items do
   renders with the DuskMoon React chat. Unknown item types render as a short
   label; their contents are never interpreted.
   """
-  use Phoenix.Component
 
   @doc "Rows from the turns returned by `thread/resume`."
   def from_turns(turns) do
@@ -187,8 +186,10 @@ defmodule SamgitaWeb.SessionsLive.Items do
   @doc """
   The messages of the DuskMoon React chat (`dm_react_chat`). The last Codex
   reply is streaming while a turn runs; Codex's work is shown as its tools.
+  Pending Codex requests belong to the running turn, so they are shown in the
+  last reply, or in a reply of their own when Codex has not replied yet.
   """
-  def messages(items, running?) do
+  def messages(items, running?, requests \\ []) do
     rows = rows(items)
     last = length(rows) - 1
 
@@ -214,6 +215,30 @@ defmodule SamgitaWeb.SessionsLive.Items do
           "tools" => for(item <- row.work, shown?(item), do: tool(item))
         }
     end)
+    |> with_requests(Enum.map(requests, &request/1))
+  end
+
+  defp with_requests(messages, []), do: messages
+
+  defp with_requests(messages, requests) do
+    case List.last(messages) do
+      %{"role" => "assistant"} = reply ->
+        List.replace_at(messages, -1, Map.put(reply, "requests", requests))
+
+      _ ->
+        messages ++
+          [
+            %{
+              "id" => "requests",
+              "role" => "assistant",
+              "author" => "Codex",
+              "content" => "",
+              "status" => "complete",
+              "tools" => [],
+              "requests" => requests
+            }
+          ]
+    end
   end
 
   # Reasoning often has no summary text; an empty entry says nothing.
@@ -267,31 +292,24 @@ defmodule SamgitaWeb.SessionsLive.Items do
   defp tool_status(%{"status" => status}) when status in ["failed", "declined"], do: "error"
   defp tool_status(_), do: "pending"
 
-  attr :request, :map, required: true
+  # A pending Codex request as the chat shows it (`Chat.Request` in
+  # `assets/js/session_chat.js`): what Codex asks for and whether this page
+  # can answer it.
+  defp request(%{"method" => "item/commandExecution/requestApproval"} = request),
+    do: request(request, "Codex wants to run a command", request["params"]["command"])
 
-  def request(%{request: %{"method" => "item/commandExecution/requestApproval"}} = assigns) do
-    ~H"""
-    <p class="font-semibold">Codex wants to run a command</p>
-    <code class="mt-2 block whitespace-pre-wrap break-all text-sm">{@request["params"]["command"]}</code>
-    <p :if={@request["params"]["reason"]} class="mt-1 text-sm text-on-surface-variant">
-      {@request["params"]["reason"]}
-    </p>
-    """
-  end
+  defp request(%{"method" => "item/fileChange/requestApproval"} = request),
+    do: request(request, "Codex wants to change files", nil)
 
-  def request(%{request: %{"method" => "item/fileChange/requestApproval"}} = assigns) do
-    ~H"""
-    <p class="font-semibold">Codex wants to change files</p>
-    <p :if={@request["params"]["reason"]} class="mt-1 text-sm text-on-surface-variant">
-      {@request["params"]["reason"]}
-    </p>
-    """
-  end
+  defp request(request), do: request(request, "Codex is asking for permission", nil)
 
-  def request(assigns) do
-    ~H"""
-    <p class="font-semibold">Codex is asking for permission</p>
-    <p class="text-sm text-on-surface-variant">{@request["method"]}</p>
-    """
-  end
+  defp request(request, title, command),
+    do: %{
+      "key" => request["key"],
+      "title" => title,
+      "command" => command,
+      "reason" => get_in(request, ["params", "reason"]),
+      "method" => request["method"],
+      "answerable" => answerable?(request)
+    }
 end

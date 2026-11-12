@@ -3,7 +3,7 @@
 // single-line input; Chat.Composer is the multi-line composer of the DuskMoon
 // chat demo (Enter sends, Shift+Enter inserts a newline, Stop while working).
 import React, { useEffect, useState } from "react"
-import { Chat } from "@duskmoon-dev/components/chat"
+import { Chat, ComposerSettings } from "@duskmoon-dev/components/chat"
 import { Markdown } from "@duskmoon-dev/components/markdown"
 import { createDuskmoonReactChat, useChatSubmission } from "phoenix_duskmoon/react-chat"
 
@@ -23,76 +23,52 @@ const Icon = ({ path }) =>
   h("svg", { viewBox: "0 0 24 24", width: 16, height: 16, fill: "currentColor", "aria-hidden": true }, h("path", { d: path }))
 
 // Where this session runs, as in the Codex app: project, local or remote, and
-// the host with its connection status.
+// the host with its connection status; it is attached above the composer.
 function Context({ metadata, bridge }) {
   const { project, location, host, connected, goal, plan } = metadata
   return h(
-    "div",
-    {
-      "data-session-context": true,
-      className:
-        "mx-4 flex items-center gap-5 rounded-t-[1.25rem] bg-surface-container px-5 py-2 text-sm text-on-surface-variant",
-    },
-    project && h("span", { className: "flex items-center gap-2" }, h(Icon, { path: icons.folder }), project),
-    h(
-      "span",
-      { className: "flex items-center gap-2" },
-      h(Icon, { path: location === "Local" ? icons.laptop : icons.web }),
-      location,
-    ),
-    plan && h("span", { className: "flex items-center gap-2 text-primary", "data-session-plan": true }, h(Stroke, { kind: "bulb" }), "Plan mode"),
+    Chat.ComposerContext,
+    { "data-session-context": true },
+    project && h(Chat.ComposerContextItem, { icon: h(Icon, { path: icons.folder }) }, project),
+    h(Chat.ComposerContextItem, { icon: h(Icon, { path: location === "Local" ? icons.laptop : icons.web }) }, location),
+    plan &&
+      h(
+        Chat.ComposerContextItem,
+        { icon: h(Stroke, { kind: "bulb" }), className: "text-primary", "data-session-plan": true },
+        "Plan mode",
+      ),
     goal &&
       h(
-        "span",
-        { className: "flex min-w-0 items-center gap-1", title: goal.objective, "data-session-goal": true },
-        h(Stroke, { kind: "target" }),
-        h("span", { className: "truncate" }, goal.objective),
-        h(
-          "button",
-          {
-            type: "button",
-            className: "btn btn-ghost btn-xs btn-circle",
-            "aria-label": "Clear goal",
-            title: "Clear goal",
+        Chat.ComposerContextItem,
+        {
+          icon: h(Stroke, { kind: "target" }),
+          title: goal.objective,
+          "data-session-goal": true,
+          action: {
+            label: "Clear goal",
             onClick: () => bridge.send("goal_clear", {}).catch(() => {}),
+            children: h(Stroke, { kind: "x" }),
           },
-          h(Stroke, { kind: "x" }),
-        ),
+        },
+        goal.objective,
       ),
     host &&
       h(
-        "span",
-        { className: "ms-auto flex items-center gap-2", title: connected ? "Connected" : "Not connected" },
-        host,
-        h("span", {
-          "aria-label": connected ? "Connected" : "Not connected",
-          className: `inline-block h-2 w-2 rounded-full ${connected ? "bg-success" : "bg-outline"}`,
+        Chat.ComposerContextEnd,
+        null,
+        h(Chat.ComposerContextItem, null, host),
+        h(Chat.ComposerConnection, {
+          state: connected ? "connected" : "disconnected",
+          label: connected ? "Connected" : "Not connected",
         }),
       ),
   )
 }
 
-// Access, model and reasoning effort for the next message: a port of the
-// duskmoon-react chat demo (packages/docs ChatSessionPreviews ChatComposerMenus),
-// core chat-composer-menu classes and native popovers anchored to triggers.
-// The server checks each choice (`chat.setting`) and pushes the new values in
-// `metadata`; they apply to the next turn.
-const ACCESS_HELP = {
-  read_only: "Codex can read files but not change them.",
-  default: "Edits in this project; asks before anything else.",
-  full: "Runs any command without asking. Use with care.",
-}
-
-const capitalize = (text) => (text ? text[0].toUpperCase() + text.slice(1) : "")
-
-// The demo's stroked icons.
+// Stroked icons for the composer's menus and context.
 function Stroke({ kind }) {
   const paths = {
     shield: "m12 3 8 4v5c0 5-8 9-8 9s-8-4-8-9V7ZM12 8v5M12 16h.01",
-    down: "m6 9 6 6 6-6",
-    right: "m9 6 6 6-6 6",
-    check: "m5 12 4 4L19 6",
-    reset: "M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7",
     plus: "M12 5v14M5 12h14",
     paperclip: "m21 12-8.5 8.5a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8.5-8.5",
     target: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z",
@@ -122,220 +98,46 @@ function Stroke({ kind }) {
   )
 }
 
-// Moves locally while dragging; sends the effort once released.
-function EffortSlider({ efforts, value, disabled, onCommit }) {
-  const [index, setIndex] = useState(value)
-  const commit = () => index !== value && onCommit(efforts[index])
-  return h(
-    "label",
-    { className: "chat-composer-menu-field" },
-    h("span", { className: "sr-only" }, "Reasoning effort"),
-    h("input", {
-      className: "range range-sm",
-      type: "range",
-      min: 0,
-      max: efforts.length - 1,
-      step: 1,
-      value: index,
-      disabled,
-      "aria-valuetext": capitalize(efforts[index]),
-      onChange: (event) => setIndex(Number(event.target.value)),
-      onPointerUp: commit,
-      onKeyUp: commit,
-    }),
-  )
-}
+// Access, model and reasoning effort for the next message, as DuskMoon's
+// composer settings menus. The server checks each choice (`chat.setting`),
+// counts the change in `settings_revision` and pushes the new values in
+// `metadata`; they apply to the next turn.
+const SETTING_GROUPS = [
+  { id: "access", label: "Access", settingIds: ["access"], appearance: "access", icon: h(Stroke, { kind: "shield" }) },
+  { id: "model", label: "Model settings", settingIds: ["model", "effort"], nestedSettingIds: ["model"], appearance: "model" },
+]
 
 function Settings({ metadata, bridge, conversationId }) {
-  const [pending, setPending] = useState(false)
-  const [feedback, setFeedback] = useState("")
-  const settings = Object.fromEntries((metadata.settings || []).map((setting) => [setting.id, setting]))
-  const { access, model, effort } = settings
-  if (!access || !model || !effort) return null
+  const settings = (metadata.settings || []).filter((setting) => setting.id !== "mode")
+  if (settings.length === 0) return null
 
-  const base = `session-${conversationId}`.replace(/[^A-Za-z0-9_-]/g, "")
-  const ids = { access: `${base}-access`, settings: `${base}-settings`, models: `${base}-models` }
-  const anchors = { access: `--${base}-access`, settings: `--${base}-settings` }
-  const label = (setting) => setting.choices.find((c) => c.value === setting.value)?.label || setting.value
-
-  async function request(settingId, value) {
-    if (pending || !value || value === settings[settingId].value) return
-    setPending(true)
-    setFeedback("")
+  // A rejection keeps the shown value; transport failures surface as errors.
+  async function onRequest(request) {
+    const { requestId, scopeKey, settingId, value } = request
     try {
-      await bridge.send("setting", { settingId, value })
+      const reply = await bridge.send("setting", { settingId, value })
+      return { requestId, scopeKey, settingId, revision: reply.revision, outcome: "accepted", value: reply.value }
     } catch (error) {
-      setFeedback(error.message)
-    } finally {
-      setPending(false)
+      if (!error.response) throw error
+      return { requestId, scopeKey, settingId, revision: request.expectedRevision, outcome: "rejected", message: error.message }
     }
   }
-
-  function choose(event, settingId, value) {
-    request(settingId, value)
-    event.currentTarget.closest("[popover]")?.hidePopover()
-  }
-
-  const efforts = effort.choices.map((c) => c.value)
-  const effortIndex = Math.max(0, efforts.indexOf(effort.value))
-  const full = access.value === "full"
 
   return h(
     React.Fragment,
     null,
-    h(
-      "button",
-      {
-        type: "button",
-        className: `btn btn-ghost btn-sm chat-composer-config session-access${full ? " session-full-access" : ""}`,
-        "aria-label": `Access: ${label(access)}`,
-        title: `Access: ${label(access)}`,
-        "data-session-access": true,
-        popoverTarget: ids.access,
-        style: { anchorName: anchors.access },
-      },
-      h(Stroke, { kind: "shield" }),
-      h("span", { className: "chat-composer-label" }, label(access)),
-    ),
-    h(
-      "div",
-      {
-        id: ids.access,
-        popover: "auto",
-        role: "group",
-        "aria-label": "Access",
-        className: "popover popover-menu chat-composer-menu",
-        style: { positionAnchor: anchors.access },
-      },
-      h("div", { className: "chat-composer-group" }, "Access"),
-      ...access.choices.map((choice) =>
-        h(
-          "button",
-          {
-            key: choice.value,
-            type: "button",
-            className: `popover-menu-item chat-composer-menu-option${choice.value === "full" ? " chat-composer-menu-option-warning" : ""}`,
-            "aria-pressed": access.value === choice.value,
-            disabled: pending,
-            onClick: (event) => choose(event, "access", choice.value),
-          },
-          h(Stroke, { kind: "shield" }),
-          h(
-            "span",
-            { className: "chat-composer-label" },
-            choice.label,
-            h("span", { className: "chat-composer-description" }, ACCESS_HELP[choice.value]),
-          ),
-          access.value === choice.value ? h(Stroke, { kind: "check" }) : null,
-        ),
-      ),
-    ),
+    h(ComposerSettings, {
+      variant: "menu",
+      groups: SETTING_GROUPS,
+      scopeKey: conversationId,
+      revision: metadata.settings_revision || 0,
+      settings,
+      onRequest,
+      // The server pushes the acknowledged values in `metadata`.
+      onAcknowledged: () => {},
+    }),
     metadata.pending &&
       h("span", { "data-session-pending": true, className: "chat-composer-description" }, "Applies to your next message"),
-    h(
-      "button",
-      {
-        type: "button",
-        className: "btn btn-ghost btn-sm chat-composer-config session-model",
-        "aria-label": `Model settings: ${label(model)}, ${capitalize(effort.value)}`,
-        title: "Select model and reasoning effort",
-        "data-session-model": true,
-        popoverTarget: ids.settings,
-        style: { anchorName: anchors.settings },
-      },
-      h(
-        "span",
-        { className: "chat-composer-label" },
-        `${label(model)} `,
-        h("span", { className: "session-effort" }, capitalize(effort.value)),
-      ),
-      h(Stroke, { kind: "down" }),
-    ),
-    h(
-      "div",
-      {
-        id: ids.settings,
-        popover: "auto",
-        role: "group",
-        "aria-label": "Composer model settings",
-        tabIndex: -1,
-        className: "popover popover-menu chat-composer-menu chat-composer-menu-end",
-        style: { positionAnchor: anchors.settings },
-      },
-      h(
-        "div",
-        { className: "chat-composer-menu-row" },
-        h("strong", null, capitalize(effort.value)),
-        h(
-          "button",
-          {
-            type: "button",
-            className: "btn btn-ghost btn-xs btn-circle",
-            "aria-label": "Reset reasoning effort",
-            title: "Reset reasoning effort",
-            disabled: pending || !effort.default || effort.value === effort.default,
-            onClick: () => request("effort", effort.default),
-          },
-          h(Stroke, { kind: "reset" }),
-        ),
-      ),
-      h(
-        "button",
-        {
-          type: "button",
-          className: "popover-menu-item",
-          "aria-label": `Choose a model: ${label(model)}`,
-          disabled: pending,
-          popoverTarget: ids.models,
-        },
-        h("span", { className: "chat-composer-label" }, label(model)),
-        h(Stroke, { kind: "right" }),
-      ),
-      efforts.length > 1 &&
-        h(EffortSlider, {
-          key: `${model.value}-${effort.value}`,
-          efforts,
-          value: effortIndex,
-          disabled: pending,
-          onCommit: (next) => request("effort", next),
-        }),
-      efforts.length > 1 &&
-        h(
-          "div",
-          { className: "chat-composer-menu-row chat-composer-description" },
-          h("span", null, capitalize(efforts[0])),
-          h("span", null, capitalize(efforts[efforts.length - 1])),
-        ),
-      feedback ? h("p", { role: "status", className: "chat-composer-menu-field" }, feedback) : null,
-      h(
-        "div",
-        {
-          id: ids.models,
-          popover: "auto",
-          role: "group",
-          "aria-label": "Choose a model",
-          className: "popover popover-menu chat-composer-menu chat-composer-menu-end",
-          style: { positionAnchor: anchors.settings },
-        },
-        h("div", { className: "chat-composer-group" }, "Select model"),
-        ...model.choices.map((choice) =>
-          h(
-            "button",
-            {
-              key: choice.value,
-              type: "button",
-              className: "popover-menu-item chat-composer-menu-option",
-              "aria-pressed": model.value === choice.value,
-              disabled: pending,
-              onClick: (event) => choose(event, "model", choice.value),
-            },
-            h("span", { className: "chat-composer-label" }, choice.label),
-            model.value === choice.value ? h(Stroke, { kind: "check" }) : null,
-          ),
-        ),
-      ),
-    ),
-    h("span", { className: "sr-only", role: "status" }, pending ? "Change pending" : feedback),
   )
 }
 
@@ -659,7 +461,6 @@ function Composer(props) {
   return h(
     "div",
     { className: "flex flex-col" },
-    h(Context, { metadata, bridge: props.bridge }),
     h(Attachments, { items: attachments, onRemove: (item) => setAttachments((c) => c.filter((a) => a !== item)) }),
     h(
       Chat.Composer,
@@ -667,6 +468,7 @@ function Composer(props) {
         // The demo's look: borderless input, icon actions (one send/stop).
         compact: true,
         className: "chat-composer-ghost rounded-3xl",
+        context: h(Context, { metadata, bridge: props.bridge }),
         value,
         onValueChange: update,
         completion,
@@ -748,7 +550,50 @@ function Work({ tools }) {
   )
 }
 
-function Message({ message, targetId, timeline }) {
+// Codex asks before running a command or changing files. The decision is the
+// server's (`chat.decide`); the request stays until Codex closes it.
+const DECISIONS = [
+  { id: "accept", label: "Approve", tone: "primary" },
+  { id: "acceptForSession", label: "Approve for this session" },
+  { id: "decline", label: "Decline", tone: "danger" },
+]
+
+function Request({ request, bridge }) {
+  const [pending, setPending] = useState(false)
+  const [notice, setNotice] = useState("")
+
+  async function decide(decision) {
+    setPending(true)
+    setNotice("")
+    try {
+      await bridge.send("decide", { key: request.key, decision })
+    } catch (error) {
+      setNotice(error.message)
+      setPending(false)
+    }
+  }
+
+  return h(
+    Chat.Request,
+    {
+      id: `request-${request.key}`,
+      title: request.title,
+      state: request.answerable ? "pending" : "answer-elsewhere",
+      pending,
+      actions: request.answerable
+        ? DECISIONS.map((decision) => ({ ...decision, onSelect: () => decide(decision.id) }))
+        : [],
+      explanation: request.answerable
+        ? notice && h("p", { role: "alert", className: "text-error" }, notice)
+        : h("p", null, "Answer this request in a Codex app; Samgita cannot answer it yet."),
+    },
+    request.command && h("code", { className: "block whitespace-pre-wrap break-all" }, request.command),
+    request.reason && h("p", null, request.reason),
+    !request.answerable && h("p", null, request.method),
+  )
+}
+
+function Message({ message, targetId, timeline, bridge }) {
   const streaming = message.status === "streaming"
 
   if (message.role !== "assistant")
@@ -769,6 +614,7 @@ function Message({ message, targetId, timeline }) {
     { id: targetId, timeline, role: "article", "data-message-id": message.id },
     h(Chat.Header, null, message.author || "Codex"),
     tools.length > 0 && h(Work, { tools }),
+    ...(message.requests || []).map((request) => h(Request, { key: request.key, request, bridge })),
     message.content
       ? h(Chat.Content, { streaming }, h(Markdown, { markdown: message.content }))
       : streaming && h(Chat.Typing, { "aria-label": "Codex is working" }),

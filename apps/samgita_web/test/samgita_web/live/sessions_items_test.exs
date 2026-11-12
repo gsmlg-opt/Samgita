@@ -59,4 +59,45 @@ defmodule SamgitaWeb.SessionsItemsTest do
              }
            ] = Items.messages(items, true)
   end
+
+  test "pending Codex requests are shown in the last reply, or in a reply of their own" do
+    request = %{
+      "key" => "k1",
+      "method" => "item/commandExecution/requestApproval",
+      "params" => %{"command" => "mix deps.get", "reason" => "Needs network access"}
+    }
+
+    other = %{"key" => "k2", "method" => "item/tool/requestUserInput", "params" => %{}}
+    user = %{"id" => "u1", "kind" => "user", "text" => "Fix it"}
+
+    work = %{
+      "id" => "c1",
+      "kind" => "command",
+      "command" => "mix deps.get",
+      "status" => "inProgress"
+    }
+
+    assert [
+             %{"id" => "u1"},
+             %{
+               "id" => "c1",
+               "requests" => [
+                 %{
+                   "key" => "k1",
+                   "title" => "Codex wants to run a command",
+                   "command" => "mix deps.get",
+                   "reason" => "Needs network access",
+                   "answerable" => true
+                 },
+                 %{"key" => "k2", "method" => "item/tool/requestUserInput", "answerable" => false}
+               ]
+             }
+           ] = Items.messages([user, work], true, [request, other])
+
+    assert [%{"id" => "u1"}, %{"id" => "requests", "role" => "assistant", "requests" => [_]}] =
+             Items.messages([user], true, [request])
+
+    assert [%{"id" => "u1"}, reply] = Items.messages([user, work], true, [])
+    refute Map.has_key?(reply, "requests")
+  end
 end

@@ -293,6 +293,29 @@ defmodule SamgitaWeb.SessionsLiveTest do
                    3_000
   end
 
+  test "composer settings carry what the DuskMoon settings menus show", %{conn: conn, host: host} do
+    {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
+    assert_receive {:fake_codex, :params, "model/list", _}, 3_000
+
+    assert_push_event(
+      view,
+      "chat:event",
+      %{metadata: %{settings: [_, %{choices: [_ | _]} | _] = settings}},
+      3_000
+    )
+
+    settings = Map.new(settings, &{&1.id, &1})
+    full = Enum.find(settings["access"].choices, &(&1.value == "full"))
+    assert %{tone: "warning", description: "Runs any command" <> _} = full
+    assert Enum.all?(settings["access"].choices, &is_binary(&1.description))
+
+    # Reasoning effort is an ordered slider whose reset goes to the model's default.
+    assert %{ordered: true, defaultValue: "low", value: "low"} = settings["effort"]
+
+    assert [%{value: "low", label: "Low"}, %{value: "high", label: "High"}] =
+             settings["effort"].choices
+  end
+
   test "composer choices are checked and apply to the next turn", %{conn: conn, host: host} do
     {:ok, view, _} = live(conn, ~p"/sessions/#{host["id"]}/#{@thread_id}")
     assert_receive {:fake_codex, :params, "thread/resume", _}, 3_000
@@ -476,10 +499,33 @@ defmodule SamgitaWeb.SessionsLiveTest do
       }
     })
 
-    await(fn -> has_element?(view, "[id^=request-]", "mix deps.get") end)
-    view |> element("[id^=request-] [phx-value-decision=acceptForSession]") |> render_click()
+    # The request is shown in the chat, in the last Codex reply.
+    assert_push_event(
+      view,
+      "chat:event",
+      %{
+        type: "chat.message",
+        message: %{
+          "role" => "assistant",
+          "requests" => [
+            %{
+              "key" => key,
+              "command" => "mix deps.get",
+              "reason" => "Needs network access",
+              "answerable" => true
+            }
+          ]
+        }
+      },
+      3_000
+    )
 
+    chat(view, "chat.decide", %{"key" => key, "decision" => "acceptForSession"})
+    assert_reply(view, %{status: "ok"})
     assert_receive {:fake_codex, :response, 900, %{"decision" => "acceptForSession"}}, 3_000
-    refute has_element?(view, "[id^=request-]")
+
+    # Answered, it leaves the chat.
+    assert_push_event(view, "chat:event", %{type: "chat.message", message: reply}, 3_000)
+    refute Map.has_key?(reply, "requests")
   end
 end
