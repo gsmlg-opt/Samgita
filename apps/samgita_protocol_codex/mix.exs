@@ -17,7 +17,7 @@ defmodule SamgitaProtocolCodex.MixProject do
       deps_path: "deps",
       lockfile: "mix.lock",
       config_path: "config/config.exs",
-      deps: [{:samgita_protocol, "~> 0.4.1", path: "../samgita_protocol"}]
+      deps: [{:samgita_protocol, "~> 0.4", path: "../samgita_protocol"}]
     ]
   end
 

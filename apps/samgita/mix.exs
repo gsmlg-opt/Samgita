@@ -31,7 +31,7 @@ defmodule Samgita.MixProject do
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_pubsub, "~> 2.3"},
-      {:styx, "~> 0.1.1"},
+      {:styx, "~> 0.2"},
       {:jason, "~> 1.4"},
       {:tzdata, "~> 1.1"},
       {:http_fetch, "~> 1.0.0-rc.5"}

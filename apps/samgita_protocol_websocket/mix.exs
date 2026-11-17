@@ -18,12 +18,11 @@ defmodule SamgitaProtocolWebSocket.MixProject do
       lockfile: "mix.lock",
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
-        {:samgita_protocol, "~> 0.4.1", path: "../samgita_protocol"},
-        # TODO(upstream): gsmlg-dev/gaoxy#22 - adopt the published Abyss/Hell RC cohort refresh.
-        {:gaoxy_http, "~> 0.15.1"},
+        {:samgita_protocol, "~> 0.4", path: "../samgita_protocol"},
+        {:gaoxy_http, "~> 0.15"},
         {:plug, "~> 1.19"},
-        {:plug_crypto, "~> 2.2.1"},
-        {:websock_adapter, "~> 0.15.1", hex: :gaoxy_websock_adapter},
+        {:plug_crypto, "~> 2.2"},
+        {:websock_adapter, "~> 0.15", hex: :gaoxy_websock_adapter},
         {:http_web_socket, "~> 1.0.0-rc.5"},
         # Independent raw/malformed-frame oracle for the retained protocol tests.
         {:mint_web_socket, "~> 1.0", only: :test}

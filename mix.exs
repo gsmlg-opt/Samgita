@@ -23,9 +23,9 @@ defmodule Samgita.Umbrella.MixProject do
   defp deps do
     [
       # Dev/Test tools shared across all apps
-      {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:websock_adapter, "~> 0.15.1", hex: :gaoxy_websock_adapter, override: true}
+      {:websock_adapter, "~> 0.15", hex: :gaoxy_websock_adapter, override: true}
     ]
   end
 
