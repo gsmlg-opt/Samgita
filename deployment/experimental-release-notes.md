@@ -3,6 +3,12 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
+This release adds confirmed Agent removal in the operator UI and management
+API. Removal archives the registration and stops its managed Codex connection,
+while retaining Task, Attempt and audit history. Active or unresolved execution
+must be resolved before removal. It also refreshes the Gaoxy/HTTP, DuskMoon and
+Styx dependencies.
+
 The release builds every archive, compiles the extracted Hex packages in an
 outside consumer, runs the reviewed release-helper functional tests, and builds
 the application and container before publication. Those checks start no

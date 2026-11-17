@@ -44,6 +44,7 @@ class ReleaseTest(unittest.TestCase):
                 self.assertEqual(release.release_channel(version), "stable")
 
     def test_updates_both_root_versions_all_apps_and_sibling_requirements(self):
+        self.set_sibling_requirements(self.current)
         release.prepare(self.root, self.next_version, self.output)
         for path in release.manifests():
             source = (self.root / path).read_text()
@@ -52,6 +53,36 @@ class ReleaseTest(unittest.TestCase):
         for name, dependency in release.SIBLINGS.items():
             source = (self.root / "apps" / name / "mix.exs").read_text()
             self.assertIn(f'{{:{dependency}, "~> {self.next_version}", path: "../{dependency}"}}', source)
+
+    def set_sibling_requirements(self, requirement):
+        for name, dependency in release.SIBLINGS.items():
+            path = self.root / "apps" / name / "mix.exs"
+            source = path.read_text()
+            for current in (self.current, self.current.rsplit(".", 1)[0]):
+                source = source.replace(
+                    f'{{:{dependency}, "~> {current}", path: "../{dependency}"}}',
+                    f'{{:{dependency}, "~> {requirement}", path: "../{dependency}"}}',
+                )
+            path.write_text(source)
+
+    def test_minor_series_sibling_requirements_keep_their_precision(self):
+        self.set_sibling_requirements(self.current.rsplit(".", 1)[0])
+        release.prepare(self.root, self.next_version, self.output)
+        target = self.next_version.rsplit(".", 1)[0]
+        for name, dependency in release.SIBLINGS.items():
+            source = (self.root / "apps" / name / "mix.exs").read_text()
+            self.assertIn(f'{{:{dependency}, "~> {target}", path: "../{dependency}"}}', source)
+            staged = (self.output / name / "mix.exs").read_text()
+            self.assertIn(f'{{:{dependency}, "~> {target}"}}', staged)
+
+    def test_inconsistent_sibling_requirement_leaves_checkout_unchanged(self):
+        self.set_sibling_requirements("999.0")
+        paths = (*release.manifests(self.root), Path("apps/samgita_web/package.json"), Path("package-lock.json"))
+        before = {path: (self.root / path).read_bytes() for path in paths}
+        with self.assertRaisesRegex(ValueError, "expected one versioned sibling dependency"):
+            release.prepare(self.root, self.next_version, self.output)
+        self.assertEqual(before, {path: (self.root / path).read_bytes() for path in paths})
+        self.assertFalse(self.output.exists())
 
     def test_staged_packages_use_hex_requirements_and_preserve_publishable_inputs(self):
         release.prepare(self.root, self.current, self.output)

@@ -81,11 +81,19 @@ def version_changes(root, version):
     updated[lock_path] = json.dumps(lock_metadata, indent=2) + "\n"
     for name, dependency in SIBLINGS.items():
         path = Path("apps") / name / "mix.exs"
-        old = f'{{:{dependency}, "~> {canonical}", path: "../{dependency}"}}'
-        if updated[path].count(old) != 1:
+        candidates = [
+            (f'{{:{dependency}, "~> {current}", path: "../{dependency}"}}', target)
+            for current, target in (
+                (canonical, version),
+                (canonical.rsplit(".", 1)[0], version.rsplit(".", 1)[0]),
+            )
+        ]
+        matches = [(old, target) for old, target in candidates if old in updated[path]]
+        if len(matches) != 1 or updated[path].count(matches[0][0]) != 1:
             raise ValueError(f"expected one versioned sibling dependency in {path}")
+        old, target = matches[0]
         updated[path] = updated[path].replace(
-            old, f'{{:{dependency}, "~> {version}", path: "../{dependency}"}}'
+            old, f'{{:{dependency}, "~> {target}", path: "../{dependency}"}}'
         )
     return updated
 
