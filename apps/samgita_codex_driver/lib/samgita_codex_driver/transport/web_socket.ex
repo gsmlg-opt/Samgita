@@ -69,7 +69,6 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
       owner: self(),
       headers: headers,
       http_version: :http1,
-      tls_backend: :ex_ssl,
       ssl: Keyword.get(opts, :tls_opts, []),
       connect_address: Keyword.get(opts, :connect_address),
       unix_socket: Keyword.get(opts, :unix_socket),
