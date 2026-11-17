@@ -3,11 +3,11 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
-This release adds confirmed Agent removal in the operator UI and management
-API. Removal archives the registration and stops its managed Codex connection,
-while retaining Task, Attempt and audit history. Active or unresolved execution
-must be resolved before removal. It also refreshes the Gaoxy/HTTP, DuskMoon and
-Styx dependencies.
+This release includes the OpenSSH client in the runtime image so SSH-configured
+Codex hosts can open their connection. Deployments must provide the operator's
+SSH configuration, identity and existing known-hosts records at runtime;
+credentials are not bundled in the image. The local transport still connects
+only to a daemon socket visible inside the container.
 
 The release builds every archive, compiles the extracted Hex packages in an
 outside consumer, runs the reviewed release-helper functional tests, and builds

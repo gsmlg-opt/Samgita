@@ -84,6 +84,7 @@ RUN apt-get update -y && \
     apt-get install -y \
     libstdc++6 \
     openssl \
+    openssh-client \
     libncurses6 \
     locales \
     ca-certificates \
