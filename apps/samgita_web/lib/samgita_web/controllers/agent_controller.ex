@@ -15,6 +15,9 @@ defmodule SamgitaWeb.AgentController do
   def update(conn, %{"id" => id}),
     do: API.result(conn, Agents.update(API.principal(conn), id, API.attrs(conn)))
 
+  def delete(conn, %{"id" => id}),
+    do: API.result(conn, Agents.remove(API.principal(conn), id, API.attrs(conn)))
+
   def put_credential(conn, %{"agent_id" => id}) do
     conn
     |> API.no_store()

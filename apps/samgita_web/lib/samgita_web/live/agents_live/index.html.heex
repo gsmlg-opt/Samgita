@@ -127,34 +127,55 @@
           <% end %>
         </:col>
         <:col :let={agent} label={gettext("Actions")}>
-          <div :if={host = @hosts[agent["id"]]} class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2">
+            <div :if={host = @hosts[agent["id"]]} class="flex flex-wrap gap-2">
+              <.dm_btn
+                :if={!host["enabled"]}
+                id={"agent-start-#{host["id"]}"}
+                size="sm"
+                variant="primary"
+                phx-click="start"
+                phx-value-id={host["id"]}
+              >
+                {gettext("Start")}
+              </.dm_btn>
+              <.dm_btn
+                :if={host["enabled"]}
+                id={"agent-stop-#{host["id"]}"}
+                size="sm"
+                phx-click="stop"
+                phx-value-id={host["id"]}
+              >
+                {gettext("Stop")}
+              </.dm_btn>
+              <.dm_btn
+                :if={host["enabled"]}
+                id={"agent-reconnect-#{host["id"]}"}
+                size="sm"
+                phx-click="reconnect"
+                phx-value-id={host["id"]}
+              >
+                {gettext("Reconnect")}
+              </.dm_btn>
+            </div>
             <.dm_btn
-              :if={!host["enabled"]}
-              id={"agent-start-#{host["id"]}"}
+              id={"agent-remove-#{agent["id"]}"}
               size="sm"
-              variant="primary"
-              phx-click="start"
-              phx-value-id={host["id"]}
+              variant="error"
+              confirm={
+                gettext(
+                  "Remove %{name}? Its connection will stop. Task and Attempt history is kept.",
+                  name: agent["name"]
+                )
+              }
+              confirm_title={gettext("Remove Agent")}
+              confirm_text={gettext("Remove Agent")}
+              phx-click="remove"
+              phx-value-id={agent["id"]}
+              phx-value-command={@removal_commands[agent["id"]].id}
+              phx-value-version={@removal_commands[agent["id"]].version}
             >
-              {gettext("Start")}
-            </.dm_btn>
-            <.dm_btn
-              :if={host["enabled"]}
-              id={"agent-stop-#{host["id"]}"}
-              size="sm"
-              phx-click="stop"
-              phx-value-id={host["id"]}
-            >
-              {gettext("Stop")}
-            </.dm_btn>
-            <.dm_btn
-              :if={host["enabled"]}
-              id={"agent-reconnect-#{host["id"]}"}
-              size="sm"
-              phx-click="reconnect"
-              phx-value-id={host["id"]}
-            >
-              {gettext("Reconnect")}
+              {gettext("Remove")}
             </.dm_btn>
           </div>
         </:col>

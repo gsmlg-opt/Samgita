@@ -23,7 +23,8 @@ defmodule SamgitaWeb.AgentsLive.Index do
        error: nil,
        warning: nil,
        load_error: nil,
-       hosts: %{}
+       hosts: %{},
+       removal_commands: %{}
      )}
   end
 
@@ -110,6 +111,31 @@ defmodule SamgitaWeb.AgentsLive.Index do
     case CodexHosts.reconnect(Principal.operator(), id) do
       :ok -> {:noreply, put_flash(socket, :info, "Reconnecting.")}
       _ -> {:noreply, socket |> load() |> put_flash(:error, "The connection is not running.")}
+    end
+  end
+
+  def handle_event("remove", %{"id" => id} = params, socket) do
+    attrs =
+      %{"command_id" => params["command"], "expected_version" => params["version"]}
+      |> Components.version_attrs()
+
+    case Agents.remove(Principal.operator(), id, attrs) do
+      {:ok, _} ->
+        socket = socket |> load() |> put_flash(:info, "Agent removed. History is kept.")
+        page = socket.assigns.page
+
+        socket =
+          if page["data"] == [] && page["offset"] > 0 do
+            offset = div(max(page["total"] - 1, 0), 25) * 25
+            push_patch(socket, to: ~p"/agents?offset=#{offset}")
+          else
+            socket
+          end
+
+        {:noreply, socket}
+
+      {:error, error} ->
+        {:noreply, put_flash(socket, :error, removal_error(error))}
     end
   end
 
@@ -202,6 +228,11 @@ defmodule SamgitaWeb.AgentsLive.Index do
   defp failed(socket, params, error),
     do: assign(socket, form: to_form(params, as: :agent), error: Components.error_message(error))
 
+  defp removal_error(%Samgita.Error{code: :conflict, details: %{reason: "unresolved_execution"}}),
+    do: "This Agent has active or unresolved execution. Resolve it before removing the Agent."
+
+  defp removal_error(error), do: Components.error_message(error)
+
   defp load(socket) do
     with {:ok, page} <-
            Management.agents(Principal.operator(), %{
@@ -209,7 +240,24 @@ defmodule SamgitaWeb.AgentsLive.Index do
              "offset" => socket.assigns.offset
            }),
          {:ok, hosts} <- CodexHosts.list(Principal.operator()) do
-      assign(socket, page: page, hosts: Map.new(hosts, &{&1["agent_id"], &1}), load_error: nil)
+      removal_commands =
+        Map.new(page["data"], fn agent ->
+          previous = socket.assigns.removal_commands[agent["id"]]
+
+          command =
+            if previous && previous.version == agent["version"],
+              do: previous,
+              else: %{id: Ecto.UUID.generate(), version: agent["version"]}
+
+          {agent["id"], command}
+        end)
+
+      assign(socket,
+        page: page,
+        hosts: Map.new(hosts, &{&1["agent_id"], &1}),
+        removal_commands: removal_commands,
+        load_error: nil
+      )
     else
       {:error, error} ->
         assign(socket,

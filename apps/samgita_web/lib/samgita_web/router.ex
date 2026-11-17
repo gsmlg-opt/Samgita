@@ -81,7 +81,7 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/github/repositories/:id/reconcile", GitHubController, :reconcile
     post "/projects/:project_id/members", ProjectController, :put_member
 
-    resources "/agents", AgentController, only: [:index, :show, :create, :update]
+    resources "/agents", AgentController, only: [:index, :show, :create, :update, :delete]
 
     resources "/codex-hosts", CodexHostController, only: [:index, :show, :create]
     post "/codex-hosts/:codex_host_id/enable", CodexHostController, :enable

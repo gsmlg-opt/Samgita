@@ -6,6 +6,7 @@ defmodule Samgita.Domain.Agent do
     field :name, :string
     field :implementation, :string
     field :enabled, :boolean, default: true
+    field :removed_at, :utc_datetime_usec
     field :capacity, :integer, default: 1
     field :advertised_capabilities, {:array, :string}, default: []
     field :approved_capabilities, {:array, :string}, default: []

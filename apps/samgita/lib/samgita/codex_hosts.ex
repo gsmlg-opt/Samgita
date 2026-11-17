@@ -29,6 +29,7 @@ defmodule Samgita.CodexHosts do
           from h in CodexHost,
             join: a in Agent,
             on: a.id == h.agent_id,
+            where: is_nil(a.removed_at),
             order_by: [asc: h.inserted_at, asc: h.id],
             select: {h, a.name}
         )
@@ -79,6 +80,7 @@ defmodule Samgita.CodexHosts do
         if !Params.uuid?(attrs["agent_id"]), do: Commands.fail!(:invalid, %{field: "agent_id"})
 
         agent = Repo.get(Agent, attrs["agent_id"]) || Commands.fail!(:not_found)
+        if agent.removed_at, do: Commands.fail!(:invalid_transition)
         if agent.runtime_driver != "codex", do: Commands.fail!(:invalid, %{field: "agent_id"})
 
         existing =
@@ -736,6 +738,7 @@ defmodule Samgita.CodexHosts do
           from h in CodexHost,
             join: a in Agent,
             on: a.id == h.agent_id,
+            where: is_nil(a.removed_at),
             where: ^same,
             select: a.name
         )
@@ -798,7 +801,15 @@ defmodule Samgita.CodexHosts do
 
   @doc false
   def enabled_ids,
-    do: Repo.all(from h in CodexHost, where: h.enabled, order_by: h.id, select: h.id)
+    do:
+      Repo.all(
+        from h in CodexHost,
+          join: a in Agent,
+          on: a.id == h.agent_id,
+          where: h.enabled and is_nil(a.removed_at),
+          order_by: h.id,
+          select: h.id
+      )
 
   @doc false
   def load(id), do: fetch(id)
@@ -858,6 +869,9 @@ defmodule Samgita.CodexHosts do
         Commands.operator!(principal)
         host = (agent_id && lock!(id)) || Commands.fail!(:not_found)
         Commands.expect!(host, attrs)
+
+        if enabled && Repo.get!(Agent, agent_id).removed_at,
+          do: Commands.fail!(:invalid_transition)
 
         if host.enabled == enabled do
           projection(host)

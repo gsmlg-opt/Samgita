@@ -3,7 +3,16 @@ defmodule Samgita.Agents do
   import Ecto.Query
   import Ecto.Changeset
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
-  alias Samgita.Domain.{Agent, AgentConnection, AgentCredential, ExecutionSession}
+
+  alias Samgita.Domain.{
+    Agent,
+    AgentConnection,
+    AgentCredential,
+    CodexHost,
+    ExecutionSession,
+    TaskAttempt
+  }
+
   @read_roles ~w(observer worker manager reviewer)
   # Codex is not pinned (design §11): any well-formed version string is accepted.
   @runtime_version ~r/\A[0-9A-Za-z][0-9A-Za-z.+-]{0,63}\z/
@@ -32,6 +41,7 @@ defmodule Samgita.Agents do
         Commands.operator!(principal)
         agent = Repo.get(Agent, id) || Commands.fail!(:not_found)
         Commands.expect!(agent, attrs)
+        require_current!(agent)
         previous = agent
 
         agent =
@@ -50,6 +60,79 @@ defmodule Samgita.Agents do
     )
   end
 
+  @doc "Remove a registration from current use while retaining its identity and history."
+  def remove(principal, id, attrs) do
+    attrs = Params.strings(attrs)
+
+    Commands.run(
+      principal,
+      nil,
+      attrs,
+      [operation: "agent.remove:" <> to_string(id), agent_ids: [id]],
+      fn ctx ->
+        Commands.operator!(principal)
+        agent = Repo.get(Agent, id) || Commands.fail!(:not_found)
+        Commands.expect!(agent, attrs)
+
+        if agent.removed_at do
+          Projection.agent(agent)
+        else
+          if Repo.exists?(
+               from a in TaskAttempt,
+                 where:
+                   a.agent_id == ^id and
+                     (a.state in ["leased", "running"] or not a.effects_resolved)
+             ),
+             do: Commands.fail!(:conflict, %{reason: "unresolved_execution"})
+
+          disable_host!(ctx, id)
+
+          removed =
+            agent
+            |> change(enabled: false, removed_at: DateTime.utc_now(), version: agent.version + 1)
+            |> Commands.update!()
+
+          Events.append!(nil, "agent.removed", ctx, "agent", id, %{},
+            previous: agent,
+            current: removed
+          )
+
+          Projection.agent(removed)
+        end
+      end
+    )
+    |> stop_removed_host()
+  end
+
+  defp disable_host!(ctx, agent_id) do
+    host = Repo.one(from h in CodexHost, where: h.agent_id == ^agent_id, lock: "FOR UPDATE")
+
+    if host && host.enabled do
+      disabled = host |> change(enabled: false, version: host.version + 1) |> Commands.update!()
+
+      Events.append!(
+        nil,
+        "codex_host.disabled",
+        ctx,
+        "codex_host",
+        host.id,
+        %{"agent_id" => agent_id, "transport" => host.transport},
+        previous: host,
+        current: disabled
+      )
+    end
+  end
+
+  defp stop_removed_host({:ok, %{"id" => id}} = result) do
+    if host = Repo.get_by(CodexHost, agent_id: id), do: Samgita.CodexHosts.Runtime.sync(host.id)
+    result
+  end
+
+  defp stop_removed_host(result), do: result
+
+  defp require_current!(%Agent{removed_at: nil}), do: :ok
+  defp require_current!(_agent), do: Commands.fail!(:invalid_transition)
+
   def get(principal, id) do
     Commands.read(principal, nil, [], fn _ ->
       Commands.operator!(principal)
@@ -62,7 +145,16 @@ defmodule Samgita.Agents do
     Commands.read(principal, nil, [], fn _ ->
       Commands.operator!(principal)
       {limit, offset} = Params.page(params)
-      data = Repo.all(from a in Agent, order_by: a.id, limit: ^limit, offset: ^offset)
+
+      data =
+        Repo.all(
+          from a in Agent,
+            where: is_nil(a.removed_at),
+            order_by: a.id,
+            limit: ^limit,
+            offset: ^offset
+        )
+
       %{"data" => Enum.map(data, &Projection.agent/1), "limit" => limit, "offset" => offset}
     end)
   end
@@ -79,6 +171,7 @@ defmodule Samgita.Agents do
         Commands.operator!(principal)
         agent = Repo.get(Agent, id) || Commands.fail!(:not_found)
         Commands.expect!(agent, attrs)
+        require_current!(agent)
         credential = attrs["credential"]
 
         if !is_binary(credential) || byte_size(credential) < 32 || byte_size(credential) > 4096,

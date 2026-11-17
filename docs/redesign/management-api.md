@@ -65,7 +65,7 @@ relative to `/api`; route availability does not waive command preconditions.
 
 | Resource | Routes |
 | --- | --- |
-| Agents | `GET/POST /agents`, `GET/PATCH /agents/:id` |
+| Agents | `GET/POST /agents`, `GET/PATCH/DELETE /agents/:id` |
 | Inbound credentials | `POST /agents/:agent_id/credentials`, `POST /agents/:agent_id/credentials/:credential_id/revoke` |
 | Projects | `GET/POST /projects`, `GET/PATCH /projects/:id`, `POST /projects/:project_id/transition`, `GET /projects/:project_id/context` |
 | Memberships | `POST /projects/:project_id/members` |
@@ -91,6 +91,18 @@ An Agent registration needs a name; native protocol/version defaults are
 `samgita`/`1.0`. Capacity, advertised/approved capabilities, enablement and safe
 endpoint descriptors are operator-managed. Approval must be a subset of the
 advertised catalog. Descriptive `implementation` grants no authorization.
+
+`DELETE /api/agents/:id` removes an Agent from normal listings using
+`command_id` and its current `expected_version`. Removal archives the identity
+with `removed_at`, disables the Agent and its Codex host, and stops that host's
+Samgita connection after commit. It does not delete Task, Attempt, membership,
+connection or audit history, and does not stop the Codex daemon or its threads.
+The historical Agent detail remains readable by ID; removed Agents are excluded
+from normal Agent/host listings and new-work choices. An active Attempt or
+unresolved execution rejects removal with `conflict` and reason
+`unresolved_execution`. Resolve execution first; removal never cancels work or
+clears an execution hold. Repeating the same command replays its original result.
+There is no restore operation.
 
 Credential registration takes an operator-supplied `credential` of 32–4096 bytes,
 optional metadata reference/expiry and the current Agent version. It hashes the

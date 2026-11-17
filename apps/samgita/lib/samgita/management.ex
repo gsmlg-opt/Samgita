@@ -34,7 +34,7 @@ defmodule Samgita.Management do
       %{
         "authority" => Projection.authority(Repo.get!(PlatformAuthority, 1)),
         "counts" => %{
-          "agents" => Repo.aggregate(Agent, :count),
+          "agents" => count(from(a in Agent, where: is_nil(a.removed_at))),
           "projects" => Repo.aggregate(Project, :count),
           "tasks" => Repo.aggregate(Task, :count),
           "awaiting_review" => count(from(t in Task, where: t.state == "awaiting_review")),
@@ -53,6 +53,7 @@ defmodule Samgita.Management do
       records =
         Repo.all(
           from(a in Agent,
+            where: is_nil(a.removed_at),
             order_by: [desc: a.inserted_at, asc: a.id],
             limit: ^limit,
             offset: ^offset
@@ -63,7 +64,7 @@ defmodule Samgita.Management do
 
       %{
         "data" => Enum.map(records, &agent_projection(&1, evidence)),
-        "total" => Repo.aggregate(Agent, :count),
+        "total" => count(from(a in Agent, where: is_nil(a.removed_at))),
         "limit" => limit,
         "offset" => offset
       }
@@ -174,9 +175,9 @@ defmodule Samgita.Management do
           )
           |> Enum.map(&Events.subscription_projection/1),
         "agent_choices" =>
-          Repo.all(from(a in Agent, order_by: a.id, limit: 100))
+          Repo.all(from(a in Agent, where: is_nil(a.removed_at), order_by: a.id, limit: 100))
           |> Enum.map(&Projection.fields(&1, ~w(id name enabled)a)),
-        "agent_choices_total" => Repo.aggregate(Agent, :count),
+        "agent_choices_total" => count(from(a in Agent, where: is_nil(a.removed_at))),
         "limit" => limit,
         "offset" => offset,
         "totals" => Map.new(queries, fn {key, query} -> {key, count(query)} end)

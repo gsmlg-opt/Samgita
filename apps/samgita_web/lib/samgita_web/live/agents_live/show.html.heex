@@ -14,6 +14,16 @@
       </div>
       <.dm_link navigate={~p"/agents"} class="font-semibold">{gettext("Back to Agents")}</.dm_link>
     </header>
+    <p
+      :if={@detail["agent"]["removed_at"]}
+      id="agent-removed"
+      class="rounded border border-outline p-4"
+    >
+      {gettext(
+        "Removed on %{at}. This Agent is no longer available for work. Historical records are kept.",
+        at: timestamp(@detail["agent"]["removed_at"])
+      )}
+    </p>
     <p :if={@error} id="agent-error" role="alert" class="text-error">{@error}</p>
     <div class="grid items-start gap-6 lg:grid-cols-[16rem_1fr]">
       <nav id="agent-sections" aria-label={gettext("Agent settings")} class="card card-bordered">
@@ -81,7 +91,10 @@
                 </dd>
               </div>
             </dl>
-            <div :if={@codex_host} class="mb-4 flex flex-wrap gap-2">
+            <div
+              :if={@codex_host && !@detail["agent"]["removed_at"]}
+              class="mb-4 flex flex-wrap gap-2"
+            >
               <.dm_btn
                 :if={!@codex_host["enabled"]}
                 id="codex-host-enable"
@@ -151,7 +164,7 @@
           </div>
         </div>
         <div
-          :if={@codex_host}
+          :if={@codex_host && !@detail["agent"]["removed_at"]}
           id="section-projects"
           hidden={@section != "projects"}
           class="space-y-6"
@@ -270,7 +283,7 @@
           </.dm_card>
         </div>
         <div
-          :if={@codex_form}
+          :if={@codex_form && !@detail["agent"]["removed_at"]}
           id="section-connection"
           hidden={@section != "connection"}
           class="space-y-6"
@@ -393,7 +406,7 @@
           </.dm_card>
         </div>
         <div id="section-general" hidden={@section != "general"} class="space-y-6">
-          <.dm_card variant="bordered">
+          <.dm_card :if={!@detail["agent"]["removed_at"]} variant="bordered">
             <:title>{gettext("Registration and approvals")}</:title>
             <.form
               for={@form}
@@ -413,9 +426,34 @@
               </.dm_btn>
             </.form>
           </.dm_card>
+          <.dm_card :if={!@detail["agent"]["removed_at"]} variant="bordered">
+            <:title>{gettext("Remove Agent")}</:title>
+            <p class="mb-4 text-sm text-on-surface-variant">
+              {gettext(
+                "Stop its connection and remove it from the Agents list. Task, Attempt and audit history is kept. Active or unresolved execution must be resolved first."
+              )}
+            </p>
+            <.dm_btn
+              id="agent-remove"
+              variant="error"
+              confirm={
+                gettext(
+                  "Remove %{name}? Its connection will stop. Task and Attempt history is kept.",
+                  name: @detail["agent"]["name"]
+                )
+              }
+              confirm_title={gettext("Remove Agent")}
+              confirm_text={gettext("Remove Agent")}
+              phx-click="remove"
+              phx-value-command={@removal_command_id}
+              phx-value-version={@detail["agent"]["version"]}
+            >
+              {gettext("Remove Agent")}
+            </.dm_btn>
+          </.dm_card>
         </div>
         <div
-          :if={!@codex_host}
+          :if={!@codex_host && !@detail["agent"]["removed_at"]}
           id="section-credentials"
           hidden={@section != "credentials"}
           class="space-y-6"

@@ -37,7 +37,8 @@ defmodule SamgitaWeb.AgentsLive.Show do
         do: socket,
         else: socket |> load() |> assign(loaded: {id, socket.assigns.offset})
 
-    sections = sections(socket.assigns.codex_host)
+    removed = socket.assigns.detail && socket.assigns.detail["agent"]["removed_at"]
+    sections = sections(socket.assigns.codex_host, removed)
     keys = Enum.map(sections, &elem(&1, 0))
     section = if params["section"] in keys, do: params["section"], else: "overview"
     {:noreply, assign(socket, sections: sections, section: section)}
@@ -52,7 +53,10 @@ defmodule SamgitaWeb.AgentsLive.Show do
     end
   end
 
-  defp sections(codex_host) do
+  defp sections(_codex_host, removed) when not is_nil(removed) and removed != false,
+    do: [{"overview", "Overview"}, {"general", "General"}, {"activity", "Activity"}]
+
+  defp sections(codex_host, _removed) do
     if codex_host do
       [
         {"overview", "Overview"},
@@ -92,6 +96,23 @@ defmodule SamgitaWeb.AgentsLive.Show do
            form: to_form(Components.form_values(Components.agent_attrs(params)), as: :agent),
            error: Components.error_message(error)
          )}
+    end
+  end
+
+  def handle_event("remove", params, socket) do
+    attrs =
+      %{"command_id" => params["command"], "expected_version" => params["version"]}
+      |> Components.version_attrs()
+
+    case Agents.remove(Principal.operator(), socket.assigns.agent_id, attrs) do
+      {:ok, _} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Agent removed. History is kept.")
+         |> push_navigate(to: ~p"/agents")}
+
+      {:error, error} ->
+        {:noreply, assign(socket, error: removal_error(error))}
     end
   end
 
@@ -240,12 +261,27 @@ defmodule SamgitaWeb.AgentsLive.Show do
         %{assigns: %{codex_host: %{"id" => id}}} = socket
       ) do
     # Reconnects also change durable fields (generation, last connection, machine).
+    {:ok, agent} = Agents.get(Principal.operator(), socket.assigns.agent_id)
     {:ok, host} = CodexHosts.for_agent(Principal.operator(), socket.assigns.agent_id)
     socket = assign(socket, codex_host: Map.put(host, "status", status))
 
-    if status["state"] == "connected",
-      do: {:noreply, load_projects(socket)},
-      else: {:noreply, socket}
+    cond do
+      agent["removed_at"] ->
+        sections = sections(host, agent["removed_at"])
+
+        section =
+          if Enum.any?(sections, &(elem(&1, 0) == socket.assigns.section)),
+            do: socket.assigns.section,
+            else: "overview"
+
+        {:noreply, socket |> load() |> assign(sections: sections, section: section)}
+
+      status["state"] == "connected" ->
+        {:noreply, load_projects(socket)}
+
+      true ->
+        {:noreply, socket}
+    end
   end
 
   def handle_info(_message, socket), do: {:noreply, socket}
@@ -307,6 +343,11 @@ defmodule SamgitaWeb.AgentsLive.Show do
   defp codex_error(%Samgita.Error{code: :invalid} = error), do: Components.error_message(error)
   defp codex_error(_), do: "Codex could not be reached."
 
+  defp removal_error(%Samgita.Error{code: :conflict, details: %{reason: "unresolved_execution"}}),
+    do: "This Agent has active or unresolved execution. Resolve it before removing the Agent."
+
+  defp removal_error(error), do: Components.error_message(error)
+
   defp load_codex_host(socket, %{"runtime_driver" => "codex"} = agent) do
     {:ok, host} = CodexHosts.for_agent(Principal.operator(), agent["id"])
 
@@ -325,7 +366,7 @@ defmodule SamgitaWeb.AgentsLive.Show do
 
     socket
     |> assign(codex_host: host, codex_form: to_form(values, as: :codex_host))
-    |> load_projects()
+    |> then(fn socket -> if agent["removed_at"], do: socket, else: load_projects(socket) end)
   end
 
   defp load_codex_host(socket, _agent), do: assign(socket, codex_host: nil, codex_form: nil)
@@ -375,6 +416,7 @@ defmodule SamgitaWeb.AgentsLive.Show do
           form: to_form(form, as: :agent),
           credential_form: to_form(credential, as: :credential),
           revoke_forms: revoke_forms,
+          removal_command_id: Ecto.UUID.generate(),
           total: total,
           error: nil,
           load_error: nil
