@@ -5,7 +5,7 @@ defmodule Samgita.Umbrella.MixProject do
     [
       apps_path: "apps",
       apps: [:samgita, :samgita_web],
-      version: "0.4.1",
+      version: "0.4.2",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -55,7 +55,7 @@ defmodule Samgita.Umbrella.MixProject do
   defp releases do
     [
       samgita: [
-        version: "0.4.1",
+        version: "0.4.2",
         applications: [
           samgita: :permanent,
           samgita_web: :permanent
