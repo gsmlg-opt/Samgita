@@ -4,7 +4,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
   def project do
     [
       app: :samgita_protocol_websocket,
-      version: "0.4.2",
+      version: "0.4.3",
       description:
         "Optional WebSocket transport and explicitly started Agent hosts for SamgitaProtocol.",
       package: [
