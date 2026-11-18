@@ -38,6 +38,7 @@ defmodule SamgitaWeb.Endpoint do
   end
 
   plug Plug.RequestId
+  plug SamgitaWeb.Plugs.AgentIngress
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug SamgitaWeb.Plugs.GitHubRawBody

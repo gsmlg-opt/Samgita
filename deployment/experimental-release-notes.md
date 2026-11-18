@@ -3,11 +3,28 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
-This release includes the OpenSSH client in the runtime image so SSH-configured
-Codex hosts can open their connection. Deployments must provide the operator's
-SSH configuration, identity and existing known-hosts records at runtime;
-credentials are not bundled in the image. The local transport still connects
-only to a daemon socket visible inside the container.
+This release adds Agent-initiated WebSockets at `/app-server`: a new device
+waits for operator confirmation in Samgita, then uses its automatically saved
+token to restore the same Agent identity after reconnect or restart. Samgita
+stores only the digest. Native event delivery and status queries share that
+socket; reconnect does not replay execution or transfer an Attempt. Each Agent
+uses its own connection. Actual Synapsis client adaptation remains separate.
+
+The reusable protocol adds optional `sessions.list.v1` with read-only
+`thread/list`, pagination and metadata filtering. Existing `sessions.v1` hosts
+retain their method set. The WebSocket client adds configurable Ping keepalive
+(20 seconds by default), owner disconnect notifications, and bounded cleanup
+that acknowledges queued deliveries before confirming transport termination.
+
+Local reviewed functional checks passed for thread listing, lifecycle,
+fragmented control traffic, ordinary outbound event delivery and the inbound
+delivery/read-only UI. The generated schema and outside-consumer checks passed.
+Device confirmation, authentication, authorization and approval tests remain
+unrun under the verification restriction; those gates are not qualified.
+
+The runtime image retains the OpenSSH client. Deployments provide SSH
+configuration, identity and known-hosts records externally; credentials are not
+bundled in the image. The local transport still sees the container filesystem.
 
 The release builds every archive, compiles the extracted Hex packages in an
 outside consumer, runs the reviewed release-helper functional tests, and builds

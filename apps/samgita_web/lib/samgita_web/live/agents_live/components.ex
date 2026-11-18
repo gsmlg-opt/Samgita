@@ -37,7 +37,7 @@ defmodule SamgitaWeb.AgentsLive.Components do
       />
     </div>
     <fieldset class="space-y-4">
-      <legend class="font-semibold">{gettext("Protocol and outbound endpoint")}</legend>
+      <legend class="font-semibold">{gettext("Protocol and connection")}</legend>
       <div class="grid gap-4 sm:grid-cols-2">
         <.dm_input
           field={@form[:protocol]}
@@ -52,6 +52,7 @@ defmodule SamgitaWeb.AgentsLive.Components do
           options={[{SamgitaProtocol.version(), SamgitaProtocol.version()}]}
         />
         <.dm_input
+          :if={@form[:endpoint_transport].value != "inbound_websocket"}
           field={@form[:endpoint_url]}
           label={gettext("Agent endpoint URL (optional)")}
           placeholder="wss://agent.example/app-server"
@@ -62,11 +63,17 @@ defmodule SamgitaWeb.AgentsLive.Components do
         <.dm_input
           field={@form[:endpoint_transport]}
           type="select"
-          label={gettext("Endpoint transport")}
-          options={[{gettext("Not configured"), ""}, {"WebSocket", "websocket"}, {"stdio", "stdio"}]}
+          label={gettext("Connection mode")}
+          options={[
+            {gettext("Not configured"), ""},
+            {gettext("Samgita connects over WebSocket"), "websocket"},
+            {gettext("Agent connects to Samgita"), "inbound_websocket"},
+            {"stdio", "stdio"}
+          ]}
         />
       </div>
       <.dm_input
+        :if={@form[:endpoint_transport].value != "inbound_websocket"}
         field={@form[:credential_ref]}
         label={gettext("Outbound credential reference (optional)")}
         maxlength="512"
@@ -76,6 +83,14 @@ defmodule SamgitaWeb.AgentsLive.Components do
           )
         }
       />
+      <p
+        :if={@form[:endpoint_transport].value == "inbound_websocket"}
+        class="text-sm text-on-surface-variant"
+      >
+        {gettext(
+          "The Agent connects to Samgita. Confirm a new device on the Agents page; remembered devices reconnect automatically."
+        )}
+      </p>
     </fieldset>
     <fieldset class="space-y-4">
       <legend class="font-semibold">{gettext("Capabilities")}</legend>
@@ -152,16 +167,23 @@ defmodule SamgitaWeb.AgentsLive.Components do
   defp safe_endpoint_url(_), do: ""
 
   defp endpoint_attrs(attrs, params) do
-    if Map.has_key?(params, "endpoint_url") or Map.has_key?(params, "endpoint_transport") do
-      endpoint = %{"url" => params["endpoint_url"], "transport" => params["endpoint_transport"]}
+    cond do
+      params["endpoint_transport"] == "inbound_websocket" ->
+        attrs
+        |> Map.put("endpoint_metadata", %{"transport" => "inbound_websocket"})
+        |> Map.put("credential_ref", nil)
 
-      Map.put(
-        attrs,
-        "endpoint_metadata",
-        Map.reject(endpoint, fn {_key, value} -> value in [nil, ""] end)
-      )
-    else
-      attrs
+      Map.has_key?(params, "endpoint_url") or Map.has_key?(params, "endpoint_transport") ->
+        endpoint = %{"url" => params["endpoint_url"], "transport" => params["endpoint_transport"]}
+
+        Map.put(
+          attrs,
+          "endpoint_metadata",
+          Map.reject(endpoint, fn {_key, value} -> value in [nil, ""] end)
+        )
+
+      true ->
+        attrs
     end
   end
 

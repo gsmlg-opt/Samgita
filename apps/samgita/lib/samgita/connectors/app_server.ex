@@ -16,6 +16,13 @@ defmodule Samgita.Connectors.AppServer do
   @timeout 5_000
 
   @impl true
+  def receive_event(
+        %{endpoint_metadata: %{"transport" => "inbound_websocket"}} = target,
+        event,
+        operation_id
+      ),
+      do: Samgita.Connectors.Inbound.receive_event(target, event, operation_id)
+
   def receive_event(target, event, operation_id) do
     with :ok <- Event.validate(event),
          true <- Schema.valid?(operation_id, :id) do
@@ -36,6 +43,13 @@ defmodule Samgita.Connectors.AppServer do
   end
 
   @impl true
+  def status(
+        %{endpoint_metadata: %{"transport" => "inbound_websocket"}} = target,
+        event_id,
+        operation_id
+      ),
+      do: Samgita.Connectors.Inbound.status(target, event_id, operation_id)
+
   def status(target, event_id, operation_id) do
     if Schema.valid?(event_id, :id) && Schema.valid?(operation_id, :id),
       do: call(target, "project/event.status", %{"event_id" => event_id}, operation_id, []),

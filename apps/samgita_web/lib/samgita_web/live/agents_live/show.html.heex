@@ -459,18 +459,50 @@
           class="space-y-6"
         >
           <.dm_card variant="bordered">
-            <:title>{gettext("Machine credentials")}</:title>
-            <p class="mb-4 text-sm text-on-surface-variant">
+            <:title>
+              {if get_in(@detail, ["agent", "endpoint_metadata", "transport"]) ==
+                    "inbound_websocket",
+                  do: gettext("Remembered devices"),
+                  else: gettext("Machine credentials")}
+            </:title>
+            <p
+              :if={
+                get_in(@detail, ["agent", "endpoint_metadata", "transport"]) ==
+                  "inbound_websocket"
+              }
+              class="mb-4 text-sm text-on-surface-variant"
+            >
+              {gettext(
+                "Devices confirmed on the Agents page reconnect automatically. Forget a device below to prevent future connections. Project membership is still required."
+              )}
+            </p>
+            <p
+              :if={
+                get_in(@detail, ["agent", "endpoint_metadata", "transport"]) !=
+                  "inbound_websocket"
+              }
+              class="mb-4 text-sm text-on-surface-variant"
+            >
               {gettext(
                 "Supply an independently generated credential of at least 32 bytes and provision it in the Agent separately. Samgita stores its digest, never returns the credential, and clears this field after submission. Project membership is still required."
               )}
             </p>
-            <p class="mb-4 text-sm text-on-surface-variant">
+            <p
+              :if={
+                get_in(@detail, ["agent", "endpoint_metadata", "transport"]) !=
+                  "inbound_websocket"
+              }
+              class="mb-4 text-sm text-on-surface-variant"
+            >
               {gettext(
                 "Credentials are not recovered after reconnect. If submission was interrupted, reconcile the credential metadata below before re-entering a credential and retrying."
               )}
             </p>
             <.form
+              :if={
+                get_in(@detail, ["agent", "endpoint_metadata", "transport"]) !=
+                  "inbound_websocket"
+              }
               for={@credential_form}
               id="agent-credential"
               phx-submit="put_credential"
@@ -555,7 +587,9 @@
                   />
                   <input type="hidden" name="revoke[credential_id]" value={credential["id"]} />
                   <.dm_btn native_submit type="submit" variant="error">
-                    {gettext("Revoke credential")}
+                    {if String.starts_with?(credential["reference"] || "", "device:"),
+                      do: gettext("Forget device"),
+                      else: gettext("Revoke credential")}
                   </.dm_btn>
                 </.form>
               </li>

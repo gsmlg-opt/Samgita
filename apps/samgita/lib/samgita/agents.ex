@@ -42,6 +42,12 @@ defmodule Samgita.Agents do
         agent = Repo.get(Agent, id) || Commands.fail!(:not_found)
         Commands.expect!(agent, attrs)
         require_current!(agent)
+
+        require_idle_transport_change!(
+          agent,
+          attrs["endpoint_metadata"] || agent.endpoint_metadata
+        )
+
         previous = agent
 
         agent =
@@ -78,10 +84,11 @@ defmodule Samgita.Agents do
           Projection.agent(agent)
         else
           if Repo.exists?(
-               from a in TaskAttempt,
+               from(a in TaskAttempt,
                  where:
                    a.agent_id == ^id and
                      (a.state in ["leased", "running"] or not a.effects_resolved)
+               )
              ),
              do: Commands.fail!(:conflict, %{reason: "unresolved_execution"})
 
@@ -105,7 +112,7 @@ defmodule Samgita.Agents do
   end
 
   defp disable_host!(ctx, agent_id) do
-    host = Repo.one(from h in CodexHost, where: h.agent_id == ^agent_id, lock: "FOR UPDATE")
+    host = Repo.one(from(h in CodexHost, where: h.agent_id == ^agent_id, lock: "FOR UPDATE"))
 
     if host && host.enabled do
       disabled = host |> change(enabled: false, version: host.version + 1) |> Commands.update!()
@@ -148,11 +155,12 @@ defmodule Samgita.Agents do
 
       data =
         Repo.all(
-          from a in Agent,
+          from(a in Agent,
             where: is_nil(a.removed_at),
             order_by: a.id,
             limit: ^limit,
             offset: ^offset
+          )
         )
 
       %{"data" => Enum.map(data, &Projection.agent/1), "limit" => limit, "offset" => offset}
@@ -205,6 +213,167 @@ defmodule Samgita.Agents do
       end
     )
   end
+
+  @doc "Trust a pending inbound device after an explicit operator decision; only its digest is accepted."
+  def pair_device(principal, attrs) do
+    attrs = Params.strings(attrs)
+    agent_id = if attrs["agent_id"] not in [nil, ""], do: attrs["agent_id"]
+
+    Commands.run(
+      principal,
+      nil,
+      attrs,
+      [operation: "agent.pair_device", agent_ids: if(agent_id, do: [agent_id], else: [])],
+      fn ctx ->
+        Commands.operator!(principal)
+
+        if !Params.uuid?(attrs["request_id"]),
+          do: Commands.fail!(:invalid, %{field: "request_id"})
+
+        digest = device_digest!(attrs["device_digest"])
+
+        # Distinct pending connections for the same device cannot create two identities.
+        Ecto.Adapters.SQL.query!(Repo, "SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [
+          "agent-device:" <> attrs["device_digest"]
+        ])
+
+        if Repo.exists?(from(c in AgentCredential, where: c.digest == ^digest)),
+          do: Commands.fail!(:conflict, %{reason: "device_already_registered"})
+
+        {previous, agent} = pair_agent!(agent_id, attrs)
+
+        credential =
+          %AgentCredential{}
+          |> change(
+            agent_id: agent.id,
+            digest: digest,
+            reference: "device:" <> attrs["request_id"]
+          )
+          |> unique_constraint(:digest)
+          |> Commands.insert!()
+
+        Events.append!(
+          nil,
+          "agent.device_paired",
+          ctx,
+          "agent",
+          agent.id,
+          %{"credential_id" => credential.id, "request_id" => attrs["request_id"]},
+          previous: previous,
+          current: agent
+        )
+
+        Projection.agent(agent)
+      end
+    )
+  end
+
+  defp pair_agent!(nil, attrs) do
+    attrs =
+      Map.take(attrs, ~w(name implementation))
+      |> Map.merge(%{
+        "endpoint_metadata" => %{"transport" => "inbound_websocket"},
+        "advertised_capabilities" => ["project_events.v1"],
+        "approved_capabilities" => ["project_events.v1"]
+      })
+
+    {nil, Commands.insert!(agent_changeset(%Agent{}, attrs))}
+  end
+
+  defp pair_agent!(id, attrs) do
+    agent = Repo.get(Agent, id) || Commands.fail!(:not_found)
+    Commands.expect!(agent, attrs)
+    require_current!(agent)
+
+    if !agent.enabled || agent.runtime_driver ||
+         Repo.exists?(from(h in CodexHost, where: h.agent_id == ^id)),
+       do: Commands.fail!(:invalid, %{reason: "inbound_agent_required"})
+
+    require_idle_transport_change!(agent, %{"transport" => "inbound_websocket"})
+
+    current =
+      agent
+      |> agent_changeset(%{
+        "endpoint_metadata" => %{"transport" => "inbound_websocket"},
+        "credential_ref" => nil,
+        "advertised_capabilities" =>
+          Enum.uniq(agent.advertised_capabilities ++ ["project_events.v1"]),
+        "approved_capabilities" => Enum.uniq(agent.approved_capabilities ++ ["project_events.v1"])
+      })
+      |> put_change(:version, agent.version + 1)
+      |> Commands.update!()
+
+    {agent, current}
+  end
+
+  defp require_idle_transport_change!(agent, endpoint) when is_map(endpoint) do
+    old = agent.endpoint_metadata["transport"]
+    new = endpoint["transport"]
+
+    if new == "inbound_websocket" &&
+         (agent.runtime_driver ||
+            Repo.exists?(from(h in CodexHost, where: h.agent_id == ^agent.id))),
+       do: Commands.fail!(:invalid, %{reason: "inbound_agent_required"})
+
+    if old != new && "inbound_websocket" in [old, new] &&
+         Repo.exists?(
+           from(a in TaskAttempt,
+             where:
+               a.agent_id == ^agent.id and
+                 (a.state in ["leased", "running"] or not a.effects_resolved)
+           )
+         ),
+       do: Commands.fail!(:conflict, %{reason: "unresolved_execution"})
+  end
+
+  defp require_idle_transport_change!(_agent, _endpoint), do: :ok
+
+  defp device_digest!(value) when is_binary(value) and byte_size(value) == 64 do
+    case Base.decode16(value, case: :lower) do
+      {:ok, digest} when byte_size(digest) == 32 -> digest
+      _ -> Commands.fail!(:invalid, %{field: "device_digest"})
+    end
+  end
+
+  defp device_digest!(_), do: Commands.fail!(:invalid, %{field: "device_digest"})
+
+  @doc "Resume a trusted device, or return :unknown only for a never-registered token."
+  def authenticate_device(raw)
+      when is_binary(raw) and byte_size(raw) >= 32 and byte_size(raw) <= 4096 do
+    lookup_device(:crypto.hash(:sha256, raw))
+  end
+
+  def authenticate_device(_), do: {:error, Error.new(:unauthorized)}
+
+  @doc false
+  def lookup_device(digest) when is_binary(digest) and byte_size(digest) == 32 do
+    if Repo.exists?(from(c in AgentCredential, where: c.digest == ^digest)),
+      do: device_principal(digest),
+      else: :unknown
+  end
+
+  def lookup_device(_), do: {:error, Error.new(:unauthorized)}
+
+  @doc false
+  def device_principal(digest) when is_binary(digest) and byte_size(digest) == 32 do
+    case Repo.get_by(AgentCredential, digest: digest) do
+      %AgentCredential{revoked_at: nil, reference: "device:" <> _} = credential ->
+        agent = Repo.get(Agent, credential.agent_id)
+
+        if agent && agent.enabled && is_nil(agent.removed_at) &&
+             agent.endpoint_metadata["transport"] == "inbound_websocket" &&
+             "project_events.v1" in agent.advertised_capabilities &&
+             "project_events.v1" in agent.approved_capabilities &&
+             !Commands.expired?(credential.expires_at),
+           do: {:ok, %Principal{kind: :agent, agent_id: agent.id, credential_id: credential.id}},
+           else: {:error, Error.new(:unauthorized)}
+
+      _ ->
+        {:error, Error.new(:unauthorized)}
+    end
+  end
+
+  def device_principal(_), do: {:error, Error.new(:unauthorized)}
 
   def revoke_credential(principal, id, attrs) do
     attrs = Params.strings(attrs)
@@ -387,11 +556,12 @@ defmodule Samgita.Agents do
 
       data =
         Repo.all(
-          from s in ExecutionSession,
+          from(s in ExecutionSession,
             where: s.project_id == ^project_id,
             order_by: s.id,
             limit: ^limit,
             offset: ^offset
+          )
         )
 
       %{"data" => Enum.map(data, &Projection.session/1), "limit" => limit, "offset" => offset}
@@ -422,9 +592,10 @@ defmodule Samgita.Agents do
 
     endpoint = get_field(changeset, :endpoint_metadata)
 
-    if valid_endpoint?(endpoint),
-      do: changeset,
-      else: add_error(changeset, :endpoint_metadata, "invalid endpoint")
+    if valid_endpoint?(endpoint) &&
+         !(endpoint["transport"] == "inbound_websocket" && get_field(changeset, :runtime_driver)),
+       do: changeset,
+       else: add_error(changeset, :endpoint_metadata, "invalid endpoint")
   end
 
   defp validate_runtime(changeset) do
@@ -444,8 +615,11 @@ defmodule Samgita.Agents do
 
   defp valid_endpoint?(metadata) when is_map(metadata) do
     Enum.all?(Map.keys(metadata), &(&1 in ~w(url transport))) &&
-      metadata["transport"] in [nil, "websocket", "stdio"] &&
-      valid_endpoint_url?(metadata["url"])
+      metadata["transport"] in [nil, "websocket", "stdio", "inbound_websocket"] &&
+      if(metadata["transport"] == "inbound_websocket",
+        do: is_nil(metadata["url"]),
+        else: valid_endpoint_url?(metadata["url"])
+      )
   end
 
   defp valid_endpoint?(_), do: false

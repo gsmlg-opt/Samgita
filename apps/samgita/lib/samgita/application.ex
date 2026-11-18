@@ -7,6 +7,7 @@ defmodule Samgita.Application do
     children = [
       Samgita.Repo,
       {Phoenix.PubSub, name: Samgita.PubSub},
+      Samgita.AgentIngress,
       {Styx, Application.fetch_env!(:samgita, Styx)},
       Samgita.CodexHosts.Runtime
     ]

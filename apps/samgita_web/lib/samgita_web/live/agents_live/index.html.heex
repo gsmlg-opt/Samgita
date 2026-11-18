@@ -71,6 +71,30 @@
             </p>
             <.dm_input
               :if={@form.params["kind"] != "codex"}
+              field={@form[:connection_mode]}
+              type="select"
+              label={gettext("Connection direction")}
+              options={[
+                {gettext("Samgita connects to Agent"), "websocket"},
+                {gettext("Agent connects to Samgita"), "inbound_websocket"}
+              ]}
+            />
+            <p
+              :if={
+                @form.params["kind"] != "codex" and
+                  @form.params["connection_mode"] == "inbound_websocket"
+              }
+              class="text-sm text-on-surface-variant"
+            >
+              {gettext(
+                "Connect the device to Samgita, then confirm its request below. No credential needs to be entered on the device."
+              )}
+            </p>
+            <.dm_input
+              :if={
+                @form.params["kind"] != "codex" and
+                  @form.params["connection_mode"] != "inbound_websocket"
+              }
               field={@form[:address]}
               label={gettext("Address")}
               placeholder="wss://agent.example/app-server"
@@ -89,6 +113,79 @@
     </.dm_modal>
   </header>
   <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
+  <.dm_card id="agent-connection-requests" variant="bordered">
+    <:title>{gettext("Connection requests")}</:title>
+    <p class="mb-4 text-sm text-on-surface-variant">
+      {gettext(
+        "Confirm a new device once. Confirmed devices reconnect automatically until their credential is revoked on the Agent page."
+      )}
+    </p>
+    <p :if={@ingress_error} id="agent-ingress-error" role="alert" class="mb-4 text-error">
+      {@ingress_error}
+    </p>
+    <p :if={@ingress.pending == []} id="agent-requests-empty">
+      {gettext("No devices waiting for confirmation.")}
+    </p>
+    <div class="space-y-4">
+      <article
+        :for={request <- @ingress.pending}
+        id={"agent-request-#{request.id}"}
+        class="rounded border border-outline-variant p-4"
+      >
+        <div class="mb-3 flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <h3 class="font-semibold">{request.name}</h3>
+            <p class="text-sm text-on-surface-variant">{request.implementation}</p>
+            <p class="break-all text-xs text-on-surface-variant">{request.id}</p>
+          </div>
+          <.dm_badge variant="warning">{gettext("Awaiting confirmation")}</.dm_badge>
+        </div>
+        <.form
+          for={@pairing_forms[request.id]}
+          id={"agent-pairing-#{request.id}"}
+          phx-change="pairing_change"
+          phx-submit="approve_pairing"
+          class="space-y-3"
+        >
+          <input
+            :for={key <- ~w(request_id command_id expected_version)}
+            type="hidden"
+            name={"pairing[#{key}]"}
+            value={@pairing_forms[request.id].params[key]}
+          />
+          <.dm_input
+            field={@pairing_forms[request.id][:agent_id]}
+            type="select"
+            label={gettext("Agent identity")}
+            options={pairing_options(@page["data"], @pairing_forms[request.id].params)}
+            helper={
+              gettext(
+                "Choose a new Agent or an existing Agent from this page. Project roles are configured separately."
+              )
+            }
+          />
+          <div class="flex flex-wrap gap-2">
+            <.dm_btn
+              native_submit
+              type="submit"
+              variant="primary"
+              phx-disable-with={gettext("Confirming…")}
+            >
+              {gettext("Confirm device")}
+            </.dm_btn>
+            <.dm_btn
+              variant="ghost"
+              phx-click="reject_pairing"
+              phx-value-id={request.id}
+              phx-disable-with={gettext("Rejecting…")}
+            >
+              {gettext("Reject")}
+            </.dm_btn>
+          </div>
+        </.form>
+      </article>
+    </div>
+  </.dm_card>
   <.dm_card variant="bordered">
     <:title>{gettext("Agents")}</:title>
     <p :if={@page["data"] == []} id="agents-empty">
@@ -123,11 +220,29 @@
               {host["status"]["error"]}
             </span>
           <% else %>
-            <span>{agent["availability"]}</span>
+            <%= if inbound?(agent) do %>
+              <.dm_badge
+                variant={state_variant(inbound_state(agent, @ingress.connected))}
+                class="agent-state"
+              >
+                {inbound_state(agent, @ingress.connected)}
+              </.dm_badge>
+            <% else %>
+              <span>{agent["availability"]}</span>
+            <% end %>
           <% end %>
         </:col>
         <:col :let={agent} label={gettext("Actions")}>
           <div class="flex flex-wrap gap-2">
+            <.dm_btn
+              :if={inbound?(agent) and Map.has_key?(@ingress.connected, agent["id"])}
+              id={"agent-disconnect-#{agent["id"]}"}
+              size="sm"
+              phx-click="disconnect_inbound"
+              phx-value-id={agent["id"]}
+            >
+              {gettext("Disconnect")}
+            </.dm_btn>
             <div :if={host = @hosts[agent["id"]]} class="flex flex-wrap gap-2">
               <.dm_btn
                 :if={!host["enabled"]}

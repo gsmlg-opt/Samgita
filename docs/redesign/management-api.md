@@ -23,6 +23,23 @@ revoked credentials, expired/replaced connections and disabled Project membershi
 fail closed. A new connection generation does not transfer execution ownership
 or prove remote effects stopped.
 
+An Agent can also initiate a WebSocket at `/app-server` without a preconfigured
+credential. Its initial `agent/connect` bootstrap includes a client-generated,
+locally saved device token and descriptive name/implementation. A new device
+waits for operator confirmation on `/agents`; it has no management access while
+pending. Confirmation binds a new or selected Agent and stores only the token
+digest as a normal `device:` credential. A remembered device presents that same
+token and restores its connection automatically. This is the approved internal
+network pairing flow, not an unauthenticated management API.
+
+The `agent/connected` socket response contains the normal connection projection.
+Use its current ID for `x-agent-connection` and the device token as the REST Bearer
+credential. Do not create another REST connection while using the socket: a new
+generation replaces the old one. Revocation through the existing credential
+route disables the remembered device. See the
+[Synapsis inbound setup](integrations/synapsis.md#synapsis-initiates-the-connection)
+for the exact bootstrap and native initialization sequence.
+
 Send JSON objects with `Content-Type: application/json`. Successful single
 resources use `{"data": {...}}`; list responses use
 `{"data": [...], "limit": n, "offset": n}`. Event reads instead accept an
@@ -167,17 +184,27 @@ responses are non-cacheable, and plaintext native payloads never enter ordinary
 receipts or audit projections. Native completion cannot accept a Task.
 
 The native `/app-server` protocol carries events and optional runtime sessions
-between clients and a chosen external host. Samgita's implemented outbound
-connector uses `project_events.v1`; REST callbacks above carry authoritative
-management transitions. There is no platform `/app-server` listener implied by
-the standalone transport package. Do not send native runtime messages to a
-management REST route or assume a Codex turn completion is Task acceptance.
+between clients and a chosen external host. Samgita's outbound connector uses
+`project_events.v1`. Its platform `/app-server` listener also accepts the explicit
+device bootstrap above, then negotiates that same native event capability for
+delivery over an Agent-initiated socket. Agents configured with endpoint transport
+`inbound_websocket` use the confirmed, initialized live socket; they do not need
+an outbound endpoint or service credential reference. Both directions preserve
+durable delivery and status reconciliation. REST callbacks above continue to
+carry authoritative management transitions. Do not send native runtime messages
+to a management REST route or assume a Codex turn completion is Task acceptance.
 
 The browser uses `/`, `/agents`, `/agents/:id`, `/projects`, `/projects/:id` and
 `/projects/:project_id/tasks/:id`. `Samgita.Management` reads bounded safe
 projections for these views; it is not another public REST mutation API. Agent
 availability is explicitly unverified health based on persisted activity and
 connection evidence. Refresh/reconnect reloads durable PostgreSQL state.
+`/agents` additionally shows ephemeral pending connection requests and initialized
+inbound sockets. Operators can confirm or reject a request and disconnect a live
+socket; credentials remain in the existing Agent detail section for revocation.
+Disconnect preserves device trust. Binding an existing Agent switches its target
+and requires its current version; Project event subscriptions must then be
+reconfigured. It does not grant Project membership or clear execution holds.
 
 Run the phase-scoped LiveView/context/integration checks and the independent
 protocol package checks. The acceptance ledger records the actual named build,

@@ -529,3 +529,57 @@ Codex is not pinned. Samgita tracks the latest official Codex release, because C
 ### Open items
 
 - None for the transport contract. A full real-SSH session to a real Codex daemon needs authorized SSH credentials and remains unverified (see P7.2 results).
+
+## 12. Agent-initiated connections and remembered devices (2026-11-18)
+
+The operator approved an additional inbound connection direction for Synapsis and
+other ordinary Agents. On the internal deployment, a new device may open the
+Samgita `/app-server` WebSocket without a previously configured credential, but
+only to request pairing and wait for the operator's decision. This narrowly
+supersedes the preconfigured-machine-credential requirement for first-contact
+pairing; it does not authorize Project reads, event delivery, management commands
+or execution before confirmation. Existing outbound connections remain available.
+
+The client automatically generates and durably stores a random device token
+before first contact. The operator confirms the pending device in `/agents`,
+creating an Agent or explicitly selecting an existing eligible Agent. Samgita
+stores only the token's SHA-256 digest in `agent_credentials`, with an immutable
+`device:<request UUID>` reference. Approval, registration/configuration, audit
+event and command receipt commit together. Plaintext tokens never enter browser
+forms, public projections, receipts or audit events. The client needs no manual
+credential entry and can recover from a lost confirmation reply by presenting
+its already-saved token again.
+
+Confirmation advertises and approves `project_events.v1` and configures
+`endpoint_metadata.transport = "inbound_websocket"`, with no outbound URL or
+credential reference. It grants no Project membership or role. Binding an
+existing Agent requires its current version and preserves its identity, name,
+implementation and memberships. A Codex host/runtime cannot be converted through
+pairing. An Agent with active or unresolved Attempts cannot change from outbound
+to inbound delivery; reconcile that work first. Changing an existing endpoint
+changes its routing digest, so existing event subscriptions require explicit
+reconfiguration under the normal routing rules.
+
+On subsequent connections, a recognized device token resumes without another
+operator confirmation. It must still belong to an enabled, unremoved inbound
+Agent and a current, unexpired, unrevoked device credential. A revoked, disabled
+or otherwise invalid known token is rejected rather than treated as a new
+applicant. Each accepted connection uses the existing fenced
+`agent_connections` generation; an earlier connection cannot continue as the
+current owner. Reconnection does not claim a Task, start execution, transfer an
+Attempt or clear ambiguous external effects. Existing explicit rebind and
+delivery reconciliation rules continue to apply.
+
+After pairing/resumption, the peer negotiates native schema `1.0` and
+`project_events.v1`. Samgita sends the existing event receive/status requests over
+that same socket and retains the durable delivery state machine as authority.
+REST callbacks continue to use the automatically saved token as Bearer
+credential and the returned current connection UUID. Socket presence and
+operator device confirmation never substitute for Project roles or Task/Attempt
+ownership. The existing credential-revocation command withdraws device trust.
+
+Pending handshakes and live socket routing are bounded runtime projections, not
+durable work authority. Device trust survives service restart in PostgreSQL;
+pending, unconfirmed requests may be retried. The functional implementation does
+not qualify the prohibited approval/authentication/security checks or close A11,
+actual-service conformance, production cutover or the other existing open gates.

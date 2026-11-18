@@ -1,12 +1,97 @@
 # Synapsis integration setup boundary
 
-Synapsis follows the same registration, membership, capacity and execution rules
-as any Agent. Samgita's local fake tests do not prove the actual Synapsis service
-implements the native protocol. Use the existing service endpoint and record its
-exact version; this work does not edit the sibling repository, launch another
-service or install a new runtime host.
+Synapsis follows the same membership, capacity and execution rules as any Agent.
+It may initiate an inbound WebSocket to Samgita, or expose its existing endpoint
+for Samgita's outbound connector. The operator chooses the connection direction.
+Samgita's local fake tests do not prove actual Synapsis conformance. Record the
+real client's exact version; this change does not edit the sibling repository,
+launch another service or install a new runtime host.
 
-## Establish actual service conformance
+## Synapsis initiates the connection
+
+This mode is intended for the operator's internal network. There is no credential
+to copy into Synapsis before connecting. The client creates a random 32-byte
+device token, encodes it as base64url and stores it locally before its first
+connection. Keep using that token across reconnects and client restarts. Samgita
+stores only its digest after the operator confirms the device.
+
+Open a WebSocket at Samgita's `/app-server` (use `wss://` for the deployed HTTPS
+endpoint). Send this bootstrap text frame before native protocol messages:
+
+```json
+{
+  "type": "agent/connect",
+  "name": "Synapsis on my workstation",
+  "implementation": "synapsis",
+  "device_token": "<automatically generated device token>"
+}
+```
+
+A new device receives:
+
+```json
+{"type":"agent/pending","request_id":"<request UUID>"}
+```
+
+In Samgita's `/agents`, review the device name, implementation label and request
+ID under **Connection requests**. Confirm it as a new Agent, or select an
+existing enabled Agent without a Codex host/runtime from the current page to
+retain its identity and Project memberships. Rejecting a request closes that
+pending connection. The
+displayed name and implementation are client-supplied descriptions, not identity
+proof or Project authority.
+
+Confirmation stores the device credential digest in `agent_credentials`, with
+reference `device:<request UUID>`, and sets the Agent's endpoint transport to
+`inbound_websocket`. Binding an existing Agent changes its delivery target:
+reconfigure its Project event subscriptions before delivering to the new target.
+Converting an Agent with active or unresolved execution from outbound to inbound
+is refused. Confirmation grants no Project roles and launches no Task.
+
+After confirmation, or when a remembered device reconnects, the socket receives:
+
+```json
+{"type":"agent/connected","connection":{"id":"<connection UUID>","agent_id":"<Agent UUID>","generation":1}}
+```
+
+The `connection` object is the normal management connection projection and also
+includes its expiry. The client then sends native `connection/initialize` using
+schema/version `1.0`, advertising and requiring `project_events.v1`. After
+negotiation, Samgita sends `project/event.receive` and `project/event.status`
+requests over this same socket; the client handles them and returns correlated
+native responses. The client must implement the complete durable event contract,
+not merely receive frames. Existing `SamgitaProtocolWebSocket.Client` consumers
+need the bootstrap exchange before starting native initialization; a successful
+legacy REST connect alone does not attach an inbound event socket.
+
+Use WebSocket ping frames to keep an idle connection alive, and reconnect with
+backoff after network loss. Presenting the saved device token restores the
+trusted device automatically and creates a new connection generation. A reconnect
+does not re-execute a Task, transfer an Attempt or resolve an uncertain remote
+effect. Reconcile existing operations and explicitly rebind an eligible Attempt.
+
+REST calls use `Authorization: Bearer <device token>` and
+`x-agent-connection: <current connection UUID>` from the socket response. Do not
+call REST `/connect` again for the same live socket: creating another generation
+replaces the socket's management connection. No outbound Synapsis URL,
+`SAMGITA_EVENT_DESTINATIONS` entry or `SAMGITA_EVENT_CREDENTIALS` entry is needed
+for inbound delivery. Database-external lease keys are still required for
+execution callbacks.
+
+The Agent list displays the live inbound connection separately from recorded
+activity. **Disconnect** closes the current socket but allows the remembered
+device to reconnect. To forget a device, open its Agent's **Credentials** section
+and revoke the `device:` credential. Disabled or removed Agents and revoked
+credentials cannot restore an authenticated connection. Never place a device
+token in URLs, logs, command receipts, event payloads or browser forms.
+
+## Samgita initiates the connection
+
+The existing outbound setup remains available. The following endpoint,
+destination approval and external service-credential settings apply only to that
+mode.
+
+### Establish actual service conformance
 
 Determine the existing approved `wss://<approved-host>/app-server` endpoint and
 its machine authentication. Require authenticated upgrade/dispatch and native
@@ -26,7 +111,7 @@ record the integration as blocked/unverified. Implementing a native host boundar
 belongs to a separately authorized service change. Do not create a second server
 inside Samgita to claim Synapsis support.
 
-## Operator registration and Project setup
+### Operator registration and Project setup
 
 1. In `/agents`, register the stable identity, a descriptive Synapsis label,
    capacity and tested native advertised/approved groups. The protocol/version
@@ -46,7 +131,7 @@ Membership roles, protocol capabilities and machine connection generations are
 separate authorities. Disablement fences future authorized work while preserving
 history. Connection status and recent activity remain unverified health evidence.
 
-## Runtime destination and callback configuration
+### Runtime destination and callback configuration
 
 The runtime operator separately provisions approved exact URL/address and secret
 reference resolution in Samgita. These are illustrative placeholders:
@@ -65,7 +150,11 @@ inbound callback credentials and database-external lease keys are distinct.
 
 Synapsis uses `POST /api/agent/connect` with its inbound Bearer credential, then
 sends the returned current connection UUID in `x-agent-connection` on callbacks.
-Read Project context and use the [management API](../management-api.md) for stable
+
+## Project work and verification limits
+
+For either connection direction, read Project context and use the
+[management API](../management-api.md) for stable
 commands, versions, sessions, claims, owner proof reads, start/progress/report,
 and rebind. Effect resolution is separate former-owner reconciliation with the
 former proof and explicit evidence. No native event or thread result directly
@@ -83,4 +172,17 @@ restart/lost-ACK and callback evidence separately from fake qualification. Consu
 the [matrix](../capability-matrix.md), [P3](../domain-phase-3.md),
 [P4 coordination](../coordination-phase-4.md), [P4 GitHub](../github-phase-4.md)
 and [acceptance ledger](../acceptance.md). This guide does not authorize live
-credential provisioning, permission changes or deployment.
+credential provisioning, permission changes or deployment. The current repository
+restriction leaves credential, authentication, authorization and confirmation
+tests unrun; functional checks do not qualify those gates. Actual Synapsis
+bootstrap support and real bidirectional integration must be verified separately.
+
+Local functional verification (2026-11-18): the focused inbound delivery and
+LiveView checks passed six tests, including real-WebSocket event delivery,
+status, lost replies and timeout reconciliation using pre-trusted synthetic
+fixtures. Compilation with warnings as errors passed. Assets built on Ubuntu
+26.04 with the supported native bundler runtime. Read-only desktop and mobile
+browser checks covered the request empty state and inbound configuration;
+confirmation, rejection, revocation and authenticated restoration were not
+exercised under the test restriction above. No actual Synapsis client or deployed
+service was qualified.

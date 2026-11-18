@@ -8,6 +8,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
   url: [host: "samgita.local"],
   adapter: Gaoxy.PhoenixAdapter,
   websocket_paths: [
+    "/app-server",
     "/live/websocket",
     "/phoenix/live_reload/socket/websocket",
     "/@duskmoon_bundler/ws"

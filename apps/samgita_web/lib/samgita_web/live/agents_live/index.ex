@@ -8,13 +8,15 @@ defmodule SamgitaWeb.AgentsLive.Index do
   computer over SSH; everything else is adjusted later on the Agent page.
   """
   use SamgitaWeb, :live_view
-  alias Samgita.{Agents, CodexHosts, Management, Principal}
+  alias Samgita.{AgentIngress, Agents, CodexHosts, Management, Principal}
   alias SamgitaWeb.AgentsLive.Components
 
   @impl true
   def mount(_params, _session, socket) do
-    if connected?(socket),
-      do: Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
+      Phoenix.PubSub.subscribe(Samgita.PubSub, AgentIngress.topic())
+    end
 
     {:ok,
      assign(socket,
@@ -24,7 +26,10 @@ defmodule SamgitaWeb.AgentsLive.Index do
        warning: nil,
        load_error: nil,
        hosts: %{},
-       removal_commands: %{}
+       removal_commands: %{},
+       ingress: %{pending: [], connected: %{}},
+       pairing_forms: %{},
+       ingress_error: nil
      )}
   end
 
@@ -93,6 +98,80 @@ defmodule SamgitaWeb.AgentsLive.Index do
     end
   end
 
+  def handle_event("pairing_change", %{"pairing" => params}, socket) do
+    id = params["request_id"]
+
+    case socket.assigns.pairing_forms[id] do
+      nil ->
+        {:noreply, socket}
+
+      form ->
+        selected_id = Map.get(params, "agent_id", form.params["agent_id"])
+
+        values =
+          if selected_id == form.params["agent_id"] do
+            # Paging and status updates must not replace the reviewed version or command.
+            form.params
+          else
+            selected = Enum.find(socket.assigns.page["data"], &(&1["id"] == selected_id))
+
+            form.params
+            |> Map.put("agent_id", selected_id)
+            |> Map.put("selected_name", selected && selected["name"])
+            |> Map.put("expected_version", selected && selected["version"])
+            |> Map.put("command_id", Ecto.UUID.generate())
+          end
+
+        {:noreply,
+         socket
+         |> assign(:ingress_error, nil)
+         |> update(:pairing_forms, &Map.put(&1, id, to_form(values, as: :pairing)))}
+    end
+  end
+
+  def handle_event("approve_pairing", %{"pairing" => params}, socket) do
+    attrs =
+      params |> Map.take(~w(command_id agent_id expected_version)) |> Components.version_attrs()
+
+    case AgentIngress.approve(Principal.operator(), params["request_id"], attrs) do
+      {:ok, agent} ->
+        {:noreply,
+         socket
+         |> load()
+         |> assign(:ingress_error, nil)
+         |> put_flash(
+           :info,
+           "#{agent["name"]} confirmed. This device can reconnect automatically."
+         )}
+
+      {:error, error} ->
+        {:noreply, socket |> load() |> assign(:ingress_error, pairing_error(error))}
+    end
+  end
+
+  def handle_event("reject_pairing", %{"id" => id}, socket) do
+    case AgentIngress.reject(Principal.operator(), id) do
+      :ok -> {:noreply, socket |> load() |> assign(:ingress_error, nil)}
+      {:error, error} -> {:noreply, assign(socket, :ingress_error, pairing_error(error))}
+    end
+  end
+
+  def handle_event("disconnect_inbound", %{"id" => id}, socket) do
+    case AgentIngress.disconnect(Principal.operator(), id) do
+      :ok ->
+        {:noreply,
+         socket
+         |> load()
+         |> put_flash(
+           :info,
+           "Connection closed. Revoke the device credential to prevent reconnecting."
+         )}
+
+      {:error, error} ->
+        {:noreply, put_flash(socket, :error, Components.error_message(error))}
+    end
+  end
+
   def handle_event(event, %{"id" => id}, socket) when event in ~w(start stop) do
     host = Enum.find_value(socket.assigns.hosts, fn {_, h} -> h["id"] == id && h end)
     fun = if event == "start", do: &CodexHosts.enable/3, else: &CodexHosts.disable/3
@@ -142,6 +221,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
   # Status changes also update durable fields (generation, version), so reload.
   @impl true
   def handle_info({:codex_host_status, _id, _status}, socket), do: {:noreply, load(socket)}
+  def handle_info({:agent_ingress_changed}, socket), do: {:noreply, load(socket)}
   def handle_info(_message, socket), do: {:noreply, socket}
 
   defp add_codex(params, socket) do
@@ -179,11 +259,22 @@ defmodule SamgitaWeb.AgentsLive.Index do
   defp register(params) do
     address = String.trim(params["address"] || "")
 
+    endpoint =
+      cond do
+        params["connection_mode"] == "inbound_websocket" ->
+          %{"transport" => "inbound_websocket"}
+
+        address == "" ->
+          %{}
+
+        true ->
+          %{"transport" => "websocket", "url" => address}
+      end
+
     Agents.register(Principal.operator(), %{
       "command_id" => params["agent_command_id"],
       "name" => params["name"],
-      "endpoint_metadata" =>
-        if(address == "", do: %{}, else: %{"transport" => "websocket", "url" => address})
+      "endpoint_metadata" => endpoint
     })
   end
 
@@ -233,6 +324,11 @@ defmodule SamgitaWeb.AgentsLive.Index do
 
   defp removal_error(error), do: Components.error_message(error)
 
+  defp pairing_error(%Samgita.Error{code: :not_found}),
+    do: gettext("This connection request expired or the device disconnected.")
+
+  defp pairing_error(error), do: Components.error_message(error)
+
   defp load(socket) do
     with {:ok, page} <-
            Management.agents(Principal.operator(), %{
@@ -240,6 +336,25 @@ defmodule SamgitaWeb.AgentsLive.Index do
              "offset" => socket.assigns.offset
            }),
          {:ok, hosts} <- CodexHosts.list(Principal.operator()) do
+      ingress = AgentIngress.snapshot()
+
+      pairing_forms =
+        Map.new(ingress.pending, fn request ->
+          form =
+            socket.assigns.pairing_forms[request.id] ||
+              to_form(
+                %{
+                  "request_id" => request.id,
+                  "command_id" => Ecto.UUID.generate(),
+                  "agent_id" => "",
+                  "expected_version" => nil
+                },
+                as: :pairing
+              )
+
+          {request.id, form}
+        end)
+
       removal_commands =
         Map.new(page["data"], fn agent ->
           previous = socket.assigns.removal_commands[agent["id"]]
@@ -256,6 +371,8 @@ defmodule SamgitaWeb.AgentsLive.Index do
         page: page,
         hosts: Map.new(hosts, &{&1["agent_id"], &1}),
         removal_commands: removal_commands,
+        ingress: ingress,
+        pairing_forms: pairing_forms,
         load_error: nil
       )
     else
@@ -274,6 +391,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
         "name" => "",
         "location" => "local",
         "address" => "",
+        "connection_mode" => "websocket",
         "agent_command_id" => Ecto.UUID.generate(),
         "host_command_id" => Ecto.UUID.generate(),
         "enable_command_id" => Ecto.UUID.generate()
@@ -288,7 +406,12 @@ defmodule SamgitaWeb.AgentsLive.Index do
   # A Codex Agent is shown by the machine it runs on, never by the local
   # forwarded ws:// address used to reach it.
   @doc false
-  def address(nil, agent), do: agent["endpoint_metadata"]["url"] || "—"
+  def address(nil, agent) do
+    if inbound?(agent),
+      do: gettext("Connects to Samgita"),
+      else: agent["endpoint_metadata"]["url"] || "—"
+  end
+
   def address(%{"machine_name" => name}, _) when is_binary(name), do: name
   def address(%{"transport" => "ssh", "ssh_host" => host}, _), do: host
   def address(%{"transport" => "local"}, _), do: "This computer"
@@ -300,6 +423,40 @@ defmodule SamgitaWeb.AgentsLive.Index do
 
   @doc false
   def state_variant("connected"), do: "success"
-  def state_variant(state) when state in ~w(connecting backoff), do: "warning"
+  def state_variant(state) when state in ~w(connecting initializing backoff), do: "warning"
   def state_variant(_), do: "neutral"
+
+  @doc false
+  def inbound?(agent),
+    do: get_in(agent, ["endpoint_metadata", "transport"]) == "inbound_websocket"
+
+  @doc false
+  def inbound_state(agent, connected) do
+    cond do
+      !agent["enabled"] -> "disabled"
+      connection = connected[agent["id"]] -> to_string(connection.state)
+      true -> "offline"
+    end
+  end
+
+  @doc false
+  def pairing_options(agents, selected_params \\ %{}) do
+    existing =
+      agents
+      |> Enum.filter(&(&1["enabled"] && !&1["removed_at"] && &1["runtime_driver"] != "codex"))
+      |> Enum.map(&{&1["name"], &1["id"]})
+
+    selected_id = selected_params["agent_id"]
+
+    existing =
+      if is_binary(selected_id) && selected_id != "" &&
+           !Enum.any?(existing, fn {_name, id} -> id == selected_id end) do
+        label = selected_params["selected_name"] || gettext("Selected Agent")
+        [{label <> " (" <> selected_id <> ")", selected_id} | existing]
+      else
+        existing
+      end
+
+    [{gettext("Create a new Agent"), ""} | existing]
+  end
 end

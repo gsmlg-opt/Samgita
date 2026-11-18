@@ -34,6 +34,7 @@ REST    -> samgita_web controllers -> authenticated domain commands
                               samgita_protocol
 
 Durable delivery -> optional WebSocket client -> existing external /app-server
+External Agent  -> Samgita /app-server -> confirmed device -> native event socket
 External Agent  -> authenticated REST callbacks -> Samgita management authority
 ```
 
@@ -127,6 +128,27 @@ does not start a thread/turn or automatically replay a mutation. Lost replies
 require stable-operation status reconciliation. Transport receipt, durable
 acceptance, processing completion and Task acceptance remain separate facts.
 
+Agents may instead initiate a WebSocket to Samgita's `/app-server`. An initial
+`agent/connect` bootstrap requests device confirmation on `/agents`; the client
+automatically creates and retains its device token, so no credential is manually
+configured. Confirmation persists only its digest in the existing
+`agent_credentials` table and binds the device to a new or operator-selected
+Agent. The selected Agent uses endpoint transport `inbound_websocket`; it needs
+no outbound URL, destination approval or service-credential reference. Device
+confirmation and Project membership remain separate decisions.
+
+`Samgita.AgentIngress` tracks bounded pending requests and live socket handles.
+Those handles are disposable routing state; PostgreSQL remains authoritative for
+trusted credentials, connection generations, membership and durable delivery.
+After confirmation or automatic device restoration, native
+`connection/initialize` negotiates `project_events.v1`; the durable connector
+sends receive/status requests over the existing inbound socket and preserves
+the same correlation and ambiguous-outcome handling. A device is ready for event
+delivery only after that negotiation. Socket replacement or reconnect creates
+no execution and does not transfer an Attempt. Changing an existing Agent's
+connection direction requires refreshing its event subscriptions; active or
+unresolved execution prevents converting an outbound Agent.
+
 GitHub verifies signatures against raw bytes and approved installation/
 repository-to-Project mappings before atomic inbox/event/job persistence. Current
 facts and immutable source evidence are separate. Text is untrusted. Credentials
@@ -146,8 +168,12 @@ legacy evidence without restoring old executors.
 Browser security remains infrastructure protection plus CSRF and secure headers.
 Operator REST uses configured API keys/rate limits; Agent REST requires Bearer
 credentials and `x-agent-connection` after connect. No browser account/org system
-is added. Inbound raw credentials are supplied by the operator, hashed and never
-returned. Proof retrieval is explicit, current-owner-only and `no-store`; proofs
+is added. Inbound credentials are either supplied by the operator or generated
+and retained by a client whose device the operator confirms. Only their digests
+are stored; plaintext values are never returned to the browser. Revoking the
+existing device credential prevents automatic restoration; disconnecting a
+socket alone does not forget the device. Proof retrieval is explicit,
+current-owner-only and `no-store`; proofs
 and plaintext credentials never enter ordinary projections, audit or receipts.
 Outbound exact URLs, approved addresses and external service-credential references
 are distinct from inbound credentials and database-external lease keys.
