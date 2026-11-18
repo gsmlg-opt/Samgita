@@ -3,20 +3,29 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
-This release adds Agent-initiated WebSockets at `/app-server`: a new device
+Samgita 0.4.5 distinguishes recoverable inbound WebSocket closure from device
+rejection. A client can reconnect with its saved token after an ingress restart
+(`1012`) or connection expiry (`1013`). A superseded socket receives `4001`
+so it can stop retrying while the newer connection stays active. Policy
+rejection retains `1008`. See `docs/redesign/integrations/synapsis.md` for the
+client contract. Reconnect leaves any uncertain event delivery to status
+reconciliation. The focused loopback checks exercised restart, expiration,
+replacement and event timeout over a real WebSocket.
+
+Agent-initiated WebSockets at `/app-server` were introduced in 0.4.4. A new device
 waits for operator confirmation in Samgita, then uses its automatically saved
 token to restore the same Agent identity after reconnect or restart. Samgita
 stores only the digest. Native event delivery and status queries share that
 socket; reconnect does not replay execution or transfer an Attempt. Each Agent
 uses its own connection. Actual Synapsis client adaptation remains separate.
 
-The reusable protocol adds optional `sessions.list.v1` with read-only
+The reusable protocol includes optional `sessions.list.v1` with read-only
 `thread/list`, pagination and metadata filtering. Existing `sessions.v1` hosts
 retain their method set. The WebSocket client adds configurable Ping keepalive
 (20 seconds by default), owner disconnect notifications, and bounded cleanup
 that acknowledges queued deliveries before confirming transport termination.
 
-Local reviewed functional checks passed for thread listing, lifecycle,
+The 0.4.4 reviewed functional checks passed for thread listing, lifecycle,
 fragmented control traffic, ordinary outbound event delivery and the inbound
 delivery/read-only UI. The generated schema and outside-consumer checks passed.
 Device confirmation, authentication, authorization and approval tests remain

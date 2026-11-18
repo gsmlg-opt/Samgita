@@ -454,6 +454,49 @@ defmodule Samgita.Agents do
 
   def bind_connection(_, _), do: {:error, Error.new(:unauthorized)}
 
+  @doc false
+  def check_ingress_connection(%Principal{kind: :agent, connection_id: id} = principal) do
+    case bind_connection(principal, id) do
+      {:error, %Error{code: :unauthorized}} -> classify_ingress_failure(principal)
+      result -> result
+    end
+  end
+
+  # A failed bind always fences the old socket. Recheck the credential under the
+  # normal authority locks before describing a failure as recoverable.
+  defp classify_ingress_failure(principal) do
+    credential = %{principal | connection_id: nil, generation: nil}
+
+    Commands.read(credential, nil, [:credential], fn _ ->
+      connection =
+        Repo.get_by(AgentConnection,
+          id: principal.connection_id,
+          agent_id: principal.agent_id,
+          credential_id: principal.credential_id,
+          generation: principal.generation
+        ) || Commands.fail!(:unauthorized)
+
+      agent = Repo.get!(Agent, principal.agent_id)
+
+      cond do
+        connection.state == "replaced" ->
+          Commands.fail!(:connection_replaced)
+
+        connection.state != "connected" ->
+          Commands.fail!(:unauthorized)
+
+        connection.generation != agent.generation ->
+          Commands.fail!(:connection_replaced)
+
+        Commands.expired?(connection.expires_at) ->
+          Commands.fail!(:connection_expired)
+
+        true ->
+          Commands.fail!(:unauthorized)
+      end
+    end)
+  end
+
   def connect(principal, attrs) do
     attrs = Params.strings(attrs)
 

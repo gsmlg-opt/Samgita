@@ -4,9 +4,9 @@ defmodule SamgitaWeb.AgentIngressDeliveryTest do
   import Samgita.DomainFixtures
 
   alias HTTP.WebSocket
-  alias HTTP.WebSocket.Event.{Message, Open}
+  alias HTTP.WebSocket.Event.{Close, Message, Open}
   alias Samgita.{AgentIngress, EventDelivery, Events, Principal, Projects, Repo}
-  alias Samgita.Domain.{AgentCredential, EventAcknowledgement}
+  alias Samgita.Domain.{AgentConnection, AgentCredential, EventAcknowledgement}
   alias Samgita.Domain.EventDelivery, as: Delivery
 
   setup do
@@ -58,38 +58,17 @@ defmodule SamgitaWeb.AgentIngressDeliveryTest do
       )
 
     %{local: {:ok, {_, port}}} = Gaoxy.info(listener, :ingress_delivery)
+    connect = fn -> connect_socket(port, token) end
+    {socket, connection} = connect.()
 
-    socket =
-      WebSocket.new("ws://127.0.0.1:#{port}/app-server", [], delivery: :ack, telemetry_url: nil)
-
-    assert_receive {WebSocket, ^socket, %Open{}}, 3_000
-
-    on_exit(fn -> WebSocket.close(socket) end)
-
-    send_json(socket, %{
-      "type" => "agent/connect",
-      "name" => "Inbound functional fixture",
-      "implementation" => "synthetic",
-      "device_token" => token
-    })
-
-    receive_json(socket)
-
-    send_json(socket, %{
-      "schema_version" => "1.0",
-      "type" => "request",
-      "id" => "initialize",
-      "correlation_id" => "initialize",
-      "method" => "connection/initialize",
-      "params" => %{
-        "versions" => ["1.0"],
-        "capabilities" => ["project_events.v1"],
-        "required_capabilities" => ["project_events.v1"]
-      }
-    })
-
-    receive_json(socket)
-    %{agent: agent, socket: socket, event: event, delivery: delivery}
+    %{
+      agent: agent,
+      socket: socket,
+      event: event,
+      delivery: delivery,
+      connection: connection,
+      connect: connect
+    }
   end
 
   test "native event acknowledgement updates the durable delivery", ctx do
@@ -150,7 +129,8 @@ defmodule SamgitaWeb.AgentIngressDeliveryTest do
     assert Repo.get!(Delivery, ctx.delivery.id).attempt_count == 1
   end
 
-  test "event timeout closes the consumed protocol state and preserves uncertainty", ctx do
+  test "event timeout closes the consumed protocol state and preserves uncertainty",
+       %{socket: socket} = ctx do
     task = Task.async(fn -> EventDelivery.dispatch(ctx.delivery.id) end)
     assert receive_json(ctx.socket)["method"] == "project/event.receive"
 
@@ -159,6 +139,73 @@ defmodule SamgitaWeb.AgentIngressDeliveryTest do
 
     refute Map.has_key?(AgentIngress.snapshot().connected, ctx.agent["id"])
     assert Repo.get!(Delivery, ctx.delivery.id).attempt_count == 1
+    assert_receive {WebSocket, ^socket, %Close{code: 1013}}, 3_000
+  end
+
+  test "an ingress restart tells the client to reconnect", %{socket: socket} do
+    assert :ok = Supervisor.terminate_child(Samgita.Supervisor, AgentIngress)
+
+    try do
+      assert_receive {WebSocket, ^socket, %Close{code: 1012}}, 3_000
+    after
+      Supervisor.restart_child(Samgita.Supervisor, AgentIngress)
+    end
+  end
+
+  test "an expired connection generation tells the client to reconnect",
+       %{socket: socket, connection: %{"id" => connection_id}} do
+    Repo.get!(AgentConnection, connection_id)
+    |> Ecto.Changeset.change(expires_at: DateTime.add(DateTime.utc_now(), -1))
+    |> Repo.update!()
+
+    # Simulate traffic on the expired socket before the next periodic check.
+    initialize(socket)
+    assert_receive {WebSocket, ^socket, %Close{code: 1013}}, 3_000
+  end
+
+  test "a superseded socket yields the route to the new connection",
+       %{socket: socket, connect: connect, agent: %{"id" => agent_id}} do
+    {_new_socket, %{"id" => connection_id}} = connect.()
+
+    assert_receive {WebSocket, ^socket, %Close{code: 4001}}, 3_000
+
+    assert %{state: :connected, connection_id: ^connection_id} =
+             AgentIngress.snapshot().connected[agent_id]
+  end
+
+  defp connect_socket(port, token) do
+    socket =
+      WebSocket.new("ws://127.0.0.1:#{port}/app-server", [], delivery: :ack, telemetry_url: nil)
+
+    on_exit(fn -> WebSocket.close(socket) end)
+    assert_receive {WebSocket, ^socket, %Open{}}, 3_000
+
+    send_json(socket, %{
+      "type" => "agent/connect",
+      "name" => "Inbound functional fixture",
+      "implementation" => "synthetic",
+      "device_token" => token
+    })
+
+    assert %{"type" => "agent/connected", "connection" => connection} = receive_json(socket)
+    initialize(socket)
+    receive_json(socket)
+    {socket, connection}
+  end
+
+  defp initialize(socket) do
+    send_json(socket, %{
+      "schema_version" => "1.0",
+      "type" => "request",
+      "id" => "initialize",
+      "correlation_id" => "initialize",
+      "method" => "connection/initialize",
+      "params" => %{
+        "versions" => ["1.0"],
+        "capabilities" => ["project_events.v1"],
+        "required_capabilities" => ["project_events.v1"]
+      }
+    })
   end
 
   defp send_json(socket, message), do: :ok = WebSocket.send(socket, JSON.encode!(message))

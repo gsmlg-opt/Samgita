@@ -151,16 +151,16 @@ defmodule Samgita.AgentIngress do
           approve_pending(operator, pending, attrs, state)
         else
           {:reply, {:error, Error.new(:not_found)},
-           state |> drop_pending(id, true) |> broadcast()}
+           state |> drop_pending(id, :retry) |> broadcast()}
         end
     end
   end
 
   def handle_call({:reject, id}, _from, state),
-    do: {:reply, :ok, state |> drop_pending(id, true) |> broadcast()}
+    do: {:reply, :ok, state |> drop_pending(id, :policy) |> broadcast()}
 
   def handle_call({:disconnect, id}, _from, state),
-    do: {:reply, :ok, state |> drop_connection(id, true) |> broadcast()}
+    do: {:reply, :ok, state |> drop_connection(id, :retry) |> broadcast()}
 
   def handle_call({:open, socket, principal}, _from, state) do
     # Generation creation and route replacement have the same order, even on simultaneous reconnects.
@@ -252,17 +252,17 @@ defmodule Samgita.AgentIngress do
   end
 
   def handle_info({:pending_expired, id}, state),
-    do: {:noreply, state |> drop_pending(id, true) |> broadcast()}
+    do: {:noreply, state |> drop_pending(id, :retry) |> broadcast()}
 
   def handle_info({:DOWN, monitor, :process, _pid, _reason}, state) do
     state =
       Enum.reduce(state.pending, state, fn {id, p}, state ->
-        if p.monitor == monitor, do: drop_pending(state, id, false), else: state
+        if p.monitor == monitor, do: drop_pending(state, id, nil), else: state
       end)
 
     state =
       Enum.reduce(state.connections, state, fn {id, r}, state ->
-        if r.monitor == monitor, do: drop_connection(state, id, false), else: state
+        if r.monitor == monitor, do: drop_connection(state, id, nil), else: state
       end)
 
     {:noreply, broadcast(state)}
@@ -293,7 +293,7 @@ defmodule Samgita.AgentIngress do
           {:error, _} = error ->
             # Trust is committed. Closing lets the client recover using its saved token rather
             # than presenting a second approval for an already registered device.
-            {:reply, error, state |> drop_pending(pending.id, true) |> broadcast()}
+            {:reply, error, state |> drop_pending(pending.id, :retry) |> broadcast()}
         end
 
       {:error, _} = error ->
@@ -306,7 +306,7 @@ defmodule Samgita.AgentIngress do
     state =
       Enum.reduce(state.pending, state, fn {id, old}, state ->
         if old.digest == request.digest || old.socket == socket,
-          do: drop_pending(state, id, true),
+          do: drop_pending(state, id, :replaced),
           else: state
       end)
 
@@ -325,7 +325,7 @@ defmodule Samgita.AgentIngress do
     end
   end
 
-  defp drop_pending(state, id, close) do
+  defp drop_pending(state, id, close_reason) do
     case Map.pop(state.pending, id) do
       {nil, _} ->
         state
@@ -333,7 +333,7 @@ defmodule Samgita.AgentIngress do
       {pending, rest} ->
         Process.cancel_timer(pending.timer)
         Process.demonitor(pending.monitor, [:flush])
-        if close, do: send(pending.socket, :agent_ingress_close)
+        if close_reason, do: send(pending.socket, {:agent_ingress_close, close_reason})
         %{state | pending: rest}
     end
   end
@@ -341,10 +341,10 @@ defmodule Samgita.AgentIngress do
   defp attach(state, socket, principal) do
     state =
       Enum.reduce(state.pending, state, fn {id, request}, state ->
-        if request.socket == socket, do: drop_pending(state, id, false), else: state
+        if request.socket == socket, do: drop_pending(state, id, nil), else: state
       end)
 
-    state = drop_connection(state, principal.agent_id, true)
+    state = drop_connection(state, principal.agent_id, :replaced)
 
     route = %{
       socket: socket,
@@ -356,14 +356,14 @@ defmodule Samgita.AgentIngress do
     put_in(state.connections[principal.agent_id], route)
   end
 
-  defp drop_connection(state, id, close) do
+  defp drop_connection(state, id, close_reason) do
     case Map.pop(state.connections, id) do
       {nil, _} ->
         state
 
       {route, rest} ->
         Process.demonitor(route.monitor, [:flush])
-        if close, do: send(route.socket, :agent_ingress_close)
+        if close_reason, do: send(route.socket, {:agent_ingress_close, close_reason})
         state = %{state | connections: rest}
 
         Enum.reduce(state.requests, state, fn {id, request}, state ->
@@ -378,7 +378,9 @@ defmodule Samgita.AgentIngress do
   # silently replay or reuse that protocol state; the remembered device reconnects for status.
   defp close_route(state, socket) do
     Enum.reduce(state.connections, state, fn {id, route}, state ->
-      if route.socket == socket, do: drop_connection(state, id, true) |> broadcast(), else: state
+      if route.socket == socket,
+        do: drop_connection(state, id, :retry) |> broadcast(),
+        else: state
     end)
   end
 

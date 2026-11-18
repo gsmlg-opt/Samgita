@@ -151,7 +151,7 @@ defmodule Samgita.AgentIngressPairingTest do
         send(owner, {:socket_approved, self(), connection, principal})
         socket_loop(owner, monitor)
 
-      :agent_ingress_close ->
+      {:agent_ingress_close, _reason} ->
         send(owner, {:socket_closed, self()})
 
       :stop ->

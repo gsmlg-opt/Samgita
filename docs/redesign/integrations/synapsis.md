@@ -70,6 +70,18 @@ trusted device automatically and creates a new connection generation. A reconnec
 does not re-execute a Task, transfer an Attempt or resolve an uncertain remote
 effect. Reconcile existing operations and explicitly rebind an eligible Attempt.
 
+Starting with Samgita 0.4.5, the inbound socket uses these close codes:
+
+| Code | Meaning | Client action |
+| --- | --- | --- |
+| `1012` | Samgita's ingress process stopped or restarted. | Reconnect with backoff and the saved token. |
+| `1013` | The socket can be retried, for example after a connection expires, the operator disconnects it, a pending request expires, or event delivery times out. | Reconnect with backoff and the same token. If delivery is uncertain, reconcile by operation status. |
+| `4001` | A newer socket or connection generation superseded this one. | Stop the old socket's retry loop so it cannot displace its replacement. Keep the token. |
+| `1008` | The device or connection was rejected by policy, for example on explicit rejection, revoked credentials or invalid bootstrap. | Stop automatic reconnect and surface the failure to the operator. |
+
+For 0.4.4, close code `1008` is ambiguous. These codes describe the
+connection lifecycle and never resolve an outstanding event or Task operation.
+
 REST calls use `Authorization: Bearer <device token>` and
 `x-agent-connection: <current connection UUID>` from the socket response. Do not
 call REST `/connect` again for the same live socket: creating another generation
