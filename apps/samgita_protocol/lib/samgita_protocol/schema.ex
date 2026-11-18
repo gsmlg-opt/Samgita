@@ -38,6 +38,10 @@ defmodule SamgitaProtocol.Schema do
     "thread/start" =>
       {"sessions.v1", true, %{}, %{"title" => :string, "metadata" => :object},
        %{"thread_id" => :id}, %{"thread" => :anything}},
+    "thread/list" =>
+      {"sessions.list.v1", false, %{},
+       %{"cursor" => :string, "limit" => :positive, "metadata" => :object},
+       %{"threads" => :thread_summaries, "next_cursor" => {:nullable, :string}}, %{}},
     "thread/read" =>
       {"sessions.v1", false, %{"thread_id" => :id}, %{}, %{"thread_id" => :id},
        %{"thread" => :anything}},
@@ -325,6 +329,18 @@ defmodule SamgitaProtocol.Schema do
     do:
       is_list(value) and length(value) <= 128 and
         Enum.all?(value, &match?({:ok, %{"type" => "notification", "cursor" => _}}, validate(&1)))
+
+  def valid?(value, :thread_summaries),
+    do:
+      is_list(value) and length(value) <= 100 and
+        Enum.all?(value, fn summary ->
+          shape(
+            summary,
+            %{"thread_id" => :id},
+            %{"title" => :string, "updated_at" => :timestamp, "status" => :string},
+            "invalid_response"
+          ) == :ok
+        end)
 
   def valid?(value, :timestamp) when is_binary(value) do
     case DateTime.from_iso8601(value) do

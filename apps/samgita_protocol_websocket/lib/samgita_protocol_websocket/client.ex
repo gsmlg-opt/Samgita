@@ -6,17 +6,23 @@ defmodule SamgitaProtocolWebSocket.Client do
   The socket dials that tuple directly while the URL hostname still controls Host, TLS hostname
   verification and SNI. The transport does not follow redirects or approve destinations itself.
   Failed upgrades retain only HTTP status and a syntactically bounded Retry-After value.
+
+  Connected sockets send a ping every `:keepalive_ms` (20 seconds by default; `false`
+  disables it). The owner receives `{:samgita_protocol, pid, :disconnected}` once
+  when an open transport disconnects. Reconnecting and native initialization remain explicit.
   """
   use GenServer
   alias HTTP.WebSocket, as: Socket
-  alias HTTP.WebSocket.Event.{Close, Message, Open}
+  alias HTTP.WebSocket.Event.{Close, Frame, Message, Open}
   alias HTTP.WebSocket.Event.Error, as: SocketError
   alias SamgitaProtocol.{Client, Codec, Error}
 
   @cleanup_timeout 1_000
+  @control_payload_bytes 125
 
   def connect(url, opts \\ []) do
     with {:ok, uri} <- validate_url(url, opts),
+         :ok <- validate_keepalive(opts),
          {:ok, core} <- Client.new(opts) do
       GenServer.start(__MODULE__, {uri, Keyword.put_new(opts, :owner, self()), core})
     end
@@ -48,6 +54,7 @@ defmodule SamgitaProtocolWebSocket.Client do
       owner_monitor: Process.monitor(owner),
       core: core,
       conn: nil,
+      keepalive: nil,
       pending: %{}
     }
 
@@ -149,14 +156,44 @@ defmodule SamgitaProtocolWebSocket.Client do
   def handle_info({:DOWN, ref, :process, _pid, _reason}, %{owner_monitor: ref} = state),
     do: {:stop, :normal, state}
 
-  def handle_info({Socket, socket, %Message{data: text}, ref}, %{conn: socket} = state) do
-    state =
-      if is_binary(text),
-        do: receive_frame({:text, text}, state),
-        else: disconnected(state)
+  def handle_info({:keepalive, token}, %{keepalive: %{token: token}} = state) do
+    state = %{state | keepalive: nil}
 
+    case send_ping(state) do
+      :ok -> {:noreply, schedule_keepalive(state)}
+      :error -> {:noreply, disconnected(state)}
+    end
+  end
+
+  def handle_info(
+        {Socket, socket, %Frame{opcode: :text, data: text}, ref},
+        %{conn: socket} = state
+      ) do
+    result = receive_frame({:text, text}, state)
+    :ok = Socket.acknowledge(socket, ref)
+    {:noreply, received(result)}
+  end
+
+  def handle_info({Socket, socket, %Frame{opcode: opcode}, ref}, %{conn: socket} = state)
+      when opcode in [:ping, :pong] do
+    # The transport answers Ping automatically; controls never enter native protocol buffers.
     :ok = Socket.acknowledge(socket, ref)
     {:noreply, state}
+  end
+
+  def handle_info({Socket, socket, %Frame{}, ref}, %{conn: socket} = state) do
+    :ok = Socket.acknowledge(socket, ref)
+    {:noreply, disconnected(state)}
+  end
+
+  def handle_info({Socket, socket, %Message{data: text}, ref}, %{conn: socket} = state) do
+    result =
+      if is_binary(text),
+        do: receive_frame({:text, text}, state),
+        else: {:disconnect, state}
+
+    :ok = Socket.acknowledge(socket, ref)
+    {:noreply, received(result)}
   end
 
   def handle_info({Socket, socket, event}, %{conn: socket} = state)
@@ -213,6 +250,14 @@ defmodule SamgitaProtocolWebSocket.Client do
 
   defp valid_connect_address?(_), do: false
 
+  defp validate_keepalive(opts) do
+    case Keyword.get(opts, :keepalive_ms, 20_000) do
+      false -> :ok
+      ms when is_integer(ms) and ms > 0 and ms <= 4_294_967_295 -> :ok
+      _ -> {:error, Error.new("invalid_params")}
+    end
+  end
+
   defp open(state) do
     timeout = Keyword.get(state.opts, :connect_timeout_ms, 5_000)
     limit = Keyword.get(state.opts, :max_frame_bytes, 1_048_576)
@@ -224,6 +269,7 @@ defmodule SamgitaProtocolWebSocket.Client do
            owner: self(),
            headers: headers,
            http_version: :http1,
+           mode: :proxy,
            connect_address: Keyword.get(state.opts, :connect_address),
            connect_timeout: timeout,
            opening_timeout: timeout,
@@ -231,10 +277,12 @@ defmodule SamgitaProtocolWebSocket.Client do
            close_timeout: 100,
            max_message_size: limit,
            max_frame_bytes: limit,
-           max_read_bytes: limit + 14,
+           # Admit one native frame plus an interleaved control frame, including headers.
+           # Proxy control deliveries also need room beside one native ACK delivery.
+           max_read_bytes: limit + 14 + @control_payload_bytes + 14,
            max_send_queue: limit,
            delivery: :ack,
-           max_queue_bytes: limit + 7,
+           max_queue_bytes: max(limit, @control_payload_bytes) + 7 + @control_payload_bytes + 7,
            max_queue_events: Keyword.get(state.opts, :max_buffer, 128),
            telemetry_url: nil
          ) do
@@ -246,7 +294,7 @@ defmodule SamgitaProtocolWebSocket.Client do
   defp await_open(%{conn: socket} = state, timeout) do
     receive do
       {Socket, ^socket, %Open{}} ->
-        {:ok, state}
+        {:ok, schedule_keepalive(state)}
 
       {Socket, ^socket, %SocketError{handshake: handshake}} ->
         close_connection(state)
@@ -289,6 +337,42 @@ defmodule SamgitaProtocolWebSocket.Client do
 
   defp retry_after(_), do: nil
 
+  defp schedule_keepalive(state) do
+    case Keyword.get(state.opts, :keepalive_ms, 20_000) do
+      false ->
+        state
+
+      ms ->
+        token = make_ref()
+        timer = Process.send_after(self(), {:keepalive, token}, ms)
+        %{state | keepalive: %{timer: timer, token: token}}
+    end
+  end
+
+  defp cancel_keepalive(%{keepalive: nil} = state), do: state
+
+  defp cancel_keepalive(state) do
+    Process.cancel_timer(state.keepalive.timer)
+    %{state | keepalive: nil}
+  end
+
+  defp send_ping(%{conn: socket} = state) when not is_nil(socket) do
+    case Socket.send_frame_ack(socket, {:ping, ""}) do
+      {:ok, ref} ->
+        receive do
+          {Socket, ^socket, {:send_result, ^ref, :ok}} -> :ok
+          {Socket, ^socket, {:send_result, ^ref, {:error, _}}} -> :error
+        after
+          Keyword.get(state.opts, :send_timeout_ms, 5_000) -> :error
+        end
+
+      {:error, _} ->
+        :error
+    end
+  end
+
+  defp send_ping(_state), do: :error
+
   defp send_message(%{conn: nil} = state, _message), do: {:error, state}
 
   defp send_message(%{conn: socket} = state, message) do
@@ -312,18 +396,22 @@ defmodule SamgitaProtocolWebSocket.Client do
              true <- effects_fit?(effects, state) do
           state = apply_effects(effects, %{state | core: core})
           {_messages, core} = Client.drain(state.core, Keyword.get(state.opts, :max_buffer, 128))
-          %{state | core: core}
+          {:ok, %{state | core: core}}
         else
           _ ->
             # Receiving is pure: retain the prior cursor when nothing was forwarded.
-            disconnected(state)
+            {:disconnect, state}
         end
 
       {:error, error, core} ->
         send(state.owner, {:samgita_protocol, self(), {:error, error}})
-        disconnected(%{state | core: core})
+        {:disconnect, %{state | core: core}}
     end
   end
+
+  # Settle the current delivery before closing; cleanup also waits for its ACK.
+  defp received({:ok, state}), do: state
+  defp received({:disconnect, state}), do: disconnected(state)
 
   defp apply_effects(effects, state) do
     Enum.reduce(effects, state, fn
@@ -376,23 +464,51 @@ defmodule SamgitaProtocolWebSocket.Client do
     end
   end
 
-  defp disconnected(%{conn: nil} = state), do: state
+  defp disconnected(%{conn: nil} = state), do: cancel_keepalive(state)
 
   defp disconnected(state) do
+    state = cancel_keepalive(state)
     close_connection(state)
     {:ok, effects, core} = Client.disconnect(state.core)
     state = %{state | conn: nil, core: core}
-    apply_effects(effects, state)
+    state = apply_effects(effects, state)
+    send(state.owner, {:samgita_protocol, self(), :disconnected})
+    state
   end
 
   defp close_connection(%{conn: nil}), do: :ok
 
   defp close_connection(%{conn: socket}) do
     _ = Socket.close(socket, 1000, "")
+    receipt = Socket.completion(socket)
+    await_cleanup(socket, receipt, System.monotonic_time(:millisecond) + @cleanup_timeout)
+  end
 
-    case HTTP.ClientCompletion.await(Socket.completion(socket), @cleanup_timeout) do
-      :ok -> :ok
-      _ -> raise Error.new("upstream_error", %{"cleanup" => "unconfirmed"})
+  defp await_cleanup(socket, receipt, deadline) do
+    case HTTP.ClientCompletion.await(receipt, 0) do
+      :ok ->
+        :ok
+
+      {:error, :cleanup_pending} ->
+        remaining = max(deadline - System.monotonic_time(:millisecond), 0)
+
+        if remaining == 0 do
+          raise Error.new("upstream_error", %{"cleanup" => "unconfirmed"})
+        else
+          # This process owns ACK delivery. A synchronous wait alone would strand
+          # already delivered Pong/native frames and prevent transport cleanup.
+          receive do
+            {Socket, ^socket, event, ref}
+            when is_struct(event, Frame) or is_struct(event, Message) ->
+              :ok = Socket.acknowledge(socket, ref)
+              await_cleanup(socket, receipt, deadline)
+          after
+            min(remaining, 10) -> await_cleanup(socket, receipt, deadline)
+          end
+        end
+
+      _error ->
+        raise Error.new("upstream_error", %{"cleanup" => "unconfirmed"})
     end
   end
 end

@@ -59,11 +59,22 @@ All keys are strings. Native requests carry `schema_version`, `type: "request"`,
 | --- | --- |
 | `project_events.v1` | `project/event.receive`, `.status`, `.report`: receive an event, query processing, record a decision/result |
 | `sessions.v1` | `thread/start`, `/read`, `/resume`; `turn/start`, `/steer`, `/interrupt`; lifecycle notifications |
+| `sessions.list.v1` | Optional read-only `thread/list`, independent of the existing `sessions.v1` method set |
 | `streaming.v1` | Item start/delta/completion notifications and explicit `stream/resume` |
 | `approvals.v1` | Bidirectional `approval/request` and a bound approve/deny response |
 | `cancellation.v1` | `request/cancel`, expressing cancellation intent for a request on that connection |
 
 See the [phase contract](../../docs/redesign/protocol-phase-2.md) for exact fields/results. An Agent implements only its advertised groups; `Handler.methods/0` must match all request methods of those groups. Unsupported operations never trigger a fallback Agent. Project-event processing does not imply an execution session. No fixed development lifecycle or reasoning loop exists in this library.
+
+`thread/list` takes optional `cursor` (opaque string), positive `limit` and
+`metadata` (object). It returns `threads` (at most 100 summaries) and an explicit
+`next_cursor` (string or null). Each summary requires `thread_id` and may include
+`title`, UTC `updated_at` and `status`; other fields are rejected. The method
+requires no `command_id`. Hosts cap page sizes, scope cursors to the filter and
+document their metadata matching and ordering. Existing session hosts can keep
+advertising only `sessions.v1`; clients negotiate `sessions.list.v1` before using
+the list method. The reference fake uses exact top-level metadata subset matching,
+lexicographic thread-ID ordering, a default page size of 25 and a maximum of 100.
 
 These acknowledgements have separate meanings:
 

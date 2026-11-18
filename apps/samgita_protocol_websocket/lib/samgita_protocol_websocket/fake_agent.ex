@@ -198,6 +198,45 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
     {{:ok, %{"thread_id" => id, "thread" => params}}, state}
   end
 
+  defp dispatch("thread/list", params, _context, _socket, state) do
+    metadata = Map.get(params, "metadata", %{})
+    filter_digest = thread_filter_digest(metadata)
+
+    threads =
+      state.threads
+      |> Enum.filter(fn {_id, thread} ->
+        Enum.all?(metadata, fn {key, value} ->
+          thread_metadata = Map.get(thread, "metadata", %{})
+          Map.has_key?(thread_metadata, key) and thread_metadata[key] == value
+        end)
+      end)
+      |> Enum.sort_by(&elem(&1, 0))
+
+    with {:ok, after_id} <- thread_cursor(params["cursor"], filter_digest, threads) do
+      remaining = Enum.drop_while(threads, fn {id, _thread} -> after_id && id <= after_id end)
+      limit = min(Map.get(params, "limit", 25), 100)
+      page = Enum.take(remaining, limit)
+
+      summaries =
+        Enum.map(page, fn {id, thread} ->
+          thread |> Map.take(["title"]) |> Map.put("thread_id", id)
+        end)
+
+      cursor =
+        if length(remaining) > limit do
+          {last_id, _thread} = List.last(page)
+
+          %{"after" => last_id, "filter" => filter_digest}
+          |> JSON.encode!()
+          |> Base.url_encode64(padding: false)
+        end
+
+      {{:ok, %{"threads" => summaries, "next_cursor" => cursor}}, state}
+    else
+      :error -> {{:error, Error.new("invalid_params")}, state}
+    end
+  end
+
   defp dispatch(method, %{"thread_id" => id}, _context, socket, state)
        when method in ["thread/read", "thread/resume"] do
     case state.threads[id] do
@@ -348,6 +387,24 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
     Map.new(turns, fn {key, turn} ->
       {key, if(turn.thread == thread, do: %{turn | socket: socket}, else: turn)}
     end)
+  end
+
+  defp thread_filter_digest(metadata) do
+    encoded = :erlang.term_to_binary(metadata, [:deterministic])
+    :crypto.hash(:sha256, encoded) |> Base.url_encode64(padding: false)
+  end
+
+  defp thread_cursor(nil, _filter_digest, _threads), do: {:ok, nil}
+
+  defp thread_cursor(cursor, filter_digest, threads) do
+    with {:ok, json} <- Base.url_decode64(cursor, padding: false),
+         {:ok, %{"after" => after_id, "filter" => ^filter_digest} = fields} <- JSON.decode(json),
+         true <- map_size(fields) == 2 and is_binary(after_id),
+         true <- Enum.any?(threads, fn {id, _thread} -> id == after_id end) do
+      {:ok, after_id}
+    else
+      _ -> :error
+    end
   end
 
   defp record_report(entry, report, socket, state) do

@@ -87,6 +87,18 @@ automatically approves a request.
 
 ## Reconnect and ownership
 
+The client sends a WebSocket Ping every 20 seconds by default. Set
+`keepalive_ms: milliseconds` to choose a positive interval below the host's idle
+deadline, or `keepalive_ms: false` to disable it. Ping/Pong frames stay inside the
+transport; they do not consume native request slots or prove event processing.
+The owner receives `{:samgita_protocol, client_pid, :disconnected}` once per open
+transport that closes, even when no request is outstanding. This also applies to
+an explicit close or replacing an open connection with `Client.reconnect/1`.
+Old timers cannot ping a replacement connection. The client uses the transport's
+HTTP/1 proxy-frame interface for ping sends and consumes its reassembled text
+messages; the transport still performs UTF-8 checks, message limits and automatic
+Pong replies.
+
 `Client.reconnect/1` closes the old connection and authenticates again. Send
 `connection/initialize` again, reconcile outstanding command/event IDs with the
 host, and explicitly resume the thread before requesting more fake output.
@@ -111,6 +123,14 @@ event changes only `delivery_attempt_id`; conflicting payloads for the same
 `event_id` fail. Event responses say `acceptance: "received"`, and reports say
 `management_acceptance: "not_requested"`. They prove neither durable acceptance
 nor authoritative platform transitions.
+
+The fake also advertises optional `sessions.list.v1`. After negotiating it, call
+`Client.request(client, "thread/list", %{"limit" => 25})` to discover threads
+created by an earlier connection while the fake process remains alive. Continue
+with the returned `next_cursor`, preserving the same `metadata` filter. The fake
+matches exact top-level metadata values, orders by thread ID and returns at most
+100 rows. This is an in-memory reference implementation, not durable session
+storage. Existing `sessions.v1` hosts need no new method unless they opt in.
 
 ## Hosting and bounds
 

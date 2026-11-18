@@ -1003,6 +1003,59 @@
       ],
       "type": "object"
     },
+    "result.thread.list": {
+      "additionalProperties": false,
+      "properties": {
+        "next_cursor": {
+          "anyOf": [
+            {
+              "maxLength": 65536,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "threads": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "maxLength": 65536,
+                "type": "string"
+              },
+              "thread_id": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                "type": "string"
+              },
+              "title": {
+                "maxLength": 65536,
+                "type": "string"
+              },
+              "updated_at": {
+                "format": "date-time",
+                "pattern": "(Z|[+-]00:00)$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "thread_id"
+            ],
+            "type": "object"
+          },
+          "maxItems": 100,
+          "type": "array"
+        }
+      },
+      "required": [
+        "next_cursor",
+        "threads"
+      ],
+      "type": "object"
+    },
     "result.thread.read": {
       "additionalProperties": false,
       "properties": {
@@ -1425,6 +1478,38 @@
                     "cursor",
                     "stream_id"
                   ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "thread/list"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cursor": {
+                      "maxLength": 65536,
+                      "type": "string"
+                    },
+                    "limit": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "metadata": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [],
                   "type": "object"
                 }
               }

@@ -124,5 +124,12 @@ defmodule Samgita.Connectors.AppServer do
     if Process.alive?(client), do: Client.close(client)
   catch
     :exit, _ -> :ok
+  after
+    # This connector owns a temporary client, so its lifecycle notice ends here.
+    receive do
+      {:samgita_protocol, ^client, :disconnected} -> :ok
+    after
+      0 -> :ok
+    end
   end
 end

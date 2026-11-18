@@ -87,6 +87,8 @@ defmodule Samgita.Connectors.AppServerTest do
 
     assert Enum.map(calls, &elem(&1, 0)) ==
              ["project/event.receive", "project/event.receive", "project/event.status"]
+
+    refute_receive {:samgita_protocol, _temporary_client, :disconnected}, 0
   end
 
   test "acknowledgement loss is ambiguous and status reconnect does not resend", %{

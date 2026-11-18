@@ -1,7 +1,8 @@
 defmodule SamgitaProtocol.Capabilities do
   @moduledoc "Versioned groups are opt-in. An unsupported operation never falls back to another Agent."
   alias SamgitaProtocol.{Error, Schema}
-  @groups ~w(project_events.v1 sessions.v1 streaming.v1 approvals.v1 cancellation.v1)
+
+  @groups ~w(project_events.v1 sessions.v1 sessions.list.v1 streaming.v1 approvals.v1 cancellation.v1)
   def all, do: @groups
 
   def validate(groups) do

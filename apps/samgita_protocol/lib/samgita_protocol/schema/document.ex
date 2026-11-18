@@ -171,6 +171,17 @@ defmodule SamgitaProtocol.Schema.Document do
       "items" => %{"allOf" => [ref("notification"), %{"required" => ["stream_id", "cursor"]}]}
     }
 
+  defp type(:thread_summaries),
+    do: %{
+      "type" => "array",
+      "maxItems" => 100,
+      "items" =>
+        shape(
+          %{"thread_id" => :id},
+          %{"title" => :string, "updated_at" => :timestamp, "status" => :string}
+        )
+    }
+
   defp type({:enum, values}), do: %{"enum" => values}
   defp type({:nullable, rule}), do: %{"anyOf" => [type(rule), %{"type" => "null"}]}
 end

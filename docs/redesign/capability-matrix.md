@@ -9,6 +9,7 @@ operator-approved capabilities are separate from Project membership roles.
 | --- | --- | --- |
 | `project_events.v1` | `project/event.receive`, `project/event.status`, `project/event.report` | Outbound connector initializes and calls receive/status at a registered existing host. Responsible-Agent management reporting uses authenticated REST callbacks. |
 | `sessions.v1` | `thread/start`, `thread/read`, `thread/resume`, `turn/start`, `turn/steer`, `turn/interrupt` | Reusable protocol and standalone fake; Samgita does not choose reasoning steps or start turns for delivered events. |
+| `sessions.list.v1` | Read-only `thread/list` with cursor pagination and optional metadata filters | Optional reusable protocol and fake-host extension; existing `sessions.v1` hosts retain their method set. |
 | `streaming.v1` | `stream/resume`, stream notifications with explicit processed cursors | Optional native client/host replay; not a management Task-state channel. |
 | `approvals.v1` | Bidirectional `approval/request` | Caller/host decides the exact pending request; no automatic approval or Project role grant. |
 | `cancellation.v1` | `request/cancel` | Cancellation intent; no proof that external execution/effects stopped. |

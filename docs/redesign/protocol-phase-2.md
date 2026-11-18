@@ -65,3 +65,53 @@ Behavioral regressions were observed failing before repair for missing implement
 Official reference: `openai/codex` release `rust-v0.163.0`, immutable commit `83086188ae0614bd882818ff1aa23f3194962012`. Adapter `priv/upstream/source.json` records all 16 upstream/vendored hashes and source paths; LICENSE/NOTICE are retained. Six requests and three notifications are mapped; provider-specific initialization, unsupported options and semantic differences are documented in [its README](../../apps/samgita_protocol_codex/README.md). This proves selected source conformance, not live or full Codex compatibility.
 
 Remaining boundaries: fake state/replay are in memory and survive only socket reconnects, not a fake-process restart. Remote TLS terminates at an existing host/proxy; production authentication/authorization and durable inbox/command receipts/checkpoints remain host responsibilities. No platform claims/leases/receipt proof derivation, Project/Task transitions, production migration, browser/API changes, external repository modifications, or real Sigma/Synapsis integration are included. B0 historical preservation/bridge reconciliation and B1–B5 remain open for platform work; B6 platform proof/rotation and real-client portions remain open. Stop after the P2 commit; no next stage starts automatically.
+
+## Protocol repairs for 0.4.4 (2026-11-18)
+
+The following changes were implemented on `main` after `57540ef` for release
+`0.4.4`. Publication and deployment are verified separately from the functional
+evidence below. They do not change the native schema version `1.0`.
+
+- [Samgita #2](https://github.com/gsmlg-opt/Samgita/issues/2): optional
+  `sessions.list.v1` adds read-only `thread/list`. Existing `sessions.v1` hosts
+  retain their method set. Requests accept cursor, positive limit and metadata;
+  results contain at most 100 strict summaries and a nullable next cursor. The
+  fake implements exact metadata filtering and stable pagination with bounded
+  filter fingerprints. Full fields and bounds are in the protocol README.
+- [Samgita #4](https://github.com/gsmlg-opt/Samgita/issues/4): the WebSocket
+  client sends Ping every 20 seconds by default (`keepalive_ms: false` disables
+  it), notifies its owner once per disconnected transport, and replaces timers
+  only on explicit reconnect. It uses the public HTTP/1 proxy-frame API while
+  preserving reassembly and native message limits. Bounded control-frame
+  allowances prevent valid interleaved traffic from exhausting native-frame
+  budgets. Closing ACKs queued deliveries within the original one-second cleanup
+  deadline and still requires a successful public completion receipt. Discarded
+  closing notifications do not advance processed checkpoints. The platform's
+  temporary outbound connector consumes its own disconnect notification.
+- [Samgita #3](https://github.com/gsmlg-opt/Samgita/issues/3) already has the
+  required dependency allowance in the published `0.4.3` Hex archive:
+  `gaoxy_http ~> 0.15` and `gaoxy_websock_adapter ~> 0.15` allow `0.16.x`.
+  An independent consumer resolved Gaoxy HTTP/adapter `0.16.5` and Gaoxy
+  `0.16.6`, compiled, and completed a real session start/read round trip using
+  the unmodified published package. No dependency override or repository
+  lockfile update was needed. Sigma's actual upgrade remains consumer work.
+
+Reviewed functional verification used Elixir 1.18.5 / OTP 28:
+
+| Selection | Executed result |
+| --- | --- |
+| Protocol `test/thread_listing_test.exs` | 4 tests passed |
+| Protocol `test/fixtures_test.exs:31` (generated schema only) | 1 test passed |
+| WebSocket `test/{thread_listing,client_keepalive}_test.exs` | 12 tests passed |
+| WebSocket `test/client_control_frames_test.exs:33`, `:55`, `:73` | 3 positive fragmentation/control tests passed |
+| Platform inbound delivery and read-only LiveView selection | 6 tests passed |
+| Platform `app_server_test.exs:52` (ordinary event round trips and temporary-client cleanup) | 1 test passed; the new mailbox assertion reproduced the defect before repair |
+| Published `0.4.3` outside-consumer session fixture | 1 test passed |
+| Current standalone sources in an outside consumer using HTTP WebSocket rc.20 and Gaoxy HTTP/adapter 0.16.5 | All 16 new core/WebSocket cases passed; no Repo/Phoenix dependency loaded |
+
+Package and platform compilation with warnings as errors passed. Standalone
+package locks stayed unchanged, so their functional run also covers the retained
+Gaoxy 0.15.1 / HTTP WebSocket rc.5 environment. Credential, authentication,
+authorization and approval tests, broad suites and the unrestricted standalone
+verification script were not run. Real Sigma/Synapsis adaptation, publication,
+deployment and the existing platform acceptance gates remain separate.
