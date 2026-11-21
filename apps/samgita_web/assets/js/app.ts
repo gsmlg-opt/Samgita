@@ -10,7 +10,7 @@ import { LiveSocket } from "phoenix_live_view"
 import topbar from "topbar"
 
 // DuskMoon theme controls for the operator shell.
-import { ThemeSwitcher } from "phoenix_duskmoon/hooks"
+import { ThemeSwitcher } from "duskmoon_phoenix/hooks"
 // DuskMoon React chat for Codex sessions (`dm_react_chat hook="SessionChat"`).
 import { SessionChat } from "./session_chat.js"
 

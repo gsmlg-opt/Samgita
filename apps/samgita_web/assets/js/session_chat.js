@@ -1,15 +1,15 @@
 // Codex session chat: the DuskMoon React chat with the public composition API
-// (phoenix_duskmoon guides/react-chat.md). The default hook composer is a
+// (duskmoon_phoenix guides/react-chat.md). The default hook composer is a
 // single-line input; Chat.Composer is the multi-line composer of the DuskMoon
 // chat demo (Enter sends, Shift+Enter inserts a newline, Stop while working).
 import React, { useEffect, useState } from "react"
 import { Chat, ComposerSettings } from "@duskmoon-dev/components/chat"
 import { Markdown } from "@duskmoon-dev/components/markdown"
-import { createDuskmoonReactChat, useChatSubmission } from "phoenix_duskmoon/react-chat"
+import { createDuskmoonReactChat, useChatSubmission } from "duskmoon_phoenix/react-chat"
 
 const h = React.createElement
 
-// Material Design Icons paths (the set phoenix_duskmoon's dm_mdi serves).
+// Material Design Icons paths (the set duskmoon_phoenix's dm_mdi serves).
 const icons = {
   folder:
     "M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z",

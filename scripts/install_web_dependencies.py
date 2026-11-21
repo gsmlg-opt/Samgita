@@ -12,7 +12,7 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-LOCAL_PACKAGES = ("phoenix", "phoenix_html", "phoenix_live_view", "phoenix_duskmoon")
+LOCAL_PACKAGES = ("phoenix", "phoenix_html", "phoenix_live_view")
 
 
 def digest(path):

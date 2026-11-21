@@ -21,6 +21,10 @@ unrun; functional results and deletion of the old test do not close A11 or
 full compatibility gates. Earlier build/browser results belong to their
 recorded revisions and do not qualify this removal.
 
+The web UI uses Duskmoon Web 2.0 RC via `duskmoon_phoenix` on Hex and npm.
+Duskmoon Phoenix, Core CSS and React components share the same Web release.
+DuskmoonBundler has its own release series.
+
 ## Ownership and dependencies
 
 ```text

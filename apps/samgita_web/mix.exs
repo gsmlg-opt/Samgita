@@ -54,7 +54,7 @@ defmodule SamgitaWeb.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:phoenix_duskmoon, "~> 10.1"},
+      {:duskmoon_phoenix, "2.0.0-rc.3"},
       {:gaoxy_http, "~> 0.15"},
       {:websock_adapter, "~> 0.15", hex: :gaoxy_websock_adapter, override: true},
       {:telemetry_metrics, "~> 1.2"},

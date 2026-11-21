@@ -111,7 +111,7 @@ Every version below 1.0 is an experimental test release. The manual Release work
 
 Use Phoenix LiveView, DuskmoonBundler (including its integrated Tailwind CSS pipeline), TypeScript and the existing DuskMoon family. Use Mix npm tasks and the root workspace lockfile instead of Bun or standalone Tailwind executables.
 
-- Prefer `phoenix_duskmoon` components and existing `@duskmoon-dev/*` assets.
+- Prefer `duskmoon_phoenix` components and existing `@duskmoon-dev/*` assets. Use the `duskmoon-phoenix` skill and keep Hex and npm Web packages on the same release from [duskmoon-web](https://github.com/duskmoon-dev/duskmoon-web).
 - Do not introduce DaisyUI or another component library.
 - Do not vendor or patch DuskMoon internals.
 - Keep views operational, accessible, responsive and consistent.

@@ -3,7 +3,13 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
-Samgita 0.4.5 distinguishes recoverable inbound WebSocket closure from device
+Samgita 0.5.0 upgrades the operator UI to Duskmoon Web 2.0.0-rc.3. The
+`duskmoon_phoenix` Hex and npm packages use the same version as Duskmoon Core
+CSS and the React Chat components. Focused checks covered the Dashboard,
+Appearance settings and synthetic Codex session controls. In Chrome, Moonlight
+persisted across a reload after selecting it in Appearance.
+
+Samgita 0.4.5 distinguished recoverable inbound WebSocket closure from device
 rejection. A client can reconnect with its saved token after an ingress restart
 (`1012`) or connection expiry (`1013`). A superseded socket receives `4001`
 so it can stop retrying while the newer connection stays active. Policy

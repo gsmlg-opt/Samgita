@@ -89,8 +89,8 @@ defmodule SamgitaWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Phoenix Duskmoon UI components (dm_* prefix)
-      use PhoenixDuskmoon.Component
-      use PhoenixDuskmoon.ArtComponent
+      use DuskmoonPhoenix.Component
+      use DuskmoonPhoenix.ArtComponent
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS

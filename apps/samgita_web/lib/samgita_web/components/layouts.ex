@@ -12,7 +12,7 @@ defmodule SamgitaWeb.Layouts do
   embed_templates "layouts/*"
 
   @doc """
-  Shows the flash group using PhoenixDuskmoon's dm_flash_group.
+  Shows the flash group using DuskmoonPhoenix's dm_flash_group.
 
   ## Examples
 
