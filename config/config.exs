@@ -58,7 +58,8 @@ config :samgita, Styx,
     crontab: [
       {"* * * * *", Samgita.Workers.ScheduleTickWorker},
       {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker},
-      {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker}
+      {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker},
+      {"*/15 * * * *", Samgita.Workers.GitHubPatSyncWorker}
     ]
   ],
   pruner: false,

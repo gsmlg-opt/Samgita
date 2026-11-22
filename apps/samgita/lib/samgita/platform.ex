@@ -159,7 +159,12 @@ defmodule Samgita.Platform do
       {"Samgita.Workers.CoordinationMaintenanceWorker", "hub_maintenance"},
       {"Samgita.Workers.AttemptExpiryWorker", "hub_maintenance"},
       {"Samgita.Workers.GitHubReconcileWorker", "hub_github"},
-      {"Samgita.Workers.GitHubMaintenanceWorker", "hub_github"}
+      {"Samgita.Workers.GitHubMaintenanceWorker", "hub_github"},
+      {"Samgita.Workers.GitHubPatCatalogWorker", "hub_github"},
+      {"Samgita.Workers.GitHubPatSyncWorker", "hub_github"},
+      {"Samgita.Workers.GitHubPatRepositorySyncWorker", "hub_github"},
+      {"Samgita.Workers.GitHubPatWorkflowWorker", "hub_github"},
+      {"Samgita.Workers.GitHubPatActionWorker", "hub_github"}
     ]
   end
 

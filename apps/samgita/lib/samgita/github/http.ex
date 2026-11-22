@@ -40,6 +40,65 @@ defmodule Samgita.GitHub.HTTP do
     safe_request(method, url, headers, body, opts)
   end
 
+  @doc false
+  def pat_action(action, repository, number, headers, body, opts) do
+    destination = Keyword.fetch!(opts, :destination)
+
+    with true <- is_integer(number) && number > 0,
+         true <- safe_repository?(repository),
+         {:ok, method, suffix} <- action_endpoint(action, number),
+         {:ok, payload} <- Jason.decode(body),
+         true <- action_payload?(action, payload),
+         url = destination.api_url <> "/repos/#{repository.owner}/#{repository.name}" <> suffix,
+         true <- approved_url?(URI.parse(url), destination) do
+      fetch(method, url, headers, body, destination)
+    else
+      _ -> {:error, :transport_unavailable}
+    end
+  rescue
+    _ -> {:error, :transport_unavailable}
+  catch
+    _, _ -> {:error, :transport_unavailable}
+  end
+
+  defp action_endpoint(action, number) when action in [:close_issue, :reopen_issue],
+    do: {:ok, :patch, "/issues/#{number}"}
+
+  defp action_endpoint(:close_pull, number), do: {:ok, :patch, "/pulls/#{number}"}
+  defp action_endpoint(:approve_pull, number), do: {:ok, :post, "/pulls/#{number}/reviews"}
+
+  defp action_endpoint(action, number) when action in [:merge_pull, :rebase_pull],
+    do: {:ok, :put, "/pulls/#{number}/merge"}
+
+  defp action_endpoint(_, _), do: :error
+
+  defp action_payload?(action, %{"state" => "closed"} = body)
+       when action in [:close_issue, :close_pull],
+       do: map_size(body) == 1
+
+  defp action_payload?(:reopen_issue, %{"state" => "open"} = body), do: map_size(body) == 1
+
+  defp action_payload?(:approve_pull, %{"event" => "APPROVE", "commit_id" => sha} = body),
+    do: map_size(body) == 2 && safe_sha?(sha)
+
+  defp action_payload?(action, %{"sha" => sha, "merge_method" => method} = body)
+       when action in [:merge_pull, :rebase_pull],
+       do:
+         map_size(body) == 2 && safe_sha?(sha) &&
+           method == if(action == :merge_pull, do: "merge", else: "rebase")
+
+  defp action_payload?(_, _), do: false
+
+  defp safe_sha?(sha),
+    do: is_binary(sha) && Regex.match?(~r/\A[0-9a-fA-F]{40}(?:[0-9a-fA-F]{24})?\z/, sha)
+
+  defp safe_repository?(%{owner: owner, name: name}) when is_binary(owner) and is_binary(name),
+    do:
+      Regex.match?(~r/\A[A-Za-z0-9][A-Za-z0-9_-]{0,99}\z/, owner) &&
+        Regex.match?(~r/\A[A-Za-z0-9_.-]{1,100}\z/, name) && name not in [".", ".."]
+
+  defp safe_repository?(_), do: false
+
   defp safe_request(method, url, headers, body, opts) do
     destination = Keyword.fetch!(opts, :destination)
     uri = URI.parse(url)
@@ -70,7 +129,6 @@ defmodule Samgita.GitHub.HTTP do
         connect_timeout: 3_000,
         timeout: remaining(deadline),
         http_version: :http1,
-        tls_backend: :ex_ssl,
         http1_reuse: false,
         redirect: :manual,
         decode_body: false,

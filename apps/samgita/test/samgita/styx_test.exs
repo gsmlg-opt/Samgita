@@ -63,16 +63,17 @@ defmodule Samgita.StyxTest do
     refute Enum.any?(jobs, &(&1["id"] == current.id))
   end
 
-  test "only the four existing queues and three periodic scanners are configured" do
+  test "the four existing queues include a GitHub feed sync every fifteen minutes" do
     config = Application.fetch_env!(:samgita, Styx)
 
     assert config[:queues] ==
              [hub_events: 10, hub_schedules: 1, hub_maintenance: 1, hub_github: 2]
 
-    assert Enum.map(config[:cron][:crontab], &elem(&1, 1)) == [
-             ScheduleTickWorker,
-             Samgita.Workers.CoordinationMaintenanceWorker,
-             Samgita.Workers.GitHubMaintenanceWorker
+    assert config[:cron][:crontab] == [
+             {"* * * * *", ScheduleTickWorker},
+             {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker},
+             {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker},
+             {"*/15 * * * *", Samgita.Workers.GitHubPatSyncWorker}
            ]
 
     for service <- [:pruner, :lifeline, :reindexer], do: assert(config[service] == false)

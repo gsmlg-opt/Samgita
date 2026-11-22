@@ -220,7 +220,7 @@ defmodule Samgita.GitHub.Client do
     case http.request(method, url, headers, body, transport_opts) do
       {:ok, %{status: status, headers: headers, body: body}}
       when is_integer(status) and is_binary(body) and is_list(headers) ->
-        classify_response(status, headers, body, now(opts))
+        read_response(status, headers, body, now(opts))
 
       {:error, :response_too_large} ->
         error(:permanent, :response_too_large)
@@ -237,7 +237,8 @@ defmodule Samgita.GitHub.Client do
     _, _ -> error(:retryable, :transport_unavailable)
   end
 
-  defp classify_response(status, headers, body, now) do
+  @doc false
+  def read_response(status, headers, body, now) do
     cond do
       byte_size(body) > @max_bytes -> error(:permanent, :response_too_large)
       status in 200..299 -> successful_response(body, headers, now)

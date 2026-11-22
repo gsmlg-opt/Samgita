@@ -24,7 +24,8 @@ defmodule Samgita.LegacyIsolationTest do
     assert Enum.map(cron[:crontab], &elem(&1, 1)) == [
              Samgita.Workers.ScheduleTickWorker,
              Samgita.Workers.CoordinationMaintenanceWorker,
-             Samgita.Workers.GitHubMaintenanceWorker
+             Samgita.Workers.GitHubMaintenanceWorker,
+             Samgita.Workers.GitHubPatSyncWorker
            ]
 
     for module <- [
