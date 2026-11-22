@@ -3,6 +3,20 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
+Samgita 0.5.1 adds a GitHub console. In Settings → GitHub, save one
+encrypted personal access token (PAT) and select individual repositories or
+whole organizations. The console lists open Issue and PR counts by repository.
+Pages read from PostgreSQL. Styx syncs open items every 15 minutes and when
+an operator clicks Sync. It clears closed and merged items from the cache
+every 15 days. The repository directory has its own refresh control.
+
+The cross-repository and repository tables share GitHub label colors and
+action icons. Closing an Issue or PR requires confirmation. Issues can be
+reopened. PRs have a separate review action and one Merge button that prompts
+the operator to choose a merge commit or rebase against the displayed revision.
+Each repository shows its 20 most recent workflow runs, refreshes every 10
+seconds while active runs are visible, and offers manual refresh at any time.
+
 Samgita 0.5.0 upgrades the operator UI to Duskmoon Web 2.0.0-rc.3. The
 `duskmoon_phoenix` Hex and npm packages use the same version as Duskmoon Core
 CSS and the React Chat components. Focused checks covered the Dashboard,
@@ -52,9 +66,9 @@ Known limits remain open:
   a refreshed schema snapshot, so there is no full-compatibility target. The
   retired `rust-v0.163.0` compatibility records are historical evidence only.
   Live Codex, Sigma and Synapsis conformance is not established.
-- GitHub is a future TODO. Existing GitHub ingestion is unchanged; no new GitHub
-  features, release observation or App permission changes are included. A real
-  GitHub App has not been provisioned, and GitHub writes stay disabled.
+- Functional checks of the operator PAT console used simulated GitHub responses.
+  Live GitHub App conformance, release observation and App permission changes
+  remain open. The GitHub App integration continues to operate read-only.
 - A11, the confidentiality of the platform's raw telemetry, is unresolved. The
   last minimum runtime Dialyzer check reported ten diagnostics. This prerelease
   does not claim aggregate acceptance passes.
