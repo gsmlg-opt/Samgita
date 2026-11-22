@@ -43,6 +43,12 @@ defmodule SamgitaWeb.Router do
     pipe_through :browser
     live "/", DashboardLive.Index, :index
     live "/settings", SettingsLive.Index, :index
+    post "/settings/github/pat/challenge", GitHubPATController, :challenge
+    post "/settings/github/pat", GitHubPATController, :create
+    live "/github", GitHubLive.Index, :overview
+    live "/github/issue", GitHubLive.Index, :issues
+    live "/github/pull-request", GitHubLive.Index, :pulls
+    live "/github/repository/:id", GitHubLive.Repository, :show
     live "/agents", AgentsLive.Index, :index
     live "/agents/:id", AgentsLive.Show, :show
     live "/sessions/:host_id/new", SessionsLive.Show, :new

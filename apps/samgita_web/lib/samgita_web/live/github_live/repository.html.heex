@@ -1,0 +1,231 @@
+<section id="github-repository-detail" class="space-y-6" aria-labelledby="github-repository-title">
+  <.link navigate={~p"/github"} class="inline-block text-primary underline">{gettext(
+    "Back to GitHub"
+  )}</.link>
+
+  <div :if={is_nil(@detail)} id="github-repository-unavailable" class="space-y-3">
+    <h1 id="github-repository-title" class="text-3xl font-bold">
+      {gettext("Repository unavailable")}
+    </h1>
+    <p class="text-on-surface-variant">
+      {gettext("Choose an available repository from the GitHub overview.")}
+    </p>
+  </div>
+
+  <div :if={@detail} class="space-y-6">
+    <header class="flex flex-wrap items-start justify-between gap-4">
+      <div class="min-w-0 space-y-2">
+        <h1 id="github-repository-title" class="break-all text-3xl font-bold">
+          {@detail.repository.owner}/{@detail.repository.name}
+        </h1>
+        <p :if={@tab != :workflow_runs} class="text-sm text-on-surface-variant">
+          {gettext("Open issues and pull requests")}
+        </p>
+        <p
+          :if={@tab != :workflow_runs && @detail.sync.synced_at}
+          class="text-sm text-on-surface-variant"
+        >
+          {gettext("Last synced")}
+          <time datetime={DateTime.to_iso8601(@detail.sync.synced_at)}>{readable_time(
+            @detail.sync.synced_at
+          )}</time>
+        </p>
+      </div>
+      <button
+        id="github-repository-sync"
+        type="button"
+        phx-click="sync"
+        class="btn btn-ghost btn-square"
+        title={
+          if @tab == :workflow_runs,
+            do: gettext("Sync workflow runs"),
+            else: gettext("Sync repository")
+        }
+        aria-label={
+          if @tab == :workflow_runs,
+            do: gettext("Sync workflow runs"),
+            else: gettext("Sync repository")
+        }
+      >
+        <.dm_mdi name="sync" class="size-5" aria-hidden="true" />
+      </button>
+    </header>
+
+    <nav
+      id="github-repository-tabs"
+      aria-label={gettext("Repository views")}
+      class="flex gap-2 overflow-x-auto border-b border-outline-variant"
+    >
+      <.link
+        :for={
+          {tab, label} <- [
+            {:issues, gettext("Issues")},
+            {:pulls, gettext("Pull Requests")},
+            {:workflow_runs, gettext("Workflow runs")}
+          ]
+        }
+        id={"github-repository-tab-#{tab_param(tab)}"}
+        patch={repository_path(@repository_id, tab, @issue_page, @pull_page)}
+        aria-current={@tab == tab && "page"}
+        class={[
+          "shrink-0 border-b-2 px-4 py-3 font-semibold",
+          if(@tab == tab,
+            do: "border-primary text-primary",
+            else: "border-transparent text-on-surface-variant"
+          )
+        ]}
+      >
+        {label}
+      </.link>
+    </nav>
+
+    <p
+      :if={@sync_status}
+      id="github-repository-sync-status"
+      role="status"
+      class="text-sm text-on-surface-variant"
+    >
+      {@sync_status}
+    </p>
+    <p :if={@sync_error} id="github-repository-request-error" role="alert" class="text-error">
+      {@sync_error}
+    </p>
+    <p
+      :if={@tab != :workflow_runs && @detail.sync.error_code}
+      id="github-repository-sync-error"
+      role="status"
+      class="text-sm text-error"
+    >
+      {gettext("The latest repository sync failed. Use Sync to try again.")}
+    </p>
+    <ItemTable.feedback status={@action_status} error={@action_error} />
+    <div :if={@tab == :issues} class="space-y-5">
+      <ItemTable.closed_issue :if={@closed_issue} issue={@closed_issue} jobs={@action_jobs} />
+      <form
+        id="github-reopen-issue-form"
+        phx-submit="reopen_issue"
+        class="flex flex-wrap items-end gap-3"
+      >
+        <label for="github-reopen-number" class="flex flex-col gap-1 text-sm font-semibold">
+          {gettext("Reopen issue by number")}
+          <input
+            id="github-reopen-number"
+            name="number"
+            type="number"
+            min="1"
+            step="1"
+            required
+            value={@reopen_number}
+            class="input w-40 font-normal"
+          />
+        </label>
+        <button type="submit" class="btn btn-ghost">{gettext("Reopen issue")}</button>
+      </form>
+      <.item_table
+        id="github-repository-issues"
+        title={gettext("Issues")}
+        kind={:issues}
+        result={@detail.issues}
+        repository_id={@repository_id}
+        issue_page={@issue_page}
+        pull_page={@pull_page}
+        pending={is_nil(@detail.sync.synced_at)}
+        jobs={@action_jobs}
+      />
+    </div>
+
+    <.item_table
+      :if={@tab == :pulls}
+      id="github-repository-pulls"
+      title={gettext("Pull Requests")}
+      kind={:pulls}
+      result={@detail.pulls}
+      repository_id={@repository_id}
+      issue_page={@issue_page}
+      pull_page={@pull_page}
+      pending={is_nil(@detail.sync.synced_at)}
+      jobs={@action_jobs}
+    />
+
+    <.dm_card :if={@tab == :workflow_runs} id="github-workflow-runs" variant="bordered">
+      <:title>{gettext("Workflow runs")}</:title>
+      <p class="mb-3 text-sm text-on-surface-variant">{gettext("Latest 20 runs")}</p>
+      <p
+        :if={@workflows.status == :refreshing}
+        id="github-workflow-loading"
+        role="status"
+        class="mb-3 text-sm text-on-surface-variant"
+      >
+        {gettext("Workflow sync queued or running…")}
+      </p>
+      <p
+        :if={@workflow_error || @workflows.error}
+        id="github-workflow-error"
+        role="alert"
+        class="mb-3 text-error"
+      >
+        {@workflow_error ||
+          gettext("Workflow runs could not be refreshed. Use Sync to try again.")}
+      </p>
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{gettext("Workflow")}</th>
+              <th scope="col">{gettext("Branch / event")}</th>
+              <th scope="col">{gettext("Status")}</th>
+              <th scope="col">{gettext("Actor")}</th>
+              <th scope="col">{gettext("Updated")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr :if={@workflows.rows == []}>
+              <td id="github-workflow-empty" colspan="6" class="text-on-surface-variant">
+                {cond do
+                  @workflows.synced_at -> gettext("No workflow runs.")
+                  @workflows.status == :failed -> gettext("No saved workflow runs.")
+                  true -> gettext("Waiting for the first workflow sync.")
+                end}
+              </td>
+            </tr>
+            <tr :for={run <- Enum.take(@workflows.rows, 20)} id={"github-workflow-run-#{run.id}"}>
+              <th scope="row" class="font-normal">
+                <a
+                  href={run.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary hover:underline"
+                >#{run.number}</a>
+              </th>
+              <td class="min-w-48 max-w-md">
+                <p class="break-words font-semibold">{run.name || gettext("Workflow run")}</p>
+                <p
+                  :if={run.title && run.title != run.name}
+                  class="break-words text-sm text-on-surface-variant"
+                >
+                  {run.title}
+                </p>
+              </td>
+              <td>
+                <p>{run.branch || "—"}</p>
+                <p class="text-sm text-on-surface-variant">{run.event}</p>
+              </td>
+              <td class="whitespace-nowrap">{run_status(run)}</td>
+              <td>{run.actor || "—"}</td>
+              <td class="whitespace-nowrap text-sm text-on-surface-variant">
+                <time datetime={run.updated_at}>{readable_time(run.updated_at)}</time>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p :if={@workflows.synced_at} class="mt-4 text-sm text-on-surface-variant">
+        {gettext("Last synced")}
+        <time datetime={DateTime.to_iso8601(@workflows.synced_at)}>{readable_time(
+          @workflows.synced_at
+        )}</time>
+      </p>
+    </.dm_card>
+  </div>
+</section>

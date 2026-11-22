@@ -1,0 +1,268 @@
+<section id="github-console" class="space-y-6" aria-labelledby="github-title">
+  <header class="flex flex-wrap items-start justify-between gap-4">
+    <h1 id="github-title" class="text-3xl font-bold">GitHub</h1>
+    <.link navigate={~p"/settings?section=github"} class="text-primary underline">
+      {gettext("Manage repositories")}
+    </.link>
+  </header>
+
+  <.dm_card :if={!configured?(@settings)} id="github-setup" variant="bordered">
+    <p class="mb-4 text-on-surface-variant">
+      {if is_nil(@settings.connection),
+        do: gettext("Connect GitHub to view repository issues and pull requests."),
+        else: gettext("Choose repositories to view their issues and pull requests.")}
+    </p>
+    <.link navigate={~p"/settings?section=github"} class="btn btn-primary">
+      {gettext("Open GitHub settings")}
+    </.link>
+  </.dm_card>
+
+  <div :if={configured?(@settings)} class="space-y-5">
+    <nav
+      id="github-tabs"
+      aria-label={gettext("GitHub lists")}
+      class="flex gap-2 border-b border-outline-variant"
+    >
+      <.link
+        :for={
+          {tab, label} <- [
+            {:overview, gettext("Overview")},
+            {:issues, gettext("Issues")},
+            {:pulls, gettext("Pull Requests")}
+          ]
+        }
+        id={"github-tab-#{tab}"}
+        patch={github_path(tab, @filters)}
+        aria-current={@tab == tab && "page"}
+        class={[
+          "border-b-2 px-4 py-3 font-semibold",
+          if(@tab == tab,
+            do: "border-primary text-primary",
+            else: "border-transparent text-on-surface-variant"
+          )
+        ]}
+      >
+        {label}
+      </.link>
+    </nav>
+
+    <div class="flex flex-wrap items-end gap-3">
+      <form id="github-filters" phx-change="filter" class="flex min-w-0 flex-1 flex-wrap gap-3">
+        <label
+          class="flex min-w-40 flex-1 flex-col gap-1 text-sm font-semibold"
+          for="github-owner-filter"
+        >
+          {gettext("Owner")}
+          <select id="github-owner-filter" name="owner" class="select w-full font-normal">
+            <option value="" selected={is_nil(@filters.owner_id)}>{gettext("All owners")}</option>
+            <option
+              :for={owner <- owners(@settings)}
+              value={owner.owner_id}
+              selected={@filters.owner_id == owner.owner_id}
+            >
+              {owner.owner}
+            </option>
+          </select>
+        </label>
+        <label
+          class="flex min-w-48 flex-1 flex-col gap-1 text-sm font-semibold"
+          for="github-repository-filter"
+        >
+          {gettext("Repository")}
+          <select
+            id="github-repository-filter"
+            name="repository"
+            class="select w-full font-normal"
+          >
+            <option value="" selected={is_nil(@filters.repository_id)}>
+              {gettext("All repositories")}
+            </option>
+            <option
+              :for={repository <- filter_repositories(@settings.repositories, @filters.owner_id)}
+              value={repository.id}
+              selected={@filters.repository_id == repository.id}
+            >
+              {repository.owner}/{repository.name}
+            </option>
+          </select>
+        </label>
+      </form>
+      <button
+        type="button"
+        id="github-sync"
+        phx-click="sync"
+        class="btn btn-ghost btn-square"
+        title={gettext("Sync GitHub")}
+        aria-label={gettext("Sync GitHub")}
+      >
+        <.dm_mdi name="sync" class="size-5" aria-hidden="true" />
+      </button>
+    </div>
+
+    <p class="text-sm text-on-surface-variant">{gettext("Automatic sync every 15 minutes.")}</p>
+    <p :if={@tab != :overview} id="github-open-scope" class="text-sm text-on-surface-variant">
+      {gettext("Open only")}
+    </p>
+    <p
+      :if={@sync_status}
+      id="github-sync-status"
+      role="status"
+      class="text-sm text-on-surface-variant"
+    >
+      {@sync_status}
+    </p>
+    <p :if={@sync_error} id="github-sync-error" role="alert" class="text-error">{@sync_error}</p>
+    <p
+      :if={@pending_count > 0}
+      id="github-feed-pending"
+      role="status"
+      class="text-sm text-on-surface-variant"
+    >
+      {ngettext(
+        "%{count} repository awaiting sync.",
+        "%{count} repositories awaiting sync.",
+        @pending_count
+      )}
+    </p>
+    <p
+      :if={@tab != :overview && @failed_count > 0}
+      id="github-feed-failures"
+      role="status"
+      class="text-sm text-error"
+    >
+      {ngettext(
+        "Sync failed for %{count} repository.",
+        "Sync failed for %{count} repositories.",
+        @failed_count
+      )}
+    </p>
+
+    <.dm_card :if={@tab == :overview} id="github-overview" variant="bordered">
+      <:title>
+        <span class="flex flex-wrap items-center justify-between gap-3">
+          <span>{gettext("Repositories")}</span>
+          <span id="github-overview-scope" class="text-sm font-normal text-on-surface-variant">{gettext(
+            "Open only"
+          )}</span>
+        </span>
+      </:title>
+      <div :if={@rows != []} class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th scope="col">{gettext("Repository")}</th>
+              <th scope="col" class="text-right">{gettext("Issues")}</th>
+              <th scope="col" class="text-right">{gettext("Pull Requests")}</th>
+              <th scope="col">{gettext("Last synced")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr :for={row <- @rows} id={"github-repository-summary-#{row.repository.id}"}>
+              <th scope="row" class="font-normal">
+                <.link
+                  id={"github-repository-link-#{row.repository.id}"}
+                  navigate={~p"/github/repository/#{row.repository.id}"}
+                  class="break-all font-semibold text-primary hover:underline"
+                >
+                  {row.repository.owner}/{row.repository.name}
+                </.link>
+                <p :if={row.error_code} class="mt-1 text-sm text-error">
+                  {error_message(row.error_code)}
+                </p>
+              </th>
+              <td class="text-right">
+                <.link
+                  id={"github-issues-count-#{row.repository.id}"}
+                  patch={detail_path(:issues, row.repository)}
+                  class="font-semibold text-primary hover:underline"
+                  aria-label={
+                    gettext("Open issues for %{repository}",
+                      repository: row.repository.owner <> "/" <> row.repository.name
+                    )
+                  }
+                >
+                  {if is_nil(row.issues_count), do: "—", else: row.issues_count}
+                </.link>
+              </td>
+              <td class="text-right">
+                <.link
+                  id={"github-pulls-count-#{row.repository.id}"}
+                  patch={detail_path(:pulls, row.repository)}
+                  class="font-semibold text-primary hover:underline"
+                  aria-label={
+                    gettext("Open pull requests for %{repository}",
+                      repository: row.repository.owner <> "/" <> row.repository.name
+                    )
+                  }
+                >
+                  {if is_nil(row.pulls_count), do: "—", else: row.pulls_count}
+                </.link>
+              </td>
+              <td class="whitespace-nowrap text-sm text-on-surface-variant">
+                <time datetime={iso_time(row.synced_at)}>{readable_time(row.synced_at)}</time>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p :if={@rows == []} id="github-feed-empty" class="text-on-surface-variant">
+        {gettext("No matching repositories.")}
+      </p>
+    </.dm_card>
+
+    <.dm_card :if={@tab != :overview} id="github-results" variant="bordered">
+      <ItemTable.feedback status={@action_status} error={@action_error} />
+      <%= if repository = closed_repository(@closed_issue, @settings, @filters) do %>
+        <ItemTable.closed_issue
+          :if={@tab == :issues}
+          issue={@closed_issue}
+          jobs={@action_jobs}
+          repository_name={repository.owner <> "/" <> repository.name}
+        />
+      <% end %>
+      <ItemTable.table
+        id="github-items"
+        kind={@tab}
+        rows={@rows}
+        jobs={@action_jobs}
+        show_repository
+        empty_id={if @pending_count == 0, do: "github-feed-empty"}
+        empty_message={
+          if @pending_count > 0,
+            do: gettext("Awaiting first sync."),
+            else: gettext("No matching items. Sync to update.")
+        }
+      />
+    </.dm_card>
+
+    <nav
+      :if={@pages > 1}
+      id="github-pagination"
+      aria-label={gettext("GitHub pages")}
+      class="flex items-center justify-between gap-3"
+    >
+      <.link
+        :if={@page > 1}
+        id="github-previous"
+        patch={github_path(@tab, @filters, @page - 1)}
+        class="btn btn-ghost"
+      >
+        {gettext("Previous")}
+      </.link>
+      <span :if={@page == 1} class="btn btn-ghost" aria-disabled="true">{gettext("Previous")}</span>
+      <span class="text-sm text-on-surface-variant">{gettext("Page %{page} of %{pages}",
+        page: @page,
+        pages: @pages
+      )}</span>
+      <.link
+        :if={@page < @pages}
+        id="github-next"
+        patch={github_path(@tab, @filters, @page + 1)}
+        class="btn btn-ghost"
+      >
+        {gettext("Next")}
+      </.link>
+      <span :if={@page == @pages} class="btn btn-ghost" aria-disabled="true">{gettext("Next")}</span>
+    </nav>
+  </div>
+</section>

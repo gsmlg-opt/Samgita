@@ -9,10 +9,13 @@ import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 import topbar from "topbar"
 
-// DuskMoon theme controls for the operator shell.
-import { ThemeSwitcher } from "duskmoon_phoenix/hooks"
+// DuskMoon native theme and popover hooks.
+import { ThemeSwitcher, DuskmoonPopover } from "duskmoon_phoenix/hooks"
 // DuskMoon React chat for Codex sessions (`dm_react_chat hook="SessionChat"`).
 import { SessionChat } from "./session_chat.js"
+import { GitHubPAT } from "./github_pat"
+import { GitHubClipboard } from "./github_clipboard"
+import { GitHubMergeDialog } from "./github_merge_dialog"
 
 // Extend Window interface for custom properties
 declare global {
@@ -44,7 +47,7 @@ if (!csrfToken) {
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  hooks: { ThemeSwitcher, SessionChat },
+  hooks: { ThemeSwitcher, DuskmoonPopover, SessionChat, GitHubPAT, GitHubClipboard, GitHubMergeDialog },
 })
 
 // Show progress bar on live navigation and form submits

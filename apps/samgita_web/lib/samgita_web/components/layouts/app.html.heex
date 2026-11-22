@@ -27,6 +27,13 @@
     {gettext("Agents")}
   </:menu>
   <:menu
+    to={~p"/github"}
+    active={@socket.view in [SamgitaWeb.GitHubLive.Index, SamgitaWeb.GitHubLive.Repository]}
+    class="max-sm:!px-1"
+  >
+    {gettext("GitHub")}
+  </:menu>
+  <:menu
     to={~p"/settings"}
     active={@socket.view == SamgitaWeb.SettingsLive.Index}
     class="max-sm:!px-1"

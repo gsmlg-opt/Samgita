@@ -37,6 +37,282 @@
           </div>
         </.dm_card>
       </div>
+      <div :if={@section == "github"} id="section-github" class="space-y-6">
+        <.dm_card id="github-connection" variant="bordered">
+          <:title>{gettext("GitHub")}</:title>
+          <div :if={@connection} class="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <p>
+              {gettext("Connected as")}
+              <span id="github-account" class="font-semibold">{@connection.login}</span>
+            </p>
+            <button
+              type="button"
+              id="github-remove"
+              phx-click="github_remove"
+              class="btn btn-ghost"
+            >
+              {gettext("Remove connection")}
+            </button>
+          </div>
+          <form
+            id="github-pat-form"
+            phx-hook="GitHubPAT"
+            data-version={@version || ""}
+            class="space-y-3"
+          >
+            <label for="github-pat" class="block font-semibold">
+              {if @connection,
+                do: gettext("Replace personal access token"),
+                else: gettext("Personal access token")}
+            </label>
+            <input
+              id="github-pat"
+              data-pat-input
+              type="password"
+              autocomplete="off"
+              required
+              maxlength="8192"
+              class="input w-full"
+              aria-describedby="github-pat-hint github-pat-error"
+            />
+            <p id="github-pat-hint" class="text-sm text-on-surface-variant">
+              {gettext(
+                "Paste the full token value from GitHub. For a fine-grained PAT, grant read access to Metadata, Issues and Pull requests for the repositories you want to view."
+              )}
+            </p>
+            <p id="github-pat-error" data-pat-error role="alert" class="text-sm text-error"></p>
+            <button type="submit" class="btn btn-primary">
+              {if @connection, do: gettext("Replace PAT"), else: gettext("Connect GitHub")}
+            </button>
+          </form>
+        </.dm_card>
+
+        <p :if={@github_error} id="github-settings-error" role="alert" class="text-error">
+          {@github_error}
+          <button
+            type="button"
+            id="github-reload"
+            phx-click="github_reload"
+            class="btn btn-ghost btn-sm"
+          >
+            {gettext("Reload")}
+          </button>
+        </p>
+
+        <.dm_card :if={@connection} id="github-repositories-card" variant="bordered">
+          <:title>
+            <span class="flex items-center justify-between gap-3">
+              <span>{gettext("Repositories")}</span>
+              <button
+                type="button"
+                id="github-refresh-catalog"
+                phx-click="github_refresh_catalog"
+                class="btn btn-ghost btn-square btn-sm"
+                title={gettext("Refresh organizations and repositories")}
+                aria-label={gettext("Refresh organizations and repositories")}
+                disabled={@catalog_status == :refreshing || @selection_conflict}
+              >
+                <.dm_mdi
+                  name="refresh"
+                  class={["size-5", @catalog_status == :refreshing && "motion-safe:animate-spin"]}
+                  aria-hidden="true"
+                />
+              </button>
+            </span>
+          </:title>
+          <p
+            :if={@catalog_status == :refreshing}
+            id="github-catalog-loading"
+            role="status"
+            class="sr-only"
+          >
+            {gettext("Refreshing organizations and repositories…")}
+          </p>
+          <p :if={@catalog_error} id="github-catalog-error" role="alert" class="mb-4 text-error">
+            {@catalog_error}
+          </p>
+          <p
+            :if={@catalog_status == :uninitialized}
+            role="status"
+            class="mb-4 text-on-surface-variant"
+          >
+            {gettext("The repository catalog has not been loaded yet.")}
+          </p>
+          <div :if={@catalog_loaded} class="space-y-5">
+            <p :if={!@memberships_available} role="status" class="text-sm text-on-surface-variant">
+              {gettext(
+                "GitHub did not return organization memberships. Showing owners of accessible repositories."
+              )}
+            </p>
+            <div class="grid items-start gap-5 md:grid-cols-[12rem_1fr]">
+              <nav id="github-owners" aria-label={gettext("Repository owners")} class="space-y-1">
+                <button
+                  :for={owner <- @owners}
+                  id={"github-owner-#{owner.id}"}
+                  type="button"
+                  phx-click="github_owner"
+                  phx-value-id={owner.id}
+                  aria-pressed={to_string(@owner_id == owner.id)}
+                  class={[
+                    "block w-full break-words rounded-lg px-3 py-2 text-left",
+                    @owner_id == owner.id && "bg-surface-container-high font-semibold"
+                  ]}
+                >
+                  {if owner.id == @connection.github_id,
+                    do: gettext("My repositories"),
+                    else: owner.login}
+                </button>
+              </nav>
+              <div class="min-w-0 space-y-3">
+                <form id="github-repository-search" phx-change="github_search" role="search">
+                  <label for="github-repository-query" class="sr-only">{gettext(
+                    "Search repositories"
+                  )}</label>
+                  <input
+                    id="github-repository-query"
+                    type="search"
+                    name="search"
+                    value={@search}
+                    placeholder={gettext("Search repositories")}
+                    phx-debounce="200"
+                    class="input w-full"
+                  />
+                </form>
+                <div :if={@owner_id} class="space-y-1">
+                  <label
+                    for="github-select-owner"
+                    class="flex cursor-pointer items-center gap-3 py-2"
+                  >
+                    <input
+                      id="github-select-owner"
+                      type="checkbox"
+                      phx-click="github_toggle_owner"
+                      class="checkbox shrink-0"
+                      checked={MapSet.member?(@selected_owner_ids, @owner_id)}
+                      disabled={@selection_saving}
+                      aria-describedby="github-whole-owner-hint"
+                    />
+                    <span>{gettext("Include all repositories for this owner")}</span>
+                  </label>
+                  <p id="github-whole-owner-hint" class="text-sm text-on-surface-variant">
+                    {gettext(
+                      "Includes repositories discovered in future catalog refreshes. Individual selections are kept separately."
+                    )}
+                  </p>
+                </div>
+                <div
+                  id="github-repository-options"
+                  class="max-h-96 overflow-y-auto divide-y divide-outline-variant"
+                >
+                  <.repository_option
+                    :for={
+                      repository <-
+                        repository_page(
+                          @catalog_repositories,
+                          @owner_id,
+                          @search,
+                          @repository_page
+                        )
+                    }
+                    repository={repository}
+                    checked={repository_selected?(repository, @selected_ids, @selected_owner_ids)}
+                    disabled={
+                      @selection_saving ||
+                        MapSet.member?(@selected_owner_ids, repository.owner_id)
+                    }
+                  />
+                  <p
+                    :if={visible_repositories(@catalog_repositories, @owner_id, @search) == []}
+                    id="github-repositories-empty"
+                    class="py-4 text-on-surface-variant"
+                  >
+                    {gettext("No matching repositories available to this PAT.")}
+                  </p>
+                </div>
+                <nav
+                  :if={repository_pages(@catalog_repositories, @owner_id, @search) > 1}
+                  id="github-repository-pagination"
+                  aria-label={gettext("Repository pages")}
+                  class="flex flex-wrap items-center justify-between gap-2 pt-2"
+                >
+                  <button
+                    type="button"
+                    id="github-repositories-previous"
+                    phx-click="github_repository_page"
+                    phx-value-direction="previous"
+                    disabled={@repository_page == 1}
+                    class="btn btn-ghost btn-sm"
+                  >
+                    {gettext("Previous")}
+                  </button>
+                  <span class="text-sm text-on-surface-variant">
+                    {gettext("Page %{page} of %{pages}",
+                      page: @repository_page,
+                      pages: repository_pages(@catalog_repositories, @owner_id, @search)
+                    )}
+                  </span>
+                  <button
+                    type="button"
+                    id="github-repositories-next"
+                    phx-click="github_repository_page"
+                    phx-value-direction="next"
+                    disabled={
+                      @repository_page ==
+                        repository_pages(@catalog_repositories, @owner_id, @search)
+                    }
+                    class="btn btn-ghost btn-sm"
+                  >
+                    {gettext("Next")}
+                  </button>
+                </nav>
+              </div>
+            </div>
+            <fieldset :if={@unlisted_selections != []} id="github-unlisted-selections">
+              <legend class="font-semibold">
+                {gettext("Selections no longer listed by GitHub")}
+              </legend>
+              <.repository_option
+                :for={repository <- @unlisted_selections}
+                repository={repository}
+                checked={MapSet.member?(@selected_ids, repository.id)}
+                disabled={@selection_saving}
+              />
+            </fieldset>
+            <div class="flex flex-wrap items-center justify-between gap-3 border-t border-outline-variant pt-4">
+              <p id="github-selected-count" class="text-sm text-on-surface-variant">
+                {ngettext(
+                  "%{count} repository selected",
+                  "%{count} repositories selected",
+                  selected_count(@catalog_repositories, @selected_ids, @selected_owner_ids)
+                )}
+              </p>
+              <p
+                :if={MapSet.size(@selected_owner_ids) > 0}
+                id="github-selected-owner-count"
+                class="text-sm text-on-surface-variant"
+              >
+                {ngettext(
+                  "%{count} owner included in full",
+                  "%{count} owners included in full",
+                  MapSet.size(@selected_owner_ids)
+                )}
+              </p>
+              <button
+                type="button"
+                id="github-save-selection"
+                phx-click="github_save_selection"
+                class="btn btn-primary"
+                disabled={@selection_saving || @selection_conflict}
+              >
+                {if @selection_saving, do: gettext("Saving…"), else: gettext("Save selection")}
+              </button>
+            </div>
+            <.link navigate={~p"/github"} class="inline-block text-primary underline">
+              {gettext("View issues and pull requests")}
+            </.link>
+          </div>
+        </.dm_card>
+      </div>
     </div>
   </div>
 </section>
