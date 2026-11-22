@@ -4,7 +4,7 @@ defmodule SamgitaProtocolCodex.MixProject do
   def project do
     [
       app: :samgita_protocol_codex,
-      version: "0.5.0",
+      version: "0.5.1",
       description:
         "Pinned Codex app-server schemas and lossless native wire validation for Elixir clients.",
       package: [

@@ -4,7 +4,7 @@ defmodule SamgitaCodexDriver.MixProject do
   def project do
     [
       app: :samgita_codex_driver,
-      version: "0.5.0",
+      version: "0.5.1",
       description:
         "Explicitly owned Codex app-server sessions, transports, tool interactions and truthful recovery.",
       package: [
