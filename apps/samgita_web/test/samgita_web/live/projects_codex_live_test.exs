@@ -10,7 +10,6 @@ defmodule SamgitaWeb.ProjectsCodexLiveTest do
     "name" => "web-terminal",
     "roots" => [%{"path" => "/work/web-terminal"}],
     "metadata" => %{},
-    "position" => 0,
     "createdAt" => 1_788_446_438,
     "updatedAt" => 1_788_446_438,
     "recencyAt" => nil

@@ -736,7 +736,8 @@ defmodule SamgitaCodexDriver.Session do
   defp complete_request(wire, pending, state) do
     validation =
       Schema.validate_result(:server_response, pending.method, wire["result"],
-        experimental: state.experimental
+        experimental: state.experimental,
+        schema_mode: state.opts[:schema_mode]
       )
 
     case validation do

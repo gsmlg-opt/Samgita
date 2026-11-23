@@ -122,9 +122,13 @@ defmodule SamgitaProtocolCodex.Schema do
     validate_message(direction, method, params, opts)
   end
 
+  @doc """
+  Validate a correlated result against the snapshot. `schema_mode: :compatible`
+  also accepts Project results that omit the former `position` field.
+  """
   def validate_result(direction, method, result, opts \\ []) do
     with {:ok, filename} <- result_path(direction, method) do
-      document = Output.contract(filename, read(filename, "experimental"))
+      document = Output.contract(filename, read(filename, "experimental"), opts)
       validate(document, result, opts)
     end
   end

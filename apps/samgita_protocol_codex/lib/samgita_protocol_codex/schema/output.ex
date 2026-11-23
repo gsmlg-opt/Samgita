@@ -19,6 +19,7 @@ defmodule SamgitaProtocolCodex.Schema.Output do
                   @external_resource path
                   path |> File.read!() |> JSON.decode!()
                 end)
+  @project_results ~w(v2/ProjectListResponse.json v2/ProjectReadResponse.json v2/ProjectCreateResponse.json v2/ProjectUpdateResponse.json v2/ProjectImportResponse.json)
 
   for correction <- @corrections do
     unless correction["upstream_commit"] == @commit do
@@ -43,10 +44,19 @@ defmodule SamgitaProtocolCodex.Schema.Output do
     end
   end
 
-  def contract(filename, document) do
-    Enum.reduce(@corrections, document, fn correction, document ->
-      apply_correction(filename, document, correction)
-    end)
+  def contract(filename, document, opts \\ []) do
+    document =
+      Enum.reduce(@corrections, document, fn correction, document ->
+        apply_correction(filename, document, correction)
+      end)
+
+    # Newer Project results omit position. Compatible sessions accept its absence
+    # while the snapshot still validates the field's integer type when present.
+    if opts[:schema_mode] == :compatible and filename in @project_results do
+      update_in(document, ["definitions", "Project", "required"], &List.delete(&1, "position"))
+    else
+      document
+    end
   end
 
   defp apply_correction(filename, document, correction) do

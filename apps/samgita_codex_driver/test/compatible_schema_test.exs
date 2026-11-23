@@ -104,6 +104,34 @@ defmodule SamgitaCodexDriver.CompatibleSchemaTest do
     end
   end
 
+  test "newer project results omit position in compatible sessions while strict sessions use the snapshot" do
+    project = %{
+      "id" => "project",
+      "name" => "Example",
+      "metadata" => %{},
+      "roots" => [%{"path" => "/workspace/example"}],
+      "createdAt" => 1,
+      "updatedAt" => 2
+    }
+
+    for mode <- [:compatible, :strict],
+        project <- [project, Map.put(project, "position", 3)] do
+      pid = connection(schema_mode: mode)
+      initialize(pid, %{"experimentalApi" => true})
+      call = request(pid, "project/list", "projects")
+      wire = %{"id" => "projects", "result" => %{"data" => [project], "nextCursor" => nil}}
+      send(pid, {:incoming, wire})
+
+      if mode == :compatible or Map.has_key?(project, "position") do
+        assert {:ok, ^wire} = Task.await(call)
+        assert Session.status(pid).phase == :ready
+      else
+        assert {:error, %Error{code: :schema_violation}} = Task.await(call)
+        assert Session.status(pid).phase == :disconnected
+      end
+    end
+  end
+
   test "a newly introduced result enum value remains intact but is never validated success" do
     pid = ready()
 
@@ -420,8 +448,8 @@ defmodule SamgitaCodexDriver.CompatibleSchemaTest do
     pid
   end
 
-  defp initialize(pid) do
-    call = Task.async(fn -> Session.initialize(pid, info()) end)
+  defp initialize(pid, capabilities \\ %{}) do
+    call = Task.async(fn -> Session.initialize(pid, info(), capabilities) end)
     assert_receive {:sent, ^pid, %{"id" => id, "method" => "initialize"}}, 2_000
 
     result = %{
