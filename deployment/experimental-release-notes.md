@@ -3,6 +3,11 @@ apps, the four reusable Hex packages, the application archive and the Docker ima
 share one release version. Package versions are independent of the Codex
 app-server release and of the neutral wire schema version.
 
+Samgita 0.5.2 fixes two ways a Codex host could fail to show its projects.
+Compatible sessions now accept projects that omit the former `position` field.
+SSH hosts get up to 30 seconds to finish their login shell and proxy handshake,
+so a slow login can complete and return the host's project list.
+
 Samgita 0.5.1 adds a GitHub console. In Settings → GitHub, save one
 encrypted personal access token (PAT) and select individual repositories or
 whole organizations. The console lists open Issue and PR counts by repository.
