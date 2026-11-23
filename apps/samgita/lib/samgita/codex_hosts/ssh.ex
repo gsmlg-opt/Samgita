@@ -21,7 +21,7 @@ defmodule Samgita.CodexHosts.Ssh do
   host-key checking, no forwarding and no connection sharing still apply.
   """
 
-  @ensure_daemon_timeout 30_000
+  @startup_timeout 30_000
 
   # Runs `$1` with /bin/sh inside the remote user's login shell. Mirrors the
   # Codex desktop app launcher, including csh/tcsh, nu, fish and xonsh.
@@ -70,7 +70,8 @@ defmodule Samgita.CodexHosts.Ssh do
            args:
              base ++ [remote_command(host, ["app-server", "proxy"] ++ socket_args(host), marker)],
            env: env,
-           stdout_marker: marker
+           stdout_marker: marker,
+           connect_timeout_ms: @startup_timeout
          ]
        }}
     end
@@ -86,7 +87,7 @@ defmodule Samgita.CodexHosts.Ssh do
         System.cmd(prepared.executable, args, env: env, stderr_to_stdout: true)
       end)
 
-    case Task.yield(task, @ensure_daemon_timeout) || Task.shutdown(task, :brutal_kill) do
+    case Task.yield(task, @startup_timeout) || Task.shutdown(task, :brutal_kill) do
       {:ok, {_output, 0}} -> :ok
       _ -> {:error, :daemon_start_failed}
     end

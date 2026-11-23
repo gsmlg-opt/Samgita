@@ -16,6 +16,7 @@ defmodule Samgita.CodexHostsSshTest do
     codex_log = Path.join(dir, "codex.log")
     daemon_exit = Keyword.get(opts, :daemon_exit, 0)
     daemon_sleep = Keyword.get(opts, :daemon_sleep, 0)
+    login_sleep = Keyword.get(opts, :login_sleep, 0)
     python = System.find_executable("python3")
     home = Path.join(dir, "home")
     bin = Path.join(dir, "bin")
@@ -52,7 +53,7 @@ defmodule Samgita.CodexHostsSshTest do
 
     File.write!(script, """
     #!#{python} -I
-    import json, os, stat, sys
+    import json, os, stat, sys, time
     argv = sys.argv[1:]
     record = {"argv": argv, "env": sorted(os.environ.keys())}
     if "-i" in argv:
@@ -65,6 +66,7 @@ defmodule Samgita.CodexHostsSshTest do
     env = {"SHELL": "/bin/sh", "HOME": #{inspect(home)}, "PATH": "/usr/bin:/bin",
            "CODEX_INSTALL_DIR": #{inspect(bin)},
            "FAKE_CODEX_PORT": argv[argv.index("-p") + 1]}
+    time.sleep(#{login_sleep})
     os.execve("/bin/sh", ["sh", "-c", argv[-1]], env)
     """)
 
@@ -316,6 +318,25 @@ defmodule Samgita.CodexHostsSshTest do
              ["app-server", "daemon", "start"],
              ["app-server", "proxy"]
            ]
+  end
+
+  test "a slow SSH login can finish before the proxy handshake timeout", %{agent: agent, dir: dir} do
+    server = FakeCodexServer.start(results: %{"project/list" => %{"data" => []}})
+    on_exit(fn -> FakeCodexServer.stop(server) end)
+
+    {script, log, _codex_log} =
+      fake_ssh(Path.join(dir, "slow-login"), login_sleep: 6)
+
+    config = Application.get_env(:samgita, :codex_hosts)
+    Application.put_env(:samgita, :codex_hosts, Keyword.put(config, :ssh_executable, script))
+
+    {:ok, host} = configure(agent, server, %{})
+    {:ok, _} = enable(host)
+    deadline = System.monotonic_time(:millisecond) + 15_000
+
+    assert %{"generation" => 1} = await_status(host["id"], "connected", deadline)
+    assert {:ok, []} = CodexHosts.projects(Principal.operator(), host["id"])
+    assert [_proxy] = calls(log)
   end
 
   test "a failed daemon start backs off and cleans up", %{agent: agent, server: server, dir: dir} do
