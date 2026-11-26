@@ -38,7 +38,7 @@ class StreamingFixture(ModelFixture):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scenario", choices=["dynamic_tool"], default="dynamic_tool")
+    parser.add_argument("--scenario", choices=["dynamic_tool", "assistant"], default="dynamic_tool")
     parser.add_argument("--workspace", required=True)
     parser.add_argument("--codex-home", required=True)
     parser.add_argument("--requests-file", type=Path, required=True)

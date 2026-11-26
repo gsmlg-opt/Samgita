@@ -292,6 +292,12 @@ Checks: protocol and driver test suites from their own directories; `apps/samgit
 
 Result (2026-11-09): relocation committed first with the 0.163.0 content unchanged (protocol 119 tests, `inventory.py --check`, script tests, and an identical driver failure set). Refresh to `rust-v0.167.0` (commit `086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a`): 502 requirements, 6,877 field/variant contracts, 477 synthetic messages. Reviewed upstream diffs of every guarded source (`common.rs`, `v1.rs`, `export.rs`, `v2/thread.rs`, `v2/thread_data.rs`, `v2/config.rs`, `v2/realtime.rs`, `models.rs`) and the parameter closures of every guarded method schema; the changes are new methods/fields, internal helpers and the `input_audio`/`UserInput` `fileId` variant, none of which alter a derived contract, so the guards were updated. The whole-file `Cargo.lock` guard was narrowed to the serde entry the decoder depends on. Protocol tests 119 pass after updating the surface counts (183 client requests, 88 server notifications, 64 stable); script tests and `inventory.py --check` pass; a strict-schema-mode session against the local Codex 0.167.0 initializes and answers `thread/list`/`model/list`. The driver suite (security-related files excluded) has the same 905 failures as before: 875 need the Linux `CODEX_BINARY`, the rest are Linux-only or the recorded macOS/header issues. Unverified: the native actual-binary driver and conformance suites against 0.167.0 (Linux CI, not run). The manifest kept implementation progress for 177 of 502 requirements; the rest returned to `missing` because their schema hash changed. `scripts/codex/check_ordinary.py`'s reviewed source fingerprint is stale and needs a reviewer before that selection runs again.
 
+Follow-up (2026-11-26). The bundled snapshot now uses Codex 0.172.0 at
+`3d86e43b075adeba2193ec5c22ac92f55afd82e6`. Its 519 requirements and
+7,298 field/variant contracts are inventoried separately from runtime evidence.
+The [current-client qualification](../codex-app-server/current-ordinary-functional-qualification.md)
+records the reviewed schema changes, real-client workflows and verification scope.
+
 ### P7.1 WebSocket Codex hosts
 
 Owner files: new migration `*_create_codex_hosts.exs`; `apps/samgita/lib/samgita/{codex_hosts.ex,codex_hosts/}` (context, schema, supervisor, connection, status); `apps/samgita/lib/samgita/application.ex`; `config/{config,dev,test,runtime}.exs`; web controller/routes and the Codex section of `AgentsLive.Show`; their tests.

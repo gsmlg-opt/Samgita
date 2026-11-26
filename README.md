@@ -97,6 +97,11 @@ scoped test sets: [P2](docs/redesign/protocol-phase-2.md),
 [P4 coordination](docs/redesign/coordination-phase-4.md), and
 [P4 GitHub](docs/redesign/github-phase-4.md).
 
+List the reviewed ordinary checks for the current Codex client with
+`python3 -B scripts/codex/check_current_ordinary.py --list`. The
+[qualification guide](docs/codex-app-server/current-ordinary-functional-qualification.md)
+describes how to run them against a selected executable and read the evidence.
+
 ## Security and delivery
 
 Browser access relies on infrastructure protection; no browser accounts,

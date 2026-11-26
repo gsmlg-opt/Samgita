@@ -383,7 +383,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
   test "overflow leaves an unforwarded event recoverable, then replay and live checkpoints advance",
        %{agent: agent} do
-    owner = spawn(fn -> controlled_owner() end)
+    owner = start_controlled_owner()
     on_exit(fn -> if Process.alive?(owner), do: send(owner, :stop) end)
 
     {:ok, client} =
@@ -404,6 +404,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
              })
 
     assert_disconnected(client, 100)
+    assert_owner_disconnected(owner, client)
     stream = "thread:" <> thread
     assert %{"method" => "thread/started", "cursor" => 1} = take_owned_notification(owner)
     assert :ok = Client.ack_cursor(client, stream, 1)
@@ -447,7 +448,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
     assert_receive {:samgita_protocol, ^first, {:notification, %{"cursor" => 1}}}
     assert_receive {:samgita_protocol, ^first, {:notification, %{"cursor" => 2}}}
     assert :ok = Client.ack_cursor(first, stream, 2)
-    owner = spawn(fn -> controlled_owner() end)
+    owner = start_controlled_owner()
     on_exit(fn -> if Process.alive?(owner), do: send(owner, :stop) end)
 
     {:ok, client} =
@@ -479,9 +480,13 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
     assert state.conn == nil
     assert Client.checkpoints(client) == %{stream => 2}
     assert Client.replay_cursor(client, stream) == 2
-    assert {:messages, [{:forward_one, _, ^ref}]} = Process.info(owner, :messages)
+
+    assert {:messages, [{:forward_one, _, ^ref}, {:samgita_protocol, ^client, :disconnected}]} =
+             Process.info(owner, :messages)
+
     send(owner, {:release, hold_ref})
     assert_receive {^ref, :ready}
+    assert_owner_disconnected(owner, client)
 
     assert :ok = Client.reconnect(client)
     initialize(client)
@@ -500,7 +505,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
     initialize(first)
     {thread, turn} = start_turn(first)
     stream = "thread:" <> thread
-    owner = spawn(fn -> controlled_owner() end)
+    owner = start_controlled_owner()
     on_exit(fn -> if Process.alive?(owner), do: send(owner, :stop) end)
 
     {:ok, client} =
@@ -521,6 +526,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
     assert Client.checkpoints(client) == %{stream => 0}
     assert Client.replay_cursor(client, stream) == 0
+    assert_owner_disconnected(owner, client)
     assert {:message_queue_len, 0} = Process.info(owner, :message_queue_len)
 
     for n <- 1..5, do: assert(:ok = FakeAgent.emit_delta(agent, thread, turn, "Eviction #{n}"))
@@ -570,31 +576,52 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
     assert :ok = FakeAgent.emit_delta(agent, second_thread, second_turn, "Still running")
   end
 
-  defp controlled_owner do
+  defp start_controlled_owner do
+    caller = self()
+    spawn(fn -> controlled_owner(caller) end)
+  end
+
+  defp controlled_owner(caller) do
     receive do
-      {:hold, caller, ref} ->
-        send(caller, {ref, :held})
+      {:hold, holder, ref} ->
+        send(holder, {ref, :held})
 
         receive do
-          {:release, ^ref} -> controlled_owner()
+          {:release, ^ref} -> controlled_owner(caller)
           :stop -> :ok
         end
 
-      {:forward_one, caller, ref} ->
-        send(caller, {ref, :ready})
+      {:forward_one, recipient, ref} ->
+        send(recipient, {ref, :ready})
+        forward_owned_notification(caller, recipient, ref)
 
-        receive do
-          {:samgita_protocol, _client, {:notification, message}} ->
-            send(caller, {ref, message})
-            controlled_owner()
-
-          :stop ->
-            :ok
-        end
+      {:samgita_protocol, client, :disconnected} ->
+        send(caller, {:owner_disconnected, self(), client})
+        controlled_owner(caller)
 
       :stop ->
         :ok
     end
+  end
+
+  defp forward_owned_notification(caller, recipient, ref) do
+    receive do
+      {:samgita_protocol, _client, {:notification, message}} ->
+        send(recipient, {ref, message})
+        controlled_owner(caller)
+
+      {:samgita_protocol, client, :disconnected} ->
+        send(caller, {:owner_disconnected, self(), client})
+        forward_owned_notification(caller, recipient, ref)
+
+      :stop ->
+        :ok
+    end
+  end
+
+  defp assert_owner_disconnected(owner, client) do
+    assert_receive {:owner_disconnected, ^owner, ^client}
+    refute_receive {:owner_disconnected, ^owner, ^client}, 0
   end
 
   defp take_owned_notification(owner) do
@@ -626,7 +653,7 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
   defp await_socket_disconnect(client, deadline) do
     receive do
-      {:trace, ^client, :receive, {:tcp, _, _}} ->
+      {:trace, ^client, :receive, {HTTP.WebSocket, _, %HTTP.WebSocket.Event.Frame{}, _}} ->
         case :sys.get_state(client) do
           %{conn: nil} = state -> state
           _state -> await_socket_disconnect(client, deadline)

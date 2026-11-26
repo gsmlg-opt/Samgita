@@ -101,7 +101,7 @@ Do not provision a real GitHub App, enter real credentials, change remote permis
 
 Do not run any security or permission-related tests: credential/authentication/authorization/approval tests, audits, and broad suites or automatic hosted workflows that execute them. Run only reviewed functional checks; preserve existing tests and required gates, record prohibited checks as unrun/incomplete, and suppress automatic CI (`[skip ci]`) when pushing under this restriction. This never authorizes weakening access controls or claiming blocked acceptance complete.
 
-The reviewed Codex functional selection is `python3 -B scripts/codex/check_ordinary.py --list`; execute it with `--output <new-evidence-directory>` in the verified Elixir/OTP environment. Its source fingerprint, named tests and expected case counts require review before modification. This subset does not replace the full compatibility or release matrix.
+List current-client ordinary checks with `python3 -B scripts/codex/check_current_ordinary.py --list`. Run with `--binary <codex-executable> --output <new-evidence-directory>` in the verified Elixir/OTP environment. See [current-client ordinary qualification](docs/codex-app-server/current-ordinary-functional-qualification.md) for scope and counts. The historical selection is listed by `python3 -B scripts/codex/check_ordinary.py --list`. Both source fingerprints, named tests and expected counts require review before modification. Full compatibility and release qualification have separate gates.
 
 Owned Codex functional qualification launches default to `approval_policy="never"` and `sandbox_mode="danger-full-access"`. Only explicitly owned disposable Codex processes and isolated synthetic fixtures are authorized; no paid or production tasks.
 

@@ -135,7 +135,7 @@ native_standalone_source_selector_test.exs
 native_thread_sort_values_test.exs
 ordinary_request_options_test.exs
 """.split()
-WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 442, 498)]
+WS_TESTS = ["test/integration_test.exs:" + str(line) for line in (384, 443, 503)]
 DRIVER_CASES = 166
 EXTRA_DRIVER_CASES = 26
 SOURCE_SUFFIXES = {".ex", ".exs", ".py", ".json", ".lock", ".toml", ".ts", ".js", ".css"}
