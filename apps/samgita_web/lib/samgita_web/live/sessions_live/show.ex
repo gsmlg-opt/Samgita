@@ -18,14 +18,17 @@ defmodule SamgitaWeb.SessionsLive.Show do
   alias SamgitaWeb.SessionsLive.Items
 
   @chat "session-chat"
+  # Match the host driver's bounded event queue while a snapshot is in flight.
+  @resume_event_limit 256
+  @resume_event_bytes 8_388_608
 
   @impl true
   def mount(%{"host_id" => host_id} = params, _session, socket) do
-    host = Enum.find(list_hosts(), &(&1["id"] == host_id))
-
-    # Connection state of the host drives the composer's status dot.
+    # Subscribe before reading status so a connection change cannot be missed.
     if connected?(socket),
       do: Phoenix.PubSub.subscribe(Samgita.PubSub, CodexHosts.Runtime.topic())
+
+    host = Enum.find(list_hosts(), &(&1["id"] == host_id))
 
     socket =
       if connected?(socket) and host,
@@ -57,6 +60,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
        goal: nil,
        settings_revision: 0,
        requests: [],
+       ready: host_connected?(host) and is_nil(params["thread_id"]),
+       resume_ref: nil,
+       resume_events: [],
+       resume_event_bytes: 0,
        error: if(host, do: nil, else: "This Codex host does not exist."),
        # The chat's conversation is fixed for the life of its React root; a new
        # session keeps it when the URL changes to the created thread.
@@ -84,6 +91,10 @@ defmodule SamgitaWeb.SessionsLive.Show do
   # The chat sends `{text}`; while Codex works, the message steers the running
   # turn. An error reply keeps the draft in the composer.
   @impl true
+  def handle_event(event, _params, %{assigns: %{ready: false}} = socket)
+      when event in ["chat.send", "chat.stop"],
+      do: {:reply, %{status: "error", message: "Wait for Codex to restore this session."}, socket}
+
   def handle_event("chat.send", %{"text" => text} = params, socket) do
     with {:ok, attachments} <- attachments(params["attachments"], socket.assigns.catalog),
          {:ok, socket} <- ensure_thread(socket),
@@ -188,9 +199,16 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   def handle_event("chat.goal_clear", _params, socket), do: {:reply, %{status: "ok"}, socket}
 
-  # After a reconnect the chat asks for the authoritative transcript.
-  def handle_event("chat.sync", _params, socket),
-    do: {:reply, %{status: "ok"}, snapshot(socket)}
+  # A failed recovery can be retried without resending any user message.
+  def handle_event("chat.sync", _params, socket) do
+    socket =
+      if not socket.assigns.ready and is_nil(socket.assigns.resume_ref) and
+           host_connected?(socket.assigns.host) and is_binary(socket.assigns.thread_id),
+         do: resume(socket, socket.assigns.thread_id),
+         else: socket
+
+    {:reply, %{status: "ok"}, snapshot(socket)}
+  end
 
   def handle_event(event, _params, socket) when event in ["chat.retry", "chat.action"],
     do: {:reply, %{status: "error", message: "Not supported for Codex sessions."}, socket}
@@ -205,42 +223,72 @@ defmodule SamgitaWeb.SessionsLive.Show do
   end
 
   @impl true
-  def handle_info({:codex_event, wire}, socket),
-    do: {:noreply, socket |> Items.apply_event(wire) |> publish()}
+  def handle_info({kind, _} = event, socket)
+      when kind in [:codex_event, :codex_request, :codex_request_closed] do
+    socket =
+      cond do
+        socket.assigns.resume_ref -> buffer_event(socket, event)
+        socket.assigns.ready -> event |> apply_event(socket) |> publish()
+        true -> socket
+      end
 
-  def handle_info({:codex_request, request}, socket),
-    do:
-      {:noreply,
-       socket
-       |> update(:requests, fn requests ->
-         Enum.reject(requests, &(&1["key"] == request["key"])) ++ [request]
-       end)
-       |> publish()}
+    {:noreply, socket}
+  end
 
-  def handle_info({:codex_host_status, id, status}, %{assigns: %{host_id: id}} = socket),
-    do: {:noreply, socket |> update(:host, &(&1 && Map.put(&1, "status", status))) |> snapshot()}
+  def handle_info({:codex_host_status, id, status}, %{assigns: %{host_id: id}} = socket) do
+    previous = get_in(socket.assigns.host || %{}, ["status"])
+    socket = update(socket, :host, &(&1 && Map.put(&1, "status", status)))
 
-  def handle_info({:codex_request_closed, key}, socket),
-    do: {:noreply, close_request(socket, key)}
+    socket =
+      cond do
+        status["state"] != "connected" ->
+          assign(socket,
+            ready: false,
+            resume_ref: nil,
+            resume_events: [],
+            resume_event_bytes: 0,
+            requests: []
+          )
+
+        is_nil(socket.assigns.thread_id) ->
+          assign(socket, ready: true)
+
+        previous["state"] != "connected" or previous["generation"] != status["generation"] ->
+          resume(socket, socket.assigns.thread_id)
+
+        true ->
+          socket
+      end
+
+    {:noreply, snapshot(socket)}
+  end
 
   def handle_info(_message, socket), do: {:noreply, socket}
 
   @impl true
-  def handle_async(:resume, {:ok, {{:ok, thread}, requests, goal}}, socket) do
-    {:noreply,
-     socket
-     |> assign(
-       title: thread["title"],
-       cwd: thread["cwd"],
-       items: Items.from_turns(thread["turns"]),
-       running_turn: Items.running_turn(thread["turns"]),
-       settings: thread["settings"],
-       requests: requests,
-       goal: goal
-     )
-     |> load_catalog(socket.assigns.host_id, thread["cwd"])
-     |> snapshot()}
+  def handle_async({:resume, ref}, _result, %{assigns: %{resume_ref: current}} = socket)
+      when ref != current,
+      do: {:noreply, socket}
+
+  def handle_async({:resume, {_ref, retries}}, {:ok, {{:ok, thread}, requests, goal}}, socket) do
+    cond do
+      not needs_new_snapshot?(socket.assigns.resume_events, thread["turns"]) ->
+        {:noreply, socket |> restore(thread, requests, goal) |> snapshot()}
+
+      retries > 0 ->
+        {:noreply, socket |> resume(socket.assigns.thread_id, retries - 1) |> snapshot()}
+
+      true ->
+        {:noreply,
+         resume_failed(socket, "Session history is changing too quickly. Retry to restore it.")}
+    end
   end
+
+  def handle_async({:resume, _ref}, {:ok, {{:error, error}, _, _}}, socket),
+    do: {:noreply, resume_failed(socket, message(error))}
+
+  def handle_async({:resume, _ref}, {:exit, _}, socket),
+    do: {:noreply, resume_failed(socket, message(nil))}
 
   def handle_async(:models, {:ok, {:ok, models}}, socket),
     do: {:noreply, socket |> assign(models: models) |> snapshot()}
@@ -252,11 +300,97 @@ defmodule SamgitaWeb.SessionsLive.Show do
 
   def handle_async(:catalog, _result, socket), do: {:noreply, socket}
 
-  def handle_async(:resume, {:ok, {{:error, error}, _, _}}, socket),
-    do: {:noreply, assign(socket, error: message(error))}
+  defp needs_new_snapshot?(:overflow, _turns), do: true
+  defp needs_new_snapshot?([], _turns), do: false
 
-  def handle_async(:resume, {:exit, _}, socket),
-    do: {:noreply, assign(socket, error: message(nil))}
+  defp needs_new_snapshot?(events, turns) do
+    # Deltas have no offset. If the snapshot includes the same active item,
+    # a fresh read is the only way to tell how much text the host has stored.
+    active_ids =
+      for %{"status" => "inProgress", "items" => items} <- turns,
+          %{"id" => id} <- items,
+          into: MapSet.new(),
+          do: id
+
+    Enum.any?(events, fn
+      {:codex_event, %{"method" => method, "params" => %{"itemId" => id}}}
+      when method in ["item/agentMessage/delta", "item/commandExecution/outputDelta"] ->
+        MapSet.member?(active_ids, id)
+
+      _ ->
+        false
+    end)
+  end
+
+  defp restore(socket, thread, requests, goal) do
+    finalized =
+      for turn <- thread["turns"],
+          turn["status"] in ["completed", "failed", "interrupted"],
+          into: MapSet.new(),
+          do: turn["id"]
+
+    events =
+      socket.assigns.resume_events
+      |> Enum.reverse()
+      |> Enum.reject(&finalized_event?(&1, finalized))
+
+    socket =
+      assign(socket,
+        title: thread["title"],
+        cwd: thread["cwd"],
+        items: Items.from_turns(thread["turns"]),
+        running_turn: Items.running_turn(thread["turns"]),
+        settings: thread["settings"],
+        requests: requests,
+        goal: goal,
+        ready: true,
+        resume_ref: nil,
+        resume_events: [],
+        resume_event_bytes: 0,
+        error: nil
+      )
+
+    events
+    |> Enum.reduce(socket, &apply_event/2)
+    |> load_catalog(socket.assigns.host_id, thread["cwd"])
+  end
+
+  defp resume_failed(socket, message),
+    do:
+      socket
+      |> assign(resume_ref: nil, resume_events: [], resume_event_bytes: 0, error: message)
+      |> snapshot()
+
+  defp buffer_event(%{assigns: %{resume_events: :overflow}} = socket, _event), do: socket
+
+  defp buffer_event(socket, event) do
+    bytes = socket.assigns.resume_event_bytes + :erlang.external_size(event)
+
+    if length(socket.assigns.resume_events) >= @resume_event_limit or bytes > @resume_event_bytes do
+      # Finish this read, then fetch a new snapshot. Never replay user input.
+      assign(socket, resume_events: :overflow, resume_event_bytes: 0)
+    else
+      socket
+      |> update(:resume_events, &[event | &1])
+      |> assign(resume_event_bytes: bytes)
+    end
+  end
+
+  defp finalized_event?({:codex_event, %{"params" => params}}, finalized),
+    do: MapSet.member?(finalized, params["turnId"] || get_in(params, ["turn", "id"]))
+
+  defp finalized_event?(_event, _finalized), do: false
+
+  defp apply_event({:codex_event, wire}, socket), do: Items.apply_event(socket, wire)
+
+  defp apply_event({:codex_request, request}, socket),
+    do:
+      update(socket, :requests, fn requests ->
+        Enum.reject(requests, &(&1["key"] == request["key"])) ++ [request]
+      end)
+
+  defp apply_event({:codex_request_closed, key}, socket),
+    do: update(socket, :requests, &Enum.reject(&1, fn request -> request["key"] == key end))
 
   # Push what changed since the last push: each new or changed message as a
   # `chat.message` with its next sequence number. Messages are only appended or
@@ -340,6 +474,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
       host: host["machine_name"] || host["agent_name"],
       location: if(host["transport"] == "local", do: "Local", else: "Remote"),
       connected: get_in(host, ["status", "state"]) == "connected",
+      recovering: assigns.resume_ref != nil,
       model: current["model"],
       effort: current["effort"],
       access: current["access"],
@@ -478,14 +613,19 @@ defmodule SamgitaWeb.SessionsLive.Show do
   defp put_present(map, key, value), do: Map.put(map, key, value)
 
   # Stop shows while a turn runs; messages may still be sent to steer it.
-  defp runtime(socket), do: %{active: socket.assigns.running_turn != nil}
+  defp runtime(socket), do: %{active: socket.assigns.ready and socket.assigns.running_turn != nil}
 
-  defp admission(socket), do: %{canSubmit: socket.assigns.host != nil, allowWhileStreaming: true}
+  defp admission(socket), do: %{canSubmit: socket.assigns.ready, allowWhileStreaming: true}
 
-  defp resume(socket, thread_id) do
+  defp host_connected?(host), do: get_in(host || %{}, ["status", "state"]) == "connected"
+
+  defp resume(socket, thread_id, retries \\ 2) do
     host_id = socket.assigns.host_id
+    ref = {make_ref(), retries}
 
-    start_async(socket, :resume, fn ->
+    socket
+    |> assign(ready: false, resume_ref: ref, resume_events: [], resume_event_bytes: 0)
+    |> start_async({:resume, ref}, fn ->
       result = CodexHosts.resume_thread(Principal.operator(), host_id, thread_id)
       {:ok, requests} = CodexHosts.pending_requests(Principal.operator(), host_id, thread_id)
 
@@ -649,6 +789,12 @@ defmodule SamgitaWeb.SessionsLive.Show do
       </header>
 
       <p :if={@error} id="session-error" role="alert" class="text-error">{@error}</p>
+      <.dm_btn
+        :if={@error && @thread_id && !@ready && is_nil(@resume_ref) && host_connected?(@host)}
+        phx-click="chat.sync"
+      >
+        Retry session restore
+      </.dm_btn>
 
       <.dm_react_chat
         id={@chat_id}
@@ -668,7 +814,7 @@ defmodule SamgitaWeb.SessionsLive.Show do
             decide: "chat.decide"
           }
         }
-        admission={%{canSubmit: @host != nil, allowWhileStreaming: true}}
+        admission={%{canSubmit: @ready, allowWhileStreaming: true}}
         class="block h-[calc(100dvh-14rem)] min-h-96"
       />
     </section>

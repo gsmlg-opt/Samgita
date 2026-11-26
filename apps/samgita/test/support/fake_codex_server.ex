@@ -150,7 +150,13 @@ defmodule Samgita.FakeCodexServer do
   defp handle(socket, owner, opts, %{"id" => id, "method" => method} = wire) do
     send(owner, {:fake_codex, :request, method})
     send(owner, {:fake_codex, :params, method, wire["params"]})
-    result = opts |> Map.get(:results, %{}) |> Map.get(method, %{})
+
+    result =
+      case Map.get(opts, :results, %{}) do
+        results when is_function(results, 2) -> results.(method, wire["params"])
+        results -> Map.get(results, method, %{})
+      end
+
     reply(socket, %{"id" => id, "result" => result})
   end
 

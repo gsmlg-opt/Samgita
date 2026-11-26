@@ -67,6 +67,14 @@ no native execution. Uncertain effects block resolved reporting. See the
 [native runtime contract](codex-app-server/platform-integration.md) for APIs,
 key configuration, recovery and additive migration/forward rollback boundaries.
 
+For interactive chat, Codex owns the transcript and running turn. On a new
+host connection generation, the open LiveView pauses sending and reloads its
+thread. It merges buffered updates into the returned history. Finalized turns
+take precedence over earlier deltas. When an in-flight delta overlaps an
+active item or the buffer exceeds its bounds, the view reads again. After two
+automatic retries it offers a manual restore. The next user message steers a
+running turn or starts a new turn according to the recovered state.
+
 ## Durable domain
 
 `Samgita.Projects`, `Agents`, `Repositories`, `Tasks` and `Attempts` own domain

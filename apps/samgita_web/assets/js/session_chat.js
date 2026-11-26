@@ -25,7 +25,7 @@ const Icon = ({ path }) =>
 // Where this session runs, as in the Codex app: project, local or remote, and
 // the host with its connection status; it is attached above the composer.
 function Context({ metadata, bridge }) {
-  const { project, location, host, connected, goal, plan } = metadata
+  const { project, location, host, connected, recovering, goal, plan } = metadata
   return h(
     Chat.ComposerContext,
     { "data-session-context": true },
@@ -59,7 +59,7 @@ function Context({ metadata, bridge }) {
         h(Chat.ComposerContextItem, null, host),
         h(Chat.ComposerConnection, {
           state: connected ? "connected" : "disconnected",
-          label: connected ? "Connected" : "Not connected",
+          label: recovering ? "Restoring session" : connected ? "Connected" : "Not connected",
         }),
       ),
   )
