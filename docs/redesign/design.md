@@ -394,7 +394,7 @@ Status: implemented as P8 (2026-11-09). Release observation is deferred (see bel
 3. The coordinator **assigns** each executable Task to a named executor Agent (for example Codex or Sigma). Samgita validates the assignment and notifies the executor.
 4. The executor claims, starts, renews, reports and resolves the Attempt through the unchanged fenced commands.
 5. The coordinator observes outcomes through its `responsible` subscription and GitHub facts, then reassigns, reopens, creates follow-up Tasks or submits decisions.
-6. Executors open PRs, merge and publish releases with their own GitHub credentials. Samgita remains read-only toward GitHub (§5) and only observes.
+6. Executors open PRs, merge and publish releases with their own GitHub credentials. The GitHub App (§5) observes these actions read-only. The separate [operator PAT console](../superpowers/specs/2026-11-20-github-pat-dashboard-design.md) supports manual Issue and PR actions.
 7. Acceptance follows the Project's reviewer grants.
 
 ### Decisions

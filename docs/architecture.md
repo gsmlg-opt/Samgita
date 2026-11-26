@@ -166,12 +166,14 @@ no execution and does not transfer an Attempt. Changing an existing Agent's
 connection direction requires refreshing its event subscriptions; active or
 unresolved execution prevents converting an outbound Agent.
 
-GitHub verifies signatures against raw bytes and approved installation/
+The GitHub App verifies signatures against raw bytes and approved installation/
 repository-to-Project mappings before atomic inbox/event/job persistence. Current
 facts and immutable source evidence are separate. Text is untrusted. Credentials
 are external versioned references and API destinations are pinned. Integration
 performs repository-restricted reads; only token acquisition may POST remotely.
-GitHub content never confers Task acceptance, and repository writes remain off.
+GitHub facts do not confer Task acceptance. The GitHub App has read-only access.
+The [operator PAT console](superpowers/specs/2026-11-20-github-pat-dashboard-design.md)
+uses a separate connection and worker for explicit Issue and PR actions.
 
 ## Operator surface and security
 

@@ -104,10 +104,11 @@ protection. Machine routes always require current Agent credentials and, after
 connect, a current connection generation. Inbound machine credentials, outbound
 service credential references and runtime lease keys are separate authorities.
 
-GitHub integration is read/event-only: signed ingress, verified associations,
-immutable evidence and bounded reconciliation. Comments, PR creation, merge and
-workflow execution are disabled. No live webhook or real credential provisioning
-is implied by the local fixture tests.
+The GitHub App observes signed events and reconciles read-only Project facts.
+The separate operator PAT console at `/github` reads selected repositories and
+supports explicit Issue close/reopen and PR close, approval, merge or rebase.
+The background sync only reads from GitHub. Release observation remains deferred.
+See the [PAT console design](docs/superpowers/specs/2026-11-20-github-pat-dashboard-design.md).
 
 [Release instructions](deployment/releasing.md) describe the manual workflow for
 four Hex.pm packages, the application archive and
