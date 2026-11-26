@@ -112,6 +112,7 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/tasks/:task_id/adopt", TaskController, :adopt
     post "/projects/:project_id/tasks/:task_id/decisions", TaskController, :decide
     post "/projects/:project_id/tasks/:task_id/artifacts", TaskController, :add_artifact
+    get "/projects/:project_id/attempts/:id/report", AttemptController, :show_report
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
 
     get "/projects/:project_id/codex-runtimes", CodexRuntimeController, :index
@@ -202,6 +203,7 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/attempts/:id/progress", AttemptController, :progress
     post "/projects/:project_id/attempts/:id/report", AttemptController, :report
     post "/projects/:project_id/attempts/:id/rebind", AttemptController, :rebind
+    get "/projects/:project_id/attempts/:id/report", AttemptController, :show_report
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
     get "/projects/:project_id/attempts/:id/proof", AttemptController, :proof
 

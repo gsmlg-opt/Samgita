@@ -201,6 +201,12 @@ defmodule SamgitaWeb.DelegationJourneyTest do
 
     pending = get(coord, coord_base <> "/tasks/#{child["id"]}") |> json_response(200)
     assert pending["data"]["state"] == "awaiting_review"
+    assert pending["data"]["latest_report"]["attempt_id"] == attempt["id"]
+
+    assert pending["data"]["latest_report"]["outcome"] == %{
+             "status" => "succeeded",
+             "result" => %{"summary" => "PR opened by the executor"}
+           }
 
     reviewed =
       post_data(

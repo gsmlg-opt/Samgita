@@ -102,6 +102,11 @@ reconciliation operation; the Agent supplies the former-owner proof rather than
 using a current-owner execution callback. It clears resolved holds without
 automatically submitting the Task for review or accepting it.
 
+A coordinator can read the terminal report identified by an `attempt.reported`
+event, including after a later retry. Task detail also exposes the latest
+reported Attempt to Project managers, reviewers and operators. The
+[management API](redesign/management-api.md) defines the report fields.
+
 ## Events, scheduling and GitHub
 
 `Events`, `EventDelivery` and `Schedules` persist event identity/time, explicit

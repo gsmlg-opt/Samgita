@@ -90,6 +90,7 @@ relative to `/api`; route availability does not waive command preconditions.
 | External sessions | `GET/POST /projects/:project_id/sessions` |
 | Tasks | `GET/POST /projects/:project_id/tasks`, `GET/PATCH /projects/:project_id/tasks/:id` |
 | Task decisions and evidence | `POST /projects/:project_id/tasks/:task_id/transition`, `/assign`, `/adopt`, `/decisions`, `/artifacts` |
+| Attempt report | `GET /projects/:project_id/attempts/:id/report` |
 | Effect resolution | `POST /projects/:project_id/attempts/:id/resolve` |
 | Events | `GET /projects/:project_id/events`, `POST /projects/:project_id/events/trigger`, `/external`, `POST /projects/:project_id/events/:event_id/redeliver` |
 | Responsible and assignee routing | `GET/PUT /projects/:project_id/event-routing`, `PUT /projects/:project_id/event-routing/assignees` (one `assignee` subscription per executor `worker`; delivers only events about Tasks assigned to it) |
@@ -142,6 +143,7 @@ while each command performs its own authoritative validation.
 | `GET/PATCH /projects/:project_id/tasks/:id` | Scoped Task read/update |
 | `POST /projects/:project_id/tasks/:task_id/transition`, `/assign`, `/decisions`, `/artifacts`, `/claim` | Legal management, explicit executor assignment (`manager`), decisions/evidence and execution claim (assignee only) |
 | `POST /projects/:project_id/attempts/:id/start`, `/renew`, `/progress`, `/report`, `/rebind` | Current-owner fenced execution callbacks |
+| `GET /projects/:project_id/attempts/:id/report` | Read a terminal Attempt report for review |
 | `POST /projects/:project_id/attempts/:id/resolve` | Former-owner reconciliation with former proof and evidence |
 | `GET /projects/:project_id/attempts/:id/proof` | Explicit current-owner proof read with `no-store` |
 | `GET /projects/:project_id/events`, `POST /projects/:project_id/events/trigger` | Scoped events and manual attention request |
@@ -158,6 +160,28 @@ Task becomes `blocked` and retains an execution hold, regardless of outcome.
 An approved `kind: "review"` decision leaves it awaiting review; a distinct
 approved `kind: "acceptance"` decision requires the current-version review and
 produces `accepted`. Artifacts and external check states never perform acceptance.
+
+Use `parent_task_id` when creating or updating a child Task. New Task commands have no `depends_on_ids` input. Historical dependency data is reserved for migration reconciliation.
+
+`GET /projects/:project_id/tasks/:id` adds `latest_report` for an operator or
+an Agent holding the Project's `manager` or `reviewer` role. It is `null` before
+any reported Attempt and otherwise identifies the most recent `succeeded` or
+`failed` Attempt by `attempt_id`, with `task_id`, `agent_id`, `number`, `state`,
+`terminal_at`, `effects_resolved` and `outcome.status`. Its `outcome.result`
+contains only the standard optional text fields `summary`, `status` and
+`reference`, each valid UTF-8, at most 2,000 bytes and without NUL characters.
+Unsupported fields and values outside these bounds are omitted, including in
+reports stored before this read contract. Result text is untrusted evidence.
+Attach durable artifact references through the existing `/artifacts` command;
+`artifact_references` remains an independent collection with its own Attempt IDs.
+
+An `attempt.reported` event identifies its immutable Attempt by resource ID.
+For a delayed or replayed event, use `GET /projects/:project_id/attempts/:id/report`
+with that ID. The endpoint returns the same report projection for that Attempt,
+even after a later retry finishes. This read does not change Task state, and the
+report contains no lease proof or connection data. Other Task-reading roles
+retain the Task response without `latest_report`. Events retain their existing
+bounded state metadata.
 
 An unresolved execution hold survives cancellation, reopen and reconnect. The
 operator or owning Agent may reconcile it only under the existing explicit

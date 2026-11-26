@@ -76,7 +76,7 @@ defmodule Samgita.Tasks do
   end
 
   def get(principal, project_id, id) do
-    Commands.read(principal, project_id, @read_roles, fn _ctx ->
+    Commands.read(principal, project_id, @read_roles, fn ctx ->
       task = scoped!(project_id, id)
 
       decisions =
@@ -98,6 +98,7 @@ defmodule Samgita.Tasks do
       Projection.task(task)
       |> Map.put("decisions", Enum.map(decisions, &Projection.decision/1))
       |> Map.put("artifact_references", Enum.map(artifacts, &Projection.artifact/1))
+      |> with_latest_report(ctx, task)
     end)
   end
 
@@ -710,6 +711,36 @@ defmodule Samgita.Tasks do
 
   defp safe_value?(value, _depth),
     do: is_binary(value) || is_number(value) || is_boolean(value) || is_nil(value)
+
+  defp with_latest_report(result, ctx, task) do
+    if report_reader?(ctx) do
+      attempt =
+        Repo.one(
+          from a in TaskAttempt,
+            where:
+              a.project_id == ^task.project_id and a.task_id == ^task.id and
+                a.state in ["succeeded", "failed"],
+            order_by: [desc: a.number],
+            limit: 1
+        )
+
+      Map.put(result, "latest_report", Projection.attempt_report(attempt))
+    else
+      result
+    end
+  end
+
+  defp report_reader?(%{principal: %{kind: :operator}}), do: true
+
+  defp report_reader?(ctx) do
+    member =
+      Repo.get_by!(ProjectAgent,
+        project_id: ctx.project.id,
+        agent_id: ctx.principal.agent_id
+      )
+
+    Enum.any?(member.roles, &(&1 in ~w(manager reviewer)))
+  end
 
   defp latest_attempt(task_id),
     do:

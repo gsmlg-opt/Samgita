@@ -49,6 +49,28 @@ defmodule Samgita.Projection do
         ~w(id task_id project_id agent_id session_id connection_id connection_generation number state version fence execution_epoch proof_key_id lease_expires_at start_deadline execution_deadline terminal_at outcome effects_resolved)a
       )
 
+  @doc "Bounded terminal report evidence for Project managers, reviewers and operators."
+  def attempt_report(nil), do: nil
+
+  def attempt_report(r) do
+    result = get_in(r.outcome || %{}, ["result"])
+
+    fields(r, ~w(task_id agent_id number state terminal_at effects_resolved)a)
+    |> Map.put("attempt_id", r.id)
+    |> Map.put("outcome", %{"status" => r.state, "result" => report_result(result)})
+  end
+
+  defp report_result(result) when is_map(result) do
+    result
+    |> Map.take(~w(summary status reference))
+    |> Map.filter(fn {_key, value} ->
+      is_binary(value) && String.valid?(value) && byte_size(value) <= 2_000 &&
+        !String.contains?(value, <<0>>)
+    end)
+  end
+
+  defp report_result(_), do: %{}
+
   def decision(r),
     do:
       fields(

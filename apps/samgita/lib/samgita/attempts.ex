@@ -180,6 +180,22 @@ defmodule Samgita.Attempts do
     end)
   end
 
+  @doc "Read the terminal report named by an attempt.reported event, including after a retry."
+  def get_report(principal, project_id, id) do
+    Commands.read(principal, project_id, ~w(manager reviewer), fn _ctx ->
+      if !Params.uuid?(id), do: Commands.fail!(:not_found)
+
+      attempt =
+        Repo.one(
+          from a in TaskAttempt,
+            where:
+              a.project_id == ^project_id and a.id == ^id and a.state in ["succeeded", "failed"]
+        ) || Commands.fail!(:not_found)
+
+      Projection.attempt_report(attempt)
+    end)
+  end
+
   def report(principal, project_id, id, attrs) do
     command(principal, project_id, id, attrs, "report", fn ctx, task, attempt, attrs ->
       owner!(ctx, attempt, attrs["proof"])

@@ -20,6 +20,9 @@ defmodule SamgitaWeb.AttemptController do
   def renew(conn, %{"project_id" => project_id, "id" => id}),
     do: API.result(conn, Attempts.renew(API.principal(conn), project_id, id, API.attrs(conn)))
 
+  def show_report(conn, %{"project_id" => project_id, "id" => id}),
+    do: API.result(conn, Attempts.get_report(API.principal(conn), project_id, id))
+
   def report(conn, %{"project_id" => project_id, "id" => id}),
     do: API.result(conn, Attempts.report(API.principal(conn), project_id, id, API.attrs(conn)))
 
