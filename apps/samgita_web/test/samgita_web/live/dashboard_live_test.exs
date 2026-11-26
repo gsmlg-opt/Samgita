@@ -20,7 +20,50 @@ defmodule SamgitaWeb.DashboardLiveTest do
     assert count_text(view, "#hub-agents") == to_string(agents)
     assert count_text(view, "#hub-projects") == to_string(projects)
     assert has_element?(view, "a[href='/agents']", "Manage Agents")
-    assert has_element?(view, "a[href='/projects']", "Manage Projects")
+    assert has_element?(view, "a[href='/hub/projects']", "Manage Projects")
+  end
+
+  test "dashboard links open platform projects and their tasks", %{conn: conn} do
+    project = project_fixture()
+
+    {:ok, task} =
+      Samgita.Tasks.create(
+        Samgita.Principal.operator(),
+        project["id"],
+        command(%{"title" => "Review task"})
+      )
+
+    {:ok, dashboard, _} = live(conn, ~p"/")
+
+    {:ok, index, _} =
+      dashboard |> element("#hub-tasks a") |> render_click() |> follow_redirect(conn)
+
+    {:ok, detail, _} =
+      index |> element("#project-#{project["id"]} a") |> render_click() |> follow_redirect(conn)
+
+    {:ok, task_page, _} =
+      detail
+      |> element("a[href='/projects/#{project["id"]}/tasks/#{task["id"]}']")
+      |> render_click()
+      |> follow_redirect(conn)
+
+    assert has_element?(task_page, "h1", "Review task")
+  end
+
+  test "create a platform project from the dashboard", %{conn: conn} do
+    {:ok, dashboard, _} = live(conn, ~p"/")
+
+    {:ok, index, _} =
+      dashboard |> element("#hub-projects a") |> render_click() |> follow_redirect(conn)
+
+    {:ok, detail, _} =
+      index
+      |> form("#project-form", project: %{name: "Release review"})
+      |> render_submit()
+      |> follow_redirect(conn)
+
+    assert has_element?(detail, "h1", "Release review")
+    assert has_element?(detail, "a[href='/hub/projects']", "All projects")
   end
 
   test "counts and links survive a fresh LiveView connection", %{conn: conn} do

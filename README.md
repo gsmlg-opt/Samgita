@@ -28,7 +28,8 @@ The operator journey is available at:
 | --- | --- |
 | `/` | Persisted counts, management authority and attention indicators |
 | `/agents`, `/agents/:id` | Registration, approvals, enablement, endpoint descriptors, write-only credentials and history |
-| `/projects`, `/projects/:id` | Project settings, repositories, memberships, routing, Tasks, schedules, events and delivery recovery |
+| `/projects` | Codex hosts, their workspaces and interactive sessions |
+| `/hub/projects`, `/projects/:id` | Platform project list and creation, settings, memberships, Tasks, schedules and delivery recovery |
 | `/projects/:project_id/tasks/:id` | Task relationships, Attempts, progress, effects, artifact references, review and acceptance |
 | `/api/health`, `/api/info` | HTTP health and build information |
 

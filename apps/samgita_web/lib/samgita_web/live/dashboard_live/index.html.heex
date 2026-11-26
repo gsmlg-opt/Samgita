@@ -17,12 +17,12 @@
       <.dm_card id="hub-projects" variant="bordered">
         <:title>{gettext("Projects")}</:title>
         <p class="text-3xl font-bold">{@overview["counts"]["projects"]}</p>
-        <.dm_link navigate={~p"/projects"}>{gettext("Manage Projects")}</.dm_link>
+        <.dm_link navigate={~p"/hub/projects"}>{gettext("Manage Projects")}</.dm_link>
       </.dm_card>
       <.dm_card id="hub-tasks" variant="bordered">
         <:title>{gettext("Tasks")}</:title>
         <p class="text-3xl font-bold">{@overview["counts"]["tasks"]}</p>
-        <.dm_link navigate={~p"/projects"}>{gettext("Open a Project to inspect Tasks")}</.dm_link>
+        <.dm_link navigate={~p"/hub/projects"}>{gettext("Open a Project to inspect Tasks")}</.dm_link>
       </.dm_card>
     </div>
     <.dm_card id="hub-review" variant="bordered">
@@ -53,7 +53,7 @@
           </dd>
         </div>
       </dl>
-      <.dm_link navigate={~p"/projects"} class="mt-4">{gettext(
+      <.dm_link navigate={~p"/hub/projects"} class="mt-4">{gettext(
         "Inspect Project Tasks, holds and delivery history"
       )}</.dm_link>
     </.dm_card>
@@ -87,7 +87,7 @@
           "Create a Project and bind a registered Agent to begin. Projects do not require a PRD, repository or provider."
         )}
       </p>
-      <.dm_link navigate={~p"/projects"}>{gettext("Set up a Project")}</.dm_link>
+      <.dm_link navigate={~p"/hub/projects"}>{gettext("Set up a Project")}</.dm_link>
     </.dm_card>
   </div>
 </section>

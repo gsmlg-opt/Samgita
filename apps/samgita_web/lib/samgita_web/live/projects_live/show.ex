@@ -311,7 +311,7 @@ defmodule SamgitaWeb.ProjectsLive.Show do
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-7xl space-y-6 p-4 sm:p-6">
-      <.link navigate={~p"/projects"} class="text-primary">All projects</.link>
+      <.link navigate={~p"/hub/projects"} class="text-primary">All projects</.link>
       <p :if={@load_error} role="alert">{@load_error}</p>
       <div :if={@page} class="space-y-6">
         <header>
