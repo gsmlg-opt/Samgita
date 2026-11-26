@@ -5,8 +5,8 @@ Codex is not pinned (design §11 version policy). This script resolves the
 latest non-prerelease `rust-v*` release (or `--version`), downloads the source
 archive at the tag's commit and the release assets the conformance workflow
 uses, verifies every asset against the SHA-256 digest GitHub publishes for it,
-writes the new pin to `priv/upstream/current/source.json`, and regenerates the
-snapshot with `inventory.py --generate` in a fresh process.
+stages the new pin and snapshot with `inventory.py --generate` in a fresh
+process, then installs the snapshot, inventory and fixtures after offline checks.
 
 The previous snapshot is replaced; it survives only in Git history. Source files
 whose derived contracts are reviewed by hash make the generators stop with the
@@ -26,6 +26,7 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import tempfile
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -111,6 +112,62 @@ def asset(digests, name):
     return digests[name]
 
 
+def regenerate(pin, generator, cache):
+    """Review-dependent generation must finish before replacing repository artifacts."""
+    artifacts = (
+        SNAPSHOT.relative_to(ROOT),
+        Path("docs/codex-app-server/compatibility-manifest.json"),
+        Path("apps/samgita_protocol_codex/test/fixtures/native/contracts.json"),
+    )
+    with tempfile.TemporaryDirectory(prefix="refresh-", dir=cache.parent) as directory:
+        staged = Path(directory)
+        scripts = staged / "scripts/codex"
+        shutil.copytree(Path(__file__).parent, scripts,
+                        ignore=shutil.ignore_patterns("__pycache__"))
+        snapshot = staged / artifacts[0]
+        snapshot.mkdir(parents=True)
+        for name in CARRIED:
+            destination = snapshot / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(SNAPSHOT / name, destination)
+        (snapshot / "source.json").write_text(encode(pin))
+        manifest = staged / artifacts[1]
+        manifest.parent.mkdir(parents=True)
+        shutil.copyfile(ROOT / artifacts[1], manifest)
+        staged_cache = staged / "tmp/codex" / pin["version"]
+        staged_cache.parent.mkdir(parents=True)
+        staged_cache.symlink_to(cache.resolve(), target_is_directory=True)
+
+        subprocess.run([sys.executable, "-B", str(scripts / "inventory.py"),
+                        "--generate", "--binary", str(generator)], check=True)
+        subprocess.run([sys.executable, "-B", str(scripts / "generate_fixtures.py")],
+                       check=True)
+        subprocess.run([sys.executable, "-B", str(scripts / "inventory.py"), "--check"],
+                       check=True)
+
+        installed = []
+        try:
+            for relative in artifacts:
+                target = ROOT / relative
+                previous = staged / "previous" / relative
+                previous.parent.mkdir(parents=True, exist_ok=True)
+                existed = target.exists()
+                if existed:
+                    target.replace(previous)
+                installed.append((target, previous, existed))
+                target.parent.mkdir(parents=True, exist_ok=True)
+                (staged / relative).replace(target)
+        except BaseException:
+            for target, previous, existed in reversed(installed):
+                if target.is_dir():
+                    shutil.rmtree(target)
+                elif target.exists():
+                    target.unlink()
+                if existed:
+                    previous.replace(target)
+            raise
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", help="an exact stable release instead of the latest")
@@ -177,19 +234,7 @@ def main():
                       "python3 scripts/codex/inventory.py --check"],
         "files_sha256": {},
     }
-    # Replace the previous snapshot (kept in Git history) and regenerate it from
-    # the new pin in a fresh interpreter, so every generator reads the new pin.
-    carried = {name: (SNAPSHOT / name).read_bytes() for name in CARRIED}
-    shutil.rmtree(SNAPSHOT)
-    SNAPSHOT.mkdir(parents=True)
-    for name, contents in carried.items():
-        (SNAPSHOT / name).parent.mkdir(parents=True, exist_ok=True)
-        (SNAPSHOT / name).write_bytes(contents)
-    (SNAPSHOT / "source.json").write_text(encode(pin))
-    subprocess.run([sys.executable, "-B", str(Path(__file__).with_name("inventory.py")),
-                    "--generate", "--binary", str(generator)], check=True)
-    subprocess.run([sys.executable, "-B", str(Path(__file__).with_name("generate_fixtures.py"))],
-                   check=True)
+    regenerate(pin, generator, cache)
     print(f"snapshot refreshed to {version}; run inventory.py --check and the package tests")
 
 
