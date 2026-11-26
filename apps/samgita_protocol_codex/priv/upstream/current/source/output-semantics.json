@@ -2,7 +2,7 @@
   "definition": "ThreadTimelineEntry",
   "generator": "scripts/codex/generate_output_semantics.py",
   "kind": "locally-derived-output-contract-not-official-export",
-  "official_schema_sha256": "86cda50f37c6432ad17270827aa28d3f5bca024daa9632d0924f66f50659eeb1",
+  "official_schema_sha256": "49babb8d3c8de139bab9e82d1f47f862b3ee1a729f7a752dac056d9dd04a39b1",
   "renames": {
     "turnCompleted": {
       "completed_at": "completedAt",
@@ -19,7 +19,7 @@
   "semantics": "Only output contract property/required names change; values, types, bounds, nullability, unions and original exports remain unchanged.",
   "source_sha256": {
     "source/output-typescript/ThreadTimelineEntry.ts": "4d917b865b81ea61f9b3cee7400fd15fc3af0908ddb60d60c858b1c7abf9c148",
-    "source/thread.rs": "f5a99bd250950ddaa3a07a8cae84e434c77d645650c11ec037e140945fa2c500"
+    "source/thread.rs": "b7de8cf6525820d85b474d80ae1db427783705d4f9e66a8d5677560cc2d136e8"
   },
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6"
 }

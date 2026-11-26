@@ -499,6 +499,26 @@ enum GetAccountRateLimitsParamsTypeScript {
     Undefined,
 }
 
+/// Preserve null and explicit undefined params while adding provider selection to gateway reads.
+#[allow(dead_code)]
+#[derive(TS)]
+#[ts(untagged)]
+enum GatewayOAuthReadParamsTypeScript {
+    Params(Option<v2::GatewayOAuthReadParams>),
+    #[ts(type = "undefined")]
+    Undefined,
+}
+
+/// Preserve null and explicit undefined params while adding provider selection to gateway login.
+#[allow(dead_code)]
+#[derive(TS)]
+#[ts(untagged)]
+enum GatewayOAuthLoginParamsTypeScript {
+    Params(Option<v2::GatewayOAuthLoginParams>),
+    #[ts(type = "undefined")]
+    Undefined,
+}
+
 client_request_definitions! {
     Initialize => "initialize" {
         params: v1::InitializeParams,
@@ -865,6 +885,29 @@ client_request_definitions! {
         serialization: None,
         response: v2::ThreadSearchResponse,
     },
+    #[experimental("thread/search/stream")]
+    /// Search with best-effort incremental `thread/search/partial` notifications. The final
+    /// response is authoritative for results, ordering, and cursors.
+    ThreadSearchStream => "thread/search/stream" {
+        params: v2::ThreadSearchParams,
+        serialization: None,
+        manual_payload_conversion: manual,
+        response: v2::ThreadSearchResponse,
+    },
+    #[experimental("thread/search/cancel")]
+    ThreadSearchCancel => "thread/search/cancel" {
+        params: v2::ThreadSearchCancelParams,
+        serialization: None,
+        response: v2::ThreadSearchCancelResponse,
+    },
+    #[experimental("thread/search/stream/cancel")]
+    /// Cancel a `thread/search/stream` request on this connection.
+    ThreadSearchStreamCancel => "thread/search/stream/cancel" {
+        params: v2::ThreadSearchCancelParams,
+        serialization: None,
+        manual_payload_conversion: manual,
+        response: v2::ThreadSearchCancelResponse,
+    },
     #[experimental("thread/searchOccurrences")]
     ThreadSearchOccurrences => "thread/searchOccurrences" {
         params: v2::ThreadSearchOccurrencesParams,
@@ -896,6 +939,7 @@ client_request_definitions! {
     },
     ThreadItemsList => "thread/items/list" {
         params: v2::ThreadItemsListParams,
+        inspect_params: true,
         // Explicitly concurrent: this primarily reads append-only rollout storage.
         serialization: None,
         response: v2::ThreadItemsListResponse,
@@ -919,6 +963,12 @@ client_request_definitions! {
         params: v2::ThreadInjectItemsParams,
         serialization: thread_id(params.thread_id),
         response: v2::ThreadInjectItemsResponse,
+    },
+    #[experimental("thread/prepareApprovedPlan")]
+    ThreadPrepareApprovedPlan => "thread/prepareApprovedPlan" {
+        params: v2::ThreadPrepareApprovedPlanParams,
+        serialization: thread_id(params.thread_id),
+        response: v2::ThreadPrepareApprovedPlanResponse,
     },
     SkillsList => "skills/list" {
         params: v2::SkillsListParams,
@@ -1092,6 +1142,7 @@ client_request_definitions! {
     #[experimental("turn/settings/update")]
     TurnSettingsUpdate => "turn/settings/update" {
         params: v2::TurnSettingsUpdateParams,
+        inspect_params: true,
         serialization: thread_id(params.thread_id),
         response: v2::TurnSettingsUpdateResponse,
     },
@@ -1142,6 +1193,12 @@ client_request_definitions! {
         serialization: thread_id(params.thread_id),
         response: v2::ThreadTimelineListResponse,
     },
+    #[experimental("thread/realtime/list")]
+    ThreadRealtimeList => "thread/realtime/list" {
+        params: v2::ThreadRealtimeListParams,
+        serialization: thread_id(params.thread_id),
+        response: v2::ThreadRealtimeListResponse,
+    },
     #[experimental("thread/realtime/listVoices")]
     ThreadRealtimeListVoices => "thread/realtime/listVoices" {
         params: v2::ThreadRealtimeListVoicesParams,
@@ -1160,12 +1217,12 @@ client_request_definitions! {
         response: v2::ModelListResponse,
     },
     GatewayOAuthRead => "account/gatewayOAuth/read" {
-        params: #[ts(type = "undefined")] #[serde(skip_serializing_if = "Option::is_none")] Option<()>,
+        params: #[ts(optional, as = "Option<GatewayOAuthReadParamsTypeScript>", inline)] #[serde(default, skip_serializing_if = "Option::is_none")] v2::NullableGatewayOAuthReadParams,
         serialization: None,
         response: v2::GatewayOAuthReadResponse,
     },
     GatewayOAuthLogin => "account/gatewayOAuth/login" {
-        params: #[ts(type = "undefined")] #[serde(skip_serializing_if = "Option::is_none")] Option<()>,
+        params: #[ts(optional, as = "Option<GatewayOAuthLoginParamsTypeScript>", inline)] #[serde(default, skip_serializing_if = "Option::is_none")] v2::NullableGatewayOAuthLoginParams,
         serialization: None,
         response: v2::GatewayOAuthLoginResponse,
     },
@@ -1173,6 +1230,22 @@ client_request_definitions! {
         params: #[ts(type = "undefined")] #[serde(skip_serializing_if = "Option::is_none")] Option<()>,
         serialization: None,
         response: v2::GatewayOAuthCancelResponse,
+    },
+    ModelProviderList => "modelProvider/list" {
+        params: v2::ModelProviderListParams,
+        serialization: global_shared_read("config"),
+        response: v2::ModelProviderListResponse,
+    },
+    ModelProviderConfigWrite => "modelProvider/config/write" {
+        params: v2::ModelProviderConfigWriteParams,
+        serialization: global("config"),
+        response: v2::ModelProviderConfigWriteResponse,
+    },
+    ModelProviderDefaultSet => "modelProvider/default/set" {
+        params: v2::ModelProviderDefaultSetParams,
+        serialization: global("config"),
+        manual_payload_conversion: manual,
+        response: v2::ConfigWriteResponse,
     },
     ModelProviderCapabilitiesRead => "modelProvider/capabilities/read" {
         params: v2::ModelProviderCapabilitiesReadParams,
@@ -1388,6 +1461,12 @@ client_request_definitions! {
         params: #[ts(type = "undefined")] #[serde(skip_serializing_if = "Option::is_none")] Option<()>,
         serialization: global("account-auth"),
         response: v2::LogoutAccountResponse,
+    },
+
+    GetAccountSecuritySetup => "account/securitySetup/read" {
+        params: #[ts(type = "undefined")] #[serde(skip_serializing_if = "Option::is_none")] Option<()>,
+        serialization: None,
+        response: v2::GetAccountSecuritySetupResponse,
     },
 
     GetAccountRateLimits => "account/rateLimits/read" {
@@ -1899,13 +1978,6 @@ server_request_definitions! {
         response: v2::AttestationGenerateResponse,
     },
 
-    #[experimental("currentTime/read")]
-    /// Read the current time from an external clock owned by the client.
-    CurrentTimeRead => "currentTime/read" {
-        params: v2::CurrentTimeReadParams,
-        response: v2::CurrentTimeReadResponse,
-    },
-
     /// DEPRECATED APIs below
     /// Request to approve a patch.
     /// This request is used for Turns started via the legacy APIs (i.e. SendUserTurn, SendUserMessage).
@@ -2060,6 +2132,8 @@ server_notification_definitions! {
     /// Stream base64-encoded stdout/stderr chunks for a running `process/spawn` session.
     #[experimental("process/outputDelta")]
     ProcessOutputDelta => "process/outputDelta" (v2::ProcessOutputDeltaNotification),
+    #[experimental("thread/search/partial")]
+    ThreadSearchPartial => "thread/search/partial" (v2::ThreadSearchPartialNotification),
     /// Final exit notification for a `process/spawn` session.
     #[experimental("process/exited")]
     ProcessExited => "process/exited" (v2::ProcessExitedNotification),
@@ -2542,6 +2616,7 @@ mod tests {
         let mcp_oauth = ClientRequest::McpServerOauthLogin {
             request_id: request_id(),
             params: v2::McpServerOauthLoginParams {
+                environment_id: None,
                 name: "server-a".to_string(),
                 thread_id: None,
                 client_registration: None,
@@ -2559,6 +2634,8 @@ mod tests {
         let mcp_resource_read = ClientRequest::McpResourceRead {
             request_id: request_id(),
             params: v2::McpResourceReadParams {
+                environment_id: None,
+                meta: None,
                 thread_id: Some("thread-1".to_string()),
                 origin_call_id: None,
                 server: "server-a".to_string(),
@@ -2746,6 +2823,7 @@ mod tests {
                 cursor: None,
                 limit: None,
                 sort_direction: None,
+                defer_output: None,
             },
         };
         assert_eq!(thread_items_list.serialization_scope(), None);
@@ -2753,6 +2831,8 @@ mod tests {
         let mcp_resource_read = ClientRequest::McpResourceRead {
             request_id: request_id(),
             params: v2::McpResourceReadParams {
+                environment_id: None,
+                meta: None,
                 thread_id: None,
                 origin_call_id: None,
                 server: "server-a".to_string(),
@@ -3082,32 +3162,6 @@ mod tests {
     }
 
     #[test]
-    fn serialize_current_time_read_request() -> Result<()> {
-        let params = v2::CurrentTimeReadParams {
-            thread_id: "thread-123".to_string(),
-        };
-        let request = ServerRequest::CurrentTimeRead {
-            request_id: RequestId::Integer(10),
-            params: params.clone(),
-        };
-        assert_eq!(
-            json!({
-                "method": "currentTime/read",
-                "id": 10,
-                "params": {
-                    "threadId": "thread-123"
-                }
-            }),
-            serde_json::to_value(&request)?,
-        );
-
-        let payload = ServerRequestPayload::CurrentTimeRead(params);
-        assert_eq!(request.id(), &RequestId::Integer(10));
-        assert_eq!(payload.request_with_id(RequestId::Integer(10)), request);
-        Ok(())
-    }
-
-    #[test]
     fn serialize_server_response() -> Result<()> {
         let response = ServerResponse::CommandExecutionRequestApproval {
             request_id: RequestId::Integer(8),
@@ -3146,6 +3200,7 @@ mod tests {
             thread_id: "thr_123".to_string(),
             turn_id: Some("turn_123".to_string()),
             server_name: "codex_apps".to_string(),
+            environment_id: None,
             request: v2::McpServerElicitationRequest::Form {
                 meta: Some(json!({
                     "suggestion_id": "request_plugin_install_install-github"
@@ -3167,6 +3222,7 @@ mod tests {
                     "threadId": "thr_123",
                     "turnId": "turn_123",
                     "serverName": "codex_apps",
+                    "environmentId": null,
                     "mode": "form",
                     "_meta": {
                         "suggestion_id": "request_plugin_install_install-github"
@@ -3307,6 +3363,7 @@ mod tests {
                     extra: None,
                     session_id: "67e55044-10b1-426f-9247-bb680e5fe0c7".to_string(),
                     forked_from_id: None,
+                    attached_to_thread_id: None,
                     parent_thread_id: None,
                     preview: "first prompt".to_string(),
                     ephemeral: true,
@@ -3322,7 +3379,7 @@ mod tests {
                     recency_at: Some(3),
                     status: v2::ThreadStatus::Idle,
                     path: None,
-                    cwd: cwd.clone(),
+                    cwd: cwd.clone().into(),
                     cli_version: "0.0.0".to_string(),
                     source: v2::SessionSource::Exec,
                     can_accept_direct_input: None,
@@ -3332,12 +3389,13 @@ mod tests {
                     git_info: None,
                     name: None,
                     daybreak_enabled: None,
+                    daybreak_program_propagation_enrolled: None,
                     turns: Vec::new(),
                 },
                 model: "gpt-5".to_string(),
                 model_provider: "openai".to_string(),
                 service_tier: None,
-                cwd,
+                cwd: cwd.into(),
                 runtime_workspace_roots: Vec::new(),
                 instruction_sources: vec![
                     codex_utils_path_uri::LegacyAppPathString::from_abs_path(&absolute_path(
@@ -3366,6 +3424,7 @@ mod tests {
                         "extra": null,
                         "sessionId": "67e55044-10b1-426f-9247-bb680e5fe0c7",
                         "forkedFromId": null,
+                        "attachedToThreadId": null,
                         "parentThreadId": null,
                         "preview": "first prompt",
                         "ephemeral": true,
@@ -3394,6 +3453,7 @@ mod tests {
                         "gitInfo": null,
                         "name": null,
                         "daybreakEnabled": null,
+                        "daybreakProgramPropagationEnrolled": null,
                         "turns": []
                     },
                     "model": "gpt-5",
@@ -3463,11 +3523,13 @@ mod tests {
                 v2::LoginAccountParams::AmazonBedrock {
                     api_key: "secret".to_string(),
                     region: "us-west-2".to_string(),
+                    provider_id: None,
                 },
                 json!({
                     "type": "amazonBedrock",
                     "apiKey": "secret",
-                    "region": "us-west-2"
+                    "region": "us-west-2",
+                    "providerId": null
                 }),
             ),
             (
@@ -3476,13 +3538,15 @@ mod tests {
                     secret_access_key: "secret-access-key".to_string(),
                     session_token: Some("session-token".to_string()),
                     region: "us-west-2".to_string(),
+                    provider_id: Some(v2::BedrockProviderId::AmazonBedrockRuntime),
                 },
                 json!({
                     "type": "amazonBedrockAccessKeys",
                     "accessKeyId": "access-key-id",
                     "secretAccessKey": "secret-access-key",
                     "sessionToken": "session-token",
-                    "region": "us-west-2"
+                    "region": "us-west-2",
+                    "providerId": "amazon-bedrock-runtime"
                 }),
             ),
         ] {
@@ -3768,7 +3832,8 @@ mod tests {
                 "params": {
                     "limit": null,
                     "cursor": null,
-                    "includeHidden": null
+                    "includeHidden": null,
+                    "modelProvider": null
                 }
             }),
             serde_json::to_value(&request)?,
@@ -4580,7 +4645,8 @@ mod tests {
                 thread_id: "thr_123".to_string(),
                 thread_settings: v2::ThreadSettings {
                     disabled_plugin_ids: Vec::new(),
-                    cwd: absolute_path("/tmp/repo"),
+                    environments: Some(Vec::new()),
+                    cwd: absolute_path("/tmp/repo").into(),
                     approval_policy: v2::AskForApproval::Never,
                     approvals_reviewer: v2::ApprovalsReviewer::User,
                     sandbox_policy: v2::SandboxPolicy::DangerFullAccess,

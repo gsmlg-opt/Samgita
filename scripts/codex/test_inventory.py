@@ -107,7 +107,7 @@ class InventoryTest(unittest.TestCase):
             path.parent.mkdir(parents=True)
             path.write_text(source)
             notifications = inventory.source_notifications(root, "server_notification_definitions")
-            self.assertEqual(len(notifications), 88)
+            self.assertEqual(len(notifications), 89)
             self.assertEqual(notifications["account/login/completed"]["variant"], "AccountLoginCompleted")
             self.assertEqual(inventory.source_notifications(root, "client_notification_definitions"),
                              {"initialized": {"variant": "Initialized", "params_rust": None}})
@@ -200,14 +200,15 @@ class InventoryTest(unittest.TestCase):
     def test_native_realtime_contract_metadata_retains_exported_field_identity(self):
         manifest = json.loads(inventory.MANIFEST.read_text())
         for identity in ("server_response:thread/timeline/list",
+                         "server_response:thread/realtime/list",
                          "server_notification:thread/realtime/item/started",
                          "server_notification:thread/realtime/item/completed"):
             row = next(row for row in manifest["entries"] if row["id"] == identity)
             self.assertIn("native_output_sha256", row)
         rows = [row for row in manifest["schema_contracts"]
                 if "/definitions/ThreadRealtimeItem/" in row["pointer"]
-                and row["wire_name"] in {"turn_id", "item_id"}]
-        self.assertEqual(len(rows), 4)
+                and row["wire_name"] in {"turn_id", "item_id", "handoff_id", "source_event_ids", "input_item_id"}]
+        self.assertEqual(len(rows), 16)
         for row in rows:
             self.assertEqual(row.get("native_wire_name"), generate_output_semantics.camel(row["wire_name"]))
 
@@ -219,10 +220,11 @@ class InventoryTest(unittest.TestCase):
             original = json.loads(original_bytes)
             corrected = generate_output_semantics.corrected(original, semantics)
             restored = json.loads(json.dumps(corrected))
-            branch = restored["definitions"]["ThreadRealtimeItem"]["oneOf"][2]
-            reverse = {"turnId": "turn_id", "itemId": "item_id"}
-            branch["properties"] = {reverse.get(k, k): v for k, v in branch["properties"].items()}
-            branch["required"] = [reverse.get(k, k) for k in branch["required"]]
+            for branch in restored["definitions"]["ThreadRealtimeItem"]["oneOf"]:
+                variant = branch["properties"]["type"]["enum"][0]
+                reverse = {native: exported for exported, native in semantics["renames"].get(variant, {}).items()}
+                branch["properties"] = {reverse.get(k, k): v for k, v in branch["properties"].items()}
+                branch["required"] = [reverse.get(k, k) for k in branch["required"]]
             self.assertEqual(restored, original)
             self.assertEqual(path.read_bytes(), original_bytes)
 
@@ -233,7 +235,12 @@ class InventoryTest(unittest.TestCase):
                 (files[0], 'rename_all_fields = "camelCase"', 'rename_all_fields = "snake_case"'),
                 (files[0], 'turn_id: String,', '#[serde(rename = "other")] turn_id: String,'),
                 (files[0], '#[serde(flatten)]', '#[serde(default)]'),
+                (files[0], 'skip_serializing_if = "Option::is_none"', 'skip_serializing_if = "other"'),
+                (files[0], 'source_event_ids: Vec<String>,', 'source_event_ids: String,'),
                 (files[1], 'turnId: string,', 'turn_id: string,'),
+                (files[1], 'observedAtMs?: number,', 'observedAtMs: number | null,'),
+                (files[1], 'handoffId: string,', 'handoff_id: string,'),
+                (files[2], '"observedAtMs":', '"observed_at_ms":'),
                 (files[2], '"item_id":', '"other_item_id":')):
             with tempfile.TemporaryDirectory(prefix="codex-realtime-semantics-") as temporary:
                 root = Path(temporary)
@@ -261,12 +268,12 @@ class InventoryTest(unittest.TestCase):
             schema = json.loads((inventory.VENDOR / profile / "ServerNotification.json").read_text())
             profiles.append({inventory.method_name(variant) for variant in schema["oneOf"]})
         self.assertEqual(profiles[0], profiles[1])
-        self.assertEqual(len(profiles[0]), 86)
+        self.assertEqual(len(profiles[0]), 87)
 
         manifest = json.loads(inventory.MANIFEST.read_text())
         notifications = {row["wire_name"]: row for row in manifest["entries"]
                          if row["direction"] == "server_notification"}
-        self.assertEqual(sum(row["experimental"] for row in notifications.values()), 24)
+        self.assertEqual(sum(row["experimental"] for row in notifications.values()), 25)
         source_lines = (inventory.VENDOR / "source/common.rs").read_text().splitlines()
         for row in notifications.values():
             if row["experimental"]:
@@ -275,7 +282,8 @@ class InventoryTest(unittest.TestCase):
                                  '#[experimental("' + row["source"]["experimental_reason"] + '")]')
             else:
                 self.assertEqual(row["capabilities"], [])
-        for method in ("thread/settings/updated", "process/outputDelta", "thread/realtime/started"):
+        for method in ("thread/settings/updated", "process/outputDelta", "thread/realtime/started",
+                       "thread/search/partial"):
             self.assertTrue(notifications[method]["experimental"])
         for method in ("item/plan/delta", "remoteControl/status/changed"):
             self.assertFalse(notifications[method]["experimental"])
@@ -284,7 +292,7 @@ class InventoryTest(unittest.TestCase):
         manifest = json.loads(inventory.MANIFEST.read_text())
         by_id = {row["id"]: row for row in manifest["entries"]}
         for direction in ("server_request", "client_response"):
-            self.assertTrue(by_id[direction + ":currentTime/read"]["experimental"])
+            self.assertNotIn(direction + ":currentTime/read", by_id)
             for row in manifest["entries"]:
                 if row["direction"] == direction:
                     self.assertEqual(row["capabilities"], [])

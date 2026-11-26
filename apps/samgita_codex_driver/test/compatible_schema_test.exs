@@ -104,7 +104,7 @@ defmodule SamgitaCodexDriver.CompatibleSchemaTest do
     end
   end
 
-  test "newer project results omit position in compatible sessions while strict sessions use the snapshot" do
+  test "current Project results omit position in both schema modes and retain older extra fields" do
     project = %{
       "id" => "project",
       "name" => "Example",
@@ -122,13 +122,8 @@ defmodule SamgitaCodexDriver.CompatibleSchemaTest do
       wire = %{"id" => "projects", "result" => %{"data" => [project], "nextCursor" => nil}}
       send(pid, {:incoming, wire})
 
-      if mode == :compatible or Map.has_key?(project, "position") do
-        assert {:ok, ^wire} = Task.await(call)
-        assert Session.status(pid).phase == :ready
-      else
-        assert {:error, %Error{code: :schema_violation}} = Task.await(call)
-        assert Session.status(pid).phase == :disconnected
-      end
+      assert {:ok, ^wire} = Task.await(call)
+      assert Session.status(pid).phase == :ready
     end
   end
 

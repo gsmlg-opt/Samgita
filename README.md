@@ -18,7 +18,8 @@ deletion checklists never authorized deleting data or migrations.
 The two platform applications are `apps/samgita` (Ecto/domain commands, events,
 schedules and Styx) and `apps/samgita_web` (Phoenix REST and DuskMoon LiveViews).
 Four independently built packages provide a reusable protocol core, optional
-WebSocket transport, a pinned Codex wire adapter and an ordinary Codex driver.
+WebSocket transport, a Codex wire adapter built from a reviewed upstream
+snapshot and an ordinary Codex driver.
 Loading the packages starts no Agent or listener. Ordinary functional delivery
 does not establish full native compatibility.
 

@@ -8,6 +8,9 @@ defmodule SamgitaCodexDriver.QueryUncertaintyTest do
   @queries [
     {"server/diagnostics", %{}},
     {"thread/search", %{"searchTerm" => "owned query"}},
+    {"thread/search/stream", %{"searchTerm" => "owned query"}},
+    {"thread/realtime/list", %{"threadId" => "owned-thread"}},
+    {"modelProvider/list", %{}},
     {"thread/searchOccurrences", %{"threadId" => "owned-thread", "searchTerm" => "owned"}},
     {"thread/timeline/list", %{"threadId" => "owned-thread"}},
     {"thread/items/list", %{"threadId" => "owned-thread"}},
@@ -69,7 +72,7 @@ defmodule SamgitaCodexDriver.QueryUncertaintyTest do
 
     test "#{method} local abandonment ends only the wait without uncertain execution" do
       pid = ready()
-      {task, wire} = pending(pid, @method, @params)
+      {task, wire} = pending(pid, @method, @params, effect: :read)
       assert :ok = Session.abandon(pid, wire["id"])
 
       assert {:error, %Error{code: :locally_abandoned, uncertain: false}} = Task.await(task)
@@ -107,20 +110,35 @@ defmodule SamgitaCodexDriver.QueryUncertaintyTest do
   end
 
   test "lost mutation responses retain uncertainty and are never retried" do
-    pid = ready()
-    {mutation, wire} = pending(pid, "thread/archive", %{"threadId" => "owned-thread"})
-    assert :ok = Session.abandon(pid, wire["id"])
-    assert {:error, %Error{code: :locally_abandoned, uncertain: true}} = Task.await(mutation)
-    id = wire["id"]
-    assert [%{id: ^id, method: "thread/archive"}] = Session.uncertain_operations(pid)
+    for {method, params} <- [
+          {"thread/archive", %{"threadId" => "owned-thread"}},
+          {"thread/search/cancel", %{"requestId" => "owned-search"}},
+          {"thread/search/stream/cancel", %{"requestId" => "owned-search"}},
+          {"modelProvider/default/set", %{"providerId" => "owned-provider"}},
+          {"modelProvider/config/write",
+           %{
+             "settings" => %{
+               "type" => "customGateway",
+               "providerId" => "owned-provider",
+               "name" => "Owned provider"
+             }
+           }}
+        ] do
+      pid = ready()
+      {mutation, wire} = pending(pid, method, params)
+      assert :ok = Session.abandon(pid, wire["id"])
+      assert {:error, %Error{code: :locally_abandoned, uncertain: true}} = Task.await(mutation)
+      id = wire["id"]
+      assert [%{id: ^id, method: ^method}] = Session.uncertain_operations(pid)
 
-    assert {:error, %Error{code: :reconciliation_required}} =
-             Session.request(pid, "thread/archive", %{"threadId" => "other-thread"})
+      assert {:error, %Error{code: :reconciliation_required}} =
+               Session.request(pid, "thread/archive", %{"threadId" => "other-thread"})
 
-    refute_receive {:sent, ^pid, _}
-    {query, query_wire} = pending(pid, "thread/list", %{})
-    reply(pid, query, query_wire, %{"data" => [], "nextCursor" => nil})
-    assert %{pending: 0, uncertain: 1} = Session.status(pid)
+      refute_receive {:sent, ^pid, _}
+      {query, query_wire} = pending(pid, "thread/list", %{})
+      reply(pid, query, query_wire, %{"data" => [], "nextCursor" => nil})
+      assert %{pending: 0, uncertain: 1} = Session.status(pid)
+    end
   end
 
   test "unclassified extensions remain potentially mutating" do

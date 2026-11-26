@@ -6,6 +6,7 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
 
   @root Path.expand("../priv/upstream/current", __DIR__)
   @values ~w(created_at updated_at recency_at)
+  @methods ~w(thread/search thread/search/stream)
   @forms [
     {%{"created_at" => nil}, ~s({"created_at":null})},
     {%{"created_at" => %{}}, ~s({"created_at":{}})},
@@ -16,18 +17,18 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
   ]
 
   test "native search sort objects preserve complete caller maps and literal bytes" do
-    for {object, literal} <- @forms do
+    for method <- @methods, {object, literal} <- @forms do
       bytes =
-        ~s({"id":"owned-search-unit","method":"thread/search","params":{"searchTerm":"Owned search","sortKey":#{literal}}})
+        ~s({"id":"owned-search-unit","method":"#{method}","params":{"searchTerm":"Owned search","sortKey":#{literal}}})
 
       wire = %{
         "id" => "owned-search-unit",
-        "method" => "thread/search",
+        "method" => method,
         "params" => %{"searchTerm" => "Owned search", "sortKey" => object}
       }
 
       assert JSON.decode!(bytes) === wire
-      assert :ok = Schema.validate_request("thread/search", wire["params"], experimental: true)
+      assert :ok = Schema.validate_request(method, wire["params"], experimental: true)
       assert {:ok, ^bytes} = Wire.encode(wire)
       assert {:ok, ^wire} = Wire.decode(bytes)
     end
@@ -58,27 +59,27 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
 
     assert full["definitions"]["ThreadSearchParams"]["properties"]["sortKey"] === expected_field
     assert standalone["properties"]["sortKey"] === expected_field
-    assert request_methods(full, "ThreadSearchSortKey") === ["thread/search"]
+    assert request_methods(full, "ThreadSearchSortKey") === @methods
     assert request_methods(stable, "ThreadSearchSortKey") === []
     refute Map.has_key?(stable["definitions"], "ThreadSearchParams")
 
-    for {object, _literal} <- @forms do
+    for method <- @methods, {object, _literal} <- @forms do
       params = %{"searchTerm" => "Owned search", "sortKey" => object}
-      wire = %{"id" => "owned-search-export", "method" => "thread/search", "params" => params}
+      wire = %{"id" => "owned-search-export", "method" => method, "params" => params}
       assert {:error, %Error{code: :schema_violation}} = Validator.validate(full, wire)
       assert {:error, %Error{code: :schema_violation}} = Validator.validate(standalone, params)
     end
   end
 
   test "canonical strings outer null and omission preserve the experimental method gate" do
-    for value <- [nil | @values] do
+    for method <- @methods, value <- [nil | @values] do
       params = %{"searchTerm" => "Owned search", "sortKey" => value}
-      assert :ok = Schema.validate_request("thread/search", params, experimental: true)
+      assert :ok = Schema.validate_request(method, params, experimental: true)
 
       assert {:error, %Error{code: :experimental_api_required}} =
-               Schema.validate_request("thread/search", params)
+               Schema.validate_request(method, params)
 
-      wire = %{"id" => "owned-search-canonical", "method" => "thread/search", "params" => params}
+      wire = %{"id" => "owned-search-canonical", "method" => method, "params" => params}
       bytes = JSON.encode!(wire)
       assert {:ok, ^bytes} = Wire.encode(wire)
       assert {:ok, ^wire} = Wire.decode(bytes)
@@ -97,7 +98,8 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
   end
 
   test "search sort objects require one known key and null or empty-map payload" do
-    for value <- [
+    for method <- @methods,
+        value <- [
           %{},
           %{"unknown" => nil},
           %{"CreatedAt" => nil},
@@ -114,7 +116,7 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
         ] do
       assert {:error, %Error{code: :schema_violation}} =
                Schema.validate_request(
-                 "thread/search",
+                 method,
                  %{"searchTerm" => "Owned search", "sortKey" => value},
                  experimental: true
                )
@@ -122,11 +124,11 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
   end
 
   test "sort correction retains required query and enclosing field constraints" do
-    for {object, _literal} <- @forms do
+    for method <- @methods, {object, _literal} <- @forms do
       params = %{"searchTerm" => "Owned search", "sortKey" => object}
 
       assert {:error, %Error{code: :schema_violation}} =
-               Schema.validate_request("thread/search", Map.delete(params, "searchTerm"),
+               Schema.validate_request(method, Map.delete(params, "searchTerm"),
                  experimental: true
                )
 
@@ -137,9 +139,7 @@ defmodule SamgitaProtocolCodex.ThreadSearchSortInputTest do
             %{"sortDirection" => "unknown"}
           ] do
         assert {:error, %Error{code: :schema_violation}} =
-                 Schema.validate_request("thread/search", Map.merge(params, invalid),
-                   experimental: true
-                 )
+                 Schema.validate_request(method, Map.merge(params, invalid), experimental: true)
       end
     end
   end

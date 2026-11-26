@@ -14,49 +14,41 @@ defmodule SamgitaProtocolCodex.ProjectOutputCompatibilityTest do
     "recencyAt" => nil
   }
 
-  test "compatible results accept Project with or without its former position field" do
+  test "current Project results need no position in every schema mode" do
     for method <- @methods,
-        project <- [@project, Map.put(@project, "position", 3)] do
-      result = result(method, project)
-
+        opts <- [[], [schema_mode: :strict], [schema_mode: :compatible]] do
       assert :ok =
-               Schema.validate_result(:server_response, method, result, schema_mode: :compatible)
-    end
-  end
-
-  test "strict and default results retain the snapshot requirement for position" do
-    for method <- @methods, opts <- [[], [schema_mode: :strict]] do
-      assert {:error, %Error{code: :schema_violation}} =
                Schema.validate_result(:server_response, method, result(method, @project), opts)
-
-      assert :ok =
-               Schema.validate_result(
-                 :server_response,
-                 method,
-                 result(method, Map.put(@project, "position", 3)),
-                 opts
-               )
     end
   end
 
-  test "compatible Project results still validate remaining fields and any supplied position" do
+  test "a former position field follows the same unknown-field policy as other output additions" do
+    for method <- @methods,
+        opts <- [[], [schema_mode: :strict], [schema_mode: :compatible]],
+        position <- [3, nil, "3", 1.5, %{"opaque" => [false]}] do
+      project = Map.put(@project, "position", position)
+      result = result(method, project)
+      original = JSON.encode!(result)
+      assert :ok = Schema.validate_result(:server_response, method, result, opts)
+      assert JSON.encode!(result) == original
+    end
+  end
+
+  test "Project results retain current required fields and typed output constraints" do
     invalid_projects =
       Enum.map(~w(id name metadata roots createdAt updatedAt), &Map.delete(@project, &1)) ++
         [
-          Map.put(@project, "position", nil),
-          Map.put(@project, "position", "3"),
-          Map.put(@project, "position", 1.5),
           Map.put(@project, "metadata", %{"color" => 1}),
           Map.put(@project, "roots", [%{}]),
           Map.put(@project, "recencyAt", "recent"),
           Map.put(@project, "createdAt", "1")
         ]
 
-    for method <- @methods, project <- invalid_projects do
+    for method <- @methods,
+        project <- invalid_projects,
+        opts <- [[], [schema_mode: :strict], [schema_mode: :compatible]] do
       assert {:error, %Error{code: :schema_violation}} =
-               Schema.validate_result(:server_response, method, result(method, project),
-                 schema_mode: :compatible
-               )
+               Schema.validate_result(:server_response, method, result(method, project), opts)
     end
 
     assert {:error, %Error{code: :schema_violation}} =

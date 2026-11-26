@@ -18,12 +18,12 @@ RUST = "source/dynamic-tools.rs"
 THREAD = "source/thread.rs"
 SOURCES = {
     RUST: "d73d51aa0cd0e6318d6fc1faa890a3524301af0c3ba2b2dc0d071728b2caa402",
-    THREAD: "f5a99bd250950ddaa3a07a8cae84e434c77d645650c11ec037e140945fa2c500",
+    THREAD: "b7de8cf6525820d85b474d80ae1db427783705d4f9e66a8d5677560cc2d136e8",
 }
 SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 RESPONSE_SEMANTICS = "source/response-item-input-semantics.json"
 MODELS = "source/models.rs"
-MODELS_SHA256 = "daeb5bd499ed49b364be4c031e3c754f7fb39945531214c0b8fe00896eb3da82"
+MODELS_SHA256 = "884feb656b63b4a432a3838b2d4d3fa1ec14ca13da9c09c1507f68ad3b67aefb"
 RESPONSE_SCHEMAS = ("ClientRequest.json", "v2/ThreadResumeParams.json")
 COLLABORATION_SEMANTICS = "source/collaboration-input-semantics.json"
 CONFIG_TYPES = "source/config_types.rs"
@@ -41,37 +41,52 @@ PERSONALITY_METHODS = ("thread/resume", "thread/settings/update", "thread/start"
 PERSONALITY_SCHEMAS = (*COLLABORATION_SCHEMAS, "v2/ThreadStartParams.json", "v2/ThreadResumeParams.json")
 HISTORY_MODE_SEMANTICS = "source/history-mode-input-semantics.json"
 THREAD_DATA = "source/thread_data.rs"
-THREAD_DATA_SHA256 = "dfb06fcc2722c6742f5989b93be0662079a3c059b18d5c82dc261e65c1fa7cb0"
+THREAD_DATA_SHA256 = "bc53e353033a75bc1042422a23f3526b129543438c2f62c9cb7b8a32099dcc02"
 COMMON = "source/common.rs"
-COMMON_SHA256 = "4c449f1da399848c714c780fc1304ba566d0089aeaef8c33c3a9c7eb986e4272"
+COMMON_SHA256 = "42b3df2583735627a5828bd925e20fc82ee76457f1c8125c4f2cdf23b2f21c83"
 HISTORY_MODE_METHODS = ("thread/start",)
 HISTORY_MODE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 START_SOURCE_SEMANTICS = "source/thread-start-source-input-semantics.json"
 START_SOURCE_METHODS = ("thread/start",)
 START_SOURCE_SCHEMAS = ("ClientRequest.json", "v2/ThreadStartParams.json")
 SEARCH_SORT_SEMANTICS = "source/thread-search-sort-key-input-semantics.json"
-SEARCH_SORT_METHODS = ("thread/search",)
+SEARCH_SORT_METHODS = ("thread/search", "thread/search/stream")
+SEARCH_DECLARATIONS = (
+    '    #[experimental("thread/search")]\n'
+    '    ThreadSearch => "thread/search" {\n'
+    '        params: v2::ThreadSearchParams,\n'
+    '        serialization: None,\n'
+    '        response: v2::ThreadSearchResponse,\n    },',
+    '    #[experimental("thread/search/stream")]\n'
+    '    /// Search with best-effort incremental `thread/search/partial` notifications. The final\n'
+    '    /// response is authoritative for results, ordering, and cursors.\n'
+    '    ThreadSearchStream => "thread/search/stream" {\n'
+    '        params: v2::ThreadSearchParams,\n'
+    '        serialization: None,\n'
+    '        manual_payload_conversion: manual,\n'
+    '        response: v2::ThreadSearchResponse,\n    },',
+)
 SEARCH_SORT_SCHEMAS = {
-    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-    "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+    "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+    "v2/ThreadSearchParams.json": "d8a3c6360e436725996d91495deb17e4f4b8852190e6d93ec7bb05b168f24308",
 }
 LIST_SORT_SEMANTICS = "source/thread-sort-key-input-semantics.json"
 LIST_SORT_METHODS = ("thread/list",)
 LIST_SORT_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
-        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
+        "v2/ThreadListParams.json": "dd8d15327fadd21e6bb064710e5a652efc5e516899158411ef58e94447da6893",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+        "v2/ThreadListParams.json": "d6208d0b4c584972710ef8e58e7fb2a5433380c6dd2a72321eec3430941083d0",
     },
 }
 DIRECTION_SEMANTICS = "source/sort-direction-input-semantics.json"
 PROJECT = "source/project.rs"
-PROJECT_SHA256 = "ae6a4e421a71db946f851ffd44c07dc1889cb4a307e28f18c7df955a4b20d9cf"
+PROJECT_SHA256 = "daa0421431fbb19de62e7d9fc4807d7a3ad1fc99794622ae8fce642a0bd95938"
 DIRECTION_METHODS = ("project/list", "thread/items/list", "thread/list", "thread/resume",
-                     "thread/search", "thread/turns/list")
+                     "thread/search", "thread/search/stream", "thread/turns/list")
 DIRECTION_STANDARD_METHODS = ("thread/items/list", "thread/list", "thread/turns/list")
 DIRECTION_FIELDS = {
     "ThreadListParams": ("ThreadListParams", "Optional sort direction; defaults to descending (newest first)."),
@@ -83,30 +98,30 @@ DIRECTION_FIELDS = {
 }
 DIRECTION_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
-        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
+        "v2/ThreadListParams.json": "dd8d15327fadd21e6bb064710e5a652efc5e516899158411ef58e94447da6893",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
-        "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
+        "v2/ThreadItemsListParams.json": "44c3c947e226be40e8769b81de4e27bd54c69cf7fc8a4fde977fe8211d80065c",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+        "v2/ThreadListParams.json": "d6208d0b4c584972710ef8e58e7fb2a5433380c6dd2a72321eec3430941083d0",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
-        "v2/ThreadItemsListParams.json": "d5cf9784413f1d1abba756e04e48b273a9d12ab2c5675442e91b6a4ee55e19f0",
-        "v2/ThreadResumeParams.json": "9642460eb42e9a6e8fa8e12b4381e8ed939d10b1ad8690e694d84467ea76d41a",
-        "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
-        "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+        "v2/ThreadItemsListParams.json": "4a65ec8077ac41db5fb0c0fb688d9421459a9168b35c4036ae78e25bbd0ce163",
+        "v2/ThreadResumeParams.json": "462e7749c0ba1d3355850f495d9a7fb7763edae624ab185dbc9bc59aaf799655",
+        "v2/ProjectListParams.json": "53e39cb881a0e51440866edd9a7431ac3647e04c47f7b50a4eaf45b3fe30a578",
+        "v2/ThreadSearchParams.json": "d8a3c6360e436725996d91495deb17e4f4b8852190e6d93ec7bb05b168f24308",
     },
 }
 PROJECT_SORT_SEMANTICS = "source/project-sort-key-input-semantics.json"
 PROJECT_SORT_METHODS = ("project/list",)
 PROJECT_SORT_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-        "v2/ProjectListParams.json": "852330150c7e62724842b5fe39cc880ccd98f89179d34ba51cb95699b60e8656",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+        "v2/ProjectListParams.json": "53e39cb881a0e51440866edd9a7431ac3647e04c47f7b50a4eaf45b3fe30a578",
     },
 }
 ITEMS_VIEW_SEMANTICS = "source/turn-items-view-input-semantics.json"
@@ -117,28 +132,28 @@ ITEMS_VIEW_PATHS = {
 }
 ITEMS_VIEW_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
         "v2/ThreadTurnsListParams.json": "2a8b93d7d4437cc25e16a1dde16d8db3c338d39e16c5eece2a56e943a21577d7",
-        "v2/ThreadResumeParams.json": "9642460eb42e9a6e8fa8e12b4381e8ed939d10b1ad8690e694d84467ea76d41a",
+        "v2/ThreadResumeParams.json": "462e7749c0ba1d3355850f495d9a7fb7763edae624ab185dbc9bc59aaf799655",
     },
 }
 MERGE_STRATEGY_SEMANTICS = "source/merge-strategy-input-semantics.json"
 CONFIG = "source/config.rs"
-CONFIG_SHA256 = "a50d4abcd7ea13486e622845f7987720658cb80ac3c15b3c374207659989eb65"
+CONFIG_SHA256 = "6046493fbd29ec1f3a2c99615c8b03aee0be9ed3ede1928785e15f33cbbeb43a"
 MERGE_STRATEGY_PATHS = (("config/batchWrite", ("edits", "[]", "mergeStrategy")),
                         ("config/value/write", ("mergeStrategy",)))
 MERGE_STRATEGY_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
         "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
         "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
         "v2/ConfigValueWriteParams.json": "b9032e35bf64d4628bfc72e22b58b71bbcf754aeb720a86eacb091e0137547c9",
         "v2/ConfigBatchWriteParams.json": "d092c4412237735cdc9516b396ab1445f079e956cc10271be7c53f0d0e1e650e",
     },
@@ -147,17 +162,18 @@ SOURCE_KIND_SEMANTICS = "source/thread-source-kind-input-semantics.json"
 SOURCE_KIND_PATHS = {
     "stable": (("thread/list", ("sourceKinds", "[]")),),
     "experimental": (("thread/list", ("sourceKinds", "[]")),
-                     ("thread/search", ("sourceKinds", "[]"))),
+                     ("thread/search", ("sourceKinds", "[]")),
+                     ("thread/search/stream", ("sourceKinds", "[]"))),
 }
 SOURCE_KIND_SCHEMAS = {
     "stable": {
-        "ClientRequest.json": "94074a415950787a25e09ae3b4d9de312cc264eb0f021633dfca921d300cd42a",
-        "v2/ThreadListParams.json": "e9da2e0bf099d21ab7982210073f927a50370c4e28be7140c314f82c524070bd",
+        "ClientRequest.json": "84e65e42389d5b084664b18ddeedf30db7375a9d466787ff6efabd102f98ea65",
+        "v2/ThreadListParams.json": "dd8d15327fadd21e6bb064710e5a652efc5e516899158411ef58e94447da6893",
     },
     "experimental": {
-        "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-        "v2/ThreadListParams.json": "1781b1778cb08619f0bf12528b128e55648b86569114196b1b5ec565b9b7935d",
-        "v2/ThreadSearchParams.json": "5c3bbb9d37d7d83f3f7747423427ff9c8b0f1154ac8cd7c832995a763dfa8e61",
+        "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+        "v2/ThreadListParams.json": "d6208d0b4c584972710ef8e58e7fb2a5433380c6dd2a72321eec3430941083d0",
+        "v2/ThreadSearchParams.json": "d8a3c6360e436725996d91495deb17e4f4b8852190e6d93ec7bb05b168f24308",
     },
 }
 DECODER_RUST = "source/serde-1.0.228/private-de.rs"
@@ -557,12 +573,8 @@ def derive_search_sort(vendor):
     if ('#[serde(tag = "method", rename_all = "camelCase")]\n        pub enum ClientRequest {' not in common
             or 'serde_json::from_value(serde_json::Value::Object(request))' not in common):
         raise ValueError("Pinned ClientRequest buffered input path changed")
-    method = (
-        '    #[experimental("thread/search")]\n'
-        '    ThreadSearch => "thread/search" {\n'
-        '        params: v2::ThreadSearchParams,')
-    if method not in common:
-        raise ValueError("Pinned thread/search experimental method declaration changed")
+    if any(method not in common for method in SEARCH_DECLARATIONS):
+        raise ValueError("Pinned thread search experimental method declarations changed")
     hashes = {}
     for name, expected in SEARCH_SORT_SCHEMAS.items():
         path = vendor / "experimental" / name
@@ -600,7 +612,7 @@ def derive_search_sort(vendor):
         "input_object_branches": unit_object_branches(names),
         "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
         "schemas_sha256": hashes,
-        "semantics": "The ordinary snake_case ThreadSearchSortKey unit enum accepts one-key created_at/updated_at/recency_at objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only experimental thread/search reaches this input definition; the unused stable enum does not make the method available. Preserve the complete canonical string schema, original caller values, required searchTerm, enclosing constraints, outer null/omission and experimental method negotiation. Native owns persisted query ordering and cursor semantics; accepted input does not execute a turn. Ordering and pagination require independent native evidence. Output schemas remain canonical.",
+        "semantics": "The ordinary snake_case ThreadSearchSortKey unit enum accepts one-key created_at/updated_at/recency_at objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Experimental thread/search and thread/search/stream reach this input definition; the unused stable enum does not make the method available. Preserve the complete canonical string schema, original caller values, required searchTerm, enclosing constraints, outer null/omission and experimental method negotiation. Native owns persisted query ordering and cursor semantics; accepted input does not execute a turn. Ordering and pagination require independent native evidence. Output schemas remain canonical.",
     }
 
 
@@ -720,6 +732,8 @@ def derive_direction(vendor):
         if method in ("thread/list", "thread/resume") and (
                 method_declaration + '\n        inspect_params: true,' not in common):
             raise ValueError("Pinned sort direction enclosing field inspection changed: " + method)
+    if any(method not in common for method in SEARCH_DECLARATIONS):
+        raise ValueError("Pinned sort direction search method declarations changed")
     hashes = {}
     for profile, schemas in DIRECTION_SCHEMAS.items():
         for name, expected in schemas.items():
@@ -767,7 +781,7 @@ def derive_direction(vendor):
         "input_object_branches": unit_object_branches(names),
         "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
         "schemas_sha256": hashes,
-        "semantics": "The ordinary snake_case SortDirection unit enum accepts one-key asc/desc objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/list, thread/turns/list and thread/items/list reach it in stable requests; full requests additionally reach thread/search, project/list and thread/resume.initialTurnsPage.sortDirection. Preserve the complete canonical string schema, original caller values, enclosing constraints, outer null/omission, three standard methods, two experimental methods and the active enclosing initialTurnsPage field gate. Defaults and selected-key prerequisites remain native-owned, including project sortKey and section-position direction defaults. Accepted input does not itself execute a turn. Ordered results, bootstrap history, pagination and cold persistence require independent native evidence. Output schemas remain canonical.",
+        "semantics": "The ordinary snake_case SortDirection unit enum accepts one-key asc/desc objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/list, thread/turns/list and thread/items/list reach it in stable requests; full requests additionally reach thread/search, thread/search/stream, project/list and thread/resume.initialTurnsPage.sortDirection. Preserve the complete canonical string schema, original caller values, enclosing constraints, outer null/omission, three standard methods, three experimental methods and the active enclosing initialTurnsPage field gate. Defaults and selected-key prerequisites remain native-owned, including project sortKey and section-position direction defaults. Accepted input does not itself execute a turn. Ordered results, bootstrap history, pagination and cold persistence require independent native evidence. Output schemas remain canonical.",
     }
 
 
@@ -793,6 +807,7 @@ def derive_project_sort(vendor):
         r'pub struct ProjectListParams \{\n(.*?)\n\}', rust, re.S)
     field = (
         '    /// Defaults to position. Recency sorting always places empty projects last.\n'
+        '    /// Use the returned order; numeric positions are not exposed in project responses.\n'
         '    #[ts(optional = nullable)]\n'
         '    pub sort_key: Option<ProjectSortKey>,')
     direction = (
@@ -846,7 +861,7 @@ def derive_project_sort(vendor):
                     or set(definition["properties"]) != {"cursor", "limit", "sortKey", "sortDirection"}
                     or definition["properties"]["sortKey"] != {
                         "anyOf": [{"$ref": "#/definitions/ProjectSortKey"}, {"type": "null"}],
-                        "description": "Defaults to position. Recency sorting always places empty projects last."}):
+                        "description": "Defaults to position. Recency sorting always places empty projects last. Use the returned order; numeric positions are not exposed in project responses."}):
                 raise ValueError("Official project/list sortKey field contract changed: " + name)
             hashes[name] = expected
     return {
@@ -1188,7 +1203,8 @@ def derive_source_kind(vendor):
             r'pub struct ' + owner + r' \{\n(.*?)\n\}', rust, re.S)
         if not params or field not in params[1]:
             raise ValueError("Pinned sourceKinds Option array declaration changed: " + owner)
-        search = ('    /// Required substring/full-text query for thread search.\n'
+        search = ('    /// Required substring/full-text query. `thread/search/stream` limits this to 65,536\n'
+                  '    /// UTF-8 bytes after trimming surrounding whitespace.\n'
                   '    pub search_term: String,')
         if owner == "ThreadSearchParams" and search not in params[1]:
             raise ValueError("Pinned required thread/search query changed")
@@ -1202,11 +1218,7 @@ def derive_source_kind(vendor):
             '        inspect_params: true,\n'
             '        serialization: None,\n'
             '        response: v2::ThreadListResponse,\n    },',
-            '    #[experimental("thread/search")]\n'
-            '    ThreadSearch => "thread/search" {\n'
-            '        params: v2::ThreadSearchParams,\n'
-            '        serialization: None,\n'
-            '        response: v2::ThreadSearchResponse,\n    },'):
+            *SEARCH_DECLARATIONS):
         if method not in common:
             raise ValueError("Pinned source filter standard/experimental method boundary changed")
 
@@ -1255,7 +1267,7 @@ def derive_source_kind(vendor):
                     raise ValueError("ThreadSourceKind request property-array paths changed: " + profile)
                 owners = [("thread/list", "ThreadListParams")]
                 if profile == "experimental":
-                    owners.append(("thread/search", "ThreadSearchParams"))
+                    owners.extend((method, "ThreadSearchParams") for method in SEARCH_SORT_METHODS)
                 elif ("ThreadSearchParams" in document["definitions"]
                       or any("thread/search" in branch["properties"]["method"]["enum"]
                              for branch in document["oneOf"])
@@ -1277,7 +1289,7 @@ def derive_source_kind(vendor):
                         or definition["properties"]["sourceKinds"] != expected_field):
                     raise ValueError("Official optional source array/nonnullable element contract changed: " + owner)
                 if owner == "ThreadSearchParams" and definition["properties"]["searchTerm"] != {
-                        "description": "Required substring/full-text query for thread search.", "type": "string"}:
+                        "description": "Required substring/full-text query. `thread/search/stream` limits this to 65,536 UTF-8 bytes after trimming surrounding whitespace.", "type": "string"}:
                     raise ValueError("Official required thread/search query contract changed")
             if (vendor / profile / "v2/ThreadSourceKind.json").exists():
                 raise ValueError("Pinned nested-only source kind export boundary changed")
@@ -1292,7 +1304,7 @@ def derive_source_kind(vendor):
         "input_object_branches": unit_object_branches(names),
         "source_sha256": {**sources, **buffered_decoder_sources(vendor)},
         "schemas_sha256": hashes,
-        "semantics": "The ordinary camelCase ThreadSourceKind unit enum, including explicitly renamed vscode and the real unknown variant, accepts one-key objects for its ten exact variants through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches exactly thread/list.sourceKinds[]; full additionally reaches experimental thread/search.sourceKinds[]. Preserve the complete canonical enum, caller arrays/objects and ordering, existing sort/direction corrections and method/field gates. Outer sourceKinds is an optional nullable array; elements are nonnullable enum values. Null unit payload selects a present filter, while outer omission/null/empty remain distinct caller inputs with native-owned default/relation behavior; no normalization, enum default or output change is introduced. Native owns persisted source filtering and pagination. The bounded ordinary producer supplies genuine vscode only: object-specific vscode inclusion and populated exclusion for other selectors do not establish positive producers for those nine source kinds, richer defaults, relation behavior, mixed-OR effects or every history/transport/platform combination. Cold populated results and original history/source retention require independent native evidence; input acceptance alone does not execute a turn.",
+        "semantics": "The ordinary camelCase ThreadSourceKind unit enum, including explicitly renamed vscode and the real unknown variant, accepts one-key objects for its ten exact variants through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Stable input reaches exactly thread/list.sourceKinds[]; full additionally reaches experimental thread/search.sourceKinds[] and thread/search/stream.sourceKinds[]. Preserve the complete canonical enum, caller arrays/objects and ordering, existing sort/direction corrections and method/field gates. Outer sourceKinds is an optional nullable array; elements are nonnullable enum values. Null unit payload selects a present filter, while outer omission/null/empty remain distinct caller inputs with native-owned default/relation behavior; no normalization, enum default or output change is introduced. Native owns persisted source filtering and pagination. The bounded ordinary producer supplies genuine vscode only: object-specific vscode inclusion and populated exclusion for other selectors do not establish positive producers for those nine source kinds, richer defaults, relation behavior, mixed-OR effects or every history/transport/platform combination. Cold populated results and original history/source retention require independent native evidence; input acceptance alone does not execute a turn.",
     }
 
 

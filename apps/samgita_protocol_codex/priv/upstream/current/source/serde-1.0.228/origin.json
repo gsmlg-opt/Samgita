@@ -9,6 +9,6 @@
   "semantics": "Complete source reference only, never compiled. The internally tagged ClientRequest buffers nested params through ContentDeserializer; its enum decoder requires one map entry and unit decoder accepts null or an empty map. These are actual nested request-input semantics, not a change to outgoing JSON or canonical output values.",
   "source_member": "serde-1.0.228/src/private/de.rs",
   "source_sha256": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a",
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6",
   "version": "1.0.228"
 }

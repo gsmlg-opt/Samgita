@@ -179,8 +179,9 @@ create upstream idempotency. `abandon/2` only stops a local wait; use the actual
 upstream interruption operation where appropriate and reconcile its effects.
 
 Known execution queries, including `server/diagnostics`, `thread/search`,
-`thread/searchOccurrences`, `thread/items/list`, `thread/items/read` and
-`thread/timeline/list`, report a lost response without recording uncertain
+`thread/search/stream`, `thread/searchOccurrences`, `thread/items/list`,
+`thread/items/read`, `thread/realtime/list`, `thread/timeline/list` and
+`modelProvider/list`, report a lost response without recording uncertain
 execution. Pending queries consume `max_pending`; pending mutations and retained
 uncertain mutations also consume `max_uncertain`. Unknown methods remain
 potentially mutating. A query failure still reports transport gaps where

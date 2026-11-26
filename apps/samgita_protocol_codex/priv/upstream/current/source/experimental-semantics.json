@@ -178,6 +178,12 @@
     },
     "Thread": {
       "fields": {
+        "attachedToThreadId": {
+          "presence": "non_null",
+          "reason": "thread.attachedToThreadId",
+          "rust_type": "Option<String>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
+        },
         "canAcceptDirectInput": {
           "presence": "non_null",
           "reason": "thread.canAcceptDirectInput",
@@ -187,6 +193,12 @@
         "daybreakEnabled": {
           "presence": "non_null",
           "reason": "thread.daybreakEnabled",
+          "rust_type": "Option<bool>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
+        },
+        "daybreakProgramPropagationEnrolled": {
+          "presence": "non_null",
+          "reason": "thread.daybreakProgramPropagationEnrolled",
           "rust_type": "Option<bool>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread_data.rs"
         },
@@ -258,7 +270,7 @@
         "runtimeWorkspaceRoots": {
           "presence": "non_null",
           "reason": "thread/fork.runtimeWorkspaceRoots",
-          "rust_type": "Option<Vec<AbsolutePathBuf>>",
+          "rust_type": "Option<Vec<LegacyAppPathString>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         }
       },
@@ -287,7 +299,46 @@
         "runtimeWorkspaceRoots": {
           "presence": "nonempty_collection",
           "reason": "thread/fork.runtimeWorkspaceRoots",
-          "rust_type": "Vec<AbsolutePathBuf>",
+          "rust_type": "Vec<LegacyAppPathString>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        }
+      },
+      "variants": []
+    },
+    "ThreadItemEntry": {
+      "fields": {
+        "outputDeferred": {
+          "presence": "true",
+          "reason": "thread/items/list.outputDeferred",
+          "rust_type": "bool",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        }
+      },
+      "variants": []
+    },
+    "ThreadItemOutputDeferral": {
+      "fields": {
+        "commandExecution": {
+          "presence": "true",
+          "reason": "thread/items/list.deferOutput.commandExecution",
+          "rust_type": "bool",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "mcpToolCall": {
+          "presence": "true",
+          "reason": "thread/items/list.deferOutput.mcpToolCall",
+          "rust_type": "bool",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        }
+      },
+      "variants": []
+    },
+    "ThreadItemsListParams": {
+      "fields": {
+        "deferOutput": {
+          "presence": "nested",
+          "reason": null,
+          "rust_type": "Option<ThreadItemOutputDeferral>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         }
       },
@@ -305,6 +356,12 @@
           "presence": "non_null",
           "reason": "thread/list.attachedToThreadId",
           "rust_type": "Option<String>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "includeAttachedThreads": {
+          "presence": "true",
+          "reason": "thread/list.includeAttachedThreads",
+          "rust_type": "bool",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
         "parentThreadId": {
@@ -396,7 +453,7 @@
         "runtimeWorkspaceRoots": {
           "presence": "non_null",
           "reason": "thread/resume.runtimeWorkspaceRoots",
-          "rust_type": "Option<Vec<AbsolutePathBuf>>",
+          "rust_type": "Option<Vec<LegacyAppPathString>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         }
       },
@@ -431,7 +488,7 @@
         "runtimeWorkspaceRoots": {
           "presence": "nonempty_collection",
           "reason": "thread/resume.runtimeWorkspaceRoots",
-          "rust_type": "Vec<AbsolutePathBuf>",
+          "rust_type": "Vec<LegacyAppPathString>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         }
       },
@@ -439,6 +496,12 @@
     },
     "ThreadSettings": {
       "fields": {
+        "environments": {
+          "presence": "non_null",
+          "reason": "thread/settings.environments",
+          "rust_type": "Option<Vec<ThreadEnvironment>>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
         "multiAgentMode": {
           "presence": "present",
           "reason": "thread/settings.multiAgentMode",
@@ -460,6 +523,12 @@
           "presence": "non_null",
           "reason": "thread/settings/update.collaborationMode",
           "rust_type": "Option<CollaborationMode>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "environments": {
+          "presence": "non_null",
+          "reason": "thread/settings/update.environments",
+          "rust_type": "Option<Vec<TurnEnvironmentParams>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
         "multiAgentMode": {
@@ -494,6 +563,12 @@
         "daybreakEnabled": {
           "presence": "non_null",
           "reason": "thread/start.daybreakEnabled",
+          "rust_type": "Option<bool>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        },
+        "daybreakProgramPropagationEnrolled": {
+          "presence": "non_null",
+          "reason": "thread/start.daybreakProgramPropagationEnrolled",
           "rust_type": "Option<bool>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
@@ -548,7 +623,7 @@
         "runtimeWorkspaceRoots": {
           "presence": "non_null",
           "reason": "thread/start.runtimeWorkspaceRoots",
-          "rust_type": "Option<Vec<AbsolutePathBuf>>",
+          "rust_type": "Option<Vec<LegacyAppPathString>>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
         },
         "selectedCapabilityRoots": {
@@ -583,8 +658,19 @@
         "runtimeWorkspaceRoots": {
           "presence": "nonempty_collection",
           "reason": "thread/start.runtimeWorkspaceRoots",
-          "rust_type": "Vec<AbsolutePathBuf>",
+          "rust_type": "Vec<LegacyAppPathString>",
           "source_path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs"
+        }
+      },
+      "variants": []
+    },
+    "TurnSettingsUpdateParams": {
+      "fields": {
+        "environments": {
+          "presence": "non_null",
+          "reason": "turn/settings/update.environments",
+          "rust_type": "Option<Vec<TurnEnvironmentParams>>",
+          "source_path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs"
         }
       },
       "variants": []
@@ -678,5 +764,5 @@
       "variants": []
     }
   },
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6"
 }

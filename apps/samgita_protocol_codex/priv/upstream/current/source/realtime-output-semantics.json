@@ -6,18 +6,29 @@
     "bemItemPromoted": {
       "item_id": "itemId",
       "turn_id": "turnId"
+    },
+    "sessionInputSaved": {
+      "input_item_id": "inputItemId",
+      "source_event_ids": "sourceEventIds"
+    },
+    "turnInputAccepted": {
+      "handoff_id": "handoffId",
+      "input_item_id": "inputItemId",
+      "source_event_ids": "sourceEventIds",
+      "turn_id": "turnId"
     }
   },
   "schemas_sha256": {
-    "ServerNotification.json": "df09d283cc8fa8d52eb2499091bb69d082a40a7d45dce9441533cb4036ec0b74",
-    "v2/ThreadRealtimeItemCompletedNotification.json": "b2a5e38840b8afc2111620c332801603e832b91ad4c95dd1f13c926923b760ef",
-    "v2/ThreadRealtimeItemStartedNotification.json": "ef1a68a635ce680b321e276fd9144ef614b37bab16942368bdc16bb8ee217f46",
-    "v2/ThreadTimelineListResponse.json": "86cda50f37c6432ad17270827aa28d3f5bca024daa9632d0924f66f50659eeb1"
+    "ServerNotification.json": "860bc6c0543d9e31a5a2ae63d2fb3906a46eef54af11a8b0ff2adb44d81d3d3e",
+    "v2/ThreadRealtimeItemCompletedNotification.json": "47d4da6784953f93659880cb865cb0626df720114d5fba440efda7290b0e859f",
+    "v2/ThreadRealtimeItemStartedNotification.json": "e4a43562d8513f06c9c930aff13c7ac6b3bde911cd04d01d44207ba63fc133a5",
+    "v2/ThreadRealtimeListResponse.json": "cb6f3e542879d5c51566a99c2ffdf8179631561a3e30af0e9fff791176752779",
+    "v2/ThreadTimelineListResponse.json": "49babb8d3c8de139bab9e82d1f47f862b3ee1a729f7a752dac056d9dd04a39b1"
   },
   "semantics": "Only output contract property/required names change; values, types, bounds, nullability, unions and original exports remain unchanged.",
   "source_sha256": {
-    "source/output-typescript/ThreadRealtimeItem.ts": "59640a5c18dc6d81dd68c2fcaff7e0da50e9555ee89da664b13787e162843c8f",
-    "source/realtime.rs": "a9e62779fa91f49926342a502f2a9058a02fe327734f46753feb6c5c005a8575"
+    "source/output-typescript/ThreadRealtimeItem.ts": "0cf7716bb3a254cc444823e4c91927c4b19d6c7d5903a2455e5bcda45ad4a1f4",
+    "source/realtime.rs": "286f9046baa8e7b5a7516ba1cacd85352c8491fc575ce7d0df18025bd80b69f8"
   },
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6"
 }

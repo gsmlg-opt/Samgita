@@ -38,17 +38,17 @@
     "thread/start"
   ],
   "schemas_sha256": {
-    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-    "v2/ThreadStartParams.json": "80a40a7fac15b4bf70efb7f893fb353acc0a0d30c68f54aee4f01923deca85de"
+    "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+    "v2/ThreadStartParams.json": "1d41b8b95bcd810592eb66a1f2a12479543b3f50b9e5fc4a46c860c44333205c"
   },
   "semantics": "The ordinary lowercase ThreadHistoryMode unit enum accepts one-key legacy/paginated objects through internally tagged ClientRequest's pinned buffered serde decoder, with null or empty-map unit payload. Only thread/start reaches this input definition. Preserve the complete canonical string schema, caller objects, enclosing constraints, outer null/omission and experimental field negotiation. Native owns canonical creation mode and its persisted history contract; acceptance does not submit a turn. Output schemas remain canonical.",
   "source_sha256": {
-    "source/common.rs": "4c449f1da399848c714c780fc1304ba566d0089aeaef8c33c3a9c7eb986e4272",
+    "source/common.rs": "42b3df2583735627a5828bd925e20fc82ee76457f1c8125c4f2cdf23b2f21c83",
     "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "source/serde-1.0.228/origin.json": "a19c5d691a01bc605191ea7b5a19630ce3a85d9faebba785e6fbcf59f1e9457f",
+    "source/serde-1.0.228/origin.json": "1ac4b9b867c3a03e748976ad0940aeb5c7089b81b1e36f6cd064f791017507b8",
     "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20",
-    "source/thread.rs": "f5a99bd250950ddaa3a07a8cae84e434c77d645650c11ec037e140945fa2c500",
-    "source/thread_data.rs": "dfb06fcc2722c6742f5989b93be0662079a3c059b18d5c82dc261e65c1fa7cb0"
+    "source/thread.rs": "b7de8cf6525820d85b474d80ae1db427783705d4f9e66a8d5677560cc2d136e8",
+    "source/thread_data.rs": "bc53e353033a75bc1042422a23f3526b129543438c2f62c9cb7b8a32099dcc02"
   },
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6"
 }

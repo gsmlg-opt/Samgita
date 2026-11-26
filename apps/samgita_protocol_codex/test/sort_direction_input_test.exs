@@ -24,11 +24,14 @@ defmodule SamgitaProtocolCodex.SortDirectionInputTest do
      ~s({"sortDirection":DIRECTION,"sortKey":"position"})},
     {"thread/search", "ThreadSearchParams", ["sortDirection"],
      %{"searchTerm" => "Owned direction"},
+     ~s({"searchTerm":"Owned direction","sortDirection":DIRECTION})},
+    {"thread/search/stream", "ThreadSearchParams", ["sortDirection"],
+     %{"searchTerm" => "Owned direction"},
      ~s({"searchTerm":"Owned direction","sortDirection":DIRECTION})}
   ]
   @standard ~w(thread/list thread/turns/list thread/items/list)
 
-  test "four native direction objects preserve original maps and literal bytes on all six paths" do
+  test "four native direction objects preserve original maps and literal bytes on all seven paths" do
     for {method, _owner, path, base, template} <- @routes,
         {object, literal} <- @forms,
         opts <- profiles(method) do
@@ -171,7 +174,7 @@ defmodule SamgitaProtocolCodex.SortDirectionInputTest do
             "thread/list" ->
               [%{"limit" => false}, %{"cwd" => false}, %{"archived" => "false"}]
 
-            "thread/search" ->
+            method when method in ~w(thread/search thread/search/stream) ->
               [%{"searchTerm" => false}, %{"limit" => false}, %{"archived" => "false"}]
 
             "project/list" ->
@@ -194,9 +197,16 @@ defmodule SamgitaProtocolCodex.SortDirectionInputTest do
                    Schema.validate_request(method, Map.merge(params, extra), opts)
         end
 
-        required = if method == "thread/search", do: "searchTerm", else: "threadId"
+        required =
+          if method in ~w(thread/search thread/search/stream), do: "searchTerm", else: "threadId"
 
-        if method in ["thread/turns/list", "thread/items/list", "thread/resume", "thread/search"] do
+        if method in [
+             "thread/turns/list",
+             "thread/items/list",
+             "thread/resume",
+             "thread/search",
+             "thread/search/stream"
+           ] do
           assert {:error, %Error{code: :schema_violation}} =
                    Schema.validate_request(method, Map.delete(params, required), opts)
         end

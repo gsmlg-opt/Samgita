@@ -44,8 +44,9 @@ defmodule SamgitaCodexDriver.Session do
   @read_only ~w(
     initialize server/diagnostics
     thread/list thread/loaded/list thread/read thread/turns/list
-    thread/search thread/searchOccurrences thread/items/list thread/items/read thread/timeline/list
-    model/list config/read configRequirements/read account/read skills/list
+    thread/search thread/search/stream thread/searchOccurrences
+    thread/items/list thread/items/read thread/timeline/list thread/realtime/list
+    model/list modelProvider/list config/read configRequirements/read account/read skills/list
   )
 
   def start_link(opts) do

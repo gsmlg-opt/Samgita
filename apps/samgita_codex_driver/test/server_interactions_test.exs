@@ -295,29 +295,20 @@ defmodule SamgitaCodexDriver.ServerInteractionsTest do
     end
   end
 
-  test "external currentTime requests work in stable and experimental sessions", context do
+  test "an external clock without a native provider fails thread start in both profiles",
+       context do
     for experimental <- [false, true] do
       fixture = fixture(Path.join(context.root, to_string(experimental)), "current_time")
+      File.write!(fixture.requests, "[]")
       pid = start(context.binary, fixture, experimental)
-      thread = thread(pid, fixture)
-      turn = turn(pid, thread)
 
-      events =
-        finish(pid, turn, fn event ->
-          assert event.wire["method"] == "currentTime/read"
-          assert event.wire["params"]["threadId"] == thread
-          # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
-          assert is_integer(event.wire["id"]) and event.wire["id"] >= 0
-          assert is_binary(thread) and byte_size(thread) > 0
-          assert event.wire["params"] === %{"threadId" => thread}
+      assert {:error, %Error{code: :upstream_error, wire: %{"error" => error}}} =
+               Session.request(pid, "thread/start", %{"cwd" => fixture.workspace})
 
-          assert :ok =
-                   Session.respond(pid, event.handle, {:ok, %{"currentTimeAt" => 1_781_717_655}})
-        end)
-
-      assert interactions(events) != []
-      [request] = ModelFixture.requests(fixture)
-      assert JSON.encode!(request["input"]) =~ "2026-06-17 17:34:15 UTC"
+      assert error["message"] =~ "no external current-time provider"
+      assert {:ok, events} = Session.drain(pid)
+      assert interactions(events) == []
+      assert ModelFixture.requests(fixture) == []
       Session.close(pid)
     end
   end

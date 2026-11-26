@@ -22,7 +22,8 @@ REALTIME_RUST = "source/realtime.rs"
 REALTIME_TYPESCRIPT = "source/output-typescript/ThreadRealtimeItem.ts"
 REALTIME_SEMANTICS = "source/realtime-output-semantics.json"
 REALTIME_SCHEMAS = ("ServerNotification.json", "v2/ThreadRealtimeItemStartedNotification.json",
-                    "v2/ThreadRealtimeItemCompletedNotification.json", SCHEMA)
+                    "v2/ThreadRealtimeItemCompletedNotification.json",
+                    "v2/ThreadRealtimeListResponse.json", SCHEMA)
 
 
 def derive(vendor):
@@ -92,32 +93,85 @@ def derive_realtime(vendor):
         r'#\[serde\(\s*tag = "type",\s*rename_all = "camelCase",\s*'
         r'rename_all_fields = "camelCase"\s*\)\]\s*'
         r'#\[ts\([^\n]+\)\]\s*pub enum ThreadRealtimeItemContent \{(.*?)\n\}', rust, re.S)
-    expected = 'turn_id: String, item_id: String, presentation: ThreadRealtimeBemItemPresentation,'
-    body = re.search(r'    BemItemPromoted \{(.*?)\n    \},', declaration[1], re.S) if declaration else None
-    if not body or ' '.join(body[1].split()) != expected:
-        raise ValueError("Pinned realtime promotion serde declaration changed")
-    if not re.search(r'#\[serde\(rename_all = "camelCase"\)\]\s*#\[ts\([^\n]+\)\]\s*'
-                     r'pub struct ThreadRealtimeItem \{\s*pub id: String,\s*'
-                     r'pub realtime_session_id: String,\s*#\[serde\(flatten\)\]\s*'
-                     r'pub content: ThreadRealtimeItemContent,\s*\}', rust):
-        raise ValueError("Pinned realtime flatten declaration changed")
-    if '{ "type": "bemItemPromoted", turnId: string, itemId: string, presentation: ThreadRealtimeBemItemPresentation, }' not in ts:
-        raise ValueError("Rust/TypeScript realtime promotion disagreement")
+    expected_variants = {
+        "RealtimeSessionStarted": [],
+        "Frame": [("channels", "ThreadRealtimeFrameChannels")],
+        "TranscriptSegment": [("role", "ThreadRealtimeTranscriptRole"), ("text", "String")],
+        "BemItemPromoted": [("turn_id", "String"), ("item_id", "String"),
+                            ("presentation", "ThreadRealtimeBemItemPresentation")],
+        "RealtimeSessionClosed": [("outcome", "ThreadRealtimeSessionOutcome")],
+        "TurnInputAccepted": [("handoff_id", "String"), ("turn_id", "String"),
+                              ("mode", "ThreadRealtimeHandoffMode"), ("source_event_ids", "Vec<String>"),
+                              ("input_item_id", "String"), ("input", "String")],
+        "SessionInputSaved": [("reason", "ThreadRealtimeSessionInputReason"),
+                              ("source_event_ids", "Vec<String>"), ("input_item_id", "String"),
+                              ("input", "String")],
+    }
+    if not declaration:
+        raise ValueError("Pinned realtime content serde naming changed")
+    variants = list(re.finditer(r'    (\w+)(?: \{(.*?)\n    \})?,', declaration[1], re.S))
+    if ([variant[1] for variant in variants] != list(expected_variants)
+            or re.sub(r'    (\w+)(?: \{(.*?)\n    \})?,', '', declaration[1], flags=re.S).strip()):
+        raise ValueError("Pinned realtime content variants changed")
+    corrections = {}
+    for variant in variants:
+        name, body = variant[1], variant[2] or ""
+        fields = expected_variants[name]
+        expected = ' '.join(f'{field}: {kind},' for field, kind in fields)
+        if ' '.join(body.split()) != expected:
+            raise ValueError("Pinned realtime content fields changed: " + name)
+        wire = name[0].lower() + name[1:]
+        ts_fields = ' '.join(f'{camel(field)}: ' +
+                             {"String": "string", "Vec<String>": "Array<string>"}.get(kind, kind) + ','
+                             for field, kind in fields)
+        ts_branch = ('{ "type": "' + wire + '", ' + ts_fields + ' }' if fields
+                     else '{ "type": "' + wire + '" }')
+        if ts_branch not in ts:
+            raise ValueError("Rust/TypeScript realtime content disagreement: " + name)
+        renames = {field: camel(field) for field, _ in fields if camel(field) != field}
+        if renames:
+            corrections[wire] = renames
+    common = re.search(r'#\[serde\(rename_all = "camelCase"\)\]\s*#\[ts\([^\n]+\)\]\s*'
+                       r'pub struct ThreadRealtimeItem \{(.*?)\n\}', rust, re.S)
+    expected_common = '''pub id: String,
+        pub realtime_session_id: String,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(type = "number", optional)]
+        pub observed_at_ms: Option<i64>,
+        #[serde(flatten)]
+        pub content: ThreadRealtimeItemContent,'''
+    if not common or ' '.join(re.sub(r'///[^\n]*', '', common[1]).split()) != ' '.join(expected_common.split()):
+        raise ValueError("Pinned realtime flatten or observation-time declaration changed")
+    ts_without_comments = re.sub(r'/\*.*?\*/|//[^\n]*', '', ts, flags=re.S)
+    if ('export type ThreadRealtimeItem = { id: string, realtimeSessionId: string, '
+            'observedAtMs?: number, } & (' not in ' '.join(ts_without_comments.split())):
+        raise ValueError("Rust/TypeScript realtime observation-time disagreement")
     reference = None
     hashes = {}
     for filename in REALTIME_SCHEMAS:
         document = json.loads((vendor / "experimental" / filename).read_text())
         definition = document["definitions"]["ThreadRealtimeItem"]
-        choices = [branch for branch in definition["oneOf"]
-                   if branch["properties"]["type"]["enum"] == ["bemItemPromoted"]]
-        expected_properties = {"type": {"enum": ["bemItemPromoted"], "type": "string",
-                                        "title": "BemItemPromotedThreadRealtimeItemType"},
-                               "turn_id": {"type": "string"}, "item_id": {"type": "string"},
-                               "presentation": {"$ref": "#/definitions/ThreadRealtimeBemItemPresentation"}}
-        if (len(choices) != 1 or choices[0]["properties"] != expected_properties
-                or set(choices[0]["required"]) != set(expected_properties)
+        properties = definition["properties"]
+        if (set(properties) != {"id", "realtimeSessionId", "observedAtMs"}
+                or properties["id"] != {"type": "string"}
+                or properties["realtimeSessionId"] != {"type": "string"}
+                or {key: value for key, value in properties["observedAtMs"].items() if key != "description"}
+                    != {"format": "int64", "type": ["integer", "null"]}
+                or set(definition["required"]) != {"id", "realtimeSessionId"}
+                or len(definition["oneOf"]) != len(expected_variants)
                 or reference is not None and reference != definition):
-            raise ValueError("Official realtime export structure changed: " + filename)
+            raise ValueError("Official realtime common export structure changed: " + filename)
+        for branch, (variant, fields) in zip(definition["oneOf"], expected_variants.items()):
+            wire = variant[0].lower() + variant[1:]
+            expected_properties = {"type": {"enum": [wire], "type": "string",
+                                            "title": variant + "ThreadRealtimeItemType"}}
+            for field, kind in fields:
+                expected_properties[field] = {"String": {"type": "string"},
+                    "Vec<String>": {"type": "array", "items": {"type": "string"}}}.get(
+                        kind, {"$ref": "#/definitions/" + kind})
+            if (branch["properties"] != expected_properties
+                    or set(branch["required"]) != set(expected_properties)):
+                raise ValueError("Official realtime content export structure changed: " + filename + ":" + wire)
         reference = definition
         hashes[filename] = digest(vendor / "experimental" / filename)
     return {
@@ -127,7 +181,7 @@ def derive_realtime(vendor):
         "source_sha256": {name: digest(vendor / name) for name in (REALTIME_RUST, REALTIME_TYPESCRIPT)},
         "schemas_sha256": hashes,
         "definition": "ThreadRealtimeItem",
-        "renames": {"bemItemPromoted": {"turn_id": "turnId", "item_id": "itemId"}},
+        "renames": corrections,
         "semantics": "Only output contract property/required names change; values, types, bounds, nullability, unions and original exports remain unchanged.",
     }
 

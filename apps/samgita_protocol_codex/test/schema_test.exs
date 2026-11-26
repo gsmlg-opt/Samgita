@@ -107,10 +107,20 @@ defmodule SamgitaProtocolCodex.SchemaTest do
   end
 
   test "all message directions expose the exact full release surface" do
-    assert length(Schema.methods(:client_request, experimental: true)) == 183
-    assert length(Schema.methods(:server_request, experimental: true)) == 11
-    assert length(Schema.methods(:server_notification, experimental: true)) == 88
+    assert length(Schema.methods(:client_request, experimental: true)) == 192
+    assert length(Schema.methods(:server_request, experimental: true)) == 10
+    assert length(Schema.methods(:server_notification, experimental: true)) == 89
     assert Schema.methods(:client_notification) == ["initialized"]
+    assert "modelProvider/list" in Schema.methods(:client_request)
+    assert "thread/realtime/list" in Schema.methods(:client_request, experimental: true)
+    assert "thread/search/partial" in Schema.methods(:server_notification, experimental: true)
+    refute "currentTime/read" in Schema.methods(:server_request, experimental: true)
+
+    assert {:error, %Error{code: :unsupported_method}} =
+             Schema.validate_request("currentTime/read", %{"threadId" => "t"},
+               direction: :server_request
+             )
+
     assert "server/diagnostics" not in Schema.methods(:client_request)
 
     assert {:error, %Error{code: :unsupported_method}} =
@@ -324,12 +334,6 @@ defmodule SamgitaProtocolCodex.SchemaTest do
 
   test "server requests preserve output fields without applying client-input field gates" do
     assert Schema.methods(:server_request) == Schema.methods(:server_request, experimental: true)
-    assert "currentTime/read" in Schema.methods(:server_request)
-
-    assert :ok =
-             Schema.validate_request("currentTime/read", %{"threadId" => "t"},
-               direction: :server_request
-             )
 
     params = %{
       "threadId" => "t",

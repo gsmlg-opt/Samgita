@@ -50,7 +50,7 @@ configuration paths and are independently consumable:
 | --- | --- |
 | `samgita_protocol` | Pure native v1 schema, codec, capability negotiation, correlation, handler contract and bounded replay |
 | `samgita_protocol_websocket` | Optional authenticated `/app-server` transport and explicitly started in-memory fake |
-| `samgita_protocol_codex` | Pinned Codex 0.163.0 native schema/wire layer and selected neutral convenience mappings; no native project-event compatibility |
+| `samgita_protocol_codex` | Native wire layer derived from the [reviewed upstream snapshot](../apps/samgita_protocol_codex/priv/upstream/current/source.json) and selected neutral convenience mappings; no native project-event compatibility |
 | `samgita_codex_driver` | Explicitly started Codex sessions, owned/borrowed transports, complete wire delivery and explicit interactions; behavioral qualification remains incomplete |
 
 No protocol library starts listeners or a platform runtime. Actual Agent services

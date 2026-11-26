@@ -4,14 +4,15 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
 
   @keywords ~w($schema $id $comment $ref title description default definitions $defs type enum anyOf oneOf allOf properties required additionalProperties items minimum maximum exclusiveMinimum exclusiveMaximum minLength maxLength minItems maxItems uniqueItems multipleOf format pattern const)
   @metadata ~w($schema $id $comment title description default definitions $defs)
-  @formats ~w(int64 int32 uint64 uint32 uint16 uint double)
+  @formats ~w(int64 int32 uint64 uint32 uint16 uint8 uint double)
   @integer_ranges %{
     "int64" => -9_223_372_036_854_775_808..9_223_372_036_854_775_807,
     "int32" => -2_147_483_648..2_147_483_647,
     "uint64" => 0..18_446_744_073_709_551_615,
     "uint" => 0..18_446_744_073_709_551_615,
     "uint32" => 0..4_294_967_295,
-    "uint16" => 0..65_535
+    "uint16" => 0..65_535,
+    "uint8" => 0..255
   }
 
   def validate(schema, value, root \\ nil) do

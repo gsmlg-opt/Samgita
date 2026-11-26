@@ -64,17 +64,17 @@
     "custom": ""
   },
   "schemas_sha256": {
-    "ClientRequest.json": "2d629aaaceea335d7e58ab19ce5908c8dd75ca3f3a6161a5f015bf59aadd3295",
-    "v2/ThreadSettingsUpdateParams.json": "749419634bb7ed66216d72bf9d8734ecf0e6efaa8cd46fe51a117d1b42ed9657",
-    "v2/ThreadStartParams.json": "80a40a7fac15b4bf70efb7f893fb353acc0a0d30c68f54aee4f01923deca85de",
-    "v2/TurnStartParams.json": "d13cb408b906669e8d3e8694b42148a75180d4dcd0eeac6867271add8dfa1864"
+    "ClientRequest.json": "4128a81cf06664c486ac99ae2d9f25a126f2b0319edd91b049fe80a87c4737e2",
+    "v2/ThreadSettingsUpdateParams.json": "e90e03c54514222d6c3a21411b70abeab33d294cfe243da0bffc1988aaa5e8f4",
+    "v2/ThreadStartParams.json": "1d41b8b95bcd810592eb66a1f2a12479543b3f50b9e5fc4a46c860c44333205c",
+    "v2/TurnStartParams.json": "b64078d4310cb1fa591c7f63344bed6b8c08d216f9f81d86c00045136187a2b6"
   },
   "semantics": "The pinned native from=MultiAgentModeWire decoder accepts none and maps it to Custom with empty text. Internally tagged ClientRequest buffers nested params: its serde ContentDeserializer accepts one-key unit objects for none/explicitRequestOnly/proactive with null OR empty-map payload. Preserve exact caller values, reject additional distinct keys/nonempty payloads, and do not broaden outputs. All three current request fields are deprecated and ignored; decoding does not activate delegation or change effective public explicitRequestOnly settings.",
   "source_sha256": {
     "source/config_types.rs": "ce9b26223db7cc4b5cf474e571e4509e8cc52536e159510f153f94de0fcd37e8",
     "source/serde-1.0.228/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "source/serde-1.0.228/origin.json": "a19c5d691a01bc605191ea7b5a19630ce3a85d9faebba785e6fbcf59f1e9457f",
+    "source/serde-1.0.228/origin.json": "1ac4b9b867c3a03e748976ad0940aeb5c7089b81b1e36f6cd064f791017507b8",
     "source/serde-1.0.228/private-de.rs": "68ee17774d3bbc693d9f19803747fa2c3afdb7046482e6d94ac6cf7db5a4fe20"
   },
-  "upstream_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a"
+  "upstream_commit": "3d86e43b075adeba2193ec5c22ac92f55afd82e6"
 }

@@ -5,6 +5,8 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @root Path.expand("../priv/upstream/current", __DIR__)
+  @methods ~w(thread/list thread/search thread/search/stream)
+  @search_methods ~w(thread/search thread/search/stream)
   @kinds ~w(cli vscode exec appServer subAgent subAgentReview subAgentCompact subAgentThreadSpawn subAgentOther unknown)
   @forms [
     {%{"cli" => nil}, ~s({"cli":null})},
@@ -36,7 +38,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   }
 
   test "twenty source-kind objects preserve literal singleton arrays and original caller maps" do
-    for method <- ["thread/list", "thread/search"],
+    for method <- @methods,
         {object, literal} <- @forms,
         opts <- profiles(method) do
       params = params(method, [object])
@@ -63,7 +65,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
       expected =
         if profile == "stable",
           do: expected,
-          else: expected ++ [{"thread/search", ["sourceKinds", "[]"]}]
+          else: expected ++ Enum.map(@search_methods, &{&1, ["sourceKinds", "[]"]})
 
       assert source_paths(document) === expected
 
@@ -73,7 +75,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
              }
 
       methods =
-        if profile == "stable", do: ["thread/list"], else: ["thread/list", "thread/search"]
+        if profile == "stable", do: ["thread/list"], else: @methods
 
       for method <- methods do
         owner = if method == "thread/list", do: "ThreadListParams", else: "ThreadSearchParams"
@@ -106,7 +108,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   end
 
   test "canonical arrays outer null omission and empty arrays retain the actual method gate" do
-    for method <- ["thread/list", "thread/search"] do
+    for method <- @methods do
       values = [
         base(method),
         params(method, nil),
@@ -130,9 +132,9 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
       end
     end
 
-    for {object, _literal} <- @forms do
+    for method <- @search_methods, {object, _literal} <- @forms do
       assert {:error, %Error{code: :experimental_api_required}} =
-               Schema.validate_request("thread/search", params("thread/search", [object]))
+               Schema.validate_request(method, params(method, [object]))
     end
 
     # Validation preserves outer null, absence and empty arrays; it does not
@@ -163,7 +165,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
         []
       ] ++ bad_payloads
 
-    for method <- ["thread/list", "thread/search"], opts <- profiles(method) do
+    for method <- @methods, opts <- profiles(method) do
       for value <- bad_elements do
         assert {:error, %Error{code: :schema_violation}} =
                  Schema.validate_request(method, params(method, [value]), opts)
@@ -177,7 +179,7 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   end
 
   test "source objects preserve mixed-array order and compose without loosening enclosing constraints" do
-    for method <- ["thread/list", "thread/search"],
+    for method <- @methods,
         {object, _literal} <- @forms,
         opts <- profiles(method) do
       params =
@@ -229,10 +231,10 @@ defmodule SamgitaProtocolCodex.ThreadSourceKindInputTest do
   end
 
   defp base("thread/list"), do: %{}
-  defp base("thread/search"), do: %{"searchTerm" => "Owned source input"}
+  defp base(method) when method in @search_methods, do: %{"searchTerm" => "Owned source input"}
   defp params(method, kinds), do: Map.put(base(method), "sourceKinds", kinds)
   defp profiles("thread/list"), do: [[], [experimental: true]]
-  defp profiles("thread/search"), do: [[experimental: true]]
+  defp profiles(method) when method in @search_methods, do: [[experimental: true]]
 
   defp read(profile, file),
     do: Path.join([@root, profile, file]) |> File.read!() |> JSON.decode!()

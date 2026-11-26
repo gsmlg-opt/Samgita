@@ -44,6 +44,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   @history_mode Enum.find(@corrections, &(&1["definition"] == "ThreadHistoryMode"))
   @start_source Enum.find(@corrections, &(&1["definition"] == "ThreadStartSource"))
   @search_sort Enum.find(@corrections, &(&1["definition"] == "ThreadSearchSortKey"))
+  @search_methods @search_sort["methods"]
   @list_sort Enum.find(@corrections, &(&1["definition"] == "ThreadSortKey"))
   @direction Enum.find(@corrections, &(&1["definition"] == "SortDirection"))
   @project_sort Enum.find(@corrections, &(&1["definition"] == "ProjectSortKey"))
@@ -118,7 +119,7 @@ defmodule SamgitaProtocolCodex.Schema.Input do
   def contract("ClientRequest.json", method, document) when method in @summary_methods,
     do: summary_input(document)
 
-  def contract("ClientRequest.json", "thread/search", document),
+  def contract("ClientRequest.json", method, document) when method in @search_methods,
     do: document |> search_sort_input() |> direction_input() |> source_kind_input()
 
   def contract("ClientRequest.json", "thread/list", document),

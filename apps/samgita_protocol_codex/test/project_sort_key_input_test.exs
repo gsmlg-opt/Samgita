@@ -41,7 +41,8 @@ defmodule SamgitaProtocolCodex.ProjectSortKeyInputTest do
 
     expected_field = %{
       "anyOf" => [%{"$ref" => "#/definitions/ProjectSortKey"}, %{"type" => "null"}],
-      "description" => "Defaults to position. Recency sorting always places empty projects last."
+      "description" =>
+        "Defaults to position. Recency sorting always places empty projects last. Use the returned order; numeric positions are not exposed in project responses."
     }
 
     assert full["definitions"]["ProjectListParams"]["properties"]["sortKey"] === expected_field
